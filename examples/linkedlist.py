@@ -18,6 +18,14 @@ class LinkedList:
       node.next = self.head          
       self.head = node   
       
+  def len( self ):
+    ln = 0
+    p = self.head
+    while p != None:
+      ln += 1
+      p = p.next
+    return ln
+      
   def sum( self ):
     s = 0
     p = self.head
