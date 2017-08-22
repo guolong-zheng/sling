@@ -2,22 +2,27 @@ class Node:
   def __init__( self, data ):
     self.data = data
     self.next = None
-    
+
   def __str__( self ):
-    return str(id(self)) + " -> " + str(self.data) + ", " + str(id(self.next)) + '\n'
+    self_addr = str(hex(id(self)))
+    if self.next:
+      next_addr = str(hex(id(self.next)))
+    else:
+      next_addr = "NULL"
+    return (self_addr + " -> (" + str(self.data) + ", " + next_addr + ")")
 
 class LinkedList:
-  def __init__( self ):
-    self.head = None    
+  def __init__( self, h = None ):
+    self.head = h
 
   def add( self, data ):
     node = Node( data )
-    if self.head == None:  
+    if self.head == None:
       self.head = node
     else:
-      node.next = self.head          
-      self.head = node   
-      
+      node.next = self.head
+      self.head = node
+
   def len( self ):
     ln = 0
     p = self.head
@@ -25,7 +30,7 @@ class LinkedList:
       ln += 1
       p = p.next
     return ln
-      
+
   def sum( self ):
     s = 0
     p = self.head
@@ -33,7 +38,17 @@ class LinkedList:
       s += p.data
       p = p.next
     return s
-    
+
+  def sumrec( self ):
+    print self
+    p = self.head
+    if p:
+      ll = LinkedList(p.next)
+      s = ll.sumrec()
+      return p.data + s
+    else:
+      return 0
+
   def last( self ):
     l = None
     p = self.head
@@ -51,12 +66,15 @@ class LinkedList:
     return p
 
   def __str__( self ):
-    s = ""
     p = self.head
-    while p != None:
-      s += str(p) + '\n'
-      p = p.next
-    return s
+    if p:
+      s = ""
+      while p != None:
+        s += str(p) + '\n'
+        p = p.next
+      return s
+    else:
+      return "NULL"
 
 # example code
 l = LinkedList()
@@ -67,5 +85,5 @@ l.add( 3 )
 
 # l.last().next = l.head
 
-print l
-print l.sum()
+# print l
+print l.sumrec()
