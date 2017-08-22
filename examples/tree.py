@@ -42,6 +42,12 @@ class BST:
     else:
       return 0
 
+  def incL( self, node ):
+    print node
+    if node:
+      node.data += 1
+      self.incL(node.left)
+
   def __str__( self ):
     if self.root:
       return str(self.root) + "\n" + str(self.root.left) + "\n" + str(self.root.right)
@@ -53,6 +59,8 @@ t.insert(2)
 t.insert(1)
 t.insert(3)
 
-# print t
+t.incL(t.root)
+
+print t
 
 print t.sumL(t.root)
