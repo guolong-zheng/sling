@@ -41,13 +41,27 @@ class Tree:
         curr.right = node
       else:
         self._insert(curr.right, node)
+        
+  def __insert( self, curr, node ):
+    if curr is None:
+      return node
+    else:
+      if node.data <= curr.data:
+        curr.left = self.__insert(curr.left, node)
+      else:
+        curr.right = self.__insert(curr.right, node)
+      return curr
 
   def insert( self, data ):
     node = Node(data)
     if self.root is None:
       self.root = node
     else:
-      self._insert(self.root, node)
+      self.__insert(self.root, node)
+      
+  def insert2( self, data ):
+    node = Node(data)
+    self.root = self.__insert(self.root, node)
 
   def sumL( self, node ):
     # print(node)
@@ -94,13 +108,13 @@ class Tree:
         return t 
 
 t = Tree()
-t.insert(4)
-t.insert(2)
-t.insert(1)
-t.insert(3)
-t.insert(6)
-t.insert(5)
-t.insert(7)
+t.insert2(4)
+t.insert2(2)
+t.insert2(1)
+t.insert2(3)
+t.insert2(6)
+t.insert2(5)
+t.insert2(7)
 
 print(t)
 
