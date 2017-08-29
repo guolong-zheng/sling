@@ -1,3 +1,5 @@
+from parse import *
+
 class Node:
   def __init__( self, data ):
     self.data = data
@@ -5,62 +7,106 @@ class Node:
     self.right = None
 
   def __str__( self ):
-    self_addr = str(hex(id(self)))
-    if self.left:
-      l_addr = str(hex(id(self.left)))
+    if self is None:
+      return "None"
     else:
-      l_addr = "NULL"
-    if self.right:
-      r_addr = str(hex(id(self.right)))
-    else:
-      r_addr = "NULL"
-    return (self_addr + " -> (" + str(self.data) + ", " + l_addr + ", " + r_addr + ")")
+      s = ""
+      self_addr = str(hex(id(self)))
+      if self.left:
+        l_addr = str(hex(id(self.left)))
+        s += str(self.left)
+      else:
+        l_addr = "None"
+      if self.right:
+        r_addr = str(hex(id(self.right)))
+        s += str(self.right)
+      else:
+        r_addr = "None"
+      return (self_addr + " -> (" + str(self.data) + ", " + l_addr + ", " + r_addr + ")" + "\n" + s)
 
-class BST:
+class Tree:
   def __init__( self, r = None ):
     self.root = r
 
   def _insert( self, curr, node ):
-    if curr == None:
-      return node
-    elif node.data <= curr.data:
-      curr.left = self._insert(curr.left, node)
+    # Invariant: curr != None
+    if node.data <= curr.data:
+      if curr.left is None:
+        curr.left = node
+      else:
+        self._insert(curr.left, node)
     else:
-      curr.right = self._insert(curr.right, node)
+      if curr.right is None:
+        curr.right = node
+      else:
+        self._insert(curr.right, node)
 
   def insert( self, data ):
     node = Node(data)
-    if self.root:
-      self._insert(self.root, node)
-    else:
+    if self.root is None:
       self.root = node
+    else:
+      self._insert(self.root, node)
 
   def sumL( self, node ):
-    print node
+    # print(node)
     if node:
       return node.data + self.sumL(node.left)
     else:
       return 0
 
   def incL( self, node ):
-    print node
+    # print(node)
     if node:
       node.data += 1
       self.incL(node.left)
 
   def __str__( self ):
     if self.root:
-      return str(self.root) + "\n" + str(self.root.left) + "\n" + str(self.root.right)
+      return "root = (" + str(hex(id(self.root))) + ")\n" + str(self.root)
     else:
       return "NULL"
+      
+  def __parse__( self, trace ):
+    lines = trace.splitlines()
+    
+    if not lines:
+      return None
+    else:
+      root = search("root = ({})", lines[0])[0]
+      if root is None:
+        return Tree()
+      else:
+        dict = {'None': (None, '', '')}
+        for line in lines[1:]:
+          n = parse("{addr} -> ({val:d}, {left}, {right})", line)
+          dict[n['addr']] = (Node(n['val']), n['left'], n['right']) 
+          
+        for k in dict:
+          if k != 'None':
+            (node, l, r) = dict[k]
+            node.left = dict[l][0]
+            node.right = dict[r][0]
+        
+        t = Tree(dict[root][0])
+        print(t)
+        return t 
 
-t = BST()
+t = Tree()
+t.insert(4)
 t.insert(2)
 t.insert(1)
 t.insert(3)
+t.insert(6)
+t.insert(5)
+t.insert(7)
 
-t.incL(t.root)
+print(t)
 
-print t
+t.__parse__(str(t))
 
-print t.sumL(t.root)
+# t.incL(t.root)
+
+# print(t)
+
+# print(t.sumL(t.root))
