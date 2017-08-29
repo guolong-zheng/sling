@@ -30,6 +30,7 @@ class Tree:
 
   def _insert( self, curr, node ):
     # Invariant: curr != None
+    # Invariant: isTree(curr)
     if node.data <= curr.data:
       if curr.left is None:
         curr.left = node
