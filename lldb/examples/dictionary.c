@@ -138,10 +138,10 @@ int main(int argc, char **argv) {
   char buffer[1024];
   char *filename;
   int done = 0;
-
+  
   if (argc == 2)
     filename = argv[1];
-
+  
   if (!filename)
     return -1;
 

@@ -31,7 +31,7 @@ if target:
 
     # Launch the process. Since we specified synchronous mode, we won't return
     # from this function until we hit the breakpoint at main
-    process = target.LaunchSimple (None, ["./story.txt"], os.getcwd())
+    process = target.LaunchSimple (["./story.txt"], None, os.getcwd())
     
     # Make sure the launch went ok
     if process:
@@ -62,14 +62,16 @@ if target:
                         vars = frame.GetVariables(True, False, False, False)
                         print vars
                     
-                        end_addr = frame.GetLineEntry().GetEndAddress()
-                        end_bp = target.BreakpointCreateBySBAddress(end_addr)
+                        # end_addr = frame.GetLineEntry().GetEndAddress()
+                        # end_bp = target.BreakpointCreateBySBAddress(end_addr)
+                        end_bp = target.BreakpointCreateByLocation(
+						    frame.GetLineEntry().GetFileSpec(), 101)
                         print end_bp
                     
                         line_num = frame.GetLineEntry().GetLine()
                         print line_num
 						
-                        # process.Continue()
+                        process.Continue()						
                     else:
                         # See if we have a symbol in the symbol table for where we stopped
                         symbol = frame.GetSymbol();
