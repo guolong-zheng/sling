@@ -218,4 +218,12 @@ class FExists(SH):
         return ('ex(' + (', '.join(map(str, self.vars))) +
                 ': ' + str(self.form) + ')')
 
+class PredDef(SepLogic):
+    def __init__(self, name, params, cases):
+        self.name = name
+        self.params = params
+        self.cases = cases
 
+    def __str__(self):
+        return (self.name + '(' + (', '.join(map(str, self.params))) + ')' +
+                ' == ' + (' \/ '.join(map(str, self.cases))))
