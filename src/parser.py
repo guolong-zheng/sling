@@ -7,10 +7,26 @@ except NameError:
     pass
 
 seplogic_grammar = ("""
+    ?prog: data_defn_lst pred_defn_lst -> mk_prog
+
+    ?data_defn_lst: [data_defn (data_defn)*] -> mk_list
+
+    ?pred_defn_lst: [pred_defn (pred_defn)*] -> mk_list
+
+    ?data_defn: DATA ID OBRACE data_defn_fields CBRACE SEMICOLON -> mk_data_defn
+
+    ?data_defn_field: ID ID SEMICOLON -> mk_data_defn_field
+
+    ?data_defn_fields: [data_defn_field (data_defn_field)*] -> mk_list
+
+    ?pred_defn: PRED ID OPAREN id_lst CPAREN DEF pred_defn_cases SEMICOLON -> mk_pred_defn
+
+    ?pred_defn_cases: [shform (POR shform)*] -> mk_list
+
     ?shform: hform -> mk_sh_true
         | pform -> mk_sh_emp
         | hform AND pform -> mk_sh
-        | EX id_list DOT shform -> mk_exists_sh
+        | EX id_lst DOT shform -> mk_exists_sh
         | OPAREN shform CPAREN -> mk_paren
 
     ?hform: hatom
@@ -21,8 +37,8 @@ seplogic_grammar = ("""
         | ID OPAREN pexpr_lst CPAREN -> mk_pred
 
     ?pform: pfdisj
-        | EX id_list DOT pform -> mk_exists
-        | ALL id_list DOT pform -> mk_forall
+        | EX id_lst DOT pform -> mk_exists
+        | ALL id_lst DOT pform -> mk_forall
 
     ?pfdisj: pfconj
         | pfdisj OR pfconj-> mk_or
@@ -60,8 +76,12 @@ seplogic_grammar = ("""
         | SUB patom
         | OPAREN pexpr CPAREN -> mk_paren
 
-    ?id_list: [ID (COMMA ID)*] -> mk_list
+    ?id_lst: [ID (COMMA ID)*] -> mk_list
 
+    PRED: "pred"
+    DEF: ":="
+    POR: "\\/"
+    DATA: "data"
     NIL: "nil"
     NULL: "null"
     EMP: "emp"
@@ -85,6 +105,7 @@ seplogic_grammar = ("""
     TRUE: "true"
     FALSE: "false"
     COMMA: ","
+    SEMICOLON: ";"
     OPAREN: "("
     CPAREN: ")"
     OBRACE: "{"
@@ -159,11 +180,26 @@ class TreeToSL(Transformer):
     def mk_exists_sh(self, (ex, vars, d, f)):
         return FExists(vars, f)
 
-seplogic_parser = Lark(seplogic_grammar, start='shform',lexer='standard')
+    def mk_data_defn_field(self, (typ, name, semicolon)):
+        return DataField(typ, name)
 
-# text = 'exists x. !(x != (y + 1)) & x>0 | y=1'
-text = 'exists y, z. emp * x->node{y} * ls(y, 1+2) & x!=null'
+    def mk_data_defn(self, (data, name, obrace, fields, cbrace, semicolon)):
+        return DataDef(name, fields)
 
+    def mk_pred_defn(self, (pred, name, oparen, params, cparen, defn, cases, semicolon)):
+        return PredDef(name, params, cases)
+
+    def mk_prog(self, (data_defn_lst, pred_defn_lst)):
+        return Prog(data_defn_lst, pred_defn_lst)
+
+seplogic_parser = Lark(seplogic_grammar, start='prog',lexer='standard')
+
+text = """
+data node { node next; };
+
+pred ls(x,y,n) := emp & x=y & n=0
+    \/ (exists u. x->node{u} * ls(u,y,n-1) & n>=1);
+"""
 ast = seplogic_parser.parse(text)
 
 print(ast)

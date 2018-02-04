@@ -210,7 +210,7 @@ class FBase(SH):
             self.pure = pure
 
     def __str__(self):
-        return (str(self.heap) + ' /\ ' + str(self.pure))
+        return (str(self.heap) + ' & ' + str(self.pure))
 
 class FExists(SH):
     def __init__(self, vars, f):
@@ -224,6 +224,23 @@ class FExists(SH):
         return ('(exists ' + (', '.join(map(str, self.vars))) +
                 '. ' + str(self.form) + ')')
 
+class DataField(SepLogic):
+    def __init__(self, typ, name):
+        self.typ = typ
+        self.name = name
+
+    def __str__(self):
+        return (str(self.typ) + ' ' + self.name + ';')
+
+class DataDef(SepLogic):
+    def __init__(self, name, fields):
+        self.name = name
+        self.fields = fields
+
+    def __str__(self):
+        return ('data '+ self.name + ' {\n\t' +
+                ('\n\t'.join(map(str, self.fields))) + '\n};')
+
 class PredDef(SepLogic):
     def __init__(self, name, params, cases):
         self.name = name
@@ -231,5 +248,13 @@ class PredDef(SepLogic):
         self.cases = cases
 
     def __str__(self):
-        return (self.name + '(' + (', '.join(map(str, self.params))) + ')' +
-                ' == ' + (' \/ '.join(map(str, self.cases))))
+        return ('pred ' + self.name + '(' + (', '.join(map(str, self.params))) + ')' +
+                ' := \n\t' + ('\n\t\/ '.join(map(str, self.cases))))
+
+class Prog(SepLogic):
+    def __init__(self, data_defn_lst, pred_defn_lst):
+        self.data_defn_lst = data_defn_lst
+        self.pred_defn_lst = pred_defn_lst
+
+    def __str__(self):
+        return ('\n\n'.join(map(str, self.data_defn_lst + self.pred_defn_lst)))
