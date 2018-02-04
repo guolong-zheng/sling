@@ -59,7 +59,7 @@ class Var(Expr):
         self.is_primed = is_primed
 
     def __str__(self):
-        return self.id + ('\'' if self.is_primed else '')
+        return (self.id + ('\'' if self.is_primed else ''))
 
 class IConst(Expr):
     def __init__(self, i):
@@ -134,8 +134,8 @@ class PForall(PRel):
         self.form = f
 
     def __str__(self):
-        return ('all(' + (', '.join(map(str, self.vars))) +
-                ': ' + str(self.form) + ')')
+        return ('(forall ' + (', '.join(map(str, self.vars))) +
+                '. ' + str(self.form) + ')')
 
 class PExists(PRel):
     def __init__(self, vars, f):
@@ -143,8 +143,8 @@ class PExists(PRel):
         self.form = f
 
     def __str__(self):
-        return ('ex(' + (', '.join(map(str, self.vars))) +
-                ': ' + str(self.form) + ')')
+        return ('(exists ' + (', '.join(map(str, self.vars))) +
+                '. ' + str(self.form) + ')')
 
 class HRel(SepLogic):
     pass
@@ -215,8 +215,8 @@ class FExists(SH):
             raise SyntaxError(str(f) + ' is not a symbolic-heap formula')
 
     def __str__(self):
-        return ('ex(' + (', '.join(map(str, self.vars))) +
-                ': ' + str(self.form) + ')')
+        return ('(exists ' + (', '.join(map(str, self.vars))) +
+                '. ' + str(self.form) + ')')
 
 class PredDef(SepLogic):
     def __init__(self, name, params, cases):
