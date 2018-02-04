@@ -36,12 +36,12 @@ seplogic_grammar = ("""
 
     ?prel: TRUE -> mk_true
         | FALSE -> mk_false
-        | pterm EQ pterm -> mk_binrel
-        | pterm NE pterm -> mk_binrel
-        | pterm GT pterm -> mk_binrel
-        | pterm GE pterm -> mk_binrel
-        | pterm LT pterm -> mk_binrel
-        | pterm LE pterm -> mk_binrel
+        | pexpr EQ pexpr -> mk_binrel
+        | pexpr NE pexpr -> mk_binrel
+        | pexpr GT pexpr -> mk_binrel
+        | pexpr GE pexpr -> mk_binrel
+        | pexpr LT pexpr -> mk_binrel
+        | pexpr LE pexpr -> mk_binrel
 
     ?pexpr_lst: [pexpr (COMMA pexpr)*] -> mk_list
 
@@ -162,7 +162,7 @@ class TreeToSL(Transformer):
 seplogic_parser = Lark(seplogic_grammar, start='shform',lexer='standard')
 
 # text = 'exists x. !(x != (y + 1)) & x>0 | y=1'
-text = 'exists y, z. emp * x->node{y} * ls(y, nil) & x!=null'
+text = 'exists y, z. emp * x->node{y} * ls(y, 1+2) & x!=null'
 
 ast = seplogic_parser.parse(text)
 

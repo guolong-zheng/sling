@@ -46,14 +46,17 @@ class RelOp:
 class SepLogic(object):
     pass
 
-class Expr(SepLogic):
+class PExpr(SepLogic):
     pass
 
-class Null(Expr):
+class HExpr(SepLogic):
+    pass
+
+class Null(HExpr):
     def __str__(self):
         return 'nil'
 
-class Var(Expr):
+class Var(PExpr, HExpr):
     def __init__(self, id, is_primed = False):
         self.id = id
         self.is_primed = is_primed
@@ -61,18 +64,21 @@ class Var(Expr):
     def __str__(self):
         return (self.id + ('\'' if self.is_primed else ''))
 
-class IConst(Expr):
+class IConst(PExpr):
     def __init__(self, i):
         self.val = i
 
     def __str__(self):
         return str(self.val)
 
-class BinOp(Expr):
+class BinOp(PExpr):
     def __init__(self, left, op, right):
-        self.op = ArithOp.arith_op(op)
-        self.left = left
-        self.right = right
+        if isinstance(left, PExpr) and isinstance(right, PExpr):
+            self.op = ArithOp.arith_op(op)
+            self.left = left
+            self.right = right
+        else:
+            raise SyntaxError("type inconsistency")
 
     def __str__(self):
         return str(self.left) + str(self.op) + str(self.right)
