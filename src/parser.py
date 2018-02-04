@@ -55,6 +55,7 @@ seplogic_grammar = ("""
 
     ?patom: NUM -> mk_iconst
         | NIL -> mk_nil
+        | NULL -> mk_nil
         | ID -> mk_var
         | SUB patom
         | OPAREN pexpr CPAREN -> mk_paren
@@ -62,6 +63,7 @@ seplogic_grammar = ("""
     ?id_list: [ID (COMMA ID)*] -> mk_list
 
     NIL: "nil"
+    NULL: "null"
     EMP: "emp"
     PTO: "->"
     ADD: "+"
@@ -160,7 +162,7 @@ class TreeToSL(Transformer):
 seplogic_parser = Lark(seplogic_grammar, start='shform',lexer='standard')
 
 # text = 'exists x. !(x != (y + 1)) & x>0 | y=1'
-text = 'exists y, z. emp * x->node{y} * ls(y, z) & x!=nil & y=nil'
+text = 'exists y, z. emp * x->node{y} * ls(y, nil) & x!=null'
 
 ast = seplogic_parser.parse(text)
 
