@@ -50,7 +50,7 @@ seplogic_grammar = ("""
         | pexpr SUB pterm-> mk_binop
 
     ?pterm: patom
-        | pterm MUL patom -> mk_binop
+        | pterm STAR patom -> mk_binop
         | pterm DIV patom -> mk_binop
 
     ?patom: NUM -> mk_iconst
@@ -61,12 +61,12 @@ seplogic_grammar = ("""
 
     ?id_list: [ID (COMMA ID)*] -> mk_list
 
-    NIL: "nil" | "null"
+    NIL: "nil"
     EMP: "emp"
     PTO: "->"
     ADD: "+"
     SUB: "-"
-    MUL: "*"
+    STAR: "*"
     DIV: "/"
     LT: "<"
     LE: "<="
@@ -77,7 +77,6 @@ seplogic_grammar = ("""
     AND: "&"
     OR: "|"
     NOT: "!"
-    STAR: "*"
     ALL: "forall"
     EX: "exists"
     DOT: "."
@@ -158,11 +157,10 @@ class TreeToSL(Transformer):
     def mk_exists_sh(self, (ex, vars, d, f)):
         return FExists(vars, f)
 
-
-seplogic_parser = Lark(seplogic_grammar, start='shform')
+seplogic_parser = Lark(seplogic_grammar, start='shform',lexer='standard')
 
 # text = 'exists x. !(x != (y + 1)) & x>0 | y=1'
-text = 'exists y, z. emp * x->node{y} * ls(y, z) & x!=nil & z=nil '
+text = 'exists y, z. emp * x->node{y} * ls(y, z) & x!=nil & y=nil'
 
 ast = seplogic_parser.parse(text)
 
