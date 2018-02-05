@@ -196,11 +196,11 @@ class TreeToSL(Transformer):
 seplogic_parser = Lark(seplogic_grammar, start='prog',lexer='standard')
 
 trace_grammar = ("""
-    ?traces: (node_trace | ptr_trace)+ -> mk_list
+    ?traces: (heap_trace | stk_trace)+ -> mk_list
 
-    ?ptr_trace: ID EQ ADDR SEMICOLON -> mk_ptr_trace
+    ?stk_trace: ID EQ ADDR SEMICOLON -> mk_stk_trace
 
-    ?node_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_node_trace
+    ?heap_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
 
     ?fields: field (SEMICOLON field)* -> mk_fields
 
@@ -239,11 +239,11 @@ class TreeToTraces(Transformer):
     def mk_fields(self, lst):
         return lst[0::2]
 
-    def mk_node_trace(self, (addr, pto, name, obrace, fields, cbrace, semicolon)):
-        return NodeTrace(self.mk_hex(addr), name, fields)
+    def mk_heap_trace(self, (addr, pto, name, obrace, fields, cbrace, semicolon)):
+        return HeapTrace(self.mk_hex(addr), name, fields)
 
-    def mk_ptr_trace(self, (ptr, eq, addr, semicolon)):
-        return PtrTrace(ptr, self.mk_hex(addr))
+    def mk_stk_trace(self, (ptr, eq, addr, semicolon)):
+        return StackTrace(ptr, self.mk_hex(addr))
 
     def mk_list(self, lst):
         return lst

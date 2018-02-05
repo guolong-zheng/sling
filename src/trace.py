@@ -26,7 +26,7 @@ class DataField(Field):
 class Trace(object):
     pass
 
-class NodeTrace(Trace):
+class HeapTrace(Trace):
     def __init__(self, addr, name, fields):
         self.addr = addr
         self.name = name
@@ -35,7 +35,7 @@ class NodeTrace(Trace):
     def __str__(self):
         return hex(self.addr) + ' -> ' + self.name + '{' + ('; '.join(map(str, self.fields))) + '}'
 
-class PtrTrace(Trace):
+class StackTrace(Trace):
     def __init__(self, ptr, addr):
         self.ptr = ptr
         self.addr = addr
