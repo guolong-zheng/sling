@@ -12,24 +12,36 @@ class PtrField(Field):
         self.data = addr
 
     def __str__(self):
-        return self.name + '=' + str(self.data)
+        return self.name + ':' + hex(self.data)
 
 class DataField(Field):
-    def __init__(self, name, data):
+    def __init__(self, name, data, raw_data):
         self.name = name
         self.data = data
+        self.raw_data = raw_data
 
     def __str__(self):
-        return self.name + '=' + self.data
+        return self.name + ':' + str(self.data)
 
 class Trace(object):
-    def __init__(self, root, fields):
-        self.root = root
+    pass
+
+class NodeTrace(Trace):
+    def __init__(self, addr, name, fields):
+        self.addr = addr
+        self.name = name
         self.fields = fields
 
     def __str__(self):
-        return str(self.root) + '<' + (', '.join(map(str, self.fields))) + '>'
+        return hex(self.addr) + ' -> ' + self.name + '{' + ('; '.join(map(str, self.fields))) + '}'
 
+class PtrTrace(Trace):
+    def __init__(self, ptr, addr):
+        self.ptr = ptr
+        self.addr = addr
+
+    def __str__(self):
+        return self.ptr + ' = ' + hex(self.addr)
 
 #def getTrace(file):
 if True:
@@ -70,7 +82,7 @@ if True:
                                                 ptr = DataField(child.GetName(),child.GetValue())
                                            
                                             fields.append(ptr)
-                                        traces.append(Trace(root,fields))
-			print map(str,traces)
+                                        # traces.append(Trace(root,fields))
+			# print map(str,traces)
 		    
 

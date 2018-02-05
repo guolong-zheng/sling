@@ -1,5 +1,6 @@
 from lark import Lark, Transformer
 from seplogic import *
+from trace import *
 
 try:
     input = raw_input   # For Python2 compatibility
@@ -181,7 +182,7 @@ class TreeToSL(Transformer):
         return FExists(vars, f)
 
     def mk_data_defn_field(self, (typ, name, semicolon)):
-        return DataField(typ, name)
+        return DataDefField(typ, name)
 
     def mk_data_defn(self, (data, name, obrace, fields, cbrace, semicolon)):
         return DataDef(name, fields)
@@ -194,17 +195,88 @@ class TreeToSL(Transformer):
 
 seplogic_parser = Lark(seplogic_grammar, start='prog',lexer='standard')
 
-text = """
-data node { node next; };
+trace_grammar = ("""
+    ?traces: (node_trace | ptr_trace)+ -> mk_list
+
+    ?ptr_trace: ID EQ ADDR SEMICOLON -> mk_ptr_trace
+
+    ?node_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_node_trace
+
+    ?fields: field (SEMICOLON field)* -> mk_fields
+
+    ?field: (ptr_field | data_field)
+
+    ?ptr_field: ID COLON ADDR -> mk_ptr_field
+
+    ?data_field: ID COLON NUM -> mk_data_field
+
+    ADDR: "0x" HEXDIGIT+
+    PTO: "->"
+    OBRACE: "{"
+    CBRACE : "}"
+    SEMICOLON: ";"
+    COLON: ":"
+    EQ: "="
+
+    %import common.CNAME -> ID
+    %import common.INT -> NUM
+    %import common.HEXDIGIT
+    %import common.WS
+    %ignore WS
+    """)
+
+class TreeToTraces(Transformer):
+    def mk_hex(self, hex_str):
+        num = int(hex_str, 16)
+        return num
+
+    def mk_data_field(self, (name, colon, raw_data)):
+        return DataField(name, int(raw_data), raw_data)
+
+    def mk_ptr_field(self, (name, colon, addr)):
+        return PtrField(name, self.mk_hex(addr))
+
+    def mk_fields(self, lst):
+        return lst[0::2]
+
+    def mk_node_trace(self, (addr, pto, name, obrace, fields, cbrace, semicolon)):
+        return NodeTrace(self.mk_hex(addr), name, fields)
+
+    def mk_ptr_trace(self, (ptr, eq, addr, semicolon)):
+        return PtrTrace(ptr, self.mk_hex(addr))
+
+    def mk_list(self, lst):
+        return lst
+
+trace_parser = Lark(trace_grammar, start='traces',lexer='standard')
+
+defn = """
+data node { int val; node next; };
 
 pred ls(x,y,n) := emp & x=y & n=0
-    \/ (exists u. x->node{u} * ls(u,y,n-1) & n>=1);
+    \/ (exists v, u. x->node{v, u} * ls(u,y,n-1) & n>=1);
 """
-ast = seplogic_parser.parse(text)
 
-print(ast)
-print(ast.pretty())
+traces = """
+0xA001 -> node{val:1; next:0xA002};
+0xA002 -> node{val:2; next:0xA003};
+0xA003 -> node{val:3; next:0xA002};
+x = 0xA001;
+y = 0xA002;
+"""
 
-f = TreeToSL().transform(ast)
+defn_ast = seplogic_parser.parse(defn)
 
+# print(defn_ast)
+# print(defn_ast.pretty())
+
+f = TreeToSL().transform(defn_ast)
 print(f)
+
+traces_ast = trace_parser.parse(traces)
+print(traces_ast)
+print(traces_ast.pretty())
+
+t = TreeToTraces().transform(traces_ast)
+print(';\n'.join(map(str, t)))
+

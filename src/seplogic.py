@@ -224,7 +224,7 @@ class FExists(SH):
         return ('(exists ' + (', '.join(map(str, self.vars))) +
                 '. ' + str(self.form) + ')')
 
-class DataField(SepLogic):
+class DataDefField(SepLogic):
     def __init__(self, typ, name):
         self.typ = typ
         self.name = name
