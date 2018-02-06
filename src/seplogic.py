@@ -212,6 +212,9 @@ class FBase(SH):
     def __str__(self):
         return (str(self.heap) + ' & ' + str(self.pure))
 
+    def is_emp(self):
+        return isinstance(self.heap, HEmp)
+
 class FExists(SH):
     def __init__(self, vars, f):
         if isinstance(f, SH):

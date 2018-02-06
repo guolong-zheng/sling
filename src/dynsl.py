@@ -1,6 +1,7 @@
 from seplogic import *
 from trace import *
 from parser import *
+from model_checker import *
 
 def main():
     defn = """
@@ -18,6 +19,8 @@ def main():
              y = 0xA002;
              """
 
+    form = "x!=y"
+
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
     # print(defn_ast)
@@ -25,12 +28,19 @@ def main():
     prog = seplogic_parser.transform(defn_ast)
     print(prog)
 
+    form_ast = seplogic_parser.sl_parser.parse(form)
+    f = seplogic_parser.transform(form_ast)
+    print(f)
+
     trace_parser = TraceParser()
     traces_ast = trace_parser.sh_parser.parse(traces)
     # print(traces_ast)
     # print(traces_ast.pretty())
     t = trace_parser.transform(traces_ast)
     print(';\n'.join(map(str, t)))
+
+    mc = SHModelChecker()
+    mc.check(t, f)
 
 if __name__ == "__main__":
     main()

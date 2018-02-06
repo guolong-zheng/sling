@@ -13,4 +13,8 @@ class SHModelChecker(ModelChecker):
     def __init__(self):
         pass
 
+    def check_FBase(self, model, f):
+        if f.is_emp():
+            self.check(model, f.pure)
+
 
