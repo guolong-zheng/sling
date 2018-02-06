@@ -22,55 +22,73 @@ class DataField(Field):
     def __str__(self):
         return self.name + '=' + self.data
 
-class Trace(object):
+class HeapCell(object):
     def __init__(self, root, fields):
         self.root = root
         self.fields = fields
 
     def __str__(self):
-        return str(self.root) + '<' + (', '.join(map(str, self.fields))) + '>'
+        return str(self.root) + '->' + ('('.join(map(str, self.fields))) + ')'
 
+class StackVar(object):
+    def __init__(self, name, typ, val):
+        self.name = name
+        self.typ = typ
+        self.val = val
 
-#def getTrace(file):
-if True:
-	# Set the path to the executable to debug
-	exe = "/Users/guolongzheng/sl/seplogic-dynamic/test/test"
+def create_target(file, bp_list):
+    debugger = lldb.SBDebugger.Create()
+    debugger.SetAsync(False)
+    target = debugger.CreateTargetWithFileAndArch (file, lldb.LLDB_ARCH_DEFAULT)
 
-	debugger = lldb.SBDebugger.Create()
-	debugger.SetAsync (False)
+    if target:
+        for bp in bp_list:
+            target.BreakpointCreateByLocation(file, bp)
+    else:
+        print "Can't create debugger instance"
 
-	# Create a target from a file and arch
-	target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
+    return target
 
-	if target:
-		# If the target is valid set a breakpoint at main
-		main_bp = target.BreakpointCreateByLocation ("/Users/guolongzheng/sl/seplogic-dynamic/test/test.c", 23);
-		print("Created a breakpoint at:{}").format(main_bp)
+def get_model(target, input):
+    process = target.LaunchSimple (input, None, os.getcwd())
+    visited = []
+    state = process.GetState ()
+    if state == lldb.eStateStopped:
+        thread = process.GetThreadAtIndex (0)
+        frame = thread.GetFrameAtIndex (0)
+        if frame:
+            vars = frame.GetVariables(True, True, True, True)
+            stack, heap = traverse_heap(vars)
 
-	# Launch the process 
-		process = target.LaunchSimple (None, None, os.getcwd())
-		state = process.GetState ()	
-		if state == lldb.eStateStopped:
-		       	thread = process.GetThreadAtIndex (0)
-			frame = thread.GetFrameAtIndex (0)
-			if frame:
-				# Retieve information of all visible variables in the frame
-				vars = frame.GetVariables(True, True, True, True)
-				traces = []
-				for var in vars:
-                                    if var.TypeIsPointerType():
-                                        root = var.GetAddress()
-                                        fields = []
-                                       
-                                        for i in range(0, var.GetNumChildren()):
-                                            child = var.GetChildAtIndex(i)
-                                            if child.TypeIsPointerType():
-                                                ptr = PtrField(child.GetName(),child.GetAddress())
-                                            else:
-                                                ptr = DataField(child.GetName(),child.GetValue())
-                                           
-                                            fields.append(ptr)
-                                        traces.append(Trace(root,fields))
-			print map(str,traces)
-		    
+def traverse_heap(vars):
+    stack = {}
+    heap = {}
 
+    # store vars in heap that needed to be traversed
+    to_visit = []
+
+    for var in vars:
+        stack[var.GetName()] = StackVar(var.GetName(), var.GetType(), var.GetValue())
+        if var.TypeIsPointerType():
+            to_visit.append(var)
+
+    heap = expand_cell(heap, to_visit)
+
+    return stack, heap
+
+def expand_cell(heap, to_visit):
+    while len(to_visit) != 0:
+        var = to_visit.pop(0)
+        root = var.GetAddress()
+        if root not in heap:
+            fields = []
+            for i in range(0, var.GetNumChildren()):
+                child = var.GetChildAtIndex(i)
+                if child.TypeIsPointerType():
+                    ptr = PtrField(child.GetName(),child.GetAddress())
+                    to_visit += child.GetAddress()
+                else:
+                    ptr = DataField(child.GetName(),child.GetValue())
+                fields.append(ptr)
+            heap[root] = HeapCell(root, fields)
+    return heap
