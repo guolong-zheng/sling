@@ -73,16 +73,15 @@ if True:
                                     if var.TypeIsPointerType():
                                         root = var.GetAddress()
                                         fields = []
-                                       
+
                                         for i in range(0, var.GetNumChildren()):
                                             child = var.GetChildAtIndex(i)
                                             if child.TypeIsPointerType():
                                                 ptr = PtrField(child.GetName(),child.GetAddress())
                                             else:
                                                 ptr = DataField(child.GetName(),child.GetValue())
-                                           
+
                                             fields.append(ptr)
                                         # traces.append(Trace(root,fields))
 			# print map(str,traces)
-		    
 

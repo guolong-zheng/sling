@@ -7,118 +7,121 @@ try:
 except NameError:
     pass
 
-seplogic_grammar = ("""
-    ?prog: data_defn_lst pred_defn_lst -> mk_prog
+class Parser(object):
+    pass
 
-    ?data_defn_lst: [data_defn (data_defn)*] -> mk_list
+class SepLogicParser(Parser, Transformer):
+    seplogic_grammar = ("""
+        ?prog: data_defn_lst pred_defn_lst -> mk_prog
 
-    ?pred_defn_lst: [pred_defn (pred_defn)*] -> mk_list
+        ?data_defn_lst: [data_defn (data_defn)*] -> mk_list
 
-    ?data_defn: DATA ID OBRACE data_defn_fields CBRACE SEMICOLON -> mk_data_defn
+        ?pred_defn_lst: [pred_defn (pred_defn)*] -> mk_list
 
-    ?data_defn_field: ID ID SEMICOLON -> mk_data_defn_field
+        ?data_defn: DATA ID OBRACE data_defn_fields CBRACE SEMICOLON -> mk_data_defn
 
-    ?data_defn_fields: [data_defn_field (data_defn_field)*] -> mk_list
+        ?data_defn_field: ID ID SEMICOLON -> mk_data_defn_field
 
-    ?pred_defn: PRED ID OPAREN id_lst CPAREN DEF pred_defn_cases SEMICOLON -> mk_pred_defn
+        ?data_defn_fields: [data_defn_field (data_defn_field)*] -> mk_list
 
-    ?pred_defn_cases: [shform (POR shform)*] -> mk_list
+        ?pred_defn: PRED ID OPAREN id_lst CPAREN DEF pred_defn_cases SEMICOLON -> mk_pred_defn
 
-    ?shform: hform -> mk_sh_true
-        | pform -> mk_sh_emp
-        | hform AND pform -> mk_sh
-        | EX id_lst DOT shform -> mk_exists_sh
-        | OPAREN shform CPAREN -> mk_paren
+        ?pred_defn_cases: [shform (POR shform)*] -> mk_list
 
-    ?hform: hatom
-        | hform STAR hatom -> mk_star
+        ?shform: hform -> mk_sh_true
+            | pform -> mk_sh_emp
+            | hform AND pform -> mk_sh
+            | EX id_lst DOT shform -> mk_exists_sh
+            | OPAREN shform CPAREN -> mk_paren
 
-    ?hatom: EMP -> mk_emp
-        | ID PTO ID OBRACE pexpr_lst CBRACE -> mk_data
-        | ID OPAREN pexpr_lst CPAREN -> mk_pred
+        ?hform: hatom
+            | hform STAR hatom -> mk_star
 
-    ?pform: pfdisj
-        | EX id_lst DOT pform -> mk_exists
-        | ALL id_lst DOT pform -> mk_forall
+        ?hatom: EMP -> mk_emp
+            | ID PTO ID OBRACE pexpr_lst CBRACE -> mk_data
+            | ID OPAREN pexpr_lst CPAREN -> mk_pred
 
-    ?pfdisj: pfconj
-        | pfdisj OR pfconj-> mk_or
+        ?pform: pfdisj
+            | EX id_lst DOT pform -> mk_exists
+            | ALL id_lst DOT pform -> mk_forall
 
-    ?pfconj: pfatom
-        | pfconj AND pfatom -> mk_and
+        ?pfdisj: pfconj
+            | pfdisj OR pfconj-> mk_or
 
-    ?pfatom: prel
-        | NOT pfatom -> mk_neg
-        | OPAREN pform CPAREN -> mk_paren
+        ?pfconj: pfatom
+            | pfconj AND pfatom -> mk_and
 
-    ?prel: TRUE -> mk_true
-        | FALSE -> mk_false
-        | pexpr EQ pexpr -> mk_binrel
-        | pexpr NE pexpr -> mk_binrel
-        | pexpr GT pexpr -> mk_binrel
-        | pexpr GE pexpr -> mk_binrel
-        | pexpr LT pexpr -> mk_binrel
-        | pexpr LE pexpr -> mk_binrel
+        ?pfatom: prel
+            | NOT pfatom -> mk_neg
+            | OPAREN pform CPAREN -> mk_paren
 
-    ?pexpr_lst: [pexpr (COMMA pexpr)*] -> mk_list
+        ?prel: TRUE -> mk_true
+            | FALSE -> mk_false
+            | pexpr EQ pexpr -> mk_binrel
+            | pexpr NE pexpr -> mk_binrel
+            | pexpr GT pexpr -> mk_binrel
+            | pexpr GE pexpr -> mk_binrel
+            | pexpr LT pexpr -> mk_binrel
+            | pexpr LE pexpr -> mk_binrel
 
-    ?pexpr: pterm
-        | pexpr ADD pterm -> mk_binop
-        | pexpr SUB pterm-> mk_binop
+        ?pexpr_lst: [pexpr (COMMA pexpr)*] -> mk_list
 
-    ?pterm: patom
-        | pterm STAR patom -> mk_binop
-        | pterm DIV patom -> mk_binop
+        ?pexpr: pterm
+            | pexpr ADD pterm -> mk_binop
+            | pexpr SUB pterm-> mk_binop
 
-    ?patom: NUM -> mk_iconst
-        | NIL -> mk_nil
-        | NULL -> mk_nil
-        | ID -> mk_var
-        | SUB patom
-        | OPAREN pexpr CPAREN -> mk_paren
+        ?pterm: patom
+            | pterm STAR patom -> mk_binop
+            | pterm DIV patom -> mk_binop
 
-    ?id_lst: [ID (COMMA ID)*] -> mk_list
+        ?patom: NUM -> mk_iconst
+            | NIL -> mk_nil
+            | NULL -> mk_nil
+            | ID -> mk_var
+            | SUB patom
+            | OPAREN pexpr CPAREN -> mk_paren
 
-    PRED: "pred"
-    DEF: ":="
-    POR: "\\/"
-    DATA: "data"
-    NIL: "nil"
-    NULL: "null"
-    EMP: "emp"
-    PTO: "->"
-    ADD: "+"
-    SUB: "-"
-    STAR: "*"
-    DIV: "/"
-    LT: "<"
-    LE: "<="
-    GT: ">"
-    GE: ">="
-    EQ: "="
-    NE: "!="
-    AND: "&"
-    OR: "|"
-    NOT: "!"
-    ALL: "forall"
-    EX: "exists"
-    DOT: "."
-    TRUE: "true"
-    FALSE: "false"
-    COMMA: ","
-    SEMICOLON: ";"
-    OPAREN: "("
-    CPAREN: ")"
-    OBRACE: "{"
-    CBRACE : "}"
+        ?id_lst: [ID (COMMA ID)*] -> mk_list
 
-    %import common.CNAME -> ID
-    %import common.INT -> NUM
-    %import common.WS
-    %ignore WS
-    """)
+        PRED: "pred"
+        DEF: ":="
+        POR: "\\/"
+        DATA: "data"
+        NIL: "nil"
+        NULL: "null"
+        EMP: "emp"
+        PTO: "->"
+        ADD: "+"
+        SUB: "-"
+        STAR: "*"
+        DIV: "/"
+        LT: "<"
+        LE: "<="
+        GT: ">"
+        GE: ">="
+        EQ: "="
+        NE: "!="
+        AND: "&"
+        OR: "|"
+        NOT: "!"
+        ALL: "forall"
+        EX: "exists"
+        DOT: "."
+        TRUE: "true"
+        FALSE: "false"
+        COMMA: ","
+        SEMICOLON: ";"
+        OPAREN: "("
+        CPAREN: ")"
+        OBRACE: "{"
+        CBRACE : "}"
 
-class TreeToSL(Transformer):
+        %import common.CNAME -> ID
+        %import common.INT -> NUM
+        %import common.WS
+        %ignore WS
+        """)
+
     def mk_iconst(self, (i,)):
         return IConst(int(i))
 
@@ -193,39 +196,40 @@ class TreeToSL(Transformer):
     def mk_prog(self, (data_defn_lst, pred_defn_lst)):
         return Prog(data_defn_lst, pred_defn_lst)
 
-seplogic_parser = Lark(seplogic_grammar, start='prog',lexer='standard')
+    defn_parser = Lark(seplogic_grammar, start='prog',lexer='standard')
+    sl_parser = Lark(seplogic_grammar, start='shform',lexer='standard')
 
-trace_grammar = ("""
-    ?traces: (heap_trace | stk_trace)+ -> mk_list
+class TraceParser(Parser, Transformer):
+    trace_grammar = ("""
+        ?traces: (heap_trace | stk_trace)+ -> mk_list
 
-    ?stk_trace: ID EQ ADDR SEMICOLON -> mk_stk_trace
+        ?stk_trace: ID EQ ADDR SEMICOLON -> mk_stk_trace
 
-    ?heap_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
+        ?heap_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
 
-    ?fields: field (SEMICOLON field)* -> mk_fields
+        ?fields: field (SEMICOLON field)* -> mk_fields
 
-    ?field: (ptr_field | data_field)
+        ?field: (ptr_field | data_field)
 
-    ?ptr_field: ID COLON ADDR -> mk_ptr_field
+        ?ptr_field: ID COLON ADDR -> mk_ptr_field
 
-    ?data_field: ID COLON NUM -> mk_data_field
+        ?data_field: ID COLON NUM -> mk_data_field
 
-    ADDR: "0x" HEXDIGIT+
-    PTO: "->"
-    OBRACE: "{"
-    CBRACE : "}"
-    SEMICOLON: ";"
-    COLON: ":"
-    EQ: "="
+        ADDR: "0x" HEXDIGIT+
+        PTO: "->"
+        OBRACE: "{"
+        CBRACE : "}"
+        SEMICOLON: ";"
+        COLON: ":"
+        EQ: "="
 
-    %import common.CNAME -> ID
-    %import common.INT -> NUM
-    %import common.HEXDIGIT
-    %import common.WS
-    %ignore WS
-    """)
+        %import common.CNAME -> ID
+        %import common.INT -> NUM
+        %import common.HEXDIGIT
+        %import common.WS
+        %ignore WS
+        """)
 
-class TreeToTraces(Transformer):
     def mk_hex(self, hex_str):
         num = int(hex_str, 16)
         return num
@@ -248,5 +252,5 @@ class TreeToTraces(Transformer):
     def mk_list(self, lst):
         return lst
 
-trace_parser = Lark(trace_grammar, start='traces',lexer='standard')
+    sh_parser = Lark(trace_grammar, start='traces',lexer='standard')
 

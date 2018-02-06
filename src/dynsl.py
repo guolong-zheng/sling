@@ -18,16 +18,18 @@ def main():
              y = 0xA002;
              """
 
-    defn_ast = seplogic_parser.parse(defn)
+    seplogic_parser = SepLogicParser()
+    defn_ast = seplogic_parser.defn_parser.parse(defn)
     # print(defn_ast)
     # print(defn_ast.pretty())
-    f = TreeToSL().transform(defn_ast)
-    print(f)
+    prog = seplogic_parser.transform(defn_ast)
+    print(prog)
 
-    traces_ast = trace_parser.parse(traces)
+    trace_parser = TraceParser()
+    traces_ast = trace_parser.sh_parser.parse(traces)
     # print(traces_ast)
     # print(traces_ast.pretty())
-    t = TreeToTraces().transform(traces_ast)
+    t = trace_parser.transform(traces_ast)
     print(';\n'.join(map(str, t)))
 
 if __name__ == "__main__":
