@@ -2,6 +2,7 @@ from seplogic import *
 from trace import *
 from parser import *
 from model_checker import *
+from eval import *
 
 def main():
     defn = """
@@ -20,7 +21,7 @@ def main():
              z = 1;
              """
 
-    form = "x!=1"
+    form = "z!=1"
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -41,8 +42,15 @@ def main():
     print(s)
     print(';\n'.join(map(str, h)))
 
-    mc = SHModelChecker()
+    # mc = SHModelChecker()
     # mc.check(t, f)
+
+    ev = SHEval()
+    r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
+    r2 = PBinRel(BinOp(Var('z'), '*', IConst(2)), '=', IConst(2))
+    r = PConj(r1, r2)
+    print(r)
+    print(ev.eval(s, r))
 
 if __name__ == "__main__":
     main()
