@@ -3,6 +3,18 @@ sys.path.append("/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framewor
 import lldb
 import os
 
+class Val(object):
+    def __str__(self):
+        return str(self.val)
+
+class Int(Val):
+    def __init__(self, val):
+        self.val = int(val)
+
+class Addr(Val):
+    def __init__(self, addr):
+        self.val = int(addr, 16)
+
 class Field(object):
     pass
 
@@ -12,13 +24,12 @@ class PtrField(Field):
         self.data = addr
 
     def __str__(self):
-        return self.name + ':' + hex(self.data)
+        return self.name + ':' + str(self.data)
 
 class DataField(Field):
-    def __init__(self, name, data, raw_data):
+    def __init__(self, name, data):
         self.name = name
         self.data = data
-        self.raw_data = raw_data
 
     def __str__(self):
         return self.name + ':' + str(self.data)
@@ -33,7 +44,7 @@ class HeapTrace(Trace):
         self.fields = fields
 
     def __str__(self):
-        return hex(self.addr) + ' -> ' + self.name + '{' + ('; '.join(map(str, self.fields))) + '}'
+        return str(self.addr) + ' -> ' + self.name + '{' + ('; '.join(map(str, self.fields))) + '}'
 
 class StackTrace(Trace):
     def __init__(self, name, val):
@@ -41,4 +52,4 @@ class StackTrace(Trace):
         self.val = val
 
     def __str__(self):
-        return self.name + ' = ' + self.val
+        return self.name + ' = ' + str(self.val)

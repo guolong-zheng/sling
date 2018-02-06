@@ -128,7 +128,7 @@ class SepLogicParser(Parser, Transformer):
     mk_nil = lambda self, _: Null()
 
     def mk_var(self, (id,)):
-        return Var(id)
+        return Var(str(id))
 
     def mk_list(self, lst):
         return lst[0::2]
@@ -203,17 +203,23 @@ class TraceParser(Parser, Transformer):
     trace_grammar = ("""
         ?traces: (heap_trace | stk_trace)+ -> mk_stack_heap
 
-        ?stk_trace: ID EQ (ADDR | NUM) SEMICOLON -> mk_stk_trace
+        ?stk_trace: id EQ (addr | num) SEMICOLON -> mk_stk_trace
 
-        ?heap_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
+        ?heap_trace: addr PTO id OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
 
         ?fields: field (SEMICOLON field)* -> mk_fields
 
         ?field: (ptr_field | data_field)
 
-        ?ptr_field: ID COLON ADDR -> mk_ptr_field
+        ?ptr_field: id COLON addr -> mk_ptr_field
 
-        ?data_field: ID COLON NUM -> mk_data_field
+        ?data_field: id COLON num -> mk_data_field
+
+        ?id: ID -> mk_id
+
+        ?num: NUM -> mk_num
+
+        ?addr: ADDR -> mk_addr
 
         ADDR: "0x" HEXDIGIT+
         PTO: "->"
@@ -230,21 +236,26 @@ class TraceParser(Parser, Transformer):
         %ignore WS
         """)
 
-    def mk_hex(self, hex_str):
-        num = int(hex_str, 16)
-        return num
+    def mk_id(self, (id,)):
+        return str(id)
 
-    def mk_data_field(self, (name, colon, raw_data)):
-        return DataField(name, int(raw_data), raw_data)
+    def mk_num(self, (s,)):
+        return Int(s)
+
+    def mk_addr(self, (s,)):
+        return Addr(s)
+
+    def mk_data_field(self, (name, colon, data)):
+        return DataField(name, data)
 
     def mk_ptr_field(self, (name, colon, addr)):
-        return PtrField(name, self.mk_hex(addr))
+        return PtrField(name, addr)
 
     def mk_fields(self, lst):
         return lst[0::2]
 
     def mk_heap_trace(self, (addr, pto, name, obrace, fields, cbrace, semicolon)):
-        return HeapTrace(self.mk_hex(addr), name, fields)
+        return HeapTrace(addr, name, fields)
 
     def mk_stk_trace(self, (name, eq, val, semicolon)):
         return StackTrace(name, val)
@@ -257,7 +268,6 @@ class TraceParser(Parser, Transformer):
             if isinstance(trace, HeapTrace):
                 heap.append(trace)
             else:
-                print(trace)
                 stack[trace.name] = trace.val
         return (stack, heap)
 

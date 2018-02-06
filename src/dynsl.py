@@ -17,9 +17,10 @@ def main():
              0xA003 -> node{val:3; next:0xA002};
              x = 0xA001;
              y = 0xA002;
+             z = 1;
              """
 
-    form = "x!=y"
+    form = "x!=1"
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
