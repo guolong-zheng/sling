@@ -212,6 +212,9 @@ class FBase(SH):
     def __str__(self):
         return (str(self.heap) + ' & ' + str(self.pure))
 
+    def is_emp(self):
+        return isinstance(self.heap, HEmp)
+
 class FExists(SH):
     def __init__(self, vars, f):
         if isinstance(f, SH):
@@ -224,7 +227,7 @@ class FExists(SH):
         return ('(exists ' + (', '.join(map(str, self.vars))) +
                 '. ' + str(self.form) + ')')
 
-class DataField(SepLogic):
+class DataDefField(SepLogic):
     def __init__(self, typ, name):
         self.typ = typ
         self.name = name
