@@ -17,4 +17,7 @@ class SHModelChecker(ModelChecker):
         if f.is_emp():
             self.check(model, f.pure)
 
+    def check_PBinRel(self, model, f):
+
+
 
