@@ -36,9 +36,9 @@ class HeapTrace(Trace):
         return hex(self.addr) + ' -> ' + self.name + '{' + ('; '.join(map(str, self.fields))) + '}'
 
 class StackTrace(Trace):
-    def __init__(self, ptr, addr):
-        self.ptr = ptr
-        self.addr = addr
+    def __init__(self, name, val):
+        self.name = name
+        self.val = val
 
     def __str__(self):
-        return self.ptr + ' = ' + hex(self.addr)
+        return self.name + ' = ' + self.val

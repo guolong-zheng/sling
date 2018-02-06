@@ -36,11 +36,12 @@ def main():
     traces_ast = trace_parser.sh_parser.parse(traces)
     # print(traces_ast)
     # print(traces_ast.pretty())
-    t = trace_parser.transform(traces_ast)
-    print(';\n'.join(map(str, t)))
+    s, h = trace_parser.transform(traces_ast)
+    print(s)
+    print(';\n'.join(map(str, h)))
 
     mc = SHModelChecker()
-    mc.check(t, f)
+    # mc.check(t, f)
 
 if __name__ == "__main__":
     main()

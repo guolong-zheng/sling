@@ -201,9 +201,9 @@ class SepLogicParser(Parser, Transformer):
 
 class TraceParser(Parser, Transformer):
     trace_grammar = ("""
-        ?traces: (heap_trace | stk_trace)+ -> mk_list
+        ?traces: (heap_trace | stk_trace)+ -> mk_stack_heap
 
-        ?stk_trace: ID EQ ADDR SEMICOLON -> mk_stk_trace
+        ?stk_trace: ID EQ (ADDR | NUM) SEMICOLON -> mk_stk_trace
 
         ?heap_trace: ADDR PTO ID OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
 
@@ -246,11 +246,20 @@ class TraceParser(Parser, Transformer):
     def mk_heap_trace(self, (addr, pto, name, obrace, fields, cbrace, semicolon)):
         return HeapTrace(self.mk_hex(addr), name, fields)
 
-    def mk_stk_trace(self, (ptr, eq, addr, semicolon)):
-        return StackTrace(ptr, self.mk_hex(addr))
+    def mk_stk_trace(self, (name, eq, val, semicolon)):
+        return StackTrace(name, val)
 
-    def mk_list(self, lst):
-        return lst
+    def mk_stack_heap(self, lst):
+        stack = dict()
+        heap = []
+
+        for trace in lst:
+            if isinstance(trace, HeapTrace):
+                heap.append(trace)
+            else:
+                print(trace)
+                stack[trace.name] = trace.val
+        return (stack, heap)
 
     sh_parser = Lark(trace_grammar, start='traces',lexer='standard')
 
