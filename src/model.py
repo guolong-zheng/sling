@@ -24,6 +24,9 @@ class Store(object):
             s += str(v) + ' = ' + f(self.store[v]) + '\n'
         return s
 
+    def __str__(self):
+        return str(self.store)
+
     def add(self, v, val):
         self.store[v] = val
 
@@ -33,6 +36,30 @@ class Store(object):
 
     def get(self, v):
         return self.store[v]
+
+    def clone(self):
+        copy = Store()
+        copy.store = self.store.copy()
+        return copy
+
+    def update(self, another_store):
+        self.store.update(another_store.store)
+
+    def dom(self):
+        return self.store.keys()
+
+    def disjoint(self, another_store):
+        return all(elem not in self.store
+                   for elem in another_store.dom())
+
+    def union(self, another_store):
+        if self.disjoint(another_store):
+            us = self.clone()
+            us.update(another_store)
+            return us
+        else:
+            raise Exception('Two stores are not disjoint')
+
 
     def eval(self, e):
         method_name = 'eval_' + type(e).__name__

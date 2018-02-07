@@ -39,8 +39,10 @@ def main():
     # print(traces_ast)
     # print(traces_ast.pretty())
     s, h = trace_parser.transform(traces_ast)
+    u = s.union(h)
     print('stack:\n' + str(s))
     print('heap:\n' + str(h))
+    print('union:\n' + str(u.dom()))
 
     # mc = SHModelChecker()
     # mc.check(t, f)
