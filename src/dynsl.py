@@ -39,18 +39,17 @@ def main():
     # print(traces_ast)
     # print(traces_ast.pretty())
     s, h = trace_parser.transform(traces_ast)
-    print(s)
-    print(';\n'.join(map(str, h)))
+    print('stack:\n' + str(s))
+    print('heap:\n' + str(h))
 
     # mc = SHModelChecker()
     # mc.check(t, f)
 
-    ev = SHEval()
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('z'), '*', IConst(2)), '=', IConst(2))
     r = PConj(r1, r2)
     print(r)
-    print(ev.eval(s, r))
+    print(s.eval(r1))
 
 if __name__ == "__main__":
     main()

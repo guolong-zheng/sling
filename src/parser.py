@@ -1,6 +1,7 @@
 from lark import Lark, Transformer
 from seplogic import *
 from trace import *
+from model import *
 
 try:
     input = raw_input   # For Python2 compatibility
@@ -261,14 +262,14 @@ class TraceParser(Parser, Transformer):
         return StackTrace(name, val)
 
     def mk_stack_heap(self, lst):
-        stack = dict()
-        heap = []
+        stack = Stack()
+        heap = Heap()
 
         for trace in lst:
             if isinstance(trace, HeapTrace):
-                heap.append(trace)
+                heap.add(trace.addr, (trace.typ, trace.fields))
             else:
-                stack[trace.name] = trace.val
+                stack.add(trace.name, trace.val)
         return (stack, heap)
 
     sh_parser = Lark(trace_grammar, start='traces',lexer='standard')
