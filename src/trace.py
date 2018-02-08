@@ -8,7 +8,12 @@ class Int(Val):
 
 class Addr(Val):
     def __init__(self, addr):
-        self.val = int(addr, 16)
+        if addr == None:
+            self.val = None
+        elif addr == "No value":
+            self.val = None
+        else:
+            self.val = int(addr, 16)
 
 class Field(object):
     pass
@@ -33,13 +38,13 @@ class Trace(object):
     pass
 
 class HeapTrace(Trace):
-    def __init__(self, addr, name, fields):
+    def __init__(self, addr, typ, fields):
         self.addr = addr
-        self.name = name
+        self.typ = typ
         self.fields = fields
 
     def __str__(self):
-        return str(self.addr) + ' -> ' + self.name + '{' + ('; '.join(map(str, self.fields))) + '}'
+        return str(self.addr) + ' -> ' + self.typ + '{' + ('; '.join(map(str, self.fields))) + '}'
 
 class StackTrace(Trace):
     def __init__(self, name, val):
