@@ -49,9 +49,12 @@ def main():
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('z'), '*', IConst(2)), '=', IConst(2))
+    r3 = PExists(['z'], PConj(
+                 (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
+                 (PBinRel(Var('z'), '>', IConst(1)))))
     r = PConj(r1, r2)
-    print(r)
-    print(s.eval(r1))
+    print(r3)
+    print(s.eval(r3))
 
 if __name__ == "__main__":
     main()

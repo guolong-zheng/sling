@@ -1,5 +1,6 @@
 from seplogic import *
 from printer import *
+import z3
 import operator
 
 ops = {
@@ -60,7 +61,6 @@ class Store(object):
         else:
             raise Exception('Two stores are not disjoint')
 
-
     def eval(self, e):
         method_name = 'eval_' + type(e).__name__
         evaluation = getattr(self, method_name, self.generic_eval)
@@ -70,11 +70,25 @@ class Store(object):
         raise Exception('No evaluation for ' + type(e).__name__)
 
 class Stack(Store):
+    def __init__(self):
+        Store.__init__(self)
+        self.solver = z3.Solver()
+        self.z3_symtab = {}
+
     def __str__(self):
         return self.__ho_str__(str)
 
     def eval_Var(self, e):
-        return self.get(e.id).val
+        try:
+            return self.get(e.id).val
+        except:
+             v = str(e)
+             if v in self.z3_symtab:
+                 return self.z3_symtab[v]
+             else:
+                 zv = z3.Int(v)
+                 self.z3_symtab[v] = zv
+                 return zv
 
     def eval_IConst(self, e):
         return e.val
@@ -99,12 +113,31 @@ class Stack(Store):
     def eval_PConj(self, e):
         el = self.eval(e.left)
         er = self.eval(e.right)
-        return (el and er)
+        return z3.And(el, er)
 
     def eval_PDisj(self, e):
         el = self.eval(e.left)
         er = self.eval(e.right)
-        return (el or er)
+        return z3.Or(el, er)
+
+    def eval_PExists(self, e):
+        evs = e.vars
+        zvs = []
+        for v in evs:
+            if v in self.z3_symtab:
+                zvs.append(self.z3_symtab[v])
+            else:
+                zv = z3.Int(v)
+                self.z3_symtab[v] = zv
+                zvs.append(zv)
+        f = self.eval(e.form)
+        ef = z3.Exists(zvs, f)
+        print(ef)
+        self.solver.add(ef)
+        if self.solver.check() == z3.unsat:
+            return False
+        else:
+            return True
 
 class Heap(Store):
     def __str__(self):
