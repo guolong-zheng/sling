@@ -53,12 +53,10 @@ def expand_cell(heap, to_visit):
     #pdb.set_trace()
     while len(to_visit) != 0:
         var = to_visit.pop(0)
-        #print "before dereference : %s " % var
         if var.TypeIsPointerType() and var.GetValueAsUnsigned() == 0:
             return
         typ = var.GetType()
         var = var.Dereference()
-        #print "after dereference :%s " % var
         heap_addr = Addr(str(var.GetAddress()))
 
         if heap_addr not in heap:
@@ -69,11 +67,8 @@ def expand_cell(heap, to_visit):
                     if child.GetValueAsUnsigned() == 0:
                         field = PtrField(child.GetName(), Addr(None))
                     else:
-                        #print "before add to visit var: %s " % child
-                        #child = child.Dereference()
-                        field = PtrField(child.GetName(),Addr(str(child.GetAddress())))
+                        field = PtrField(child.GetName(),Addr(str(child.GetValue())))
                         to_visit.append(child)
-                        #print "add to visit var: %s \n\n" % child
                 else:
                     field = DataField(child.GetName(),Int(child.GetValue()))
 
