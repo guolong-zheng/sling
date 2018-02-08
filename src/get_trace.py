@@ -57,7 +57,7 @@ def expand_cell(heap, to_visit):
             return
         typ = var.GetType()
         var = var.Dereference()
-        heap_addr = Addr(str(var.GetAddress()))
+        heap_addr = str(var.GetAddress())
 
         if heap_addr not in heap:
             fields = []
@@ -73,7 +73,8 @@ def expand_cell(heap, to_visit):
                     field = DataField(child.GetName(),Int(child.GetValue()))
 
                 fields.append(field)
-            heap[heap_addr] = HeapTrace(heap_addr, str(typ), fields)
+
+            heap[heap_addr] = HeapTrace(Addr(heap_addr), str(typ), fields)
 
     for i in heap:
         print heap[i]
