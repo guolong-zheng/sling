@@ -1,5 +1,7 @@
 from seplogic import *
 from printer import *
+from debug import *
+import z3
 import operator
 
 ops = {
@@ -60,21 +62,34 @@ class Store(object):
         else:
             raise Exception('Two stores are not disjoint')
 
-
     def eval(self, e):
         method_name = 'eval_' + type(e).__name__
         evaluation = getattr(self, method_name, self.generic_eval)
         return evaluation(e)
 
     def generic_eval(self, e):
-        raise Exception('No evaluation for ' + type(e).__name__)
+        raise Exception('No evaluation for ' + str(e) + ':' + type(e).__name__)
 
 class Stack(Store):
+    def __init__(self):
+        Store.__init__(self)
+        self.solver = z3.Solver()
+        self.z3_symtab = {}
+
     def __str__(self):
         return self.__ho_str__(str)
 
     def eval_Var(self, e):
-        return self.get(e.id).val
+        try:
+            return self.get(e.id).val
+        except:
+             v = str(e)
+             if v in self.z3_symtab:
+                 return self.z3_symtab[v]
+             else:
+                 zv = z3.Int(v)
+                 self.z3_symtab[v] = zv
+                 return zv
 
     def eval_IConst(self, e):
         return e.val
@@ -99,12 +114,45 @@ class Stack(Store):
     def eval_PConj(self, e):
         el = self.eval(e.left)
         er = self.eval(e.right)
-        return (el and er)
+        return z3.And(el, er)
 
     def eval_PDisj(self, e):
         el = self.eval(e.left)
         er = self.eval(e.right)
-        return (el or er)
+        return z3.Or(el, er)
+
+    def eval_PExists(self, e):
+        bnd_vs = set(e.vars)
+        stk_vs = set(self.store.keys())
+        # Set of clashing vars to be renamed
+        cls_vs = stk_vs & bnd_vs
+        sst = {}
+        for v in cls_vs:
+            sst[v] = Var(VarUtil.mk_fresh(v))
+        nbnd_vs = list(bnd_vs - stk_vs) + map(lambda v: v.id, sst.values())
+        ne = PExists(nbnd_vs, e.form.subst(sst))
+
+        # Create z3's bounded variables
+        zvs = []
+        for v in nbnd_vs:
+            if v in self.z3_symtab:
+                zvs.append(self.z3_symtab[v])
+            else:
+                zv = z3.Int(v)
+                self.z3_symtab[v] = zv
+                zvs.append(zv)
+        f = self.eval(ne.form)
+        ef = z3.Exists(zvs, f)
+        debug(str(ef))
+        self.solver.push()
+        self.solver.add(ef)
+        res = self.solver.check()
+        m = self.solver.model()
+        self.solver.pop()
+        if res == z3.unsat:
+            return False
+        else:
+            return True
 
 class Heap(Store):
     def __str__(self):

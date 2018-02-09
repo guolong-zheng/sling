@@ -1,3 +1,17 @@
+import copy
+
+class VarUtil(object):
+    fv_id = 0
+
+    @classmethod
+    def mk_fresh(self, v = ''):
+        self.fv_id = self.fv_id + 1
+        if v == '':
+            nv = 'fv!'
+        else:
+            nv = v + '!'
+        return nv + str(self.fv_id)
+
 class ArithOp:
     ADD = '+'
     SUB = '-'
@@ -42,9 +56,22 @@ class RelOp:
         else:
             raise SyntaxError('Unexpected relational operator ' + s)
 
-
 class SepLogic(object):
-    pass
+    def fv(self):
+        return self.__fv__()
+
+    def subst(self, sst):
+        trans_sst = getattr(self, '__subst__', self.generic_subst)
+        return trans_sst(sst)
+
+    def generic_subst(self, sst):
+        clone = copy.copy(self)
+        fields = clone.__dict__
+        for fid in fields:
+            val = fields[fid]
+            if isinstance(val, SepLogic):
+                setattr(clone, fid, val.subst(sst))
+        return clone
 
 class PExpr(SepLogic):
     pass
@@ -56,6 +83,9 @@ class Null(HExpr):
     def __str__(self):
         return 'nil'
 
+    def __fv__(self):
+        return set()
+
 class Var(PExpr, HExpr):
     def __init__(self, id, is_primed = False):
         self.id = id
@@ -64,12 +94,26 @@ class Var(PExpr, HExpr):
     def __str__(self):
         return (self.id + ('\'' if self.is_primed else ''))
 
+    def __fv__(self):
+        s = set()
+        s.add(str(self))
+        return s
+
+    def __subst__(self, sst):
+        v = str(self)
+        if v in sst:
+            return sst[v]
+        return copy.copy(self)
+
 class IConst(PExpr):
     def __init__(self, i):
         self.val = i
 
     def __str__(self):
         return str(self.val)
+
+    def __fv__(self):
+        return set()
 
 class BinOp(PExpr):
     def __init__(self, left, op, right):
@@ -83,6 +127,9 @@ class BinOp(PExpr):
     def __str__(self):
         return str(self.left) + str(self.op) + str(self.right)
 
+    def __fv__(self):
+        return self.left.fv() | self.right.fv()
+
 class PRel(SepLogic):
     pass
 
@@ -93,6 +140,9 @@ class BConst(PRel):
     def __str__(self):
         return str(self.val)
 
+    def __fv__():
+        return set()
+
 class PBinRel(PRel):
     def __init__(self, left, op, right):
         self.op = RelOp.rel_op(op)
@@ -101,6 +151,9 @@ class PBinRel(PRel):
 
     def __str__(self):
         return str(self.left) + str(self.op) + str(self.right)
+
+    def __fv__(self):
+        return self.left.fv() | self.right.fv()
 
 class PPred(PRel):
     def __init__(self, id, args):
@@ -111,12 +164,21 @@ class PPred(PRel):
         return (self.id + '(' +
                ', '.join(map(str, self.args)) + ')')
 
+    def __fv__(self):
+        s = set()
+        for arg in self.args:
+            s.update(arg.fv())
+        return s
+
 class PNeg(PRel):
     def __init__(self, f):
         self.form = f
 
     def __str__(self):
         return 'not(' + str(self.form) + ')'
+
+    def __fv__(self):
+        return self.form.fv()
 
 class PConj(PRel):
     def __init__(self, left, right):
@@ -126,6 +188,9 @@ class PConj(PRel):
     def __str__(self):
         return str(self.left) + ' & ' + str(self.right)
 
+    def __fv__(self):
+        return self.left.fv() | self.right.fv()
+
 class PDisj(PRel):
     def __init__(self, left, right):
         self.left = left
@@ -133,6 +198,9 @@ class PDisj(PRel):
 
     def __str__(self):
         return str(self.left) + ' | ' + str(self.right)
+
+    def __fv__(self):
+        return self.left.fv() | self.right.fv()
 
 class PForall(PRel):
     def __init__(self, vars, f):
@@ -143,6 +211,15 @@ class PForall(PRel):
         return ('(forall ' + (', '.join(map(str, self.vars))) +
                 '. ' + str(self.form) + ')')
 
+    def __fv__(self):
+        return self.form.fv() - set(vars)
+
+    def __subst__(self, sst):
+        for v in self.vars:
+            if v in sst:
+                del sst[v]
+        return PForall(self.vars, self.form.subst(sst))
+
 class PExists(PRel):
     def __init__(self, vars, f):
         self.vars = vars
@@ -151,6 +228,15 @@ class PExists(PRel):
     def __str__(self):
         return ('(exists ' + (', '.join(map(str, self.vars))) +
                 '. ' + str(self.form) + ')')
+
+    def __fv__(self):
+        return self.form.fv() - set(self.vars)
+
+    def __subst__(self, sst):
+        for v in self.vars:
+            if v in sst:
+                del sst[v]
+        return PExists(self.vars, self.form.subst(sst))
 
 class HRel(SepLogic):
     pass
@@ -165,6 +251,9 @@ class HEmp(HAtom):
     def __str__(self):
         return 'emp'
 
+    def __fv__():
+        return set()
+
 class HData(HAtom):
     def __init__(self, root, name, args):
         self.root = root
@@ -175,13 +264,27 @@ class HData(HAtom):
         return (str(self.root) + '->' + self.name + '{' +
                 (', '.join(map(str, self.args))) + '}')
 
+    def __fv__():
+        s = set()
+        s.add(root)
+        for arg in self.args:
+            s.update(arg.fv())
+        return s
+
 class HPred(HAtom):
     def __init__(self, name, args):
         self.name = name
         self.args = args
 
     def __str__(self):
-        return (self.name + '(' + (', '.join(map(str, self.args))) + ')')
+        return (self.name + '(' +
+                (', '.join(map(str, self.args))) + ')')
+
+    def __fv__():
+        s = set()
+        for arg in self.args:
+            s.update(arg.fv())
+        return s
 
 class HStar(HRel):
     def __init__(self, left, right):
@@ -193,6 +296,9 @@ class HStar(HRel):
 
     def __str__(self):
         return (str(self.left) + ' * ' + str(self.right))
+
+    def __fv__(self):
+        return self.left.fv() | self.right.fv()
 
 class SH(SepLogic):
     pass
@@ -212,6 +318,9 @@ class FBase(SH):
     def __str__(self):
         return (str(self.heap) + ' & ' + str(self.pure))
 
+    def __fv__(self):
+        return self.heap.fv() | self.pure.fv()
+
     def is_emp(self):
         return isinstance(self.heap, HEmp)
 
@@ -226,6 +335,15 @@ class FExists(SH):
     def __str__(self):
         return ('(exists ' + (', '.join(map(str, self.vars))) +
                 '. ' + str(self.form) + ')')
+
+    def __fv__(self):
+        return self.form.fv() - set(self.vars)
+
+    def __subst__(self, sst):
+        for v in self.vars:
+            if v in sst:
+                del sst[v]
+        return PExists(self.vars, self.form.subst(sst))
 
 class DataDefField(SepLogic):
     def __init__(self, typ, name):
