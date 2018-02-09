@@ -1,8 +1,8 @@
 from seplogic import *
 from printer import *
+from debug import *
 import z3
 import operator
-import inspect
 
 ops = {
     ArithOp.ADD: operator.add,
@@ -124,14 +124,15 @@ class Stack(Store):
     def eval_PExists(self, e):
         bnd_vs = set(e.vars)
         stk_vs = set(self.store.keys())
+        # Set of clashing vars to be renamed
         cls_vs = stk_vs & bnd_vs
         sst = {}
         for v in cls_vs:
             sst[v] = Var(VarUtil.mk_fresh(v))
         nbnd_vs = list(bnd_vs - stk_vs) + map(lambda v: v.id, sst.values())
         ne = PExists(nbnd_vs, e.form.subst(sst))
-        print(ne.form)
 
+        # Create z3's bounded variables
         zvs = []
         for v in nbnd_vs:
             if v in self.z3_symtab:
@@ -142,9 +143,13 @@ class Stack(Store):
                 zvs.append(zv)
         f = self.eval(ne.form)
         ef = z3.Exists(zvs, f)
-        print(ef)
+        debug(str(ef))
+        self.solver.push()
         self.solver.add(ef)
-        if self.solver.check() == z3.unsat:
+        res = self.solver.check()
+        m = self.solver.model()
+        self.solver.pop()
+        if res == z3.unsat:
             return False
         else:
             return True
