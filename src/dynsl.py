@@ -3,6 +3,7 @@ from trace import *
 from parser import *
 from model_checker import *
 from eval import *
+from debug import *
 
 def main():
     defn = """
@@ -28,21 +29,21 @@ def main():
     # print(defn_ast)
     # print(defn_ast.pretty())
     prog = seplogic_parser.transform(defn_ast)
-    print(prog)
+    debug(prog)
 
     form_ast = seplogic_parser.sl_parser.parse(form)
     f = seplogic_parser.transform(form_ast)
-    print(f)
+    debug(f)
 
     trace_parser = TraceParser()
     traces_ast = trace_parser.sh_parser.parse(traces)
-    # print(traces_ast)
-    # print(traces_ast.pretty())
+    # debug(traces_ast)
+    # debug(traces_ast.pretty())
     s, h = trace_parser.transform(traces_ast)
     u = s.union(h)
-    print('stack:\n' + str(s))
-    print('heap:\n' + str(h))
-    print('union:\n' + str(u.dom()))
+    debug('stack:\n' + str(s))
+    debug('heap:\n' + str(h))
+    debug('union:\n' + str(u.dom()))
 
     # mc = SHModelChecker()
     # mc.check(t, f)
@@ -53,15 +54,19 @@ def main():
                  (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
                  (PBinRel(Var('z'), '>', IConst(1)))))
     r4 = PExists(['z'], PDisj(r3, r1))
+    r5 = PForall(['x'],
+                 PExists(['m'],
+                         PConj(PBinRel(Var('x'), '>', Var('m')),
+                               PBinRel(Var('n'), '>', Var('m')))))
     r = PConj(r3, r2)
-    print(r4)
-    print(r3.fv())
-    print(s.eval(r4))
+    debug(r4)
+    debug(r3.fv())
+    debug(s.eval(r5))
     # sst = {'z':Var('y')}
     sst = {'y':Var('z')}
-    r5 = r4.subst(sst)
-    print(r4)
-    print(r5)
+    r6 = r4.subst(sst)
+    debug(r4)
+    debug(r5)
 
 if __name__ == "__main__":
     main()

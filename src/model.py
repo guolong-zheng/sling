@@ -62,13 +62,13 @@ class Store(object):
         else:
             raise Exception('Two stores are not disjoint')
 
-    def eval(self, e):
-        method_name = 'eval_' + type(e).__name__
-        evaluation = getattr(self, method_name, self.generic_eval)
-        return evaluation(e)
+    def trans(self, e):
+        method_name = 'trans_' + type(e).__name__
+        translator = getattr(self, method_name, self.generic_trans)
+        return translator(e)
 
-    def generic_eval(self, e):
-        raise Exception('No evaluation for ' + str(e) + ':' + type(e).__name__)
+    def generic_trans(self, e):
+        raise Exception('No translator for ' + str(e) + ':' + type(e).__name__)
 
 class Stack(Store):
     def __init__(self):
@@ -79,7 +79,7 @@ class Stack(Store):
     def __str__(self):
         return self.__ho_str__(str)
 
-    def eval_Var(self, e):
+    def trans_Var(self, e):
         try:
             return self.get(e.id).val
         except:
@@ -91,37 +91,37 @@ class Stack(Store):
                  self.z3_symtab[v] = zv
                  return zv
 
-    def eval_IConst(self, e):
+    def trans_IConst(self, e):
         return e.val
 
-    def eval_BinOp(self, e):
-        el = self.eval(e.left)
-        er = self.eval(e.right)
+    def trans_BinOp(self, e):
+        el = self.trans(e.left)
+        er = self.trans(e.right)
         return ops[e.op](el, er)
 
-    def eval_BConst(self, e):
+    def trans_BConst(self, e):
         return e.val
 
-    def eval_PBinRel(self, e):
-        el = self.eval(e.left)
-        er = self.eval(e.right)
+    def trans_PBinRel(self, e):
+        el = self.trans(e.left)
+        er = self.trans(e.right)
         return ops[e.op](el, er)
 
-    def eval_PNeg(self, e):
-        ev = self.eval(e)
+    def trans_PNeg(self, e):
+        ev = self.trans(e)
         return (not ev)
 
-    def eval_PConj(self, e):
-        el = self.eval(e.left)
-        er = self.eval(e.right)
+    def trans_PConj(self, e):
+        el = self.trans(e.left)
+        er = self.trans(e.right)
         return z3.And(el, er)
 
-    def eval_PDisj(self, e):
-        el = self.eval(e.left)
-        er = self.eval(e.right)
+    def trans_PDisj(self, e):
+        el = self.trans(e.left)
+        er = self.trans(e.right)
         return z3.Or(el, er)
 
-    def eval_PExists(self, e):
+    def trans_PQuant(self, Quant, e):
         bnd_vs = set(e.vars)
         stk_vs = set(self.store.keys())
         # Set of clashing vars to be renamed
@@ -130,7 +130,7 @@ class Stack(Store):
         for v in cls_vs:
             sst[v] = Var(VarUtil.mk_fresh(v))
         nbnd_vs = list(bnd_vs - stk_vs) + map(lambda v: v.id, sst.values())
-        ne = PExists(nbnd_vs, e.form.subst(sst))
+        ne = Quant(nbnd_vs, e.form.subst(sst))
 
         # Create z3's bounded variables
         zvs = []
@@ -141,17 +141,31 @@ class Stack(Store):
                 zv = z3.Int(v)
                 self.z3_symtab[v] = zv
                 zvs.append(zv)
-        f = self.eval(ne.form)
-        ef = z3.Exists(zvs, f)
+        f = self.trans(ne.form)
+        if Quant == PExists:
+            ef = z3.Exists(zvs, f)
+        else:
+            ef = z3.ForAll(zvs, f)
+        return ef
+
+    def trans_PExists(self, e):
+        return self.trans_PQuant(PExists, e)
+
+    def trans_PForall(self, e):
+        return self.trans_PQuant(PForall, e)
+
+    def eval(self, e):
+        ef = self.trans(e)
         debug(str(ef))
         self.solver.push()
         self.solver.add(ef)
         res = self.solver.check()
-        m = self.solver.model()
+        # m = self.solver.model()
         self.solver.pop()
         if res == z3.unsat:
             return False
         else:
+            # debug(str(m))
             return True
 
 class Heap(Store):
