@@ -1,5 +1,17 @@
 import copy
 
+class VarUtil(object):
+    fv_id = 0
+
+    @classmethod
+    def mk_fresh(self, v = ''):
+        self.fv_id = self.fv_id + 1
+        if v == '':
+            nv = 'fv!'
+        else:
+            nv = v + '!'
+        return nv + str(self.fv_id)
+
 class ArithOp:
     ADD = '+'
     SUB = '-'
@@ -43,7 +55,6 @@ class RelOp:
             return self.NE
         else:
             raise SyntaxError('Unexpected relational operator ' + s)
-
 
 class SepLogic(object):
     def fv(self):

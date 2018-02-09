@@ -48,18 +48,20 @@ def main():
     # mc.check(t, f)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
-    r2 = PBinRel(BinOp(Var('z'), '*', IConst(2)), '=', IConst(2))
+    r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))
     r3 = PExists(['z'], PConj(
                  (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
                  (PBinRel(Var('z'), '>', IConst(1)))))
-    r = PConj(r1, r2)
-    print(r3)
-    print(r3.fv())
-    print(s.eval(r3))
-    sst = {'y':Var('z')}
-    r4 = r3.subst(sst)
-    print(r3)
+    r4 = PExists(['z'], PDisj(r3, r1))
+    r = PConj(r3, r2)
     print(r4)
+    print(r3.fv())
+    print(s.eval(r4))
+    # sst = {'z':Var('y')}
+    sst = {'y':Var('z')}
+    r5 = r4.subst(sst)
+    print(r4)
+    print(r5)
 
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@ from seplogic import *
 from printer import *
 import z3
 import operator
+import inspect
 
 ops = {
     ArithOp.ADD: operator.add,
@@ -67,7 +68,7 @@ class Store(object):
         return evaluation(e)
 
     def generic_eval(self, e):
-        raise Exception('No evaluation for ' + type(e).__name__)
+        raise Exception('No evaluation for ' + str(e) + ':' + type(e).__name__)
 
 class Stack(Store):
     def __init__(self):
@@ -121,16 +122,25 @@ class Stack(Store):
         return z3.Or(el, er)
 
     def eval_PExists(self, e):
-        evs = e.vars
+        bnd_vs = set(e.vars)
+        stk_vs = set(self.store.keys())
+        cls_vs = stk_vs & bnd_vs
+        sst = {}
+        for v in cls_vs:
+            sst[v] = Var(VarUtil.mk_fresh(v))
+        nbnd_vs = list(bnd_vs - stk_vs) + map(lambda v: v.id, sst.values())
+        ne = PExists(nbnd_vs, e.form.subst(sst))
+        print(ne.form)
+
         zvs = []
-        for v in evs:
+        for v in nbnd_vs:
             if v in self.z3_symtab:
                 zvs.append(self.z3_symtab[v])
             else:
                 zv = z3.Int(v)
                 self.z3_symtab[v] = zv
                 zvs.append(zv)
-        f = self.eval(e.form)
+        f = self.eval(ne.form)
         ef = z3.Exists(zvs, f)
         print(ef)
         self.solver.add(ef)
