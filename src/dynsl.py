@@ -54,7 +54,12 @@ def main():
                  (PBinRel(Var('z'), '>', IConst(1)))))
     r = PConj(r1, r2)
     print(r3)
+    print(r3.fv())
     print(s.eval(r3))
+    sst = {'y':Var('z')}
+    r4 = r3.subst(sst)
+    print(r3)
+    print(r4)
 
 if __name__ == "__main__":
     main()
