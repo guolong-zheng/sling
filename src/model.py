@@ -160,14 +160,21 @@ class Stack(Store):
         debug(str(ef))
         self.solver.push()
         self.solver.add(ef)
-        res = self.solver.check()
-        # m = self.solver.model()
-        self.solver.pop()
-        if res == z3.unsat:
-            return False
-        else:
-            # debug(str(m))
-            return True
+        try:
+            r = self.solver.check()
+            debug(str(r))
+            if r == z3.unsat:
+                return Ternary(False)
+            elif r == z3.sat:
+                # m = self.solver.model()
+                return Ternary(True)
+            else:
+                return Ternary(None) # unknown
+        except:
+            debug("except")
+            return Ternary(None)
+        finally:
+            self.solver.pop()
 
 class Heap(Store):
     def __str__(self):

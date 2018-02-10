@@ -54,8 +54,8 @@ def main():
                  (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
                  (PBinRel(Var('z'), '>', IConst(1)))))
     r4 = PExists(['z'], PDisj(r3, r1))
-    r5 = PForall(['x'],
-                 PExists(['m'],
+    r5 = PExists(['x'],
+                 PForall(['m'],
                          PConj(PBinRel(Var('x'), '>', Var('m')),
                                PBinRel(Var('n'), '>', Var('m')))))
     r = PConj(r3, r2)
