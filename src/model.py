@@ -74,6 +74,7 @@ class Stack(Store):
     def __init__(self):
         Store.__init__(self)
         self.solver = z3.Solver()
+        self.solver.set("timeout", 500)
         self.z3_symtab = {}
 
     def __str__(self):
