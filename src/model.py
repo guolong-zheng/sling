@@ -68,7 +68,8 @@ class Store(object):
         return translator(e)
 
     def generic_trans(self, e):
-        raise Exception('No translator for ' + str(e) + ':' + type(e).__name__)
+        raise Exception('No translator for ' +
+                        str(e) + ':' + type(e).__name__)
 
 class Stack(Store):
     def __init__(self):
@@ -162,7 +163,6 @@ class Stack(Store):
         self.solver.add(ef)
         try:
             r = self.solver.check()
-            debug(str(r))
             if r == z3.unsat:
                 return Ternary(False)
             elif r == z3.sat:
@@ -171,7 +171,6 @@ class Stack(Store):
             else:
                 return Ternary(None) # unknown
         except:
-            debug("except")
             return Ternary(None)
         finally:
             self.solver.pop()
@@ -183,5 +182,16 @@ class Heap(Store):
         return self.__ho_str__(str_of_heap)
 
 class SHModel(object):
-    pass
+    def __init__(self, stack, heap):
+        self.stack = stack
+        self.heap = heap
+
+    def satisfy(self, f):
+        method_name = 'satisfy_' + type(f).__name__
+        checker = getattr(self, method_name, self.generic_satisfy)
+        return checker(f)
+
+    def generic_satisfy(self, f):
+        raise Exception('No model checker for ' +
+                        str(f) + ':' + type(f).__name__)
 

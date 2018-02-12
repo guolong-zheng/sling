@@ -270,7 +270,7 @@ class TraceParser(Parser, Transformer):
                 heap.add(trace.addr, (trace.typ, trace.fields))
             else:
                 stack.add(trace.name, trace.val)
-        return (stack, heap)
+        return SHModel(stack, heap)
 
     sh_parser = Lark(trace_grammar, start='traces',lexer='standard')
 
