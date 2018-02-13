@@ -1,3 +1,4 @@
+from functools import partial
 import copy
 
 class VarUtil(object):
@@ -402,3 +403,9 @@ class Ternary(object):
 
     def __repr__(self):
         return "Ternary(%s)" % self.value
+
+    def __and__(self, x):
+        if self == True:
+            return x
+        else:
+            return Ternary(False)

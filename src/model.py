@@ -195,3 +195,13 @@ class SHModel(object):
         raise Exception('No model checker for ' +
                         str(f) + ':' + type(f).__name__)
 
+    def satisfy_FBase(self, f):
+        p = f.pure
+        h = f.heap
+        return (self.stack.eval(p) & self.satisfy(h))
+
+    def satisfy_HEmp(self, f):
+        dom = self.heap.dom()
+        is_empty_dom = not(bool(dom))
+        return Ternary(is_empty_dom)
+
