@@ -43,8 +43,8 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    r = sh.satisfy(f)
-    debug(r)
+    # r = s.evaluate(f)
+    # debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -53,20 +53,21 @@ def main():
     # mc = SHModelChecker()
     # mc.check(t, f)
 
-    # r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
-    # r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))
-    # r3 = PExists(['z'], PConj(
-    #              (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
-    #              (PBinRel(Var('z'), '>', IConst(1)))))
-    # r4 = PExists(['z'], PDisj(r3, r1))
-    # r5 = PExists(['x'],
-    #              PForall(['m'],
-    #                      PConj(PBinRel(Var('x'), '>', Var('m')),
-    #                            PBinRel(Var('n'), '>', Var('m')))))
-    # r = PConj(r3, r2)
+    r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
+    r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))
+    r3 = PExists(['z'], PConj(
+                 (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
+                 (PBinRel(Var('z'), '>', IConst(1)))))
+    r4 = PExists(['z'], PDisj(r3, r1))
+    r5 = PExists(['x'],
+                 PForall(['m'],
+                         PConj(PBinRel(Var('x'), '>', Var('m')),
+                               PBinRel(Var('n'), '>', Var('m')))))
+    r = PConj(r3, r2)
     # debug(r4)
     # debug(r3.fv())
-    # debug(s.eval(r5))
+    debug(s.evaluate(r5))
+    debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}
     # sst = {'y':Var('z')}
     # r6 = r4.subst(sst)

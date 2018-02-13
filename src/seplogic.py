@@ -408,4 +408,4 @@ class Ternary(object):
         if self == True:
             return x
         else:
-            return Ternary(False)
+            return self

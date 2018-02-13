@@ -62,14 +62,20 @@ class Store(object):
         else:
             raise Exception('Two stores are not disjoint')
 
-    def trans(self, e):
-        method_name = 'trans_' + type(e).__name__
-        translator = getattr(self, method_name, self.generic_trans)
-        return translator(e)
+    def eval(self, e, func='eval'):
+        method_name = func + '_' + type(e).__name__
+        if not hasattr(self, method_name):
+            method_name = 'eval_' + type(e).__name__
+        default_eval = lambda func: lambda e: self.generic_eval(e, func)
+        evaluation = getattr(self, method_name, default_eval(func))
+        if method_name.startswith('eval'):
+            return evaluation(e, func)
+        else:
+            return evaluation(e)
 
-    def generic_trans(self, e):
-        raise Exception('No translator for ' +
-                        str(e) + ':' + type(e).__name__)
+    def generic_eval(self, e, func):
+        raise Exception('No evaluation ' + '(' + func + ') ' +
+                        'for ' + str(e) + ':' + type(e).__name__)
 
 class Stack(Store):
     def __init__(self):
@@ -81,9 +87,34 @@ class Stack(Store):
     def __str__(self):
         return self.__ho_str__(str)
 
+    # Evaluation expressions to values
+    def eval_Var(self, e, func='eval'):
+        return self.get(e.id).val
+
+    def eval_IConst(self, e, func='eval'):
+        return e.val
+
+    def eval_BinOp(self, e, func='eval'):
+        el = self.eval(e.left, func)
+        er = self.eval(e.right, func)
+        return ops[e.op](el, er)
+
+    def eval_BConst(self, e, func='eval'):
+        return e.val
+
+    def eval_PBinRel(self, e, func='eval'):
+        el = self.eval(e.left, func)
+        er = self.eval(e.right, func)
+        return ops[e.op](el, er)
+
+    def eval_PNeg(self, e, func='eval'):
+        ev = self.eval(e, func)
+        return (not ev)
+
+    # Translation to z3 formulas
     def trans_Var(self, e):
         try:
-            return self.get(e.id).val
+            return self.eval(e)
         except:
              v = str(e)
              if v in self.z3_symtab:
@@ -93,34 +124,14 @@ class Stack(Store):
                  self.z3_symtab[v] = zv
                  return zv
 
-    def trans_IConst(self, e):
-        return e.val
-
-    def trans_BinOp(self, e):
-        el = self.trans(e.left)
-        er = self.trans(e.right)
-        return ops[e.op](el, er)
-
-    def trans_BConst(self, e):
-        return e.val
-
-    def trans_PBinRel(self, e):
-        el = self.trans(e.left)
-        er = self.trans(e.right)
-        return ops[e.op](el, er)
-
-    def trans_PNeg(self, e):
-        ev = self.trans(e)
-        return (not ev)
-
     def trans_PConj(self, e):
-        el = self.trans(e.left)
-        er = self.trans(e.right)
+        el = self.eval(e.left, 'trans')
+        er = self.eval(e.right, 'trans')
         return z3.And(el, er)
 
     def trans_PDisj(self, e):
-        el = self.trans(e.left)
-        er = self.trans(e.right)
+        el = self.eval(e.left, 'trans')
+        er = self.eval(e.right, 'trans')
         return z3.Or(el, er)
 
     def trans_PQuant(self, Quant, e):
@@ -143,7 +154,7 @@ class Stack(Store):
                 zv = z3.Int(v)
                 self.z3_symtab[v] = zv
                 zvs.append(zv)
-        f = self.trans(ne.form)
+        f = self.eval(ne.form, 'trans')
         if Quant == PExists:
             ef = z3.Exists(zvs, f)
         else:
@@ -156,8 +167,8 @@ class Stack(Store):
     def trans_PForall(self, e):
         return self.trans_PQuant(PForall, e)
 
-    def eval(self, e):
-        ef = self.trans(e)
+    def evaluate(self, e):
+        ef = self.eval(e, 'trans')
         debug(str(ef))
         self.solver.push()
         self.solver.add(ef)
@@ -201,7 +212,17 @@ class SHModel(object):
         return (self.stack.eval(p) & self.satisfy(h))
 
     def satisfy_HEmp(self, f):
-        dom = self.heap.dom()
-        is_empty_dom = not(bool(dom))
+        dom_h = self.heap.dom()
+        is_empty_dom = not(bool(dom_h))
         return Ternary(is_empty_dom)
+
+    def satisfy_HData(self, f):
+        dom_h = self.heap.dom()
+        if len(dom_h) == 1:
+            stk = self.stack
+            root = stk.get(f.root)
+            debug(str(root))
+            return Ternary(False)
+        else:
+            return Ternary(False)
 
