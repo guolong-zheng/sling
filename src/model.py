@@ -1,4 +1,5 @@
 from seplogic import *
+from trace import *
 from printer import *
 from debug import *
 import z3
@@ -30,14 +31,15 @@ class Store(object):
         return str(self.store)
 
     def add(self, v, val):
-        self.store[v] = val
+        self.store[str(v)] = val
 
     def remove(self, v):
-        if v in self.store:
-            del self.store[v]
+        sv = str(v)
+        if sv in self.store:
+            del self.store[sv]
 
     def get(self, v):
-        return self.store[v]
+        return self.store[str(v)]
 
     def clone(self):
         copy = Store()
@@ -169,7 +171,6 @@ class Stack(Store):
 
     def evaluate(self, e):
         ef = self.eval(e, 'trans')
-        debug(str(ef))
         self.solver.push()
         self.solver.add(ef)
         try:
@@ -207,9 +208,8 @@ class SHModel(object):
                         str(f) + ':' + type(f).__name__)
 
     def satisfy_FBase(self, f):
-        p = f.pure
-        h = f.heap
-        return (self.stack.eval(p) & self.satisfy(h))
+        return (self.stack.evaluate(f.pure) &
+                self.satisfy(f.heap))
 
     def satisfy_HEmp(self, f):
         dom_h = self.heap.dom()
@@ -219,10 +219,21 @@ class SHModel(object):
     def satisfy_HData(self, f):
         dom_h = self.heap.dom()
         if len(dom_h) == 1:
-            stk = self.stack
-            root = stk.get(f.root)
-            debug(str(root))
-            return Ternary(False)
-        else:
+            s = self.stack
+            h = self.heap
+            root = s.eval(Var(f.root))
+            addr = Addr(root)
+            (typ, fields) = h.get(addr)
+            if typ == f.name:
+                field_vals = map(lambda f: f.data.val, fields)
+                f_args = f.args
+                match = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
+                            zip(f_args, field_vals))
+                cond = reduce(lambda m1, m2: PConj(m1, m2), match)
+                r = s.evaluate(cond)
+                return r
+            else: # The sorts are inconsistent
+                return Ternary(False)
+        else: # The heap domain contains more than one addresses
             return Ternary(False)
 

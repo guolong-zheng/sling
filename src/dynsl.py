@@ -6,24 +6,24 @@ from eval import *
 from debug import *
 
 def main():
-    defn = """
+    defn = r"""
            data node { int val; node next; };
 
            pred ls(x,y,n) := emp & x=y & n=0
            \/ (exists v, u. x->node{v, u} * ls(u,y,n-1) & n>=1);
            """
 
-    traces = """
+    traces = r"""
              0xA001 -> node{val:1; next:0xA002};
-             0xA002 -> node{val:2; next:0xA003};
-             0xA003 -> node{val:3; next:0xA002};
+             # 0xA002 -> node{val:2; next:0xA003};
+             # 0xA003 -> node{val:3; next:0xA002};
              x = 0xA001;
              y = 0xA002;
              z = 2;
              """
 
-    # form = "x->node{z, y}"
-    form = "z=2"
+    form = "x->node{z, y}"
+    # form = "z=2"
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -43,8 +43,8 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    # r = s.evaluate(f)
-    # debug(r)
+    r = sh.satisfy(f)
+    debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -66,8 +66,9 @@ def main():
     r = PConj(r3, r2)
     # debug(r4)
     # debug(r3.fv())
-    debug(s.evaluate(r5))
-    debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
+    # debug(s.evaluate(r5))
+    # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
+    # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}
     # sst = {'y':Var('z')}
     # r6 = r4.subst(sst)

@@ -10,10 +10,15 @@ class Addr(Val):
     def __init__(self, addr):
         if addr == None:
             self.val = None
-        elif addr == "No value":
-            self.val = None
+        elif isinstance(addr, basestring):
+            if addr == "No value":
+                self.val = None
+            elif addr.startswith('0x'):
+                self.val = int(addr, 16)
+            else:
+                self.val = int(addr)
         else:
-            self.val = int(addr, 16)
+            self.val = addr
 
 class Field(object):
     pass

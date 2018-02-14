@@ -12,7 +12,7 @@ class Parser(object):
     pass
 
 class SepLogicParser(Parser, Transformer):
-    seplogic_grammar = ("""
+    seplogic_grammar = r"""
         ?prog: data_defn_lst pred_defn_lst -> mk_prog
 
         ?data_defn_lst: [data_defn (data_defn)*] -> mk_list
@@ -121,7 +121,7 @@ class SepLogicParser(Parser, Transformer):
         %import common.INT -> NUM
         %import common.WS
         %ignore WS
-        """)
+        """
 
     def mk_iconst(self, (i,)):
         return IConst(int(i))
@@ -201,7 +201,7 @@ class SepLogicParser(Parser, Transformer):
     sl_parser = Lark(seplogic_grammar, start='shform',lexer='standard')
 
 class TraceParser(Parser, Transformer):
-    trace_grammar = ("""
+    trace_grammar = r"""
         ?traces: (heap_trace | stk_trace)+ -> mk_stack_heap
 
         ?stk_trace: id EQ (addr | num) SEMICOLON -> mk_stk_trace
@@ -230,12 +230,15 @@ class TraceParser(Parser, Transformer):
         COLON: ":"
         EQ: "="
 
+        COMMENT: /#[^\n]*/
+
         %import common.CNAME -> ID
         %import common.INT -> NUM
         %import common.HEXDIGIT
         %import common.WS
         %ignore WS
-        """)
+        %ignore COMMENT
+        """
 
     def mk_id(self, (id,)):
         return str(id)
