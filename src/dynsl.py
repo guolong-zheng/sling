@@ -15,14 +15,15 @@ def main():
 
     traces = r"""
              0xA001 -> node{val:1; next:0xA002};
-             # 0xA002 -> node{val:2; next:0xA003};
-             # 0xA003 -> node{val:3; next:0xA002};
+             0xA002 -> node{val:2; next:0xA003};
+             0xA003 -> node{val:3; next:0xA002};
              x = 0xA001;
              y = 0xA002;
              z = 2;
              """
 
-    form = "x->node{z, y}"
+    form = "x->node{z-1, u} * ls(y, v) * v->node{z+1, y}"
+    # form = "x->node{z-1, u}"
     # form = "z=2"
 
     seplogic_parser = SepLogicParser()

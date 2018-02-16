@@ -301,6 +301,21 @@ class HStar(HRel):
     def __fv__(self):
         return self.left.fv() | self.right.fv()
 
+    def _partition(self, f):
+        if isinstance(f, HData):
+            return ([f], [])
+        elif isinstance(f, HPred):
+            return ([], [f])
+        else:
+            return f.partition()
+
+    def partition(self):
+        lds, lps = self._partition(self.left)
+        rds, rps = self._partition(self.right)
+        lds.extend(rds)
+        lps.extend(rps)
+        return (lds, lps)
+
 class SH(SepLogic):
     pass
 

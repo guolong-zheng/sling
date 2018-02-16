@@ -41,6 +41,9 @@ class Store(object):
     def get(self, v):
         return self.store[str(v)]
 
+    def contain(self, v):
+        return v in self.store
+
     def clone(self):
         copy = Store()
         copy.store = self.store.copy()
@@ -208,13 +211,17 @@ class SHModel(object):
                         str(f) + ':' + type(f).__name__)
 
     def satisfy_FBase(self, f):
-        return (self.stack.evaluate(f.pure) &
-                self.satisfy(f.heap))
+        stk_eval = self.stack.evaluate(f.pure)
+        if stk_eval == True:
+            heap_eval = self.stack.evaluate(self.satisfy(f.heap))
+            return heap_eval
+        else:
+            return stk_eval
 
     def satisfy_HEmp(self, f):
         dom_h = self.heap.dom()
         is_empty_dom = not(bool(dom_h))
-        return Ternary(is_empty_dom)
+        return BConst(is_empty_dom)
 
     def satisfy_HData(self, f):
         dom_h = self.heap.dom()
@@ -230,10 +237,31 @@ class SHModel(object):
                 match = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
                             zip(f_args, field_vals))
                 cond = reduce(lambda m1, m2: PConj(m1, m2), match)
-                r = s.evaluate(cond)
-                return r
+                return cond
             else: # The sorts are inconsistent
-                return Ternary(False)
+                return BConst(False)
         else: # The heap domain contains more than one addresses
-            return Ternary(False)
+            return BConst(False)
+
+    def satisfy_HStar(self, f):
+        s = self.stack
+        h = self.heap
+        hdata_lst, hpred_lst = f.partition()
+        debug(str_of_list(hdata_lst, str))
+        debug(str_of_list(hpred_lst, str))
+        explicit_hdata_lst = filter(lambda hd: s.contain(hd.root), hdata_lst)
+        h2 = h.clone()
+        for hd in explicit_hdata_lst:
+            try:
+                root = s.eval(Var(hd.root))
+                h1 = Heap()
+                h1.add(root, h2.get(root))
+                h2.remove(root)
+                debug(h1)
+                debug(h2)
+                debug(root)
+            except:
+                return BConst(False)
+        debug(str_of_list(explicit_hdata_lst, str))
+        return BConst(False)
 
