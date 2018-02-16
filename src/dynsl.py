@@ -2,8 +2,8 @@ from seplogic import *
 from trace import *
 from parser import *
 from model_checker import *
-from eval import *
 from debug import *
+from typ import *
 
 def main():
     defn = r"""
@@ -22,7 +22,7 @@ def main():
              z = 2;
              """
 
-    form = "x->node{z-1, u} * ls(y, v) * v->node{z+1, y}"
+    form = "v->node{z+1, y} * ls(y, v) * x->node{z-1, u}"
     # form = "x->node{z-1, u}"
     # form = "z=2"
 
@@ -36,6 +36,10 @@ def main():
     form_ast = seplogic_parser.sl_parser.parse(form)
     f = seplogic_parser.transform(form_ast)
     debug(f)
+
+    type_infer = TInfer()
+    debug(type(prog))
+    prog = type_infer.infer(prog)
 
     trace_parser = TraceParser()
     traces_ast = trace_parser.sh_parser.parse(traces)
@@ -71,11 +75,15 @@ def main():
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}
-    # sst = {'y':Var('z')}
-    # r6 = r4.subst(sst)
-    # debug(r4)
-    # debug(r5)
+    sst = {'y':Var('z')}
+    r6 = r4.subst(sst)
+    debug(r4)
+    debug(r6)
     # sh.satisfy(r5)
+
+    r7 = r4.rename()
+    debug(r4)
+    debug(r7)
 
 if __name__ == "__main__":
     main()

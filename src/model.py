@@ -41,7 +41,7 @@ class Store(object):
     def get(self, v):
         return self.store[str(v)]
 
-    def contain(self, v):
+    def contains(self, v):
         return v in self.store
 
     def clone(self):
@@ -239,8 +239,11 @@ class SHModel(object):
                 cond = reduce(lambda m1, m2: PConj(m1, m2), match)
                 return cond
             else: # The sorts are inconsistent
+                debug('HData: ' + f.root + ' points to inconsistent data types'
+                      + '(' + typ + ', ' + f.name + ')')
                 return BConst(False)
-        else: # The heap domain contains more than one addresses
+        else:
+            debug ('HData: The heap domain contains more than one data nodes')
             return BConst(False)
 
     def satisfy_HStar(self, f):
@@ -249,18 +252,20 @@ class SHModel(object):
         hdata_lst, hpred_lst = f.partition()
         debug(str_of_list(hdata_lst, str))
         debug(str_of_list(hpred_lst, str))
-        explicit_hdata_lst = filter(lambda hd: s.contain(hd.root), hdata_lst)
+        explicit_hdata_lst = filter(lambda d: s.contains(d.root), hdata_lst)
         h2 = h.clone()
-        for hd in explicit_hdata_lst:
+        for d in explicit_hdata_lst:
             try:
-                root = s.eval(Var(hd.root))
+                # Matching explicit data nodes with the heap model
+                root = s.eval(Var(d.root))
                 h1 = Heap()
                 h1.add(root, h2.get(root))
+                m1 = SHModel(s, h1)
+                c1 = m1.satisfy(d)
+                debug(c1)
                 h2.remove(root)
-                debug(h1)
-                debug(h2)
-                debug(root)
             except:
+                debug('HStar: Cannot find the matched heap for HData')
                 return BConst(False)
         debug(str_of_list(explicit_hdata_lst, str))
         return BConst(False)

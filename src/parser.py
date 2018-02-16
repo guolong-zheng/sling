@@ -2,6 +2,7 @@ from lark import Lark, Transformer
 from seplogic import *
 from trace import *
 from model import *
+from typ import *
 
 try:
     input = raw_input   # For Python2 compatibility
@@ -19,15 +20,15 @@ class SepLogicParser(Parser, Transformer):
 
         ?pred_defn_lst: [pred_defn (pred_defn)*] -> mk_list
 
-        ?data_defn: DATA ID OBRACE data_defn_fields CBRACE SEMICOLON -> mk_data_defn
+        ?data_defn: DATA id OBRACE data_defn_fields CBRACE SEMICOLON -> mk_data_defn
 
-        ?data_defn_field: ID ID SEMICOLON -> mk_data_defn_field
+        ?data_defn_field: id id SEMICOLON -> mk_data_defn_field
 
         ?data_defn_fields: [data_defn_field (data_defn_field)*] -> mk_list
 
-        ?pred_defn: PRED ID OPAREN id_lst CPAREN DEF pred_defn_cases SEMICOLON -> mk_pred_defn
+        ?pred_defn: PRED id OPAREN id_lst CPAREN DEF pred_defn_cases SEMICOLON -> mk_pred_defn
 
-        ?pred_defn_cases: [shform (POR shform)*] -> mk_list
+        ?pred_defn_cases: [shform (POR shform)*] -> mk_list_sep
 
         ?shform: hform -> mk_sh_true
             | pform -> mk_sh_emp
@@ -39,8 +40,8 @@ class SepLogicParser(Parser, Transformer):
             | hform STAR hatom -> mk_star
 
         ?hatom: EMP -> mk_emp
-            | ID PTO ID OBRACE pexpr_lst CBRACE -> mk_data
-            | ID OPAREN pexpr_lst CPAREN -> mk_pred
+            | id PTO id OBRACE pexpr_lst CBRACE -> mk_data
+            | id OPAREN pexpr_lst CPAREN -> mk_pred
 
         ?pform: pfdisj
             | EX id_lst DOT pform -> mk_exists
@@ -65,7 +66,7 @@ class SepLogicParser(Parser, Transformer):
             | pexpr LT pexpr -> mk_binrel
             | pexpr LE pexpr -> mk_binrel
 
-        ?pexpr_lst: [pexpr (COMMA pexpr)*] -> mk_list
+        ?pexpr_lst: [pexpr (COMMA pexpr)*] -> mk_list_sep
 
         ?pexpr: pterm
             | pexpr ADD pterm -> mk_binop
@@ -78,11 +79,13 @@ class SepLogicParser(Parser, Transformer):
         ?patom: NUM -> mk_iconst
             | NIL -> mk_nil
             | NULL -> mk_nil
-            | ID -> mk_var
+            | id -> mk_var
             | SUB patom
             | OPAREN pexpr CPAREN -> mk_paren
 
-        ?id_lst: [ID (COMMA ID)*] -> mk_list
+        ?id_lst: [id (COMMA id)*] -> mk_list_sep
+
+        ?id: ID -> mk_id
 
         PRED: "pred"
         DEF: ":="
@@ -123,16 +126,22 @@ class SepLogicParser(Parser, Transformer):
         %ignore WS
         """
 
+    def mk_id(self, (id,)):
+        return str(id)
+
     def mk_iconst(self, (i,)):
         return IConst(int(i))
 
     mk_nil = lambda self, _: Null()
 
     def mk_var(self, (id,)):
-        return Var(str(id))
+        return Var(id)
+
+    def mk_list_sep(self, lst):
+        return lst[0::2]
 
     def mk_list(self, lst):
-        return lst[0::2]
+        return lst
 
     def mk_paren(self, (oparen, e, cparen)):
         return e

@@ -1,4 +1,5 @@
 from functools import partial
+from typ import *
 import copy
 
 class VarUtil(object):
@@ -62,16 +63,25 @@ class SepLogic(object):
         return self.__fv__()
 
     def subst(self, sst):
-        trans_sst = getattr(self, '__subst__', self.generic_subst)
+        generic_subst = lambda sst: self.generic_clone('subst', [sst])
+        trans_sst = getattr(self, '__subst__', generic_subst)
         return trans_sst(sst)
 
-    def generic_subst(self, sst):
+    def rename(self):
+        renaming = getattr(self, '__rename__', self.generic_rename)
+        return renaming()
+
+    def generic_rename(self):
+        return self.generic_clone('rename', [])
+
+    def generic_clone(self, trans, args):
         clone = copy.copy(self)
         fields = clone.__dict__
         for fid in fields:
             val = fields[fid]
             if isinstance(val, SepLogic):
-                setattr(clone, fid, val.subst(sst))
+                func = getattr(val, trans)
+                setattr(clone, fid, func(*args))
         return clone
 
 class PExpr(SepLogic):
@@ -81,6 +91,9 @@ class HExpr(SepLogic):
     pass
 
 class Null(HExpr):
+    def __init__(self):
+        self.typ = TData('nil')
+
     def __str__(self):
         return 'nil'
 
@@ -88,9 +101,10 @@ class Null(HExpr):
         return set()
 
 class Var(PExpr, HExpr):
-    def __init__(self, id, is_primed = False):
+    def __init__(self, id, is_primed = False, typ = None):
         self.id = id
         self.is_primed = is_primed
+        self.typ = typ
 
     def __str__(self):
         return (self.id + ('\'' if self.is_primed else ''))
@@ -109,6 +123,7 @@ class Var(PExpr, HExpr):
 class IConst(PExpr):
     def __init__(self, i):
         self.val = i
+        self.typ = TInt()
 
     def __str__(self):
         return str(self.val)
@@ -122,6 +137,7 @@ class BinOp(PExpr):
             self.op = ArithOp.arith_op(op)
             self.left = left
             self.right = right
+            self.typ = TInt()
         else:
             raise SyntaxError("type inconsistency")
 
@@ -137,6 +153,7 @@ class PRel(SepLogic):
 class BConst(PRel):
     def __init__(self, b):
         self.val = b
+        self.typ = TBool()
 
     def __str__(self):
         return str(self.val)
@@ -149,6 +166,7 @@ class PBinRel(PRel):
         self.op = RelOp.rel_op(op)
         self.left = left
         self.right = right
+        self.typ = TBool()
 
     def __str__(self):
         return str(self.left) + str(self.op) + str(self.right)
@@ -160,6 +178,7 @@ class PPred(PRel):
     def __init__(self, id, args):
         self.id = id
         self.args = args
+        self.typ = TBool()
 
     def __str__(self):
         return (self.id + '(' +
@@ -174,6 +193,7 @@ class PPred(PRel):
 class PNeg(PRel):
     def __init__(self, f):
         self.form = f
+        self.typ = TBool()
 
     def __str__(self):
         return 'not(' + str(self.form) + ')'
@@ -185,6 +205,7 @@ class PConj(PRel):
     def __init__(self, left, right):
         self.left = left
         self.right = right
+        self.typ = TBool()
 
     def __str__(self):
         return str(self.left) + ' & ' + str(self.right)
@@ -196,6 +217,7 @@ class PDisj(PRel):
     def __init__(self, left, right):
         self.left = left
         self.right = right
+        self.typ = TBool()
 
     def __str__(self):
         return str(self.left) + ' | ' + str(self.right)
@@ -207,6 +229,7 @@ class PForall(PRel):
     def __init__(self, vars, f):
         self.vars = vars
         self.form = f
+        self.typ = TBool()
 
     def __str__(self):
         return ('(forall ' + (', '.join(map(str, self.vars))) +
@@ -225,6 +248,7 @@ class PExists(PRel):
     def __init__(self, vars, f):
         self.vars = vars
         self.form = f
+        self.typ = TBool()
 
     def __str__(self):
         return ('(exists ' + (', '.join(map(str, self.vars))) +
@@ -239,6 +263,12 @@ class PExists(PRel):
                 del sst[v]
         return PExists(self.vars, self.form.subst(sst))
 
+    def __rename__(self):
+        fvars = map(lambda v: VarUtil.mk_fresh(v), self.vars)
+        sst = dict(zip(self.vars, fvars))
+        nform = self.form.subst(sst)
+        return PExists(fvars, nform.rename())
+
 class HRel(SepLogic):
     pass
 
@@ -247,7 +277,7 @@ class HAtom(HRel):
 
 class HEmp(HAtom):
     def __init__(self):
-        pass
+        self.typ = TBool()
 
     def __str__(self):
         return 'emp'
@@ -260,6 +290,7 @@ class HData(HAtom):
         self.root = root
         self.name = name
         self.args = args
+        self.typ = TBool()
 
     def __str__(self):
         return (str(self.root) + '->' + self.name + '{' +
@@ -276,6 +307,7 @@ class HPred(HAtom):
     def __init__(self, name, args):
         self.name = name
         self.args = args
+        self.typ = TBool()
 
     def __str__(self):
         return (self.name + '(' +
@@ -292,6 +324,7 @@ class HStar(HRel):
         if isinstance(left, HRel) and isinstance(right, HRel):
             self.left = left
             self.right = right
+            self.typ = TBool()
         else:
             raise SyntaxError('left or right is not a heap relation')
 
@@ -330,6 +363,7 @@ class FBase(SH):
         else:
             self.heap = heap
             self.pure = pure
+            self.typ = TBool()
 
     def __str__(self):
         return (str(self.heap) + ' & ' + str(self.pure))
@@ -345,6 +379,7 @@ class FExists(SH):
         if isinstance(f, SH):
             self.vars = vars
             self.form = f
+            self.typ = TBool()
         else:
             raise SyntaxError(str(f) + ' is not a symbolic-heap formula')
 
