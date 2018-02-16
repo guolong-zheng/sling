@@ -14,6 +14,10 @@ class VarUtil(object):
             nv = v + '!'
         return nv + str(self.fv_id)
 
+    @classmethod
+    def mk_pred_param(self, v, pname):
+        return v + '!' + pname
+
 class ArithOp:
     ADD = '+'
     SUB = '-'
@@ -74,6 +78,12 @@ class SepLogic(object):
     def generic_rename(self):
         return self.generic_clone('rename', [])
 
+    def __rename_Quant__(self, Quant):
+        fvars = map(lambda v: VarUtil.mk_fresh(v), self.vars)
+        sst = dict(zip(self.vars, fvars))
+        nform = self.form.subst(sst)
+        return Quant(fvars, nform.rename())
+
     def generic_clone(self, trans, args):
         clone = copy.copy(self)
         fields = clone.__dict__
@@ -82,6 +92,15 @@ class SepLogic(object):
             if isinstance(val, SepLogic):
                 func = getattr(val, trans)
                 setattr(clone, fid, func(*args))
+            if isinstance(val, list):
+                cval = []
+                for v in val:
+                    def generic_func(*args):
+                        return v
+                    func = getattr(v, trans, generic_func)
+                    cv = func(*args)
+                    cval.append(cv)
+                setattr(clone, fid, cval)
         return clone
 
 class PExpr(SepLogic):
@@ -244,6 +263,9 @@ class PForall(PRel):
                 del sst[v]
         return PForall(self.vars, self.form.subst(sst))
 
+    def __rename__(self):
+        return self.__rename_Quant__(PForall)
+
 class PExists(PRel):
     def __init__(self, vars, f):
         self.vars = vars
@@ -264,10 +286,7 @@ class PExists(PRel):
         return PExists(self.vars, self.form.subst(sst))
 
     def __rename__(self):
-        fvars = map(lambda v: VarUtil.mk_fresh(v), self.vars)
-        sst = dict(zip(self.vars, fvars))
-        nform = self.form.subst(sst)
-        return PExists(fvars, nform.rename())
+        return self.__rename_Quant__(PExists)
 
 class HRel(SepLogic):
     pass
@@ -396,6 +415,9 @@ class FExists(SH):
                 del sst[v]
         return PExists(self.vars, self.form.subst(sst))
 
+    def __rename__(self):
+        return self.__rename_Quant__(FExists)
+
 class DataDefField(SepLogic):
     def __init__(self, typ, name):
         self.typ = typ
@@ -422,6 +444,13 @@ class PredDef(SepLogic):
     def __str__(self):
         return ('pred ' + self.name + '(' + (', '.join(map(str, self.params))) + ')' +
                 ' := \n\t' + ('\n\t\/ '.join(map(str, self.cases))))
+
+    def __rename__(self):
+        fparams = map(lambda v: VarUtil.mk_pred_param(v, self.name), self.params)
+        sst = dict(zip(self.params, fparams))
+        ncases = map(lambda case: case.subst(sst), self.cases)
+        ncases = map(lambda case: case.rename(), ncases)
+        return PredDef(self.name, fparams, ncases)
 
 class Prog(SepLogic):
     def __init__(self, data_defn_lst, pred_defn_lst):

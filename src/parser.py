@@ -174,7 +174,7 @@ class SepLogicParser(Parser, Transformer):
     mk_emp = lambda self, _: HEmp()
 
     def mk_data(self, (root, pto, name, obrace, args, cbrace)):
-        return HData(root, name, args)
+        return HData(Var(root), name, args)
 
     def mk_pred(self, (name, oparen, args, cparen)):
         return HPred(name, args)
