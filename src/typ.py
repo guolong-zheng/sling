@@ -192,9 +192,9 @@ class TInfer(object):
     def unify_PBinRel(self, f, expected_typ):
         if f.op == SL.RelOp.EQ or f.op == SL.RelOp.NE:
             try:
-                tyl = self.find_type_Var(f.left)
+                tyl = self.find_type(f.left)
                 if isinstance(tyl, TVar):
-                    tyr = self.find_type_Var(f.right)
+                    tyr = self.find_type(f.right)
                     if isinstance(tyr, TVar):
                         ty = self.create_TVar()
                     else:
@@ -222,8 +222,8 @@ class TInfer(object):
         self.unify(f.right, TInt())
 
     def unify_Var(self, f, expected_typ):
-        current_typ = self.find_type_Var(f)
-        expected_typ = self.find_link_type(expected_typ)
+        current_typ = self.find_type(f)
+        expected_typ = self.find_type(expected_typ)
         debug(f.id + ': ' + str(current_typ) + ', ' + str(expected_typ))
         if isinstance(current_typ, TVar):
             self.env[f.id] = expected_typ
@@ -245,7 +245,18 @@ class TInfer(object):
             self.raise_type_error(f, TInt(), expected_typ)
 
     #############################################################
-    def find_link_type(self, ty):
+    def find_type(self, e):
+        method_name = 'find_type_' + type(e).__name__
+        unification = getattr(self, method_name, self.generic_find_type)
+        return unification(e)
+
+    def generic_find_type(self, e):
+        if isinstance(e, Type):
+            return e
+        raise Exception('No type finder for ' +
+                        type(e).__name__ + ':\n' + str(e))
+
+    def find_type_TVar(self, ty):
         while isinstance(ty, TVar):
             oty = ty
             ty = self.tmap[ty.id]
@@ -255,5 +266,8 @@ class TInfer(object):
 
     def find_type_Var(self, e):
         ty = self.env[e.id]
-        return self.find_link_type(ty)
+        return self.find_type(ty)
+
+    def find_type_IConst(self, e):
+        return TInt()
 
