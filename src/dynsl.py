@@ -49,7 +49,7 @@ def main():
     s = sh.stack
     h = sh.heap
     r = sh.satisfy(f)
-    debug(r)
+    # debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -77,17 +77,17 @@ def main():
     # sst = {'z':Var('y')}
     sst = {'y':Var('z')}
     r6 = r4.subst(sst)
-    debug(r4)
-    debug(r6)
+    # debug(r4)
+    # debug(r6)
     # sh.satisfy(r5)
 
     r7 = r4.rename()
-    debug(r4)
-    debug(r7)
+    # debug(r4)
+    # debug(r7)
 
     p1 = prog.rename()
-    debug(prog)
-    debug(p1)
+    # debug(prog)
+    # debug(p1)
 
 if __name__ == "__main__":
     main()

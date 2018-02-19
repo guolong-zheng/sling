@@ -127,6 +127,7 @@ class SepLogicParser(Parser, Transformer):
         """
 
     def mk_id(self, (id,)):
+        debug(id)
         return str(id)
 
     def mk_iconst(self, (i,)):
@@ -135,6 +136,8 @@ class SepLogicParser(Parser, Transformer):
     mk_nil = lambda self, _: Null()
 
     def mk_var(self, (id,)):
+        debug(type(id))
+        debug(id)
         return Var(id)
 
     def mk_list_sep(self, lst):

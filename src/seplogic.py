@@ -136,7 +136,7 @@ class Var(PExpr, HExpr):
     def __subst__(self, sst):
         v = str(self)
         if v in sst:
-            return sst[v]
+            return Var(sst[v])
         return copy.copy(self)
 
 class IConst(PExpr):
@@ -413,7 +413,7 @@ class FExists(SH):
         for v in self.vars:
             if v in sst:
                 del sst[v]
-        return PExists(self.vars, self.form.subst(sst))
+        return FExists(self.vars, self.form.subst(sst))
 
     def __rename__(self):
         return self.__rename_Quant__(FExists)
