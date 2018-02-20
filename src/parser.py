@@ -59,6 +59,7 @@ class SepLogicParser(Parser, Transformer):
 
         ?prel: TRUE -> mk_true
             | FALSE -> mk_false
+            | id -> mk_var
             | pexpr EQ pexpr -> mk_binrel
             | pexpr NE pexpr -> mk_binrel
             | pexpr GT pexpr -> mk_binrel
@@ -127,7 +128,6 @@ class SepLogicParser(Parser, Transformer):
         """
 
     def mk_id(self, (id,)):
-        debug(id)
         return str(id)
 
     def mk_iconst(self, (i,)):
@@ -136,8 +136,6 @@ class SepLogicParser(Parser, Transformer):
     mk_nil = lambda self, _: Null()
 
     def mk_var(self, (id,)):
-        debug(type(id))
-        debug(id)
         return Var(id)
 
     def mk_list_sep(self, lst):
@@ -169,10 +167,12 @@ class SepLogicParser(Parser, Transformer):
         return PDisj(left, right)
 
     def mk_exists(self, (ex, vars, d, f)):
-        return PExists(vars, f)
+        vs = map(lambda v: Var(v), vars)
+        return PExists(vs, f)
 
     def mk_forall(self, (all, vars, d, f)):
-        return PForall(vars, f)
+        vs = map(lambda v: Var(v), vars)
+        return PForall(vs, f)
 
     mk_emp = lambda self, _: HEmp()
 
@@ -195,7 +195,8 @@ class SepLogicParser(Parser, Transformer):
         return FBase(h, p)
 
     def mk_exists_sh(self, (ex, vars, d, f)):
-        return FExists(vars, f)
+        vs = map(lambda v: Var(v), vars)
+        return FExists(vs, f)
 
     def mk_data_defn_field(self, (typ, name, semicolon)):
         return DataDefField(typ, name)
@@ -204,7 +205,8 @@ class SepLogicParser(Parser, Transformer):
         return DataDef(name, fields)
 
     def mk_pred_defn(self, (pred, name, oparen, params, cparen, defn, cases, semicolon)):
-        return PredDef(name, params, cases)
+        ps = map(lambda p: Var(p), params)
+        return PredDef(name, ps, cases)
 
     def mk_prog(self, (data_defn_lst, pred_defn_lst)):
         return Prog(data_defn_lst, pred_defn_lst)

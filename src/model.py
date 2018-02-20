@@ -146,7 +146,7 @@ class Stack(Store):
         cls_vs = stk_vs & bnd_vs
         sst = {}
         for v in cls_vs:
-            sst[v] = Var(VarUtil.mk_fresh(v))
+            sst[v] = VarUtil.mk_fresh(v)
         nbnd_vs = list(bnd_vs - stk_vs) + map(lambda v: v.id, sst.values())
         ne = Quant(nbnd_vs, e.form.subst(sst))
 

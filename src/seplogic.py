@@ -6,17 +6,23 @@ class VarUtil(object):
     fv_id = 0
 
     @classmethod
-    def mk_fresh(self, v = ''):
+    def mk_fresh(self, v = None):
         self.fv_id = self.fv_id + 1
-        if v == '':
-            nv = 'fv!'
+        if not v:
+            nid = 'fv!'
         else:
-            nv = v + '!'
-        return nv + str(self.fv_id)
+            nid = v.id + '!'
+        return Var(nid + str(self.fv_id))
 
     @classmethod
     def mk_pred_param(self, v, pname):
-        return v + '!' + pname
+        return Var(v.id + '!' + pname)
+
+    @classmethod
+    def mk_subst(self, ss, ds):
+        sss = map(str, ss)
+        sds = map(str, ds)
+        return dict(zip(sss, sds))
 
 class ArithOp:
     ADD = '+'
@@ -80,7 +86,7 @@ class SepLogic(object):
 
     def __rename_Quant__(self, Quant):
         fvars = map(lambda v: VarUtil.mk_fresh(v), self.vars)
-        sst = dict(zip(self.vars, fvars))
+        sst = VarUtil.mk_subst(self.vars, fvars)
         nform = self.form.subst(sst)
         return Quant(fvars, nform.rename())
 
@@ -126,7 +132,8 @@ class Var(PExpr, HExpr):
         self.typ = typ
 
     def __str__(self):
-        return (self.id + ('\'' if self.is_primed else ''))
+        return (self.id + ('\'' if self.is_primed else '') +
+                ((':' + str(self.typ) if self.typ else '')))
 
     def __fv__(self):
         s = set()
@@ -260,7 +267,7 @@ class PForall(PRel):
     def __subst__(self, sst):
         for v in self.vars:
             if v in sst:
-                del sst[v]
+                del sst[v.id]
         return PForall(self.vars, self.form.subst(sst))
 
     def __rename__(self):
@@ -282,7 +289,7 @@ class PExists(PRel):
     def __subst__(self, sst):
         for v in self.vars:
             if v in sst:
-                del sst[v]
+                del sst[v.id]
         return PExists(self.vars, self.form.subst(sst))
 
     def __rename__(self):
@@ -412,7 +419,7 @@ class FExists(SH):
     def __subst__(self, sst):
         for v in self.vars:
             if v in sst:
-                del sst[v]
+                del sst[v.id]
         return FExists(self.vars, self.form.subst(sst))
 
     def __rename__(self):
@@ -447,7 +454,7 @@ class PredDef(SepLogic):
 
     def __rename__(self):
         fparams = map(lambda v: VarUtil.mk_pred_param(v, self.name), self.params)
-        sst = dict(zip(self.params, fparams))
+        sst = VarUtil.mk_subst(self.params, fparams)
         ncases = map(lambda case: case.subst(sst), self.cases)
         ncases = map(lambda case: case.rename(), ncases)
         return PredDef(self.name, fparams, ncases)

@@ -80,7 +80,7 @@ class TInfer(object):
     def create_TVar(self, v = None):
         ty = TVar()
         if v:
-            self.env[v] = ty
+            self.env[v.id] = ty
         self.tmap[ty.id] = ty
         return ty
 
@@ -127,8 +127,6 @@ class TInfer(object):
         for pred in prog.pred_defn_lst:
             self.infer(pred)
 
-        for i in self.tmap:
-            print i, self.tmap[i]
         return prog
 
     def infer_DataDef(self, dd):
@@ -189,6 +187,23 @@ class TInfer(object):
         self.unify(f.left, TBool())
         self.unify(f.right, TBool())
 
+    def unify_PDisj(self, f, expected_typ):
+        self.unify(f.left, TBool())
+        self.unify(f.right, TBool())
+
+    def unify_PNeg(self, f, expected_typ):
+        self.unify(f.form, TBool())
+
+    def unify_PExists(self, f):
+        for v in f.vars:
+            ty = self.create_TVar(v)
+        self.unify(f.form, TBool())
+
+    def unify_PForall(self, f):
+        for v in f.vars:
+            ty = self.create_TVar(v)
+        self.unify(f.form, TBool())
+
     def unify_PBinRel(self, f, expected_typ):
         if f.op == SL.RelOp.EQ or f.op == SL.RelOp.NE:
             try:
@@ -244,6 +259,12 @@ class TInfer(object):
         elif not isinstance(expected_typ, TInt):
             self.raise_type_error(f, TInt(), expected_typ)
 
+    def unify_BConst(self, f, expected_typ):
+        if isinstance(expected_typ, TVar):
+            self.tmap[expected_typ.id] = TBool()
+        elif not isinstance(expected_typ, TBool):
+            self.raise_type_error(f, TBool(), expected_typ)
+
     #############################################################
     def find_type(self, e):
         method_name = 'find_type_' + type(e).__name__
@@ -265,8 +286,11 @@ class TInfer(object):
         return ty
 
     def find_type_Var(self, e):
-        ty = self.env[e.id]
-        return self.find_type(ty)
+        try:
+            ty = self.env[e.id]
+            return self.find_type(ty)
+        except:
+            raise TException(e.id + ' is unbounded')
 
     def find_type_IConst(self, e):
         return TInt()

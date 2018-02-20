@@ -10,7 +10,7 @@ def main():
            data node { int val; node next; };
 
            pred ls(x,y,n) := emp & x=y & n=0
-           \/ (exists v, u. x->node{v, u} * ls(u,y,n-1) & n>=1);
+           \/ (exists v, u, b. x->node{v, u} * ls(u,y,n-1) & n>=1 & !b);
            """
 
     traces = r"""
@@ -60,12 +60,12 @@ def main():
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))
-    r3 = PExists(['z'], PConj(
+    r3 = PExists([Var('z')], PConj(
                  (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
                  (PBinRel(Var('z'), '>', IConst(1)))))
-    r4 = PExists(['z'], PDisj(r3, r1))
-    r5 = PExists(['x'],
-                 PForall(['m'],
+    r4 = PExists([Var('z')], PDisj(r3, r1))
+    r5 = PExists([Var('x')],
+                 PForall([Var('m')],
                          PConj(PBinRel(Var('x'), '>', Var('m')),
                                PBinRel(Var('n'), '>', Var('m')))))
     r = PConj(r3, r2)
