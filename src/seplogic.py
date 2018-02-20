@@ -1,6 +1,7 @@
 from functools import partial
 from typ import *
 import copy
+import ntpath
 
 class VarUtil(object):
     fv_id = 0
@@ -20,8 +21,8 @@ class VarUtil(object):
 
     @classmethod
     def mk_subst(self, ss, ds):
-        sss = map(str, ss)
-        sds = map(str, ds)
+        sss = map(lambda v: v.id, ss)
+        sds = map(lambda v: v.id, ds)
         return dict(zip(sss, sds))
 
 class ArithOp:
@@ -84,6 +85,11 @@ class SepLogic(object):
     def generic_rename(self):
         return self.generic_clone('rename', [])
 
+    def type_annotate(self, tab):
+        generic_annotate = lambda tab: self.generic_clone('type_annotate', [tab])
+        annotation = getattr(self, '__type_annotate__', generic_annotate)
+        return annotation(tab)
+
     def __rename_Quant__(self, Quant):
         fvars = map(lambda v: VarUtil.mk_fresh(v), self.vars)
         sst = VarUtil.mk_subst(self.vars, fvars)
@@ -132,19 +138,31 @@ class Var(PExpr, HExpr):
         self.typ = typ
 
     def __str__(self):
-        return (self.id + ('\'' if self.is_primed else '') +
-                ((':' + str(self.typ) if self.typ else '')))
+        id = self.id
+        try:
+            i = id.index('!')
+            id = id[:i]
+        except:
+            pass
+        return (id + ('\'' if self.is_primed else '') +
+                (((':' + str(self.typ)) if self.typ else '')))
 
     def __fv__(self):
         s = set()
-        s.add(str(self))
+        s.add(self.id)
         return s
 
     def __subst__(self, sst):
-        v = str(self)
+        v = self.id
         if v in sst:
             return Var(sst[v])
         return copy.copy(self)
+
+    def __type_annotate__(self, tab):
+        clone = copy.copy(self)
+        if not clone.typ:
+            clone.typ = tab[clone.id]
+        return clone
 
 class IConst(PExpr):
     def __init__(self, i):

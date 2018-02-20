@@ -127,6 +127,13 @@ class TInfer(object):
         for pred in prog.pred_defn_lst:
             self.infer(pred)
 
+        for v in self.env:
+            ty = self.env[v]
+            if isinstance(ty, TVar):
+                self.env[v] = self.find_type(ty)
+
+        prog = prog.type_annotate(self.env)
+        debug(prog)
         return prog
 
     def infer_DataDef(self, dd):
@@ -239,7 +246,7 @@ class TInfer(object):
     def unify_Var(self, f, expected_typ):
         current_typ = self.find_type(f)
         expected_typ = self.find_type(expected_typ)
-        debug(f.id + ': ' + str(current_typ) + ', ' + str(expected_typ))
+        # debug(f.id + ': ' + str(current_typ) + ', ' + str(expected_typ))
         if isinstance(current_typ, TVar):
             self.env[f.id] = expected_typ
             self.tmap[current_typ.id] = expected_typ
@@ -268,8 +275,8 @@ class TInfer(object):
     #############################################################
     def find_type(self, e):
         method_name = 'find_type_' + type(e).__name__
-        unification = getattr(self, method_name, self.generic_find_type)
-        return unification(e)
+        finder = getattr(self, method_name, self.generic_find_type)
+        return finder(e)
 
     def generic_find_type(self, e):
         if isinstance(e, Type):
@@ -294,4 +301,6 @@ class TInfer(object):
 
     def find_type_IConst(self, e):
         return TInt()
+
+    #############################################################
 

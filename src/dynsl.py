@@ -85,7 +85,7 @@ def main():
     # debug(r4)
     # debug(r7)
 
-    p1 = prog.rename()
+    # p1 = prog.rename()
     # debug(prog)
     # debug(p1)
 
