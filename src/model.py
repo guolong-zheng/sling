@@ -216,12 +216,10 @@ class SHModel(object):
                         str(f) + ':' + type(f).__name__)
 
     def satisfy_FBase(self, f):
-        stk_eval = self.stack.evaluate(f.pure)
-        if stk_eval == True:
-            heap_eval = self.stack.evaluate(self.satisfy(f.heap))
-            return heap_eval
-        else:
-            return stk_eval
+        heap_eval_cond = self.satisfy(f.heap)
+        eval_cond = PConj(heap_eval_cond, f.pure)
+        debug(eval_cond)
+        return eval_cond
 
     def satisfy_HEmp(self, f):
         dom_h = self.heap.dom()
@@ -235,13 +233,15 @@ class SHModel(object):
             h = self.heap
             root_addr = s.eval(f.root)
             (typ, fields) = h.get(root_addr)
-            debug(f)
             if typ == f.name:
                 field_vals = map(lambda f: f.data.val, fields)
                 f_args = f.args
                 matches = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
                               zip(f_args, field_vals))
-                cond = reduce(lambda m1, m2: PConj(m1, m2), matches)
+                if matches:
+                    cond = reduce(lambda m1, m2: PConj(m1, m2), matches)
+                else:
+                    cond = BConst(True)
                 return cond
             else: # The sorts are inconsistent
                 debug('HData: ' + f.root + ' points to inconsistent data types'
@@ -254,26 +254,28 @@ class SHModel(object):
     def satisfy_HStar(self, f):
         s = self.stack
         h = self.heap
+
         hdata_lst, hpred_lst = f.heap_par()
-        debug(str_of_list(hdata_lst, str))
-        debug(str_of_list(hpred_lst, str))
-        explicit_hdata_lst = filter(lambda d: s.contains(d.root), hdata_lst)
         h2 = h.clone()
-        for d in explicit_hdata_lst:
+        cs = []
+        for d in hdata_lst:
             try:
-                # Matching explicit data nodes with the heap model
-                root = s.eval(Var(d.root))
+                # Matching data nodes with the heap model
+                root = s.eval(d.root)
                 h1 = Heap()
                 h1.add(root, h2.get(root))
-                m1 = SHModel(s, h1)
-                c1 = m1.satisfy(d)
-                debug(c1)
+                m = SHModel(s, h1)
+                c = m.satisfy(d)
+                cs.append(c)
                 h2.remove(root)
             except:
-                debug('HStar: Cannot find the matched heap for HData')
+                debug('HStar: Cannot find the matched heap for HData ' + str(d))
                 return BConst(False)
-        debug(str_of_list(explicit_hdata_lst, str))
-        return BConst(False)
+        if cs:
+            cond = reduce(lambda c1, c2: PConj(c1, c2), cs)
+        else:
+            cond = BConst(True)
+        return cond
 
     def satisfy_FExists(self, f):
         heap_data_nodes, _ = f.heap_par()
@@ -282,6 +284,7 @@ class SHModel(object):
         exists_data_vars = filter(lambda v:
                                   isinstance(v.typ, TData) and
                                   v.id in data_vars, exists_vars)
+        rem_exists_vars = list(set(exists_vars) - set(exists_data_vars))
         stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)
         stack_data_vars_dom = map(lambda v:
                                   self.stack.get(v).val, stack_data_vars)
@@ -290,12 +293,20 @@ class SHModel(object):
                                       addr not in stack_data_vars_dom, h_dom)
         exists_data_vars_dom_set = list(itertools.combinations_with_replacement(
             exists_data_vars_dom, len(exists_data_vars)))
+
         for e_dom in exists_data_vars_dom_set:
             e_mapping = zip(exists_data_vars, e_dom)
             e_sh = self.clone()
             for (v, addr) in e_mapping:
                 e_sh.stack.add(v.id, Addr(addr))
-            e_sh.satisfy(f.form)
+            pcond = e_sh.satisfy(f.form)
+            if rem_exists_vars:
+                pcond = PExists(rem_exists_vars, pcond)
+            eval = self.stack.evaluate(pcond)
+            debug(eval)
+            if eval == True:
+                return BConst(True)
+        return BConst(False)
 
     def group_by(self, func, ls):
         grouped = {}

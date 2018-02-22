@@ -15,7 +15,7 @@ def main():
 
     traces = r"""
              0xA001 -> node{val:1; next:0xA002};
-             # 0xA002 -> node{val:2; next:0xA003};
+             0xA002 -> node{val:2; next:0xA003};
              0xA003 -> node{val:3; next:0xA002};
              x = 0xA001;
              y = 0xA002;
