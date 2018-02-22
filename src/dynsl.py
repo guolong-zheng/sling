@@ -4,16 +4,16 @@ from parser import *
 from model_checker import *
 from debug import *
 from typ import *
-import argparser
+import argparse
 
 def main():
-    parser = argparse.ArgumentParser(description='SLING')
-    parser.add_argument('--trace', '-trace', dest='trace', type=open)
-    praser.add_argument('--def', '-def', dest='pred', type=open)
-    args = parser.parser_args()
+    # parser = argparse.ArgumentParser(description='SLING')
+    # parser.add_argument('--trace', '-trace', dest='trace', type=open)
+    # parser.add_argument('--def', '-def', dest='pred', type=open)
+    # args = parser.parser_args()
 
-    defn = args.pred
-    traces = args.trace
+    # defn = args.pred
+    # traces = args.trace
 
     defn = r"""
            data node { int val; node next; };
@@ -32,7 +32,7 @@ def main():
              """
 
     # form = "x->node{z-1, u}"
-    form = 'exists u, v, r. u->node{v, r} * x->node{v-2, y} & v>1 & r=y'
+    form = 'exists u, v, r, n1. u->node{v, r} * x->node{v-2, y} * ls(y, u, n1) & v>1 & r=y & n1=1'
     # form = 'x->node{1, y}'
     # form = "z=2"
 
