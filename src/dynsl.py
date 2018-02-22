@@ -35,11 +35,11 @@ def main():
 
     form_ast = seplogic_parser.sl_parser.parse(form)
     f = seplogic_parser.transform(form_ast)
-    debug(f)
+    # debug(f)
 
     type_infer = TInfer()
-    debug(type(prog))
     prog = type_infer.infer(prog)
+    debug(prog)
 
     trace_parser = TraceParser()
     traces_ast = trace_parser.sh_parser.parse(traces)
@@ -71,9 +71,9 @@ def main():
     r = PConj(r3, r2)
     # debug(r3.fv())
     r4r = r4.rename()
-    debug(r4)
-    debug(r4r)
-    debug(s.evaluate(r4))
+    # debug(r4)
+    # debug(r4r)
+    # debug(s.evaluate(r4))
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}

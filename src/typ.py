@@ -111,7 +111,7 @@ class TInfer(object):
             self.infer(dd)
 
         prog = prog.rename()
-        debug(prog)
+        # debug(prog)
 
         for pred in prog.pred_defn_lst:
             if pred.name not in self.env:
@@ -133,7 +133,7 @@ class TInfer(object):
                 self.env[v] = self.find_type(ty)
 
         prog = prog.type_annotate(self.env)
-        debug(prog)
+        # debug(prog)
         return prog
 
     def infer_DataDef(self, dd):
@@ -230,8 +230,8 @@ class TInfer(object):
         self.unify(f.left, ty)
         self.unify(f.right,ty)
 
-        for i in self.tmap:
-            print i, self.tmap[i]
+        # for i in self.tmap:
+        #     print i, self.tmap[i]
 
     def unify_BinOp(self, f, expected_typ):
         if isinstance(expected_typ, TVar):
@@ -257,8 +257,8 @@ class TInfer(object):
         else:
             pass
 
-        for i in self.tmap:
-            print(str(i) + ':' + str(self.tmap[i]))
+        # for i in self.tmap:
+        #     print(str(i) + ':' + str(self.tmap[i]))
 
     def unify_IConst(self, f, expected_typ):
         if isinstance(expected_typ, TVar):

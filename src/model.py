@@ -166,7 +166,6 @@ class Stack(Store):
 
     def evaluate(self, e):
         ef = self.eval(e, 'trans')
-        debug(ef)
         self.solver.push()
         self.solver.add(ef)
         try:
