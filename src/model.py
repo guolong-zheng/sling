@@ -5,6 +5,7 @@ from printer import *
 from debug import *
 import z3
 import operator
+import itertools
 
 ops = {
     ArithOp.ADD: operator.add,
@@ -88,6 +89,11 @@ class Stack(Store):
         self.solver = z3.Solver()
         self.solver.set("timeout", 500)
         self.z3_symtab = {}
+
+    def clone(self):
+        stack = Stack()
+        stack.store = self.store.copy()
+        return stack
 
     def __str__(self):
         return self.__ho_str__(str)
@@ -195,6 +201,11 @@ class SHModel(object):
         self.stack = stack
         self.heap = heap
 
+    def clone(self):
+        s = self.stack.clone()
+        h = self.heap.clone()
+        return SHModel(s, h)
+
     def satisfy(self, f):
         method_name = 'satisfy_' + type(f).__name__
         checker = getattr(self, method_name, self.generic_satisfy)
@@ -265,22 +276,26 @@ class SHModel(object):
         return BConst(False)
 
     def satisfy_FExists(self, f):
-        debug(f)
-        evars = f.vars
-        grouped_evars = self.group_by(lambda v: str(v.typ), evars)
-        debug(grouped_evars)
-        dom_h = self.heap.dom()
-        debug(dom_h)
-        debug(self.heap)
-        grouped_dom_h = self.group_by(lambda a: self.heap.get(a)[0], dom_h)
-        debug(grouped_dom_h)
-        dom_evars = []
-        for ty in grouped_evars:
-            if Type.is_data_type(ty):
-                dom_evars.append((grouped_evars[ty], grouped_dom_h[ty]))
-        debug(dom_evars)
-        (hdata, hpred) = f.heap_par()
-        debug(hdata)
+        heap_data_nodes, _ = f.heap_par()
+        data_vars = map(lambda dn: dn.root.id, heap_data_nodes)
+        exists_vars = f.vars
+        exists_data_vars = filter(lambda v:
+                                  isinstance(v.typ, TData) and
+                                  v.id in data_vars, exists_vars)
+        stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)
+        stack_data_vars_dom = map(lambda v:
+                                  self.stack.get(v).val, stack_data_vars)
+        h_dom = self.heap.dom()
+        exists_data_vars_dom = filter(lambda addr:
+                                      addr not in stack_data_vars_dom, h_dom)
+        exists_data_vars_dom_set = list(itertools.combinations_with_replacement(
+            exists_data_vars_dom, len(exists_data_vars)))
+        for e_dom in exists_data_vars_dom_set:
+            e_mapping = zip(exists_data_vars, e_dom)
+            e_sh = self.clone()
+            for (v, addr) in e_mapping:
+                e_sh.stack.add(v.id, Addr(addr))
+            e_sh.satisfy(f.form)
 
     def group_by(self, func, ls):
         grouped = {}

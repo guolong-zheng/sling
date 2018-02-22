@@ -23,7 +23,7 @@ def main():
              """
 
     # form = "x->node{z-1, u}"
-    form = 'exists u, v, r. u->node{v, r} & v>1 & r=y'
+    form = 'exists u, v, r. u->node{v, r} * x->node{v-2, y} & v>1 & r=y'
     # form = 'x->node{1, y}'
     # form = "z=2"
 
