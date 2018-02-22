@@ -31,15 +31,14 @@ class Store(object):
         return str(self.store)
 
     def add(self, v, val):
-        self.store[str(v)] = val
+        self.store[v] = val
 
     def remove(self, v):
-        sv = str(v)
-        if sv in self.store:
-            del self.store[sv]
+        if v in self.store:
+            del self.store[v]
 
     def get(self, v):
-        return self.store[str(v)]
+        return self.store[v]
 
     def contains(self, v):
         return v in self.store
@@ -112,16 +111,12 @@ class Stack(Store):
         er = self.eval(e.right, func)
         return ops[e.op](el, er)
 
-    def eval_PNeg(self, e, func='eval'):
-        ev = self.eval(e, func)
-        return (not ev)
-
     # Translation to z3 formulas
     def trans_Var(self, e):
         try:
-            return self.eval(e)
+            return self.eval(e) # Return the stack value of e
         except:
-             v = str(e)
+             v = e.id
              if v in self.z3_symtab:
                  return self.z3_symtab[v]
              else:
@@ -139,25 +134,22 @@ class Stack(Store):
         er = self.eval(e.right, 'trans')
         return z3.Or(el, er)
 
+    def trans_PNeg(self, e):
+        ev = self.eval(e.form, 'trans')
+        return z3.Not(ev)
+
     def trans_PQuant(self, Quant, e):
-        bnd_vs = set(e.vars)
-        stk_vs = set(self.store.keys())
-        # Set of clashing vars to be renamed
-        cls_vs = stk_vs & bnd_vs
-        sst = {}
-        for v in cls_vs:
-            sst[v] = VarUtil.mk_fresh(v)
-        nbnd_vs = list(bnd_vs - stk_vs) + map(lambda v: v.id, sst.values())
-        ne = Quant(nbnd_vs, e.form.subst(sst))
+        ne = e.rename()
 
         # Create z3's bounded variables
         zvs = []
-        for v in nbnd_vs:
-            if v in self.z3_symtab:
-                zvs.append(self.z3_symtab[v])
+        for v in ne.vars:
+            vid = v.id
+            if vid in self.z3_symtab:
+                zvs.append(self.z3_symtab[vid])
             else:
-                zv = z3.Int(v)
-                self.z3_symtab[v] = zv
+                zv = z3.Int(vid)
+                self.z3_symtab[vid] = zv
                 zvs.append(zv)
         f = self.eval(ne.form, 'trans')
         if Quant == PExists:
@@ -174,6 +166,7 @@ class Stack(Store):
 
     def evaluate(self, e):
         ef = self.eval(e, 'trans')
+        debug(ef)
         self.solver.push()
         self.solver.add(ef)
         try:

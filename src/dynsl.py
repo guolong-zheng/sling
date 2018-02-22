@@ -63,25 +63,27 @@ def main():
     r3 = PExists([Var('z')], PConj(
                  (PBinRel(Var('z'), '=', BinOp(Var('y'), '-', IConst(1)))),
                  (PBinRel(Var('z'), '>', IConst(1)))))
-    r4 = PExists([Var('z')], PDisj(r3, r1))
+    r4 = PExists([Var('z')], PDisj(r3, PNeg(r1)))
     r5 = PExists([Var('x')],
                  PForall([Var('m')],
                          PConj(PBinRel(Var('x'), '>', Var('m')),
                                PBinRel(Var('n'), '>', Var('m')))))
     r = PConj(r3, r2)
-    # debug(r4)
     # debug(r3.fv())
-    # debug(s.evaluate(r5))
+    r4r = r4.rename()
+    debug(r4)
+    debug(r4r)
+    debug(s.evaluate(r4))
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}
-    sst = {'y':Var('z')}
-    r6 = r4.subst(sst)
+    # sst = {'y':Var('z')}
+    # r6 = r4.subst(sst)
     # debug(r4)
     # debug(r6)
     # sh.satisfy(r5)
 
-    r7 = r4.rename()
+    # r7 = r4.rename()
     # debug(r4)
     # debug(r7)
 

@@ -139,11 +139,11 @@ class Var(PExpr, HExpr):
 
     def __str__(self):
         id = self.id
-        try:
-            i = id.index('!')
-            id = id[:i]
-        except:
-            pass
+        # try:
+        #     i = id.index('!')
+        #     id = id[:i]
+        # except:
+        #     pass
         return (id + ('\'' if self.is_primed else '') +
                 (((':' + str(self.typ)) if self.typ else '')))
 
@@ -284,7 +284,7 @@ class PForall(PRel):
 
     def __subst__(self, sst):
         for v in self.vars:
-            if v in sst:
+            if v.id in sst:
                 del sst[v.id]
         return PForall(self.vars, self.form.subst(sst))
 
@@ -306,7 +306,7 @@ class PExists(PRel):
 
     def __subst__(self, sst):
         for v in self.vars:
-            if v in sst:
+            if v.id in sst:
                 del sst[v.id]
         return PExists(self.vars, self.form.subst(sst))
 
@@ -436,7 +436,7 @@ class FExists(SH):
 
     def __subst__(self, sst):
         for v in self.vars:
-            if v in sst:
+            if v.id in sst:
                 del sst[v.id]
         return FExists(self.vars, self.form.subst(sst))
 
