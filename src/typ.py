@@ -1,5 +1,6 @@
 from debug import *
 import seplogic as SL
+import copy
 
 class Type(object):
     tid = 0
@@ -77,6 +78,13 @@ class TInfer(object):
         self.env = {}
         self.tmap = {}
 
+    def simplify_env(self):
+        for v in self.env:
+            ty = self.env[v]
+            if isinstance(ty, TVar):
+                self.env[v] = self.find_type(ty)
+        return self.env
+
     def create_TVar(self, v = None):
         ty = TVar()
         if v:
@@ -124,17 +132,15 @@ class TInfer(object):
                 raise TException('The predicate ' + pred.name +
                                  ' has duplicate definitions')
 
-        for pred in prog.pred_defn_lst:
-            self.infer(pred)
+        typed_pred_defn_lst = []
+        for pred_defn in prog.pred_defn_lst:
+            typed_pred_defn = self.infer(pred_defn)
+            typed_pred_defn_lst.append(typed_pred_defn)
 
-        for v in self.env:
-            ty = self.env[v]
-            if isinstance(ty, TVar):
-                self.env[v] = self.find_type(ty)
-
-        prog = prog.type_annotate(self.env)
+        typed_prog = copy.copy(prog)
+        typed_prog.pred_defn_lst = typed_pred_defn_lst
         # debug(prog)
-        return prog
+        return typed_prog
 
     def infer_DataDef(self, dd):
         targs = []
@@ -150,26 +156,36 @@ class TInfer(object):
 
     def infer_PredDef(self, pred):
         for case in pred.cases:
-            self.infer(case)
+            self.unify(case, TBool())
+        return pred.type_annotate(self.simplify_env())
 
     def infer_FBase(self, f):
-        self.unify(f.heap, TBool())
-        self.unify(f.pure, TBool())
+        self.unify(f, TBool())
+        return f.type_annotate(self.simplify_env())
 
     def infer_FExists(self, f):
-        for v in f.vars:
-            ty = self.create_TVar(v)
-        self.infer(f.form)
+        self.unify(f, TBool())
+        return f.type_annotate(self.simplify_env())
+
 
     #############################################################
     def unify(self, f, typ):
         method_name = 'unify_' + type(f).__name__
         unification = getattr(self, method_name, self.generic_unify)
-        return unification(f, typ)
+        unification(f, typ)
 
     def generic_unify(self, f, typ):
         raise Exception('No type unification for ' +
                         type(f).__name__ + ':\n' + str(f))
+
+    def unify_FBase(self, f, typ):
+        self.unify(f.heap, TBool())
+        self.unify(f.pure, TBool())
+
+    def unify_FExists(self, f, typ):
+        for v in f.vars:
+            ty = self.create_TVar(v)
+        self.unify(f.form, TBool())
 
     def unify_HData(self, f, expected_typ):
         self.unify(f.root, TData(f.name))
@@ -297,7 +313,8 @@ class TInfer(object):
             ty = self.env[e.id]
             return self.find_type(ty)
         except:
-            raise TException(e.id + ' is unbounded')
+            # raise TException(e.id + ' is unbounded')
+            return self.create_TVar(e)
 
     def find_type_IConst(self, e):
         return TInt()

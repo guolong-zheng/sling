@@ -10,20 +10,21 @@ def main():
            data node { int val; node next; };
 
            pred ls(x,y,n) := emp & x=y & n=0
-           \/ (exists v, u, b. x->node{v, u} * ls(u,y,n-1) & n>=1 & !b);
+           \/ (exists v, u. x->node{v, u} * ls(u,y,n-1) & n>=1);
            """
 
     traces = r"""
              0xA001 -> node{val:1; next:0xA002};
-             0xA002 -> node{val:2; next:0xA003};
-             0xA003 -> node{val:3; next:0xA002};
+             # 0xA002 -> node{val:2; next:0xA003};
+             # 0xA003 -> node{val:3; next:0xA002};
              x = 0xA001;
              y = 0xA002;
              z = 2;
              """
 
-    form = "v->node{z+1, y} * ls(y, v) * x->node{z-1, u}"
     # form = "x->node{z-1, u}"
+    form = 'exists u, v. u->node{v, y} & v>1'
+    # form = 'x->node{1, y}'
     # form = "z=2"
 
     seplogic_parser = SepLogicParser()
@@ -31,15 +32,19 @@ def main():
     # print(defn_ast)
     # print(defn_ast.pretty())
     prog = seplogic_parser.transform(defn_ast)
-    debug(prog)
+    # debug(prog)
 
     form_ast = seplogic_parser.sl_parser.parse(form)
     f = seplogic_parser.transform(form_ast)
-    # debug(f)
+    debug(f)
 
     type_infer = TInfer()
-    prog = type_infer.infer(prog)
+    tprog = type_infer.infer(prog)
     debug(prog)
+    debug(tprog)
+    tf = type_infer.infer(f)
+    debug(f)
+    debug(tf)
 
     trace_parser = TraceParser()
     traces_ast = trace_parser.sh_parser.parse(traces)
@@ -49,7 +54,7 @@ def main():
     s = sh.stack
     h = sh.heap
     r = sh.satisfy(f)
-    # debug(r)
+    debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -71,9 +76,9 @@ def main():
     r = PConj(r3, r2)
     # debug(r3.fv())
     r4r = r4.rename()
-    # debug(r4)
+    debug(r4)
     # debug(r4r)
-    # debug(s.evaluate(r4))
+    debug(s.evaluate(PNeg(r4)))
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}

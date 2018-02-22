@@ -166,6 +166,7 @@ class Stack(Store):
 
     def evaluate(self, e):
         ef = self.eval(e, 'trans')
+        debug(ef)
         self.solver.push()
         self.solver.add(ef)
         try:
@@ -220,9 +221,9 @@ class SHModel(object):
         if len(dom_h) == 1:
             s = self.stack
             h = self.heap
-            root = s.eval(Var(f.root))
-            addr = Addr(root)
-            (typ, fields) = h.get(addr)
+            root_addr = s.eval(f.root)
+            (typ, fields) = h.get(root_addr)
+            debug(f)
             if typ == f.name:
                 field_vals = map(lambda f: f.data.val, fields)
                 f_args = f.args
@@ -235,7 +236,7 @@ class SHModel(object):
                       + '(' + typ + ', ' + f.name + ')')
                 return BConst(False)
         else:
-            debug ('HData: The heap domain contains more than one data nodes')
+            debug('HData: The heap domain contains more than one data nodes')
             return BConst(False)
 
     def satisfy_HStar(self, f):

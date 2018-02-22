@@ -284,7 +284,7 @@ class TraceParser(Parser, Transformer):
 
         for trace in lst:
             if isinstance(trace, HeapTrace):
-                heap.add(trace.addr, (trace.typ, trace.fields))
+                heap.add(trace.addr.val, (trace.typ, trace.fields))
             else:
                 stack.add(trace.name, trace.val)
         return SHModel(stack, heap)
