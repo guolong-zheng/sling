@@ -16,14 +16,14 @@ def main():
     traces = r"""
              0xA001 -> node{val:1; next:0xA002};
              # 0xA002 -> node{val:2; next:0xA003};
-             # 0xA003 -> node{val:3; next:0xA002};
+             0xA003 -> node{val:3; next:0xA002};
              x = 0xA001;
              y = 0xA002;
              z = 2;
              """
 
     # form = "x->node{z-1, u}"
-    form = 'exists u, v. u->node{v, y} & v>1'
+    form = 'exists u, v, r. u->node{v, r} & v>1 & r=y'
     # form = 'x->node{1, y}'
     # form = "z=2"
 
@@ -53,7 +53,7 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    r = sh.satisfy(f)
+    r = sh.satisfy(tf)
     debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))

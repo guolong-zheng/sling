@@ -1,5 +1,6 @@
 from seplogic import *
 from trace import *
+from typ import *
 from printer import *
 from debug import *
 import z3
@@ -227,9 +228,9 @@ class SHModel(object):
             if typ == f.name:
                 field_vals = map(lambda f: f.data.val, fields)
                 f_args = f.args
-                match = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
-                            zip(f_args, field_vals))
-                cond = reduce(lambda m1, m2: PConj(m1, m2), match)
+                matches = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
+                              zip(f_args, field_vals))
+                cond = reduce(lambda m1, m2: PConj(m1, m2), matches)
                 return cond
             else: # The sorts are inconsistent
                 debug('HData: ' + f.root + ' points to inconsistent data types'
@@ -242,7 +243,7 @@ class SHModel(object):
     def satisfy_HStar(self, f):
         s = self.stack
         h = self.heap
-        hdata_lst, hpred_lst = f.partition()
+        hdata_lst, hpred_lst = f.heap_par()
         debug(str_of_list(hdata_lst, str))
         debug(str_of_list(hpred_lst, str))
         explicit_hdata_lst = filter(lambda d: s.contains(d.root), hdata_lst)
@@ -262,4 +263,30 @@ class SHModel(object):
                 return BConst(False)
         debug(str_of_list(explicit_hdata_lst, str))
         return BConst(False)
+
+    def satisfy_FExists(self, f):
+        debug(f)
+        evars = f.vars
+        grouped_evars = self.group_by(lambda v: str(v.typ), evars)
+        debug(grouped_evars)
+        dom_h = self.heap.dom()
+        debug(dom_h)
+        debug(self.heap)
+        grouped_dom_h = self.group_by(lambda a: self.heap.get(a)[0], dom_h)
+        debug(grouped_dom_h)
+        dom_evars = []
+        for ty in grouped_evars:
+            if Type.is_data_type(ty):
+                dom_evars.append((grouped_evars[ty], grouped_dom_h[ty]))
+        debug(dom_evars)
+        (hdata, hpred) = f.heap_par()
+        debug(hdata)
+
+    def group_by(self, func, ls):
+        grouped = {}
+        for elem in ls:
+            key = func(elem)
+            grouped.setdefault(key, []).append(elem)
+        return grouped
+
 

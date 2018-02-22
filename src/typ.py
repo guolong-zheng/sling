@@ -4,6 +4,8 @@ import copy
 
 class Type(object):
     tid = 0
+    s_int = 'int'
+    s_bool = 'bool'
 
     @classmethod
     def mk_fresh(self):
@@ -12,12 +14,20 @@ class Type(object):
 
     @classmethod
     def typ(self, s):
-        if s == 'int':
+        if s == self.s_int:
             return TInt()
-        elif s == 'bool':
+        elif s == self.s_bool:
             return TBool()
         else:
             return TData(s)
+
+    @classmethod
+    def is_primitive_type(self, s):
+        return (s == self.s_int) or (s == self.s_bool)
+
+    @classmethod
+    def is_data_type(self, s):
+        return not(self.is_primitive_type(s))
 
     def __eq__(self, other):
         if isinstance(self, other.__class__):
@@ -39,18 +49,18 @@ class TVar(Type):
 
 class TInt(PrimType):
     def __str__(self):
-        return 'TInt'
+        return self.s_int
 
 class TBool(PrimType):
     def __str__(self):
-        return 'TBool'
+        return self.s_bool
 
 class TData(Type):
     def __init__(self, name):
         self.name = name
 
     def __str__(self):
-        return 'TData(' + self.name + ')'
+        return self.name
 
 class TeData(Type):
     def __init__(self, name, targs):

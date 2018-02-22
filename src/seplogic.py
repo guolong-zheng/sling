@@ -85,6 +85,14 @@ class SepLogic(object):
     def generic_rename(self):
         return self.generic_clone('rename', [])
 
+    def heap_par(self):
+        partition = getattr(self, '__heap_par__', self.generic_heap_par)
+        return partition()
+
+    def generic_heap_par(self):
+        # raise Exception('No heap partition for ' + type(self).__name__)
+        return ([], [])
+
     def type_annotate(self, tab):
         generic_annotate = lambda tab: self.generic_clone('type_annotate', [tab])
         annotation = getattr(self, '__type_annotate__', generic_annotate)
@@ -202,7 +210,7 @@ class BConst(PRel):
     def __str__(self):
         return str(self.val)
 
-    def __fv__():
+    def __fv__(self):
         return set()
 
 class PBinRel(PRel):
@@ -326,7 +334,7 @@ class HEmp(HAtom):
     def __str__(self):
         return 'emp'
 
-    def __fv__():
+    def __fv__(self):
         return set()
 
 class HData(HAtom):
@@ -340,12 +348,15 @@ class HData(HAtom):
         return (str(self.root) + '->' + self.name + '{' +
                 (', '.join(map(str, self.args))) + '}')
 
-    def __fv__():
+    def __fv__(self):
         s = set()
         s.add(root)
         for arg in self.args:
             s.update(arg.fv())
         return s
+
+    def __heap_par__(self):
+        return ([self], [])
 
 class HPred(HAtom):
     def __init__(self, name, args):
@@ -357,11 +368,14 @@ class HPred(HAtom):
         return (self.name + '(' +
                 (', '.join(map(str, self.args))) + ')')
 
-    def __fv__():
+    def __fv__(self):
         s = set()
         for arg in self.args:
             s.update(arg.fv())
         return s
+
+    def __heap_par__(self):
+        return ([], [self])
 
 class HStar(HRel):
     def __init__(self, left, right):
@@ -378,17 +392,9 @@ class HStar(HRel):
     def __fv__(self):
         return self.left.fv() | self.right.fv()
 
-    def _partition(self, f):
-        if isinstance(f, HData):
-            return ([f], [])
-        elif isinstance(f, HPred):
-            return ([], [f])
-        else:
-            return f.partition()
-
-    def partition(self):
-        lds, lps = self._partition(self.left)
-        rds, rps = self._partition(self.right)
+    def __heap_par__(self):
+        lds, lps = self.left.heap_par()
+        rds, rps = self.right.heap_par()
         lds.extend(rds)
         lps.extend(rps)
         return (lds, lps)
@@ -415,6 +421,9 @@ class FBase(SH):
     def __fv__(self):
         return self.heap.fv() | self.pure.fv()
 
+    def __heap_par__(self):
+        return self.heap.heap_par()
+
     def is_emp(self):
         return isinstance(self.heap, HEmp)
 
@@ -433,6 +442,9 @@ class FExists(SH):
 
     def __fv__(self):
         return self.form.fv() - set(self.vars)
+
+    def __heap_par__(self):
+        return self.form.heap_par()
 
     def __subst__(self, sst):
         for v in self.vars:
