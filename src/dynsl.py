@@ -7,13 +7,13 @@ from typ import *
 import argparse
 
 def main():
-    # parser = argparse.ArgumentParser(description='SLING')
-    # parser.add_argument('--trace', '-trace', dest='trace', type=open)
-    # parser.add_argument('--def', '-def', dest='pred', type=open)
-    # args = parser.parser_args()
+    parser = argparse.ArgumentParser(description='SLING')
+    parser.add_argument('--trace', '-trace', dest='trace', type=open)
+    parser.add_argument('--def', '-def', dest='pred', type=open)
+    args = parser.parse_args()
 
-    # defn = args.pred
-    # traces = args.trace
+    defn = args.pred
+    traces = args.trace
 
     defn = r"""
            data node { int val; node next; };
