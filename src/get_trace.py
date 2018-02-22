@@ -5,15 +5,15 @@ import os
 from trace import *
 import pdb
 
-def create_target(exe, bp_list):
-    os.chdir(os.getcwd()+"/test")
+def create_target(exe, bps):
+    os.chdir(os.getcwd()+"/simple_example")
     debugger = lldb.SBDebugger.Create()
     debugger.SetAsync(False)
     target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
 
     if target:
-        for bp in bp_list:
-            main_bp = target.BreakpointCreateByLocation(exe+".c", bp)
+        for bp in bps:
+            target.BreakpointCreateByLocation(exe+".c", bp)
             #print "break point created at : %s " % main_bp
     else:
         print "Can't create debugger instance"
@@ -81,11 +81,11 @@ def expand_cell(heap, to_visit):
     return heap, to_visit
 
 def main():
-    exe = 'test'
-    bp_list = [23]
+    exe = sys.argv[1]
+    bps = list(map(int,sys.argv[2]))
 
-    target = create_target(exe, bp_list)
-    (s, heap) = get_model(target)
+    target = create_target(exe, bps)
+    s, heap = get_model(target)
 
 
 if __name__ == "__main__":

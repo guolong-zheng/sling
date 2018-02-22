@@ -4,8 +4,17 @@ from parser import *
 from model_checker import *
 from debug import *
 from typ import *
+import argparser
 
 def main():
+    parser = argparse.ArgumentParser(description='SLING')
+    parser.add_argument('--trace', '-trace', dest='trace', type=open)
+    praser.add_argument('--def', '-def', dest='pred', type=open)
+    args = parser.parser_args()
+
+    defn = args.pred
+    traces = args.trace
+
     defn = r"""
            data node { int val; node next; };
 
