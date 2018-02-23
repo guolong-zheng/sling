@@ -32,7 +32,8 @@ def main():
              """
 
     # form = "x->node{z-1, u}"
-    form = 'exists u, v, r, n1. u->node{v, r} * x->node{v-2, y} * ls(y, u, n1) & v>1 & r=y & n1=1'
+    # form = 'exists u, v, r, n1. u->node{v, r} * x->node{v-2, y} * ls(y, u, n1) & v>1 & r=y & n1=1'
+    form = 'exists u, v, r, n. x->node{v, r} * ls(r, u, n) & v>1 & n>1'
     # form = 'x->node{1, y}'
     # form = "z=2"
 
@@ -62,8 +63,8 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    r = sh.satisfy(tf)
-    debug(r)
+    # r = sh.satisfy(tf)
+    # debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -88,6 +89,8 @@ def main():
     debug(r4)
     # debug(r4r)
     debug(s.evaluate(PNeg(r4)))
+    cj = tf.mk_conj(tf)
+    debug(cj)
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}

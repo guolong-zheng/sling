@@ -272,10 +272,13 @@ class SHModel(object):
                 debug('HStar: Cannot find the matched heap for HData ' + str(d))
                 return BConst(False)
         if cs:
-            cond = reduce(lambda c1, c2: PConj(c1, c2), cs)
+            pcond = reduce(lambda c1, c2: PConj(c1, c2), cs)
         else:
-            cond = BConst(True)
-        return cond
+            pcond = BConst(True)
+        if hpred_lst:
+            hcond = reduce(lambda p1, p2: HStar(p1, p2), hpred_lst)
+            return FBase(hcond, pcond)
+        return pcond
 
     def satisfy_FExists(self, f):
         heap_data_nodes, _ = f.heap_par()
@@ -285,24 +288,28 @@ class SHModel(object):
                                   isinstance(v.typ, TData) and
                                   v.id in data_vars, exists_vars)
         rem_exists_vars = list(set(exists_vars) - set(exists_data_vars))
+
         stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)
         stack_data_vars_dom = map(lambda v:
                                   self.stack.get(v).val, stack_data_vars)
         h_dom = self.heap.dom()
         exists_data_vars_dom = filter(lambda addr:
                                       addr not in stack_data_vars_dom, h_dom)
-        exists_data_vars_dom_set = list(itertools.combinations_with_replacement(
-            exists_data_vars_dom, len(exists_data_vars)))
+        exists_data_vars_dom_set = list(
+            itertools.combinations_with_replacement(
+                exists_data_vars_dom, len(exists_data_vars)))
+        debug(exists_data_vars_dom_set)
 
         for e_dom in exists_data_vars_dom_set:
             e_mapping = zip(exists_data_vars, e_dom)
             e_sh = self.clone()
             for (v, addr) in e_mapping:
                 e_sh.stack.add(v.id, Addr(addr))
-            pcond = e_sh.satisfy(f.form)
+            cond = e_sh.satisfy(f.form)
             if rem_exists_vars:
-                pcond = PExists(rem_exists_vars, pcond)
-            eval = self.stack.evaluate(pcond)
+                cond = PExists(rem_exists_vars, cond)
+                debug(cond)
+            eval = self.stack.evaluate(cond)
             debug(eval)
             if eval == True:
                 return BConst(True)

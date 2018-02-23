@@ -123,6 +123,13 @@ class SepLogic(object):
                 setattr(clone, fid, cval)
         return clone
 
+    def mk_conj(self, f):
+        combination = getattr(self, '__mk_conj__', self.generic_mk_conj)
+        return combination(f)
+
+    def generic_mk_conj(self, f):
+        raise Exception('No combination for ' + type(self).__name__)
+
 class PExpr(SepLogic):
     pass
 
@@ -200,7 +207,18 @@ class BinOp(PExpr):
         return self.left.fv() | self.right.fv()
 
 class PRel(SepLogic):
-    pass
+    def __mk_conj__(self, f):
+        if isinstance(f, PRel):
+            return PConj(self, f)
+        elif isinstance(f, HRel):
+            return FBase(f, self)
+        elif isinstance(f, FBase):
+            return FBase(f.heap, self.mk_conj(f.pure))
+        elif isinstance(f, FExists):
+            nf = f.rename()
+            return FExists(nf.vars, self.mk_conj(nf.form))
+        else:
+            raise Exception('No combination for ' + type(f).__name__)
 
 class BConst(PRel):
     def __init__(self, b):
@@ -322,7 +340,18 @@ class PExists(PRel):
         return self.__rename_Quant__(PExists)
 
 class HRel(SepLogic):
-    pass
+    def __mk_conj__(self, f):
+        if isinstance(f, PRel):
+            return FBase(self, f)
+        elif isinstance(f, HRel):
+            return HStar(self, f)
+        elif isinstance(f, FBase):
+            return FBase(self.mk_conj(f.heap), f.pure)
+        elif isinstance(f, FExists):
+            nf = f.rename()
+            return FExists(nf.vars, self.mk_conj(nf.form))
+        else:
+            raise Exception('No combination for ' + type(f).__name__)
 
 class HAtom(HRel):
     pass
@@ -424,6 +453,10 @@ class FBase(SH):
     def __heap_par__(self):
         return self.heap.heap_par()
 
+    def __mk_conj__(self, f):
+        pf = self.pure.mk_conj(f)
+        return self.heap.mk_conj(pf)
+
     def is_emp(self):
         return isinstance(self.heap, HEmp)
 
@@ -454,6 +487,14 @@ class FExists(SH):
 
     def __rename__(self):
         return self.__rename_Quant__(FExists)
+
+    def __mk_conj__(self, f):
+        nself = self.rename()
+        hpf = nself.form.mk_conj(f)
+        if isinstance(hpf, FExists):
+            return FExists(nself.vars + hpf.vars, hpf.form)
+        else:
+            return FExists(nself.vars, hpf)
 
 class DataDefField(SepLogic):
     def __init__(self, typ, name):
