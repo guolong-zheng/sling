@@ -217,7 +217,7 @@ class SHModel(object):
 
     def satisfy_FBase(self, f):
         heap_eval_cond = self.satisfy(f.heap)
-        eval_cond = PConj(heap_eval_cond, f.pure)
+        eval_cond = heap_eval_cond.mk_conj(f.pure)
         debug(eval_cond)
         return eval_cond
 
@@ -309,10 +309,7 @@ class SHModel(object):
             if rem_exists_vars:
                 cond = PExists(rem_exists_vars, cond)
                 debug(cond)
-            eval = self.stack.evaluate(cond)
-            debug(eval)
-            if eval == True:
-                return BConst(True)
+                
         return BConst(False)
 
     def group_by(self, func, ls):

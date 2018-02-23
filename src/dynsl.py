@@ -63,8 +63,8 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    # r = sh.satisfy(tf)
-    # debug(r)
+    r = sh.satisfy(tf)
+    debug(r)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
