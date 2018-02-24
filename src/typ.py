@@ -149,7 +149,8 @@ class TInfer(object):
 
         typed_prog = copy.copy(prog)
         typed_prog.pred_defn_lst = typed_pred_defn_lst
-        # debug(prog)
+        for pred in typed_pred_defn_lst:
+            typed_prog.store[pred.name] = pred
         return typed_prog
 
     def infer_DataDef(self, dd):

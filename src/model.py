@@ -190,6 +190,17 @@ class Stack(Store):
         finally:
             self.solver.pop()
 
+    def is_unsat(self, e):
+        return self.evaluate(e) == False
+
+    def mk_ctx(self, ctx, cond):
+        nctx = []
+        for cx in ctx:
+            cc = PConj(cx, cond)
+            if not self.is_unsat(cc):
+                nctx.append(cc)
+        return nctx
+
 class Heap(Store):
     def __str__(self):
         str_of_heap = (lambda (t, fs):
@@ -197,88 +208,97 @@ class Heap(Store):
         return self.__ho_str__(str_of_heap)
 
 class SHModel(object):
-    def __init__(self, stack, heap):
+    def __init__(self, stack, heap, prog = None):
         self.stack = stack
         self.heap = heap
+        self.prog = prog
+
+    def add_prog(self, prog):
+        self.prog = prog
 
     def clone(self):
         s = self.stack.clone()
         h = self.heap.clone()
-        return SHModel(s, h)
+        sh = SHModel(s, h)
+        sh.add_prog(self.prog)
+        return sh
 
-    def satisfy(self, f):
-        method_name = 'satisfy_' + type(f).__name__
-        checker = getattr(self, method_name, self.generic_satisfy)
-        return checker(f)
+    def satisfy(self, ctx, f):
+        if not ctx: # Infeasible context
+            return (ctx, self)
+        else:
+            method_name = 'satisfy_' + type(f).__name__
+            checker = getattr(self, method_name, self.generic_satisfy)
+            return checker(ctx, f)
 
-    def generic_satisfy(self, f):
+    def generic_satisfy(self, ctx, f):
         raise Exception('No model checker for ' +
                         str(f) + ':' + type(f).__name__)
 
-    def satisfy_FBase(self, f):
-        heap_eval_cond = self.satisfy(f.heap)
-        eval_cond = heap_eval_cond.mk_conj(f.pure)
-        debug(eval_cond)
-        return eval_cond
+    def satisfy_FBase(self, ctx, f):
+        nctx = self.stack.mk_ctx(ctx, f.pure)
+        nctx, sh = self.satisfy(nctx, f.heap)
+        return (nctx, sh)
 
-    def satisfy_HEmp(self, f):
-        dom_h = self.heap.dom()
-        is_empty_dom = not(bool(dom_h))
-        return BConst(is_empty_dom)
+    def satisfy_HEmp(self, ctx, f):
+        return (ctx, self)
 
-    def satisfy_HData(self, f):
-        dom_h = self.heap.dom()
-        if len(dom_h) == 1:
-            s = self.stack
-            h = self.heap
-            root_addr = s.eval(f.root)
-            (typ, fields) = h.get(root_addr)
-            if typ == f.name:
-                field_vals = map(lambda f: f.data.val, fields)
-                f_args = f.args
-                matches = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
-                              zip(f_args, field_vals))
-                if matches:
-                    cond = reduce(lambda m1, m2: PConj(m1, m2), matches)
-                else:
-                    cond = BConst(True)
-                return cond
-            else: # The sorts are inconsistent
-                debug('HData: ' + f.root + ' points to inconsistent data types'
-                      + '(' + typ + ', ' + f.name + ')')
-                return BConst(False)
-        else:
-            debug('HData: The heap domain contains more than one data nodes')
-            return BConst(False)
-
-    def satisfy_HStar(self, f):
+    def satisfy_HData(self, ctx, f):
         s = self.stack
         h = self.heap
-
-        hdata_lst, hpred_lst = f.heap_par()
-        h2 = h.clone()
-        cs = []
-        for d in hdata_lst:
-            try:
-                # Matching data nodes with the heap model
-                root = s.eval(d.root)
-                h1 = Heap()
-                h1.add(root, h2.get(root))
-                m = SHModel(s, h1)
-                c = m.satisfy(d)
-                cs.append(c)
-                h2.remove(root)
-            except:
-                debug('HStar: Cannot find the matched heap for HData ' + str(d))
-                return BConst(False)
-        if cs:
-            pcond = reduce(lambda c1, c2: PConj(c1, c2), cs)
+        if not h.dom():
+            return ([], self)
         else:
-            pcond = BConst(True)
-        if hpred_lst:
-            hcond = reduce(lambda p1, p2: HStar(p1, p2), hpred_lst)
-            return FBase(hcond, pcond)
-        return pcond
+            try:
+                root = s.eval(f.root)
+                (typ, fields) = h.get(root)
+                if typ == f.name:
+                    nh = h.clone()
+                    ns = s.clone()
+                    nh.remove(root)
+                    field_vals = map(lambda f: f.data.val, fields)
+                    # matches = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
+                    #               zip(f.args, field_vals))
+                    matches = []
+                    mconds = []
+                    for (a, v) in zip(f.args, field_vals):
+                        mconds.append(PBinRel(a, '=', IConst(v)))
+                        if (isinstance(a, Var) and
+                            isinstance(a.typ, TData) and
+                            not ns.contains(a.id)):
+                            matches.append((a.id, Addr(v)))
+                    if mconds:
+                        mcond = reduce(lambda m1, m2: PConj(m1, m2), mconds)
+                        nctx = ns.mk_ctx(ctx, mcond)
+                    else:
+                        nctx = ctx
+                    if nctx:
+                        for (aid, av) in matches:
+                            ns.add(aid, av)
+                    nsh = SHModel(ns, nh)
+                    nsh.add_prog(self.prog)
+                    return (nctx, nsh)
+                else: # The sorts are inconsistent
+                    debug('HData: ' + f.root +
+                          ' points to inconsistent data types' +
+                          ' (' + typ + ', ' + f.name + ')')
+                    return ([], self)
+            except:
+                debug('HStar: Cannot find the matched heap for HData ' + str(f))
+                return ([], self)
+
+    def satisfy_HPred(self, ctx, f):
+        pred_defn = self.prog.lookup(f.name)
+        return (ctx, self)
+
+    def satisfy_HStar(self, ctx, f):
+        hdata_lst, hpred_lst = f.heap_par()
+        sh = self
+        for d in hdata_lst:
+            ctx, sh = sh.satisfy(ctx, d)
+        for p in hpred_lst:
+            ctx, sh = sh.satisfy(ctx, p)
+        return (ctx, sh)
 
     def satisfy_FExists(self, f):
         heap_data_nodes, _ = f.heap_par()
@@ -309,7 +329,6 @@ class SHModel(object):
             if rem_exists_vars:
                 cond = PExists(rem_exists_vars, cond)
                 debug(cond)
-                
         return BConst(False)
 
     def group_by(self, func, ls):

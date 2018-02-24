@@ -32,10 +32,18 @@ def main():
              """
 
     # form = "x->node{z-1, u}"
-    # form = 'exists u, v, r, n1. u->node{v, r} * x->node{v-2, y} * ls(y, u, n1) & v>1 & r=y & n1=1'
-    form = 'exists u, v, r, n. x->node{v, r} * ls(r, u, n) & v>1 & n>1'
+    # form = r"""exists u, v, r, n1.
+    #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
+    #            & v>1 & r=y & n1=1"""
+    # form = 'exists u, v, r, n. x->node{v, r} * ls(r, u, n) & v>1 & n>1'
     # form = 'x->node{1, y}'
     # form = "z=2"
+
+    f1 = 'x->node{v, y} & v>0'
+    f2 = 'x->node{v1, y} * y->node{v2, r} & v1+v2<0'
+    f3 = 'x->node{v, y} * ls(y, y, n) & n>2'
+
+    form = f3
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -63,8 +71,13 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    r = sh.satisfy(tf)
-    debug(r)
+    ctx = [BConst(True)]
+    sh.add_prog(tprog)
+    debug(sh.prog)
+    c, rem_sh = sh.satisfy(ctx, tf)
+    debug(c)
+    debug(rem_sh.stack)
+    debug(rem_sh.heap)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))

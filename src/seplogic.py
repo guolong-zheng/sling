@@ -231,6 +231,13 @@ class BConst(PRel):
     def __fv__(self):
         return set()
 
+    def __eq__(self, other):
+       return (self.value is other.value if isinstance(other, BConst)
+               else self.value is other)
+
+    def __ne__(self, other):
+       return not self == other
+
 class PBinRel(PRel):
     def __init__(self, left, op, right):
         self.op = RelOp.rel_op(op)
@@ -534,9 +541,13 @@ class Prog(SepLogic):
     def __init__(self, data_defn_lst, pred_defn_lst):
         self.data_defn_lst = data_defn_lst
         self.pred_defn_lst = pred_defn_lst
+        self.store = {}
 
     def __str__(self):
         return ('\n\n'.join(map(str, self.data_defn_lst + self.pred_defn_lst)))
+
+    def lookup(self, name):
+        return self.store[name]
 
 class Ternary(object):
     def __init__(self, value=None):
