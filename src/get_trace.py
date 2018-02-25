@@ -1,9 +1,9 @@
 import sys
-sys.path.append("/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Resources/Python")
+#sys.path.append("/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Resources/Python")
 import lldb
 import os
+from collections import defaultdict
 from trace import *
-import pdb
 
 def create_target(exe, bps):
     os.chdir(os.getcwd()+"/simple_example")
@@ -24,15 +24,21 @@ def create_target(exe, bps):
 def get_model(target):
     process = target.LaunchSimple (None, None, os.getcwd())
     state = process.GetState()
-    if state == lldb.eStateStopped:
-        thread = process.GetThreadAtIndex (0)
+    stack_traces = defaultdict(list)
+    heap_traces = defaultdict(list)
+    #while state == lldb.eStateStopped:
+    thread = process.GetThreadAtIndex (0)
+    while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex (0)
+        linenum = frame.GetLineEntry().GetLine()
         if frame:
             vars = frame.GetVariables(True, True, True, True)
             stack, heap = traverse_heap(vars)
-    else:
-        print "No breakpoint set up!"
-    return stack, heap
+            stack_traces[linenum].append(stack)
+            heap_traces[linenum].append(heap)
+        process.Continue()
+    # print "No breakpoint set up!"
+    return stack_traces, heap_traces
 
 def traverse_heap(vars):
     stack = {}
@@ -47,6 +53,7 @@ def traverse_heap(vars):
             stack[var.GetName()] = StackTrace(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
+
     return stack, heap
 
 def expand_cell(heap, to_visit):
@@ -54,7 +61,7 @@ def expand_cell(heap, to_visit):
     while len(to_visit) != 0:
         var = to_visit.pop(0)
         if var.TypeIsPointerType() and var.GetValueAsUnsigned() == 0:
-            return
+            continue
         typ = var.GetType()
         var = var.Dereference()
         heap_addr = str(var.GetAddress())
@@ -76,16 +83,27 @@ def expand_cell(heap, to_visit):
 
             heap[heap_addr] = HeapTrace(Addr(heap_addr), str(typ), fields)
 
-    for i in heap:
-        print heap[i]
-    return heap, to_visit
+    return heap
 
 def main():
-    exe = sys.argv[1]
-    bps = list(map(int,sys.argv[2]))
+    exe = "test"
+    bps = [37,39,47,54]
 
     target = create_target(exe, bps)
-    s, heap = get_model(target)
+    stack, heap = get_model(target)
+
+    for s in stack:
+        print "stack at loc %s is:" % s
+        curr = stack[s]
+        for s1 in curr:
+            for var in s1:
+                print s1[var]
+        print "heap at loc %s is:" % s
+        curr = heap[s]
+        for h1 in curr:
+            for var in h1:
+                print h1[var]
+        print "\n"
 
 
 if __name__ == "__main__":
