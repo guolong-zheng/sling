@@ -71,13 +71,11 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    ctx = [BConst(True)]
+    ctx = BConst(True)
     sh.add_prog(tprog)
     debug(sh.prog)
-    c, rem_sh = sh.satisfy(ctx, tf)
-    debug(c)
-    debug(rem_sh.stack)
-    debug(rem_sh.heap)
+    rctx = sh.satisfy(ctx, tf)
+    debug(rctx)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))

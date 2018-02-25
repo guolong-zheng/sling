@@ -11,9 +11,11 @@ class VarUtil(object):
         self.fv_id = self.fv_id + 1
         if not v:
             nid = 'fv!'
+            ty = None
         else:
             nid = v.id + '!'
-        return Var(nid + str(self.fv_id))
+            ty = v.typ
+        return Var(nid + str(self.fv_id), typ = ty)
 
     @classmethod
     def mk_pred_param(self, v, pname):
@@ -22,8 +24,7 @@ class VarUtil(object):
     @classmethod
     def mk_subst(self, ss, ds):
         sss = map(lambda v: v.id, ss)
-        sds = map(lambda v: v.id, ds)
-        return dict(zip(sss, sds))
+        return dict(zip(sss, ds))
 
 class ArithOp:
     ADD = '+'
@@ -98,6 +99,14 @@ class SepLogic(object):
         annotation = getattr(self, '__type_annotate__', generic_annotate)
         return annotation(tab)
 
+    def __subst_Quant__(self, Quant, sst):
+        for v in self.vars:
+            if v.id in sst:
+                del sst[v.id]
+        ns = self.rename()
+        ns.form = ns.form.subst(sst)
+        return ns
+
     def __rename_Quant__(self, Quant):
         fvars = map(lambda v: VarUtil.mk_fresh(v), self.vars)
         sst = VarUtil.mk_subst(self.vars, fvars)
@@ -170,7 +179,7 @@ class Var(PExpr, HExpr):
     def __subst__(self, sst):
         v = self.id
         if v in sst:
-            return Var(sst[v])
+            return sst[v]
         return copy.copy(self)
 
     def __type_annotate__(self, tab):
@@ -316,10 +325,7 @@ class PForall(PRel):
         return self.form.fv() - set(vars)
 
     def __subst__(self, sst):
-        for v in self.vars:
-            if v.id in sst:
-                del sst[v.id]
-        return PForall(self.vars, self.form.subst(sst))
+        return self.__subst_Quant__(PForall, sst)
 
     def __rename__(self):
         return self.__rename_Quant__(PForall)
@@ -338,10 +344,7 @@ class PExists(PRel):
         return self.form.fv() - set(self.vars)
 
     def __subst__(self, sst):
-        for v in self.vars:
-            if v.id in sst:
-                del sst[v.id]
-        return PExists(self.vars, self.form.subst(sst))
+        return self.__subst_Quant__(PExists, sst)
 
     def __rename__(self):
         return self.__rename_Quant__(PExists)
@@ -467,6 +470,12 @@ class FBase(SH):
     def is_emp(self):
         return isinstance(self.heap, HEmp)
 
+    def get_pure(self):
+        return self.pure
+
+    def get_heap(self):
+        return self.heap
+
 class FExists(SH):
     def __init__(self, vars, f):
         if isinstance(f, SH):
@@ -487,10 +496,7 @@ class FExists(SH):
         return self.form.heap_par()
 
     def __subst__(self, sst):
-        for v in self.vars:
-            if v.id in sst:
-                del sst[v.id]
-        return FExists(self.vars, self.form.subst(sst))
+        return self.__subst_Quant__(FExists, sst)
 
     def __rename__(self):
         return self.__rename_Quant__(FExists)
@@ -502,6 +508,12 @@ class FExists(SH):
             return FExists(nself.vars + hpf.vars, hpf.form)
         else:
             return FExists(nself.vars, hpf)
+
+    def get_pure(self):
+        return self.form.get_pure()
+
+    def get_heap(self):
+        return self.form.get_heap()
 
 class DataDefField(SepLogic):
     def __init__(self, typ, name):
