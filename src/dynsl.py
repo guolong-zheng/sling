@@ -43,7 +43,7 @@ def main():
     f2 = 'x->node{v1, y} * y->node{v2, r} & v1+v2<0'
     f3 = 'x->node{v, y} * ls(y, y, n) & n>=2'
     f4 = 'exists u, v, r. u->node{v, r} & v>1 & r=y'
-    f5 = 'exists u. ls(x, u, n) & n>0'
+    f5 = 'exists u, n. ls(x, u, n)'
 
     form = f5
 
@@ -60,10 +60,10 @@ def main():
 
     type_infer = TInfer()
     tprog = type_infer.infer(prog)
-    debug(prog)
+    # debug(prog)
     debug(tprog)
     tf = type_infer.infer(f)
-    debug(f)
+    # debug(f)
     debug(tf)
 
     trace_parser = TraceParser()
@@ -73,11 +73,9 @@ def main():
     sh = trace_parser.transform(traces_ast)
     s = sh.stack
     h = sh.heap
-    ctx = BConst(True)
     sh.add_prog(tprog)
     debug(sh.prog)
-    rctx = sh.satisfy(ctx, tf)
-    debug(rctx)
+    rctx = sh.satisfy(tf)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -99,11 +97,11 @@ def main():
     r = PConj(r3, r2)
     # debug(r3.fv())
     r4r = r4.rename()
-    debug(r4)
+    # debug(r4)
     # debug(r4r)
-    debug(s.evaluate(PNeg(r4)))
+    # debug(s.evaluate(PNeg(r4)))
     cj = tf.mk_conj(tf)
-    debug(cj)
+    # debug(cj)
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))
     # sst = {'z':Var('y')}

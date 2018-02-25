@@ -23,14 +23,8 @@ class Store(object):
     def __init__(self):
         self.store = {}
 
-    def __ho_str__(self, f):
-        s = ''
-        for v in self.store:
-            s += str(v) + ' = ' + f(self.store[v]) + '\n'
-        return s
-
     def __str__(self):
-        return str(self.store)
+        return Printer.str_of(self.store)
 
     def add(self, v, val):
         self.store[v] = val
@@ -94,9 +88,6 @@ class Stack(Store):
         stack = Stack()
         stack.store = self.store.copy()
         return stack
-
-    def __str__(self):
-        return self.__ho_str__(str)
 
     # Evaluation expressions to values
     def eval_Var(self, e, func='eval'):
@@ -173,7 +164,7 @@ class Stack(Store):
 
     def evaluate(self, e):
         ef = self.eval(e, 'trans')
-        debug(ef)
+        # debug(ef)
         self.solver.push()
         self.solver.add(ef)
         try:
@@ -203,16 +194,18 @@ class Stack(Store):
         return PConj(ctx, cond)
 
 class Heap(Store):
-    def __str__(self):
-        str_of_heap = (lambda (t, fs):
-                       '(' + t + ')' + str_of_list(fs, str))
-        return self.__ho_str__(str_of_heap)
+    pass
 
 class SHModel(object):
     def __init__(self, stack, heap, prog = None):
         self.stack = stack
         self.heap = heap
         self.prog = prog
+
+    def __str__(self):
+        sstack = str(self.stack)
+        sheap = str(self.heap)
+        return 'stack:\n' + sstack + '\n' + 'heap:\n' + sheap
 
     def add_prog(self, prog):
         self.prog = prog
@@ -224,8 +217,14 @@ class SHModel(object):
         sh.add_prog(self.prog)
         return sh
 
-    def satisfy(self, ctx, f):
-        method_name = 'satisfy_' + type(f).__name__
+    def satisfy(self, f):
+        ctx = BConst(True)
+        rctx = self._satisfy(ctx, f)
+        debug(rctx)
+        return rctx
+
+    def _satisfy(self, ctx, f):
+        method_name = '_satisfy_' + type(f).__name__
         checker = getattr(self, method_name, self.generic_satisfy)
         return checker(ctx, f)
 
@@ -233,15 +232,15 @@ class SHModel(object):
         raise Exception('No model checker for ' +
                         str(f) + ':' + type(f).__name__)
 
-    def satisfy_FBase(self, ctx, f):
+    def _satisfy_FBase(self, ctx, f):
         nctx = self.stack.mk_ctx(ctx, f.pure)
-        rctx = self.satisfy(nctx, f.heap)
+        rctx = self._satisfy(nctx, f.heap)
         return rctx
 
-    def satisfy_HEmp(self, ctx, f):
+    def _satisfy_HEmp(self, ctx, f):
         return [(ctx, self)]
 
-    def satisfy_HData(self, ctx, f):
+    def _satisfy_HData(self, ctx, f):
         s = self.stack
         h = self.heap
         if not h.dom():
@@ -284,7 +283,7 @@ class SHModel(object):
                 debug('HData Cannot find the matched heap for HData ' + str(f))
                 return []
 
-    def satisfy_HPred(self, ctx, f):
+    def _satisfy_HPred(self, ctx, f):
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
@@ -294,25 +293,22 @@ class SHModel(object):
             pctx = self.stack.mk_ctx(ctx, pcond)
             if not self.stack.is_unsat(pctx):
                 sh = self.clone()
-                debug(case.get_heap())
-                rctx = sh.satisfy(pctx, case.get_heap())
-                debug(rctx)
+                rctx = sh._satisfy(pctx, case.get_heap())
                 nctx.extend(rctx)
-        debug(nctx)
         return nctx
 
-    def satisfy_HStar(self, ctx, f):
+    def _satisfy_HStar(self, ctx, f):
         hdata_lst, hpred_lst = f.heap_par()
         rctx = [(ctx, self)]
         for dp in (hdata_lst + hpred_lst):
             rcx = []
             for (cx, sh) in rctx:
-                r = sh.satisfy(cx, dp)
+                r = sh._satisfy(cx, dp)
                 rcx.extend(r)
             rctx = rcx
         return rctx
 
-    def satisfy_FExists(self, ctx, f):
+    def _satisfy_FExists(self, ctx, f):
         heap_data_nodes, _ = f.heap_par()
         data_vars = map(lambda dn: dn.root.id, heap_data_nodes)
         exists_vars = f.vars
@@ -331,7 +327,6 @@ class SHModel(object):
         exists_data_vars_dom_set = list(
             itertools.combinations_with_replacement(
                 exists_data_vars_dom, len(exists_data_vars)))
-        debug(exists_data_vars_dom_set)
 
         rctx = []
         for e_dom in exists_data_vars_dom_set:
@@ -339,8 +334,7 @@ class SHModel(object):
             e_sh = self.clone()
             for (v, addr) in e_mapping:
                 e_sh.stack.add(v.id, Addr(addr))
-            rctx = e_sh.satisfy(ctx, f.form)
-        debug(rctx)
+            rctx = e_sh._satisfy(ctx, f.form)
         return rctx
 
     def group_by(self, func, ls):
