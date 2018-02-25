@@ -3,6 +3,7 @@ from trace import *
 from typ import *
 from printer import *
 from debug import *
+from utils import *
 import z3
 import operator
 import itertools
@@ -328,13 +329,28 @@ class SHModel(object):
             itertools.combinations_with_replacement(
                 exists_data_vars_dom, len(exists_data_vars)))
 
-        rctx = []
-        for e_dom in exists_data_vars_dom_set:
+        def process_dom(e_dom):
             e_mapping = zip(exists_data_vars, e_dom)
             e_sh = self.clone()
             for (v, addr) in e_mapping:
                 e_sh.stack.add(v.id, Addr(addr))
-            rctx = e_sh._satisfy(ctx, f.form)
+            ectx = e_sh._satisfy(ctx, f.form)
+            return ectx
+
+        rctx = []
+        for e_dom in exists_data_vars_dom_set:
+            ectx = process_dom(e_dom)
+            rctx.extend(ectx)
+
+        # tasks = exists_data_vars_dom_set
+        # def wp(tasks, Q):
+        #     rs = [process_dom(e_dom) for e_dom in tasks]
+        #     if Q is None:
+        #         return rs
+        #     else:
+        #         Q.put(rs)
+        # rctx = Utils.runMP("satisfy_PExists", tasks, wp, chunksiz = 1, doMP = True)
+
         return rctx
 
     def group_by(self, func, ls):
