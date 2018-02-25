@@ -285,19 +285,13 @@ class SHModel(object):
                 return []
 
     def satisfy_HPred(self, ctx, f):
-        debug(f)
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
         nctx = []
         for case in sst_pred_defn.cases:
-            debug(case)
-            debug(self.heap)
-            debug(self.stack)
             pcond = case.get_pure()
             pctx = self.stack.mk_ctx(ctx, pcond)
-            debug(pctx)
-            debug(self.stack.is_unsat(pctx))
             if not self.stack.is_unsat(pctx):
                 sh = self.clone()
                 debug(case.get_heap())
@@ -318,13 +312,14 @@ class SHModel(object):
             rctx = rcx
         return rctx
 
-    def satisfy_FExists(self, f):
+    def satisfy_FExists(self, ctx, f):
         heap_data_nodes, _ = f.heap_par()
         data_vars = map(lambda dn: dn.root.id, heap_data_nodes)
         exists_vars = f.vars
         exists_data_vars = filter(lambda v:
                                   isinstance(v.typ, TData) and
-                                  v.id in data_vars, exists_vars)
+                                  v.id in data_vars and
+                                  not self.stack.contains(v.id), exists_vars)
         rem_exists_vars = list(set(exists_vars) - set(exists_data_vars))
 
         stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)
@@ -338,16 +333,15 @@ class SHModel(object):
                 exists_data_vars_dom, len(exists_data_vars)))
         debug(exists_data_vars_dom_set)
 
+        rctx = []
         for e_dom in exists_data_vars_dom_set:
             e_mapping = zip(exists_data_vars, e_dom)
             e_sh = self.clone()
             for (v, addr) in e_mapping:
                 e_sh.stack.add(v.id, Addr(addr))
-            cond = e_sh.satisfy(f.form)
-            if rem_exists_vars:
-                cond = PExists(rem_exists_vars, cond)
-                debug(cond)
-        return BConst(False)
+            rctx = e_sh.satisfy(ctx, f.form)
+        debug(rctx)
+        return rctx
 
     def group_by(self, func, ls):
         grouped = {}

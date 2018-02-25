@@ -513,7 +513,7 @@ class FExists(SH):
         return self.form.get_pure()
 
     def get_heap(self):
-        return self.form.get_heap()
+        return FExists(self.vars, FBase(self.form.get_heap(), BConst(True)))
 
 class DataDefField(SepLogic):
     def __init__(self, typ, name):
