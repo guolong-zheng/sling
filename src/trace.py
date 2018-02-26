@@ -58,3 +58,9 @@ class StackTrace(Trace):
 
     def __str__(self):
         return self.name + ' = ' + str(self.val)
+
+class Traces(object):
+    def __init__(self, loc, stack, heap):
+        self.loc = loc
+        self.stack = stack
+        self.heap = heap 

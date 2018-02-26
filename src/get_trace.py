@@ -20,25 +20,22 @@ def create_target(exe, bps):
 
     return target
 
-#to do, add input parameter to reuse target
 def get_model(target):
     process = target.LaunchSimple (None, None, os.getcwd())
+    traces = defaultdict(list)
     state = process.GetState()
-    stack_traces = defaultdict(list)
-    heap_traces = defaultdict(list)
-    #while state == lldb.eStateStopped:
     thread = process.GetThreadAtIndex (0)
+    # stoped due to break point
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex (0)
-        linenum = frame.GetLineEntry().GetLine()
+        location = frame.GetLineEntry().GetLine()
         if frame:
             vars = frame.GetVariables(True, True, True, True)
             stack, heap = traverse_heap(vars)
-            stack_traces[linenum].append(stack)
-            heap_traces[linenum].append(heap)
+            traces[location].append(Traces(location, stack, heap))
         process.Continue()
     # print "No breakpoint set up!"
-    return stack_traces, heap_traces
+    return traces
 
 def traverse_heap(vars):
     stack = {}
@@ -85,26 +82,19 @@ def expand_cell(heap, to_visit):
 
     return heap
 
+
+def get_traces(input, bps):
+    target = create_target(input, bps)
+    traces = get_model(target)
+
+    return traces
+
 def main():
     exe = "test"
     bps = [37,39,47,54]
 
     target = create_target(exe, bps)
-    stack, heap = get_model(target)
-
-    for s in stack:
-        print "stack at loc %s is:" % s
-        curr = stack[s]
-        for s1 in curr:
-            for var in s1:
-                print s1[var]
-        print "heap at loc %s is:" % s
-        curr = heap[s]
-        for h1 in curr:
-            for var in h1:
-                print h1[var]
-        print "\n"
-
+    traces = get_model(target)
 
 if __name__ == "__main__":
     main()

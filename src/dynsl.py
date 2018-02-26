@@ -15,7 +15,8 @@ def main():
        dest='in_file')
 
     ag('--breaks', '-breaks',
-       dest='breaks')
+       dest='breaks', nargs='+',
+       type=int)
 
     ag('--trace', '-trace',
        dest='trace', type=open)
@@ -33,6 +34,7 @@ def main():
 
     input_file = args.in_file
     bps = args.breaks
+    traces = get_traces(input_file, bps)
     defn = args.pred
     traces = args.trace
 
