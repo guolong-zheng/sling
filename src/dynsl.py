@@ -4,14 +4,19 @@ from parser import *
 from model_checker import *
 from debug import *
 from typ import *
+from get_trace import *
 import argparse
 
 def main():
     parser = argparse.ArgumentParser(description='SLING')
+    parser.add_argument('--input', '-input', dest='in_file')
+    parser.add_argument('--breaks', '-breaks', dest='breaks')
     parser.add_argument('--trace', '-trace', dest='trace', type=open)
     parser.add_argument('--def', '-def', dest='pred', type=open)
     args = parser.parse_args()
 
+    input_file = args.in_file
+    bps = args.breaks
     defn = args.pred
     traces = args.trace
 
