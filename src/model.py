@@ -337,19 +337,19 @@ class SHModel(object):
             ectx = e_sh._satisfy(ctx, f.form)
             return ectx
 
-        rctx = []
-        for e_dom in exists_data_vars_dom_set:
-            ectx = process_dom(e_dom)
-            rctx.extend(ectx)
+        # rctx = []
+        # for e_dom in exists_data_vars_dom_set:
+        #     ectx = process_dom(e_dom)
+        #     rctx.extend(ectx)
 
-        # tasks = exists_data_vars_dom_set
-        # def wp(tasks, Q):
-        #     rs = [process_dom(e_dom) for e_dom in tasks]
-        #     if Q is None:
-        #         return rs
-        #     else:
-        #         Q.put(rs)
-        # rctx = Utils.runMP("satisfy_PExists", tasks, wp, chunksiz = 1, doMP = True)
+        tasks = exists_data_vars_dom_set
+        def wp(tasks, Q):
+            rs = [process_dom(e_dom) for e_dom in tasks]
+            if Q is None:
+                return rs
+            else:
+                Q.put(rs)
+        rctx = Utils.runMP("satisfy_PExists", tasks, wp, chunksiz = 1, doMP = True)
 
         return rctx
 
