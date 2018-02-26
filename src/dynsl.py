@@ -8,12 +8,28 @@ from get_trace import *
 import argparse
 
 def main():
-    parser = argparse.ArgumentParser(description='SLING')
-    parser.add_argument('--input', '-input', dest='in_file')
-    parser.add_argument('--breaks', '-breaks', dest='breaks')
-    parser.add_argument('--trace', '-trace', dest='trace', type=open)
-    parser.add_argument('--def', '-def', dest='pred', type=open)
-    args = parser.parse_args()
+    aparser = argparse.ArgumentParser(description='SLING')
+    ag = aparser.add_argument
+
+    ag('--input', '-input',
+       dest='in_file')
+
+    ag('--breaks', '-breaks',
+       dest='breaks')
+
+    ag('--trace', '-trace',
+       dest='trace', type=open)
+
+    ag('--def', '-def',
+       dest='pred', type=open)
+
+    ag("--nomp", "-nomp",
+       action="store_true")
+
+    args = aparser.parse_args()
+
+    import settings
+    settings.doMP = not args.nomp
 
     input_file = args.in_file
     bps = args.breaks

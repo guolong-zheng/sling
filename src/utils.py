@@ -52,8 +52,8 @@ class Utils(object):
                                       maxProcessces = cpu_count(),
                                       chunksiz = chunksiz)
 
-            debug("workloads '{}' {}: {}"
-                  .format(taskname, len(wloads), map(len,wloads)))
+            # debug("workloads '{}' {}: {}"
+            #       .format(taskname, len(wloads), map(len,wloads)))
 
             workers = [Process(target=wprocess, args=(wl, Q)) for wl in wloads]
             for w in workers: w.start()
