@@ -81,8 +81,6 @@ class Store(object):
 class Stack(Store):
     def __init__(self):
         Store.__init__(self)
-        self.solver = z3.Solver()
-        self.solver.set("timeout", 500)
         self.z3_symtab = {}
 
     def clone(self):
@@ -115,13 +113,16 @@ class Stack(Store):
         try:
             return self.eval(e) # Return the stack value of e
         except:
-             v = e.id
-             if v in self.z3_symtab:
-                 return self.z3_symtab[v]
-             else:
-                 zv = z3.Int(v)
-                 self.z3_symtab[v] = zv
-                 return zv
+            v = e.id
+            if v in self.z3_symtab:
+                return self.z3_symtab[v]
+            else:
+                if isinstance(e.typ, TBool):
+                    zv = z3.Bool(v)
+                else:
+                    zv = z3.Int(v)
+                self.z3_symtab[v] = zv
+                return zv
 
     def trans_PConj(self, e):
         el = self.eval(e.left, 'trans')
@@ -147,7 +148,10 @@ class Stack(Store):
             if vid in self.z3_symtab:
                 zvs.append(self.z3_symtab[vid])
             else:
-                zv = z3.Int(vid)
+                if isinstance(e.typ, TBool):
+                    zv = z3.Bool(v)
+                else:
+                    zv = z3.Int(v)
                 self.z3_symtab[vid] = zv
                 zvs.append(zv)
         f = self.eval(ne.form, 'trans')
@@ -166,32 +170,12 @@ class Stack(Store):
     def evaluate(self, e):
         ef = self.eval(e, 'trans')
         # debug(ef)
-        self.solver.push()
-        self.solver.add(ef)
-        try:
-            r = self.solver.check()
-            if r == z3.unsat:
-                return Ternary(False)
-            elif r == z3.sat:
-                # m = self.solver.model()
-                return Ternary(True)
-            else:
-                return Ternary(None) # unknown
-        except:
-            return Ternary(None)
-        finally:
-            self.solver.pop()
+        return Z3().solve(ef)
 
     def is_unsat(self, e):
         return self.evaluate(e) == False
 
     def mk_ctx(self, ctx, cond):
-        # nctx = []
-        # for cx in ctx:
-        #     cc = PConj(cx, cond)
-        #     if not self.is_unsat(cc):
-        #         nctx.append(cc)
-        # return nctx
         return PConj(ctx, cond)
 
 class Heap(Store):
@@ -337,19 +321,19 @@ class SHModel(object):
             ectx = e_sh._satisfy(ctx, f.form)
             return ectx
 
-        # rctx = []
-        # for e_dom in exists_data_vars_dom_set:
-        #     ectx = process_dom(e_dom)
-        #     rctx.extend(ectx)
+        rctx = []
+        for e_dom in exists_data_vars_dom_set:
+            ectx = process_dom(e_dom)
+            rctx.extend(ectx)
 
-        tasks = exists_data_vars_dom_set
-        def wp(tasks, Q):
-            rs = [process_dom(e_dom) for e_dom in tasks]
-            if Q is None:
-                return rs
-            else:
-                Q.put(rs)
-        rctx = Utils.runMP("satisfy_PExists", tasks, wp, chunksiz = 1, doMP = True)
+        # tasks = exists_data_vars_dom_set
+        # def wp(tasks, Q):
+        #     rs = [process_dom(e_dom) for e_dom in tasks]
+        #     if Q is None:
+        #         return rs
+        #     else:
+        #         Q.put(rs)
+        # rctx = Utils.runMP("satisfy_PExists", tasks, wp, chunksiz = 1, doMP = True)
 
         return rctx
 

@@ -1,4 +1,6 @@
 from debug import *
+from seplogic import *
+import z3
 
 class Utils(object):
     @classmethod
@@ -69,3 +71,25 @@ class Utils(object):
             return rs
         else:
             Q.put(rs)
+
+class Z3(object):
+    def __init__(self):
+        self.solver = z3.Solver()
+        self.solver.set("timeout", 500)
+
+    def solve(self, f):
+        self.solver.push()
+        self.solver.add(f)
+        try:
+            r = self.solver.check()
+            if r == z3.unsat:
+                return Ternary(False)
+            elif r == z3.sat:
+                # m = self.solver.model()
+                return Ternary(True)
+            else:
+                return Ternary(None) # unknown
+        except:
+            return Ternary(None)
+        finally:
+            self.solver.pop()
