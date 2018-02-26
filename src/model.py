@@ -273,15 +273,35 @@ class SHModel(object):
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
-        nctx = []
-        for case in sst_pred_defn.cases:
-            pcond = case.get_pure()
-            pctx = self.stack.mk_ctx(ctx, pcond)
-            if not self.stack.is_unsat(pctx):
-                sh = self.clone()
-                rctx = sh._satisfy(pctx, case.get_heap())
-                nctx.extend(rctx)
-        return nctx
+
+        # nctx = []
+        # for case in sst_pred_defn.cases:
+        #     pcond = case.get_pure()
+        #     pctx = self.stack.mk_ctx(ctx, pcond)
+        #     if not self.stack.is_unsat(pctx):
+        #         sh = self.clone()
+        #         rctx = sh._satisfy(pctx, case.get_heap())
+        #         nctx.extend(rctx)
+
+        cases = sst_pred_defn.cases
+        def wp(cases, Q):
+            def func(cases):
+                nctx = []
+                for case in cases:
+                    pcond = case.get_pure()
+                    pctx = self.stack.mk_ctx(ctx, pcond)
+                    if not self.stack.is_unsat(pctx):
+                        sh = self.clone()
+                        rctx = sh._satisfy(pctx, case.get_heap())
+                        nctx.extend(rctx)
+                return nctx
+            return Utils.wprocess(cases, func, Q)
+
+        rctx = Utils.runMP("satisfy_HPred",
+                           cases, wp, chunksiz = 1,
+                           doMP = settings.doMP and len(cases) >= 2)
+
+        return rctx
 
     def _satisfy_HStar(self, ctx, f):
         hdata_lst, hpred_lst = f.heap_par()
@@ -329,11 +349,10 @@ class SHModel(object):
 
         tasks = exists_data_vars_dom_set
         def wp(tasks, Q):
-            rs = [process_dom(e_dom) for e_dom in tasks]
-            if Q is None:
-                return rs
-            else:
-                Q.put(rs)
+            func = lambda tasks: List.flatten(
+                [process_dom(e_dom) for e_dom in tasks])
+            return Utils.wprocess(tasks, func, Q)
+
         rctx = Utils.runMP("satisfy_PExists",
                            tasks, wp, chunksiz = 1,
                            doMP = settings.doMP and len(tasks) >= 2)
