@@ -55,18 +55,19 @@ class Utils(object):
             # debug("workloads '{}' {}: {}"
             #       .format(taskname, len(wloads), map(len,wloads)))
 
-            workers = [Process(target=wprocess, args=(wl, Q)) for wl in wloads]
+            workers = [Process(target = wprocess,
+                               args = (wl, Q)) for wl in wloads]
             for w in workers: w.start()
             wrs = []
             for _ in workers: wrs.extend(Q.get())
         else:
-            wrs = wprocess(tasks, Q=None)
+            wrs = wprocess(tasks, Q = None)
 
         return wrs
 
     @classmethod
-    def wprocess(tasks, func, Q):
-        rs = [func(*args) for args in tasks]
+    def wprocess(cls, tasks, func, Q):
+        rs = func(tasks)
         if Q is None:
             return rs
         else:
@@ -93,3 +94,8 @@ class Z3(object):
             return Ternary(None)
         finally:
             self.solver.pop()
+
+class List(object):
+    @classmethod
+    def flatten(self, l):
+        return [item for sublist in l for item in sublist]
