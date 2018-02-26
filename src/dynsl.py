@@ -49,9 +49,11 @@ def main():
     f3 = 'x->node{v, y} * ls(y, y, n) & n>=2'
     f4 = 'exists u, v, r. u->node{v, r} & v>1 & r=y'
     f5 = 'exists u, n. ls(x, u, n)'
-    f6 = 'exists u, v. u->node{v, y} & v>=1'
+    f6 = 'exists u, v. u->node{v, y} & v>=1 & u=x'
+    f7 = 'exists u, v, r. u->node{v, r} & v>=1 & r=y'
+    f8 = 'exists u, v, r, n. ls(x, u, n) * u->node{v, r} & v>1'
 
-    form = f6
+    form = f8
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
