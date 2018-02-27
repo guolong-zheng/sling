@@ -12,27 +12,17 @@ SNnode * node_create(int key)
 
 SNnode * create_sll(int size){
     SNnode * nodes[size];
-    for(int i = 0; i < size; i++){
+    int i;
+    for(i = 0; i < size; i++){
         nodes[i] = node_create((int)rand());
     }
 
     SNnode * root = NULL;
-    for(int i = 0; i < size; i++){
+    for(i = 0; i < size; i++){
         root = sll_append(root, nodes[i]);
     }
 
     return root;
-}
-
-SNnode * sll_append(SNnode * x1, SNnode * x2)
-{
-	if (x1 == NULL) {
-		return x2;
-	} else {
-		SNnode * tmp = sll_append(x1->next, x2);
-		x1->next = tmp;
-		return x1;
-	}
 }
 
 SNnode * sll_delete_all(SNnode * x, int k)

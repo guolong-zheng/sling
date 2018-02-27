@@ -6,15 +6,14 @@ from collections import defaultdict
 from trace import *
 
 def create_target(exe, bps):
-    os.chdir(os.getcwd()+"/simple_example/sll")
+    #os.chdir(os.getcwd()+"/simple_example/sll")
+    exe = os.path.join(os.getcwd(), exe)
     debugger = lldb.SBDebugger.Create()
     debugger.SetAsync(False)
     target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
-
     if target:
         for bp in bps:
             target.BreakpointCreateByLocation(exe+".c", bp)
-            #print "break point created at : %s " % main_bp
     else:
         print "Can't create debugger instance"
 
@@ -46,11 +45,8 @@ def traverse_heap(vars):
         if var.TypeIsPointerType():
             stack[var.GetName()] = StackTrace(var.GetName(), Addr(var.GetValue()))
             to_visit.append(var)
-        else:
-	    if var.GetValue() is None:
-		stack[var.GetName()] = StackTrace(var.GetName(), None)
-            else:
-            	stack[var.GetName()] = StackTrace(var.GetName(), Int(var.GetValue()))
+        elif var.GetValue() is not None:
+            stack[var.GetName()] = StackTrace(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
 
@@ -66,7 +62,7 @@ def expand_cell(heap, to_visit):
         var = var.Dereference()
         heap_addr = str(var.GetAddress())
 
-        if heap_addr not in heap:
+        if heap_addr.startswith('0x') and heap_addr not in heap:
             fields = []
             for i in range(0, var.GetNumChildren()):
                 child = var.GetChildAtIndex(i)
@@ -92,14 +88,33 @@ def get_traces(input, bps):
 
     return traces
 
+def write_file(exe, traces):
+    for loc in traces:
+        tr = traces[loc]
+        for x in tr:
+            count = str(tr.index(x))
+            filename = exe.split("/")[-1]+"_"+str(loc)+"_"+count+".txt"
+            path = os.getcwd()+"/traces"
+            fw = open(os.path.join(path, filename),"w+")
+            st = x.stack
+            hp = x.heap
+            for s in st:
+                "writing stack"
+                fw.write(str(st[s])+"\n")
+            for h in hp:
+                "writing heap"
+                fw.write(str(hp[h])+"\n")
+            fw.close()
+
 def main():
-    exe = "append"
-    bps = [12]
+    exe = "simple_example/sll/append"
+    bps = [8, 10, 15]
 
     target = create_target(exe, bps)
     traces = get_model(target)
+    write_file(exe, traces)
     for t in traces:
-        print "trace at location: %s" % t 
+        print "trace at location: %s" % t
         tr = traces[t]
         for x in tr:
             st = x.stack

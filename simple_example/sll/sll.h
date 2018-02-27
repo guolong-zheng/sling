@@ -8,7 +8,6 @@ typedef struct node {
 
 SNnode * node_create(int key);
 SNnode * create_sll(int size);
-SNnode * sll_append(SNnode * x1, SNnode * x2);
 SNnode * sll_delete_all(SNnode * x, int k);
 SNnode * sll_insert_back(SNnode * x, int k);
 SNnode * sll_insert(SNnode * x, int k);
