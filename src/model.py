@@ -285,7 +285,7 @@ class SHModel(object):
 
         cases = sst_pred_defn.cases
         def wp(cases, Q):
-            def func(cases):
+            def process_cases(cases):
                 nctx = []
                 for case in cases:
                     pcond = case.get_pure()
@@ -295,7 +295,7 @@ class SHModel(object):
                         rctx = sh._satisfy(pctx, case.get_heap())
                         nctx.extend(rctx)
                 return nctx
-            return Utils.wprocess(cases, func, Q)
+            return Utils.wprocess(cases, process_cases, Q)
 
         rctx = Utils.runMP("satisfy_HPred",
                            cases, wp, chunksiz = 1,
@@ -347,14 +347,14 @@ class SHModel(object):
         #     ectx = process_dom(e_dom)
         #     rctx.extend(ectx)
 
-        tasks = exists_data_vars_dom_set
-        def wp(tasks, Q):
-            func = lambda tasks: List.flatten(
-                [process_dom(e_dom) for e_dom in tasks])
-            return Utils.wprocess(tasks, func, Q)
+        doms = exists_data_vars_dom_set
+        def wp(doms, Q):
+            process_doms = lambda tasks: List.flatten(
+                [process_dom(e_dom) for e_dom in doms])
+            return Utils.wprocess(doms, process_doms, Q)
 
         rctx = Utils.runMP("satisfy_PExists",
-                           tasks, wp, chunksiz = 1,
+                           doms, wp, chunksiz = 1,
                            doMP = settings.doMP and len(tasks) >= 2)
 
         return rctx

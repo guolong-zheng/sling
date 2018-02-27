@@ -38,6 +38,8 @@ def main():
     defn = args.pred
     traces = args.trace
 
+    debug(traces)
+
     defn = r"""
            data node { int val; node next; };
 
