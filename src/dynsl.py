@@ -35,6 +35,19 @@ def main():
     input_file = args.in_file
     bps = args.breaks
     traces = get_traces(input_file, bps)
+    for t in traces:
+        print "trace at location: %s" % t
+        tr = traces[t]
+        for x in tr:
+            st = x.stack
+            hp = x.heap
+            print "stack is:"
+            for s in st:
+                print st[s]
+            print "heap is:"
+            for h in hp:
+                print hp[h]
+
     defn = args.pred
     traces = args.trace
 
