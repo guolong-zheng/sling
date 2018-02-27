@@ -177,7 +177,7 @@ class Stack(Store):
         return self.evaluate(e) == False
 
     def mk_ctx(self, ctx, cond):
-        return PConj(ctx, cond)
+        return ctx.mk_conj(cond)
 
 class Heap(Store):
     pass
@@ -355,7 +355,7 @@ class SHModel(object):
 
         rctx = Utils.runMP("satisfy_PExists",
                            doms, wp, chunksiz = 1,
-                           doMP = settings.doMP and len(tasks) >= 2)
+                           doMP = settings.doMP and len(doms) >= 2)
 
         return rctx
 

@@ -34,40 +34,43 @@ def main():
 
     input_file = args.in_file
     bps = args.breaks
-    traces = get_traces(input_file, bps)
-    for t in traces:
-        print "trace at location: %s" % t
-        tr = traces[t]
-        for x in tr:
-            st = x.stack
-            hp = x.heap
-            print "stack is:"
-            for s in st:
-                print st[s]
-            print "heap is:"
-            for h in hp:
-                print hp[h]
+    # traces = get_traces(input_file, bps)
+    # for t in traces:
+    #     print "trace at location: %s" % t
+    #     tr = traces[t]
+    #     for x in tr:
+    #         st = x.stack
+    #         hp = x.heap
+    #         print "stack is:"
+    #         for s in st:
+    #             print st[s]
+    #         print "heap is:"
+    #         for h in hp:
+    #             print hp[h]
 
     defn = args.pred
     traces = args.trace
 
-    debug(traces)
-
     defn = r"""
            data node { int val; node next; };
 
-           pred ls(x,y,n) := emp & x=y & n=0
-           \/ (exists v, u. x->node{v, u} * ls(u,y,n-1) & n>=1);
+           pred lsn(x,y,n) := emp & x=y & n=0
+           \/ (exists v, u. x->node{v, u} * lsn(u,y,n-1) & n>=1);
+
+           pred ls(x,y) := emp & x=y
+           \/ (exists v, u. x->node{v, u} * ls(u,y));
            """
 
-    traces = r"""
-             0xA001 -> node{val:1; next:0xA002};
-             0xA002 -> node{val:2; next:0xA003};
-             0xA003 -> node{val:3; next:0xA002};
-             x = 0xA001;
-             y = 0xA002;
-             z = 2;
-             """
+    t1 = r"""
+         0xA001 -> node{val:1; next:0xA002};
+         0xA002 -> node{val:2; next:0xA003};
+         0xA003 -> node{val:3; next:0xA002};
+         x = 0xA001;
+         y = 0xA002;
+         z = 2;
+         """
+
+    traces = t1
 
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
@@ -85,8 +88,10 @@ def main():
     f6 = 'exists u, v. u->node{v, y} & v>=1 & u=x'
     f7 = 'exists u, v, r. u->node{v, r} & v>=1 & r=y'
     f8 = 'exists u, v, r, n. ls(x, u, n) * u->node{v, r} & v>1'
+    f9 = 'ls(x,y)'
+    f10 = 'ls(x,y) * ls(y,y)'
 
-    form = f8
+    form = f10
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
