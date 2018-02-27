@@ -218,7 +218,12 @@ class BinOp(PExpr):
 class PRel(SepLogic):
     def __mk_conj__(self, f):
         if isinstance(f, PRel):
-            return PConj(self, f)
+            if self == True:
+                return f
+            elif f == True:
+                return self
+            else:
+                return PConj(self, f)
         elif isinstance(f, HRel):
             return FBase(f, self)
         elif isinstance(f, FBase):
@@ -241,8 +246,8 @@ class BConst(PRel):
         return set()
 
     def __eq__(self, other):
-       return (self.value is other.value if isinstance(other, BConst)
-               else self.value is other)
+       return (self.val is other.val if isinstance(other, BConst)
+               else self.val is other)
 
     def __ne__(self, other):
        return not self == other
