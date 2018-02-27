@@ -6,7 +6,7 @@ from collections import defaultdict
 from trace import *
 
 def create_target(exe, bps):
-    os.chdir(os.getcwd()+"/simple_example")
+    os.chdir(os.getcwd()+"/simple_example/sll")
     debugger = lldb.SBDebugger.Create()
     debugger.SetAsync(False)
     target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
@@ -47,7 +47,10 @@ def traverse_heap(vars):
             stack[var.GetName()] = StackTrace(var.GetName(), Addr(var.GetValue()))
             to_visit.append(var)
         else:
-            stack[var.GetName()] = StackTrace(var.GetName(), Int(var.GetValue()))
+	    if var.GetValue() is None:
+		stack[var.GetName()] = StackTrace(var.GetName(), None)
+            else:
+            	stack[var.GetName()] = StackTrace(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
 
@@ -90,11 +93,23 @@ def get_traces(input, bps):
     return traces
 
 def main():
-    exe = "test"
-    bps = [37,39,47,54]
+    exe = "append"
+    bps = [12]
 
     target = create_target(exe, bps)
     traces = get_model(target)
+    for t in traces:
+        print "trace at location: %s" % t 
+        tr = traces[t]
+        for x in tr:
+            st = x.stack
+            hp = x.heap
+            print "stack is:"
+            for s in st:
+                print st[s]
+            print "heap is:"
+            for h in hp:
+                print hp[h]
 
 if __name__ == "__main__":
     main()
