@@ -19,12 +19,13 @@ SNnode * sll_append(SNnode * x1, SNnode * x2)
 
 int main(){
     SNnode * nodes[5];
-    for(int i = 0; i < 5; i++){
+    int i = 0;
+    for(i = 0; i < 5; i++){
         nodes[i] = node_create(i);
     }
 
     SNnode * root = NULL;
-    for(int i = 0; i < 5; i++){
+    for(i = 0; i < 5; i++){
 
         root = sll_append(root, nodes[i]);
 
