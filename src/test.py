@@ -28,7 +28,18 @@ def test():
          z = 2;
          """
 
-    traces = t1
+    t2 = r"""
+         0xA001 -> node{val:1; next:0xA002};
+         0xA002 -> node{val:2; next:0xA003};
+         0xA003 -> node{val:3; next:0xA004};
+         0xA004 -> node{val:4; next:0xA003};
+         x = 0xA001;
+         y = 0xA002;
+         r = 0xA004;
+         z = 2;
+         """
+
+    traces = t2
 
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
