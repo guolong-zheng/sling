@@ -58,7 +58,7 @@ def expand_cell(heap, to_visit):
         var = to_visit.pop(0)
         if var.TypeIsPointerType() and var.GetValueAsUnsigned() == 0:
             continue
-        typ = var.GetType()
+        typ = str_type(var.GetType().GetCanonicalType())
         var = var.Dereference()
         heap_addr = str(var.GetAddress())
 
@@ -66,18 +66,19 @@ def expand_cell(heap, to_visit):
             fields = []
             for i in range(0, var.GetNumChildren()):
                 child = var.GetChildAtIndex(i)
+                child_typ = str_type(child.GetType().GetCanonicalType())
                 if child.TypeIsPointerType():
                     if child.GetValueAsUnsigned() == 0:
-                        field = PtrField(child.GetName(), Addr(None))
+                        field = PtrField(child_typ, Addr(None))
                     else:
-                        field = PtrField(child.GetName(),Addr(str(child.GetValue())))
+                        field = PtrField(child_typ,Addr(str(child.GetValue())))
                         to_visit.append(child)
                 else:
-                    field = DataField(child.GetName(),Int(child.GetValue()))
+                    field = DataField(child_typ,Int(child.GetValue()))
 
                 fields.append(field)
 
-            heap[heap_addr] = HeapTrace(Addr(heap_addr), str(typ), fields)
+            heap[heap_addr] = HeapTrace(Addr(heap_addr), typ, fields)
 
     return heap
 
@@ -87,6 +88,13 @@ def get_traces(input, bps):
     traces = get_model(target)
 
     return traces
+
+
+def str_type(typ):
+    typ_str = str(typ).replace("struct",'')
+    typ_str = typ_str.translate(None, '*').strip()
+
+    return typ_str
 
 def write_file(exe, traces):
     for loc in traces:
@@ -100,19 +108,13 @@ def write_file(exe, traces):
             hp = x.heap
             for s in st:
                 "writing stack"
-                fw.write(str(st[s])+"\n")
+                fw.write(str(st[s])+";\n")
             for h in hp:
                 "writing heap"
-                fw.write(str(hp[h])+"\n")
+                fw.write(str(hp[h])+";\n")
             fw.close()
 
-def main():
-    exe = "simple_example/sll/append"
-    bps = [8, 10, 15]
-
-    target = create_target(exe, bps)
-    traces = get_model(target)
-    write_file(exe, traces)
+def traces_str(traces):
     for t in traces:
         print "trace at location: %s" % t
         tr = traces[t]
@@ -125,6 +127,15 @@ def main():
             print "heap is:"
             for h in hp:
                 print hp[h]
+
+def main():
+    exe = "simple_example/sll/append"
+    bps = [8, 10, 15]
+
+    target = create_target(exe, bps)
+    traces = get_model(target)
+    #print traces_str(traces)
+    #write_file(exe, traces)
 
 if __name__ == "__main__":
     main()
