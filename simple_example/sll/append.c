@@ -1,8 +1,6 @@
 #include "sll.h"
 #include <stdio.h>
 
-SNnode * sll_append(SNnode * x1, SNnode * x2);
-
 SNnode * sll_append(SNnode * x1, SNnode * x2)
 {
 	    //pre
@@ -17,22 +15,15 @@ SNnode * sll_append(SNnode * x1, SNnode * x2)
         }
 }
 
-int main(){
-    SNnode * nodes[5];
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
     int i = 0;
-    for(i = 0; i < 5; i++){
-        nodes[i] = node_create(i);
-    }
-
     SNnode * root = NULL;
-    for(i = 0; i < 5; i++){
-
-        root = sll_append(root, nodes[i]);
-
-    }
-
-    while(root != NULL){
-        root = root->next;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
     }
 
     return 0;

@@ -1,11 +1,30 @@
 #include "sll.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(){
-    SNnode * root = create_sll(5);
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
 
-    root = sll_insert_back(root, (int)rand());
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
 
     return 0;
 }
