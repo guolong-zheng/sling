@@ -8,7 +8,8 @@ class Printer(object):
     @classmethod
     def str_of_list(self, obj):
         elems = map(lambda e: self.str_of(e), obj)
-        if any(not hasattr(e, '__dict__') for e in obj):
+        if (any(hasattr(e, '__dict__') for e in obj) and
+           any(len(e) > 80 for e in elems)):
             sep = ',\n\n'
         else:
             sep = ', '

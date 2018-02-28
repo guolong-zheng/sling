@@ -64,6 +64,23 @@ class Store(object):
         else:
             raise Exception('Two stores are not disjoint')
 
+    ###############
+    def __getitem__(self, name):
+        return self.get(name)
+
+    def __iter__(self):
+        return iter(self.store)
+
+    def keys(self):
+        return self.dom()
+
+    def items(self):
+        return self.store.items()
+
+    def values(self):
+        return self.store.values()
+    ###############
+
     def eval(self, e, func='eval'):
         method_name = func + '_' + type(e).__name__
         if not hasattr(self, method_name):
@@ -180,7 +197,13 @@ class Stack(Store):
         return ctx.mk_conj(cond)
 
 class Heap(Store):
-    pass
+    def to_list(self):
+        traces = []
+        for addr in self:
+            ty, fis = self[addr]
+            trace = HeapTrace(Addr(addr), ty, fis)
+            traces.append(trace)
+        return traces
 
 class SHModel(object):
     def __init__(self, stack, heap, prog = None):
