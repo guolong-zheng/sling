@@ -6,6 +6,91 @@ from typ import *
 from utils import *
 import networkx as nx
 
+class SubHeap(object):
+    def __init__(self, root, children, dangling_children, dom):
+        self.root = root
+        self.children = children
+        self.dangling_children = dangling_children
+        self.dom = dom
+
+    def __str__(self):
+        return (str(self.root) + '->' + str(self.children)
+                + ': ' + str(self.dom))
+
+    def mk_submodel(self, sh):
+        h = sh.heap
+        sub_heap = Heap()
+        for addr in self.dom:
+            sub_heap.add(addr, h[addr])
+        return SHModel(sh.stack, sub_heap, sh.prog)
+
+    def slinfer(self, stk_addrs_dict, sh):
+        submodel = self.mk_submodel(sh)
+        self.mk_spatial_atom(stk_addrs_dict, submodel)
+
+    def mk_alias(self, stk_addrs_dict, ty, addr):
+        try:
+            vs = map(lambda v: Var(v), stk_addrs_dict[addr])
+        except:
+            vs = [VarUtil.mk_fresh()]
+        assert vs
+        for v in vs:
+            v.typ = ty
+        x = vs[0]
+        eqs = []
+        for y in vs[1:]:
+            eqs.append(PBinRel(x, '=', y))
+        if not eqs:
+            aliasing_cond = BConst(True)
+        else:
+            aliasing_cond = reduce(lambda c1, c2: PConj(c1, c2), eqs)
+        return x, aliasing_cond
+
+    def mk_spatial_atom(self, stk_addrs_dict, sh):
+        h = sh.heap
+        dom_h = h.dom()
+        if len(dom_h) == 0:
+            self.mk_emp()
+        else:
+            if len(dom_h) == 1:
+                self.mk_singleton(stk_addrs_dict, sh)
+            self.mk_pred()
+
+    def mk_emp(self):
+        return HEmp()
+
+    def mk_singleton(self, stk_addrs_dict, sh):
+        rty, fis = sh.heap[self.root]
+        root_var, aliasing_root = self.mk_alias(stk_addrs_dict, rty, self.root)
+        root_var.typ = Type.typ(rty)
+        data_defn = sh.prog.lookup(rty)
+        atys = map(lambda fi: Type.typ(fi.typ), data_defn.fields)
+        args = []
+        pf = BConst(True)
+        for aty, fi in zip(atys, fis):
+            if isinstance(fi, DataField):
+                arg_var = VarUtil.mk_fresh()
+                arg_var.typ = aty
+            else:
+                arg_var, aliasing_arg = self.mk_alias(stk_addrs_dict, aty, fi.data.val)
+                pf = pf.mk_conj(aliasing_arg)
+            args.append(arg_var)
+        pdata = HData(root_var, rty, args)
+        fbase = pdata.mk_conj(pf)
+        stk_vars = List.flatten(stk_addrs_dict.values())
+        exists_vars = filter(lambda v: v.id not in stk_vars, args)
+        if exists_vars:
+            f = FExists(exists_vars, fbase)
+        else:
+            f = fbase
+
+        assert sh.classic_satisfy(f)
+        debug(f)
+        return f
+
+    def mk_pred(self):
+        pass
+
 class SLInfer(object):
     @classmethod
     def infer(self, sh):
@@ -16,22 +101,7 @@ class SLInfer(object):
         heap_partitions = self.partition_heap(sh.heap, stk_addrs)
         debug(heap_partitions)
         for hp in heap_partitions:
-            self.slinfer_heap_partition(stk_addrs_dict, sh, hp)
-
-    @classmethod
-    def slinfer_heap_partition(self, stk_addrs_dict, sh, hp):
-        s = sh.stack
-        h = sh.heap
-        prog = sh.prog
-        stk_addrs, heap_addrs = hp
-        stk_vars = map(lambda sa: stk_addrs_dict[sa], stk_addrs)
-        params = map(lambda vs: vs[0], stk_vars)
-        debug(params)
-        sub_heap = Heap()
-        for ha in heap_addrs:
-            sub_heap.add(ha, h[ha])
-        debug(sub_heap)
-
+            hp.slinfer(stk_addrs_dict, sh)
 
     @classmethod
     def collect_addrs_from_stk(self, stk):
@@ -65,16 +135,17 @@ class SLInfer(object):
                 for start in start_addrs:
                     group = self._split_heap(h, start, stk_addrs, marked_addrs)
                     groups.append(group)
-                    marked_addrs.extend(group)
+                    marked_addrs.extend(group.dom)
             return(groups)
 
     @classmethod
     def _split_heap(self, h, start, stk_addrs, marked_addrs):
         working_set = [start]
         group = []
-        stk_addrs_params = []
-        if start in stk_addrs:
-            stk_addrs_params.append(start)
+        stk_children = []
+        dangling_children = []
+        # if start in stk_addrs:
+        #     stk_addrs_params.append(start)
         while working_set:
             parent = working_set[0]
             working_set = working_set[1:]
@@ -90,8 +161,10 @@ class SLInfer(object):
                             child != 0):
                             working_set.append(child)
                         if (child in stk_addrs):
-                            stk_addrs_params.append(child)
-        return (stk_addrs_params, group)
+                            stk_children.append(child)
+            else:
+                dangling_children.append(parent)
+        return SubHeap(start, stk_children, dangling_children, group)
 
     @classmethod
     def _build_dependency_graph(self, h):

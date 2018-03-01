@@ -229,8 +229,13 @@ class SHModel(object):
     def satisfy(self, f):
         ctx = BConst(True)
         rctx = self._satisfy(ctx, f)
-        debug(rctx)
-        return rctx
+        return bool(rctx)
+
+    def classic_satisfy(self, f):
+        ctx = BConst(True)
+        rctx = self._satisfy(ctx, f)
+        res = any(not bool(sh.heap.dom()) for (ctx,sh) in rctx)
+        return res
 
     def _satisfy(self, ctx, f):
         method_name = '_satisfy_' + type(f).__name__

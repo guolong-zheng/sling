@@ -36,7 +36,7 @@ def test():
          x = 0xA001;
          y = 0xA002;
          r = 0xA004;
-         z = 2;
+         z = 0xA002;
          """
 
     traces = t2

@@ -25,13 +25,17 @@ def main():
     ag('--def', '-def',
        dest='pred', type=open)
 
-    ag("--nomp", "-nomp",
+    ag('--nomp', '-nomp',
+       action="store_true")
+
+    ag('--notype', '-notype',
        action="store_true")
 
     args = aparser.parse_args()
 
     import settings
     settings.doMP = not args.nomp
+    settings.print_type = not args.notype
 
     input_file = args.in_file
     bps = args.breaks

@@ -2,6 +2,7 @@ from functools import partial
 from typ import *
 import copy
 import ntpath
+import settings
 
 class VarUtil(object):
     fv_id = 0
@@ -168,8 +169,11 @@ class Var(PExpr, HExpr):
         #     id = id[:i]
         # except:
         #     pass
-        return (id + ('\'' if self.is_primed else '') +
-                (((':' + str(self.typ)) if self.typ else '')))
+        if settings.print_type:
+            typ = (':' + str(self.typ)) if self.typ else ''
+        else:
+            typ = ''
+        return (id + ('\'' if self.is_primed else '') + typ)
 
     def __fv__(self):
         s = set()
@@ -559,6 +563,8 @@ class Prog(SepLogic):
         self.data_defn_lst = data_defn_lst
         self.pred_defn_lst = pred_defn_lst
         self.store = {}
+        for defn in (data_defn_lst + pred_defn_lst):
+            self.store[defn.name] = defn
 
     def __str__(self):
         return ('\n\n'.join(map(str, self.data_defn_lst + self.pred_defn_lst)))
