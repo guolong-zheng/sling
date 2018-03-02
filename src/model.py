@@ -113,6 +113,9 @@ class Stack(Store):
     def eval_IConst(self, e, func='eval'):
         return e.val
 
+    def eval_Null(self, e, func='eval'):
+        return Const.nil_addr
+
     def eval_BinOp(self, e, func='eval'):
         el = self.eval(e.left, func)
         er = self.eval(e.right, func)
@@ -258,6 +261,9 @@ class SHModel(object):
     def _satisfy_HData(self, ctx, f):
         s = self.stack
         h = self.heap
+        # debug(f)
+        # debug(s)
+        # debug(h)
         if not h.dom():
             return []
         else:
@@ -304,6 +310,7 @@ class SHModel(object):
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
+        # debug(sst_pred_defn)
 
         # nctx = []
         # for case in sst_pred_defn.cases:
@@ -366,6 +373,8 @@ class SHModel(object):
             #     exists_data_vars_dom, len(exists_data_vars)))
             itertools.product(
                 exists_data_vars_dom, repeat=len(exists_data_vars)))
+        # debug(exists_data_vars)
+        # debug(exists_data_vars_dom_set)
 
         def process_dom(e_dom):
             e_mapping = zip(exists_data_vars, e_dom)

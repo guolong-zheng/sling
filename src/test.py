@@ -97,8 +97,8 @@ def test():
     f14 = 'a->node{nil, nil}'
 
     defn = d2
-    traces = t4
-    form = f14
+    traces = t3
+    form = f13
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -128,8 +128,10 @@ def test():
     h = sh.heap
     sh.add_prog(tprog)
     debug(sh.prog)
-    rctx = sh.satisfy(tf)
-    debug(rctx)
+
+    # rctx = sh.satisfy(tf)
+    # debug(rctx)
+
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
