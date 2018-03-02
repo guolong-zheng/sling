@@ -273,6 +273,8 @@ class SHModel(object):
                     #               zip(f.args, field_vals))
                     mconds = []
                     for (a, v) in zip(f.args, field_vals):
+                        if isinstance(a, Null):
+                            a = IConst(Const.nil_addr)
                         mconds.append(PBinRel(a, '=', IConst(v)))
                         if (isinstance(a, Var) and
                             isinstance(a.typ, TData) and

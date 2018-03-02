@@ -220,9 +220,10 @@ class SLInfer(object):
                         child = fi.data.val
                         if (child not in stk_addrs and
                             child not in marked_addrs and
-                            child != 0):
+                            child != Const.nil_addr):
                             working_set.append(child)
-                        if (child in stk_addrs):
+                        if (child in stk_addrs or
+                            child == Const.nil_addr):
                             stk_children.append(child)
             else:
                 dangling_children.append(parent)

@@ -99,3 +99,6 @@ class List(object):
     @classmethod
     def flatten(self, l):
         return [item for sublist in l for item in sublist]
+
+class Const(object):
+    nil_addr = 0
