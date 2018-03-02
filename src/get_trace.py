@@ -67,14 +67,15 @@ def expand_cell(heap, to_visit):
             for i in range(0, var.GetNumChildren()):
                 child = var.GetChildAtIndex(i)
                 child_typ = str_type(child.GetType().GetCanonicalType())
+                child_name = child.GetName()
                 if child.TypeIsPointerType():
                     if child.GetValueAsUnsigned() == 0:
-                        field = PtrField(child_typ, Addr(None))
+                        field = PtrField(child_name, Addr(None))
                     else:
-                        field = PtrField(child_typ,Addr(str(child.GetValue())))
+                        field = PtrField(child_name,Addr(str(child.GetValue())))
                         to_visit.append(child)
                 else:
-                    field = DataField(child_typ,Int(child.GetValue()))
+                    field = DataField(child_name,Int(child.GetValue()))
 
                 fields.append(field)
 
@@ -129,13 +130,13 @@ def traces_str(traces):
                 print hp[h]
 
 def main():
-    exe = "simple_example/sll/append"
-    bps = [8, 10, 15]
+    exe = "simple_example/GRASShopper/dl_concat"
+    bps = [46, 48, 56, 63]
 
     target = create_target(exe, bps)
     traces = get_model(target)
     #print traces_str(traces)
-    #write_file(exe, traces)
+    write_file(exe, traces)
 
 if __name__ == "__main__":
     main()

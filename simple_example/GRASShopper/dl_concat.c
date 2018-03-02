@@ -43,7 +43,9 @@ DLNode * dl_concat(DLNode * a, DLNode * b)
   /*D_requires (dll^(a) * dll^(b)) */
   /*D_ensures  (dll^(ret) * lseg^(ret, b)) */
 {
+  //pre
   if (a == NULL) {
+    //post
     return b;
   }  else {
     DLNode * curr;
@@ -51,19 +53,21 @@ DLNode * dl_concat(DLNode * a, DLNode * b)
     while(curr->next != NULL)
       /*D_invariant (((~ (curr l= nil)) & dll^(a)) & (lseg^(a, curr) * dll^(curr))) */
     {
+       //loop
        curr = curr->next;
     }
     curr->next = b;
     if (b != NULL) {
       b->prev = curr;
     }
+    //pre
     return a;
   }
 }
 
 int main(){
-    DLNode * a = create_list(5);
-    DLNode * b = create_list(5);
+    DLNode * a = create_list(4);
+    DLNode * b = create_list(4);
 
     DLNode * res = dl_concat(a, b);
 

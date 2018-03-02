@@ -16,7 +16,7 @@ DLNode * create_node(){
 }
 
 DLNode * create_dll(int size){
-    DLNode * root = NULL:
+    DLNode * root = NULL;
     for(int i = 0; i < size; i++){
         DLNode * node = create_node();
         root = dll_append_node(root, node);

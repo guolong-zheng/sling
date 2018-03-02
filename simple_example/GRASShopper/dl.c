@@ -1,5 +1,5 @@
 #include "dl.h"
-#include <stlib.h>
+#include <stdlib.h>
 
 DLNode * create_list(int size){
     DLNode * root = NULL;
