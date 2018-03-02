@@ -11,8 +11,8 @@ def test():
     defn = r"""
            data node { int val; node next; };
 
-           pred lsn(x, y, n) := emp & x=y & n=0
-           \/ (exists v, u. x->node{v, u} * lsn(u, y, n-1) & n>=1);
+           # pred lsn(x, y, n) := emp & x=y & n=0
+           # \/ (exists v, u. x->node{v, u} * lsn(u, y, n-1) & n>=1);
 
            pred ls(x, y) := emp & x=y
            \/ (exists v, u. x->node{v, u} * ls(u, y));
@@ -20,8 +20,8 @@ def test():
            pred lsd(x, y) := emp & x=y
            \/ (exists v, u. x->node{v, u} * lsd(u, y) & x!=y);
 
-           pred lsr(x, y) := emp & x=y
-           \/ (exists v, u. lsr(x, u) * u->node{v, y});
+           # pred lsr(x, y) := emp & x=y
+           # \/ (exists v, u. lsr(x, u) * u->node{v, y});
            """
 
     t1 = r"""

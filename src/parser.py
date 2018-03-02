@@ -121,10 +121,13 @@ class SepLogicParser(Parser, Transformer):
         OBRACE: "{"
         CBRACE : "}"
 
+        COMMENT: /#[^\n]*/
+
         %import common.CNAME -> ID
         %import common.INT -> NUM
         %import common.WS
         %ignore WS
+        %ignore COMMENT
         """
 
     def mk_id(self, (id,)):

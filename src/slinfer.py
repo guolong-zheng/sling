@@ -27,7 +27,7 @@ class SubHeap(object):
 
     def slinfer(self, stk_addrs_dict, sh):
         submodel = self.mk_submodel(sh)
-        self.mk_spatial_atom(stk_addrs_dict, submodel)
+        return self.mk_spatial_atom(stk_addrs_dict, submodel)
 
     def mk_alias(self, stk_addrs_dict, ty, addr):
         try:
@@ -50,12 +50,14 @@ class SubHeap(object):
     def mk_spatial_atom(self, stk_addrs_dict, sh):
         h = sh.heap
         dom_h = h.dom()
+        atoms = []
         if len(dom_h) == 0:
-            self.mk_emp()
+            atoms.append(self.mk_emp())
         else:
             if len(dom_h) == 1:
-                self.mk_singleton(stk_addrs_dict, sh)
-            self.mk_pred_lst(stk_addrs_dict, sh)
+                atoms.append(self.mk_singleton(stk_addrs_dict, sh))
+            atoms.extend(self.mk_pred_lst(stk_addrs_dict, sh))
+        return atoms
 
     def mk_emp(self):
         return HEmp()
@@ -151,12 +153,17 @@ class SLInfer(object):
     def infer(self, sh):
         stk_addrs_dict = self.collect_addrs_from_stk(sh.stack)
         stk_addrs = stk_addrs_dict.keys()
-        debug(stk_addrs)
-        debug(sh.heap)
         heap_partitions = self.partition_heap(sh.heap, stk_addrs)
-        debug(heap_partitions)
+        conj_preds_lst = []
         for hp in heap_partitions:
-            hp.slinfer(stk_addrs_dict, sh)
+            pred_lst = hp.slinfer(stk_addrs_dict, sh)
+            conj_preds_lst.append(pred_lst)
+        fs = []
+        for conj_preds in itertools.product(*conj_preds_lst):
+            f = reduce(lambda f1, f2: f1.mk_conj(f2), conj_preds)
+            debug(f)
+            fs.append(f)
+        return fs
 
     @classmethod
     def collect_addrs_from_stk(self, stk):
