@@ -11,11 +11,17 @@ def test():
     defn = r"""
            data node { int val; node next; };
 
-           pred lsn(x,y,n) := emp & x=y & n=0
-           \/ (exists v, u. x->node{v, u} * lsn(u,y,n-1) & n>=1);
+           pred lsn(x, y, n) := emp & x=y & n=0
+           \/ (exists v, u. x->node{v, u} * lsn(u, y, n-1) & n>=1);
 
-           pred ls(x,y) := emp & x=y
-           \/ (exists v, u. x->node{v, u} * ls(u,y));
+           pred ls(x, y) := emp & x=y
+           \/ (exists v, u. x->node{v, u} * ls(u, y));
+
+           pred lsd(x, y) := emp & x=y
+           \/ (exists v, u. x->node{v, u} * lsd(u, y) & x!=y);
+
+           pred lsr(x, y) := emp & x=y
+           \/ (exists v, u. lsr(x, u) * u->node{v, y});
            """
 
     t1 = r"""
@@ -39,7 +45,7 @@ def test():
          z = 0xA002;
          """
 
-    traces = t2
+    traces = t1
 
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
@@ -59,8 +65,10 @@ def test():
     f8 = 'exists u, v, r, n. ls(x, u, n) * u->node{v, r} & v>1'
     f9 = 'ls(x,y)'
     f10 = 'ls(x,y) * ls(y,y)'
+    f11 = 'lsr(x,y)'
+    f12 = 'lsd(x,y)'
 
-    form = f10
+    form = f12
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -90,7 +98,8 @@ def test():
     h = sh.heap
     sh.add_prog(tprog)
     debug(sh.prog)
-    rctx = sh.satisfy(tf)
+    # rctx = sh.satisfy(tf)
+    # debug(rctx)
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))

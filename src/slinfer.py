@@ -5,6 +5,7 @@ from debug import *
 from typ import *
 from utils import *
 import networkx as nx
+import itertools
 
 class SubHeap(object):
     def __init__(self, root, children, dangling_children, dom):
@@ -54,7 +55,7 @@ class SubHeap(object):
         else:
             if len(dom_h) == 1:
                 self.mk_singleton(stk_addrs_dict, sh)
-            self.mk_pred()
+            self.mk_pred_lst(stk_addrs_dict, sh)
 
     def mk_emp(self):
         return HEmp()
@@ -88,8 +89,62 @@ class SubHeap(object):
         debug(f)
         return f
 
-    def mk_pred(self):
-        pass
+    def mk_pred_lst(self, stk_addrs_dict, sh):
+        pred_lst = []
+        for pred_defn in sh.prog.pred_defn_lst:
+            preds = self.mk_pred(pred_defn, stk_addrs_dict, sh)
+            pred_lst.extend(preds)
+        debug(pred_lst)
+        return pred_lst
+
+    def mk_pred(self, pred_defn, stk_addrs_dict, sh):
+        prim_params = []
+        ptr_params = []
+        for param in pred_defn.params:
+            if isinstance(param.typ, TData):
+                ptr_params.append(param)
+            else:
+                prim_params.append(param)
+
+        prim_sst = map(lambda param: (param, VarUtil.mk_fresh(param)), prim_params)
+
+        assert len(ptr_params) > 0
+
+        root_param = ptr_params[0]
+        root_arg, _ = self.mk_alias(stk_addrs_dict, root_param.typ, self.root)
+        root_sst = (root_param, root_arg)
+
+        ptr_args = []
+        for child in self.children:
+            ptr_arg, _ = self.mk_alias(stk_addrs_dict, None, child)
+            ptr_args.append(ptr_arg)
+        ptr_args_mutation = list(itertools.product(ptr_args,
+                                                   repeat=len(ptr_params)-1))
+        ptr_ssts = []
+        for mut in ptr_args_mutation:
+            ptr_sst = zip(ptr_params[1:], list(mut))
+            ptr_ssts.append(ptr_sst)
+
+        if ptr_ssts:
+            ssts = map(lambda ptr_sst: [root_sst] + ptr_sst + prim_sst, ptr_ssts)
+        else:
+            ssts = [[root_sst] + prim_sst]
+
+        fs = []
+        pred_template = HPred(pred_defn.name, pred_defn.params)
+        prim_args = map(lambda (_, pa): pa, prim_sst)
+        ssts = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), ssts)
+        for sst in ssts:
+            pred = pred_template.subst(sst)
+            fbase = FBase(pred, BConst(True))
+            if prim_args:
+                f = FExists(prim_args, fbase)
+            else:
+                f = fbase
+            fs.append(f)
+        fs = filter(lambda f: sh.classic_satisfy(f), fs)
+        # debug(fs)
+        return fs
 
 class SLInfer(object):
     @classmethod

@@ -229,6 +229,7 @@ class SHModel(object):
     def satisfy(self, f):
         ctx = BConst(True)
         rctx = self._satisfy(ctx, f)
+        # debug(rctx)
         return bool(rctx)
 
     def classic_satisfy(self, f):
@@ -359,8 +360,10 @@ class SHModel(object):
         exists_data_vars_dom = filter(lambda addr:
                                       addr not in stack_data_vars_dom, h_dom)
         exists_data_vars_dom_set = list(
-            itertools.combinations_with_replacement(
-                exists_data_vars_dom, len(exists_data_vars)))
+            # itertools.combinations_with_replacement(
+            #     exists_data_vars_dom, len(exists_data_vars)))
+            itertools.product(
+                exists_data_vars_dom, repeat=len(exists_data_vars)))
 
         def process_dom(e_dom):
             e_mapping = zip(exists_data_vars, e_dom)
