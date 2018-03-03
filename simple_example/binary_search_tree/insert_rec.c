@@ -1,4 +1,4 @@
-#include "binary_tree.h"
+#include "header.h"
 
 BNode * bst_insert_rec(BNode * x, int k)
 {

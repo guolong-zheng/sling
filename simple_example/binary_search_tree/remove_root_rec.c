@@ -1,4 +1,4 @@
-#include "binary_tree.h"
+#include "header.h"
 
 BNode * bst_remove_root_rec(BNode * x)
 {

@@ -103,7 +103,7 @@ def write_file(exe, traces):
         for x in tr:
             count = str(tr.index(x))
             filename = exe.split("/")[-1]+"_"+str(loc)+"_"+count+".txt"
-            path = os.getcwd()+"/traces"
+            path = os.getcwd()+"/traces/trace5"
             fw = open(os.path.join(path, filename),"w+")
             st = x.stack
             hp = x.heap

@@ -1,5 +1,5 @@
-#ifndef PRIO_TREE_H_
-#define PRIO_TREE_H_
+#ifndef HEADER_H_
+#define HEADER_H_
 
 typedef struct b_node {
   struct b_node * left;
@@ -8,6 +8,9 @@ typedef struct b_node {
   int prio;
 } BNode;
 
+#define MAX_RAND 2000
+
+int rand_num();
 BNode * create_tree(int size);
 BNode * treap_delete_rec(BNode * x, int k);
 int treap_find_rec(BNode * x, int k);

@@ -1,5 +1,7 @@
-#ifndef AVL_H_
-#define AVL_H_
+#ifndef HEADER_H_
+#define HEADER_H_
+
+#define MAX_RAND 2000
 
 typedef struct a_node {
   struct a_node * left;
@@ -8,6 +10,7 @@ typedef struct a_node {
   int height;
 } AVLNode;
 
+int rand_num();
 AVLNode * create_avl(int size);
 int get_height(AVLNode * x);
 AVLNode * avl_balance(AVLNode * x);
