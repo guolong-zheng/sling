@@ -8,21 +8,28 @@ from get_trace import *
 from slinfer import *
 
 def test():
-    defn = r"""
-           data node { int val; node next; };
+    d1 = r"""
+         data node { int val; node next; };
 
-           # pred lsn(x, y, n) := emp & x=y & n=0
-           # \/ (exists v, u. x->node{v, u} * lsn(u, y, n-1) & n>=1);
+         # pred lsn(x, y, n) := emp & x=y & n=0
+         # \/ (exists v, u. x->node{v, u} * lsn(u, y, n-1) & n>=1);
 
-           pred ls(x, y) := emp & x=y
-           \/ (exists v, u. x->node{v, u} * ls(u, y));
+         pred ls(x, y) := emp & x=y
+         \/ (exists v, u. x->node{v, u} * ls(u, y));
 
-           pred lsd(x, y) := emp & x=y
-           \/ (exists v, u. x->node{v, u} * lsd(u, y) & x!=y);
+         pred lsd(x, y) := emp & x=y
+         \/ (exists v, u. x->node{v, u} * lsd(u, y) & x!=y);
 
-           # pred lsr(x, y) := emp & x=y
-           # \/ (exists v, u. lsr(x, u) * u->node{v, y});
-           """
+         # pred lsr(x, y) := emp & x=y
+         # \/ (exists v, u. lsr(x, u) * u->node{v, y});
+         """
+
+    d2 = r"""
+         data node { node next; node prev; };
+
+         pred dll(hd,p,tl,n) := hd=n & tl=p
+         \/ (exists x. hd->node{x,p} * dll(x,hd,tl,n));
+         """
 
     t1 = r"""
          0xA001 -> node{val:1; next:0xA002};
@@ -45,7 +52,26 @@ def test():
          z = 0xA002;
          """
 
-    traces = t1
+    t3 = r"""
+         a = 0x0674554921088;
+         b = 0x0674554921344;
+         curr = 0x0674554921088;
+
+         0x0674554921088 -> node{next:0x0674554921104; prev:nil};
+         0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
+         0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
+         0x0674554921328 -> node{next:nil; prev:0x0674554921120};
+
+         0x0674554921344 -> node{next:0x0674554921360; prev:nil};
+         0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
+         0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
+         0x0674554921392 -> node{next:nil; prev:0x0674554921376};
+         """
+
+    t4 = r"""
+         a = 0x1;
+         0x1 -> node{next:nil; prev:nil};
+         """
 
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
@@ -67,8 +93,12 @@ def test():
     f10 = 'ls(x,y) * ls(y,y)'
     f11 = 'lsr(x,y)'
     f12 = 'lsd(x,y)'
+    f13 = 'exists u. dll(a,nil,u,nil)'
+    f14 = 'a->node{nil, nil}'
 
-    form = f12
+    defn = d2
+    traces = t3
+    form = f13
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -86,7 +116,7 @@ def test():
     # debug(prog)
     debug(tprog)
     tf = type_infer.infer(f)
-    # debug(f)
+    debug(f)
     debug(tf)
 
     trace_parser = TraceParser()
@@ -98,8 +128,10 @@ def test():
     h = sh.heap
     sh.add_prog(tprog)
     debug(sh.prog)
+
     # rctx = sh.satisfy(tf)
     # debug(rctx)
+
     # u = s.union(h)
     # debug('stack:\n' + str(s))
     # debug('heap:\n' + str(h))
@@ -124,7 +156,7 @@ def test():
     # debug(r4)
     # debug(r4r)
     # debug(s.evaluate(PNeg(r4)))
-    cj = tf.mk_conj(tf)
+    # cj = tf.mk_conj(tf)
     # debug(cj)
     # debug(s.eval(BinOp(Var('z'), '+', IConst(2)), 'eval'))
     # debug(s.eval(BinOp(Var('n'), '+', IConst(2)), 'trans'))

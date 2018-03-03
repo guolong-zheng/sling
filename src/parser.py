@@ -238,8 +238,12 @@ class TraceParser(Parser, Transformer):
         ?num: NUM -> mk_num
 
         ?addr: ADDR -> mk_addr
+            | NULL -> mk_nil
+            | NIL -> mk_nil
 
         ADDR: "0x" HEXDIGIT+
+        NIL: "nil"
+        NULL: "null"
         PTO: "->"
         OBRACE: "{"
         CBRACE : "}"
@@ -259,6 +263,8 @@ class TraceParser(Parser, Transformer):
 
     def mk_id(self, (id,)):
         return str(id)
+
+    mk_nil = lambda self, _: Addr(Const.nil_addr)
 
     def mk_num(self, (s,)):
         return Int(s)

@@ -293,6 +293,12 @@ class TInfer(object):
         elif not isinstance(expected_typ, TInt):
             self.raise_type_error(f, TInt(), expected_typ)
 
+    def unify_Null(self, f, expected_typ):
+        if isinstance(expected_typ, TVar):
+            pass
+        elif not isinstance(expected_typ, TData):
+            self.raise_type_error(f, TData('nil'), expected_typ)
+
     def unify_BConst(self, f, expected_typ):
         if isinstance(expected_typ, TVar):
             self.tmap[expected_typ.id] = TBool()

@@ -39,8 +39,11 @@ class SubHeap(object):
             v.typ = ty
         x = vs[0]
         eqs = []
-        for y in vs[1:]:
-            eqs.append(PBinRel(x, '=', y))
+        if addr == Const.nil_addr:
+            eqs.append(PBinRel(x, '=', Null()))
+        else:
+            for y in vs[1:]:
+                eqs.append(PBinRel(x, '=', y))
         if not eqs:
             aliasing_cond = BConst(True)
         else:
@@ -63,6 +66,7 @@ class SubHeap(object):
         return HEmp()
 
     def mk_singleton(self, stk_addrs_dict, sh):
+        # debug(sh)
         rty, fis = sh.heap[self.root]
         root_var, aliasing_root = self.mk_alias(stk_addrs_dict, rty, self.root)
         root_var.typ = Type.typ(rty)
@@ -74,7 +78,7 @@ class SubHeap(object):
             if isinstance(fi, DataField):
                 arg_var = VarUtil.mk_fresh()
                 arg_var.typ = aty
-            else:
+            else: # isinstance(fi, PtrField)
                 arg_var, aliasing_arg = self.mk_alias(stk_addrs_dict, aty, fi.data.val)
                 pf = pf.mk_conj(aliasing_arg)
             args.append(arg_var)
@@ -86,9 +90,8 @@ class SubHeap(object):
             f = FExists(exists_vars, fbase)
         else:
             f = fbase
-
+        # debug(f)
         assert sh.classic_satisfy(f)
-        debug(f)
         return f
 
     def mk_pred_lst(self, stk_addrs_dict, sh):
@@ -96,7 +99,7 @@ class SubHeap(object):
         for pred_defn in sh.prog.pred_defn_lst:
             preds = self.mk_pred(pred_defn, stk_addrs_dict, sh)
             pred_lst.extend(preds)
-        debug(pred_lst)
+        # debug(pred_lst)
         return pred_lst
 
     def mk_pred(self, pred_defn, stk_addrs_dict, sh):
@@ -117,9 +120,12 @@ class SubHeap(object):
         root_sst = (root_param, root_arg)
 
         ptr_args = []
+        pf = BConst(True)
         for child in self.children:
-            ptr_arg, _ = self.mk_alias(stk_addrs_dict, None, child)
+            # debug(child)
+            ptr_arg, aliasing_arg = self.mk_alias(stk_addrs_dict, None, child)
             ptr_args.append(ptr_arg)
+            pf = pf.mk_conj(aliasing_arg)
         ptr_args_mutation = list(itertools.product(ptr_args,
                                                    repeat=len(ptr_params)-1))
         ptr_ssts = []
@@ -134,18 +140,21 @@ class SubHeap(object):
 
         fs = []
         pred_template = HPred(pred_defn.name, pred_defn.params)
-        prim_args = map(lambda (_, pa): pa, prim_sst)
+        stk_vars = List.flatten(stk_addrs_dict.values())
+        exists_prim_args = map(lambda (_, pa): pa, prim_sst)
+        exists_ptr_args = filter(lambda v: v.id not in stk_vars, ptr_args)
+        exists_args = exists_prim_args + exists_ptr_args
         ssts = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), ssts)
         for sst in ssts:
             pred = pred_template.subst(sst)
             fbase = FBase(pred, BConst(True))
-            if prim_args:
-                f = FExists(prim_args, fbase)
+            if exists_args:
+                f = FExists(exists_args, fbase)
             else:
                 f = fbase
             fs.append(f)
-        fs = filter(lambda f: sh.classic_satisfy(f), fs)
         # debug(fs)
+        fs = filter(lambda f: sh.classic_satisfy(f), fs)
         return fs
 
 class SLInfer(object):
@@ -161,7 +170,7 @@ class SLInfer(object):
         fs = []
         for conj_preds in itertools.product(*conj_preds_lst):
             f = reduce(lambda f1, f2: f1.mk_conj(f2), conj_preds)
-            debug(f)
+            # debug(f)
             fs.append(f)
         return fs
 
@@ -188,7 +197,7 @@ class SLInfer(object):
             sg = self._build_scc_graph(dg, sccs)
             sorted_sccs = nx.topological_sort(sg)
             sorted_scc_lst = [list(scc.nodes) for scc in sorted_sccs]
-            debug(sorted_scc_lst)
+            # debug(sorted_scc_lst)
             marked_addrs = []
             groups = []
             for scc in sorted_scc_lst:
@@ -220,9 +229,10 @@ class SLInfer(object):
                         child = fi.data.val
                         if (child not in stk_addrs and
                             child not in marked_addrs and
-                            child != 0):
+                            child != Const.nil_addr):
                             working_set.append(child)
-                        if (child in stk_addrs):
+                        if (child in stk_addrs or
+                            child == Const.nil_addr):
                             stk_children.append(child)
             else:
                 dangling_children.append(parent)
