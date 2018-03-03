@@ -27,7 +27,18 @@ class SubHeap(object):
 
     def slinfer(self, stk_addrs_dict, sh):
         submodel = self.mk_submodel(sh)
-        return self.mk_spatial_atom(stk_addrs_dict, submodel)
+        atoms = self.mk_spatial_atom(stk_addrs_dict, submodel)
+        debug(atoms)
+        return atoms
+
+    def get_vars(self, stk_addrs_dict, ty, addr):
+        try:
+            vs = map(lambda v: Var(v), stk_addrs_dict[addr])
+        except:
+            vs = [VarUtil.mk_fresh()]
+        for v in vs:
+            v.typ = ty
+        return vs
 
     def mk_alias(self, stk_addrs_dict, ty, addr):
         try:
@@ -39,11 +50,11 @@ class SubHeap(object):
             v.typ = ty
         x = vs[0]
         eqs = []
-        if addr == Const.nil_addr:
-            eqs.append(PBinRel(x, '=', Null()))
-        else:
-            for y in vs[1:]:
-                eqs.append(PBinRel(x, '=', y))
+        # if addr == Const.nil_addr:
+        #     eqs.append(PBinRel(x, '=', Null()))
+        # else:
+        for y in vs[1:]:
+            eqs.append(PBinRel(x, '=', y))
         if not eqs:
             aliasing_cond = BConst(True)
         else:
@@ -116,45 +127,61 @@ class SubHeap(object):
         assert len(ptr_params) > 0
 
         root_param = ptr_params[0]
-        root_arg, _ = self.mk_alias(stk_addrs_dict, root_param.typ, self.root)
-        root_sst = (root_param, root_arg)
+        root_args  = self.get_vars(stk_addrs_dict, root_param.typ, self.root)
+        root_ssts = map(lambda root_arg: (root_param, root_arg), root_args)
 
-        ptr_args = []
-        pf = BConst(True)
-        for child in self.children:
+        no_dups_children = list(set(self.children) - set([self.root]))
+        ptr_args_lst = []
+        for child in no_dups_children:
             # debug(child)
-            ptr_arg, aliasing_arg = self.mk_alias(stk_addrs_dict, None, child)
-            ptr_args.append(ptr_arg)
-            pf = pf.mk_conj(aliasing_arg)
-        ptr_args_mutation = list(itertools.product(ptr_args,
-                                                   repeat=len(ptr_params)-1))
-        ptr_ssts = []
-        for mut in ptr_args_mutation:
-            ptr_sst = zip(ptr_params[1:], list(mut))
-            ptr_ssts.append(ptr_sst)
+            ptr_args = self.get_vars(stk_addrs_dict, None, child)
+            ptr_args_lst.append(ptr_args)
 
+        if len(ptr_args_lst) < len(ptr_params) - 1:
+            num_fresh_vars = len(ptr_params) - 1 - len(ptr_args_lst)
+            for i in range(num_fresh_vars):
+                ptr_args_lst.append([VarUtil.mk_fresh()])
+
+        assert len(ptr_args_lst) >= len(ptr_params)-1
+
+        ptr_args_product = list(itertools.product(*ptr_args_lst))
+
+        ptr_args_permutations = []
+        for ptr_args in ptr_args_product:
+            perms = list(itertools.permutations(ptr_args, len(ptr_params)-1))
+            ptr_args_permutations.extend(perms)
+        # debug(ptr_args_permutations)
+
+        ptr_ssts = []
+        for perm in ptr_args_permutations:
+            ptr_sst = zip(ptr_params[1:], list(perm))
+            ptr_ssts.append(ptr_sst)
+        # debug(ptr_ssts)
+
+        ssts = []
         if ptr_ssts:
-            ssts = map(lambda ptr_sst: [root_sst] + ptr_sst + prim_sst, ptr_ssts)
+            all_ptr_ssts = list(itertools.product(root_ssts, ptr_ssts))
+            # debug(all_ptr_ssts)
+            ssts = map(lambda (root_sst, ptr_sst):
+                       [root_sst] + ptr_sst + prim_sst, all_ptr_ssts)
         else:
-            ssts = [[root_sst] + prim_sst]
+            ssts = map(lambda root_sst: [root_sst] + prim_sst, root_ssts)
+        ssts = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), ssts)
 
         fs = []
         pred_template = HPred(pred_defn.name, pred_defn.params)
         stk_vars = List.flatten(stk_addrs_dict.values())
-        exists_prim_args = map(lambda (_, pa): pa, prim_sst)
-        exists_ptr_args = filter(lambda v: v.id not in stk_vars, ptr_args)
-        exists_args = exists_prim_args + exists_ptr_args
-        ssts = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), ssts)
+
         for sst in ssts:
             pred = pred_template.subst(sst)
             fbase = FBase(pred, BConst(True))
-            if exists_args:
+            if False:
                 f = FExists(exists_args, fbase)
             else:
                 f = fbase
             fs.append(f)
-        # debug(fs)
         fs = filter(lambda f: sh.classic_satisfy(f), fs)
+        debug(fs)
         return fs
 
 class SLInfer(object):
@@ -207,6 +234,7 @@ class SLInfer(object):
                     group = self._split_heap(h, start, stk_addrs, marked_addrs)
                     groups.append(group)
                     marked_addrs.extend(group.dom)
+            # debug(groups)
             return(groups)
 
     @classmethod

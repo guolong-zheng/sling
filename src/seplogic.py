@@ -175,6 +175,12 @@ class Var(PExpr, HExpr):
             typ = ''
         return (id + ('\'' if self.is_primed else '') + typ)
 
+    def __eq__(self, other):
+        return self.id == other.id
+
+    def __eq__(self, other):
+        return self.id != other.id
+
     def __fv__(self):
         s = set()
         s.add(self.id)

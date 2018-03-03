@@ -73,6 +73,23 @@ def test():
          0x1 -> node{next:nil; prev:nil};
          """
 
+    t5 = r"""
+         a = 0x0674554921088;
+         b = 0x0674554921344;
+         curr = 0x0674554921104;
+
+         0x0674554921088 -> node{next:0x0674554921104; prev:nil};
+
+         0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
+         0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
+         0x0674554921328 -> node{next:nil; prev:0x0674554921120};
+
+         0x0674554921344 -> node{next:0x0674554921360; prev:nil};
+         0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
+         0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
+         0x0674554921392 -> node{next:nil; prev:0x0674554921376};
+         """
+
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
     #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
@@ -97,7 +114,7 @@ def test():
     f14 = 'a->node{nil, nil}'
 
     defn = d2
-    traces = t3
+    traces = t5
     form = f13
 
     seplogic_parser = SepLogicParser()
