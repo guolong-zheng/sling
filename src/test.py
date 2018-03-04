@@ -31,6 +31,13 @@ def test():
          \/ (exists x. hd->node{x,p} * dll(x,hd,tl,n));
          """
 
+    d3 = r"""
+         data node { node next; };
+
+         pred ll(x) := emp & x=nil
+         \/ (exists y. x->node{y} * ll(y));
+         """
+
     t1 = r"""
          0xA001 -> node{val:1; next:0xA002};
          0xA002 -> node{val:2; next:0xA003};

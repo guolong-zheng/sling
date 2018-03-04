@@ -6,6 +6,7 @@ class Type(object):
     tid = 0
     s_int = 'int'
     s_bool = 'bool'
+    s_nil = 'nil'
 
     @classmethod
     def mk_fresh(self):
@@ -54,6 +55,10 @@ class TInt(PrimType):
 class TBool(PrimType):
     def __str__(self):
         return self.s_bool
+
+class TNull(PrimType):
+    def __str__(self):
+        return self.s_nil
 
 class TData(Type):
     def __init__(self, name):
@@ -275,10 +280,13 @@ class TInfer(object):
         expected_typ = self.find_type(expected_typ)
         # debug(f.id + ': ' + str(current_typ) + ', ' + str(expected_typ))
         if isinstance(current_typ, TVar):
-            self.env[f.id] = expected_typ
-            self.tmap[current_typ.id] = expected_typ
+            if not isinstance(expected_typ, TNull):
+                self.env[f.id] = expected_typ
+                self.tmap[current_typ.id] = expected_typ
         elif isinstance(expected_typ, TVar):
             self.tmap[expected_typ.id] = current_typ
+        elif isinstance(expected_typ, TNull):
+            pass
         elif not (current_typ == expected_typ):
             self.raise_type_error(f, current_typ, expected_typ)
         else:
@@ -296,8 +304,8 @@ class TInfer(object):
     def unify_Null(self, f, expected_typ):
         if isinstance(expected_typ, TVar):
             pass
-        elif not isinstance(expected_typ, TData):
-            self.raise_type_error(f, TData('nil'), expected_typ)
+        elif not isinstance(expected_typ, TNull):
+            self.raise_type_error(f, TNull(), expected_typ)
 
     def unify_BConst(self, f, expected_typ):
         if isinstance(expected_typ, TVar):
@@ -335,6 +343,12 @@ class TInfer(object):
 
     def find_type_IConst(self, e):
         return TInt()
+
+    def find_type_BConst(self, e):
+        return TBool()
+
+    def find_type_Null(self, e):
+        return TNull()
 
     #############################################################
 
