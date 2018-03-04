@@ -32,7 +32,10 @@ class SubHeap(object):
         return atoms
 
     def get_vars(self, stk_addrs_dict, ty, addr):
-        vs = map(lambda v: Var(v), stk_addrs_dict[addr])
+        try:
+            vs = map(lambda v: Var(v), stk_addrs_dict[addr])
+        except:
+            vs = [VarUtil.mk_fresh()]
         for v in vs:
             v.typ = ty
         return vs
@@ -127,38 +130,19 @@ class SubHeap(object):
         root_args  = self.get_vars(stk_addrs_dict, root_param.typ, self.root)
         root_ssts = map(lambda root_arg: (root_param, root_arg), root_args)
 
-        no_dups_children = list(set(self.children) - set([self.root]))
-        ptr_args_lst = []
-        for child in no_dups_children:
-            try:
-                # debug(child)
-                ptr_args = self.get_vars(stk_addrs_dict, None, child)
-                ptr_args_lst.append(ptr_args)
-            except:
-                pass
+        no_dups_non_nil_children = list(set(self.children) - set([self.root]) - set([Const.nil_addr]))
+        if len(no_dups_non_nil_children) < len(ptr_params) - 1:
+            num_fresh_vars = len(ptr_params) - 1 - len(no_dups_non_nil_children)
+            fresh_vars_dump_addr = -1
+            no_dups_non_nil_children.extend([fresh_vars_dump_addr] * num_fresh_vars)
 
-        debug(ptr_args_lst)
-        debug(ptr_params)
-
-        if len(ptr_args_lst) < len(ptr_params) - 1:
-            num_fresh_vars = len(ptr_params) - 1 - len(ptr_args_lst)
-            for i in range(num_fresh_vars):
-                ptr_args_lst.append([VarUtil.mk_fresh()])
-
-        assert len(ptr_args_lst) >= len(ptr_params)-1
-
-        ptr_args_product = list(itertools.product(*ptr_args_lst))
-
-        ptr_args_permutations = []
-        for ptr_args in ptr_args_product:
-            perms = list(itertools.permutations(ptr_args, len(ptr_params)-1))
-            ptr_args_permutations.extend(perms)
-        # debug(ptr_args_permutations)
-
+        children_permutations = sorted(set(itertools.permutations(no_dups_non_nil_children, len(ptr_params) - 1)))
         ptr_ssts = []
-        for perm in ptr_args_permutations:
-            ptr_sst = zip(ptr_params[1:], list(perm))
-            ptr_ssts.append(ptr_sst)
+        for perm in children_permutations:
+            ptr_args_perm = map(lambda addr: self.get_vars(stk_addrs_dict, None, addr), list(perm))
+            ptr_args_product = list(itertools.product(*ptr_args_perm))
+            ptr_args_ssts = map(lambda ptr_args: zip(ptr_params[1:], ptr_args), ptr_args_product)
+            ptr_ssts.extend(ptr_args_ssts)
         # debug(ptr_ssts)
 
         ssts = []
