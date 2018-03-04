@@ -302,7 +302,7 @@ class TInfer(object):
             self.raise_type_error(f, TInt(), expected_typ)
 
     def unify_Null(self, f, expected_typ):
-        if isinstance(expected_typ, TVar):
+        if isinstance(expected_typ, TVar) or isinstance(expected_typ, TData):
             pass
         elif not isinstance(expected_typ, TNull):
             self.raise_type_error(f, TNull(), expected_typ)

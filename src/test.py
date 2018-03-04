@@ -38,6 +38,14 @@ def test():
          \/ (exists y. x->node{y} * ll(y));
          """
 
+    d4 = r"""
+         data node { node next; node prev; };
+
+         pred dll(x) := emp & x=nil
+         \/ (exists y. x->node{y, x} & (y=nil))
+         \/ (exists y. x->node{y, x} * dll(y) & (!(y=nil)));
+         """
+
     t1 = r"""
          0xA001 -> node{val:1; next:0xA002};
          0xA002 -> node{val:2; next:0xA003};

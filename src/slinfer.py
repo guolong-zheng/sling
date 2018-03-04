@@ -32,10 +32,7 @@ class SubHeap(object):
         return atoms
 
     def get_vars(self, stk_addrs_dict, ty, addr):
-        try:
-            vs = map(lambda v: Var(v), stk_addrs_dict[addr])
-        except:
-            vs = [VarUtil.mk_fresh()]
+        vs = map(lambda v: Var(v), stk_addrs_dict[addr])
         for v in vs:
             v.typ = ty
         return vs
@@ -133,9 +130,15 @@ class SubHeap(object):
         no_dups_children = list(set(self.children) - set([self.root]))
         ptr_args_lst = []
         for child in no_dups_children:
-            # debug(child)
-            ptr_args = self.get_vars(stk_addrs_dict, None, child)
-            ptr_args_lst.append(ptr_args)
+            try:
+                # debug(child)
+                ptr_args = self.get_vars(stk_addrs_dict, None, child)
+                ptr_args_lst.append(ptr_args)
+            except:
+                pass
+
+        debug(ptr_args_lst)
+        debug(ptr_params)
 
         if len(ptr_args_lst) < len(ptr_params) - 1:
             num_fresh_vars = len(ptr_params) - 1 - len(ptr_args_lst)
