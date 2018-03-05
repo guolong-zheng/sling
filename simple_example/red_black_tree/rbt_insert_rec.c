@@ -9,17 +9,20 @@ typedef struct node {
 
 SNnode * rbt_insert_rec(SNnode * x, int k)
 {
+    //pre
 	if (x == NULL) {
 		SNnode * nr = (SNnode *) malloc(sizeof(SNnode));
 		nr->key = k;
         nr->color = 1;
 		nr->left = NULL;
         nr->right = NULL;
+        //post
         return nr;
 	} else if (k < x->key) {
 		SNnode * p = rbt_insert_rec(x->left, k);
 		if (p->color == 0) {
             x->left = p;
+            //post
             return x;
         }
         else {
@@ -29,6 +32,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
                 p->color = 0;
                 xr->color = 0;
                 x->color = 1;
+                //post
                 return x;
             } else {
                 SNnode * pl = p->left;
@@ -42,15 +46,18 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
                     pr->right = x;
                     pr->color = 0;
                     x->color = 1;
+                    //post
                     return pr;
                 } else if (pl->color != 0) {
                     p->right = x;
                     x->left = pr;
                     p->color = 0;
                     x->color = 1;
+                    //post
                     return p;
                 } else {
                     x->left = p;
+                    //post
                     return x;
                 }
             }
@@ -59,6 +66,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
         SNnode * p = rbt_insert_rec(x->right, k);
 		if (p->color == 0) {
             x->right = p;
+            //post
             return x;
         }
         else {
@@ -68,6 +76,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
                 p->color = 0;
                 xl->color = 0;
                 x->color = 1;
+                //post
                 return x;
             } else {
                 SNnode * pl = p->left;
@@ -81,15 +90,18 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
                     pl->left = x;
                     pl->color = 0;
                     x->color = 1;
+                    //post
                     return pl;
                 } else if (pr->color != 0) {
                     p->left = x;
                     x->right = pl;
                     p->color = 0;
                     x->color = 1;
+                    //post
                     return p;
                 } else {
                     x->right = p;
+                    //post
                     return x;
                 }
             }
@@ -97,10 +109,16 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
 	}
 }
 
-int main(){
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
     SNnode * root = NULL;
-    for(int i = 0; i < 5; i++)
-        root = rbt_insert_rec(root, (int)rand());
+    for(int i = 0; i < size; i++)
+        root = rbt_insert_rec(root, rand_num());
 
     return 0;
 }

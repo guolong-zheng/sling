@@ -9,10 +9,13 @@ typedef struct node {
 
 SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
 {
+    //pre
 	if (x == NULL) {
+        //post
         return y;
 	}
     else if (y == NULL) {
+        //post
         return x;
     }
     else if (x->order == y->order) {
@@ -27,6 +30,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
             x->children = y;
             x->sibling = z;
             x->order = ord1 + 1;
+            //post
             return x;
         } else {
             SNnode * ychld = y->children;
@@ -34,6 +38,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
             y->children = x;
             y->sibling = z;
             y->order = ord2 + 1;
+            //post
             return y;
         }
     }
@@ -51,6 +56,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
             x->sibling = zchld;
             z->children = x;
             z->order = zord + 1;
+            //post
             return z;
         } else if (ord1 == zord && xk < zk) {
             SNnode * zsib = z->sibling;
@@ -59,9 +65,11 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
             z->sibling = xchld;
             x->children = z;
             x->order = ord1 + 1;
+            //post
             return x;
         } else {
             x->sibling = z;
+            //post
             return x;
         }
     }
@@ -79,6 +87,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
             y->sibling = zchld;
             z->children = y;
             z->order = zord + 1;
+            //post
             return z;
         } else if (ord2 == zord && yk < zk) {
             SNnode * zsib = z->sibling;
@@ -87,10 +96,27 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
             z->sibling = ychld;
             y->children = z;
             y->order = ord2 + 1;
+            //post
             return x;
         } else {
             y->sibling = z;
+            //post
             return y;
         }
+    }
+}
+
+int main(int argc, char * argv[]){
+    int size;
+    sccanf(argv[1],"%d",&size);
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * x = (SNnode *)malloc(sizeof(SNnode));
+        x->key = rand_num();
+        x->order = 0;
+        x->children = NULL;
+        x->sibling = NULL;
+        root = binomial_heap_merge_rec(root, x);
     }
 }
