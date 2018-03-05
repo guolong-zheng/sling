@@ -162,7 +162,9 @@ class SubHeap(object):
         for sst in ssts:
             pred = pred_template.subst(sst)
             fbase = FBase(pred, BConst(True))
-            if False:
+            arg_vars = sst.values()
+            exists_args = filter(lambda v: v.id not in stk_vars, arg_vars)
+            if exists_args:
                 f = FExists(exists_args, fbase)
             else:
                 f = fbase
