@@ -1,48 +1,15 @@
 #include "g_slist.h"
-
-/*D_defs
-define pred list^(x):
-  (
-  ((x l= nil) & emp) |
-          ((x |-> loc next: nxt; int key: ky) * list^(nxt))
-  ) ;
-
-define set-fun keys^(x):
-  (case (x l= nil): emptyset;
-   case ((x |-> loc next: nxt; int key: ky) * true):
-    ((singleton ky) union keys^(nxt));
-   default: emptyset
-  ) ;
-
-define relation lseg^(head, tail):
-  (
-  (((head l= tail) | ((head l= nil) & (tail l= nil))) & emp) |
-          ((head |-> loc next: nxt; int key: ky) * lseg^(nxt, tail))
-  )
-axiom: (
-      (list^(tail) -* (list^(head) & (keys^(head) s= (lseg-keys^(head, tail) union keys^(tail))))) &
-      (((tail |-> loc next: virtual tn; int key: virtual tk) * list^(tn)) -* ((lseg^(head, tn) & (lseg-keys^(head, tn) s= (lseg-keys^(head, tail) union (singleton tk)))) * list^(tn)))
-     ) ;
-
-define bin-set-fun lseg-keys^(head, tail):
-  (case ((head l= tail) | ((head l= nil) & (tail l= nil))) : emptyset;
-   case ((head |-> loc next: nxt; int key: ky) * true):
-    ((singleton ky) union lseg-keys^(nxt, tail));
-   default: emptyset
-  ) ;
-*/
-// ------------------------------------------------
+#include <stdlib.h>
 
 Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
-  /*D_requires (lseg^(x, sibling) * list^(sibling)) */
-  /*D_ensures (list^(ret) & (keys^(ret) s= (old(keys^(slist)) union (singleton data)))) */
 {
+  //pre
   if (slist == NULL) {
     slist = (Node *) malloc (sizeof (Node));
     slist->key = data;
 
     slist->next = NULL;
-
+    //post
     return slist;
   }
 
@@ -51,11 +18,8 @@ Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
   node = slist;
 
   while(node != NULL && node != sibling)
-    /*D_invariant
-      (((keys^(slist) s= old(keys^(slist))) & (~ (old(slist) l= nil))) &
-      ((((last l= nil) & (slist l= node)) | (lseg^(slist, last) * (last |-> loc next: node; int key: kl)))
-          * (lseg^(node, sibling) * list^(sibling)))) */
   {
+    //loop
     last = node;
     node = last->next;
   }
@@ -64,6 +28,7 @@ Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
     node = (Node *) malloc (sizeof(Node));
     node->key = data;
     node->next = slist;
+    //post
     return node;
   } else {
     node = (Node *) malloc (sizeof(Node));
@@ -71,14 +36,17 @@ Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
     node->key = data;
     node->next = tmp_last;
     last->next = node;
+    //post
     return slist;
   }
 }
 
-int main(){
-    Node * root = create_list(5);
+int main(int argc, char * argv[]){
+    int size;
+    sscanf(argv[1],"%d",&size);
+    Node * root = create_list(size);
     Node * list = root->next;
-    Node * rest = g_slist_insert_before(root, list, (int)rand());
+    Node * rest = g_slist_insert_before(root, list, rand_num());
 
     return 0;
 }

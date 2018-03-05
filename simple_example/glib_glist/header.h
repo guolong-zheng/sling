@@ -1,5 +1,5 @@
-#ifndef G_LIST_H_
-#define G_LIST_H_
+#ifndef HEADER_H_
+#define HEADER_H_
 
 typedef struct node {
   int key;
@@ -7,6 +7,9 @@ typedef struct node {
   struct node * prev;
 } DLNode;
 
+#define MAX_RAND 1000
+
+int rand_num();
 DLNode * create_list(int size);
 
 #endif

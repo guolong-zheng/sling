@@ -1,5 +1,5 @@
-#ifndef OPENBSD_QUEUE_H_
-#define OPENBSD_QUEUE_H_
+#ifndef HEADER_H_
+#define HEADER_H_
 
 typedef struct node {
   struct node * next;

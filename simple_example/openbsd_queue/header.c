@@ -1,4 +1,4 @@
-#include "openbsd_queue.h"
+#include "header.h"
 
 Node * create_queue(int size){
     Node * hd = (Node *)malloc(sizeof(Node));
