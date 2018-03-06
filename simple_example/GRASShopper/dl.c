@@ -1,6 +1,10 @@
 #include "dl.h"
 #include <stdlib.h>
 
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
 DLNode * create_list(int size){
     DLNode * root = NULL;
     DLNode * tl = root;

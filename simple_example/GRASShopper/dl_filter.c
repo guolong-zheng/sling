@@ -1,55 +1,15 @@
-// ---- Definitions for GRASShopper examples  ----
 #include "dl.h"
 #include <stdlib.h>
 
-
-/*D_defs
-define pred dll^(x):
- (
-   (((x l= nil) & emp) |
-
-    ((x |-> loc next: y) & (y l= nil))) |
-
-     (
-          (((x |-> loc next: nxt) * (nxt |-> secondary prev: x)) * true) &
-          (  (x |-> loc next: nxt) * ((~(nxt l= nil)) & dll^(nxt)) )
-    )
- )
- axiom: sll^(x);
-
-
-define pred sll^(x):
-  (
-  ((x l= nil) & emp) |
-          ((x |-> loc next: nxt) * sll^(nxt))
-  )
-  axiom: lseg^(x, x) ;
-
-define relation lseg^(head, tail):
-  (
-  (((head l= tail) | ((head l= nil) & (tail l= nil))) & emp) |
-          ((head |-> loc next: nxt) * lseg^(nxt, tail))
-  )
-axiom: (
-      (list^(tail) -* list^(head)) &
-      (((tail |-> loc next: virtual tn) * list^(tn)) -* ((lseg^(head, tn) * list^(tn))))
-     ) ;
-
-*/
-// -----------------------------------------------
-
 DLNode * dl_filter(DLNode * x)
-  /*D_requires dll^(x) */
-  /*D_ensures  dll^(ret) */
 {
-
+  //pre
   DLNode * prv = NULL;
   DLNode * curr = x;
   DLNode * res = x;
   while(curr != NULL)
-    /*D_invariant (dll^(res) & (lseg^(res, prv)
-                    * (dll^(prv) & (((prv |-> loc next: curr) * true) | ((prv l= nil))))))  */
   {
+    //loop
     DLNode * old_curr = curr;
     curr = curr->next;
     int nondet;
@@ -68,11 +28,14 @@ DLNode * dl_filter(DLNode * x)
       prv = old_curr;
     }
   }
+  //post
   return res;
 }
 
-int main(){
-    DLNode * root = create_list(5);
-    DLNode * res = dl_filter(root);
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d",&size);
+    DLNode * lst = create_list(size);
+    DLNode * res = dl_filter(lst);
     return 0;
 }
