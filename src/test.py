@@ -252,8 +252,8 @@ def test():
     # debug('heap:\n' + str(h))
     # debug('union:\n' + str(u.dom()))
 
-    ff = SLInfer.infer(sh)
-    debug(ff)
+    # ff = SLInfer.infer(sh)
+    # debug(ff)
 
     traces = [t3d, t3e, t3f, t3g]
     sh_lst = []

@@ -181,19 +181,19 @@ class SubHeap(object):
 
 class SLInfer(object):
     @classmethod
-    def infer_location(self, traces):
-        if not traces:
+    def infer_location(self, sh_lst):
+        if not sh_lst:
             return []
         else:
             stk_vars = []
-            for trace in traces:
-                stk_vars.extend(trace.stack.keys())
+            for sh in sh_lst:
+                stk_vars.extend(sh.stack.keys())
             stk_vars = list(set(stk_vars))
 
             subheap_dict = {}
-            for trace in traces:
-                s = trace.stack
-                h = trace.heap
+            for sh in sh_lst:
+                s = sh.stack
+                h = sh.heap
                 stk_addrs_dict = self.collect_addrs_from_stk(s)
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
@@ -204,19 +204,23 @@ class SLInfer(object):
                                                            child, get_nil = True),
                             subheap.children))
                     # debug(stk_children)
-                    for v in stk_vars:
-                        List.add_lst_dict(subheap_dict, v, (stk_children, subheap))
+                    for root in stk_vars:
+                        List.add_lst_dict(subheap_dict, root, (stk_children, sh, subheap))
 
             for root in subheap_dict:
-                # debug(root)
-                # debug(subheap_dict[root])
+                root_fs = []
                 root_var = Var(root)
                 root_traces = subheap_dict[root]
                 common_subheap_children = (
-                    set.intersection(*(map(lambda (children, _): set(children),
+                    set.intersection(*(map(lambda (children, _2, _3): set(children),
                                            root_traces)))
                     - set([root_var]))
                 debug(list(common_subheap_children))
+                if all(len(subheap.dom) == 0  for (_1, _2, subheap) in root_traces):
+                    root_fs.append(HEmp())
+                else:
+                    if all(len(subheap.dom) == 1  for (_1, _2, subheap) in root_traces):
+                        pass
 
     @classmethod
     def infer(self, sh):
