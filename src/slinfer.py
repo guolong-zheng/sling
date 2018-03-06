@@ -25,21 +25,20 @@ class SubHeap(object):
             sub_heap.add(addr, h[addr])
         return SHModel(sh.stack, sub_heap, sh.prog)
 
-    def slinfer(self, stk_addrs_dict, sh):
-        submodel = self.mk_submodel(sh)
-        atoms = self.mk_spatial_atom(stk_addrs_dict, submodel)
-        debug(atoms)
-        return atoms
-
-    def get_vars(self, stk_addrs_dict, ty, addr):
+    @classmethod
+    def get_vars(self, stk_addrs_dict, ty, addr, get_nil = False):
         try:
             vs = map(lambda v: Var(v), stk_addrs_dict[addr])
         except:
-            vs = [VarUtil.mk_fresh()]
+            if get_nil:
+                vs = [Null()]
+            else:
+                vs = [VarUtil.mk_fresh()]
         for v in vs:
             v.typ = ty
         return vs
 
+    @classmethod
     def mk_alias(self, stk_addrs_dict, ty, addr):
         try:
             vs = map(lambda v: Var(v), stk_addrs_dict[addr])
@@ -60,6 +59,12 @@ class SubHeap(object):
         else:
             aliasing_cond = reduce(lambda c1, c2: PConj(c1, c2), eqs)
         return x, aliasing_cond
+
+    def slinfer(self, stk_addrs_dict, sh):
+        submodel = self.mk_submodel(sh)
+        atoms = self.mk_spatial_atom(stk_addrs_dict, submodel)
+        debug(atoms)
+        return atoms
 
     def mk_spatial_atom(self, stk_addrs_dict, sh):
         h = sh.heap
@@ -127,16 +132,17 @@ class SubHeap(object):
         assert len(ptr_params) > 0
 
         root_param = ptr_params[0]
-        root_args  = self.get_vars(stk_addrs_dict, root_param.typ, self.root)
+        root_args = self.get_vars(stk_addrs_dict, root_param.typ, self.root)
         root_ssts = map(lambda root_arg: (root_param, root_arg), root_args)
 
         no_dups_non_nil_children = list(set(self.children) - set([self.root]) - set([Const.nil_addr]))
         if len(no_dups_non_nil_children) < len(ptr_params) - 1:
             num_fresh_vars = len(ptr_params) - 1 - len(no_dups_non_nil_children)
-            fresh_vars_dump_addr = -1
-            no_dups_non_nil_children.extend([fresh_vars_dump_addr] * num_fresh_vars)
+            fresh_vars_dummy_addr = -1
+            no_dups_non_nil_children.extend([fresh_vars_dummy_addr] * num_fresh_vars)
 
-        children_permutations = sorted(set(itertools.permutations(no_dups_non_nil_children, len(ptr_params) - 1)))
+        children_permutations = sorted(set(
+            itertools.permutations(no_dups_non_nil_children, len(ptr_params) - 1)))
         ptr_ssts = []
         for perm in children_permutations:
             ptr_args_perm = map(lambda addr: self.get_vars(stk_addrs_dict, None, addr), list(perm))
@@ -175,6 +181,44 @@ class SubHeap(object):
 
 class SLInfer(object):
     @classmethod
+    def infer_location(self, traces):
+        if not traces:
+            return []
+        else:
+            stk_vars = []
+            for trace in traces:
+                stk_vars.extend(trace.stack.keys())
+            stk_vars = list(set(stk_vars))
+
+            subheap_dict = {}
+            for trace in traces:
+                s = trace.stack
+                h = trace.heap
+                stk_addrs_dict = self.collect_addrs_from_stk(s)
+                stk_addrs = stk_addrs_dict.keys()
+                heap_partitions = self.partition_heap(h, stk_addrs)
+                for subheap in heap_partitions:
+                    stk_vars = stk_addrs_dict[subheap.root]
+                    stk_children = List.flatten(
+                        map(lambda child: SubHeap.get_vars(stk_addrs_dict, None,
+                                                           child, get_nil = True),
+                            subheap.children))
+                    # debug(stk_children)
+                    for v in stk_vars:
+                        List.add_lst_dict(subheap_dict, v, (stk_children, subheap))
+
+            for root in subheap_dict:
+                # debug(root)
+                # debug(subheap_dict[root])
+                root_var = Var(root)
+                root_traces = subheap_dict[root]
+                common_subheap_children = (
+                    set.intersection(*(map(lambda (children, _): set(children),
+                                           root_traces)))
+                    - set([root_var]))
+                debug(list(common_subheap_children))
+
+    @classmethod
     def infer(self, sh):
         stk_addrs_dict = self.collect_addrs_from_stk(sh.stack)
         stk_addrs = stk_addrs_dict.keys()
@@ -197,10 +241,7 @@ class SLInfer(object):
             a = stk[v]
             if isinstance(a, Addr):
                 val = a.val
-                if val not in stk_addrs_dict:
-                    stk_addrs_dict[val] = [v]
-                else:
-                    stk_addrs_dict[val].append(v)
+                List.add_lst_dict(stk_addrs_dict, val, v)
         return stk_addrs_dict
 
     @classmethod
@@ -223,7 +264,7 @@ class SLInfer(object):
                     group = self._split_heap(h, start, stk_addrs, marked_addrs)
                     groups.append(group)
                     marked_addrs.extend(group.dom)
-            # debug(groups)
+            debug(groups)
             return(groups)
 
     @classmethod

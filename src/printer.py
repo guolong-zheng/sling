@@ -25,4 +25,4 @@ class Printer(object):
         elems = []
         for k in obj:
             elems.append(self.str_of(k) + ': ' + self.str_of((obj[k])))
-        return '{' + ('\n'.join(elems)) + '}'
+        return '{\n' + ('\n'.join(elems)) + '}'

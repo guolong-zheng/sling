@@ -67,42 +67,125 @@ def test():
          z = 0xA002;
          """
 
-    t3 = r"""
-         a = 0x0674554921088;
-         b = 0x0674554921344;
-         curr = 0x0674554921088;
+    t3a = r"""
+          a = 0x0674554921088;
+          b = 0x0674554921344;
+          curr = 0x0674554921088;
 
-         0x0674554921088 -> node{next:0x0674554921104; prev:nil};
-         0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
-         0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
-         0x0674554921328 -> node{next:nil; prev:0x0674554921120};
+          0x0674554921088 -> node{next:0x0674554921104; prev:nil};
+          0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
+          0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
+          0x0674554921328 -> node{next:nil; prev:0x0674554921120};
 
-         0x0674554921344 -> node{next:0x0674554921360; prev:nil};
-         0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
-         0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
-         0x0674554921392 -> node{next:nil; prev:0x0674554921376};
-         """
+          0x0674554921344 -> node{next:0x0674554921360; prev:nil};
+          0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
+          0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
+          0x0674554921392 -> node{next:nil; prev:0x0674554921376};
+          """
+
+    t3b = r"""
+          a = 0x0674554921088;
+          b = 0x0674554921344;
+          curr = 0x0674554921104;
+
+          0x0674554921088 -> node{next:0x0674554921104; prev:nil};
+
+          0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
+          0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
+          0x0674554921328 -> node{next:nil; prev:0x0674554921120};
+
+          0x0674554921344 -> node{next:0x0674554921360; prev:nil};
+          0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
+          0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
+          0x0674554921392 -> node{next:nil; prev:0x0674554921376};
+          """
+
+    t3c = r"""
+          a = 0x0674554921088;
+          b = 0x0674554921344;
+          curr = 0x0674554921120;
+
+          0x0674554921088 -> node{next:0x0674554921104; prev:nil};
+          0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
+
+          0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
+          0x0674554921328 -> node{next:nil; prev:0x0674554921120};
+
+          0x0674554921344 -> node{next:0x0674554921360; prev:nil};
+          0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
+          0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
+          0x0674554921392 -> node{next:nil; prev:0x0674554921376};
+          """
+
+    t3d = r"""
+          a = 0x001;
+          b = 0x005;
+          curr = 0x001;
+
+          0x001 -> node{next:0x002; prev:nil};
+          0x002 -> node{next:0x003; prev:0x001};
+          0x003 -> node{next:0x004; prev:0x002};
+          0x004 -> node{next:nil; prev:0x003};
+
+          0x005 -> node{next:0x006; prev:nil};
+          0x006 -> node{next:0x007; prev:0x005};
+          0x007 -> node{next:0x008; prev:0x006};
+          0x008 -> node{next:nil; prev:0x007};
+          """
+
+    t3e = r"""
+          a = 0x001;
+          b = 0x005;
+          curr = 0x002;
+
+          0x001 -> node{next:0x002; prev:nil};
+
+          0x002 -> node{next:0x003; prev:0x001};
+          0x003 -> node{next:0x004; prev:0x002};
+          0x004 -> node{next:nil; prev:0x003};
+
+          0x005 -> node{next:0x006; prev:nil};
+          0x006 -> node{next:0x007; prev:0x005};
+          0x007 -> node{next:0x008; prev:0x006};
+          0x008 -> node{next:nil; prev:0x007};
+          """
+
+    t3f = r"""
+          a = 0x001;
+          b = 0x005;
+          curr = 0x003;
+
+          0x001 -> node{next:0x002; prev:nil};
+          0x002 -> node{next:0x003; prev:0x001};
+          0x003 -> node{next:0x004; prev:0x002};
+
+          0x004 -> node{next:nil; prev:0x003};
+
+          0x005 -> node{next:0x006; prev:nil};
+          0x006 -> node{next:0x007; prev:0x005};
+          0x007 -> node{next:0x008; prev:0x006};
+          0x008 -> node{next:nil; prev:0x007};
+          """
+
+    t3g = r"""
+          a = 0x001;
+          b = 0x005;
+          curr = 0x004;
+
+          0x001 -> node{next:0x002; prev:nil};
+          0x002 -> node{next:0x003; prev:0x001};
+          0x003 -> node{next:0x004; prev:0x002};
+          0x004 -> node{next:nil; prev:0x003};
+
+          0x005 -> node{next:0x006; prev:nil};
+          0x006 -> node{next:0x007; prev:0x005};
+          0x007 -> node{next:0x008; prev:0x006};
+          0x008 -> node{next:nil; prev:0x007};
+          """
 
     t4 = r"""
          a = 0x1;
          0x1 -> node{next:nil; prev:nil};
-         """
-
-    t5 = r"""
-         a = 0x0674554921088;
-         b = 0x0674554921344;
-         curr = 0x0674554921104;
-
-         0x0674554921088 -> node{next:0x0674554921104; prev:nil};
-
-         0x0674554921104 -> node{next:0x0674554921120; prev:0x0674554921088};
-         0x0674554921120 -> node{next:0x0674554921328; prev:0x0674554921104};
-         0x0674554921328 -> node{next:nil; prev:0x0674554921120};
-
-         0x0674554921344 -> node{next:0x0674554921360; prev:nil};
-         0x0674554921360 -> node{next:0x0674554921376; prev:0x0674554921344};
-         0x0674554921376 -> node{next:0x0674554921392; prev:0x0674554921360};
-         0x0674554921392 -> node{next:nil; prev:0x0674554921376};
          """
 
     # form = "x->node{z-1, u}"
@@ -129,7 +212,7 @@ def test():
     f14 = 'a->node{nil, nil}'
 
     defn = d2
-    traces = t5
+    trace = t3e
     form = f13
 
     seplogic_parser = SepLogicParser()
@@ -152,14 +235,14 @@ def test():
     debug(tf)
 
     trace_parser = TraceParser()
-    traces_ast = trace_parser.sh_parser.parse(traces)
-    # debug(traces_ast)
-    # debug(traces_ast.pretty())
-    sh = trace_parser.transform(traces_ast)
+    trace_ast = trace_parser.sh_parser.parse(trace)
+    # debug(trace_ast)
+    # debug(trace_ast.pretty())
+    sh = trace_parser.transform(trace_ast)
     s = sh.stack
     h = sh.heap
     sh.add_prog(tprog)
-    debug(sh.prog)
+    # debug(sh.prog)
 
     # rctx = sh.satisfy(tf)
     # debug(rctx)
@@ -171,6 +254,14 @@ def test():
 
     ff = SLInfer.infer(sh)
     debug(ff)
+
+    traces = [t3d, t3e, t3f, t3g]
+    sh_lst = []
+    for trace in traces:
+        trace_ast = trace_parser.sh_parser.parse(trace)
+        sh = trace_parser.transform(trace_ast)
+        sh_lst.append(sh)
+    fs = SLInfer.infer_location(sh_lst)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))

@@ -100,5 +100,16 @@ class List(object):
     def flatten(self, l):
         return [item for sublist in l for item in sublist]
 
+    @classmethod
+    def remove_dups(self, l):
+        return list(set(l))
+
+    @classmethod
+    def add_lst_dict(self, d, k, v):
+        if k in d:
+            d[k].append(v)
+        else:
+            d[k] = [v] 
+
 class Const(object):
     nil_addr = 0

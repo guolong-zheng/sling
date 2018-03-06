@@ -156,6 +156,15 @@ class Null(HExpr):
     def __fv__(self):
         return set()
 
+    def __eq__(self, other):
+        return isinstance(other, Null)
+
+    def __ne__(self, other):
+        return not isinstance(other, Null)
+
+    def __hash__(self):
+        return hash(self.__str__())
+
 class Var(PExpr, HExpr):
     def __init__(self, id, is_primed = False, typ = None):
         self.id = id
@@ -176,10 +185,16 @@ class Var(PExpr, HExpr):
         return (id + ('\'' if self.is_primed else '') + typ)
 
     def __eq__(self, other):
-        return self.id == other.id
+        if isinstance(other, Var):
+            return self.id == other.id
+        else:
+            return False
 
-    def __eq__(self, other):
+    def __ne__(self, other):
         return self.id != other.id
+
+    def __hash__(self):
+        return hash(self.__str__())
 
     def __fv__(self):
         s = set()
