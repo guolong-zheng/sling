@@ -179,16 +179,24 @@ class SubHeap(object):
         debug(fs)
         return fs
 
+class MetaSubHeap(object):
+    def __init__(self, root_id, stk_addrs_dict, root_child_vars, sh, subheap):
+        self.root_id = root_id
+        self.stk_addrs_dict = stk_addrs_dict
+        self.root_child_vars = root_child_vars
+        self.sh = sh
+        self.subheap = subheap
+
 class SLInfer(object):
     @classmethod
     def infer_location(self, sh_lst):
         if not sh_lst:
             return []
         else:
-            stk_vars = []
+            stk_ids = []
             for sh in sh_lst:
-                stk_vars.extend(sh.stack.keys())
-            stk_vars = list(set(stk_vars))
+                stk_ids.extend(sh.stack.keys())
+            stk_ids = List.remove_dups(stk_ids)
 
             subheap_dict = {}
             for sh in sh_lst:
@@ -198,29 +206,101 @@ class SLInfer(object):
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
                 for subheap in heap_partitions:
-                    stk_vars = stk_addrs_dict[subheap.root]
-                    stk_children = List.flatten(
+                    root_ids = stk_addrs_dict[subheap.root]
+                    root_child_vars = List.flatten(
                         map(lambda child: SubHeap.get_vars(stk_addrs_dict, None,
                                                            child, get_nil = True),
                             subheap.children))
-                    # debug(stk_children)
-                    for root in stk_vars:
-                        List.add_lst_dict(subheap_dict, root, (stk_children, sh, subheap))
+                    # debug(root_child_vars)
+                    for root_id in root_ids:
+                        List.add_lst_dict(subheap_dict, root_id,
+                                          MetaSubHeap(root_id, stk_addrs_dict,
+                                                      root_child_vars, sh, subheap))
 
-            for root in subheap_dict:
+            for root_id in subheap_dict:
                 root_fs = []
-                root_var = Var(root)
-                root_traces = subheap_dict[root]
-                common_subheap_children = (
-                    set.intersection(*(map(lambda (children, _2, _3): set(children),
-                                           root_traces)))
+                root_var = Var(root_id)
+                root_meta_lst = subheap_dict[root_id]
+                common_root_children = (
+                    set.intersection(*(map(lambda meta: set(meta.root_child_vars),
+                                           root_meta_lst)))
                     - set([root_var]))
-                debug(list(common_subheap_children))
-                if all(len(subheap.dom) == 0  for (_1, _2, subheap) in root_traces):
-                    root_fs.append(HEmp())
-                else:
-                    if all(len(subheap.dom) == 1  for (_1, _2, subheap) in root_traces):
+                debug(root_id)
+                debug(list(common_root_children))
+                if (len(root_meta_lst) == len(sh_lst) and
+                    all(len(meta.subheap.dom) == 1 for meta in root_meta_lst)):
+                    self.infer_singleton(root_id, root_meta_lst)
+
+    @classmethod
+    def infer_singleton(self, root_id, root_meta_lst):
+        debug(root_id)
+        debug(root_meta_lst)
+        if not root_meta_lst:
+            return []
+        else:
+            root_typ_lst = []
+            root_args_lst = []
+            for meta in root_meta_lst:
+                root = meta.sh.stack[root_id]
+                root_typ, root_args = meta.sh.heap[root.val]
+                root_arg_vars_lst = []
+                for root_arg in root_args:
+                    if isinstance(root_arg, PtrField):
+                        root_arg_vars = SubHeap.get_vars(meta.stk_addrs_dict, None,
+                                                         root_arg.data.val, get_nil = True)
+                        root_arg_vars_lst.append(root_arg_vars)
+                    else:
+                        root_arg_vars_lst.append(root_arg)
+                root_typ_lst.append(root_typ)
+                root_args_lst.append(root_arg_vars_lst)
+            # debug(root_typ_lst)
+            # debug(root_args_lst)
+
+            # Check if all root_typ are the same
+            root_typ = root_typ_lst[0]
+            is_same_root_typ = root_typ_lst.count(root_typ) == len(root_typ_lst)
+            if not is_same_root_typ:
+                return []
+            else:
+                root_var = Var(root_id)
+                root_var.typ = Type.typ(root_typ)
+                prog = root_meta_lst[0].sh.prog
+                # debug(prog)
+                data_defn = prog.lookup(root_typ)
+                arg_typ_lst = map(lambda field: Type.typ(field.typ), data_defn.fields)
+                root_args_groups = zip(*root_args_lst)
+                debug(root_args_groups)
+                common_args = []
+                exists_vars = []
+                for (arg_typ, args_group) in zip(arg_typ_lst, root_args_groups):
+                    if isinstance(arg_typ, TData):
+                        arg_vars = list(set.intersection(*(
+                            map(lambda ag: set(ag), args_group))))
+                        if not arg_vars:
+                            arg = VarUtil.mk_fresh()
+                            arg.typ = arg_typ
+                            common_args.append([arg])
+                            exists_vars.append(arg)
+                        else:
+                            for arg in arg_vars:
+                                arg.typ = arg_typ
+                            common_args.append(arg_vars)
+                    else:
+                        arg = VarUtil.mk_fresh()
+                        arg.typ = arg_typ
+                        common_arg.append([arg])
+                        exists_args.append(arg)
+                args_lst = list(itertools.product(*common_args))
+                pdata_lst = []
+                for args in args_lst:
+                    pdata = HData(root_var, root_typ, args)
+                    if exists_vars:
+                        pdata = FExists(exists_vars, pdata.mk_conj(BConst(True)))
+                    else:
                         pass
+                    debug(pdata)
+                    pdata_lst.append(pdata)
+            return pdata_lst
 
     @classmethod
     def infer(self, sh):

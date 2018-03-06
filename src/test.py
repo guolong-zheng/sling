@@ -188,6 +188,37 @@ def test():
          0x1 -> node{next:nil; prev:nil};
          """
 
+    s1a = r"""
+          a = 0x001;
+          b = 0x002;
+          c = 0x003;
+
+          0x001 -> node{next:0x001; prev:nil};
+          """
+
+    s1b = r"""
+          a = 0x002;
+          b = 0x002;
+          c = 0x001;
+
+          0x001 -> node{next:0x002; prev:nil};
+          0x002 -> node{next:0x001; prev:0x001};
+          """
+
+    s2a = r"""
+          a = 0x001;
+          b = 0x001;
+
+          0x001 -> node{next:0x001; prev:nil};
+          """
+
+    s2b = r"""
+          a = 0x001;
+          b = 0x001;
+
+          0x001 -> node{next:0x002; prev:nil};
+          """
+
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
     #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
@@ -255,11 +286,12 @@ def test():
     # ff = SLInfer.infer(sh)
     # debug(ff)
 
-    traces = [t3d, t3e, t3f, t3g]
+    traces = [s2a, s2b]
     sh_lst = []
     for trace in traces:
         trace_ast = trace_parser.sh_parser.parse(trace)
         sh = trace_parser.transform(trace_ast)
+        sh.add_prog(tprog)
         sh_lst.append(sh)
     fs = SLInfer.infer_location(sh_lst)
 
