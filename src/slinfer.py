@@ -205,6 +205,7 @@ class SLInfer(object):
                 stk_addrs_dict = self.collect_addrs_from_stk(s)
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
+                debug(heap_partitions)
                 for subheap in heap_partitions:
                     root_ids = stk_addrs_dict[subheap.root]
                     root_child_vars = List.flatten(

@@ -286,7 +286,7 @@ def test():
     # ff = SLInfer.infer(sh)
     # debug(ff)
 
-    traces = [s2a, s2b]
+    traces = [t3d, t3e, t3f, t3g]
     sh_lst = []
     for trace in traces:
         trace_ast = trace_parser.sh_parser.parse(trace)
