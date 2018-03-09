@@ -221,6 +221,32 @@ class SLInfer(object):
                                                 child_vars, sh, subheap))
                 debug(subheaps)
                 subheaps_lst.append(subheaps)
+            self.collect_children(subheaps_lst)
+
+    @classmethod
+    def collect_children(self, subheaps_lst):
+        children_dict = {}
+        for subheaps in subheaps_lst:
+            for subheap in subheaps:
+                for root_id in subheap.root_ids:
+                    List.add_lst_dict(children_dict, root_id, subheap.child_vars)
+        
+        for root_id in children_dict:
+            debug(root_id)
+            children_lst = children_dict[root_id]
+            lst_of_children = list(itertools.product(*children_lst))
+            no_dups_children = map(lambda children: list(set.intersection(*(map(lambda vs: set(vs), children)))
+                                                     - set([Var(root_id)])),
+                                   lst_of_children)
+            no_dups_children.sort(key=len, reverse=True)
+            no_subset_children = []
+            for children in no_dups_children:
+                if not(any(set.issubset(set(children), set(s))
+                           for s in no_subset_children)):
+                    no_subset_children.append(children)
+            children_dict[root_id] = no_subset_children
+
+        debug(children_dict)
 
             # for root_id in subheap_dict:
             #     root_fs = []
