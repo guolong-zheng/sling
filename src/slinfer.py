@@ -180,12 +180,17 @@ class SubHeap(object):
         return fs
 
 class MetaSubHeap(object):
-    def __init__(self, root_id, stk_addrs_dict, root_child_vars, sh, subheap):
-        self.root_id = root_id
+    def __init__(self, root_ids, stk_addrs_dict, child_vars, sh, subheap):
+        self.root_ids = root_ids
         self.stk_addrs_dict = stk_addrs_dict
-        self.root_child_vars = root_child_vars
+        self.child_vars = child_vars
         self.sh = sh
         self.subheap = subheap
+
+    def __str__(self):
+        return (Printer.str_of_list(self.root_ids) + ': ' +
+                Printer.str_of_list(self.child_vars) + '\n' +
+                str(self.subheap))
 
 class SLInfer(object):
     @classmethod
@@ -193,12 +198,7 @@ class SLInfer(object):
         if not sh_lst:
             return []
         else:
-            stk_ids = []
-            for sh in sh_lst:
-                stk_ids.extend(sh.stack.keys())
-            stk_ids = List.remove_dups(stk_ids)
-
-            subheap_dict = {}
+            subheaps_lst = []
             for sh in sh_lst:
                 s = sh.stack
                 h = sh.heap
@@ -206,31 +206,35 @@ class SLInfer(object):
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
                 debug(heap_partitions)
+                subheaps = []
                 for subheap in heap_partitions:
                     root_ids = stk_addrs_dict[subheap.root]
-                    root_child_vars = List.flatten(
-                        map(lambda child: SubHeap.get_vars(stk_addrs_dict, None,
-                                                           child, get_nil = True),
-                            subheap.children))
-                    # debug(root_child_vars)
-                    for root_id in root_ids:
-                        List.add_lst_dict(subheap_dict, root_id,
-                                          MetaSubHeap(root_id, stk_addrs_dict,
-                                                      root_child_vars, sh, subheap))
+                    # debug(root_ids)
+                    child_vars = map(lambda child:
+                                     SubHeap.get_vars(stk_addrs_dict, None,
+                                                      child, get_nil = True),
+                                     subheap.children)
+                    child_vars = map(lambda vs: List.remove_dups(vs),
+                                     list(itertools.product(*child_vars)))
+                    # debug(child_vars)
+                    subheaps.append(MetaSubHeap(root_ids, stk_addrs_dict,
+                                                child_vars, sh, subheap))
+                debug(subheaps)
+                subheaps_lst.append(subheaps)
 
-            for root_id in subheap_dict:
-                root_fs = []
-                root_var = Var(root_id)
-                root_meta_lst = subheap_dict[root_id]
-                common_root_children = (
-                    set.intersection(*(map(lambda meta: set(meta.root_child_vars),
-                                           root_meta_lst)))
-                    - set([root_var]))
-                debug(root_id)
-                debug(list(common_root_children))
-                if (len(root_meta_lst) == len(sh_lst) and
-                    all(len(meta.subheap.dom) == 1 for meta in root_meta_lst)):
-                    self.infer_singleton(root_id, root_meta_lst)
+            # for root_id in subheap_dict:
+            #     root_fs = []
+            #     root_var = Var(root_id)
+            #     root_meta_lst = subheap_dict[root_id]
+            #     common_root_children = (
+            #         set.intersection(*(map(lambda meta: set(meta.root_child_vars),
+            #                                root_meta_lst)))
+            #         - set([root_var]))
+            #     debug(root_id)
+            #     debug(list(common_root_children))
+            #     if (len(root_meta_lst) == len(sh_lst) and
+            #         all(len(meta.subheap.dom) == 1 for meta in root_meta_lst)):
+            #         self.infer_singleton(root_id, root_meta_lst)
 
     @classmethod
     def infer_singleton(self, root_id, root_meta_lst):
@@ -349,7 +353,7 @@ class SLInfer(object):
                     group = self._split_heap(h, start, stk_addrs, marked_addrs)
                     groups.append(group)
                     marked_addrs.extend(group.dom)
-            debug(groups)
+            # debug(groups)
             return(groups)
 
     @classmethod
