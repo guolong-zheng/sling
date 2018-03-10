@@ -181,6 +181,7 @@ class SubHeap(object):
 
 class MetaSubHeap(object):
     def __init__(self, root_ids, stk_addrs_dict, child_vars, sh, subheap):
+        self.meta_id = Const.mk_fresh()
         self.root_ids = root_ids
         self.stk_addrs_dict = stk_addrs_dict
         self.child_vars = child_vars
@@ -188,7 +189,8 @@ class MetaSubHeap(object):
         self.subheap = subheap
 
     def __str__(self):
-        return (Printer.str_of_list(self.root_ids) + ': ' +
+        return ('(' + str(self.meta_id) + ') ' +
+                Printer.str_of_list(self.root_ids) + ': ' +
                 Printer.str_of_list(self.child_vars) + '\n' +
                 str(self.subheap))
 
@@ -221,7 +223,28 @@ class SLInfer(object):
                                                 child_vars, sh, subheap))
                 debug(subheaps)
                 subheaps_lst.append(subheaps)
-            self.collect_children(subheaps_lst)
+            children_dict = self.collect_children(subheaps_lst)
+            for root_id in children_dict:
+                root_subheaps = []
+                for subheaps in subheaps_lst:
+                    root_subheap = self.extract_root_subheap(root_id, subheaps)
+                    root_subheaps.extend(root_subheap)
+                debug(root_id)
+                debug(root_subheaps)
+
+    @classmethod
+    def extract_root_subheap(self, root_id, subheaps):
+        root_subheaps = []
+        for meta in subheaps:
+            if root_id in meta.root_ids:
+                clone_meta = copy.deepcopy(meta)
+                root_subheaps.append(clone_meta)
+                meta.root_ids.remove(root_id)
+                if not meta.root_ids:
+                    subheaps.remove(meta)
+                else:
+                    meta.subheap.dom = []
+        return root_subheaps
 
     @classmethod
     def collect_children(self, subheaps_lst):
@@ -230,7 +253,7 @@ class SLInfer(object):
             for subheap in subheaps:
                 for root_id in subheap.root_ids:
                     List.add_lst_dict(children_dict, root_id, subheap.child_vars)
-        
+
         for root_id in children_dict:
             debug(root_id)
             children_lst = children_dict[root_id]
@@ -245,8 +268,9 @@ class SLInfer(object):
                            for s in no_subset_children)):
                     no_subset_children.append(children)
             children_dict[root_id] = no_subset_children
-
         debug(children_dict)
+        return children_dict
+
 
             # for root_id in subheap_dict:
             #     root_fs = []

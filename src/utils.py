@@ -113,3 +113,10 @@ class List(object):
 
 class Const(object):
     nil_addr = 0
+    fid = 0
+
+    @classmethod
+    def mk_fresh(self):
+        self.fid = self.fid + 1
+        return self.fid
+
