@@ -207,7 +207,7 @@ class SLInfer(object):
                 stk_addrs_dict = self.collect_addrs_from_stk(s)
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
-                debug(heap_partitions)
+                # debug(heap_partitions)
                 subheaps = []
                 for subheap in heap_partitions:
                     root_ids = stk_addrs_dict[subheap.root]
@@ -221,7 +221,7 @@ class SLInfer(object):
                     # debug(child_vars)
                     subheaps.append(MetaSubHeap(root_ids, stk_addrs_dict,
                                                 child_vars, sh, subheap))
-                debug(subheaps)
+                # debug(subheaps)
                 subheaps_lst.append(subheaps)
             children_dict = self.collect_children(subheaps_lst)
             for root_id in children_dict:
@@ -229,20 +229,20 @@ class SLInfer(object):
                 for subheaps in subheaps_lst:
                     root_subheap = self.extract_root_subheap(root_id, subheaps)
                     root_subheaps.extend(root_subheap)
-                debug(root_id)
-                debug(root_subheaps)
+                # debug(root_id)
+                # debug(root_subheaps)
                 root_children = children_dict[root_id]
                 self.infer_pred_lst(prog, root_id, root_children, root_subheaps)
 
     @classmethod
     def infer_pred_lst(self, prog, root_id, root_children, root_subheaps):
-        debug(root_children)
+        # debug(root_children)
         pred_lst = []
         for pred_defn in prog.pred_defn_lst:
             preds = self.infer_pred(prog, pred_defn, root_id,
                                     root_children, root_subheaps)
             pred_lst.extend(preds)
-        debug(pred_lst)
+        # debug(pred_lst)
         return pred_lst
 
     @classmethod
@@ -269,7 +269,7 @@ class SLInfer(object):
             if len(children) < len(ptr_params) - 1:
                 num_fresh_vars = len(ptr_params) - 1 - len(children)
                 children.extend([fresh_vars_dummy_addr] * num_fresh_vars)
-        debug(root_children)
+        # debug(root_children)
 
         ptr_args_lst = []
         for children in root_children:
@@ -281,7 +281,7 @@ class SLInfer(object):
                            if arg == fresh_vars_dummy_addr else arg, perm)
                 perms.append(perm)
             ptr_args_lst.extend(perms)
-        debug(ptr_args_lst)
+        # debug(ptr_args_lst)
 
         ptr_sst_lst = map(lambda ptr_args: zip(ptr_params[1:], ptr_args),
                           ptr_args_lst)
@@ -293,16 +293,16 @@ class SLInfer(object):
         stk_ids = [root_id] + map(lambda v: v.id,
                                   filter(lambda v: isinstance(v, Var),
                                          List.flatten(root_children)))
-        debug(stk_ids)
+        # debug(stk_ids)
         fs = []
         for sst in sst_lst:
             pred = pred_template.subst(sst)
             fbase = FBase(pred, BConst(True))
-            debug(fbase)
+            # debug(fbase)
             exists_vars = map(lambda vid: Var(vid),
                               filter(lambda vid: vid not in stk_ids,
                                      fbase.fv()))
-            debug(exists_vars)
+            # debug(exists_vars)
             if exists_vars:
                 f = FExists(exists_vars, fbase)
             else:
@@ -312,12 +312,12 @@ class SLInfer(object):
                 submodel = meta.subheap.mk_submodel(meta.sh)
                 r = r and (submodel.satisfy(f))
             if r:
-                debug(f)
+                fs.append(f)
             # if all(subheap.sh.satisfy(f) for subheap in root_subheaps):
             #     debug(f)
             #     fs.append(f)
         debug(fs)
-        return []
+        return fs
 
     @classmethod
     def extract_root_subheap(self, root_id, subheaps):
@@ -342,7 +342,7 @@ class SLInfer(object):
                     List.add_lst_dict(children_dict, root_id, subheap.child_vars)
 
         for root_id in children_dict:
-            debug(root_id)
+            # debug(root_id)
             children_lst = children_dict[root_id]
             lst_of_children = list(itertools.product(*children_lst))
             no_dups_children = map(lambda children: list(set.intersection(*(map(lambda vs: set(vs), children)))
@@ -355,7 +355,7 @@ class SLInfer(object):
                            for s in no_subset_children)):
                     no_subset_children.append(children)
             children_dict[root_id] = no_subset_children
-        debug(children_dict)
+        # debug(children_dict)
         return children_dict
 
 
@@ -375,8 +375,8 @@ class SLInfer(object):
 
     @classmethod
     def infer_singleton(self, root_id, root_meta_lst):
-        debug(root_id)
-        debug(root_meta_lst)
+        # debug(root_id)
+        # debug(root_meta_lst)
         if not root_meta_lst:
             return []
         else:
@@ -411,7 +411,7 @@ class SLInfer(object):
                 data_defn = prog.lookup(root_typ)
                 arg_typ_lst = map(lambda field: Type.typ(field.typ), data_defn.fields)
                 root_args_groups = zip(*root_args_lst)
-                debug(root_args_groups)
+                # debug(root_args_groups)
                 common_args = []
                 exists_vars = []
                 for (arg_typ, args_group) in zip(arg_typ_lst, root_args_groups):
@@ -440,7 +440,7 @@ class SLInfer(object):
                         pdata = FExists(exists_vars, pdata.mk_conj(BConst(True)))
                     else:
                         pass
-                    debug(pdata)
+                    # debug(pdata)
                     pdata_lst.append(pdata)
             return pdata_lst
 
