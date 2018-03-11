@@ -267,8 +267,8 @@ def test():
     # debug(prog)
     debug(tprog)
     tf = type_infer.infer(f)
-    debug(f)
-    debug(tf)
+    # debug(f)
+    # debug(tf)
 
     trace_parser = TraceParser()
     trace_ast = trace_parser.sh_parser.parse(trace)
@@ -298,7 +298,7 @@ def test():
         sh = trace_parser.transform(trace_ast)
         sh.add_prog(tprog)
         sh_lst.append(sh)
-    # fs = SLInfer.infer_location(tprog, sh_lst)
+    fs = SLInfer.infer_location(tprog, sh_lst)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))

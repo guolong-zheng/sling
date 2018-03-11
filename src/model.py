@@ -229,7 +229,7 @@ class SHModel(object):
     def satisfy(self, f):
         ctx = BConst(True)
         rctx = self._satisfy(ctx, f)
-        debug(rctx)
+        # debug(rctx)
         return bool(rctx)
 
     def classic_satisfy(self, f):
@@ -309,7 +309,7 @@ class SHModel(object):
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
-        debug(sst_pred_defn)
+        # debug(sst_pred_defn)
 
         # nctx = []
         # for case in sst_pred_defn.cases:
@@ -346,9 +346,9 @@ class SHModel(object):
         for dp in (hdata_lst + hpred_lst):
             rcx = []
             for (cx, sh) in rctx:
-                debug(dp)
+                # debug(dp)
                 r = sh._satisfy(cx, dp)
-                debug(r)
+                # debug(r)
                 rcx.extend(r)
             rctx = rcx
         return rctx

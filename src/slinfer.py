@@ -63,7 +63,7 @@ class SubHeap(object):
     def slinfer(self, stk_addrs_dict, sh):
         submodel = self.mk_submodel(sh)
         atoms = self.mk_spatial_atom(stk_addrs_dict, submodel)
-        debug(atoms)
+        # debug(atoms)
         return atoms
 
     def mk_spatial_atom(self, stk_addrs_dict, sh):
@@ -241,12 +241,10 @@ class SLInfer(object):
             fs = []
             for conj_preds in itertools.product(*root_preds_lst):
                 f = reduce(lambda f1, f2: f1.mk_conj(f2), conj_preds)
-                debug('check')
-                debug(f)
-                if all(sh.satisfy(f) for sh in sh_lst):
+                # debug(f)
+                if all(sh.classic_satisfy(f) for sh in sh_lst):
                     fs.append(f)
             debug(fs)
-
 
     @classmethod
     def infer_pred_lst(self, prog, root_id, root_children, root_subheaps):
@@ -321,19 +319,17 @@ class SLInfer(object):
                 f = FExists(exists_vars, fbase)
             else:
                 f = fbase
-            debug(f)
+            # debug(f)
             r = True
             for meta in root_subheaps:
                 submodel = meta.subheap.mk_submodel(meta.sh)
-                sat = submodel.satisfy(f)
-                debug(sat)
                 r = r and (submodel.satisfy(f))
             if r:
                 fs.append(f)
             # if all(subheap.sh.satisfy(f) for subheap in root_subheaps):
             #     debug(f)
             #     fs.append(f)
-        debug(fs)
+        # debug(fs)
         return fs
 
     @classmethod
