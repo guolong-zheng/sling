@@ -42,9 +42,7 @@ class Store(object):
         return v in self.store
 
     def clone(self):
-        copy = Store()
-        copy.store = self.store.copy()
-        return copy
+        return copy.deepcopy(self)
 
     def update(self, another_store):
         self.store.update(another_store.store)
@@ -103,7 +101,7 @@ class Stack(Store):
 
     def clone(self):
         stack = Stack()
-        stack.store = self.store.copy()
+        stack.store = copy.copy(self.store)
         return stack
 
     # Evaluation expressions to values
@@ -225,14 +223,13 @@ class SHModel(object):
     def clone(self):
         s = self.stack.clone()
         h = self.heap.clone()
-        sh = SHModel(s, h)
-        sh.add_prog(self.prog)
+        sh = SHModel(s, h, self.prog)
         return sh
 
     def satisfy(self, f):
         ctx = BConst(True)
         rctx = self._satisfy(ctx, f)
-        # debug(rctx)
+        debug(rctx)
         return bool(rctx)
 
     def classic_satisfy(self, f):
@@ -269,6 +266,8 @@ class SHModel(object):
         else:
             try:
                 root = s.eval(f.root)
+                if root == Const.nil_addr:
+                    return []
                 (typ, fields) = h.get(root)
                 if typ == f.name:
                     nh = h.clone()
@@ -310,7 +309,7 @@ class SHModel(object):
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
-        # debug(sst_pred_defn)
+        debug(sst_pred_defn)
 
         # nctx = []
         # for case in sst_pred_defn.cases:
@@ -347,7 +346,9 @@ class SHModel(object):
         for dp in (hdata_lst + hpred_lst):
             rcx = []
             for (cx, sh) in rctx:
+                debug(dp)
                 r = sh._satisfy(cx, dp)
+                debug(r)
                 rcx.extend(r)
             rctx = rcx
         return rctx

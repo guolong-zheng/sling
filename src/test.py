@@ -242,10 +242,14 @@ def test():
     f13 = 'exists u. dll(a,nil,u,nil)'
     f14 = 'a->node{nil, nil}'
     f15 = 'exists u. dll(a, nil, curr, u)'
+    f16 = 'exists u, v. dll(curr, u, v, nil)'
+    f17 = 'exists u1, u2, u3, u4, u5. dll(a, nil, u1, curr) * dll(curr, u2, u3, il) * dll(b, u4, u5, nil)'
+    f18 = 'exists u1, u2, u3, u4, u5. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil) * dll(b, u4, u5, nil)'
+    f19 = '(exists fv109, fv110, fv111, fv114, fv115. dll(a, nil, fv109, curr) * dll(b, fv110, fv111, nil) * dll(curr, fv115, fv114, nil))'
 
     defn = d2
     trace = t3d
-    form = f15
+    form = f18
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -294,7 +298,7 @@ def test():
         sh = trace_parser.transform(trace_ast)
         sh.add_prog(tprog)
         sh_lst.append(sh)
-    fs = SLInfer.infer_location(tprog, sh_lst)
+    # fs = SLInfer.infer_location(tprog, sh_lst)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))

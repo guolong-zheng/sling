@@ -224,6 +224,7 @@ class SLInfer(object):
                 # debug(subheaps)
                 subheaps_lst.append(subheaps)
             children_dict = self.collect_children(subheaps_lst)
+            root_preds_lst = []
             for root_id in children_dict:
                 root_subheaps = []
                 for subheaps in subheaps_lst:
@@ -232,7 +233,20 @@ class SLInfer(object):
                 # debug(root_id)
                 # debug(root_subheaps)
                 root_children = children_dict[root_id]
-                self.infer_pred_lst(prog, root_id, root_children, root_subheaps)
+                root_preds = self.infer_pred_lst(prog, root_id,
+                                                 root_children,
+                                                 root_subheaps)
+                root_preds_lst.append(root_preds)
+
+            fs = []
+            for conj_preds in itertools.product(*root_preds_lst):
+                f = reduce(lambda f1, f2: f1.mk_conj(f2), conj_preds)
+                debug('check')
+                debug(f)
+                if all(sh.satisfy(f) for sh in sh_lst):
+                    fs.append(f)
+            debug(fs)
+
 
     @classmethod
     def infer_pred_lst(self, prog, root_id, root_children, root_subheaps):
@@ -307,9 +321,12 @@ class SLInfer(object):
                 f = FExists(exists_vars, fbase)
             else:
                 f = fbase
+            debug(f)
             r = True
             for meta in root_subheaps:
                 submodel = meta.subheap.mk_submodel(meta.sh)
+                sat = submodel.satisfy(f)
+                debug(sat)
                 r = r and (submodel.satisfy(f))
             if r:
                 fs.append(f)
@@ -326,11 +343,11 @@ class SLInfer(object):
             if root_id in meta.root_ids:
                 clone_meta = copy.deepcopy(meta)
                 root_subheaps.append(clone_meta)
-                meta.root_ids.remove(root_id)
-                if not meta.root_ids:
-                    subheaps.remove(meta)
-                else:
-                    meta.subheap.dom = []
+                # meta.root_ids.remove(root_id)
+                # if not meta.root_ids:
+                #     subheaps.remove(meta)
+                # else:
+                #     meta.subheap.dom = []
         return root_subheaps
 
     @classmethod
