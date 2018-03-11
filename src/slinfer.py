@@ -196,7 +196,7 @@ class MetaSubHeap(object):
 
 class SLInfer(object):
     @classmethod
-    def infer_location(self, sh_lst):
+    def infer_location(self, prog, sh_lst):
         if not sh_lst:
             return []
         else:
@@ -231,6 +231,92 @@ class SLInfer(object):
                     root_subheaps.extend(root_subheap)
                 debug(root_id)
                 debug(root_subheaps)
+                root_children = children_dict[root_id]
+                self.infer_pred_lst(prog, root_id, root_children, root_subheaps)
+
+    @classmethod
+    def infer_pred_lst(self, prog, root_id, root_children, root_subheaps):
+        debug(root_children)
+        pred_lst = []
+        for pred_defn in prog.pred_defn_lst:
+            preds = self.infer_pred(prog, pred_defn, root_id,
+                                    root_children, root_subheaps)
+            pred_lst.extend(preds)
+        debug(pred_lst)
+        return pred_lst
+
+    @classmethod
+    def infer_pred(self, prog, pred_defn, root_id,
+                   root_children, root_subheaps):
+        prim_params = []
+        ptr_params = []
+        for param in pred_defn.params:
+            if isinstance(param.typ, TData):
+                ptr_params.append(param)
+            else:
+                prim_params.append(param)
+
+        prim_sst = map(lambda param: (param, VarUtil.mk_fresh(param)),
+                       prim_params)
+
+        assert len(ptr_params) > 0
+
+        root_param = ptr_params[0]
+        root_arg = Var(root_id)
+        root_sst = (root_param, root_arg)
+        fresh_vars_dummy_addr = -1
+        for children in root_children:
+            if len(children) < len(ptr_params) - 1:
+                num_fresh_vars = len(ptr_params) - 1 - len(children)
+                children.extend([fresh_vars_dummy_addr] * num_fresh_vars)
+        debug(root_children)
+
+        ptr_args_lst = []
+        for children in root_children:
+            children_permutations = set(itertools.permutations(
+                children, len(ptr_params) - 1))
+            perms = []
+            for perm in list(children_permutations):
+                perm = map(lambda arg: VarUtil.mk_fresh()
+                           if arg == fresh_vars_dummy_addr else arg, perm)
+                perms.append(perm)
+            ptr_args_lst.extend(perms)
+        debug(ptr_args_lst)
+
+        ptr_sst_lst = map(lambda ptr_args: zip(ptr_params[1:], ptr_args),
+                          ptr_args_lst)
+        sst_lst = map(lambda ptr_sst: [root_sst] + ptr_sst + prim_sst,
+                      ptr_sst_lst)
+        sst_lst = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), sst_lst)
+
+        pred_template = HPred(pred_defn.name, pred_defn.params)
+        stk_ids = [root_id] + map(lambda v: v.id,
+                                  filter(lambda v: isinstance(v, Var),
+                                         List.flatten(root_children)))
+        debug(stk_ids)
+        fs = []
+        for sst in sst_lst:
+            pred = pred_template.subst(sst)
+            fbase = FBase(pred, BConst(True))
+            debug(fbase)
+            exists_vars = map(lambda vid: Var(vid),
+                              filter(lambda vid: vid not in stk_ids,
+                                     fbase.fv()))
+            debug(exists_vars)
+            if exists_vars:
+                f = FExists(exists_vars, fbase)
+            else:
+                f = fbase
+            r = True
+            for subheap in root_subheaps:
+                r = r and (subheap.sh.satisfy(f))
+            if r:
+                debug(f)
+            # if all(subheap.sh.satisfy(f) for subheap in root_subheaps):
+            #     debug(f)
+            #     fs.append(f)
+        debug(fs)
+        return []
 
     @classmethod
     def extract_root_subheap(self, root_id, subheaps):

@@ -241,10 +241,11 @@ def test():
     f12 = 'lsd(x,y)'
     f13 = 'exists u. dll(a,nil,u,nil)'
     f14 = 'a->node{nil, nil}'
+    f15 = 'exists u. dll(a, nil, curr, u)'
 
     defn = d2
-    trace = t3e
-    form = f13
+    trace = t3d
+    form = f15
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -275,8 +276,8 @@ def test():
     sh.add_prog(tprog)
     # debug(sh.prog)
 
-    # rctx = sh.satisfy(tf)
-    # debug(rctx)
+    rctx = sh.satisfy(tf)
+    debug(rctx)
 
     # u = s.union(h)
     # debug('stack:\n' + str(s))
@@ -293,7 +294,7 @@ def test():
         sh = trace_parser.transform(trace_ast)
         sh.add_prog(tprog)
         sh_lst.append(sh)
-    fs = SLInfer.infer_location(sh_lst)
+    fs = SLInfer.infer_location(tprog, sh_lst)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))
