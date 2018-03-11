@@ -232,7 +232,7 @@ class SHModel(object):
     def satisfy(self, f):
         ctx = BConst(True)
         rctx = self._satisfy(ctx, f)
-        debug(rctx)
+        # debug(rctx)
         return bool(rctx)
 
     def classic_satisfy(self, f):

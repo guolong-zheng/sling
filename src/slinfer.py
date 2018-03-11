@@ -308,8 +308,9 @@ class SLInfer(object):
             else:
                 f = fbase
             r = True
-            for subheap in root_subheaps:
-                r = r and (subheap.sh.satisfy(f))
+            for meta in root_subheaps:
+                submodel = meta.subheap.mk_submodel(meta.sh)
+                r = r and (submodel.satisfy(f))
             if r:
                 debug(f)
             # if all(subheap.sh.satisfy(f) for subheap in root_subheaps):
