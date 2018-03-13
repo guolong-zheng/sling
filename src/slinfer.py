@@ -50,10 +50,10 @@ class SubHeap(object):
         x = vs[0]
         eqs = []
         # if addr == Const.nil_addr:
-        #     eqs.append(PBinRel(x, '=', Null()))
+        #     eqs.append(PBinRel(x, RelOp.EQ, Null()))
         # else:
         for y in vs[1:]:
-            eqs.append(PBinRel(x, '=', y))
+            eqs.append(PBinRel(x, RelOp.EQ, y))
         if not eqs:
             aliasing_cond = BConst(True)
         else:
@@ -216,6 +216,7 @@ class SLInfer(object):
                                      SubHeap.get_vars(stk_addrs_dict, None,
                                                       child, get_nil = True),
                                      subheap.children)
+                    # debug(child_vars)
                     child_vars = map(lambda vs: List.remove_dups(vs),
                                      list(itertools.product(*child_vars)))
                     # debug(child_vars)
@@ -242,9 +243,39 @@ class SLInfer(object):
             for conj_preds in itertools.product(*root_preds_lst):
                 f = reduce(lambda f1, f2: f1.mk_conj(f2), conj_preds)
                 # debug(f)
-                if all(sh.classic_satisfy(f) for sh in sh_lst):
+                classic_rctx_lst = []
+                for sh in sh_lst:
+                    rctx = sh.get_classic_ctx(f)
+                    if rctx:
+                        classic_rctx_lst.append(rctx)
+                if len(classic_rctx_lst) == len(sh_lst):
+                    f = self.infer_pure_ptr(f, classic_rctx_lst)
                     fs.append(f)
+            #     if all(sh.classic_satisfy(f) for sh in sh_lst):
+            #         fs.append(f)
             debug(fs)
+
+    @classmethod
+    def infer_pure_ptr(self, f, classic_rctx_lst):
+        if not isinstance(f, FExists):
+            return f
+        else:
+            exists_var = f.vars
+            exists_var_with_nil = exists_var + [Null()]
+            pairs = list(itertools.combinations(exists_var_with_nil, 2))
+            eq_constrs = map(lambda (v1, v2): PBinRel(v1, RelOp.EQ, v2),
+                             pairs)
+            valid_eq_constrs = filter(
+                lambda c: all(any(sh.stack.is_unsat(ctx.mk_conj(PNeg(c)))
+                                  for (ctx, sh) in sh_lst)
+                              for sh_lst in classic_rctx_lst),
+                eq_constrs)
+            if valid_eq_constrs:
+                form = f.form.mk_conj(
+                    reduce(lambda c1, c2: c1.mk_conj(c2), valid_eq_constrs))
+                return FExists(exists_var, form)
+            else:
+                return f
 
     @classmethod
     def infer_pred_lst(self, prog, root_id, root_children, root_subheaps):

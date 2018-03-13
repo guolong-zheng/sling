@@ -219,6 +219,13 @@ def test():
           0x001 -> node{next:0x002; prev:nil};
           """
 
+    s3 = r"""
+         x = 0x001;
+
+         0x001 -> node{next:0x002};
+         0x002 -> node{next:nil};
+         """
+
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
     #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
@@ -244,12 +251,14 @@ def test():
     f15 = 'exists u. dll(a, nil, curr, u)'
     f16 = 'exists u, v. dll(curr, u, v, nil)'
     f17 = 'exists u1, u2, u3, u4, u5. dll(a, nil, u1, curr) * dll(curr, u2, u3, il) * dll(b, u4, u5, nil)'
-    f18 = 'exists u1, u2, u3, u4, u5. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil) * dll(b, u4, u5, nil)'
+    f18 = 'exists u1, u2, u3, u4, u5. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil) * dll(b, u4, u5, nil) & u1=u2'
     f19 = '(exists fv109, fv110, fv111, fv114, fv115. dll(a, nil, fv109, curr) * dll(b, fv110, fv111, nil) * dll(curr, fv115, fv114, nil))'
+    f20 = 'exists u, v. x->node{u} * v->node{nil}'
+    f21 = 'exists u1, u2, u3. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil)'
 
     defn = d2
-    trace = t3d
-    form = f18
+    trace = t3f
+    form = f21
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -280,8 +289,8 @@ def test():
     sh.add_prog(tprog)
     # debug(sh.prog)
 
-    rctx = sh.satisfy(tf)
-    debug(rctx)
+    # rctx = sh.satisfy(tf)
+    # debug(rctx)
 
     # u = s.union(h)
     # debug('stack:\n' + str(s))

@@ -194,9 +194,6 @@ class Stack(Store):
     def is_unsat(self, e):
         return self.evaluate(e) == False
 
-    def mk_ctx(self, ctx, cond):
-        return ctx.mk_conj(cond)
-
 class Heap(Store):
     def to_list(self):
         traces = []
@@ -235,8 +232,16 @@ class SHModel(object):
     def classic_satisfy(self, f):
         ctx = BConst(True)
         rctx = self._satisfy(ctx, f)
-        res = any(not bool(sh.heap.dom()) for (ctx,sh) in rctx)
+        # debug(rctx)
+        res = any(not bool(sh.heap.dom()) for (ctx, sh) in rctx)
         return res
+
+    def get_classic_ctx(self, f):
+        ctx = BConst(True)
+        rctx = self._satisfy(ctx, f)
+        classic_rctx = filter(lambda (ctx, sh): not bool(sh.heap.dom()),
+                              rctx)
+        return classic_rctx
 
     def _satisfy(self, ctx, f):
         method_name = '_satisfy_' + type(f).__name__
@@ -248,7 +253,7 @@ class SHModel(object):
                         str(f) + ':' + type(f).__name__)
 
     def _satisfy_FBase(self, ctx, f):
-        nctx = self.stack.mk_ctx(ctx, f.pure)
+        nctx = ctx.mk_conj(f.pure)
         rctx = self._satisfy(nctx, f.heap)
         return rctx
 
@@ -274,20 +279,20 @@ class SHModel(object):
                     ns = s.clone()
                     nh.remove(root)
                     field_vals = map(lambda f: f.data.val, fields)
-                    # matches = map(lambda (a, v): PBinRel(a, '=', IConst(v)),
+                    # matches = map(lambda (a, v): PBinRel(a, RelOp.EQ, IConst(v)),
                     #               zip(f.args, field_vals))
                     mconds = []
                     for (a, v) in zip(f.args, field_vals):
                         if isinstance(a, Null):
                             a = IConst(Const.nil_addr)
-                        mconds.append(PBinRel(a, '=', IConst(v)))
+                        mconds.append(PBinRel(a, RelOp.EQ, IConst(v)))
                         if (isinstance(a, Var) and
                             isinstance(a.typ, TData) and
                             not ns.contains(a.id)):
                             ns.add(a.id, Addr(v))
                     if mconds:
                         mcond = reduce(lambda m1, m2: PConj(m1, m2), mconds)
-                        nctx = ns.mk_ctx(ctx, mcond)
+                        nctx = ctx.mk_conj(mcond)
                     else:
                         nctx = ctx
                     if ns.is_unsat(nctx):
@@ -314,7 +319,7 @@ class SHModel(object):
         # nctx = []
         # for case in sst_pred_defn.cases:
         #     pcond = case.get_pure()
-        #     pctx = self.stack.mk_ctx(ctx, pcond)
+        #     pctx = ctx.mk_conj(pcond)
         #     if not self.stack.is_unsat(pctx):
         #         sh = self.clone()
         #         rctx = sh._satisfy(pctx, case.get_heap())
@@ -326,7 +331,7 @@ class SHModel(object):
                 nctx = []
                 for case in cases:
                     pcond = case.get_pure()
-                    pctx = self.stack.mk_ctx(ctx, pcond)
+                    pctx = ctx.mk_conj(pcond)
                     if not self.stack.is_unsat(pctx):
                         sh = self.clone()
                         rctx = sh._satisfy(pctx, case.get_heap())
@@ -357,18 +362,18 @@ class SHModel(object):
         heap_data_nodes, _ = f.heap_par()
         data_vars = map(lambda dn: dn.root.id, heap_data_nodes)
         exists_vars = f.vars
-        exists_data_vars = filter(lambda v:
-                                  isinstance(v.typ, TData) and
-                                  v.id in data_vars and
-                                  not self.stack.contains(v.id), exists_vars)
+        exists_data_vars = filter(lambda v: (isinstance(v.typ, TData) and
+                                             v.id in data_vars and
+                                             not self.stack.contains(v.id)),
+                                  exists_vars)
         rem_exists_vars = list(set(exists_vars) - set(exists_data_vars))
 
         stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)
-        stack_data_vars_dom = map(lambda v:
-                                  self.stack.get(v).val, stack_data_vars)
+        stack_data_vars_dom = map(lambda v: self.stack.get(v).val,
+                                  stack_data_vars)
         h_dom = self.heap.dom()
-        exists_data_vars_dom = filter(lambda addr:
-                                      addr not in stack_data_vars_dom, h_dom)
+        exists_data_vars_dom = filter(lambda addr: addr not in stack_data_vars_dom,
+                                      h_dom)
         exists_data_vars_dom_set = list(
             # itertools.combinations_with_replacement(
             #     exists_data_vars_dom, len(exists_data_vars)))
@@ -379,9 +384,11 @@ class SHModel(object):
 
         def process_dom(e_dom):
             e_mapping = zip(exists_data_vars, e_dom)
+            # debug(e_mapping)
             e_sh = self.clone()
             for (v, addr) in e_mapping:
                 e_sh.stack.add(v.id, Addr(addr))
+            # debug(f.form)
             ectx = e_sh._satisfy(ctx, f.form)
             return ectx
 
