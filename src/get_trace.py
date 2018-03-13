@@ -19,8 +19,8 @@ def create_target(exe, bps):
 
     return target
 
-def get_model(target):
-    process = target.LaunchSimple (None, None, os.getcwd())
+def get_model(target,size):
+    process = target.LaunchSimple (None, [size], os.getcwd())
     traces = defaultdict(list)
     state = process.GetState()
     thread = process.GetThreadAtIndex (0)
@@ -84,9 +84,11 @@ def expand_cell(heap, to_visit):
     return heap
 
 
-def get_traces(input, bps):
+def get_traces(input, bps, size):
     target = create_target(input, bps)
-    traces = get_model(target)
+    traces = {}
+    for s in size:
+        traces.update(get_model(target,s))
 
     return traces
 
@@ -134,7 +136,7 @@ def main():
     bps = [46, 48, 56, 63]
 
     target = create_target(exe, bps)
-    traces = get_model(target)
+    traces = get_model(target,'5')
     #print traces_str(traces)
     write_file(exe, traces)
 

@@ -1,7 +1,7 @@
 from seplogic import *
 from trace import *
 from parser import *
-from model_checker import *
+#from model_checker import *
 from debug import *
 from typ import *
 from get_trace import *
@@ -13,11 +13,14 @@ def main():
     ag = aparser.add_argument
 
     ag('--input', '-input',
-       dest='in_file')
+       dest='infile')
 
     ag('--breaks', '-breaks',
-       dest='breaks', nargs='+',
-       type=int)
+        dest='breaks', nargs='+',
+        type=int)
+
+    ag('--size', '-size',
+        dest='size', nargs='+')
 
     ag('--trace', '-trace',
        dest='trace', type=open)
@@ -37,9 +40,11 @@ def main():
     settings.doMP = args.mp
     settings.print_type = not args.notype
 
-    input_file = args.in_file
+    infile = args.infile
     bps = args.breaks
-    # traces = get_traces(input_file, bps)
+    size = args.size
+
+    traces = get_traces(infile, bps, size)
     # for t in traces:
     #     print "trace at location: %s" % t
     #     tr = traces[t]
