@@ -5,6 +5,7 @@ import os
 from collections import defaultdict
 from trace import *
 from debug import *
+from model import *
 
 def create_target(exe, bps):
     #os.chdir(os.getcwd()+"/simple_example/sll")
@@ -38,16 +39,16 @@ def get_model(target, size):
     return traces
 
 def traverse_heap(vars):
-    stack = {}
-    heap = {}
+    stack = Stack()
+    heap = Heap()
     # store vars in heap that needed to be traversed
     to_visit = []
     for var in vars:
         if var.TypeIsPointerType():
-            stack[var.GetName()] = StackTrace(var.GetName(), Addr(var.GetValue()))
+            stack.add(var.GetName(), Addr(var.GetValue()))
             to_visit.append(var)
         elif var.GetValue() is not None:
-            stack[var.GetName()] = StackTrace(var.GetName(), Int(var.GetValue()))
+            stack.add(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
 
@@ -80,7 +81,7 @@ def expand_cell(heap, to_visit):
 
                 fields.append(field)
 
-            heap[heap_addr] = HeapTrace(Addr(heap_addr), typ, fields)
+            heap.add(heap_addr, (typ, fields))
 
     return heap
 
