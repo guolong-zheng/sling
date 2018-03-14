@@ -22,7 +22,7 @@ def create_target(exe, bps):
     return target
 
 def get_model(target, size):
-    process = target.LaunchSimple(None, [size], os.getcwd())
+    process = target.LaunchSimple([size], None, os.getcwd())
     traces = defaultdict(list)
     state = process.GetState()
     thread = process.GetThreadAtIndex (0)
