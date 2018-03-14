@@ -30,10 +30,11 @@ class SubHeap(object):
         try:
             vs = map(lambda v: Var(v), stk_addrs_dict[addr])
         except:
-            if get_nil:
+            if get_nil and addr == Const.nil_addr:
                 vs = [Null()]
             else:
-                vs = [VarUtil.mk_fresh()]
+                # vs = [VarUtil.mk_fresh()]
+                vs = []
         for v in vs:
             v.typ = ty
         return vs
@@ -216,10 +217,10 @@ class SLInfer(object):
                                      SubHeap.get_vars(stk_addrs_dict, None,
                                                       child, get_nil = True),
                                      subheap.children)
-                    # debug(child_vars)
+                    child_vars = filter(lambda child: bool(child), child_vars)
                     child_vars = map(lambda vs: List.remove_dups(vs),
                                      list(itertools.product(*child_vars)))
-                    # debug(child_vars)
+                    debug(child_vars)
                     subheaps.append(MetaSubHeap(root_ids, stk_addrs_dict,
                                                 child_vars, sh, subheap))
                 # debug(subheaps)
@@ -254,6 +255,7 @@ class SLInfer(object):
             #     if all(sh.classic_satisfy(f) for sh in sh_lst):
             #         fs.append(f)
             debug(fs)
+            return fs
 
     @classmethod
     def infer_pure_ptr(self, f, classic_rctx_lst):
@@ -265,6 +267,8 @@ class SLInfer(object):
             pairs = list(itertools.combinations(exists_var_with_nil, 2))
             eq_constrs = map(lambda (v1, v2): PBinRel(v1, RelOp.EQ, v2),
                              pairs)
+            # debug(f)
+            # debug(classic_rctx_lst)
             valid_eq_constrs = filter(
                 lambda c: all(any(sh.stack.is_unsat(ctx.mk_conj(PNeg(c)))
                                   for (ctx, sh) in sh_lst)

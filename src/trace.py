@@ -64,3 +64,6 @@ class Traces(object):
         self.loc = loc
         self.stack = stack
         self.heap = heap 
+
+    def __str__(self):
+        return '\n' + str(self.stack) + '\n\n' + str(self.heap)

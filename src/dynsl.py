@@ -1,7 +1,6 @@
 from seplogic import *
 from trace import *
 from parser import *
-#from model_checker import *
 from debug import *
 from typ import *
 from get_trace import *
@@ -45,6 +44,8 @@ def main():
     size = args.size
 
     traces = get_traces(infile, bps, size)
+    debug(traces)
+    
     # for t in traces:
     #     print "trace at location: %s" % t
     #     tr = traces[t]
