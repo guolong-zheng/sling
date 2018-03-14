@@ -10,7 +10,7 @@ typedef struct node {
 #define MAX_RAND 1000
 
 int rand_num();
-DLNode * creat_node();
+DLNode * create_node();
 DLNode * create_dll(int size);
 DLNode * dll_append_node(DLNode * x1, DLNode * x2);
 

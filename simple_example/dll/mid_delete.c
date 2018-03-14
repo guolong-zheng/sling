@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-DLNode * dll_mid_delete(DLNode * p)
+void dll_mid_delete(DLNode * p)
 {
   //pre
   DLNode * v = p->next;
@@ -20,14 +20,11 @@ DLNode * dll_mid_delete(DLNode * p)
 int main( int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1], "%d", &size);
-
-    DLNode * node1 = node_create(1);
-    DLNode * node2 = node_create(2);
-    DLNode * node3 = node_create(3);
-
+    DLNode * node1 = create_node();
+    DLNode * node2 = create_node();
+    DLNode * node3 = create_node();
     dll_append_node(node1, node2);
     dll_append_node(node1, node3);
-
     dll_mid_delete(node2);
     return 0;
 }
