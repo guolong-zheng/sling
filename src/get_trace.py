@@ -4,13 +4,14 @@ import lldb
 import os
 from collections import defaultdict
 from trace import *
+from debug import *
 
 def create_target(exe, bps):
     #os.chdir(os.getcwd()+"/simple_example/sll")
     exe = os.path.join(os.getcwd(), exe)
     debugger = lldb.SBDebugger.Create()
     debugger.SetAsync(False)
-    target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
+    target = debugger.CreateTargetWithFileAndArch(exe, lldb.LLDB_ARCH_DEFAULT)
     if target:
         for bp in bps:
             target.BreakpointCreateByLocation(exe+".c", bp)
@@ -19,8 +20,8 @@ def create_target(exe, bps):
 
     return target
 
-def get_model(target,size):
-    process = target.LaunchSimple (None, [size], os.getcwd())
+def get_model(target, size):
+    process = target.LaunchSimple(None, [size], os.getcwd())
     traces = defaultdict(list)
     state = process.GetState()
     thread = process.GetThreadAtIndex (0)
@@ -72,10 +73,10 @@ def expand_cell(heap, to_visit):
                     if child.GetValueAsUnsigned() == 0:
                         field = PtrField(child_name, Addr(None))
                     else:
-                        field = PtrField(child_name,Addr(str(child.GetValue())))
+                        field = PtrField(child_name, Addr(str(child.GetValue())))
                         to_visit.append(child)
                 else:
-                    field = DataField(child_name,Int(child.GetValue()))
+                    field = DataField(child_name, Int(child.GetValue()))
 
                 fields.append(field)
 
@@ -88,8 +89,9 @@ def get_traces(input, bps, size):
     target = create_target(input, bps)
     traces = {}
     for s in size:
-        traces.update(get_model(target,s))
-
+        model = get_model(target, s)
+        debug(model)
+        traces.update(model)
     return traces
 
 
@@ -104,17 +106,17 @@ def write_file(exe, traces):
         tr = traces[loc]
         for x in tr:
             count = str(tr.index(x))
-            filename = exe.split("/")[-1]+"_"+str(loc)+"_"+count+".txt"
-            path = os.getcwd()+"/traces/trace5"
-            fw = open(os.path.join(path, filename),"w+")
+            filename = exe.split("/")[-1] + "_" + str(loc) + "_" + count + ".txt"
+            path = os.getcwd() + "/traces/trace5"
+            fw = open(os.path.join(path, filename), "w+")
             st = x.stack
             hp = x.heap
             for s in st:
                 "writing stack"
-                fw.write(str(st[s])+";\n")
+                fw.write(str(st[s]) + ";\n")
             for h in hp:
                 "writing heap"
-                fw.write(str(hp[h])+";\n")
+                fw.write(str(hp[h]) + ";\n")
             fw.close()
 
 def traces_str(traces):
@@ -136,8 +138,8 @@ def main():
     bps = [46, 48, 56, 63]
 
     target = create_target(exe, bps)
-    traces = get_model(target,'5')
-    #print traces_str(traces)
+    traces = get_model(target, '5')
+    # print traces_str(traces)
     write_file(exe, traces)
 
 if __name__ == "__main__":
