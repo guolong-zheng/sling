@@ -45,7 +45,7 @@ def main():
 
     traces = get_traces(infile, bps, size)
     debug(traces)
-    
+
     # for t in traces:
     #     print "trace at location: %s" % t
     #     tr = traces[t]
