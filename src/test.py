@@ -307,6 +307,7 @@ def test():
         sh = trace_parser.transform(trace_ast)
         sh.add_prog(tprog)
         sh_lst.append(sh)
+    debug(sh_lst)
     fs = SLInfer.infer_location(tprog, sh_lst)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))

@@ -25,10 +25,10 @@ def get_model(target, size):
     process = target.LaunchSimple([size], None, os.getcwd())
     traces = defaultdict(list)
     state = process.GetState()
-    thread = process.GetThreadAtIndex (0)
+    thread = process.GetThreadAtIndex(0)
     # stoped due to break point
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
-        frame = thread.GetFrameAtIndex (0)
+        frame = thread.GetFrameAtIndex(0)
         location = frame.GetLineEntry().GetLine()
         if frame:
             vars = frame.GetVariables(True, True, True, True)
@@ -44,11 +44,12 @@ def traverse_heap(vars):
     # store vars in heap that needed to be traversed
     to_visit = []
     for var in vars:
-        if var.TypeIsPointerType():
-            stack.add(var.GetName(), Addr(var.GetValue()))
-            to_visit.append(var)
-        elif var.GetValue() is not None:
-            stack.add(var.GetName(), Int(var.GetValue()))
+        if var.GetValue() is not None:
+            if var.TypeIsPointerType():
+                stack.add(var.GetName(), Addr(var.GetValue()))
+                to_visit.append(var)
+            else: 
+                stack.add(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
 
@@ -56,15 +57,15 @@ def traverse_heap(vars):
 
 def expand_cell(heap, to_visit):
     #pdb.set_trace()
-    while len(to_visit) != 0:
+    while to_visit:
         var = to_visit.pop(0)
         if var.TypeIsPointerType() and var.GetValueAsUnsigned() == 0:
             continue
         typ = str_type(var.GetType().GetCanonicalType())
         var = var.Dereference()
-        heap_addr = str(var.GetAddress())
+        heap_addr = int(var.GetAddress())
 
-        if heap_addr.startswith('0x') and heap_addr not in heap:
+        if heap_addr not in heap:
             fields = []
             for i in range(0, var.GetNumChildren()):
                 child = var.GetChildAtIndex(i)
@@ -72,9 +73,9 @@ def expand_cell(heap, to_visit):
                 child_name = child.GetName()
                 if child.TypeIsPointerType():
                     if child.GetValueAsUnsigned() == 0:
-                        field = PtrField(child_name, Addr(None))
+                        field = PtrField(child_name, Addr(Const.nil_addr))
                     else:
-                        field = PtrField(child_name, Addr(str(child.GetValue())))
+                        field = PtrField(child_name, Addr(child.GetValue()))
                         to_visit.append(child)
                 else:
                     field = DataField(child_name, Int(child.GetValue()))
