@@ -3,16 +3,16 @@
 
 SNnode * sll_append(SNnode * x1, SNnode * x2)
 {
-	    //pre
-        if (x1 == NULL) {
+  //pre
+  if (x1 == NULL) {
+	//post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
 		//post
-                return x2;
-        } else {
-                SNnode * tmp = sll_append(x1->next, x2);
-                x1->next = tmp;
-		//post
-                return x1;
-        }
+    return x1;
+  }
 }
 
 int main( int argc, char * argv[]){

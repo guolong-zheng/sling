@@ -15,11 +15,11 @@ def main():
        dest='infile')
 
     ag('--breaks', '-breaks',
-        dest='breaks', nargs='+',
-        type=int)
+       dest='breaks', nargs='+',
+       type=int)
 
     ag('--size', '-size',
-        dest='size', nargs='+')
+       dest='size', nargs='+')
 
     ag('--trace', '-trace',
        dest='trace', type=open)
@@ -44,25 +44,33 @@ def main():
     size = args.size
 
     traces = get_traces(infile, bps, size)
-    debug(traces)
+    # debug(traces)
 
-    # for t in traces:
-    #     print "trace at location: %s" % t
-    #     tr = traces[t]
-    #     for x in tr:
-    #         st = x.stack
-    #         hp = x.heap
-    #         print "stack is:"
-    #         for s in st:
-    #             print st[s]
-    #         print "heap is:"
-    #         for h in hp:
-    #             print hp[h]
+    pred_file = args.pred
+    pred_defn = pred_file.read()
 
-    defn = args.pred
-    traces = args.trace
+    seplogic_parser = SepLogicParser()
+    defn_ast = seplogic_parser.defn_parser.parse(pred_defn)
+    prog = seplogic_parser.transform(defn_ast)
 
-    test()
+    type_infer = TInfer()
+    tprog = type_infer.infer(prog)
+    debug(tprog)
+
+    for pos in traces:
+        trace_lst = traces[pos]
+        debug(pos)
+        # debug(trace_lst)
+        model_lst = []
+        for trace in trace_lst:
+            s = trace.stack
+            h = trace.heap
+            model = SHModel(s, h, tprog)
+            model_lst.append(model)
+        debug(model_lst)
+        fs = SLInfer.infer_location(tprog, model_lst)
+
+    # test()
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 FILE=$1
+SIZE=$2
+DEFN=$3
 pushd $(dirname $FILE)
 fname=${FILE%.c}
 if [ ! -f $fname ]; then
@@ -10,4 +12,4 @@ popd
 
 bps=$(grep -n -E  "//pre|//post" $FILE | cut -d: -f1)
 
-python src/dynsl.py -input $fname -breaks $bps -size 5
+python dynsl.py -input $fname -breaks $bps -size $SIZE -def $DEFN
