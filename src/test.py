@@ -29,6 +29,9 @@ def test():
 
          pred dll(hd,p,tl,n) := hd=n & tl=p
          \/ (exists x. hd->node{x,p} * dll(x,hd,tl,n));
+
+         pred dlr(hd,n,tl,p) := hd=p & tl=n
+         \/ (exists x. hd->node{n, x} * dlr(x,hd,tl,p));
          """
 
     d3 = r"""
@@ -240,6 +243,19 @@ def test():
          0x006 ->node{next:0x003};
          """
 
+    c2 = r"""
+         x = 0x003;
+
+         0x001 ->node{next:0x002; prev:nil};
+         0x002 ->node{next:0x003; prev:0x001};
+         0x003 ->node{next:0x004; prev:0x002};
+         0x004 ->node{next:0x005; prev:0x003};
+         0x005 ->node{next:0x006; prev:0x004};
+         0x006 ->node{next:nil; prev:0x005};
+         """
+
+
+
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
     #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
@@ -270,10 +286,12 @@ def test():
     f20 = 'exists u, v. x->node{u} * v->node{nil}'
     f21 = 'exists u1, u2, u3. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil)'
     f22 = 'exists u. ls(x, u) * ls(u, u)'
+    f23 = 'exists u, v. dll(x,u,v,nil)'
+    f24 = 'exists u, v. dlr(x,u,v,nil)'
 
-    defn = d3
-    trace = c1
-    form = f22
+    defn = d2
+    trace = c2
+    form = f24
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -304,8 +322,8 @@ def test():
     sh.add_prog(tprog)
     # debug(sh.prog)
 
-    # rctx = sh.satisfy(tf)
-    # debug(rctx)
+    rctx = sh.satisfy(tf)
+    debug(rctx)
 
     # u = s.union(h)
     # debug('stack:\n' + str(s))
@@ -323,8 +341,8 @@ def test():
         sh = trace_parser.transform(trace_ast)
         sh.add_prog(tprog)
         sh_lst.append(sh)
-    debug(sh_lst)
-    fs = SLInfer.infer_location(tprog, sh_lst)
+    # debug(sh_lst)
+    # fs = SLInfer.infer_location(tprog, sh_lst)
 
     r1 = PBinRel(BinOp(Var('z'), '+', IConst(2)), '!=', IConst(1))
     r2 = PBinRel(BinOp(Var('y'), '*', IConst(2)), '=', IConst(2))
