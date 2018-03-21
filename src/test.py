@@ -17,8 +17,8 @@ def test():
          pred ls(x, y) := emp & x=y
          \/ (exists v, u. x->node{v, u} * ls(u, y));
 
-         pred lsd(x, y) := emp & x=y
-         \/ (exists v, u. x->node{v, u} * lsd(u, y) & x!=y);
+         # pred lsd(x, y) := emp & x=y
+         # \/ (exists v, u. x->node{v, u} * lsd(u, y) & x!=y);
 
          # pred lsr(x, y) := emp & x=y
          # \/ (exists v, u. lsr(x, u) * u->node{v, y});
@@ -34,8 +34,11 @@ def test():
     d3 = r"""
          data node { node next; };
 
-         pred ll(x) := emp & x=nil
-         \/ (exists y. x->node{y} * ll(y));
+         # pred ll(x) := emp & x=nil
+         # \/ (exists y. x->node{y} * ll(y));
+
+         pred ls(x, y) := emp & x=y
+         \/ (exists u. x->node{u} * ls(u, y));
          """
 
     d4 = r"""
@@ -226,6 +229,17 @@ def test():
          0x002 -> node{next:nil};
          """
 
+    c1 = r"""
+         x = 0x001;
+
+         0x001 ->node{next:0x002};
+         0x002 ->node{next:0x003};
+         0x003 ->node{next:0x004};
+         0x004 ->node{next:0x005};
+         0x005 ->node{next:0x006};
+         0x006 ->node{next:0x003};
+         """
+
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
     #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
@@ -255,10 +269,11 @@ def test():
     f19 = '(exists fv109, fv110, fv111, fv114, fv115. dll(a, nil, fv109, curr) * dll(b, fv110, fv111, nil) * dll(curr, fv115, fv114, nil))'
     f20 = 'exists u, v. x->node{u} * v->node{nil}'
     f21 = 'exists u1, u2, u3. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil)'
+    f22 = 'exists u. ls(x, u) * ls(u, u)'
 
-    defn = d2
-    trace = t3f
-    form = f21
+    defn = d3
+    trace = c1
+    form = f22
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
@@ -300,7 +315,8 @@ def test():
     # ff = SLInfer.infer(sh)
     # debug(ff)
 
-    traces = [t3d, t3e, t3f, t3g]
+    # traces = [t3d, t3e, t3f, t3g]
+    traces = [c1]
     sh_lst = []
     for trace in traces:
         trace_ast = trace_parser.sh_parser.parse(trace)

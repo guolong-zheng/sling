@@ -33,44 +33,51 @@ def main():
     ag('--notype', '-notype',
        action="store_true")
 
+    ag('--test', '-test',
+       action="store_true")
+
     args = aparser.parse_args()
 
     import settings
     settings.doMP = args.mp
     settings.print_type = not args.notype
+    settings.test_mode = args.test
 
-    infile = args.infile
-    bps = args.breaks
-    size = args.size
+    if not settings.test_mode:
 
-    traces = get_traces(infile, bps, size)
-    # debug(traces)
+        infile = args.infile
+        bps = args.breaks
+        size = args.size
 
-    pred_file = args.pred
-    pred_defn = pred_file.read()
+        traces = get_traces(infile, bps, size)
+        # debug(traces)
 
-    seplogic_parser = SepLogicParser()
-    defn_ast = seplogic_parser.defn_parser.parse(pred_defn)
-    prog = seplogic_parser.transform(defn_ast)
+        pred_file = args.pred
+        pred_defn = pred_file.read()
 
-    type_infer = TInfer()
-    tprog = type_infer.infer(prog)
-    debug(tprog)
+        seplogic_parser = SepLogicParser()
+        defn_ast = seplogic_parser.defn_parser.parse(pred_defn)
+        prog = seplogic_parser.transform(defn_ast)
 
-    for pos in traces:
-        trace_lst = traces[pos]
-        debug(pos)
-        # debug(trace_lst)
-        model_lst = []
-        for trace in trace_lst:
-            s = trace.stack
-            h = trace.heap
-            model = SHModel(s, h, tprog)
-            model_lst.append(model)
-        debug(model_lst)
-        fs = SLInfer.infer_location(tprog, model_lst)
+        type_infer = TInfer()
+        tprog = type_infer.infer(prog)
+        debug(tprog)
 
-    # test()
+        for pos in traces:
+            trace_lst = traces[pos]
+            debug(pos)
+            # debug(trace_lst)
+            model_lst = []
+            for trace in trace_lst:
+                s = trace.stack
+                h = trace.heap
+                model = SHModel(s, h, tprog)
+                model_lst.append(model)
+            debug(model_lst)
+            fs = SLInfer.infer_location(tprog, model_lst)
+    else:
+        debug('Inside test mode')
+        test()
 
 if __name__ == "__main__":
     main()

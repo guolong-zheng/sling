@@ -538,7 +538,7 @@ class SLInfer(object):
                     group = self._split_heap(h, start, stk_addrs, marked_addrs)
                     groups.append(group)
                     marked_addrs.extend(group.dom)
-            # debug(groups)
+            debug(groups)
             return(groups)
 
     @classmethod
