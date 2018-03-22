@@ -254,8 +254,6 @@ def test():
          0x006 ->node{next:nil; prev:0x005};
          """
 
-
-
     # form = "x->node{z-1, u}"
     # form = r"""exists u, v, r, n1.
     #            u->node{v, r} * x->node{v-2, y} * ls(y, u, n1)
@@ -288,10 +286,15 @@ def test():
     f22 = 'exists u. ls(x, u) * ls(u, u)'
     f23 = 'exists u, v, r. dll(x,v,u,nil) * dll(r,nil,v,x)'
     f24 = 'exists u, v. dlr(x,u,v,nil)'
+    f25 = 'exists u, v, r. dll(r,nil,v,x)'
+    f26 = 'exists u, v, r. dll(r,nil,x,v)'
+    f27 = 'exists u, v, r. dll(r,nil,v,x) * dll(x,v,u,nil)'
+    f28 = 'exists u, v, r. dll(r,nil,x,v) * dll(x,v,u,nil)'
+    f29 = 'exists u, v. x->node{u,v} * x->node{u, v}'
 
     defn = d2
     trace = c2
-    form = f23
+    form = f28
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)

@@ -99,6 +99,9 @@ class Stack(Store):
         Store.__init__(self)
         self.z3_symtab = {}
 
+    def __contains__(self, v):
+        return self.contains(v)
+
     def clone(self):
         stack = Stack()
         stack.store = copy.copy(self.store)
@@ -203,6 +206,22 @@ class Heap(Store):
             traces.append(trace)
         return traces
 
+class Context(object):
+    def __init__(self, state, exists_vars = []):
+        self.exists_vars = exists_vars
+        self.state = state
+
+    def __str__(self):
+        return Printer.str_of(self.exists_vars) + ':' + str(self.state)
+
+    def mk_conj(self, f):
+        conj_state = self.state.mk_conj(f)
+        return Context(conj_state, self.exists_vars)
+
+    def add_vars(self, vs):
+        exists_vars = self.exists_vars + vs
+        return Context(self.state, exists_vars)
+
 class SHModel(object):
     def __init__(self, stack, heap, prog = None):
         self.stack = stack
@@ -224,20 +243,20 @@ class SHModel(object):
         return sh
 
     def satisfy(self, f):
-        ctx = BConst(True)
+        ctx = Context(BConst(True))
         rctx = self._satisfy(ctx, f)
         debug(rctx)
         return bool(rctx)
 
     def classic_satisfy(self, f):
-        ctx = BConst(True)
+        ctx = Context(BConst(True))
         rctx = self._satisfy(ctx, f)
         # debug(rctx)
         res = any(not bool(sh.heap.dom()) for (ctx, sh) in rctx)
         return res
 
     def get_classic_ctx(self, f):
-        ctx = BConst(True)
+        ctx = Context(BConst(True))
         rctx = self._satisfy(ctx, f)
         classic_rctx = filter(lambda (ctx, sh): not bool(sh.heap.dom()),
                               rctx)
@@ -267,46 +286,43 @@ class SHModel(object):
             return []
         else:
             try:
-                root = s.eval(f.root)
-                if root == Const.nil_addr:
-                    return []
-                (typ, fields) = h.get(root)
-                if typ == f.name:
-                    nh = h.clone()
-                    ns = s.clone()
-                    nh.remove(root)
-                    field_vals = map(lambda f: f.data.val, fields)
-                    # matches = map(lambda (a, v): PBinRel(a, RelOp.EQ, IConst(v)),
-                    #               zip(f.args, field_vals))
-                    mconds = []
-                    for (a, v) in zip(f.args, field_vals):
-                        if isinstance(a, Null):
-                            a = IConst(Const.nil_addr)
-                        mconds.append(PBinRel(a, RelOp.EQ, IConst(v)))
-                        if (isinstance(a, Var) and
-                            isinstance(a.typ, TData) and
-                            not ns.contains(a.id)):
-                            ns.add(a.id, Addr(v))
-                    if mconds:
-                        mcond = reduce(lambda m1, m2: PConj(m1, m2), mconds)
-                        nctx = ctx.mk_conj(mcond)
-                    else:
-                        nctx = ctx
-                    if ns.is_unsat(nctx):
-                        return []
-                    else:
-                        nsh = SHModel(ns, nh)
-                        nsh.add_prog(self.prog)
-                        return [(nctx, nsh)]
-                else: # The sorts are inconsistent
-                    debug('HData: ' + f.root +
-                          ' points to inconsistent data types' +
-                          ' (' + typ + ', ' + f.name + ')')
-                    return []
+                rid = f.root.id
+                if rid in s:
+                    roots = [s.eval(f.root)]
+                else:
+                    roots = h.dom()
+                rctx_lst = []
+                for root in roots:
+                    if root != Const.nil_addr:
+                        (typ, fields) = h.get(root)
+                        if typ == f.name:
+                            nh = h.clone()
+                            ns = s.clone()
+                            nh.remove(root)
+                            if rid not in s:
+                                ns.add(rid, Addr(root))
+
+                            field_vals = map(lambda f: f.data.val, fields)
+                            mconds = []
+                            for (a, v) in zip(f.args, field_vals):
+                                if isinstance(a, Null):
+                                    a = IConst(Const.nil_addr)
+                                mconds.append(PBinRel(a, RelOp.EQ, IConst(v)))
+                                if (isinstance(a, Var) and
+                                    isinstance(a.typ, TData) and
+                                    not ns.contains(a.id)):
+                                    ns.add(a.id, Addr(v)) # Instantiation
+                            if mconds:
+                                mcond = reduce(lambda m1, m2: PConj(m1, m2), mconds)
+                                nctx = ctx.mk_conj(mcond)
+                            else:
+                                nctx = ctx
+                            if not ns.is_unsat(nctx.state):
+                                nsh = SHModel(ns, nh)
+                                nsh.add_prog(self.prog)
+                                rctx_lst.append((nctx, nsh))
+                return rctx_lst
             except:
-                debug(f)
-                debug(s)
-                debug(h)
                 debug('HData Cannot find the matched heap for HData ' + str(f))
                 return []
 
@@ -332,7 +348,7 @@ class SHModel(object):
                 for case in cases:
                     pcond = case.get_pure()
                     pctx = ctx.mk_conj(pcond)
-                    if not self.stack.is_unsat(pctx):
+                    if not self.stack.is_unsat(pctx.state):
                         sh = self.clone()
                         rctx = sh._satisfy(pctx, case.get_heap())
                         nctx.extend(rctx)
@@ -359,56 +375,8 @@ class SHModel(object):
         return rctx
 
     def _satisfy_FExists(self, ctx, f):
-        heap_data_nodes, _ = f.heap_par()
-        data_vars = map(lambda dn: dn.root.id, heap_data_nodes)
-        exists_vars = f.vars
-        exists_data_vars = filter(lambda v: (isinstance(v.typ, TData) and
-                                             v.id in data_vars and
-                                             not self.stack.contains(v.id)),
-                                  exists_vars)
-        debug(exists_data_vars)
-        rem_exists_vars = list(set(exists_vars) - set(exists_data_vars))
-
-        stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)
-        stack_data_vars_dom = map(lambda v: self.stack.get(v).val,
-                                  stack_data_vars)
-        h_dom = self.heap.dom()
-        exists_data_vars_dom = filter(lambda addr: addr not in stack_data_vars_dom,
-                                      h_dom)
-        exists_data_vars_dom_set = list(
-            # itertools.combinations_with_replacement(
-            #     exists_data_vars_dom, len(exists_data_vars)))
-            itertools.product(
-                exists_data_vars_dom, repeat=len(exists_data_vars)))
-        # debug(exists_data_vars)
-        # debug(exists_data_vars_dom_set)
-
-        def process_dom(e_dom):
-            e_mapping = zip(exists_data_vars, e_dom)
-            # debug(e_mapping)
-            e_sh = self.clone()
-            for (v, addr) in e_mapping:
-                e_sh.stack.add(v.id, Addr(addr))
-            # debug(f.form)
-            ectx = e_sh._satisfy(ctx, f.form)
-            return ectx
-
-        # rctx = []
-        # for e_dom in exists_data_vars_dom_set:
-        #     ectx = process_dom(e_dom)
-        #     rctx.extend(ectx)
-
-        doms = exists_data_vars_dom_set
-        def wp(doms, Q):
-            process_doms = lambda tasks: List.flatten(
-                [process_dom(e_dom) for e_dom in doms])
-            return Utils.wprocess(doms, process_doms, Q)
-
-        rctx = Utils.runMP("satisfy_PExists",
-                           doms, wp, chunksiz = 1,
-                           doMP = settings.doMP and len(doms) >= 2)
-
-        return rctx
+        nctx = ctx.add_vars(f.vars)
+        return self._satisfy(nctx, f.form)
 
     def group_by(self, func, ls):
         grouped = {}
