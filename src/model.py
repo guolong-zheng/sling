@@ -263,9 +263,6 @@ class SHModel(object):
     def _satisfy_HData(self, ctx, f):
         s = self.stack
         h = self.heap
-        # debug(f)
-        # debug(s)
-        # debug(h)
         if not h.dom():
             return []
         else:
@@ -307,6 +304,9 @@ class SHModel(object):
                           ' (' + typ + ', ' + f.name + ')')
                     return []
             except:
+                debug(f)
+                debug(s)
+                debug(h)
                 debug('HData Cannot find the matched heap for HData ' + str(f))
                 return []
 
@@ -366,6 +366,7 @@ class SHModel(object):
                                              v.id in data_vars and
                                              not self.stack.contains(v.id)),
                                   exists_vars)
+        debug(exists_data_vars)
         rem_exists_vars = list(set(exists_vars) - set(exists_data_vars))
 
         stack_data_vars = filter(lambda v: v in self.stack.store, data_vars)

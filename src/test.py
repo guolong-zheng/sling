@@ -286,12 +286,12 @@ def test():
     f20 = 'exists u, v. x->node{u} * v->node{nil}'
     f21 = 'exists u1, u2, u3. dll(a, nil, u1, curr) * dll(curr, u2, u3, nil)'
     f22 = 'exists u. ls(x, u) * ls(u, u)'
-    f23 = 'exists u, v. dll(x,u,v,nil)'
+    f23 = 'exists u, v, r. dll(x,v,u,nil) * dll(r,nil,v,x)'
     f24 = 'exists u, v. dlr(x,u,v,nil)'
 
     defn = d2
     trace = c2
-    form = f24
+    form = f23
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)
