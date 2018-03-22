@@ -294,7 +294,7 @@ def test():
 
     defn = d2
     trace = c2
-    form = f28
+    form = f25
 
     seplogic_parser = SepLogicParser()
     defn_ast = seplogic_parser.defn_parser.parse(defn)

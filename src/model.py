@@ -211,6 +211,10 @@ class Context(object):
         self.exists_vars = exists_vars
         self.state = state
 
+    @classmethod
+    def mk_init_context(self):
+        return Context(BConst(True))
+
     def __str__(self):
         return Printer.str_of(self.exists_vars) + ':' + str(self.state)
 
@@ -243,20 +247,20 @@ class SHModel(object):
         return sh
 
     def satisfy(self, f):
-        ctx = Context(BConst(True))
+        ctx = Context.mk_init_context()
         rctx = self._satisfy(ctx, f)
         debug(rctx)
         return bool(rctx)
 
     def classic_satisfy(self, f):
-        ctx = Context(BConst(True))
+        ctx = Context.mk_init_context()
         rctx = self._satisfy(ctx, f)
         # debug(rctx)
         res = any(not bool(sh.heap.dom()) for (ctx, sh) in rctx)
         return res
 
     def get_classic_ctx(self, f):
-        ctx = Context(BConst(True))
+        ctx = Context.mk_init_context()
         rctx = self._satisfy(ctx, f)
         classic_rctx = filter(lambda (ctx, sh): not bool(sh.heap.dom()),
                               rctx)
@@ -285,61 +289,55 @@ class SHModel(object):
         if not h.dom():
             return []
         else:
-            try:
-                rid = f.root.id
-                if rid in s:
-                    roots = [s.eval(f.root)]
-                else:
-                    roots = h.dom()
-                rctx_lst = []
-                for root in roots:
-                    if root != Const.nil_addr:
-                        (typ, fields) = h.get(root)
-                        if typ == f.name:
-                            nh = h.clone()
-                            ns = s.clone()
-                            nh.remove(root)
-                            if rid not in s:
-                                ns.add(rid, Addr(root))
-
-                            field_vals = map(lambda f: f.data.val, fields)
-                            mconds = []
-                            for (a, v) in zip(f.args, field_vals):
-                                if isinstance(a, Null):
-                                    a = IConst(Const.nil_addr)
-                                mconds.append(PBinRel(a, RelOp.EQ, IConst(v)))
-                                if (isinstance(a, Var) and
-                                    isinstance(a.typ, TData) and
-                                    not ns.contains(a.id)):
-                                    ns.add(a.id, Addr(v)) # Instantiation
-                            if mconds:
-                                mcond = reduce(lambda m1, m2: PConj(m1, m2), mconds)
-                                nctx = ctx.mk_conj(mcond)
-                            else:
-                                nctx = ctx
-                            if not ns.is_unsat(nctx.state):
-                                nsh = SHModel(ns, nh)
-                                nsh.add_prog(self.prog)
-                                rctx_lst.append((nctx, nsh))
-                return rctx_lst
-            except:
-                debug('HData Cannot find the matched heap for HData ' + str(f))
+            rid = f.root.id
+            if rid in s:
+                roots = [s.eval(f.root)]
+            elif any(rid == v.id for v in ctx.exists_vars):
+                roots = h.dom()
+            else:
+                debug('HData: Undeclared variable ' + rid)
                 return []
+
+            rctx_lst = []
+            for root in roots:
+                if root != Const.nil_addr:
+                    if root not in h:
+                        debug('HData: Cannot find the matched heap for ' + str(f))
+                        return []
+                    (typ, fields) = h.get(root)
+                    if typ == f.name:
+                        nh = h.clone()
+                        ns = s.clone()
+                        nh.remove(root)
+                        if rid not in s:
+                            ns.add(rid, Addr(root))
+
+                        field_vals = map(lambda f: f.data.val, fields)
+                        mconds = []
+                        for (a, v) in zip(f.args, field_vals):
+                            if isinstance(a, Null):
+                                a = IConst(Const.nil_addr)
+                            mconds.append(PBinRel(a, RelOp.EQ, IConst(v)))
+                            if (isinstance(a, Var) and
+                                isinstance(a.typ, TData) and
+                                not ns.contains(a.id)):
+                                ns.add(a.id, Addr(v)) # Instantiation
+                        if mconds:
+                            mcond = reduce(lambda m1, m2: m1.mk_conj(m2), mconds)
+                            nctx = ctx.mk_conj(mcond)
+                        else:
+                            nctx = ctx
+                        if not ns.is_unsat(nctx.state):
+                            nsh = SHModel(ns, nh)
+                            nsh.add_prog(self.prog)
+                            rctx_lst.append((nctx, nsh))
+            return rctx_lst
 
     def _satisfy_HPred(self, ctx, f):
         pred_defn = self.prog.lookup(f.name)
         sst = VarUtil.mk_subst(pred_defn.params, f.args)
         sst_pred_defn = pred_defn.subst(sst)
         # debug(sst_pred_defn)
-
-        # nctx = []
-        # for case in sst_pred_defn.cases:
-        #     pcond = case.get_pure()
-        #     pctx = ctx.mk_conj(pcond)
-        #     if not self.stack.is_unsat(pctx):
-        #         sh = self.clone()
-        #         rctx = sh._satisfy(pctx, case.get_heap())
-        #         nctx.extend(rctx)
 
         cases = sst_pred_defn.cases
         def wp(cases, Q):
