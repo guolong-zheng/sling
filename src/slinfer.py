@@ -203,16 +203,23 @@ class SLInfer(object):
         else:
             subheaps_lst = []
             for sh in sh_lst:
-                s = sh.stack
-                h = sh.heap
+                nsh = sh.clone()
+                s = nsh.stack
+                h = nsh.heap
                 stk_addrs_dict = self.collect_addrs_from_stk(s)
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
                 debug(heap_partitions)
+
                 subheaps = []
                 for subheap in heap_partitions:
-                    root_ids = stk_addrs_dict[subheap.root]
-                    # debug(root_ids)
+                    if subheap.root in stk_addrs_dict:
+                        root_ids = stk_addrs_dict[subheap.root]
+                    else:
+                        fresh_root = VarUtil.mk_fresh()
+                        root_ids = [fresh_root.id]
+                        s.add(fresh_root.id, Addr(subheap.root))
+                        stk_addrs_dict[subheap.root] = root_ids
                     child_vars = map(lambda child:
                                      SubHeap.get_vars(stk_addrs_dict, None,
                                                       child, get_nil = True),
@@ -220,10 +227,8 @@ class SLInfer(object):
                     child_vars = filter(lambda child: bool(child), child_vars)
                     child_vars = map(lambda vs: List.remove_dups(vs),
                                      list(itertools.product(*child_vars)))
-                    # debug(child_vars)
                     subheaps.append(MetaSubHeap(root_ids, stk_addrs_dict,
-                                                child_vars, sh, subheap))
-                # debug(subheaps)
+                                                child_vars, nsh, subheap))
                 subheaps_lst.append(subheaps)
             children_dict = self.collect_children(subheaps_lst)
             debug(children_dict)
@@ -558,8 +563,6 @@ class SLInfer(object):
         group = []
         stk_children = []
         dangling_children = []
-        # if start in stk_addrs:
-        #     stk_addrs_params.append(start)
         while working_set:
             parent = working_set[0]
             working_set = working_set[1:]
