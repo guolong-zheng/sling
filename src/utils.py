@@ -109,7 +109,25 @@ class List(object):
         if k in d:
             d[k].append(v)
         else:
-            d[k] = [v] 
+            d[k] = [v]
+
+    @classmethod
+    def group_by(self, func, ls):
+        grouped = {}
+        for elem in ls:
+            key = func(elem)
+            grouped.setdefault(key, []).append(elem)
+        return grouped
+
+    @classmethod
+    def partition(self, pred, ls):
+        p, np = [], []
+        for elem in ls:
+            if pred(elem):
+                p.append(elem)
+            else:
+                np.append(elem)
+        return p, np
 
 class Const(object):
     nil_addr = 0

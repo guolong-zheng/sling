@@ -246,25 +246,27 @@ class SHModel(object):
         sh = SHModel(s, h, self.prog)
         return sh
 
-    def satisfy(self, f):
+    def get_residue_ctx(self, f):
         ctx = Context.mk_init_context()
         rctx = self._satisfy(ctx, f)
-        debug(rctx)
+        return rctx
+
+    def satisfy(self, f):
+        rctx = self.get_residue_ctx(f)
+        # debug(rctx)
         return bool(rctx)
 
-    def classic_satisfy(self, f):
-        ctx = Context.mk_init_context()
-        rctx = self._satisfy(ctx, f)
-        # debug(rctx)
-        res = any(not bool(sh.heap.dom()) for (ctx, sh) in rctx)
-        return res
-
-    def get_classic_ctx(self, f):
-        ctx = Context.mk_init_context()
-        rctx = self._satisfy(ctx, f)
+    def get_classic_residue_ctx(self, f):
+        rctx = self.get_residue_ctx(f)
         classic_rctx = filter(lambda (ctx, sh): not bool(sh.heap.dom()),
                               rctx)
         return classic_rctx
+
+    def classic_satisfy(self, f):
+        # rctx = self.get_residue_ctx(f)
+        # res = any(not bool(sh.heap.dom()) for (ctx, sh) in rctx)
+        classic_rctx = self.get_classic_residue_ctx(f)
+        return bool(classic_rctx)
 
     def _satisfy(self, ctx, f):
         method_name = '_satisfy_' + type(f).__name__
@@ -375,12 +377,5 @@ class SHModel(object):
     def _satisfy_FExists(self, ctx, f):
         nctx = ctx.add_vars(f.vars)
         return self._satisfy(nctx, f.form)
-
-    def group_by(self, func, ls):
-        grouped = {}
-        for elem in ls:
-            key = func(elem)
-            grouped.setdefault(key, []).append(elem)
-        return grouped
 
 

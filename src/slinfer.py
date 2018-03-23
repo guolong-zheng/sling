@@ -208,7 +208,7 @@ class SLInfer(object):
                 stk_addrs_dict = self.collect_addrs_from_stk(s)
                 stk_addrs = stk_addrs_dict.keys()
                 heap_partitions = self.partition_heap(h, stk_addrs)
-                # debug(heap_partitions)
+                debug(heap_partitions)
                 subheaps = []
                 for subheap in heap_partitions:
                     root_ids = stk_addrs_dict[subheap.root]
@@ -220,12 +220,14 @@ class SLInfer(object):
                     child_vars = filter(lambda child: bool(child), child_vars)
                     child_vars = map(lambda vs: List.remove_dups(vs),
                                      list(itertools.product(*child_vars)))
-                    debug(child_vars)
+                    # debug(child_vars)
                     subheaps.append(MetaSubHeap(root_ids, stk_addrs_dict,
                                                 child_vars, sh, subheap))
                 # debug(subheaps)
                 subheaps_lst.append(subheaps)
             children_dict = self.collect_children(subheaps_lst)
+            debug(children_dict)
+            debug(subheaps_lst)
             root_preds_lst = []
             for root_id in children_dict:
                 root_subheaps = []
@@ -238,6 +240,7 @@ class SLInfer(object):
                 root_preds = self.infer_pred_lst(prog, root_id,
                                                  root_children,
                                                  root_subheaps)
+                # debug(root_preds)
                 root_preds_lst.append(root_preds)
 
             fs = []
@@ -246,7 +249,7 @@ class SLInfer(object):
                 # debug(f)
                 classic_rctx_lst = []
                 for sh in sh_lst:
-                    rctx = sh.get_classic_ctx(f)
+                    rctx = sh.get_classic_residue_ctx(f)
                     if rctx:
                         classic_rctx_lst.append(rctx)
                 if len(classic_rctx_lst) == len(sh_lst):
@@ -354,11 +357,16 @@ class SLInfer(object):
                 f = FExists(exists_vars, fbase)
             else:
                 f = fbase
-            # debug(f)
+            debug(f)
             r = True
+            rctx_lst = []
             for meta in root_subheaps:
                 submodel = meta.subheap.mk_submodel(meta.sh)
-                r = r and (submodel.satisfy(f))
+                rctx = submodel.get_residue_ctx(f)
+                debug(rctx)
+                r = bool(rctx)
+                if not r:
+                    break
             if r:
                 fs.append(f)
             # if all(subheap.sh.satisfy(f) for subheap in root_subheaps):
@@ -528,17 +536,20 @@ class SLInfer(object):
             sg = self._build_scc_graph(dg, sccs)
             sorted_sccs = nx.topological_sort(sg)
             sorted_scc_lst = [list(scc.nodes) for scc in sorted_sccs]
-            # debug(sorted_scc_lst)
+            debug(sorted_scc_lst)
             marked_addrs = []
             groups = []
             for scc in sorted_scc_lst:
-                start_addrs = filter(lambda a: (a in stk_addrs and
-                                                a not in marked_addrs), scc)
-                for start in start_addrs:
-                    group = self._split_heap(h, start, stk_addrs, marked_addrs)
-                    groups.append(group)
-                    marked_addrs.extend(group.dom)
-            debug(groups)
+                start_addrs = filter(lambda a: a not in marked_addrs, scc)
+                (stk_start_addrs, non_stk_start_addrs) = List.partition(
+                    lambda a: a in stk_addrs, start_addrs)
+                for start in (stk_start_addrs + non_stk_start_addrs):
+                    if start not in marked_addrs and start != Const.nil_addr:
+                        group = self._split_heap(h, start, stk_addrs, marked_addrs)
+                        if group.dom:
+                            groups.append(group)
+                            marked_addrs.extend(group.dom)
+            # debug(groups)
             return(groups)
 
     @classmethod
