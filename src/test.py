@@ -235,30 +235,40 @@ def test():
     c1 = r"""
          x = 0x001;
 
-         0x001 ->node{next:0x002};
-         0x002 ->node{next:0x003};
-         0x003 ->node{next:0x004};
-         0x004 ->node{next:0x005};
-         0x005 ->node{next:0x006};
-         0x006 ->node{next:0x003};
+         0x001 -> node{next:0x002};
+         0x002 -> node{next:0x003};
+         0x003 -> node{next:0x004};
+         0x004 -> node{next:0x005};
+         0x005 -> node{next:0x006};
+         0x006 -> node{next:0x003};
          """
 
     c2 = r"""
          x = 0x003;
 
-         0x001 ->node{next:0x002; prev:nil};
-         0x002 ->node{next:0x003; prev:0x001};
-         0x003 ->node{next:0x004; prev:0x002};
-         0x004 ->node{next:0x005; prev:0x003};
-         0x005 ->node{next:0x006; prev:0x004};
-         0x006 ->node{next:nil; prev:0x005};
+         0x001 -> node{next:0x002; prev:nil};
+         0x002 -> node{next:0x003; prev:0x001};
+         0x003 -> node{next:0x004; prev:0x002};
+         0x004 -> node{next:0x005; prev:0x003};
+         0x005 -> node{next:0x006; prev:0x004};
+         0x006 -> node{next:nil; prev:0x005};
          """
 
     c3 = r"""
          x = 0x003;
 
-         0x001 ->node{next:0x002; prev:nil};
-         0x002 ->node{next:0x003; prev:0x001};
+         0x001 -> node{next:0x002; prev:nil};
+         0x002 -> node{next:0x003; prev:0x001};
+         """
+
+    c4 = r"""
+         x = 0x002;
+         y = 0x003;
+         # z = 0x001;
+
+         0x001 -> node{next:0x002; prev:nil};
+         0x002 -> node{next:0x003; prev:0x001};
+         0x003 -> node{next:nil; prev:0x002};
          """
 
     # form = "x->node{z-1, u}"
@@ -344,7 +354,7 @@ def test():
     # debug(ff)
 
     # traces = [t3d, t3e, t3f, t3g]
-    traces = [c3]
+    traces = [c4]
     sh_lst = []
     for trace in traces:
         trace_ast = trace_parser.sh_parser.parse(trace)

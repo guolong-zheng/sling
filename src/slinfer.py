@@ -30,11 +30,11 @@ class SubHeap(object):
         try:
             vs = map(lambda v: Var(v), stk_addrs_dict[addr])
         except:
-            if get_nil and addr == Const.nil_addr:
-                vs = [Null()]
-            else:
                 # vs = [VarUtil.mk_fresh()]
                 vs = []
+        finally:
+            if get_nil and addr == Const.nil_addr:
+                vs.append(Null())
         for v in vs:
             v.typ = ty
         return vs
@@ -203,7 +203,7 @@ class MetaSubHeap(object):
         stk_addrs_dict = SLInfer.collect_addrs_from_stk(s)
         stk_addrs = stk_addrs_dict.keys()
         heap_partitions = SLInfer.partition_heap(h, stk_addrs)
-        debug(heap_partitions)
+        # debug(heap_partitions)
 
         subheaps = []
         for subheap in heap_partitions:
@@ -218,12 +218,13 @@ class MetaSubHeap(object):
             child_vars = map(lambda child:
                              SubHeap.get_vars(stk_addrs_dict, None,
                                               child, get_nil = True),
-                             subheap.children)
+                             set(subheap.children))
             child_vars = filter(lambda child: bool(child), child_vars)
             child_vars = map(lambda vs: List.remove_dups(vs),
                              list(itertools.product(*child_vars)))
             subheaps.append(MetaSubHeap(root_ids, stk_addrs_dict,
                                         child_vars, nsh, subheap))
+        # debug(subheaps)
         return subheaps
 
 class SLInfer(object):
@@ -237,6 +238,9 @@ class SLInfer(object):
                 subheaps = MetaSubHeap.mk_subheaps(sh)
                 subheaps_lst.append(subheaps)
 
+            # for subheaps in subheaps_lst:
+            #     debug(subheaps)
+
             children_dict = self.collect_children(subheaps_lst)
             root_preds_lst = []
             for root_id in children_dict:
@@ -245,28 +249,32 @@ class SLInfer(object):
                     root_subheap = self.extract_root_subheap(root_id, subheaps)
                     root_subheaps.extend(root_subheap)
                 root_children = children_dict[root_id]
+                # debug(root_id)
+                # debug(root_children)
+                # debug(root_subheaps)
                 root_preds = self.infer_pred_lst(prog, root_id,
                                                  root_children,
                                                  root_subheaps)
-                debug(root_preds)
+                # debug(root_preds)
                 root_preds_lst.append(root_preds)
 
             fs = []
             for conj_preds in itertools.product(*root_preds_lst):
                 f = reduce(lambda f1, f2: f1.mk_conj(f2), conj_preds)
-                classic_rctx_lst = []
+                # debug(f)
+                rctx_lst = []
                 for sh in sh_lst:
-                    rctx = sh.get_classic_residue_ctx(f)
+                    rctx = sh.get_residue_ctx(f)
                     if rctx:
-                        classic_rctx_lst.append(rctx)
-                if len(classic_rctx_lst) == len(sh_lst):
-                    f = self.infer_pure_ptr(f, classic_rctx_lst)
+                        rctx_lst.append(rctx)
+                if len(rctx_lst) == len(sh_lst):
+                    # f = self.infer_pure_ptr(f, rctx_lst)
                     fs.append(f)
             debug(fs)
             return fs
 
     @classmethod
-    def infer_pure_ptr(self, f, classic_rctx_lst):
+    def infer_pure_ptr(self, f, rctx_lst):
         if not isinstance(f, FExists):
             return f
         else:
@@ -275,12 +283,11 @@ class SLInfer(object):
             pairs = list(itertools.combinations(exists_var_with_nil, 2))
             eq_constrs = map(lambda (v1, v2): PBinRel(v1, RelOp.EQ, v2),
                              pairs)
-            # debug(f)
-            # debug(classic_rctx_lst)
+            # debug(rctx_lst)
             valid_eq_constrs = filter(
-                lambda c: all(any(sh.stack.is_unsat(ctx.mk_conj(PNeg(c)))
+                lambda c: all(any(sh.stack.is_unsat(ctx.state.mk_conj(PNeg(c)))
                                   for (ctx, sh) in sh_lst)
-                              for sh_lst in classic_rctx_lst),
+                              for sh_lst in rctx_lst),
                 eq_constrs)
             if valid_eq_constrs:
                 form = f.form.mk_conj(
@@ -291,20 +298,20 @@ class SLInfer(object):
 
     @classmethod
     def infer_pred_lst(self, prog, root_id, root_children, root_subheaps):
-        # debug(root_children)
         pred_lst = []
         for pred_defn in prog.pred_defn_lst:
             preds = self.infer_pred(prog, pred_defn, root_id,
                                     root_children, root_subheaps)
             pred_lst.extend(preds)
-        # debug(pred_lst)
         return pred_lst
 
     @classmethod
     def infer_pred(self, prog, pred_defn, root_id,
                    root_children, root_subheaps):
+        pred_template = HPred(pred_defn.name, pred_defn.params)
         prim_params = []
         ptr_params = []
+
         for param in pred_defn.params:
             if isinstance(param.typ, TData):
                 ptr_params.append(param)
@@ -319,66 +326,86 @@ class SLInfer(object):
         root_param = ptr_params[0]
         root_arg = Var(root_id)
         root_sst = (root_param, root_arg)
+
         fresh_vars_dummy_addr = -1
+
+        def gen_preds(root_children):
+            ptr_args_lst = []
+            for children in root_children:
+                children_permutations = set(
+                    itertools.permutations(children, len(ptr_params) - 1))
+                perms = []
+                for perm in list(children_permutations):
+                    perm = map(lambda arg: VarUtil.mk_fresh()
+                               if arg == fresh_vars_dummy_addr else arg, perm)
+                    perms.append(perm)
+                ptr_args_lst.extend(perms)
+
+            ptr_sst_lst = map(lambda ptr_args: zip(ptr_params[1:],
+                                                   ptr_args),
+                              ptr_args_lst)
+            sst_lst = map(lambda ptr_sst: [root_sst] + ptr_sst + prim_sst,
+                          ptr_sst_lst)
+            sst_lst = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), sst_lst)
+            stk_ids = [root_id] + map(lambda v: v.id,
+                                      filter(lambda v: isinstance(v, Var),
+                                             List.flatten(root_children)))
+            # debug(stk_ids)
+            fs = []
+            for sst in sst_lst:
+                pred = pred_template.subst(sst)
+                fbase = FBase(pred, BConst(True))
+                exists_vars = map(lambda vid: Var(vid),
+                                  filter(lambda vid: vid not in stk_ids,
+                                         fbase.fv()))
+                if exists_vars:
+                    f = FExists(exists_vars, fbase)
+                else:
+                    f = fbase
+                # debug(f)
+
+                all_is_valid = True
+                decr_rctx_lst = []
+                for meta in root_subheaps:
+                    submodel = meta.subheap.mk_submodel(meta.sh)
+                    rctx = submodel.get_residue_ctx(f)
+                    all_is_valid = bool(rctx)
+                    if not all_is_valid:
+                        break
+                    meta_heap_size = len(meta.subheap.dom)
+                    decr_rctx = filter(lambda (ctx, sh):
+                                       len(sh.heap.dom()) < meta_heap_size,
+                                       rctx)
+                    decr_rctx_lst.append(decr_rctx)
+                any_consuming_heap = any(bool(rctx) for rctx in decr_rctx_lst)
+                if all_is_valid and any_consuming_heap:
+                    # f = self.infer_pure_ptr(f, decr_rctx_lst)
+                    fs.append(f)
+            # debug(fs)
+            return fs
+
         for children in root_children:
             if len(children) < len(ptr_params) - 1:
                 num_fresh_vars = len(ptr_params) - 1 - len(children)
                 children.extend([fresh_vars_dummy_addr] * num_fresh_vars)
         # debug(root_children)
 
-        ptr_args_lst = []
-        for children in root_children:
-            children_permutations = set(itertools.permutations(
-                children, len(ptr_params) - 1))
-            perms = []
-            for perm in list(children_permutations):
-                perm = map(lambda arg: VarUtil.mk_fresh()
-                           if arg == fresh_vars_dummy_addr else arg, perm)
-                perms.append(perm)
-            ptr_args_lst.extend(perms)
-        # debug(ptr_args_lst)
-
-        ptr_sst_lst = map(lambda ptr_args: zip(ptr_params[1:], ptr_args),
-                          ptr_args_lst)
-        sst_lst = map(lambda ptr_sst: [root_sst] + ptr_sst + prim_sst,
-                      ptr_sst_lst)
-        sst_lst = map(lambda sst: VarUtil.mk_subst(*(zip(*sst))), sst_lst)
-
-        pred_template = HPred(pred_defn.name, pred_defn.params)
-        stk_ids = [root_id] + map(lambda v: v.id,
-                                  filter(lambda v: isinstance(v, Var),
-                                         List.flatten(root_children)))
-        # debug(stk_ids)
-        fs = []
-        for sst in sst_lst:
-            pred = pred_template.subst(sst)
-            fbase = FBase(pred, BConst(True))
-            # debug(fbase)
-            exists_vars = map(lambda vid: Var(vid),
-                              filter(lambda vid: vid not in stk_ids,
-                                     fbase.fv()))
-            # debug(exists_vars)
-            if exists_vars:
-                f = FExists(exists_vars, fbase)
+        fs = gen_preds(root_children)
+        if fs:
+            return fs
+        else:
+            gen_root_children = []
+            for children in root_children:
+                if any(isinstance(c, Null) for c in children):
+                    gen_children = map(lambda c: (fresh_vars_dummy_addr
+                                                  if isinstance(c, Null)
+                                                  else c), children)
+                    gen_root_children.append(gen_children)
+            if gen_root_children:
+                fs = gen_preds(gen_root_children)
             else:
-                f = fbase
-            debug(f)
-            r = True
-            rctx_lst = []
-            for meta in root_subheaps:
-                submodel = meta.subheap.mk_submodel(meta.sh)
-                rctx = submodel.get_residue_ctx(f)
-                debug(rctx)
-                r = bool(rctx)
-                if not r:
-                    break
-            if r:
-                fs.append(f)
-            # if all(subheap.sh.satisfy(f) for subheap in root_subheaps):
-            #     debug(f)
-            #     fs.append(f)
-        # debug(fs)
-        return fs
+                fs = []
+            return fs
 
     @classmethod
     def extract_root_subheap(self, root_id, subheaps):
@@ -451,7 +478,7 @@ class SLInfer(object):
             sg = self._build_scc_graph(dg, sccs)
             sorted_sccs = nx.topological_sort(sg)
             sorted_scc_lst = [list(scc.nodes) for scc in sorted_sccs]
-            debug(sorted_scc_lst)
+            # debug(sorted_scc_lst)
             marked_addrs = []
             groups = []
             for scc in sorted_scc_lst:

@@ -8,22 +8,23 @@ from debug import *
 from model import *
 
 def create_target(exe, bps):
-    #os.chdir(os.getcwd()+"/simple_example/sll")
     exe = os.path.join(os.getcwd(), exe)
     debugger = lldb.SBDebugger.Create()
     debugger.SetAsync(False)
     target = debugger.CreateTargetWithFileAndArch(exe, lldb.LLDB_ARCH_DEFAULT)
+    ldict = {}
     if target:
-        for bp in bps:
-            target.BreakpointCreateByLocation(exe+".c", bp)
+        for loc in bps:
+            bp = target.BreakpointCreateByLocation(exe+".c", loc)
+            bp_loc = bp.GetLocationAtIndex(0)
+            bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
+            ldict[loc] = bp_line
     else:
         print "Can't create debugger instance"
 
-    return target
+    return target, ldict
 
-def get_model(target, pre_bps, post_bps, size):
-    debug(pre_bps)
-    debug(post_bps)
+def get_model(target, pre_locs, post_locs, size):
     process = target.LaunchSimple([size], None, os.getcwd())
     state = process.GetState()
     thread = process.GetThreadAtIndex(0)
@@ -37,7 +38,7 @@ def get_model(target, pre_bps, post_bps, size):
             vars = frame.GetVariables(True, True, True, True)
             stack, heap = traverse_heap(vars)
             trace = Traces(location, stack, heap)
-            if location in pre_bps:
+            if location in pre_locs:
                 pre_traces.append(trace)
             else:
                 post_traces.append(trace)
@@ -95,12 +96,14 @@ def expand_cell(heap, to_visit):
 
 
 def get_traces(input, pre_bps, post_bps, size):
-    target = create_target(input, pre_bps + post_bps)
+    target, ldict = create_target(input, pre_bps + post_bps)
+    pre_locs = map(lambda l: ldict[l], pre_bps)
+    post_locs = map(lambda l: ldict[l], post_bps)
+    trace_pairs = []
     for s in size:
-        pre_traces, post_traces = get_model(target, pre_bps, post_bps, s)
-        debug(pre_traces)
-        debug(post_traces)
-    return {}
+        pre_traces, post_traces = get_model(target, pre_locs, post_locs, s)
+        trace_pairs.extend(zip(pre_traces[::-1], post_traces))
+    return trace_pairs
 
 def str_type(typ):
     typ_str = str(typ).replace("struct",'')
@@ -140,14 +143,14 @@ def traces_str(traces):
             for h in hp:
                 print hp[h]
 
-def main():
-    exe = "simple_example/GRASShopper/dl_concat"
-    bps = [46, 48, 56, 63]
+# def main():
+#     exe = "simple_example/GRASShopper/dl_concat"
+#     bps = [46, 48, 56, 63]
 
-    target = create_target(exe, bps)
-    traces = get_model(target, '5')
-    # print traces_str(traces)
-    write_file(exe, traces)
+#     target = create_target(exe, bps)
+#     traces = get_model(target, '5')
+#     # print traces_str(traces)
+#     write_file(exe, traces)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

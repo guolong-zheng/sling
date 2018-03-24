@@ -297,6 +297,7 @@ class SHModel(object):
             elif any(rid == v.id for v in ctx.exists_vars):
                 roots = h.dom()
             else:
+                debug(s)
                 debug('HData: Undeclared variable ' + rid)
                 return []
 
@@ -304,7 +305,7 @@ class SHModel(object):
             for root in roots:
                 if root != Const.nil_addr:
                     if root not in h:
-                        debug('HData: Cannot find the matched heap for ' + str(f))
+                        # debug('HData: Cannot find the matched heap for ' + str(f))
                         return []
                     (typ, fields) = h.get(root)
                     if typ == f.name:

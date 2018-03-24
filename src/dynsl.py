@@ -53,8 +53,10 @@ def main():
         post_bps = args.post
         size = args.size
 
-        traces = get_traces(infile, pre_bps, post_bps, size)
-        # debug(traces)
+        trace_pairs = get_traces(infile, pre_bps, post_bps, size)
+        pre_traces, post_traces = zip(*trace_pairs)
+        # debug(pre_traces)
+        # debug(post_traces)
 
         pred_file = args.pred
         pred_defn = pred_file.read()
@@ -67,17 +69,21 @@ def main():
         tprog = type_infer.infer(prog)
         debug(tprog)
 
-        for pos in traces:
-            trace_lst = traces[pos]
-            # debug(trace_lst)
-            model_lst = []
-            for trace in trace_lst:
+        def infer_traces(traces):
+            models = []
+            for trace in traces:
                 s = trace.stack
                 h = trace.heap
                 model = SHModel(s, h, tprog)
-                model_lst.append(model)
-            # debug(model_lst)
-            # fs = SLInfer.infer_location(tprog, model_lst)
+                models.append(model)
+            fs = SLInfer.infer_location(tprog, models)
+            return fs
+
+        # pre_conds = infer_traces(pre_traces)
+
+        grp_post_traces = List.group_by(lambda t: t.loc, post_traces)
+        for loc in grp_post_traces:
+            loc_post_conds = infer_traces(grp_post_traces[loc])
     else:
         debug('Inside test mode')
         test()
