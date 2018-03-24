@@ -4,7 +4,7 @@
 DLNode * dll_append(DLNode * x1, DLNode * x2)
 {
   //pre
-  if (x1 == NULL){
+  if (x1 == NULL) {
     //post
     return x2;
   } else {
@@ -16,9 +16,9 @@ DLNode * dll_append(DLNode * x1, DLNode * x2)
   }
 }
 
-int main( int argc, char * argv[]){
+int main( int argc, char * argv[]) {
     int size = 5;
-    if(argc > 1)
+    if (argc > 1)
     	sscanf(argv[1], "%d", &size);
 
     DLNode * root = NULL;

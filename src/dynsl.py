@@ -14,8 +14,12 @@ def main():
     ag('--input', '-input',
        dest='infile')
 
-    ag('--breaks', '-breaks',
-       dest='breaks', nargs='+',
+    ag('--pre', '-pre',
+       dest='pre', nargs='+',
+       type=int)
+
+    ag('--post', '-post',
+       dest='post', nargs='+',
        type=int)
 
     ag('--size', '-size',
@@ -44,12 +48,12 @@ def main():
     settings.test_mode = args.test
 
     if not settings.test_mode:
-
         infile = args.infile
-        bps = args.breaks
+        pre_bps = args.pre
+        post_bps = args.post
         size = args.size
 
-        traces = get_traces(infile, bps, size)
+        traces = get_traces(infile, pre_bps, post_bps, size)
         # debug(traces)
 
         pred_file = args.pred
@@ -65,7 +69,6 @@ def main():
 
         for pos in traces:
             trace_lst = traces[pos]
-            debug(pos)
             # debug(trace_lst)
             model_lst = []
             for trace in trace_lst:
@@ -73,8 +76,8 @@ def main():
                 h = trace.heap
                 model = SHModel(s, h, tprog)
                 model_lst.append(model)
-            debug(model_lst)
-            fs = SLInfer.infer_location(tprog, model_lst)
+            # debug(model_lst)
+            # fs = SLInfer.infer_location(tprog, model_lst)
     else:
         debug('Inside test mode')
         test()

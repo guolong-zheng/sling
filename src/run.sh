@@ -10,6 +10,7 @@ if [ ! -f $fname ]; then
 fi
 popd
 
-bps=$(grep -n -E  "//pre|//post" $FILE | cut -d: -f1)
+pre=$(grep -n -E  "//pre" $FILE | cut -d: -f1)
+post=$(grep -n -E  "//post" $FILE | cut -d: -f1)
 
-python dynsl.py -input $fname -breaks $bps -size $SIZE -def $DEFN
+python dynsl.py -input $fname -pre $pre -post $post -size $SIZE -def $DEFN

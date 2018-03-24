@@ -21,11 +21,14 @@ def create_target(exe, bps):
 
     return target
 
-def get_model(target, size):
+def get_model(target, pre_bps, post_bps, size):
+    debug(pre_bps)
+    debug(post_bps)
     process = target.LaunchSimple([size], None, os.getcwd())
-    traces = defaultdict(list)
     state = process.GetState()
     thread = process.GetThreadAtIndex(0)
+    pre_traces = []
+    post_traces = []
     # stoped due to break point
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex(0)
@@ -33,10 +36,14 @@ def get_model(target, size):
         if frame:
             vars = frame.GetVariables(True, True, True, True)
             stack, heap = traverse_heap(vars)
-            traces[location].append(Traces(location, stack, heap))
+            trace = Traces(location, stack, heap)
+            if location in pre_bps:
+                pre_traces.append(trace)
+            else:
+                post_traces.append(trace)
         process.Continue()
     # print "No breakpoint set up!"
-    return traces
+    return (pre_traces, post_traces)
 
 def traverse_heap(vars):
     stack = Stack()
@@ -48,7 +55,7 @@ def traverse_heap(vars):
             if var.TypeIsPointerType():
                 stack.add(var.GetName(), Addr(var.GetValue()))
                 to_visit.append(var)
-            else: 
+            else:
                 stack.add(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
@@ -87,15 +94,13 @@ def expand_cell(heap, to_visit):
     return heap
 
 
-def get_traces(input, bps, size):
-    target = create_target(input, bps)
-    traces = {}
+def get_traces(input, pre_bps, post_bps, size):
+    target = create_target(input, pre_bps + post_bps)
     for s in size:
-        model = get_model(target, s)
-        debug(model)
-        traces.update(model)
-    return traces
-
+        pre_traces, post_traces = get_model(target, pre_bps, post_bps, s)
+        debug(pre_traces)
+        debug(post_traces)
+    return {}
 
 def str_type(typ):
     typ_str = str(typ).replace("struct",'')
