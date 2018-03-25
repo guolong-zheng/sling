@@ -70,4 +70,10 @@ class Traces(object):
                 str(self.stack) + '\n\n' + str(self.heap))
 
     def mk_model(self, prog):
-        return SHModel(self.stack, self.heap, prog)
+        import model
+        return model.SHModel(self.stack, self.heap, prog)
+
+    @classmethod
+    def mk_model_lst(self, traces, prog):
+        models = map(lambda trace: (trace.loc, trace.mk_model(prog)), traces)
+        return models

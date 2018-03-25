@@ -69,21 +69,17 @@ def main():
         tprog = type_infer.infer(prog)
         debug(tprog)
 
-        def infer_traces(traces):
-            models = []
-            for trace in traces:
-                s = trace.stack
-                h = trace.heap
-                model = SHModel(s, h, tprog)
-                models.append(model)
+        pre_models = Traces.mk_model_lst(pre_traces, tprog)
+        post_models = Traces.mk_model_lst(post_traces, tprog)
+
+        fdict = {}
+        grp_models = List.group_by(lambda (loc, model): loc,
+                                   pre_models + post_models)
+        for loc in grp_models:
+            models = map(lambda (loc, model): model, grp_models[loc])
             fs = SLInfer.infer_location(tprog, models)
-            return fs
-
-        pre_conds = infer_traces(pre_traces)
-
-        grp_post_traces = List.group_by(lambda t: t.loc, post_traces)
-        for loc in grp_post_traces:
-            loc_post_conds = infer_traces(grp_post_traces[loc])
+            fdict[loc] = fs
+        debug(fdict)
     else:
         debug('Inside test mode')
         test()
