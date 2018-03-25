@@ -7,7 +7,7 @@ from printer import *
 import itertools
 
 class SingletonModel(object):
-    def __init__(self, root_id, childen_lst, sh):
+    def __init__(self, root_id, children_lst, sh):
         self.root_id = root_id
         self.children_lst = children_lst
         self.sh = sh
