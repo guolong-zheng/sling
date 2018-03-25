@@ -236,6 +236,8 @@ class SLInfer(object):
             subheaps_lst = []
             for sh in sh_lst:
                 subheaps = MetaSubHeap.mk_subheaps(sh)
+                debug(sh)
+                debug(subheaps)
                 subheaps_lst.append(subheaps)
 
             # for subheaps in subheaps_lst:
@@ -374,7 +376,8 @@ class SLInfer(object):
                         break
                     meta_heap_size = len(meta.subheap.dom)
                     decr_rctx = filter(lambda (ctx, sh):
-                                       len(sh.heap.dom()) < meta_heap_size,
+                                       (len(sh.heap.dom()) == 0 or
+                                       len(sh.heap.dom()) < meta_heap_size),
                                        rctx)
                     decr_rctx_lst.append(decr_rctx)
                 any_consuming_heap = any(bool(rctx) for rctx in decr_rctx_lst)
@@ -388,7 +391,7 @@ class SLInfer(object):
             if len(children) < len(ptr_params) - 1:
                 num_fresh_vars = len(ptr_params) - 1 - len(children)
                 children.extend([fresh_vars_dummy_addr] * num_fresh_vars)
-        # debug(root_children)
+        debug(root_children)
 
         fs = gen_preds(root_children)
         if fs:
@@ -495,6 +498,22 @@ class SLInfer(object):
             return(groups)
 
     @classmethod
+    def partition_heap_singleton(self, sh, var, stk_addrs):
+        nsh = sh.clone()
+        s = nsh.stack
+        h = nsh.heap
+        var_addr = s.get(var).val
+        subheap = self._split_heap(h, var_addr, stk_addrs, [])
+        h1 = Heap()
+        h2 = Heap()
+        for addr in h:
+            if addr in subheap.dom:
+                h1.add(addr, h[addr])
+            else:
+                h2.add(addr, h[addr])
+        
+
+    @classmethod
     def _split_heap(self, h, start, stk_addrs, marked_addrs):
         working_set = [start]
         group = []
@@ -549,4 +568,53 @@ class SLInfer(object):
                 sg.add_edge(scc1, scc2)
         return sg
 
+    @classmethod
+    def infer_incr(self, prog, models):
+        local_ptr_vars_lst = map(lambda sh:
+                                 filter(lambda v:
+                                        isinstance(sh.stack.get(v), Addr),
+                                        sh.stack.dom()),
+                                 models)
+        local_ptr_vars = list(set.intersection(
+            *(map(lambda vs: set(vs), local_ptr_vars_lst))))
+        meta_models = map(lambda sh: MetaModel.make(local_ptr_vars, sh), models)
+        fs = self._infer_incr_var_lst(prog, local_ptr_vars, [meta_models])
+        return []
+
+    @classmethod
+    def _infer_incr_var_lst(self, prog, vars, meta_models_lst):
+        for var in vars:
+            preds, meta_models_lst = self._infer_incr_var(prog, var,
+                                                           meta_models_lst)
+
+    @classmethod
+    def _infer_incr_var(self, prog, var, meta_models_lst):
+        for meta_models in meta_models_lst:
+            preds = self._infer_incr_models(prog, var, meta_models)
+        return [], []
+
+    @classmethod
+    def _infer_incr_models(self, prog, var, meta_models):
+        for model in meta_models:
+            s = model.sh.stack
+            h = model.sh.heap
+            var_addr = s.get(var).val
+            stk_addrs = model.stk_addrs_dict.keys()
+            self.partition_heap_singleton(h, var_addr, stk_addrs)
+
+class MetaModel(object):
+    def __init__(self, local_vars, stk_addrs_dict, sh):
+        self.local_vars = local_vars
+        self.stk_addrs_dict = stk_addrs_dict
+        self.sh = sh
+
+    def __str__(self):
+        return (Printer.str_of_list(self.local_vars) + ': ' +
+                str(self.subheap))
+
+    @classmethod
+    def make(self, local_vars, sh):
+        nsh = sh.clone()
+        stk_addrs_dict = SLInfer.collect_addrs_from_stk(nsh.stack)
+        return MetaModel(local_vars, stk_addrs_dict, nsh)
 
