@@ -1,6 +1,7 @@
 from seplogic import *
 from trace import *
 from parser import *
+from iincr import *
 from debug import *
 from typ import *
 from get_trace import *
