@@ -13,7 +13,7 @@ class SingletonModel(object):
         self.sh = sh
 
     def __str__(self):
-        return (root_id + ' -> ' + Printer.str_of_list(self.children_lst) + str(self.sh))
+        return (self.root_id + ' -> ' + Printer.str_of_list(self.children_lst) + str(self.sh))
 
     @classmethod
     def make(self, sh, var, stk_addrs_dict):
