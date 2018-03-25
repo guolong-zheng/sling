@@ -95,7 +95,7 @@ class MetaModel(object):
     def collect_addrs_from_stk(self, s):
         stk_addrs_dict = {}
         for v in s:
-            vl = stk[v]
+            vl = s[v]
             if isinstance(vl, Addr):
                 addr = vl.val
                 List.add_lst_dict(stk_addrs_dict, addr, v)
