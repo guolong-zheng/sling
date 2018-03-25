@@ -79,7 +79,20 @@ def main():
             models = map(lambda (loc, model): model, grp_models[loc])
             fs = SLInfer.infer_location(tprog, models)
             fdict[loc] = fs
-        debug(fdict)
+        # debug(fdict)
+
+        for ((pr_loc, pr_model), (po_loc, po_model)) in zip(pre_models, post_models):
+            pr_fs = fdict[pr_loc]
+            po_fs = fdict[po_loc]
+            pre_ctx_lst = []
+            for pr_f in pr_fs:
+                pr_rctx = pr_model.get_residue_ctx(pr_f)
+                if pr_rctx:
+                    pre_ctx_lst.append((pr_f, pr_rctx))
+
+            for po_f in po_fs:
+                po_rctx = po_model.get_residue_ctx(po_f)
+                # debug(po_rctx)
     else:
         debug('Inside test mode')
         test()
