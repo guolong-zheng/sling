@@ -79,7 +79,7 @@ def main():
             fs = SLInfer.infer_location(tprog, models)
             return fs
 
-        # pre_conds = infer_traces(pre_traces)
+        pre_conds = infer_traces(pre_traces)
 
         grp_post_traces = List.group_by(lambda t: t.loc, post_traces)
         for loc in grp_post_traces:

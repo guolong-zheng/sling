@@ -68,3 +68,6 @@ class Traces(object):
     def __str__(self):
         return ('\nloc ' + str(self.loc) + ':\n' +
                 str(self.stack) + '\n\n' + str(self.heap))
+
+    def mk_model(self, prog):
+        return SHModel(self.stack, self.heap, prog)
