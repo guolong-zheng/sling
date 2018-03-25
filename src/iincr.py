@@ -128,7 +128,7 @@ class IIncr(object):
                                                            meta_models_lst)
 
     @classmethod
-    def _infer_incr_var(self, prog, var, meta_models_lst):
+    def _infer_var(self, prog, var, meta_models_lst):
         for meta_models in meta_models_lst:
             preds = self._infer_models(prog, var, meta_models)
         return [], []
