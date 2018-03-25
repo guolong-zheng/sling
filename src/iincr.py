@@ -1,4 +1,5 @@
 from seplogic import *
+from model import *
 from trace import *
 from utils import *
 from debug import *
