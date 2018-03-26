@@ -135,6 +135,7 @@ class IIncr(object):
             f_unconsumed_models_lst = self._infer_root(prog, root, meta_models)
             if not f_unconsumed_models_lst:
                 debug('Cannot derive formulas for the root pointer ' + root)
+                return self._infer_root_lst(prog, roots[1:], meta_models)
             else:
                 for (f, unconsumed_models) in f_unconsumed_models_lst:
                     fs_unconsumed_models_lst = self._infer_root_lst(prog, roots[1:],
@@ -146,7 +147,7 @@ class IIncr(object):
                             map(lambda (fs, unconsumed_models): (f.mk_conj(fs),
                                                                  unconsumed_models),
                                 fs_unconsumed_models_lst))
-            debug(f_residue_lst)
+            # debug(f_residue_lst)
             return f_residue_lst
 
     @classmethod
@@ -163,6 +164,7 @@ class IIncr(object):
                                                                     model.stk_addrs_dict),
                                                 meta_models)))
         root_children_lst = self._get_common_children(root, singleton_models)
+        debug(root_children_lst)
 
         residue_models_lst = []
         for children in root_children_lst:
@@ -210,6 +212,9 @@ class IIncr(object):
         root_param = ptr_params[0]
         root_arg = Var(root)
         root_sst = (root_param, root_arg)
+
+        debug(root)
+        debug(children)
 
         if len(children) < len(ptr_params) - 1:
             num_fresh_vars = len(ptr_params) - 1 - len(children)
