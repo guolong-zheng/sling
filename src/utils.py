@@ -131,6 +131,7 @@ class List(object):
 
 class Const(object):
     nil_addr = 0
+    fresh_vars_dummy_addr = -1
     fid = 0
 
     @classmethod

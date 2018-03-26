@@ -251,6 +251,17 @@ class SHModel(object):
         rctx = self._satisfy(ctx, f)
         return rctx
 
+    def get_smallest_residue_ctx(self, f):
+        rctx = self.get_residue_ctx(f)
+        if not rctx:
+            return None
+        else:
+            def heap_size(ctx):
+                (_, sh) = ctx
+                return len(sh.heap.dom())
+
+            return min(rctx, key = heap_size)
+
     def satisfy(self, f):
         rctx = self.get_residue_ctx(f)
         # debug(rctx)
