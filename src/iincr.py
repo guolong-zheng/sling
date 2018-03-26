@@ -90,8 +90,10 @@ class MetaModel(object):
         self.sh = sh
 
     def __str__(self):
-        return (Printer.str_of_list(self.local_vars) + ': ' +
-                str(self.subheap))
+        return (Printer.str_of_list(self.local_vars) + ': ' + str(self.sh))
+
+    def clone(self):
+        return copy.deepcopy(self)
 
     @classmethod
     def collect_addrs_from_stk(self, s):
@@ -120,20 +122,39 @@ class IIncr(object):
         local_ptr_vars = list(set.intersection(
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
         meta_models = map(lambda sh: MetaModel.make(local_ptr_vars, sh), models)
-        fs = self._infer_root_lst(prog, local_ptr_vars, [meta_models])
+        fs = self._infer_root_lst(prog, local_ptr_vars, meta_models)
         return []
 
     @classmethod
-    def _infer_root_lst(self, prog, roots, meta_models_lst):
-        for root in roots:
-            preds, meta_models_lst = self._infer_root(prog, root,
-                                                      meta_models_lst)
+    def _infer_root_lst(self, prog, roots, meta_models):
+        if not roots:
+            return []
+        else:
+            f_residue_lst = []
+            root = roots[0]
+            f_unconsumed_models_lst = self._infer_root(prog, root, meta_models)
+            if not f_unconsumed_models_lst:
+                debug('Cannot derive formulas for the root pointer ' + root)
+            else:
+                for (f, unconsumed_models) in f_unconsumed_models_lst:
+                    fs_unconsumed_models_lst = self._infer_root_lst(prog, roots[1:],
+                                                                    unconsumed_models)
+                    if not fs_unconsumed_models_lst:
+                        f_residue_lst.append((f, unconsumed_models))
+                    else:
+                        f_residue_lst.extend(
+                            map(lambda (fs, unconsumed_models): (f.mk_conj(fs),
+                                                                 unconsumed_models),
+                                fs_unconsumed_models_lst))
+            debug(f_residue_lst)
+            return f_residue_lst
 
     @classmethod
-    def _infer_root(self, prog, root, meta_models_lst):
-        for meta_models in meta_models_lst:
-            preds = self._infer_singleton_models(prog, root, meta_models)
-        return [], []
+    def _infer_root(self, prog, root, meta_models):
+        unconsumed_models_lst = []
+        f_unconsumed_models_lst = self._infer_singleton_models(prog, root, meta_models)
+        unconsumed_models_lst.extend(f_unconsumed_models_lst)
+        return unconsumed_models_lst
 
     @classmethod
     def _infer_singleton_models(self, prog, root, meta_models):
@@ -148,11 +169,19 @@ class IIncr(object):
             residue_models_lst.extend(self._infer_pred_lst(prog, root,
                                                            children,
                                                            singleton_models))
-        for (f, residue_models) in residue_models_lst:
+
+        def mk_unconsumed_models(f, residue_models):
             unconsumed_heaps = map(lambda (rh, rsh): rh.union(rsh.heap),
                                    zip(rem_heaps, residue_models))
-            debug(f)
-            # debug(unconsumed_heaps)
+            unconsumed_models = []
+            for (meta_model, unconsumed_heap) in zip(meta_models, unconsumed_heaps):
+                unconsumed_model = meta_model.clone()
+                unconsumed_model.sh.heap = unconsumed_heap
+                unconsumed_models.append(unconsumed_model)
+            return (f, unconsumed_models)
+
+        return map(lambda (f, residue_models):
+                   mk_unconsumed_models(f, residue_models), residue_models_lst)
 
     @classmethod
     def _infer_pred_lst(self, prog, root, children, singleton_models):
@@ -214,12 +243,9 @@ class IIncr(object):
 
             all_is_valid = True
             residue_models = []
-            debug(f)
             for model in singleton_models:
                 sh = model.sh
                 rctx = sh.get_smallest_residue_ctx(f)
-                debug(sh)
-                debug(rctx)
                 all_is_valid = rctx is not None
                 if not all_is_valid:
                     break

@@ -78,6 +78,7 @@ def main():
                                    pre_models + post_models)
         for loc in grp_models:
             models = map(lambda (loc, model): model, grp_models[loc])
+            debug(loc)
             fs = IIncr.infer(tprog, models)
             fdict[loc] = fs
         # debug(fdict)
