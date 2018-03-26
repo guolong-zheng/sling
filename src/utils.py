@@ -1,5 +1,6 @@
 from debug import *
 from seplogic import *
+from itertools import *
 import z3
 
 class Utils(object):
@@ -128,6 +129,12 @@ class List(object):
             else:
                 np.append(elem)
         return p, np
+
+    @classmethod
+    def all_subsets(self, ls):
+        ss = chain(*map(lambda x: combinations(ls, x),
+                        range(0, len(ls)+1)))
+        return map(lambda s: list(s), list(ss))
 
 class Const(object):
     nil_addr = 0

@@ -66,6 +66,8 @@ class SingletonModel(object):
                         if (child in stk_addrs or
                             child == Const.nil_addr):
                             stk_children.append(child)
+            elif parent == Const.nil_addr:
+                stk_children.append(parent)
             else:
                 dangling_children.append(parent)
         return (marked_addrs, stk_children, dangling_children)
@@ -122,8 +124,10 @@ class IIncr(object):
         local_ptr_vars = list(set.intersection(
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
         meta_models = map(lambda sh: MetaModel.make(local_ptr_vars, sh), models)
-        fs = self._infer_root_lst(prog, local_ptr_vars, meta_models)
-        return []
+        f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
+        for (f, residue_model) in f_residue_lst:
+            debug(f)
+        return f_residue_lst
 
     @classmethod
     def _infer_root_lst(self, prog, roots, meta_models):
@@ -147,7 +151,6 @@ class IIncr(object):
                             map(lambda (fs, unconsumed_models): (f.mk_conj(fs),
                                                                  unconsumed_models),
                                 fs_unconsumed_models_lst))
-            # debug(f_residue_lst)
             return f_residue_lst
 
     @classmethod
@@ -164,13 +167,29 @@ class IIncr(object):
                                                                     model.stk_addrs_dict),
                                                 meta_models)))
         root_children_lst = self._get_common_children(root, singleton_models)
-        debug(root_children_lst)
+        # debug(root)
+        # debug(root_children_lst)
 
         residue_models_lst = []
+
+        # for children in root_children_lst:
+        #     residue_models_lst.extend(self._infer_pred_lst(prog, root,
+        #                                                    children,
+        #                                                    singleton_models))
+
         for children in root_children_lst:
-            residue_models_lst.extend(self._infer_pred_lst(prog, root,
-                                                           children,
-                                                           singleton_models))
+            residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
+            if residue_models:
+                residue_models_lst.extend(residue_models)
+                break
+
+        # root_children_grp = List.group_by(len, root_children_lst)
+        # for l in sorted(root_children_grp.keys(), reverse=True):
+        #     for children in root_children_grp[l]:
+        #         residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
+        #         residue_models_lst.extend(residue_models)
+        #     if residue_models_lst:
+        #         break
 
         def mk_unconsumed_models(f, residue_models):
             unconsumed_heaps = map(lambda (rh, rsh): rh.union(rsh.heap),
@@ -190,7 +209,7 @@ class IIncr(object):
         pred_lst = []
         for pred_defn in prog.pred_defn_lst:
             preds = self._infer_pred(prog, pred_defn, root,
-                                  children, singleton_models)
+                                     children, singleton_models)
             pred_lst.extend(preds)
         return pred_lst
 
@@ -212,9 +231,6 @@ class IIncr(object):
         root_param = ptr_params[0]
         root_arg = Var(root)
         root_sst = (root_param, root_arg)
-
-        debug(root)
-        debug(children)
 
         if len(children) < len(ptr_params) - 1:
             num_fresh_vars = len(ptr_params) - 1 - len(children)
@@ -247,6 +263,7 @@ class IIncr(object):
                 f = fbase
 
             all_is_valid = True
+            any_decr_models = False
             residue_models = []
             for model in singleton_models:
                 sh = model.sh
@@ -255,10 +272,13 @@ class IIncr(object):
                 if not all_is_valid:
                     break
                 else:
-                    (_, sh) = rctx
-                    residue_models.append(sh)
-
-            if all_is_valid:
+                    (_, rsh) = rctx
+                    residue_models.append(rsh)
+                    any_decr_models = (any_decr_models or
+                                       (len(rsh.heap.dom()) == 0) or
+                                        len(rsh.heap.dom()) < len(sh.heap.dom()))
+                # debug(any_decr_models)
+            if all_is_valid and any_decr_models:
                 # residue_tuple_lst = list(itertools.product(*residue_models_lst))
                 # debug(len(residue_tuple_lst))
                 # fs.extend(map(lambda residue_models: (f, residue_models),
@@ -274,13 +294,18 @@ class IIncr(object):
                                list(set.intersection(*(map(lambda vs: set(vs), children_lst)))
                                     - set([Var(root)])),
                                lst_of_children)
-        no_dups_children.sort(key=len, reverse=True)
-        no_subset_children = []
+
+        no_dups_ss_children = []
         for children in no_dups_children:
-            if not(any(set.issubset(set(children), set(s))
-                       for s in no_subset_children)):
-                no_subset_children.append(children)
-        return no_subset_children
+            no_dups_ss_children.extend(List.all_subsets(children))
+
+        no_dups_ss_children.sort(key=lambda c: (len(c), Null() not in c), reverse=True)
+        # no_dups_ss_children.sort(key=len, reverse=True)
+        subset_children = []
+        for children in no_dups_ss_children:
+            if not(any(set(children) == set(s) for s in subset_children)):
+                subset_children.append(children)
+        return subset_children
 
 
 
