@@ -86,16 +86,22 @@ class SingletonModel(object):
         return vs
 
 class MetaModel(object):
-    def __init__(self, local_vars, stk_addrs_dict, sh):
+    def __init__(self, id, loc, local_vars, stk_addrs_dict, sh):
+        self.id = id
+        self.loc = loc
         self.local_vars = local_vars
         self.stk_addrs_dict = stk_addrs_dict
         self.sh = sh
 
     def __str__(self):
-        return (Printer.str_of_list(self.local_vars) + ': ' + str(self.sh))
+        return ('\n' + str(self.id) + ' - ' + str(self.loc) + ':\n' +
+                Printer.str_of_list(self.local_vars) + ': ' + str(self.sh))
 
     def clone(self):
         return copy.deepcopy(self)
+
+    def is_same_heap_dom(self, other):
+        return set(self.sh.heap.dom()) == set(other.sh.heap.dom())
 
     @classmethod
     def collect_addrs_from_stk(self, s):
@@ -108,25 +114,27 @@ class MetaModel(object):
         return stk_addrs_dict
 
     @classmethod
-    def make(self, local_vars, sh):
-        nsh = sh.clone()
+    def make(self, local_vars, model):
+        nsh = model.sh.clone()
         stk_addrs_dict = self.collect_addrs_from_stk(nsh.stack)
-        return MetaModel(local_vars, stk_addrs_dict, nsh)
+        return MetaModel(model.id, model.loc, local_vars,
+                         stk_addrs_dict, nsh)
 
 class IIncr(object):
     @classmethod
     def infer(self, prog, models):
-        local_ptr_vars_lst = map(lambda sh:
+        local_ptr_vars_lst = map(lambda model:
                                  filter(lambda v:
-                                        isinstance(sh.stack.get(v), Addr),
-                                        sh.stack.dom()),
+                                        isinstance(model.sh.stack.get(v), Addr),
+                                        model.sh.stack.dom()),
                                  models)
         local_ptr_vars = list(set.intersection(
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
-        meta_models = map(lambda sh: MetaModel.make(local_ptr_vars, sh), models)
+        meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
         for (f, residue_model) in f_residue_lst:
             debug(f)
+        #     debug(map(lambda model: (model.id, model.loc), residue_model))
         return f_residue_lst
 
     @classmethod

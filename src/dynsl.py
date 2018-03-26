@@ -53,14 +53,32 @@ def main():
         pre_bps = args.pre
         post_bps = args.post
         size = args.size
+        pred_file = args.pred
+        pred_defn = pred_file.read()
 
         trace_pairs = get_traces(infile, pre_bps, post_bps, size)
         pre_traces, post_traces = zip(*trace_pairs)
-        # debug(pre_traces)
-        # debug(post_traces)
 
-        pred_file = args.pred
-        pred_defn = pred_file.read()
+        pre_locs = List.remove_dups(map(lambda pr: pr.loc, pre_traces))
+        post_locs = List.remove_dups(map(lambda po: po.loc, post_traces))
+
+        pre_post_pairs = map(lambda (pr, po): ((pr.loc, pr.id),
+                                               (po.loc, po.id)), trace_pairs)
+        # debug(pre_post_pairs)
+
+        pre_post_dict = {}
+        for ((pr_loc, pr_id), (po_loc, po_id)) in pre_post_pairs:
+            if pr_loc not in pre_post_dict:
+                pdict = {}
+                pdict[po_loc] = [(pr_id, po_id)]
+                pre_post_dict[pr_loc] = pdict
+            else:
+                pdict = pre_post_dict[pr_loc]
+                if po_loc not in pdict:
+                    pdict[po_loc] = [(pr_id, po_id)]
+                else:
+                    pdict[po_loc].append((pr_id, po_id))
+        debug(pre_post_dict)
 
         seplogic_parser = SepLogicParser()
         defn_ast = seplogic_parser.defn_parser.parse(pred_defn)
@@ -70,32 +88,45 @@ def main():
         tprog = type_infer.infer(prog)
         debug(tprog)
 
-        pre_models = Traces.mk_model_lst(pre_traces, tprog)
-        post_models = Traces.mk_model_lst(post_traces, tprog)
+        pre_models = TModel.make_lst(pre_traces, tprog)
+        post_models = TModel.make_lst(post_traces, tprog)
 
-        fdict = {}
-        grp_models = List.group_by(lambda (loc, model): loc,
+        rdict = {}
+        grp_models = List.group_by(lambda model: model.loc,
                                    pre_models + post_models)
         for loc in grp_models:
-            models = map(lambda (loc, model): model, grp_models[loc])
-            debug(loc)
-            fs = IIncr.infer(tprog, models)
-            fdict[loc] = fs
-        # debug(fdict)
+            models = grp_models[loc]
+            f_residue_lst = IIncr.infer(tprog, models)
 
-        # for ((pr_loc, pr_model), (po_loc, po_model)) in zip(pre_models, post_models):
-        #     pr_fs = fdict[pr_loc]
-        #     po_fs = fdict[po_loc]
-        #     pre_ctx_lst = []
-        #     for pr_f in pr_fs:
-        #         pr_rctx = pr_model.get_residue_ctx(pr_f)
-        #         if pr_rctx:
-        #             pre_ctx_lst.extend(map(lambda rctx: (pr_f, rctx), pr_rctx))
-        #     # debug(pre_ctx_lst)
+            def mk_mdict(models):
+                mdict = {}
+                for model in models:
+                    mdict[model.id] = model
+                return mdict
 
-        #     for po_f in po_fs:
-        #         po_rctx = po_model.get_residue_ctx(po_f)
-        #         # debug(po_rctx)
+            f_residue_dict = map(lambda (f, residue_model):
+                                 (f, mk_mdict(residue_model)),
+                                 f_residue_lst)
+            rdict[loc] = f_residue_dict
+
+        # debug(rdict)
+
+        for pr_loc in pre_locs:
+            pr_po_pairs = pre_post_dict[pr_loc]
+            pr_residue_lst = rdict[pr_loc]
+            for (pr_f, pr_residue) in pr_residue_lst:
+                debug(pr_f)
+                pr_f_posts = {}
+                for po_loc in pr_po_pairs:
+                    pairs = pr_po_pairs[po_loc]
+                    po_residue_lst = rdict[po_loc]
+                    for (po_f, po_residue) in po_residue_lst:
+                        if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
+                               for (pr_id, po_id) in pairs):
+                            debug(po_loc)
+                            debug(po_f)
+
+
     else:
         debug('Inside test mode')
         test()

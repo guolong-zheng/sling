@@ -1,3 +1,5 @@
+from utils import *
+
 class Val(object):
     def __str__(self):
         return str(self.val)
@@ -61,19 +63,31 @@ class StackTrace(Trace):
 
 class Traces(object):
     def __init__(self, loc, stack, heap):
+        self.id = Const.mk_fresh()
         self.loc = loc
         self.stack = stack
         self.heap = heap 
 
     def __str__(self):
-        return ('\nloc ' + str(self.loc) + ':\n' +
+        return ('\n' + str(self.id) + ' - ' + str(self.loc) + ':\n' +
                 str(self.stack) + '\n\n' + str(self.heap))
 
-    def mk_model(self, prog):
+class TModel(object):
+    def __init__(self, id, loc, stack, heap, prog):
         import model
-        return model.SHModel(self.stack, self.heap, prog)
+        self.id = id
+        self.loc = loc
+        self.sh = model.SHModel(stack, heap, prog)
 
     @classmethod
-    def mk_model_lst(self, traces, prog):
-        models = map(lambda trace: (trace.loc, trace.mk_model(prog)), traces)
+    def make(self, trace, prog):
+        return TModel(trace.id, trace.loc, trace.stack, trace.heap, prog)
+
+    @classmethod
+    def make_lst(self, traces, prog):
+        models = map(lambda trace: self.make(trace, prog), traces)
         return models
+
+
+
+
