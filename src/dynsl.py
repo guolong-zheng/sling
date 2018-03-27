@@ -78,6 +78,9 @@ def main():
                     pdict[po_loc] = [(pr_id, po_id)]
                 else:
                     pdict[po_loc].append((pr_id, po_id))
+            # pdict = pre_post_dict.get(pr_loc, {})
+            # pairs = pdict.get(po_loc, [])
+            # pairs.append((pr_id, po_id))
         debug(pre_post_dict)
 
         seplogic_parser = SepLogicParser()
