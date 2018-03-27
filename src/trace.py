@@ -79,6 +79,9 @@ class TModel(object):
         self.loc = loc
         self.sh = model.SHModel(stack, heap, prog)
 
+    def __str__(self):
+        return ('\n' + str(self.loc) + ' - ' + str(self.id) + ':\n' + str(self.sh))
+
     @classmethod
     def make(self, trace, prog):
         return TModel(trace.id, trace.loc, trace.stack, trace.heap, prog)

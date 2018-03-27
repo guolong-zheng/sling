@@ -66,7 +66,7 @@ class SingletonModel(object):
                         if (child in stk_addrs or
                             child == Const.nil_addr):
                             stk_children.append(child)
-            elif parent == Const.nil_addr:
+            elif parent == Const.nil_addr or parent == start_addr:
                 stk_children.append(parent)
             else:
                 dangling_children.append(parent)
@@ -94,7 +94,7 @@ class MetaModel(object):
         self.sh = sh
 
     def __str__(self):
-        return ('\n' + str(self.id) + ' - ' + str(self.loc) + ':\n' +
+        return ('\n' + str(self.loc) + ' - ' + str(self.id) + ':\n' +
                 Printer.str_of_list(self.local_vars) + ': ' + str(self.sh))
 
     def clone(self):
@@ -132,9 +132,11 @@ class IIncr(object):
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
-        for (f, residue_model) in f_residue_lst:
-            debug(f)
-        #     debug(map(lambda model: (model.id, model.loc), residue_model))
+        # for (f, residue_models) in f_residue_lst:
+        #     debug(f)
+            # for (model, residue_model) in zip(models, residue_models):
+            #     debug(model)
+            #     debug(residue_model)
         return f_residue_lst
 
     @classmethod
@@ -175,8 +177,8 @@ class IIncr(object):
                                                                     model.stk_addrs_dict),
                                                 meta_models)))
         root_children_lst = self._get_common_children(root, singleton_models)
-        # debug(root)
-        # debug(root_children_lst)
+        debug(root)
+        debug(root_children_lst)
 
         residue_models_lst = []
 
@@ -185,19 +187,19 @@ class IIncr(object):
         #                                                    children,
         #                                                    singleton_models))
 
-        for children in root_children_lst:
-            residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
-            if residue_models:
-                residue_models_lst.extend(residue_models)
-                break
-
-        # root_children_grp = List.group_by(len, root_children_lst)
-        # for l in sorted(root_children_grp.keys(), reverse=True):
-        #     for children in root_children_grp[l]:
-        #         residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
+        # for children in root_children_lst:
+        #     residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
+        #     if residue_models:
         #         residue_models_lst.extend(residue_models)
-        #     if residue_models_lst:
         #         break
+
+        root_children_grp = List.group_by(len, root_children_lst)
+        for l in sorted(root_children_grp.keys(), reverse=True):
+            for children in root_children_grp[l]:
+                residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
+                residue_models_lst.extend(residue_models)
+            if residue_models_lst:
+                break
 
         def mk_unconsumed_models(f, residue_models):
             unconsumed_heaps = map(lambda (rh, rsh): rh.union(rsh.heap),
