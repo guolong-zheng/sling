@@ -177,8 +177,8 @@ class IIncr(object):
                                                                     model.stk_addrs_dict),
                                                 meta_models)))
         root_children_lst = self._get_common_children(root, singleton_models)
-        debug(root)
-        debug(root_children_lst)
+        # debug(root)
+        # debug(root_children_lst)
 
         residue_models_lst = []
 

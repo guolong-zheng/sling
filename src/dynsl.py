@@ -68,19 +68,19 @@ def main():
 
         pre_post_dict = {}
         for ((pr_loc, pr_id), (po_loc, po_id)) in pre_post_pairs:
-            if pr_loc not in pre_post_dict:
-                pdict = {}
-                pdict[po_loc] = [(pr_id, po_id)]
-                pre_post_dict[pr_loc] = pdict
-            else:
-                pdict = pre_post_dict[pr_loc]
-                if po_loc not in pdict:
-                    pdict[po_loc] = [(pr_id, po_id)]
-                else:
-                    pdict[po_loc].append((pr_id, po_id))
-            # pdict = pre_post_dict.get(pr_loc, {})
-            # pairs = pdict.get(po_loc, [])
-            # pairs.append((pr_id, po_id))
+            # if pr_loc not in pre_post_dict:
+            #     pdict = {}
+            #     pdict[po_loc] = [(pr_id, po_id)]
+            #     pre_post_dict[pr_loc] = pdict
+            # else:
+            #     pdict = pre_post_dict[pr_loc]
+            #     if po_loc not in pdict:
+            #         pdict[po_loc] = [(pr_id, po_id)]
+            #     else:
+            #         pdict[po_loc].append((pr_id, po_id))
+            pdict = pre_post_dict.setdefault(pr_loc, {})
+            pairs = pdict.setdefault(po_loc, [])
+            pairs.append((pr_id, po_id))
         debug(pre_post_dict)
 
         seplogic_parser = SepLogicParser()
@@ -98,6 +98,8 @@ def main():
         grp_models = List.group_by(lambda model: model.loc,
                                    pre_models + post_models)
         for loc in grp_models:
+            debug('Inferring ' + ('pre-' if loc in pre_locs else 'post-') +
+                  'conditions at the location ' + str(loc) + ' ...\n')
             models = grp_models[loc]
             f_residue_lst = IIncr.infer(tprog, models)
 
@@ -118,7 +120,6 @@ def main():
             pr_po_pairs = pre_post_dict[pr_loc]
             pr_residue_lst = rdict[pr_loc]
             for (pr_f, pr_residue) in pr_residue_lst:
-                debug(pr_f)
                 pr_f_posts = {}
                 for po_loc in pr_po_pairs:
                     pairs = pr_po_pairs[po_loc]
@@ -126,9 +127,10 @@ def main():
                     for (po_f, po_residue) in po_residue_lst:
                         if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
                                for (pr_id, po_id) in pairs):
-                            debug(po_loc)
-                            debug(po_f)
-                            pass
+                            pr_f_posts.setdefault(po_loc, []).append(po_f)
+                if len(pr_f_posts) == len(pr_po_pairs):
+                    debug(pr_f)
+                    debug(pr_f_posts)
 
 
     else:
