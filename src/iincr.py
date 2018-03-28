@@ -143,7 +143,7 @@ class IIncr(object):
             #     vars = vars + f.vars
             # pf = self._infer_pure_ptr(vars, residue_models)
             # debug(pf)
-            
+
             # for residue_model in residue_models:
             #     debug(residue_model.ctx)
             # for (model, residue_model) in zip(models, residue_models):
