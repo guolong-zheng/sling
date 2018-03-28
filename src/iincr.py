@@ -86,11 +86,12 @@ class SingletonModel(object):
         return vs
 
 class MetaModel(object):
-    def __init__(self, id, loc, local_vars, stk_addrs_dict, sh):
+    def __init__(self, id, loc, local_vars, stk_addrs_dict, ctx, sh):
         self.id = id
         self.loc = loc
         self.local_vars = local_vars
         self.stk_addrs_dict = stk_addrs_dict
+        self.ctx = ctx
         self.sh = sh
 
     def __str__(self):
@@ -117,8 +118,9 @@ class MetaModel(object):
     def make(self, local_vars, model):
         nsh = model.sh.clone()
         stk_addrs_dict = self.collect_addrs_from_stk(nsh.stack)
+        init_ctx = Context.mk_init_context()
         return MetaModel(model.id, model.loc, local_vars,
-                         stk_addrs_dict, nsh)
+                         stk_addrs_dict, init_ctx, nsh)
 
 class IIncr(object):
     @classmethod
@@ -132,8 +134,10 @@ class IIncr(object):
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
-        # for (f, residue_models) in f_residue_lst:
-        #     debug(f)
+        for (f, residue_models) in f_residue_lst:
+            debug(f)
+            for residue_model in residue_models:
+                debug(residue_model.ctx)
             # for (model, residue_model) in zip(models, residue_models):
             #     debug(model)
             #     debug(residue_model)
@@ -182,17 +186,20 @@ class IIncr(object):
 
         residue_models_lst = []
 
+        # # Heuristic 1
         # for children in root_children_lst:
         #     residue_models_lst.extend(self._infer_pred_lst(prog, root,
         #                                                    children,
         #                                                    singleton_models))
 
+        # # Heuristic 2
         # for children in root_children_lst:
         #     residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
         #     if residue_models:
         #         residue_models_lst.extend(residue_models)
         #         break
 
+        # Heuristic 3
         root_children_grp = List.group_by(len, root_children_lst)
         for l in sorted(root_children_grp.keys(), reverse=True):
             for children in root_children_grp[l]:
@@ -202,12 +209,13 @@ class IIncr(object):
                 break
 
         def mk_unconsumed_models(f, residue_models):
-            unconsumed_heaps = map(lambda (rh, rsh): rh.union(rsh.heap),
-                                   zip(rem_heaps, residue_models))
+            unconsumed_rheaps = map(lambda (rh, (ctx, rsh)): (ctx, rh.union(rsh.heap)),
+                                    zip(rem_heaps, residue_models))
             unconsumed_models = []
-            for (meta_model, unconsumed_heap) in zip(meta_models, unconsumed_heaps):
+            for (meta_model, (ctx, unconsumed_heap)) in zip(meta_models, unconsumed_rheaps):
                 unconsumed_model = meta_model.clone()
                 unconsumed_model.sh.heap = unconsumed_heap
+                unconsumed_model.ctx = unconsumed_model.ctx.combine(ctx)
                 unconsumed_models.append(unconsumed_model)
             return (f, unconsumed_models)
 
@@ -282,8 +290,8 @@ class IIncr(object):
                 if not all_is_valid:
                     break
                 else:
-                    (_, rsh) = rctx
-                    residue_models.append(rsh)
+                    (ctx, rsh) = rctx
+                    residue_models.append(rctx)
                     any_decr_models = (any_decr_models or
                                        (len(rsh.heap.dom()) == 0) or
                                         len(rsh.heap.dom()) < len(sh.heap.dom()))

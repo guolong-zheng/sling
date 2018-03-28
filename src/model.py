@@ -226,6 +226,11 @@ class Context(object):
         exists_vars = self.exists_vars + vs
         return Context(self.state, exists_vars)
 
+    def combine(self, other):
+        conj_state = self.state.mk_conj(other.state)
+        exists_vars = self.exists_vars + other.exists_vars
+        return Context(conj_state, exists_vars)
+
 class SHModel(object):
     def __init__(self, stack, heap, prog = None):
         self.stack = stack
