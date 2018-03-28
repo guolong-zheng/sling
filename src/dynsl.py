@@ -16,11 +16,15 @@ def main():
        dest='infile')
 
     ag('--pre', '-pre',
-       dest='pre', nargs='+',
+       dest='pre', nargs='*',
        type=int)
 
     ag('--post', '-post',
-       dest='post', nargs='+',
+       dest='post', nargs='*',
+       type=int)
+
+    ag('--inv', '-inv',
+       dest='inv', nargs='*',
        type=int)
 
     ag('--size', '-size',
@@ -52,12 +56,17 @@ def main():
         infile = args.infile
         pre_bps = args.pre
         post_bps = args.post
+        inv_bps = args.inv
         size = args.size
         pred_file = args.pred
         pred_defn = pred_file.read()
 
-        trace_pairs = get_traces(infile, pre_bps, post_bps, size)
-        pre_traces, post_traces = zip(*trace_pairs)
+        trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
+        # debug(inv_traces)
+        if trace_pairs:
+            pre_traces, post_traces = zip(*trace_pairs)
+        else:
+            pre_traces, post_traces = [], []
 
         pre_locs = List.remove_dups(map(lambda pr: pr.loc, pre_traces))
         post_locs = List.remove_dups(map(lambda po: po.loc, post_traces))
@@ -93,12 +102,14 @@ def main():
 
         pre_models = TModel.make_lst(pre_traces, tprog)
         post_models = TModel.make_lst(post_traces, tprog)
+        inv_models = TModel.make_lst(inv_traces, tprog)
 
         rdict = {}
         grp_models = List.group_by(lambda model: model.loc,
-                                   pre_models + post_models)
+                                   pre_models + post_models + inv_models)
         for loc in grp_models:
-            debug('Inferring ' + ('pre-' if loc in pre_locs else 'post-') +
+            debug('Inferring ' + ('pre-' if loc in pre_locs else
+                                  ('post-' if loc in post_locs else 'inv-')) +
                   'conditions at the location ' + str(loc) + ' ...\n')
             models = grp_models[loc]
             f_residue_lst = IIncr.infer(tprog, models)

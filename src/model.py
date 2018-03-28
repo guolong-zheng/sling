@@ -341,6 +341,7 @@ class SHModel(object):
                                 isinstance(a.typ, TData) and
                                 not ns.contains(a.id)):
                                 ns.add(a.id, Addr(v)) # Instantiation
+
                         if mconds:
                             mcond = reduce(lambda m1, m2: m1.mk_conj(m2), mconds)
                             nctx = ctx.mk_conj(mcond)
@@ -350,6 +351,9 @@ class SHModel(object):
                             nsh = SHModel(ns, nh)
                             nsh.add_prog(self.prog)
                             rctx_lst.append((nctx, nsh))
+                    else:
+                        debug('Type mismatch: ' + typ + ' - ' + f.name)
+                        return []
             return rctx_lst
 
     def _satisfy_HPred(self, ctx, f):

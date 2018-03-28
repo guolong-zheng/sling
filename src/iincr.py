@@ -96,7 +96,8 @@ class MetaModel(object):
 
     def __str__(self):
         return ('\n' + str(self.loc) + ' - ' + str(self.id) + ':\n' +
-                Printer.str_of_list(self.local_vars) + ': ' + str(self.sh))
+                Printer.str_of_list(self.local_vars) + ':\n' +
+                str(self.ctx) + '\n' + str(self.sh))
 
     def clone(self):
         return copy.deepcopy(self)
@@ -136,12 +137,32 @@ class IIncr(object):
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
         for (f, residue_models) in f_residue_lst:
             debug(f)
-            for residue_model in residue_models:
-                debug(residue_model.ctx)
+            # debug(residue_models)
+            # vars = map(lambda v: Var(v), local_ptr_vars)
+            # if isinstance(f, FExists):
+            #     vars = vars + f.vars
+            # pf = self._infer_pure_ptr(vars, residue_models)
+            # debug(pf)
+            
+            # for residue_model in residue_models:
+            #     debug(residue_model.ctx)
             # for (model, residue_model) in zip(models, residue_models):
             #     debug(model)
             #     debug(residue_model)
         return f_residue_lst
+
+    @classmethod
+    def _infer_pure_ptr(self, vars, meta_models):
+        vars_with_nil = vars + [Null()]
+        pairs = list(itertools.combinations(vars_with_nil, 2))
+        eq_constrs = map(lambda (v1, v2): PBinRel(v1, RelOp.EQ, v2), pairs)
+        valid_eq_constrs = filter(lambda c:
+            all(mm.sh.stack.is_unsat(mm.ctx.state.mk_conj(PNeg(c)))
+                for mm in meta_models),
+            eq_constrs)
+        if valid_eq_constrs:
+            pf = reduce(lambda c1, c2: c1.mk_conj(c2), valid_eq_constrs)
+            return pf
 
     @classmethod
     def _infer_root_lst(self, prog, roots, meta_models):
@@ -297,10 +318,14 @@ class IIncr(object):
                                         len(rsh.heap.dom()) < len(sh.heap.dom()))
                 # debug(any_decr_models)
             if all_is_valid and any_decr_models:
+                # # For getting all residue contexts
                 # residue_tuple_lst = list(itertools.product(*residue_models_lst))
                 # debug(len(residue_tuple_lst))
                 # fs.extend(map(lambda residue_models: (f, residue_models),
                 #               residue_tuple_lst))
+
+                # debug(f)
+                # debug(residue_models)
                 fs.append((f, residue_models))
         return fs
 

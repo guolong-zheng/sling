@@ -1,6 +1,7 @@
 from inspect import getframeinfo, stack
 from printer import *
 import ntpath
+import sys
 
 def path_leaf(path):
     head, tail = ntpath.split(path)
@@ -12,3 +13,4 @@ def debug(obj):
     print "%s:%d - %s" % (path_leaf(caller.filename),
                           caller.lineno,
                           message)
+    sys.stdout.flush()
