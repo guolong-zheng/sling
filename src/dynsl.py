@@ -70,6 +70,7 @@ def main():
 
         pre_locs = List.remove_dups(map(lambda pr: pr.loc, pre_traces))
         post_locs = List.remove_dups(map(lambda po: po.loc, post_traces))
+        inv_locs = List.remove_dups(map(lambda inv: inv.loc, inv_traces))
 
         pre_post_pairs = map(lambda (pr, po): ((pr.loc, pr.id),
                                                (po.loc, po.id)), trace_pairs)
@@ -140,9 +141,16 @@ def main():
                                for (pr_id, po_id) in pairs):
                             pr_f_posts.setdefault(po_loc, []).append(po_f)
                 if len(pr_f_posts) == len(pr_po_pairs):
+                    debug('Precondition at location ' + str(pr_loc) + ':')
                     debug(pr_f)
+                    debug('Corresponding postconditions:')
                     debug(pr_f_posts)
 
+        for inv_loc in inv_locs:
+            inv_residue_lst = rdict[inv_loc]
+            debug('Invariants at location ' + str(inv_loc) + ':')
+            for (inv, _) in inv_residue_lst:
+                debug(inv)
 
     else:
         debug('Inside test mode')
