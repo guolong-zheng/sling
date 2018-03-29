@@ -352,7 +352,7 @@ class SHModel(object):
                             nsh.add_prog(self.prog)
                             rctx_lst.append((nctx, nsh))
                     else:
-                        debug('Type mismatch: ' + typ + ' - ' + f.name)
+                        debug('Type mismatxfch: ' + typ + ' - ' + f.name)
                         return []
             return rctx_lst
 
