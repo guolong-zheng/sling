@@ -35,7 +35,6 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex(0)
         location = frame.GetLineEntry().GetLine()
-        debug(location)
         if frame:
             vars = frame.GetVariables(True, True, True, True)
             stack, heap = traverse_heap(vars)

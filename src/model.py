@@ -3,7 +3,8 @@ from trace import *
 from typ import *
 from printer import *
 from debug import *
-from utils import *
+from utils import Const, MP, Z3
+import utils
 import z3
 import operator
 import itertools
@@ -374,11 +375,10 @@ class SHModel(object):
                         rctx = sh._satisfy(pctx, case.get_heap())
                         nctx.extend(rctx)
                 return nctx
-            return Utils.wprocess(cases, process_cases, Q)
+            return MP.wprocess(cases, process_cases, Q)
 
-        rctx = Utils.runMP("satisfy_HPred",
-                           cases, wp, chunksiz = 1,
-                           doMP = settings.doMP and len(cases) >= 2)
+        rctx = MP.runMP("satisfy_HPred", cases, wp, chunksiz = 1,
+                              doMP = settings.doMP and len(cases) >= 2)
 
         return rctx
 
