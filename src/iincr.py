@@ -135,8 +135,8 @@ class IIncr(object):
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
-        for (f, residue_models) in f_residue_lst:
-            debug(f)
+        # for (f, residue_models) in f_residue_lst:
+            # debug(f)
             # debug(residue_models)
             # vars = map(lambda v: Var(v), local_ptr_vars)
             # if isinstance(f, FExists):

@@ -1,9 +1,9 @@
+from seplogic import Ternary
 from debug import *
-from seplogic import *
 from itertools import *
 import z3
 
-class Utils(object):
+class MP(object):
     @classmethod
     def getWorkloads(cls, tasks, maxProcessces, chunksiz):
         """
