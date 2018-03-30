@@ -174,7 +174,7 @@ class IIncr(object):
             root = roots[0]
             f_unconsumed_models_lst = self._infer_root(prog, root, meta_models)
             if not f_unconsumed_models_lst:
-                debug('Cannot derive formulas for the root pointer ' + root)
+                # debug('Cannot derive formulas for the root pointer ' + root)
                 return self._infer_root_lst(prog, roots[1:], meta_models)
             else:
                 for (f, unconsumed_models) in f_unconsumed_models_lst:
@@ -246,12 +246,15 @@ class IIncr(object):
 
     @classmethod
     def _infer_pred_lst(self, prog, root, children, singleton_models):
-        pred_lst = []
-        for pred_defn in prog.pred_defn_lst:
-            preds = self._infer_pred(prog, pred_defn, root,
-                                     children, singleton_models)
-            pred_lst.extend(preds)
-        return pred_lst
+        if all(len(model.sh.heap.dom()) == 0 for model in singleton_models):
+            return []
+        else:
+            pred_lst = []
+            for pred_defn in prog.pred_defn_lst:
+                preds = self._infer_pred(prog, pred_defn, root,
+                                         children, singleton_models)
+                pred_lst.extend(preds)
+            return pred_lst
 
     @classmethod
     def _infer_pred(self, prog, pred_defn, root, children, singleton_models):

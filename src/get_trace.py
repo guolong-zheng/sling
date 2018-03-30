@@ -35,14 +35,14 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex(0)
         location = frame.GetLineEntry().GetLine()
-        debug(location)
+        # debug(location)
         if frame:
             if location in pre_locs:
                 # Do not get local variables in the precondition inference
                 vars = frame.GetVariables(True, False, True, True)
             else:
                 vars = frame.GetVariables(True, True, True, True)
-            debug(vars)
+            # debug(vars)
             stack, heap = traverse_heap(vars)
             trace = Traces(location, stack, heap)
             if location in pre_locs:
