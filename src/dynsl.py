@@ -91,7 +91,7 @@ def main():
             pdict = pre_post_dict.setdefault(pr_loc, {})
             pairs = pdict.setdefault(po_loc, [])
             pairs.append((pr_id, po_id))
-        debug(pre_post_dict)
+        # debug(pre_post_dict)
 
         seplogic_parser = SepLogicParser()
         defn_ast = seplogic_parser.defn_parser.parse(pred_defn)
@@ -113,6 +113,7 @@ def main():
                                   ('post-' if loc in post_locs else 'inv-')) +
                   'conditions at the location ' + str(loc) + ' ...\n')
             models = grp_models[loc]
+            # debug(models)
             f_residue_lst = IIncr.infer(tprog, models)
 
             def mk_mdict(models):
@@ -146,11 +147,13 @@ def main():
                     debug('Corresponding postconditions:')
                     debug(pr_f_posts)
 
+        # debug(inv_models)
         for inv_loc in inv_locs:
             inv_residue_lst = rdict[inv_loc]
             debug('Invariants at location ' + str(inv_loc) + ':')
-            for (inv, _) in inv_residue_lst:
+            for (inv, inv_residue) in inv_residue_lst:
                 debug(inv)
+                # debug(inv_residue)
 
     else:
         debug('Inside test mode')

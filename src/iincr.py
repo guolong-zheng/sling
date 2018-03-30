@@ -48,7 +48,7 @@ class SingletonModel(object):
     def _split_heap(self, h, start_addr, stk_addrs):
         working_set = [start_addr]
         marked_addrs = []
-        stk_children = []
+        stk_children = [start_addr]
         dangling_children = []
         while working_set:
             parent = working_set[0]
@@ -66,7 +66,7 @@ class SingletonModel(object):
                         if (child in stk_addrs or
                             child == Const.nil_addr):
                             stk_children.append(child)
-            elif parent == Const.nil_addr or parent == start_addr:
+            elif parent == Const.nil_addr:
                 stk_children.append(parent)
             else:
                 dangling_children.append(parent)
@@ -133,6 +133,7 @@ class IIncr(object):
                                  models)
         local_ptr_vars = list(set.intersection(
             *(map(lambda vs: set(vs), local_ptr_vars_lst))))
+        # debug(local_ptr_vars)
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
         # for (f, residue_models) in f_residue_lst:
@@ -332,7 +333,11 @@ class IIncr(object):
     @classmethod
     def _get_common_children(self, root, singleton_models):
         lst_of_model_children = map(lambda model: model.children_lst, singleton_models)
+        # debug(root)
+        # for model in singleton_models:
+        #     debug(model)
         lst_of_children = list(itertools.product(*lst_of_model_children))
+        # debug(lst_of_children)
         no_dups_children = map(lambda children_lst:
                                list(set.intersection(*(map(lambda vs: set(vs), children_lst)))
                                     - set([Var(root)])),
