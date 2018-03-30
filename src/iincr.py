@@ -117,6 +117,7 @@ class MetaModel(object):
 
     @classmethod
     def make(self, local_vars, model):
+        debug(type(model))
         nsh = model.sh.clone()
         stk_addrs_dict = self.collect_addrs_from_stk(nsh.stack)
         init_ctx = Context.mk_init_context()

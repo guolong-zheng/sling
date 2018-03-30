@@ -125,6 +125,7 @@ def main():
             f_residue_dict = map(lambda (f, residue_model):
                                  (f, mk_mdict(residue_model)),
                                  f_residue_lst)
+            # debug(map(lambda (f, _): f, f_residue_lst))
             rdict[loc] = f_residue_dict
 
         # debug(rdict)

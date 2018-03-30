@@ -62,29 +62,36 @@ class StackTrace(Trace):
         return self.name + ' = ' + str(self.val)
 
 class Traces(object):
-    def __init__(self, loc, stack, heap):
+    def __init__(self, loc, stack, heap, ret = None):
         self.id = Const.mk_fresh()
         self.loc = loc
         self.stack = stack
-        self.heap = heap 
+        self.heap = heap
+        self.ret = ret
 
     def __str__(self):
         return ('\n' + str(self.id) + ' - ' + str(self.loc) + ':\n' +
-                str(self.stack) + '\n\n' + str(self.heap))
+                str(self.stack) + '\n\n' + str(self.heap) + '\n\n' +
+                ('return: ' + str(self.ret) if self.ret else ''))
 
 class TModel(object):
-    def __init__(self, id, loc, stack, heap, prog):
+    def __init__(self, id, loc, stack, heap, ret, prog):
         import model
         self.id = id
         self.loc = loc
         self.sh = model.SHModel(stack, heap, prog)
+        self.ret = ret
 
     def __str__(self):
-        return ('\n' + str(self.loc) + ' - ' + str(self.id) + ':\n' + str(self.sh))
+        return ('\n' + str(self.loc) + ' - ' + str(self.id) + ':\n' +
+                str(self.sh) + '\n\n' +
+                ('return: ' + str(self.ret) if self.ret else ''))
 
     @classmethod
     def make(self, trace, prog):
-        return TModel(trace.id, trace.loc, trace.stack, trace.heap, prog)
+        return TModel(trace.id, trace.loc,
+                      trace.stack, trace.heap,
+                      trace.ret, prog)
 
     @classmethod
     def make_lst(self, traces, prog):

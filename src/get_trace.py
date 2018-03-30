@@ -35,7 +35,6 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex(0)
         location = frame.GetLineEntry().GetLine()
-        # debug(location)
         if frame:
             if location in pre_locs:
                 # Do not get local variables in the precondition inference
@@ -48,6 +47,14 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
             if location in pre_locs:
                 pre_traces.append(trace)
             elif location in post_locs:
+                thread.StepOut()
+                ret = thread.GetStopReturnValue()
+                if ret:
+                    if ret.TypeIsPointerType():
+                        val = Addr(ret.GetValue())
+                    else:
+                        val = Int(ret.GetValue())
+                    trace.ret = val
                 post_traces.append(trace)
             else:
                 inv_traces.append(trace)

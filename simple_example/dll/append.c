@@ -16,7 +16,7 @@ DLNode * dll_append(DLNode * x1, DLNode * x2)
   }
 }
 
-int main( int argc, char * argv[]) {
+int main(int argc, char * argv[]) {
     int size = 5;
     if (argc > 1)
     	sscanf(argv[1], "%d", &size);
