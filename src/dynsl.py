@@ -145,7 +145,6 @@ def main():
                     debug('Precondition at location ' + str(pr_loc) + ':')
                     debug(pr_f)
                     debug('Corresponding postconditions:')
-                    debug(pr_f_posts)
                     for po_loc in pr_f_posts:
                         po_f_lst = pr_f_posts[po_loc]
                         debug('Postconditions at location ' + str(po_loc) + ':')
