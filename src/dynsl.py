@@ -146,6 +146,11 @@ def main():
                     debug(pr_f)
                     debug('Corresponding postconditions:')
                     debug(pr_f_posts)
+                    for po_loc in pr_f_posts:
+                        po_f_lst = pr_f_posts[po_loc]
+                        debug('Postconditions at location ' + str(po_loc) + ':')
+                        for po_f in po_f_lst:
+                            debug(po_f)
 
         # debug(inv_models)
         for inv_loc in inv_locs:
