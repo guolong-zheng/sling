@@ -86,18 +86,20 @@ class SingletonModel(object):
         return vs
 
 class MetaModel(object):
-    def __init__(self, id, loc, local_vars, stk_addrs_dict, ctx, sh):
+    def __init__(self, id, loc, local_vars, stk_addrs_dict, ctx, sh, ret):
         self.id = id
         self.loc = loc
         self.local_vars = local_vars
         self.stk_addrs_dict = stk_addrs_dict
         self.ctx = ctx
         self.sh = sh
+        self.ret = ret
 
     def __str__(self):
         return ('\n' + str(self.loc) + ' - ' + str(self.id) + ':\n' +
                 Printer.str_of_list(self.local_vars) + ':\n' +
-                str(self.ctx) + '\n' + str(self.sh))
+                str(self.ctx) + '\n' + str(self.sh) + '\n' +
+                ('return: ' + str(self.ret) if self.ret else ''))
 
     def clone(self):
         return copy.deepcopy(self)
@@ -117,12 +119,11 @@ class MetaModel(object):
 
     @classmethod
     def make(self, local_vars, model):
-        debug(type(model))
         nsh = model.sh.clone()
         stk_addrs_dict = self.collect_addrs_from_stk(nsh.stack)
         init_ctx = Context.mk_init_context()
         return MetaModel(model.id, model.loc, local_vars,
-                         stk_addrs_dict, init_ctx, nsh)
+                         stk_addrs_dict, init_ctx, nsh, model.ret)
 
 class IIncr(object):
     @classmethod
@@ -137,25 +138,28 @@ class IIncr(object):
         # debug(local_ptr_vars)
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
-        # for (f, residue_models) in f_residue_lst:
-            # debug(f)
-            # debug(residue_models)
-            # vars = map(lambda v: Var(v), local_ptr_vars)
-            # if isinstance(f, FExists):
-            #     vars = vars + f.vars
-            # pf = self._infer_pure_ptr(vars, residue_models)
-            # debug(pf)
+        res_lst =[]
+        for (f, residue_models) in f_residue_lst:
+            vars = map(lambda v: Var(v), local_ptr_vars)
+            pf = self._infer_pure_ptr(vars, residue_models)
+            f = f.mk_conj(pf) if pf is not None else f
+            res_lst.append((f, residue_models))
 
             # for residue_model in residue_models:
             #     debug(residue_model.ctx)
             # for (model, residue_model) in zip(models, residue_models):
             #     debug(model)
             #     debug(residue_model)
-        return f_residue_lst
+        return res_lst
 
     @classmethod
     def _infer_pure_ptr(self, vars, meta_models):
         vars_with_nil = vars + [Null()]
+        if all(model.ret is not None for model in meta_models):
+            res = Var(Const.res)
+            vars_with_nil.append(res)
+            for model in meta_models:
+                model.sh.stack.add(Const.res, model.ret)
         pairs = list(itertools.combinations(vars_with_nil, 2))
         eq_constrs = map(lambda (v1, v2): PBinRel(v1, RelOp.EQ, v2), pairs)
         valid_eq_constrs = filter(lambda c:
