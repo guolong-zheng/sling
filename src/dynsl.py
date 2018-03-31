@@ -143,6 +143,7 @@ def main():
                                for (pr_id, po_id) in pairs):
                             pr_f_posts.setdefault(po_loc, []).append(po_f)
                 if len(pr_f_posts) == len(pr_po_pairs):
+                    print '\n'
                     debug('Precondition at location ' + str(pr_loc) + ':')
                     debug(pr_f)
                     debug('Corresponding postconditions:')
