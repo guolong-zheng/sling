@@ -384,7 +384,10 @@ class HRel(SepLogic):
         if isinstance(f, PRel):
             return FBase(self, f)
         elif isinstance(f, HRel):
-            return HStar(self, f)
+            if isinstance(f, HEmp):
+                return self
+            else:
+                return HStar(self, f)
         elif isinstance(f, FBase):
             return FBase(self.mk_conj(f.heap), f.pure)
         elif isinstance(f, FExists):

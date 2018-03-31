@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int sll_find(SNnode * x, int k)
 {

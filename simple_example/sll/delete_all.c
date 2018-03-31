@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 SNnode * sll_delete_all(SNnode * x, int k)
 {

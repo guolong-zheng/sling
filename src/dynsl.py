@@ -63,6 +63,8 @@ def main():
 
         trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
         # debug(inv_traces)
+        # debug(trace_pairs)
+
         if trace_pairs:
             pre_traces, post_traces = zip(*trace_pairs)
         else:
@@ -113,7 +115,6 @@ def main():
                                   ('post-' if loc in post_locs else 'inv-')) +
                   'conditions at the location ' + str(loc) + ' ...\n')
             models = grp_models[loc]
-            # debug(models)
             f_residue_lst = IIncr.infer(tprog, models)
 
             def mk_mdict(models):
@@ -134,16 +135,18 @@ def main():
             pr_po_pairs = pre_post_dict[pr_loc]
             pr_residue_lst = rdict[pr_loc]
             for (pr_f, pr_residue) in pr_residue_lst:
+                # debug(pr_f)
                 pr_f_posts = {}
                 for po_loc in pr_po_pairs:
                     pairs = pr_po_pairs[po_loc]
                     po_residue_lst = rdict[po_loc]
                     for (po_f, po_residue) in po_residue_lst:
+                        # debug(po_f)
                         if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
                                for (pr_id, po_id) in pairs):
                             pr_f_posts.setdefault(po_loc, []).append(po_f)
                 if len(pr_f_posts) == len(pr_po_pairs):
-                    print '\n'
+                    debug('==============================')
                     debug('Precondition at location ' + str(pr_loc) + ':')
                     debug(pr_f)
                     debug('Corresponding postconditions:')
