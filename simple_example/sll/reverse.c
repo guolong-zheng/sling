@@ -5,10 +5,11 @@ SNnode * sll_reverse(SNnode * x)
 {
     //pre
 	SNnode * y = NULL;
+        SNnode * tmp = NULL;
 	while (x != NULL)
     {
         //loopinv
-		SNnode * tmp = x->next;
+		tmp = x->next;
 		x->next = y;
 		y = x;
 		x = tmp;
