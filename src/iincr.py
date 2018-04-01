@@ -111,7 +111,7 @@ class MetaModel(object):
     def collect_addrs_from_stk(self, s):
         stk_addrs_dict = {}
         for v in s:
-            vl = s[v]
+            vl = s.get(v)
             if isinstance(vl, Addr):
                 addr = vl.val
                 List.add_lst_dict(stk_addrs_dict, addr, v)
@@ -213,6 +213,12 @@ class IIncr(object):
         # debug(root)
         # debug(root_children_lst)
 
+        root_aliases = set.union(*(map(lambda model:
+                                       set(model.stk_addrs_dict[model.sh.stack.get(root).val]),
+                                       meta_models)))
+        root_aliases = set(map(lambda v: Var(v), root_aliases))
+        # debug(root_aliases)
+
         residue_models_lst = []
 
         # # Heuristic 1
@@ -229,7 +235,9 @@ class IIncr(object):
         #         break
 
         # Heuristic 3
-        root_children_grp = List.group_by(len, root_children_lst)
+        # debug(root_children_lst)
+        root_children_grp = List.group_by(lambda children: len(set(children) - root_aliases), root_children_lst)
+        # debug(root_children_grp)
         for l in sorted(root_children_grp.keys(), reverse=True):
             for children in root_children_grp[l]:
                 residue_models = self._infer_pred_lst(prog, root, children, singleton_models)
