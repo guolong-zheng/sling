@@ -1,2 +1,5 @@
 *.pyc
 *.g
+.DS_Store
+*.dSYM
+.vscode
