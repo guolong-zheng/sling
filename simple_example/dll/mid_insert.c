@@ -4,7 +4,7 @@
 
 DLNode * dll_mid_insert(DLNode * u, DLNode * v, int k)
 {
-
+  //pre
   DLNode * r = (DLNode *) malloc(sizeof(DLNode));
   r->key = k;
   r->prev = u;
@@ -15,6 +15,7 @@ DLNode * dll_mid_insert(DLNode * u, DLNode * v, int k)
   if (v != NULL) {
     v->prev = r;
   }
+  //post
   return r;
 }
 
