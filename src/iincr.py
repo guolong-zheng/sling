@@ -213,9 +213,10 @@ class IIncr(object):
         # debug(root)
         # debug(root_children_lst)
 
-        root_aliases = set.union(*(map(lambda model:
-                                       set(model.stk_addrs_dict[model.sh.stack.get(root).val]),
-                                       meta_models)))
+        root_aliases = set.intersection(*(map(lambda model:
+                                              set(model.stk_addrs_dict[model.sh.stack.get(
+                                                  root).val]),
+                                              meta_models)))
         root_aliases = set(map(lambda v: Var(v), root_aliases))
         # debug(root_aliases)
 
