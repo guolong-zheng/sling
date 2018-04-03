@@ -1,4 +1,5 @@
-#include "prio_tree.h"
+#include "header.h"
+#include <stdio.h>
 
 int treap_find_rec(BNode * x, int k)
 {

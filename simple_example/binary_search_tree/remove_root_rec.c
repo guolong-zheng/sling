@@ -1,4 +1,6 @@
 #include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 BNode * bst_remove_root_rec(BNode * x)
 {

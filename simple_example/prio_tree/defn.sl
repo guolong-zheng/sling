@@ -1,8 +1,8 @@
-data node {
-	int prio;
+data b_node {
+	b_node left;
+	b_node right;
 	int key;
-	node left;
-	node right; };
+	int prio; };
 
 pred tree(x) := emp & x=nil
-	\/ (exists p,k,l,r. x->node{p,k,l,r} * tree(l) * tree(r));
+	\/ (exists l,r,k,p. x->b_node{l,r,k,p} * tree(l) * tree(r));

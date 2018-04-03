@@ -1,5 +1,6 @@
-#include "prio_tree.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 BNode * treap_remove_root_rec(BNode * x)
 {
