@@ -8,11 +8,11 @@ class VarUtil(object):
     fv_id = 0
 
     @classmethod
-    def mk_fresh(self, v = None):
+    def mk_fresh(self, v = None, typ = None):
         self.fv_id = self.fv_id + 1
         if not v:
             nid = 'fv!'
-            ty = None
+            ty = typ
         else:
             nid = v.id + '!'
             ty = v.typ

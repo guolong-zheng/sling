@@ -282,9 +282,39 @@ class IIncr(object):
                 pred_lst.extend(preds)
 
             if all(model.is_singleton_heap() for model in singleton_models):
-                self._infer_data(prog, root, children, singleton_models)
+                data_lst = self._infer_data(prog, root, children, singleton_models)
+                pred_lst.extend(data_lst)
 
             return pred_lst
+
+    @classmethod
+    def _infer_validate(self, f, singleton_models):
+        all_is_valid = True
+        any_decr_models = False
+        residue_models = []
+        for model in singleton_models:
+            sh = model.sh
+            rctx = sh.get_smallest_residue_ctx(f)
+            all_is_valid = rctx is not None
+            if not all_is_valid:
+                break
+            else:
+                (ctx, rsh) = rctx
+                residue_models.append(rctx)
+                any_decr_models = (any_decr_models or
+                                   (len(rsh.heap.dom()) == 0) or
+                                    len(rsh.heap.dom()) < len(sh.heap.dom()))
+            # debug(any_decr_models)
+        if all_is_valid and any_decr_models:
+            # # For getting all residue contexts
+            # residue_tuple_lst = list(itertools.product(*residue_models_lst))
+            # debug(len(residue_tuple_lst))
+            # fs.extend(map(lambda residue_models: (f, residue_models),
+            #               residue_tuple_lst))
+
+            # debug(f)
+            # debug(residue_models)
+            return (f, residue_models)
 
     @classmethod
     def _infer_pred(self, prog, pred_defn, root, children, singleton_models):
@@ -335,32 +365,9 @@ class IIncr(object):
             else:
                 f = fbase
 
-            all_is_valid = True
-            any_decr_models = False
-            residue_models = []
-            for model in singleton_models:
-                sh = model.sh
-                rctx = sh.get_smallest_residue_ctx(f)
-                all_is_valid = rctx is not None
-                if not all_is_valid:
-                    break
-                else:
-                    (ctx, rsh) = rctx
-                    residue_models.append(rctx)
-                    any_decr_models = (any_decr_models or
-                                       (len(rsh.heap.dom()) == 0) or
-                                        len(rsh.heap.dom()) < len(sh.heap.dom()))
-                # debug(any_decr_models)
-            if all_is_valid and any_decr_models:
-                # # For getting all residue contexts
-                # residue_tuple_lst = list(itertools.product(*residue_models_lst))
-                # debug(len(residue_tuple_lst))
-                # fs.extend(map(lambda residue_models: (f, residue_models),
-                #               residue_tuple_lst))
-
-                # debug(f)
-                # debug(residue_models)
-                fs.append((f, residue_models))
+            validate_res = self._infer_validate(f, singleton_models)
+            if validate_res:
+                fs.append(validate_res)
         return fs
 
     @classmethod
@@ -373,9 +380,15 @@ class IIncr(object):
             data_typ, data_fields = h.get(root_addr.val)
             args_lst = []
             for field in data_fields:
-                if (isinstance(field, PtrField) and
-                    field.data.val in model.stk_addrs_dict):
-                    args = model.stk_addrs_dict[field.data.val]
+                if isinstance(field, PtrField):
+                    addr = field.data.val
+                    if addr in model.stk_addrs_dict:
+                        arg_vars = model.stk_addrs_dict[field.data.val]
+                        args = map(lambda v: Var(v), arg_vars)
+                    elif addr == Const.nil_addr:
+                        args = [Null()]
+                    else:
+                        args = []
                 else:
                     args = []
                 args_lst.append(set(args))
@@ -388,14 +401,24 @@ class IIncr(object):
         if (bool(data_node_lst) and 
             all_is_identical(map(lambda (typ, _): typ, data_node_lst))):
             data_typ, _ = data_node_lst[0]
-            args = map(lambda arg_tuple:
-                       list(set.intersection(*arg_tuple)),
-                       zip(*(map(lambda (_, args): args, data_node_lst))))
-            args_lst = itertools.product(*args)
-            debug(list(args_lst))
+            arg_grp_tuples = zip(*(map(lambda (_, args): args, data_node_lst)))
+            args_tuples = map(lambda arg_grp:
+                              list(set.intersection(*arg_grp)),
+                              arg_grp_tuples)
+            args_tuples = map(lambda args: args if bool(args) else [VarUtil.mk_fresh()],
+                              args_tuples)
+            args_lst = list((itertools.product(*args_tuples)))
+            data_lst = map(lambda args: HData(Var(root, typ = TData(data_typ)),
+                                              data_typ, args),
+                           args_lst)
+            ds = []
+            for data in data_lst:
+                validate_res = self._infer_validate(data, singleton_models)
+                if validate_res:
+                    ds.append(validate_res)
+                return ds
         else:
             return []
-            
 
     @classmethod
     def _get_common_children(self, root, singleton_models):
