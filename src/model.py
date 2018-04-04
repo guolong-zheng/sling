@@ -305,7 +305,7 @@ class SHModel(object):
     def _satisfy_HData(self, ctx, f):
         s = self.stack
         h = self.heap
-        if not h.dom():
+        if isinstance(f.root, Null) or not h.dom():
             return []
         else:
             rid = f.root.id
