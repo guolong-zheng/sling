@@ -26,16 +26,18 @@ BNode * bst_delete_rec(BNode * x, int k)
     //post
     return r;
   } else if (k < x->key) {
-    // BNode * xl = x->left;
-    // BNode * xr = x->right;
-    BNode * l = bst_delete_rec(x->left, k);
+    BNode * xl = x->left;
+    BNode * xr = x->right;
+    BNode * l = bst_delete_rec(xl, k);
+    // BNode * l = bst_delete_rec(x->left, k);
     x->left = l;
     //post
     return x;
   } else {
-    // BNode * xl = x->left;
-    // BNode * xr = x->right;
-    BNode * r = bst_delete_rec(x->right, k);
+    BNode * xl = x->left;
+    BNode * xr = x->right;
+    BNode * r = bst_delete_rec(xr, k);
+    // BNode * r = bst_delete_rec(x->right, k);
     x->right = r;
     //post
     return x;

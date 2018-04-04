@@ -150,14 +150,15 @@ def main():
                                for (pr_id, po_id) in pairs):
                             pr_f_posts.setdefault(po_loc, []).append(po_f)
                         else:
-                            for (pr_id, po_id) in pairs:
-                                prr = pr_residue[pr_id]
-                                por = po_residue[po_id]
-                                if not prr.is_same_heap_dom(por):
-                                    debug(pr_f)
-                                    debug(prr)
-                                    debug(po_f)
-                                    debug(por)
+                            # for (pr_id, po_id) in pairs:
+                            #     prr = pr_residue[pr_id]
+                            #     por = po_residue[po_id]
+                            #     if not prr.is_same_heap_dom(por):
+                            #         debug(pr_f)
+                            #         debug(prr)
+                            #         debug(po_f)
+                            #         debug(por)
+                            pass
                 if len(pr_f_posts) == len(pr_po_pairs):
                     debug('==============================')
                     debug('Precondition at location ' + str(pr_loc) + ':')

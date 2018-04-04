@@ -7,13 +7,20 @@ from printer import *
 import itertools
 
 class SingletonModel(object):
-    def __init__(self, root, children_lst, sh):
+    def __init__(self, root, children_lst, sh, stk_addrs_dict):
         self.root = root
         self.children_lst = children_lst
+        self.stk_addrs_dict = stk_addrs_dict
         self.sh = sh
 
     def __str__(self):
         return (self.root + ' -> ' + Printer.str_of_list(self.children_lst) + str(self.sh))
+
+    def is_singleton_heap(self):
+        return len(self.sh.heap.dom()) == 1
+
+    def is_empty_heap(self):
+        return len(self.sh.heap.dom()) == 0
 
     @classmethod
     def make(self, sh, root, stk_addrs_dict):
@@ -41,7 +48,7 @@ class SingletonModel(object):
             else:
                 h2.add(addr, h[addr])
         ssh.heap = h1
-        singleton_model = SingletonModel(root, children_lst, ssh)
+        singleton_model = SingletonModel(root, children_lst, ssh, stk_addrs_dict)
         return (singleton_model, h2)
 
     @classmethod
@@ -129,7 +136,7 @@ class IIncr(object):
     @classmethod
     def infer(self, prog, models):
         local_ptr_vars_lst = map(lambda model:
-                                 filter(lambda v:         
+                                 filter(lambda v:
                                         isinstance(model.sh.stack.get(v), Addr),
                                         model.sh.stack.dom()),
                                  models)
@@ -262,7 +269,7 @@ class IIncr(object):
 
     @classmethod
     def _infer_pred_lst(self, prog, root, children, singleton_models):
-        if all(len(model.sh.heap.dom()) == 0 for model in singleton_models):
+        if all(model.is_empty_heap() for model in singleton_models):
             return []
         else:
             pred_lst = []
@@ -270,6 +277,10 @@ class IIncr(object):
                 preds = self._infer_pred(prog, pred_defn, root,
                                          children, singleton_models)
                 pred_lst.extend(preds)
+
+            if all(model.is_singleton_heap() for model in singleton_models):
+                self._infer_data(prog, root, children, singleton_models)
+
             return pred_lst
 
     @classmethod
@@ -348,6 +359,40 @@ class IIncr(object):
                 # debug(residue_models)
                 fs.append((f, residue_models))
         return fs
+
+    @classmethod
+    def _infer_data(self, prog, root, children, singleton_models):
+        data_node_lst = []
+        for model in singleton_models:
+            s = model.sh.stack
+            h = model.sh.heap
+            root_addr = s.get(root)
+            data_typ, data_fields = h.get(root_addr.val)
+            args_lst = []
+            for field in data_fields:
+                if (isinstance(field, PtrField) and
+                    field.data.val in model.stk_addrs_dict):
+                    args = model.stk_addrs_dict[field.data.val]
+                else:
+                    args = []
+                args_lst.append(set(args))
+            data_node_lst.append((data_typ, args_lst))
+
+        def all_is_identical(lst):
+            # return lst[1:] == lst[:-1]
+            return lst.count(lst[0]) == len(lst)
+
+        if (bool(data_node_lst) and 
+            all_is_identical(map(lambda (typ, _): typ, data_node_lst))):
+            data_typ, _ = data_node_lst[0]
+            args = map(lambda arg_tuple:
+                       list(set.intersection(*arg_tuple)),
+                       zip(*(map(lambda (_, args): args, data_node_lst))))
+            args_lst = itertools.product(*args)
+            debug(list(args_lst))
+        else:
+            return []
+            
 
     @classmethod
     def _get_common_children(self, root, singleton_models):
