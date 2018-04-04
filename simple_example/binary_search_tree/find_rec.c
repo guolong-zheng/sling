@@ -29,7 +29,7 @@ int main( int argc, char * argv[]){
     sscanf(argv[1], "%d", &size);
     BNode * root = create_tree(size);
 
-    int res = bst_find_rec(rand_num());
+    int res = bst_find_rec(root, rand_num());
 
     return 0;
 }
