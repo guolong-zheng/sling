@@ -133,8 +133,9 @@ class IIncr(object):
                                         isinstance(model.sh.stack.get(v), Addr),
                                         model.sh.stack.dom()),
                                  models)
-        local_ptr_vars = list(set.intersection(
-            *(map(lambda vs: set(vs), local_ptr_vars_lst))))
+        local_ptr_vars = list(set.intersection(*(map(lambda vs:
+                                                     set(vs),
+                                                     local_ptr_vars_lst))))
         # debug(local_ptr_vars)
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
@@ -237,7 +238,9 @@ class IIncr(object):
 
         # Heuristic 3
         # debug(root_children_lst)
-        root_children_grp = List.group_by(lambda children: len(set(children) - root_aliases), root_children_lst)
+        root_children_grp = List.group_by(lambda children:
+                                          len(set(children) - root_aliases),
+                                          root_children_lst)
         # debug(root_children_grp)
         for l in sorted(root_children_grp.keys(), reverse=True):
             for children in root_children_grp[l]:
