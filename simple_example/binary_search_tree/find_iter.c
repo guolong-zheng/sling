@@ -1,4 +1,6 @@
 #include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 BNode * bst_find_iter(BNode * x, int k)
 {

@@ -1,4 +1,6 @@
 #include "header.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 int bst_find_rec(BNode * x, int k)
 {

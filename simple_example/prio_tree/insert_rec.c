@@ -1,9 +1,10 @@
-#include "prio_tree.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 BNode * treap_insert_rec(BNode * x, int k, int p)
 {
-    //pre
+  //pre
   if (x == NULL) {
     BNode * leaf = (BNode *) malloc(sizeof(BNode));
     leaf->key = k;
@@ -51,7 +52,6 @@ int main( int argc, char * argv[]){
     int size;
     sscanf(argv[1], "%d", &size);
     BNode * root = create_tree(size);
-
     BNode * res = treap_insert_rec(root, rand_num(),rand_num());
     return 0;
 }

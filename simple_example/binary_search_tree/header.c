@@ -12,7 +12,34 @@ BNode * create_tree(int size)
     int key;
     for(int i = 0; i < size; i++){
         key = rand_num();
-        root = bst_insert_rec(key);
+        root = bst_insert_node(root, key);
     }
     return root;
+}
+
+BNode * bst_insert_node(BNode * x, int k)
+{
+    //pre
+  if (x == NULL) {
+    BNode * leaf = (BNode *) malloc(sizeof(BNode));
+    leaf->key   = k;
+    leaf->left  = NULL;
+    leaf->right = NULL;
+    //post
+    return leaf;
+  } else if (k < x->key) {
+    BNode * l = x->left;
+    BNode * r = x->right;
+    BNode * tmp = bst_insert_node(l, k);
+    x->left = tmp;
+    //post
+    return x;
+  } else {
+    BNode * l = x->left;
+    BNode * r = x->right;
+    BNode * tmp = bst_insert_node(r, k);
+    x->right = tmp;
+    //post
+    return x;
+  }
 }

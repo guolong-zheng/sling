@@ -60,6 +60,9 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
                 inv_traces.append(trace)
         process.Continue()
     # print "No breakpoint set up!"
+    # debug(pre_traces)
+    # debug(post_traces)
+    # debug(inv_traces)
     return (pre_traces, post_traces, inv_traces)
 
 def traverse_heap(vars):

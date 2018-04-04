@@ -1,5 +1,8 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+BNode * treap_remove_root_rec(BNode * x);
 
 BNode * treap_delete_rec(BNode * x, int k)
 {
@@ -29,7 +32,6 @@ int main( int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d", &size);
     BNode * root = create_tree(size);
-
     BNode * res = treap_delete_rec(root, rand_num());
 
     return 0;
