@@ -129,7 +129,7 @@ class IIncr(object):
     @classmethod
     def infer(self, prog, models):
         local_ptr_vars_lst = map(lambda model:
-                                 filter(lambda v:
+                                 filter(lambda v:         
                                         isinstance(model.sh.stack.get(v), Addr),
                                         model.sh.stack.dom()),
                                  models)
