@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 BNode * bst_remove_root_rec(BNode * x)
-{
-    //pre
+{  
+  //pre
   if(x->left == NULL && x->right == NULL) {
     free(x);
     //post
