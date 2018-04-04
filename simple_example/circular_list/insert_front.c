@@ -1,4 +1,6 @@
-#include "circular_list.h"
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 CNode * circular_list_insert_front(CNode * x)
 {

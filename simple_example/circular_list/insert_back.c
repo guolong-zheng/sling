@@ -1,4 +1,5 @@
-#include "circular_list.h"
+#include "header.h"
+#include <stdio.h>
 
 CNode * lseg_insert_back(CNode * hd, CNode * tl)
 {

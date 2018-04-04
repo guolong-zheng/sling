@@ -1,5 +1,6 @@
-#include "circular_list.h"
-
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 CNode * lseg_delete_back(CNode * hd, CNode * tl)
 {
     //pre
@@ -21,8 +22,8 @@ CNode * lseg_delete_back(CNode * hd, CNode * tl)
 
 CNode * circular_list_delete_back(CNode * x)
 {
-    //pre
 	CNode * next = x->next;
+        //pre
 	if (next == x) {
 		free(next);
         //post
