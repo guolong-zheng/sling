@@ -1,5 +1,6 @@
-#include "avl.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 AVLNode * avl_insert(AVLNode * x, int k)
 {
@@ -10,6 +11,7 @@ AVLNode * avl_insert(AVLNode * x, int k)
 		leaf->height = 0;
 		leaf->left = NULL;
 		leaf->right = NULL;
+		//post
 		return leaf;
 	} else {
         AVLNode * xl = x->left;
@@ -17,10 +19,12 @@ AVLNode * avl_insert(AVLNode * x, int k)
 		if (k < x->key) {
 			AVLNode * new_left = avl_insert(xl, k);
 			x->left = new_left;
+			//post
 			return avl_balance_node(x);
 		} else {
 			AVLNode * new_right = avl_insert(xr, k);
 			x->right = new_right;
+			//post
 			return avl_balance_node(x);
 		}
 	}
@@ -32,6 +36,5 @@ int main(int argc, char * argv[]){
     AVLNode * root = create_avl(size);
 
     AVLNode * res = avl_insert(root, rand_num());
-    //post
     return 0;
 }

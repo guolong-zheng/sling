@@ -13,9 +13,7 @@ typedef struct a_node {
 int rand_num();
 AVLNode * create_avl(int size);
 int get_height(AVLNode * x);
-AVLNode * avl_balance(AVLNode * x);
-int avl_find_smallest(AVLNode * x);
-AVLNode * avl_delete(AVLNode * x, int k);
-AVLNode * avl_insert(AVLNode * x, int k);
+AVLNode * avl_balance_node(AVLNode * x);
+AVLNode * avl_insert_node(AVLNode * x, int k);
 
 #endif

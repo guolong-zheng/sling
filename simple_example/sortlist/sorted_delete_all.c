@@ -1,25 +1,28 @@
-#include "sort_list.h"
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 SNnode * sorted_delete_all(SNnode * x, int k)
 {
     //pre
+	SNnode * rst = NULL;
 	if (x == NULL) {
-        //post
-		return x;
+        rst = x;
 	} else if (x->key == k) {
 		SNnode * tmp = sorted_delete_all(x->next, k);
 		free(x);
-        //post
-		return tmp;
+        rst = tmp;
 	} else {
 		SNnode * tmp = sorted_delete_all(x->next, k);
 		x->next = tmp;
-        //post
-		return x;
+        rst = x;
+		//return x;
 	}
+	//post
+	return rst;
 }
 
-int main( int argc, int argv[] ){
+int main( int argc, char * argv[] ){
     int size;
     sscanf(argv[1], "%d", &size);
     SNnode * root = create_random(size);

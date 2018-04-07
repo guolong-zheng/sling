@@ -1,4 +1,6 @@
-#include "sort_list.h"
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 SNnode * merge_sort_copy(SNnode * l1, SNnode * l2)
 {
@@ -30,13 +32,13 @@ SNnode * merge_sort_copy(SNnode * l1, SNnode * l2)
 	}
 }
 
-int main( int argc, int argv[] ){
+int main( int argc, char * argv[] ){
     int size;
     sscanf(argv[1], "%d", &size);
-    SNnode * l1 = create_sorted_list(size);
-    SNnode * l2 = create_sorted_list(size);
+    SNnode * l1 = create_sorted_list(0, MAX_RAND, size);
+    SNnode * l2 = create_sorted_list(0, MAX_RAND, size);
 
-    SNnode * res = concat_sorted(l1, l2);
+    SNnode * res = merge_sort_copy(l1, l2);
 
     return 0;
 }

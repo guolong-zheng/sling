@@ -1,4 +1,5 @@
-#include "sort_list.h"
+#include "header.h"
+#include <stdio.h>
 
 SNnode * find_last_sorted(SNnode * l)
 {
@@ -27,7 +28,7 @@ SNnode * concat_sorted(SNnode * l1, SNnode * l2)
 	return l1;
 }
 
-int main( int argc, int argv[]){
+int main( int argc, char  argv[]){
     int size;
     sscanf(argv[1], "%d", &size);
 

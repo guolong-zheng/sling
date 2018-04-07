@@ -40,13 +40,13 @@ AVLNode * avl_insert_node(AVLNode * x, int k)
 
 AVLNode * avl_balance_node(AVLNode * x)
 {
-	int lht = get_height_node(x->left);
-	int rht = get_height_node(x->right);
+	int lht = get_height(x->left);
+	int rht = get_height(x->right);
 	AVLNode * right = x->right;
 	AVLNode * left  = x->left;
 	if (rht == lht + 2) {
-		int rlht = get_height_node(right->left);
-		int rrht = get_height_node(right->right);
+		int rlht = get_height(right->left);
+		int rrht = get_height(right->right);
 		AVLNode * right_left = right->left;
 		AVLNode * right_right = right->right;
 		if (rlht <= rrht) {
@@ -73,8 +73,8 @@ AVLNode * avl_balance_node(AVLNode * x)
 			return right_left;
 		}
 	} else if (lht == rht + 2) {
-		int llht = get_height_node(left->left);
-		int lrht = get_height_node(left->right);
+		int llht = get_height(left->left);
+		int lrht = get_height(left->right);
 		AVLNode * left_left = left->left;
 		AVLNode * left_right = left->right;
 		if (lrht <= llht) {
@@ -111,7 +111,7 @@ AVLNode * avl_balance_node(AVLNode * x)
 	}
 }
 
-int get_height_node(AVLNode * x)
+int get_height(AVLNode * x)
 {
 	return x == NULL ? -1 : x->height;
 }

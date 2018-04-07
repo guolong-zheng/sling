@@ -1,5 +1,6 @@
-#include "avl.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 AVLNode * avl_balance(AVLNode * x)
 {
@@ -89,9 +90,4 @@ int main( int argc, char * argv[]){
     AVLNode * res = avl_balance(root);
 
     return 0;
-}
-
-int get_height(AVLNode * x)
-{
-	return x == NULL ? -1 : x->height;
 }

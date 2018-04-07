@@ -1,5 +1,19 @@
-#include "avl.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+int avl_find_smallest(AVLNode * x);
+AVLNode * avl_delete(AVLNode * x, int k);
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    AVLNode * root = create_avl(size);
+
+    AVLNode * res = avl_delete(root, rand_num());
+
+    return 0;
+}
 
 AVLNode * avl_delete(AVLNode * x, int k)
 {
@@ -44,16 +58,6 @@ AVLNode * avl_delete(AVLNode * x, int k)
 		}
 
 	}
-}
-
-int main( int argc, char * argv[]){
-    int size = 0;
-    sscanf(argv[1], "%d", &size);
-    AVLNode * root = create_avl(size);
-
-    AVLNode * res = avl_delete(root, rand_num());
-
-    return 0;
 }
 
 int avl_find_smallest(AVLNode * x)

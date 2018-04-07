@@ -1,4 +1,5 @@
-#include "sort_list.h"
+#include "header.h"
+#include <stdio.h>
 
 SNnode * find_last_sorted(SNnode * l)
 {
@@ -15,10 +16,10 @@ SNnode * find_last_sorted(SNnode * l)
 	return curr;
 }
 
-int main( int argc, int argv[]){
+int main( int argc, char * argv[]){
     int size;
     sscanf(argv[1], "%d", &size);
-    SNnode * root = create_sorted_list(size);
+    SNnode * root = create_sorted_list(0, MAX_RAND, size);
 
     SNnode * res= find_last_sorted(root);
 

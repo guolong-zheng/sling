@@ -1,4 +1,18 @@
-#include "sort_list.h"
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * sorted_insert(SNnode *x, int k);
+SNnode * insertion_sort_copy(SNnode * l);
+
+int main( int argc argv[]){
+    int size;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_list(size);
+
+    SNnode * res = insertion_sort_copy(root);
+    return 0;
+}
 
 SNnode * insertion_sort_copy(SNnode * l)
 {
@@ -12,15 +26,6 @@ SNnode * insertion_sort_copy(SNnode * l)
         //post
 		return nl;
 	}
-}
-
-int main( int argc, int argv[]){
-    int size;
-    sscanf(argv[1], "%d", &size);
-    SNnode * root = create_list(size);
-
-    SNnode * res = insertion_sort_copy(root);
-    return 0;
 }
 
 SNnode * sorted_insert(SNnode *x, int k)
