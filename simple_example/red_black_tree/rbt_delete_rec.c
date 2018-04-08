@@ -1,15 +1,15 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include "header.h"
 
-#define MAX_RAND 1000
+int rand_num();
+SNnode * rbt_delete_rec(SNnode * x, int k, int fixed);
+int rbt_find_smallest(SNnode * x);
+int rbt_delete_left_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int  fixed);
+int rbt_delete_right_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int  fixed);
+SNnode * rbt_insert_rec(SNnode * x, int k);
 
-typedef struct node {
-  int key;
-  int color;
-  struct node * left;
-  struct node * right;
-} SNnode;
-
-SNnode * rbt_delete_rec(SNnode * x, int k, int & fixed)
+SNnode * rbt_delete_rec(SNnode * x, int k, int fixed)
 {
     //pre
 	if (x == NULL) {
@@ -109,7 +109,7 @@ int rbt_find_smallest(SNnode * x)
 	}
 }
 
-int rbt_delete_left_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int & fixed)
+int rbt_delete_left_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int  fixed)
 {
 	int xrcolor = xr->color;
 	if (xrcolor != 0) {
@@ -155,7 +155,7 @@ int rbt_delete_left_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int & f
     }
 }
 
-int rbt_delete_right_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int & fixed)
+int rbt_delete_right_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int  fixed)
 {
 	int xlcolor = xl->color;
 	if (xlcolor != 0) {

@@ -1,11 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include "header.h"
 
-typedef struct node {
-  int key;
-  int color;
-  struct node * left;
-  struct node * right;
-} SNnode;
 
 SNnode * rbt_insert_rec(SNnode * x, int k)
 {
