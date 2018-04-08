@@ -1,4 +1,4 @@
-#define MAX_RAND 1000
+#define MAX_RAND 100
 
 typedef struct t_node {
   struct t_node * left;
@@ -7,6 +7,5 @@ typedef struct t_node {
 } TNode;
 
 int rand_num();
-TNode * crate_node();
 TNode * create_tree(int size);
 TNode * insert(TNode * root, TNode * node);

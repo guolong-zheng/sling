@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct node
 {
@@ -79,7 +80,7 @@ Node * create_tree(int size){
         node->next = NULL;
         node->tree = NULL;
         node->key = rand();
-        if(root === NULL){
+        if(root == NULL){
             root = node;
         }else{
             BNode * p = root;

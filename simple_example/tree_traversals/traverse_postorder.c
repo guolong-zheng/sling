@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include "header.h"
+#include <stdio.h>
 
 int postorder(TNode * x, int n)
 {

@@ -7,7 +7,7 @@ typedef struct node {
   struct node * prev;
 } DLNode;
 
-#define MAX_RAND 1000
+#define MAX_RAND 100
 
 int rand_num();
 DLNode * create_list(int size);

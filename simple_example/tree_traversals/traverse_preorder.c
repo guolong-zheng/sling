@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int preorder(TNode * x, int n)
 {

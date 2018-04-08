@@ -1,21 +1,16 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int rand_num(){
-    return rand()%2 - 2;
-}
-
-TNode * create_node(){
-    TNode * node = (TNode *)malloc(sizeof(TNode));
-    node->left = NULL;
-    node->right = NULL;
-    node->key = 0;
+    return rand()%MAX_RAND;
 }
 
 TNode * insert(TNode * root, TNode * node){
     if(root == NULL)
         return node;
-    else if(rand_num()){
+
+    if(rand_num() >= 0){
         if(root->left == NULL){
             root->left = node;
             return root;
@@ -30,13 +25,16 @@ TNode * insert(TNode * root, TNode * node){
             root->right = insert(root->right, node);
         }
     }
-
+    return root;
 }
 
 TNode * create_tree(int size){
     TNode * root = NULL;
     for(int i = 0; i < size; i++){
-        node = crate_node();
+        TNode * node = (TNode *)malloc(sizeof(TNode));
+        node->left = NULL;
+        node->right = NULL;
+        node->key = rand_num();
         root = insert(root, node);
     }
     return root;

@@ -12,16 +12,14 @@ DLNode * create_list(int size){
         DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
         new_node->key = rand_num();
         new_node->next = NULL;
-        new_node->pre = NULL;
+        new_node->prev = NULL;
         if(hd == NULL){
             hd = new_node;
-            hd->next = hd;
-            hd->pre = hd;
             tl = hd;
         }else{
-            new_node->pre = tl;
-            new_node->next = hd;
-            hd->pre = new_node;
+            new_node->prev = tl;
+            //new_node->next = hd;
+            //hd->prev = new_node;
             tl->next = new_node;
             tl = new_node;
         }

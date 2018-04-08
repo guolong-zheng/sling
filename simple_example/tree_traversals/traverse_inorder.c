@@ -1,5 +1,6 @@
-#include "create_tree.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int inorder(TNode * x, int n)
 {

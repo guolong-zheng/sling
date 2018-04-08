@@ -1,10 +1,11 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * g_list_find(DLNode * list, int data)
 {
   //pre
-  Node * curr = list;
+  DLNode * curr = list;
   while(curr != NULL)
   {
     //loop

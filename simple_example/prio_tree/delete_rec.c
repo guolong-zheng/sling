@@ -6,7 +6,10 @@ BNode * treap_remove_root_rec(BNode * x);
 
 BNode * treap_delete_rec(BNode * x, int k)
 {
-    //pre
+   //pre
+   if(x==NULL)
+     //post
+    return x;
   if(x->key == k) {
     BNode * r = treap_remove_root_rec(x);
     //post
