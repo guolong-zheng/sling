@@ -1,4 +1,5 @@
-#include "g_slist.h"
+#include "header.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 Node * g_slist_remove_all(Node * list, int data)
@@ -10,12 +11,12 @@ Node * g_slist_remove_all(Node * list, int data)
 
 	while(tmp != NULL)
 	{
-		//pre
+		//loop
 		if (tmp->key == data)
 		{
 			Node * tmp_next = tmp->next;
 			if (prev != NULL) {
-        tp = prev->key;
+        		tp = prev->key;
 				prev->next = tmp_next;
 			} else {
 				list = tmp_next;

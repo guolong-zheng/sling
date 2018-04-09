@@ -1,10 +1,11 @@
-#include "g_slist.h"
+#include "header.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-unsigned int g_slist_length(Node * list)
+int g_slist_length(Node * list)
 {
 	//pre
-	unsigned int length;
+	int length;
 	length = 0;
 	while(list != NULL)
 	{

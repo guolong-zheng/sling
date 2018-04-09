@@ -1,5 +1,9 @@
-#include "g_slist.h"
+#include "header.h"
+#include <stdio.h>
 #include <stdlib.h>
+
+Node * g_slist_delete_link(Node * list, Node * link_);
+Node * g_slist_remove_link(Node * list, Node * link);
 
 Node * g_slist_delete_link(Node * list, Node * link_)
 {
@@ -39,7 +43,7 @@ Node * g_slist_remove_link(Node * list, Node * link)
 }
 
 
-int main(int argc, char argv[]){
+int main(int argc, char * argv[]){
 	int size;
 	sscanf(argv[1],"%d",&size);
     Node * list = create_list(size);

@@ -1,5 +1,6 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void g_slist_free(Node * l)
 {

@@ -1,4 +1,5 @@
-#include "g_slist.h"
+#include "header.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int g_slist_index(Node * list, int data)

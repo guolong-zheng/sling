@@ -1,5 +1,8 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+Node * g_slist_sort_merge(Node * l1, Node * l2);
+Node * g_slist_sort_real(Node * list);
 
 Node * g_slist_sort_real(Node * list)
 {
@@ -7,9 +10,11 @@ Node * g_slist_sort_real(Node * list)
 	Node * l1, * l2;
 
 	if (list == NULL) {
+		//post
 		return list;
 	}
 	if (list->next == NULL) {
+		//post
 		return list;
 	}
 	l1 = list;
@@ -36,9 +41,12 @@ Node * g_slist_sort_real(Node * list)
   	if (l2 != NULL) {
     	Node * t1 = g_slist_sort_real(list);
 	  	Node * t2 = g_slist_sort_real(l2);
-  		return g_slist_sort_merge(t1, t2);
+		Node * ret = g_slist_sort_merge(t1, t2);
+		//post
+  		return ret;
   	} else {
     	Node * t1 = g_slist_sort_real(list);
+		//post
     	return t1;
   	}
 }
@@ -81,6 +89,5 @@ int main(int argc, char * argv[]){
 	sscanf(argv[1],"%d",&size);
     Node * root = create_list(size);
     Node * res = g_slist_sort_real(root);
-	//post
     return 0;
 }

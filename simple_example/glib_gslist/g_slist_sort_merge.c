@@ -1,5 +1,6 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * g_slist_sort_merge(Node * l1, Node * l2)
 {
@@ -37,6 +38,7 @@ Node * g_slist_sort_merge(Node * l1, Node * l2)
 	return list_next;
 }
 
+/*
 Node * create_sort(int size){
 	Node * root = NULL;
 	int i = 0;
@@ -59,12 +61,13 @@ Node * create_sort(int size){
 	}
 	return root;
 }
+*/
 
 int main(int argc, char * argv[]){
 	int size;
 	sscanf(argv[1],"%d",&size);
-    Node * list1 = create_sort(size);
-    Node * list2 = create_sort(size);
+    Node * list1 = create_list(size);
+    Node * list2 = create_list(size);
     Node * res = g_slist_sort_merge(list1, list2);
 
     return 0;

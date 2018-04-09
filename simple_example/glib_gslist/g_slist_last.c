@@ -1,5 +1,6 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * g_slist_last(Node * list)
 {
@@ -8,7 +9,7 @@ Node * g_slist_last(Node * list)
   {
     while(list->next != NULL)
     {
-        //post
+        //loop
       list = list->next;
     }
 

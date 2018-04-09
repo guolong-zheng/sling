@@ -1,4 +1,5 @@
-#include "g_slist.h"
+#include "header.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 Node * g_slist_remove_link(Node * list, Node * link)

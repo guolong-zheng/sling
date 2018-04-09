@@ -1,5 +1,6 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * g_slist_insert_sorted(Node * list, int data)
 {
@@ -47,7 +48,7 @@ Node * g_slist_insert_sorted(Node * list, int data)
 
 int main(int argc, char * argv[]){
 	int size = 0;
-	sscanf(argv[], "%d", &size);
+	sscanf(argv[1], "%d", &size);
     Node * root = create_list(size);
     Node * res = g_slist_insert_sorted(root, rand_num());
 

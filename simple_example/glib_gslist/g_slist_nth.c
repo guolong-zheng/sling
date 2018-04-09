@@ -1,12 +1,13 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * g_slist_nth(Node * list, int n)
 {
 	//pre
 	while(n > 0 && list != NULL)
 	{
-		//post
+		//loop
 		n--;
 		list = list->next;
 	}

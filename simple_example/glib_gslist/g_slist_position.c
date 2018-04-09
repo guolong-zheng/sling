@@ -1,5 +1,6 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int g_slist_position(Node * list, Node * link)
 {

@@ -10,7 +10,7 @@ Node * create_list(int size){
     Node * pos = root;
     for(int i = 0; i < size; i++){
         Node * new_node = (Node *)malloc(sizeof(Node));
-        new_node->key = (int)rand();
+        new_node->key = rand_num();
         new_node->next = NULL;
         if(root == NULL){
             root = new_node;

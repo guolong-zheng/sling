@@ -1,5 +1,8 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+Node * g_slist_last(Node * list);
+Node * g_slist_concat(Node * list1, Node * list2);
 
 Node * g_slist_concat(Node * list1, Node * list2)
 {

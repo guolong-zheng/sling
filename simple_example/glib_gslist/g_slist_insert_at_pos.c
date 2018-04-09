@@ -1,5 +1,11 @@
-#include "g_slist.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+Node * g_slist_prepend (Node * list, int data);
+Node * g_slist_append(Node * list, int data);
+Node * g_slist_insert(Node * list, int data, int pos);
+Node * g_slist_last(Node * list);
 
 Node * g_slist_insert(Node * list, int data, int pos)
 {
@@ -36,7 +42,16 @@ Node * g_slist_insert(Node * list, int data, int pos)
   Node * tmp_prev = prev_list->next;
   new_list->next = tmp_prev;
   prev_list->next = new_list;
+  //post
   return list;
+}
+
+Node * g_slist_prepend (Node * list, int data)
+{
+  Node * new_list = (Node *) malloc(sizeof(Node));
+  new_list->key = data;
+  new_list->next = list;
+  return new_list;
 }
 
 Node * g_slist_append(Node * list, int data)
