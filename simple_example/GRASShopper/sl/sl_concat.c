@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * concat(Node * a, Node * b)
 {

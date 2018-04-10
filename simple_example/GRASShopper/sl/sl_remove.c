@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * sl_remove(Node * lst)
 {

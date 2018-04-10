@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * merge(Node * a, Node * b)
 {

@@ -1,16 +1,21 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void insertion_sort(Node * lst)
+Node * insertion_sort(Node * lst)
 {
   //pre
   Node * prv = NULL;
   Node * srt = lst;
+  Node * curr = NULL;
+  Node * min = NULL;
+  int tmp = 0;
+  int srt_key = 0;
   while(srt != NULL)
   {
     //loop
-    Node * curr = srt->next;
-    Node * min = srt;
+    curr = srt->next;
+    min = srt;
     while(curr != NULL)
     {
       //loop
@@ -19,13 +24,14 @@ void insertion_sort(Node * lst)
       }
       curr = curr->next;
     }
-    int tmp = min->key;
-    int srt_key = srt->key;
+    tmp = min->key;
+    srt_key = srt->key;
     min->key = srt_key;
     prv = srt;
     srt = srt->next;
   }
   //post
+  return lst;
 }
 
 int main(int argc, char * argv[]){

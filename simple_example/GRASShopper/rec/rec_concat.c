@@ -1,5 +1,9 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+void rec_concat(Node * a, Node * b);
+Node * find_last(Node * a);
 
 Node * find_last(Node * a)
 {

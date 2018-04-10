@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * sls_pairwise_sum(Node * x, Node * y)
 {
@@ -24,7 +25,7 @@ Node * sls_pairwise_sum(Node * x, Node * y)
     last_z = (Node *)malloc(sizeof(Node));
 
     last_z->next = NULL;
-    z_key = _(unchecked) (curr_x->key + curr_y->key);
+    z_key = (curr_x->key + curr_y->key);
     last_z->key = z_key;
     tmp->next = last_z;
   }

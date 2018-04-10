@@ -1,15 +1,17 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * sl_reverse(Node * lst)
 {
   //pre
   Node * curr = lst;
   Node * rev = NULL;
+  Node * tmp = NULL;
   while(curr != NULL)
   {
     //loop
-    Node * tmp;
+    //Node * tmp;
     tmp = curr;
     curr = curr->next;
     tmp->next = rev;

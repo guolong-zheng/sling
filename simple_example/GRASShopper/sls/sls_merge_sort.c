@@ -1,10 +1,14 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+Node * split(Node * x);
+Node * merge(Node * a, Node * b);
+Node * merge_sort(Node * lst);
 
 Node * split(Node * x)
 {
   Node * z = x;
-
   Node * curr = x;
   while(curr != NULL)
   {
@@ -19,7 +23,6 @@ Node * split(Node * x)
     z = z->next;
     tmp->next = NULL;
   }
-
   return z;
 }
 
@@ -64,14 +67,15 @@ Node * merge_sort(Node * lst)
   Node * lst1 = split(lst);
   Node * a = merge_sort(lst1);
   Node * b = merge_sort(lst);
-  return merge(a, b);
+  Node * ret = merge(a,b);
+  //post
+  return ret;
 }
 
 int main(int argc, char * argv[]){
     int size;
     sscanf(argv[1],"%d",&size);
-    Node * lst = create_list(size);
+    Node * lst = create_list(1,size);
     Node * res = merge_sort(lst);
-    //post
     return 0;
 }

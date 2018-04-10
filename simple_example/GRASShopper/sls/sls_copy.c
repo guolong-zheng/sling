@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * sls_copy(Node * lst)
 {
@@ -15,14 +16,16 @@ Node * sls_copy(Node * lst)
   int lst_key = lst->key;
   cp->key = lst_key;
   cp->next = NULL;
+  Node * old_cp = NULL;
+  int curr_key = 0;
   while(curr->next != NULL)
   {
     //loop
-    Node * old_cp = cp;
+    old_cp = cp;
     cp = (Node *) malloc(sizeof(Node));
     old_cp->next = cp;
     curr = curr->next;
-    int curr_key = curr->key;
+    curr_key = curr->key;
     cp->key = curr_key;
     cp->next = NULL;
   }

@@ -1,5 +1,9 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+Node * rec_copy_loop(Node * curr, Node * cp);
+Node * rec_copy(Node * lst);
 
 Node * rec_copy_loop(Node * curr, Node * cp)
 {
@@ -27,7 +31,7 @@ int main(int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d",&size);
     Node * lst = create_list(size);
-    NOde * res = rec_copy(lst);
+    Node * res = rec_copy(lst);
 
     return 0;
 }

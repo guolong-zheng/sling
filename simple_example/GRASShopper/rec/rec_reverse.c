@@ -1,5 +1,9 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+Node * rec_reverse_acc(Node * curr, Node * rev);
+Node * rec_reverse(Node * lst);
 
 Node * rec_reverse_acc(Node * curr, Node * rev)
 {
@@ -10,7 +14,7 @@ Node * rec_reverse_acc(Node * curr, Node * rev)
   } else {
     Node * tmp = curr->next;
     curr->next = rev;
-    Node * ret = rec_reverse_acc(curr, tmp);
+    Node * ret = rec_reverse_acc(tmp, curr);
     //post
     return ret;
   }

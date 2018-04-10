@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdlib.h>
 
 Node * create_list(int init, int size){
     Node * root = NULL;

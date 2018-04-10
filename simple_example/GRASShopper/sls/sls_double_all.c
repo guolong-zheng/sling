@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 Node * sls_double_all(Node * lst)
 {
@@ -15,15 +16,16 @@ Node * sls_double_all(Node * lst)
   int curr_key = curr->key;
   cp->key = (2 * curr_key);
   cp->next = NULL;
+  Node * old_cp = NULL;
   while(curr->next != NULL)
   {
     //loop
-    Node * old_cp = cp;
+    old_cp = cp;
     cp = (Node *) malloc(sizeof(Node));
     old_cp->next = cp;
     curr = curr->next;
     curr_key = curr->key;
-    cp->key = _(unchecked)(2 * curr_key);
+    cp->key = (2 * curr_key);
     cp->next = NULL;
   }
   //post
