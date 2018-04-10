@@ -1,7 +1,7 @@
-#ifndef DL_H_
-#define DL_H_
+#ifndef HEADER_H_
+#define HEADER_H_
 
-#define MAX_RAND 1000
+#define MAX_RAND 100
 
 typedef struct node {
   struct node * next;

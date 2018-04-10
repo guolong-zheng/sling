@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * dl_filter(DLNode * x)
 {
@@ -7,15 +8,17 @@ DLNode * dl_filter(DLNode * x)
   DLNode * prv = NULL;
   DLNode * curr = x;
   DLNode * res = x;
+  DLNode * old_curr = NULL;
+  DLNode * old_curr_next = NULL;
   while(curr != NULL)
   {
     //loop
-    DLNode * old_curr = curr;
+    old_curr = curr;
     curr = curr->next;
-    int nondet;
+    int nondet = rand();
     if(nondet) {
       if (prv != NULL) {
-        DLNode * old_curr_next = old_curr->next;
+        old_curr_next = old_curr->next;
         prv->next = old_curr_next;
         if (old_curr_next != NULL) {
           old_curr_next->prev = prv;

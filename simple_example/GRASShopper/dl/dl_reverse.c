@@ -1,15 +1,16 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * dl_reverse(DLNode * lst)
 {
   //pre
   DLNode * curr = lst;
   DLNode * rev = NULL;
+  DLNode * tmp = NULL;
   while(curr != NULL)
   {
     //loop
-    DLNode * tmp;
     tmp = curr;
     curr = curr->next;
     tmp->next = rev;

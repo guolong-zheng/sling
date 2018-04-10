@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * dl_remove(DLNode * lst)
 {
@@ -13,7 +14,7 @@ DLNode * dl_remove(DLNode * lst)
     while(nondet && curr->next != NULL)
     {
       //loop
-      nondet = rand_num();
+      nondet = rand();
       curr = curr->next;
     }
     DLNode * tmp = curr->next;

@@ -1,15 +1,18 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * dl_copy(DLNode * lst)
 {
-  //pre
+
   DLNode * curr = lst;
   DLNode * cp = NULL;
+  DLNode * old_cp = NULL;
+  //pre
   while(curr != NULL)
   {
     //loop
-    DLNode * old_cp = cp;
+    old_cp = cp;
     cp = (DLNode *) malloc(sizeof(DLNode));
     cp->next = old_cp;
     if (old_cp != NULL) {

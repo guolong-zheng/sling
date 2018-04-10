@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * dl_concat(DLNode * a, DLNode * b)
 {
@@ -27,8 +28,8 @@ DLNode * dl_concat(DLNode * a, DLNode * b)
 int main(int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d",&size);
-    DLNode * a = create_dllist(size);
-    DLNode * b = create_dllist(size);
+    DLNode * a = create_list(size);
+    DLNode * b = create_list(size);
 
     DLNode * res = dl_concat(a, b);
 

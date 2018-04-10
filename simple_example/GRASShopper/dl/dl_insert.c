@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 DLNode * dl_insert(DLNode * lst, DLNode * elt)
 {
@@ -13,7 +14,7 @@ DLNode * dl_insert(DLNode * lst, DLNode * elt)
     while(nondet && curr->next != NULL)
     {
       //loop
-      nondet = rand_num();
+      nondet = rand();
       curr = curr->next;
     }
     DLNode * curr_next = curr->next;
