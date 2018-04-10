@@ -7,5 +7,6 @@ typedef struct node {
 } Node;
 
 Node * create_queue(int size);
+Node * create_queue_buggy(int size);
 
 #endif

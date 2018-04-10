@@ -1,5 +1,6 @@
-#include "openbsd_queue.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void simpleq_insert_tail(Node * head)
 {

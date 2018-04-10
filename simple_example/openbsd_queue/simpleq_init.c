@@ -1,5 +1,6 @@
-#include "openbsd_queue.h"
+#include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void simpleq_init()
 {
@@ -10,7 +11,7 @@ void simpleq_init()
   //post
 }
 
-int main(){
+int main(int argc, char * argv[]){
     simpleq_init();
     return 0;
 }
