@@ -4,12 +4,6 @@
 
 void g_list_free(DLNode * list)
 {
-  DLNode * pos = list;
-  while(pos != NULL){
-      printf("%d\n", pos->key);
-      pos = pos->next;
-  }
-  printf("--\n");
   //pre
   DLNode * x = list;
   DLNode * next = NULL;

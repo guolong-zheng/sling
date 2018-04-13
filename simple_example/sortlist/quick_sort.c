@@ -35,6 +35,7 @@ SNnode * quick_sort(SNnode * l)
 
 	while(curr != NULL)
 	{
+        //loop
 		tmp = curr->next;
 		if (curr->key <= pivot) {
 			curr->next = lpt;
@@ -51,10 +52,13 @@ SNnode * quick_sort(SNnode * l)
 	SNnode * t2 = quick_sort(l);
 
 	if (lpt == NULL) {
+        //post
 		return t2;
 	}
 	SNnode * t1 = quick_sort(lpt);
-	return concat_sorted(t1, t2);
+    SNnode * ret = concat_sorted(t1, t2);
+    //post
+	return ret;
 }
 
 SNnode * concat_sorted(SNnode * l1, SNnode * l2)
