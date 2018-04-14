@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+KNode * delete(KNode * h, int k);
+
 KNode * delete(KNode * h, int k)
 {
   //prev
@@ -35,4 +37,12 @@ KNode * delete(KNode * h, int k)
   }
   //post
   return h;
+}
+
+int main(int argc, char * argv[]){
+    int size;
+    sscanf(argv[1], "%d", &size);
+    KNode * root = create_klist(size);
+    KNode * res = delete(root, rand_num());
+    return 0;
 }

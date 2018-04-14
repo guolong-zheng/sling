@@ -1,11 +1,12 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void delete_all(NNode * h)
+void delete_all(Node * h)
 {
   //pre
-  NNode * i = h;
-  NNode * j = NULL;
+  Node * i = h;
+  Node * j = NULL;
   while(i != NULL)
   {
     //loop
@@ -20,7 +21,7 @@ void delete_all(NNode * h)
 int main(int argc, char * argv[]){
     int size;
     sscanf(argv[1],"%d", &size);
-    NNode * lst = create_list(size);
+    Node * lst = create_list(size);
     delete_all(lst);
     return 0;
 }
