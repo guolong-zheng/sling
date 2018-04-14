@@ -2,11 +2,11 @@
 
 typedef struct node {
   struct node * next;
-} NNode;
+} Node;
 
 typedef struct KNode {
    int key;
    struct KNode * next;
 } KNode;
 
-NNode * create_list(int size);
+Node * create_list(int size);

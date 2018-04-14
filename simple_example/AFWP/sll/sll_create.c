@@ -1,16 +1,17 @@
 #include "header.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-NNode * create(unsigned sz)
+Node * create(int sz)
 {
   //pre
-  NNode * h = NULL;
-  NNode * e = NULL;
+  Node * h = NULL;
+  Node * e = NULL;
   while(sz > 0)
   {
     //loop
     sz --;
-    e = (NNode *)malloc(sizeof(NNode));
+    e = (Node *)malloc(sizeof(Node));
     e->next = h;
     h = e;
   }
@@ -21,6 +22,6 @@ NNode * create(unsigned sz)
 int main(int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d",&size);
-    NNode * res = create(size);
+    Node * res = create(size);
     return 0;
 }

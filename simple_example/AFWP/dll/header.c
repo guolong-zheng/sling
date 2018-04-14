@@ -17,3 +17,21 @@ Node * create_sll(int size){
     }
     return root;
 }
+
+DLNode * create_dll(int size){
+    DLNode * root = NULL;
+    int i = 0;
+    for( i = 0; i < size; i++){
+        DLNode * node = (DLNode *)malloc(sizeof(DLNode));
+        node->next = NULL;
+        node->prev = NULL;
+        if(root == NULL)
+            root = node;
+        else{
+            node->next = root;
+            root->prev = node;
+            root = node;
+        }
+    }
+    return root;
+}

@@ -1,22 +1,15 @@
 #include "header.h"
-#include <stlib.h>
+#include <stdlib.h>
 
-NNode * create_list(int sz)
+Node * create_list(int sz)
 {
-  //pre
-  NNode * h = NULL;
+  Node * h = NULL;
   while(sz > 0)
   {
-    //loop
     sz --;
-    NNode * e = (NNode *)malloc(sizeof(NNode));
+    Node * e = (Node *)malloc(sizeof(Node));
     e->next = h;
     h = e;
   }
-  //post
   return h;
-}
-
-KNode * create_klist(int size){
-    
 }
