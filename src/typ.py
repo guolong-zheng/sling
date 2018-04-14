@@ -60,12 +60,21 @@ class TNull(PrimType):
     def __str__(self):
         return self.s_nil
 
+    def is_sub_type(self, other):
+        if isinstance(other, TNull) or isinstance(other, TData):
+            return True
+        else:
+            return False
+
 class TData(Type):
     def __init__(self, name):
         self.name = name
 
     def __str__(self):
         return self.name
+
+    def is_sub_type(self, other):
+        return self == other
 
 class TeData(Type):
     def __init__(self, name, targs):

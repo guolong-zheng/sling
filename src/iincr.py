@@ -345,11 +345,22 @@ class IIncr(object):
                     s = model.sh.stack
                     h = model.sh.heap
                     var_addr = s.get(var)
-                    var_typ, _ = h.get(var_addr.val)
+                    if var_addr.val == Const.nil_addr:
+                        var_typ = TNull()
+                    else:
+                        typ, _ = h.get(var_addr.val)
+                        var_typ = TData(typ)
                     var_typ_lst.append(var_typ)
 
-                if (bool(var_typ_lst) and List.all_is_identical(var_typ_lst)):
-                    return var_typ_lst[0]
+                if var_typ_lst:
+                    nil_typ_lst, data_typ_lst = List.partition(lambda t: 
+                                                               isinstance(t, TNull),
+                                                               var_typ_lst)
+                    if not data_typ_lst:
+                        return TNull()
+                    else:
+                        if List.all_is_identical(data_typ_lst):
+                            return data_typ_lst[0]
             except:
                 pass
             
@@ -357,7 +368,7 @@ class IIncr(object):
         root_param = ptr_params[0]
 
         root_typ = get_type(root)
-        if (not root_typ) or (root_typ != str(root_param.typ)):
+        if (not root_typ) or (not root_typ.is_sub_type(root_param.typ)):
             return []
         
         root_arg = Var(root)
