@@ -1,10 +1,6 @@
-#include <vcc.h>
+#include "header.h"
 #include <stdlib.h>
-
-typedef struct node {
-   int key;
-   struct node * next;
-} Node;
+#include <stdio.h>
 
 Node * swap(Node * h)
 {
@@ -21,4 +17,12 @@ Node * swap(Node * h)
   }
   //post
   return h;
+}
+
+int main(int argc, char * argv[]){
+    int size;
+    sscanf(argv[1],"%d",&size);
+    Node * h = create_list(size);
+    Node * res = swap(h);
+    return 0;
 }
