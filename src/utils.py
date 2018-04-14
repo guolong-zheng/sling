@@ -136,6 +136,11 @@ class List(object):
                         range(0, len(ls)+1)))
         return map(lambda s: list(s), list(ss))
 
+    @classmethod
+    def all_is_identical(self, ls):
+        # return ls[1:] == ls[:-1]
+        return ls.count(ls[0]) == len(ls)
+
 class Const(object):
     nil_addr = 0
     fresh_vars_dummy_addr = -1

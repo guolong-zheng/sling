@@ -135,6 +135,9 @@ class MetaModel(object):
 class IIncr(object):
     @classmethod
     def infer(self, prog, models):
+        if not models:
+            return []
+
         local_ptr_vars_lst = map(lambda model:
                                  filter(lambda v:
                                         isinstance(model.sh.stack.get(v), Addr),
@@ -330,14 +333,35 @@ class IIncr(object):
 
         prim_sst = map(lambda param: (param, VarUtil.mk_fresh(param)), prim_params)
 
+        def get_type(var):
+            try:
+                var_typ_lst = []
+                for model in singleton_models:
+                    s = model.sh.stack
+                    h = model.sh.heap
+                    var_addr = s.get(var)
+                    var_typ, _ = h.get(var_addr.val)
+                    var_typ_lst.append(var_typ)
+
+                if (bool(var_typ_lst) and List.all_is_identical(var_typ_lst)):
+                    return var_typ_lst[0]
+            except:
+                pass
+            
         assert len(ptr_params) > 0
         root_param = ptr_params[0]
+
+        root_typ = get_type(root)
+        if (not root_typ) or (root_typ != str(root_param.typ)):
+            return []
+        
         root_arg = Var(root)
         root_sst = (root_param, root_arg)
 
         if len(children) < len(ptr_params) - 1:
             num_fresh_vars = len(ptr_params) - 1 - len(children)
             children.extend([Const.fresh_vars_dummy_addr] * num_fresh_vars)
+
         ptr_args_lst = []
         children_permutations = set(
             itertools.permutations(children, len(ptr_params) - 1))
@@ -394,12 +418,8 @@ class IIncr(object):
                 args_lst.append(set(args))
             data_node_lst.append((data_typ, args_lst))
 
-        def all_is_identical(lst):
-            # return lst[1:] == lst[:-1]
-            return lst.count(lst[0]) == len(lst)
-
         if (bool(data_node_lst) and 
-            all_is_identical(map(lambda (typ, _): typ, data_node_lst))):
+            List.all_is_identical(map(lambda (typ, _): typ, data_node_lst))):
             data_typ, _ = data_node_lst[0]
             arg_grp_tuples = zip(*(map(lambda (_, args): args, data_node_lst)))
             args_tuples = map(lambda arg_grp:
