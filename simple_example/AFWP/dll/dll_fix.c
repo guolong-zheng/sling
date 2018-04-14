@@ -17,7 +17,7 @@ DLNode * polarize(Node * h)
     k = j;
     j = (DLNode *) malloc(sizeof(DLNode));
     j->next = k;
-    //if(k!= NULL)
+    if(k!= NULL)
         k->prev = j;
     i = i->next;
   }
