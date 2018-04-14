@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void dll_destroy_slave(struct slave_item * dll)
+Node * dll_destroy_slave(struct slave_item * dll)
   /*D_requires dll^(dll) */
   /*D_ensures  emp */
 {
@@ -18,10 +18,12 @@ void dll_destroy_slave(struct slave_item * dll)
     d = next;
   }
   //post
+  return dll;
 }
 
 int main(int argc, char * argv[]){
     int size;
     sscanf(argv[1],"%d",&size);
-    
+    Node * dll = create_dll(size);
+    dll_destroy_slave(dll);
 }
