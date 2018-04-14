@@ -10,3 +10,6 @@ pred sll(x) := emp & x=nil
 
 pred klist(x) := emp & x=nil
         \/ (exists k, n. x->knode{k, n} * klist(n));
+
+pred klseg(x, y) := emp & x=y
+        \/ (exists k, n. x->knode{k, n} * klseg(n, y));

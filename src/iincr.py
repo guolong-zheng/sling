@@ -163,6 +163,7 @@ class IIncr(object):
             # for (model, residue_model) in zip(models, residue_models):
             #     debug(model)
             #     debug(residue_model)
+        # debug(res_lst)
         return res_lst
 
     @classmethod
@@ -292,6 +293,8 @@ class IIncr(object):
 
     @classmethod
     def _infer_validate(self, f, singleton_models):
+        # debug(f)
+        # debug(singleton_models)
         all_is_valid = True
         any_decr_models = False
         residue_models = []
@@ -321,6 +324,8 @@ class IIncr(object):
 
     @classmethod
     def _infer_pred(self, prog, pred_defn, root, children, singleton_models):
+        # debug(root)
+        # debug(singleton_models)
         pred_template = HPred(pred_defn.name, pred_defn.params)
 
         prim_params = []
@@ -392,6 +397,8 @@ class IIncr(object):
             validate_res = self._infer_validate(f, singleton_models)
             if validate_res:
                 fs.append(validate_res)
+        # debug(root)
+        # debug(fs)
         return fs
 
     @classmethod
