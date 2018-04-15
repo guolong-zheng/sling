@@ -7,6 +7,7 @@ from typ import *
 from get_trace import *
 from test import *
 import argparse
+import timeit
 
 def main():
     aparser = argparse.ArgumentParser(description='SLING')
@@ -45,12 +46,27 @@ def main():
     ag('--test', '-test',
        action="store_true")
 
+    ag('--stats', '-stats',
+       action="store_true")
+
     args = aparser.parse_args()
 
     import settings
     settings.doMP = args.mp
     settings.print_type = not args.notype
     settings.test_mode = args.test
+    settings.stats_mode = args.stats
+
+    stat_locs = 0
+    stat_traces = 0
+    stat_preds = 0
+    stat_specs = 0
+    stat_invs = 0
+    stat_free_vars = 0
+    stat_atom_data = 0
+    stat_atom_pred = 0
+    stat_pure_constrs = 0
+    stat_time = 0
 
     if not settings.test_mode:
         infile = args.infile
@@ -60,6 +76,8 @@ def main():
         size = args.size
         pred_file = args.pred
         pred_defn = pred_file.read()
+
+        start_time = timeit.default_timer()
 
         trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
         # debug(trace_pairs)
@@ -105,6 +123,8 @@ def main():
         type_infer = TInfer()
         tprog = type_infer.infer(prog)
         debug(tprog)
+
+        stat_preds = len(tprog.pred_defn_lst)
 
         pre_models = TModel.make_lst(pre_traces, tprog)
         post_models = TModel.make_lst(post_traces, tprog)
@@ -164,11 +184,14 @@ def main():
                     debug('Precondition at location ' + str(pr_loc) + ':')
                     debug(pr_f)
                     debug('Corresponding postconditions:')
+                    specs_num = 1
                     for po_loc in pr_f_posts:
                         po_f_lst = pr_f_posts[po_loc]
                         debug('Postconditions at location ' + str(po_loc) + ':')
+                        specs_num = specs_num * len(po_f_lst)
                         for po_f in po_f_lst:
                             debug(po_f)
+                    stat_specs += specs_num
 
         # debug(inv_models)
         for inv_loc in inv_locs:
@@ -177,6 +200,31 @@ def main():
             for (inv, inv_residue) in inv_residue_lst:
                 debug(inv)
                 # debug(inv_residue)
+
+        stat_time = timeit.default_timer() - start_time
+        stat_locs = len(pre_locs) + len(post_locs) + len(inv_locs)
+        stat_traces = len(pre_models) + len(post_models) + len(inv_models)
+
+        for loc in rdict:
+            res_lst = rdict[loc]
+            stat_invs += len(res_lst)
+            for (inv, _) in res_lst:
+                inv_atom_data, inv_atom_pred = inv.stat_atomic_preds()
+                stat_atom_data += inv_atom_data
+                stat_atom_pred += inv_atom_pred
+                stat_pure_constrs += inv.stat_pure_constrs()
+                stat_free_vars += len(inv.fv())
+
+        debug('Number of locations: ' + str(stat_locs))
+        debug('Number of traces: ' + str(stat_traces))
+        debug('Number of pre-defined predicates: ' + str(stat_preds))
+        debug('Number of inferred assertions: ' + str(stat_invs))
+        debug('Number of free variables: ' + str(stat_free_vars))
+        debug('Number of atomic singleton predicates: ' + str(stat_atom_data))
+        debug('Number of atomic inductive predicates: ' + str(stat_atom_pred))
+        debug('Number of pure constraints: ' + str(stat_pure_constrs))
+        debug('Number of specifications: ' + str(stat_specs))
+        debug('Running time (sec): ' + str(stat_time))
 
     else:
         debug('Inside test mode')

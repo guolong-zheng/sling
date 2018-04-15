@@ -139,6 +139,13 @@ class SepLogic(object):
 
     def generic_mk_conj(self, f):
         raise Exception('No combination for ' + type(self).__name__)
+    
+    def stat_atomic_preds(self):
+        try:
+            data_lst, pred_lst = self.__heap_par__()
+            return len(data_lst), len(pred_lst)
+        except:
+            return 0, 0
 
 class PExpr(SepLogic):
     pass
@@ -277,6 +284,12 @@ class BConst(PRel):
     def __ne__(self, other):
        return not self == other
 
+    def stat_pure_constrs(self):
+        if self.val:
+            return 0
+        else:
+            return 1
+
 class PBinRel(PRel):
     def __init__(self, left, op, right):
         self.op = RelOp.rel_op(op)
@@ -289,6 +302,9 @@ class PBinRel(PRel):
 
     def __fv__(self):
         return self.left.fv() | self.right.fv()
+
+    def stat_pure_constrs(self):
+        return 1
 
 class PPred(PRel):
     def __init__(self, id, args):
@@ -306,6 +322,9 @@ class PPred(PRel):
             s.update(arg.fv())
         return s
 
+    def stat_pure_constrs(self):
+        return 1
+
 class PNeg(PRel):
     def __init__(self, f):
         self.form = f
@@ -316,6 +335,9 @@ class PNeg(PRel):
 
     def __fv__(self):
         return self.form.fv()
+
+    def stat_pure_constrs(self):
+        return self.form.stat_pure_constrs()
 
 class PConj(PRel):
     def __init__(self, left, right):
@@ -329,6 +351,9 @@ class PConj(PRel):
     def __fv__(self):
         return self.left.fv() | self.right.fv()
 
+    def stat_pure_constrs(self):
+        return self.left.stat_pure_constrs() + self.right.stat_pure_constrs()
+
 class PDisj(PRel):
     def __init__(self, left, right):
         self.left = left
@@ -340,6 +365,9 @@ class PDisj(PRel):
 
     def __fv__(self):
         return self.left.fv() | self.right.fv()
+
+    def stat_pure_constrs(self):
+        return self.left.stat_pure_constrs() + self.right.stat_pure_constrs()
 
 class PForall(PRel):
     def __init__(self, vars, f):
@@ -360,6 +388,9 @@ class PForall(PRel):
     def __rename__(self):
         return self.__rename_Quant__(PForall)
 
+    def stat_pure_constrs(self):
+        return self.form.stat_pure_constrs()
+
 class PExists(PRel):
     def __init__(self, vars, f):
         self.vars = vars
@@ -379,6 +410,9 @@ class PExists(PRel):
     def __rename__(self):
         return self.__rename_Quant__(PExists)
 
+    def stat_pure_constrs(self):
+        return self.form.stat_pure_constrs()
+
 class HRel(SepLogic):
     def __mk_conj__(self, f):
         if isinstance(f, PRel):
@@ -395,6 +429,9 @@ class HRel(SepLogic):
             return FExists(nf.vars, self.mk_conj(nf.form))
         else:
             raise Exception('No combination for ' + type(f).__name__)
+
+    def stat_pure_constrs(self):
+        return 0
 
 class HAtom(HRel):
     pass
@@ -509,6 +546,9 @@ class FBase(SH):
     def get_heap(self):
         return self.heap
 
+    def stat_pure_constrs(self):
+        return self.pure.stat_pure_constrs()
+
 class FExists(SH):
     def __init__(self, vars, f):
         if isinstance(f, SH):
@@ -523,7 +563,7 @@ class FExists(SH):
                 '. ' + str(self.form) + ')')
 
     def __fv__(self):
-        return self.form.fv() - set(self.vars)
+        return self.form.fv() - set(map(lambda v: v.id, self.vars))
 
     def __heap_par__(self):
         return self.form.heap_par()
@@ -547,6 +587,9 @@ class FExists(SH):
 
     def get_heap(self):
         return FExists(self.vars, FBase(self.form.get_heap(), BConst(True)))
+
+    def stat_pure_constrs(self):
+        return self.form.stat_pure_constrs()
 
 class DataDefField(SepLogic):
     def __init__(self, typ, name):
