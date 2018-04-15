@@ -459,7 +459,7 @@ class HData(HAtom):
 
     def __fv__(self):
         s = set()
-        s.add(root)
+        s.add(self.root.id)
         for arg in self.args:
             s.update(arg.fv())
         return s
