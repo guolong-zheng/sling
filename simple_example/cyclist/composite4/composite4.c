@@ -70,17 +70,22 @@ struct node *tree_add_left(struct node *node)
   n->right = NULL;
   n->parent = node;
   n->count = 1;
+
   struct node *nodeLeft = node->left;
   node->left = n;
   fixup_ancestors(n, node, 1);
   //post
   return n;
+
 }
 
 struct node *tree_add_right(struct node *node)
 {
     //pre
-    struct node *n = create_node(node);
+    struct node *n = (struct node *)malloc(sizeof(struct node));
+    n->left = NULL;
+    n->right = NULL;
+    n->parent = node;
     struct node *nodeRight = node->right;
     node->right = n;
     fixup_ancestors(n, node, 1);

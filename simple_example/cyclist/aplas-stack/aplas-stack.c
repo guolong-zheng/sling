@@ -36,10 +36,12 @@ int pop(struct stack* s)
   //@ requires stack(s, ?vs) &*& vs != nil;
   //@ ensures stack(s, tail(vs)) &*& result == head(vs);
 {
+  //pre
   struct node* tmp = s->head;
   int res = tmp->value;
   s->head = tmp->next;
   free(tmp);
+  //post
   return res;
 }
 
@@ -47,16 +49,19 @@ void dispose(struct stack* s)
   //@ requires stack(s, ?vs);
   //@ ensures true;
 {
+  //pre
   struct node* n = s->head;
   while(n != NULL)
     //@ invariant lseg(n, 0, ?vs0);
     //@ decreases length(vs0);
   {
+    //loop
     struct node* tmp = n;
     n = n->next;
     free(tmp);
   }
   free(s);
+  //post
 }
 
 int get_length(struct stack* s)

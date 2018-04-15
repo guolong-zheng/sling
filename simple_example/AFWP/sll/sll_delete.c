@@ -16,6 +16,7 @@ KNode * delete(KNode * h, int k)
   }
   while(i != NULL && t == NULL)
   {
+    //loop
     if (i->key == k) {
       t = i;
     } else {
