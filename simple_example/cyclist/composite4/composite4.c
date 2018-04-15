@@ -8,33 +8,38 @@ struct node {
   int count;
 };
 
-
 struct node * create_node(struct node * p)
 {
+  //pre
   struct node *n = malloc(sizeof(struct node));
-  if (n == NULL) { abort(); }
   n->left = NULL;
   n->right = NULL;
   n->parent = p;
   n->count = 1;
+  //post
   return n;
 }
 
 struct node *create_tree()
 {
+  //pre
   struct node *n = create_node(0);
+  //post
   return n;
 }
 
 int subtree_get_count(struct node *node)
 {
+  //pre
   int result = 0;
   if (node != NULL) { result = node->count; }
+  //post
   return result;
 }
 
 void fixup_ancestors(struct node * n, struct node * p, int count)
 {
+  //pre
   if (p == NULL) {
   } else {
     struct node *left = p->left;
@@ -49,47 +54,51 @@ void fixup_ancestors(struct node * n, struct node * p, int count)
       leftCount = subtree_get_count(left);
       rightCount = count;
     }
-    if (2147483647 - 1 - leftCount < rightCount) {
-      abort();
-    }
-    {
-      int pcount = 1 + leftCount + rightCount;
-      p->count = pcount;
-      fixup_ancestors(p, grandparent, pcount);
-    }
+    int pcount = 1 + leftCount + rightCount;
+    p->count = pcount;
+    fixup_ancestors(p, grandparent, pcount);
   }
+  //post
+  return;
 }
 
 struct node *tree_add_left(struct node *node)
 {
-  struct node *n = create_node(node);
-  {
-      struct node *nodeLeft = node->left;
-      node->left = n;
-      fixup_ancestors(n, node, 1);
-  }
+  //pre
+  struct node *n = (struct node *)malloc(sizeof(struct node));
+  n->left = NULL;
+  n->right = NULL;
+  n->parent = node;
+  n->count = 1;
+  struct node *nodeLeft = node->left;
+  node->left = n;
+  fixup_ancestors(n, node, 1);
+  //post
   return n;
 }
 
 struct node *tree_add_right(struct node *node)
 {
+    //pre
     struct node *n = create_node(node);
-    {
-        struct node *nodeRight = node->right;
-        node->right = n;
-        fixup_ancestors(n, node, 1);
-    }
+    struct node *nodeRight = node->right;
+    node->right = n;
+    fixup_ancestors(n, node, 1);
+    //post
     return n;
 }
 
 struct node *tree_get_parent(struct node *node)
 {
+  //pre
   struct node *p = node->parent;
+  //post
   return p;
 }
 
 void subtree_dispose(struct node *node)
 {
+  //pre
   if (node != NULL) {
     {
       struct node *left = node->left;
@@ -101,11 +110,14 @@ void subtree_dispose(struct node *node)
     }
     free(node);
   }
+  //post
 }
 
 void tree_dispose(struct node *node)
 {
+  //pre
   subtree_dispose(node);
+  //post
 }
 
 int main0()
@@ -121,10 +133,10 @@ int main0()
   return 0;
 }
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     int numnodes = atoi(argv[1]);
-    unsigned int seed  = atoi(argv[2]);
+    unsigned int seed  = 10;
     srand(seed);
     int i = 1;
     struct node *root = create_tree();
@@ -134,10 +146,11 @@ void main(int argc, char **argv)
     rightholes[0] = root;
     int numleftholes = 1;
     int numrightholes = 1;
+    int direction = 0;
+    int j = 0;
     while (i < numnodes)
     {
-        int direction = rand() % 2;
-        int j;
+        direction = rand() % 2;
         if (direction) {
             j = rand() % numleftholes;
             leftholes[j] = tree_add_left(leftholes[j]);
@@ -150,6 +163,8 @@ void main(int argc, char **argv)
         i++;
     }
     tree_dispose(root);
+
+    return 0;
 }
 
 int verifast_main()

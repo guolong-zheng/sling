@@ -59,29 +59,6 @@ void dispose(struct stack* s)
   free(s);
 }
 
-/*@
-lemma void lseg_add(struct node* a)
-  requires lseg(a, ?b, ?vs1) &*& b != 0 &*& b->next |-> ?n &*& b->value |-> ?v &*& malloc_block_node(b) &*& lseg(n, 0, ?vs2);
-  ensures lseg(a, n, append(vs1, cons(v, nil))) &*& lseg(n, 0, vs2);
-{
-  if(a == b) {
-  } else {
-    lseg_add(a->next);
-  }
-  open lseg(n, 0, vs2);
-}
-lemma void append_assoc<t>(list<t> l1, list<t> l2, list<t> l3)
-  requires true;
-  ensures append(l1, append(l2, l3)) == append(append(l1, l2), l3);
-{
-  switch(l1) {
-    case nil:
-    case cons(h, t):
-      append_assoc(t, l2, l3);
-  }
-}
-@*/
-
 int get_length(struct stack* s)
   //@ requires stack(s, ?vs);
   //@ ensures stack(s, vs) &*& result == length(vs);

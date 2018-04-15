@@ -3,5 +3,8 @@ data node{
     int value; };
 
 data llist{
-    node first;
-    node last; };
+    llist first;
+    llist last; };
+
+data iter {
+    iter current; };
