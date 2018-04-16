@@ -228,6 +228,11 @@ def main():
         debug('Number of specifications: ' + str(stat_specs))
         debug('Running time (sec): ' + str(stat_time))
 
+	print(infile+","+str(stat_locs)+","+str(stat_traces)+","+
+            str(stat_preds) + "," + str(stat_invs) + "," +
+            str(stat_free_vars) + "," + str(stat_atom_data) + "," +
+            str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
+            str(stat_specs) + "," + str(stat_time))
     else:
         debug('Inside test mode')
         test()
