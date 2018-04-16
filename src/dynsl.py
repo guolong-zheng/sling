@@ -140,7 +140,7 @@ def main():
             models = grp_models[loc]
             f_residue_lst = IIncr.infer(tprog, models)
             # debug(models)
-            debug(map(lambda (f, _): f, f_residue_lst))
+            # debug(map(lambda (f, _): f, f_residue_lst))
 
             def mk_mdict(models):
                 mdict = {}

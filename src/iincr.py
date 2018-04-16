@@ -17,7 +17,7 @@ class SingletonModel(object):
         return (self.root + ' -> ' + Printer.str_of_list(self.children_lst) + str(self.sh))
 
     def is_singleton_heap(self):
-        return len(self.sh.heap.dom()) >= 1
+        return len(self.sh.heap.dom()) == 1
 
     def is_empty_heap(self):
         return len(self.sh.heap.dom()) == 0
@@ -286,10 +286,9 @@ class IIncr(object):
                                          children, singleton_models)
                 pred_lst.extend(preds)
 
-            if not pred_lst:
-                if all(model.is_singleton_heap() for model in singleton_models):
-                    data_lst = self._infer_data(prog, root, children, singleton_models)
-                    pred_lst.extend(data_lst)
+            if all(model.is_singleton_heap() for model in singleton_models):
+                data_lst = self._infer_data(prog, root, children, singleton_models)
+                pred_lst.extend(data_lst)
 
             return pred_lst
 
