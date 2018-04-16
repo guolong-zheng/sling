@@ -17,7 +17,7 @@ class SingletonModel(object):
         return (self.root + ' -> ' + Printer.str_of_list(self.children_lst) + str(self.sh))
 
     def is_singleton_heap(self):
-        return len(self.sh.heap.dom()) == 1
+        return len(self.sh.heap.dom()) >= 1
 
     def is_empty_heap(self):
         return len(self.sh.heap.dom()) == 0
@@ -138,6 +138,7 @@ class IIncr(object):
         if not models:
             return []
 
+        # debug(models)
         local_ptr_vars_lst = map(lambda model:
                                  filter(lambda v:
                                         isinstance(model.sh.stack.get(v), Addr),
@@ -222,8 +223,6 @@ class IIncr(object):
                                                                     model.stk_addrs_dict),
                                                 meta_models)))
         root_children_lst = self._get_common_children(root, singleton_models)
-        # debug(root)
-        # debug(root_children_lst)
 
         root_aliases = set.intersection(*(map(lambda model:
                                               set(model.stk_addrs_dict[model.sh.stack.get(
@@ -285,9 +284,10 @@ class IIncr(object):
                                          children, singleton_models)
                 pred_lst.extend(preds)
 
-            if all(model.is_singleton_heap() for model in singleton_models):
-                data_lst = self._infer_data(prog, root, children, singleton_models)
-                pred_lst.extend(data_lst)
+            if not pred_lst:
+                if all(model.is_singleton_heap() for model in singleton_models):
+                    data_lst = self._infer_data(prog, root, children, singleton_models)
+                    pred_lst.extend(data_lst)
 
             return pred_lst
 
@@ -373,6 +373,9 @@ class IIncr(object):
         
         root_arg = Var(root)
         root_sst = (root_param, root_arg)
+
+        # debug(root)
+        # debug(children)
 
         if len(children) < len(ptr_params) - 1:
             num_fresh_vars = len(ptr_params) - 1 - len(children)
@@ -461,9 +464,10 @@ class IIncr(object):
     @classmethod
     def _get_common_children(self, root, singleton_models):
         lst_of_model_children = map(lambda model: model.children_lst, singleton_models)
-        # debug(root)
+
         # for model in singleton_models:
         #     debug(model)
+
         lst_of_children = list(itertools.product(*lst_of_model_children))
         # debug(lst_of_children)
         no_dups_children = map(lambda children_lst:
