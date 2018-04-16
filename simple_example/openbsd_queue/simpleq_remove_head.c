@@ -18,7 +18,7 @@ void simpleq_remove_head(Node * head)
 int main(int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d",&size);
-    Node * hd = create_queue(size);
+    Node * hd = create_queue_buggy(size);
     simpleq_remove_head(hd);
     return 0;
 }

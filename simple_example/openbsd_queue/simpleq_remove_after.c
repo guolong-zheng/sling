@@ -18,7 +18,7 @@ void simpleq_remove_after(Node * head, Node * elm)
 int main(int argc , char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d",&size);
-    Node * hd = create_queue(size);
+    Node * hd = create_queue_buggy(size);
     Node * listelm = hd->next;
     simpleq_remove_after(hd, listelm);
     return 0;
