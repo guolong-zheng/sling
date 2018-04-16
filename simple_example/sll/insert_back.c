@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 SNnode * sll_insert_back(SNnode * x, int k)
 {

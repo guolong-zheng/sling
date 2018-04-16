@@ -1,5 +1,6 @@
 #include "header.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 SNnode * sll_append(SNnode * x1, SNnode * x2)
 {
@@ -10,7 +11,7 @@ SNnode * sll_append(SNnode * x1, SNnode * x2)
   } else {
     SNnode * tmp = sll_append(x1->next, x2);
     x1->next = tmp;
-		//post
+  //post
     return x1;
   }
 }

@@ -5,7 +5,7 @@
 SNnode * sorted_insert(SNnode *x, int k);
 SNnode * insertion_sort_copy(SNnode * l);
 
-int main( int argc argv[]){
+int main( int argc, char * argv[]){
     int size;
     sscanf(argv[1], "%d", &size);
     SNnode * root = create_list(size);

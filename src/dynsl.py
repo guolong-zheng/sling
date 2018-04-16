@@ -232,7 +232,7 @@ def main():
             str(stat_preds) + "," + str(stat_invs) + "," +
             str(stat_free_vars) + "," + str(stat_atom_data) + "," +
             str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
-            str(stat_specs) + "," + str(stat_time))
+            str(stat_specs) + "," + str(stat_time)[:4])
     else:
         debug('Inside test mode')
         test()

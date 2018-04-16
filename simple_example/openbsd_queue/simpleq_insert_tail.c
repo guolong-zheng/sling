@@ -16,8 +16,7 @@ void simpleq_insert_tail(Node * head)
 int main(int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1],"%d",&size);
-    Node * hd = create_queue(size);
-    simpleq_insert_after(hd);
-}
+    Node * hd = create_queue_buggy(size);
+    simpleq_insert_tail(hd);
     return 0;
 }

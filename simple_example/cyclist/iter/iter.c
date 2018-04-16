@@ -18,6 +18,7 @@ struct iter {
 
 struct llist *create_llist()
 {
+  //pre
   struct llist *l = malloc(sizeof(struct llist));
   if (l == NULL) abort();
   struct node *n = malloc(sizeof(struct node));
@@ -26,6 +27,7 @@ struct llist *create_llist()
   if (n == NULL) abort();
   l->first = n;
   l->last = n;
+  //post
   return l;
 }
 

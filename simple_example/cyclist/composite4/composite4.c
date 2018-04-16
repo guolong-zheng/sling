@@ -14,7 +14,10 @@ struct node * create_node(struct node * p)
   struct node *n = malloc(sizeof(struct node));
   n->left = NULL;
   n->right = NULL;
-  n->parent = p;
+  if(p == NULL)
+    n->parent = NULL;
+  else
+    n->parent = p;
   n->count = 1;
   //post
   return n;
@@ -23,7 +26,7 @@ struct node * create_node(struct node * p)
 struct node *create_tree()
 {
   //pre
-  struct node *n = create_node(0);
+  struct node *n = create_node(NULL);
   //post
   return n;
 }
