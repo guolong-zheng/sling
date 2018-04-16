@@ -29,5 +29,5 @@ int main(int argc, char * argv[]){
     SNnode * x = NULL;
     x = create_heap(size);
 
-    //int res = binomial_heap_find__minimum_rec(x);
+    int res = binomial_heap_find__minimum_rec(x);
 }

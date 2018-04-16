@@ -1,13 +1,8 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include "header.h"
 
-typedef struct node {
-  int key;
-  int order;
-  struct node * children;
-  struct node * sibling;
-} SNnode;
-
-SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
+SNnode * binomial_heap_merge(SNnode * x, SNnode * y)
 {
     //pre
 	if (x == NULL) {
@@ -21,7 +16,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
     else if (x->order == y->order) {
         SNnode * xs = x->sibling;
         SNnode * ys = y->sibling;
-        SNnode * z = binomial_heap_merge_rec(xs, ys);
+        SNnode * z = binomial_heap_merge(xs, ys);
         int ord1 = x->order;
         int ord2 = y->order;
         if (ord1 <= ord2) {
@@ -44,7 +39,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
     }
     else if (y->order < x->order) {
         SNnode * xs = x->sibling;
-        SNnode * z = binomial_heap_merge_rec(xs, y);
+        SNnode * z = binomial_heap_merge(xs, y);
         int ord1 = x->order;
         int ord2 = y->order;
         int zord = z->order;
@@ -75,7 +70,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
     }
     else {
         SNnode * ys = y->sibling;
-        SNnode * z = binomial_heap_merge_rec(ys, x);
+        SNnode * z = binomial_heap_merge(ys, x);
         int ord1 = x->order;
         int ord2 = y->order;
         int zord = z->order;
@@ -108,7 +103,7 @@ SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
 
 int main(int argc, char * argv[]){
     int size;
-    sccanf(argv[1],"%d",&size);
+    sscanf(argv[1],"%d",&size);
     int i = 0;
     SNnode * root = NULL;
     for(i = 0; i < size; i++){
@@ -117,6 +112,6 @@ int main(int argc, char * argv[]){
         x->order = 0;
         x->children = NULL;
         x->sibling = NULL;
-        root = binomial_heap_merge_rec(root, x);
+        root = binomial_heap_merge(root, x);
     }
 }
