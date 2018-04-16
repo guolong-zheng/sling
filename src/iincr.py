@@ -223,6 +223,8 @@ class IIncr(object):
                                                                     model.stk_addrs_dict),
                                                 meta_models)))
         root_children_lst = self._get_common_children(root, singleton_models)
+        # debug(root)
+        # debug(root_children_lst)
 
         root_aliases = set.intersection(*(map(lambda model:
                                               set(model.stk_addrs_dict[model.sh.stack.get(
@@ -347,10 +349,11 @@ class IIncr(object):
                     var_addr = s.get(var)
                     if var_addr.val == Const.nil_addr:
                         var_typ = TNull()
-                    else:
+                        var_typ_lst.append(var_typ)
+                    elif len(h.dom()) != 0:
                         typ, _ = h.get(var_addr.val)
                         var_typ = TData(typ)
-                    var_typ_lst.append(var_typ)
+                        var_typ_lst.append(var_typ)
 
                 if var_typ_lst:
                     nil_typ_lst, data_typ_lst = List.partition(lambda t: 
