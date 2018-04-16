@@ -105,7 +105,7 @@ def expand_cell(heap, to_visit):
                         field = PtrField(child_name, Addr(child.GetValue()))
                         to_visit.append(child)
                 else:
-                    field = DataField(child_name, Int(child.GetValue()))
+                    field = DataField(child_name, Int(child.GetValueAsSigned()))
 
                 fields.append(field)
 
