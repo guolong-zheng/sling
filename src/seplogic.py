@@ -426,6 +426,7 @@ class HRel(SepLogic):
             return FBase(self.mk_conj(f.heap), f.pure)
         elif isinstance(f, FExists):
             nf = f.rename()
+            # nf = f
             return FExists(nf.vars, self.mk_conj(nf.form))
         else:
             raise Exception('No combination for ' + type(f).__name__)

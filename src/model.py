@@ -140,10 +140,11 @@ class Stack(Store):
             if v in self.z3_symtab:
                 return self.z3_symtab[v]
             else:
-                if isinstance(e.typ, TBool):
-                    zv = z3.Bool(v)
-                else:
-                    zv = z3.Int(v)
+                # if isinstance(e.typ, TBool):
+                #     zv = z3.Bool(v)
+                # else:
+                #     zv = z3.Int(v)
+                zv = z3.Int(v)
                 self.z3_symtab[v] = zv
                 return zv
 

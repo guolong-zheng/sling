@@ -135,6 +135,7 @@ class MetaModel(object):
 class IIncr(object):
     @classmethod
     def infer(self, prog, models):
+        debug(models)
         if not models:
             return []
 
@@ -154,6 +155,8 @@ class IIncr(object):
             f_residue_lst = [(HEmp(), meta_models)]
         res_lst =[]
         for (f, residue_models) in f_residue_lst:
+            # debug(f)
+            # debug(residue_models)
             vars = map(lambda v: Var(v), local_ptr_vars)
             pf = self._infer_pure_ptr(vars, residue_models)
             f = f.mk_conj(pf) if pf is not None else f
