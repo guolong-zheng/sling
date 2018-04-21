@@ -157,7 +157,11 @@ class IIncr(object):
         for (f, residue_models) in f_residue_lst:
             # debug(f)
             # debug(residue_models)
-            vars = map(lambda v: Var(v), local_ptr_vars)
+            # vars = map(lambda v: Var(v), local_ptr_vars)
+            vs = (set(local_ptr_vars) | f.fv() |
+                  (set(map(lambda v: v.id, f.vars)) if isinstance(f, FExists) else set()))
+            debug(vs)
+            vars = map(lambda v: Var(v), list(vs))
             pf = self._infer_pure_ptr(vars, residue_models)
             f = f.mk_conj(pf) if pf is not None else f
             res_lst.append((f, residue_models))
