@@ -36,7 +36,8 @@ class SingletonModel(object):
         children_vars = map(lambda child_addr:
                             self._get_addr_vars(stk_addrs_dict, None,
                                                 child_addr, get_nil = True),
-                             set(children_addrs))
+
+                            set(children_addrs))
         children_vars = filter(lambda children: bool(children), children_vars)
         children_lst = map(lambda vs: List.remove_dups(vs),
                            list(itertools.product(*children_vars)))
@@ -135,11 +136,10 @@ class MetaModel(object):
 class IIncr(object):
     @classmethod
     def infer(self, prog, models):
-        debug(models)
+        # debug(models)
         if not models:
             return []
 
-        # debug(models)
         local_ptr_vars_lst = map(lambda model:
                                  filter(lambda v:
                                         isinstance(model.sh.stack.get(v), Addr),
@@ -162,8 +162,6 @@ class IIncr(object):
             f = f.mk_conj(pf) if pf is not None else f
             res_lst.append((f, residue_models))
 
-            # for residue_model in residue_models:
-            #     debug(residue_model.ctx)
             # for (model, residue_model) in zip(models, residue_models):
             #     debug(model)
             #     debug(residue_model)

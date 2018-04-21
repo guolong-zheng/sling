@@ -249,10 +249,10 @@ class BinOp(PExpr):
 
 class PRel(SepLogic):
     def __mk_conj__(self, f):
-        if isinstance(f, PRel):
-            if self == True:
-                return f
-            elif f == True:
+        if self == True:
+            return f
+        elif isinstance(f, PRel):
+            if f == True:
                 return self
             else:
                 return PConj(self, f)
@@ -261,7 +261,11 @@ class PRel(SepLogic):
         elif isinstance(f, FBase):
             return FBase(f.heap, self.mk_conj(f.pure))
         elif isinstance(f, FExists):
-            nf = f.rename()
+            fvs = self.fv()
+            if any(v.id in fvs for v in f.vars):
+                nf = f.rename()
+            else:
+                nf = f
             return FExists(nf.vars, self.mk_conj(nf.form))
         else:
             raise Exception('No combination for ' + type(f).__name__)
@@ -415,7 +419,9 @@ class PExists(PRel):
 
 class HRel(SepLogic):
     def __mk_conj__(self, f):
-        if isinstance(f, PRel):
+        if isinstance(self, HEmp):
+            return f
+        elif isinstance(f, PRel):
             return FBase(self, f)
         elif isinstance(f, HRel):
             if isinstance(f, HEmp):
@@ -425,8 +431,11 @@ class HRel(SepLogic):
         elif isinstance(f, FBase):
             return FBase(self.mk_conj(f.heap), f.pure)
         elif isinstance(f, FExists):
-            nf = f.rename()
-            # nf = f
+            fvs = self.fv()
+            if any(v.id in fvs for v in f.vars):
+                nf = f.rename()
+            else:
+                nf = f
             return FExists(nf.vars, self.mk_conj(nf.form))
         else:
             raise Exception('No combination for ' + type(f).__name__)
@@ -576,7 +585,12 @@ class FExists(SH):
         return self.__rename_Quant__(FExists)
 
     def __mk_conj__(self, f):
-        nself = self.rename()
+        fvs = self.fv()
+        if ((isinstance(f, FExists) or isinstance(f, PExists)) 
+            and any(v.id in fvs for v in f.vars)):
+            nself = self.rename()
+        else:
+            nself = self
         hpf = nself.form.mk_conj(f)
         if isinstance(hpf, FExists):
             return FExists(nself.vars + hpf.vars, hpf.form)
