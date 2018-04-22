@@ -561,10 +561,14 @@ class FBase(SH):
 
 class FExists(SH):
     def __init__(self, vars, f):
+        self.vars = vars
+        self.typ = TBool()
         if isinstance(f, SH):
-            self.vars = vars
             self.form = f
-            self.typ = TBool()
+        elif isinstance(f, HRel):
+            self.form = FBase(f, BConst(True))
+        elif isinstance(f, PRel):
+            self.form = FBase(HEmp(), f)
         else:
             raise SyntaxError(str(f) + ' is not a symbolic-heap formula')
 
