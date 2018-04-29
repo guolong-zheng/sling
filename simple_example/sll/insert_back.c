@@ -26,6 +26,7 @@ int main( int argc, char * argv[]){
 
     SNnode * res;
     res = sll_insert_back(root, (int)rand());
+	sll_insert_back(NULL, (int)rand());
 
     return 0;
 }

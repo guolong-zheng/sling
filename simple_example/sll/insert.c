@@ -31,6 +31,6 @@ int main( int argc, char * argv[]){
 
     SNnode * res;
     res = sll_insert(root, (int)rand());
-
+	sll_insert(NULL, (int)rand());
     return 0;
 }

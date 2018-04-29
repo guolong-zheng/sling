@@ -26,6 +26,6 @@ int main( int argc, char * argv[]){
 
     SNnode * r;
     r = sll_copy(root, (int)rand());
-
+	sll_copy(NULL,(int)rand());
     return 0;
 }
