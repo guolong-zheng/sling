@@ -109,7 +109,7 @@ int rbt_find_smallest(SNnode * x)
 	}
 }
 
-int rbt_delete_left_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int  fixed)
+SNnode * rbt_delete_left_fixup(SNnode * x, SNnode * xl, SNnode * xr, int clr, int  fixed)
 {
 	int xrcolor = xr->color;
 	if (xrcolor != 0) {
@@ -302,6 +302,6 @@ int main(int argc, char * argv[]){
     for(int i = 0; i < size; i++)
         root = rbt_insert_rec(root, rand_num());
 
-    SNnode * res = rbt_delete_rec(root, rand_num());
+    SNnode * res = rbt_delete_rec(root, rand_num(),1);
     return 0;
 }

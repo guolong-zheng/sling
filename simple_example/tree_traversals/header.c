@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int rand_num(){
-    return rand()%MAX_RAND;
+    return rand()%(MAX_RAND) - MAX_RAND/2;
 }
 
 TNode * insert(TNode * root, TNode * node){
@@ -11,19 +11,19 @@ TNode * insert(TNode * root, TNode * node){
         return node;
 
     if(rand_num() >= 0){
-        if(root->left == NULL){
-            root->left = node;
-            return root;
-        }else{
+//        if(root->left == NULL){
+//            root->left = node;
+//            return root;
+//        }else{
             root->left = insert(root->left, node);
-        }
+//        }
     }else{
-        if(root->right == NULL){
-            root->right = node;
-            return root;
-        }else{
+//        if(root->right == NULL){
+//            root->right = node;
+//            return root;
+//        }else{
             root->right = insert(root->right, node);
-        }
+//        }
     }
     return root;
 }

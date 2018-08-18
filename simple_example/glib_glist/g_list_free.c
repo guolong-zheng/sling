@@ -14,13 +14,6 @@ void g_list_free(DLNode * list)
     free(x);
     x = next;
   }
-  //free(list);
-  //while(list != NULL){
-  if(list != NULL){
-      printf("%d\n", list->key);
-      list = list->next;
-  }
-//  }
   //post
 }
 

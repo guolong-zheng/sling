@@ -23,7 +23,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
         }
         else {
             SNnode * xr = x->right;
-            if (xr->color != 0) {
+            if (xr!=NULL && xr->color != 0) {
                 x->left = p;
                 p->color = 0;
                 xr->color = 0;
@@ -33,7 +33,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
             } else {
                 SNnode * pl = p->left;
                 SNnode * pr = p->right;
-                if (pr->color != 0) {
+                if (pr!= NULL && pr->color != 0) {
                     SNnode * prl = pr->left;
                     SNnode * prr = pr->right;
                     p->right = prl;
@@ -44,7 +44,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
                     x->color = 1;
                     //post
                     return pr;
-                } else if (pl->color != 0) {
+                } else if (pl!=NULL && pl->color != 0) {
                     p->right = x;
                     x->left = pr;
                     p->color = 0;
@@ -67,7 +67,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
         }
         else {
             SNnode * xl = x->left;
-            if (xl->color != 0) {
+            if (xl!=NULL && xl->color != 0) {
                 x->right = p;
                 p->color = 0;
                 xl->color = 0;
@@ -77,7 +77,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
             } else {
                 SNnode * pl = p->left;
                 SNnode * pr = p->right;
-                if (pl->color != 0) {
+                if (pl!=NULL && pl->color != 0) {
                     SNnode * pll = pl->left;
                     SNnode * plr = pl->right;
                     p->left = plr;
@@ -88,7 +88,7 @@ SNnode * rbt_insert_rec(SNnode * x, int k)
                     x->color = 1;
                     //post
                     return pl;
-                } else if (pr->color != 0) {
+                } else if (pr!=NULL && pr->color != 0) {
                     p->left = x;
                     x->right = pl;
                     p->color = 0;
@@ -110,11 +110,12 @@ int rand_num(){
 }
 
 int main(int argc, char * argv[]){
-    int size = 0;
+    int size = 5;
     sscanf(argv[1],"%d", &size);
     SNnode * root = NULL;
-    for(int i = 0; i < size; i++)
+    for(int i = 0; i < size; i++){
         root = rbt_insert_rec(root, rand_num());
+	}
 
     return 0;
 }

@@ -1,0 +1,3077 @@
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+append.c
+delete_all.c
+find.c
+header.c
+insert.c
+insert_back.c
+insert_front.c
+reverse.c
+sll_copy.c
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+append.c
+delete_all.c
+find.c
+header.c
+insert.c
+insert_back.c
+insert_front.c
+reverse.c
+sll_copy.c
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+a.txt
+append
+append.c
+append.dSYM
+defn.sl
+delete_all
+delete_all.c
+delete_all.dSYM
+find
+find.c
+find.dSYM
+header.c
+header.h
+insert
+insert.c
+insert.dSYM
+insert_back
+insert_back.c
+insert_back.dSYM
+insert_front
+insert_front.c
+insert_front.dSYM
+name.csv
+reverse
+reverse.c
+reverse.dSYM
+sll_copy
+sll_copy.c
+sll_copy.dSYM
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+a.txt
+append
+append.c
+append.dSYM
+defn.sl
+delete_all
+delete_all.c
+delete_all.dSYM
+find
+find.c
+find.dSYM
+header.c
+header.h
+insert
+insert.c
+insert.dSYM
+insert_back
+insert_back.c
+insert_back.dSYM
+insert_front
+insert_front.c
+insert_front.dSYM
+name.csv
+reverse
+reverse.c
+reverse.dSYM
+sll_copy
+sll_copy.c
+sll_copy.dSYM
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_append(SNnode * x1, SNnode * x2)
+{
+  //pre
+  if (x1 == NULL) {
+	  //post
+    return x2;
+  } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+		//post
+    return x1;
+  }
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    int i = 0;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        SNnode * newnode = create_node();
+        root = sll_append(root, newnode);
+    }
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_delete_all(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else if (x->key == k) {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		free(x);
+        //post
+		return tmp;
+	} else {
+		SNnode * tmp = sll_delete_all(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+//multi situation
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+
+    SNnode * root = create_sll(size);
+
+    root = sll_delete_all(root, 2);
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+int sll_find(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return -1;
+	} else if (k == x->key) {
+        //post
+		return 1;
+	} else {
+        SNnode * x_next = x->next;
+		int res = sll_find(x_next, k);
+        //post
+		return res;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    int res = sll_find(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SNnode * create_node()
+{
+    SNnode * node = (SNnode *)malloc(sizeof(SNnode));
+    node->key = rand() % (2*MAX_RAND) - MAX_RAND;
+    node->next = NULL;
+    return node;
+}
+
+SNnode * create_sll(int size){
+    int i;
+    SNnode * root = NULL;
+    for(i = 0; i < size; i++){
+        root = sll_append_node(root, create_node());
+    }
+
+    return root;
+}
+
+SNnode * sll_append_node(SNnode * x1, SNnode * x2)
+{
+        if (x1 == NULL) {
+                return x2;
+        } else {
+                SNnode * tmp = sll_append_node(x1->next, x2);
+                x1->next = tmp;
+                return x1;
+        }
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * leaf = (SNnode *) malloc(sizeof(SNnode));
+		leaf->key = k;
+		leaf->next = NULL;
+        //post
+		return leaf;
+	} else if (k > x->key) {
+		SNnode * tmp = sll_insert(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}	else {
+		SNnode * new_root = (SNnode *) malloc(sizeof(SNnode));
+		new_root->key = k;
+		new_root->next = x;
+        //post
+		return new_root;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_back(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+		SNnode * tail = (SNnode *) malloc(sizeof(SNnode));
+		tail->key  = k;
+		tail->next = NULL;
+        //post
+		return tail;
+	} else {
+		SNnode * tmp = sll_insert_back(x->next, k);
+		x->next = tmp;
+        //post
+		return x;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_back(root, (int)rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_insert_front(SNnode * x, int k)
+{
+        //pre
+		SNnode * head = (SNnode *) malloc(sizeof(SNnode));
+		head->key = k;
+		head->next = x;
+        //post
+		return head;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_insert_front(root, (int) rand());
+
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_reverse(SNnode * x)
+{
+    //pre
+	SNnode * y = NULL;
+	while (x != NULL)
+    {
+        //loopinv
+		SNnode * tmp = x->next;
+		x->next = y;
+		y = x;
+		x = tmp;
+	}
+    //post
+	return y;
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_reverse(root);
+    return 0;
+}
+#include "header.h"
+#include <stdio.h>
+
+SNnode * sll_copy(SNnode * x, int k)
+{
+    //pre
+	if (x == NULL) {
+        //post
+		return x;
+	} else {
+		SNnode * tmp = sll_copy(x->next, k);
+		SNnode * new_node = (SNnode *) malloc(sizeof(SNnode));
+        int tmp_key = x->key;
+		new_node->key = tmp_key;
+		new_node->next = tmp;
+        //post
+		return new_node;
+	}
+}
+
+int main( int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1], "%d", &size);
+    SNnode * root = create_sll(size);
+
+    SNnode * res;
+    res = sll_copy(root, (int)rand());
+
+    return 0;
+}
+append.c delete_all.c find.c header.c insert.c insert_back.c insert_front.c reverse.c sll_copy.c
+append.c delete_all.c find.c header.c insert.c insert_back.c insert_front.c reverse.c sll_copy.c
+./sll_copy.c
+./insert_back.c
+./insert.c
+./append.c
+./insert_front.c
+./reverse.c
+./header.c
+./delete_all.c
+./find.c
+./sll_copy.c
+./insert_back.c
+./insert.c
+./append.c
+./insert_front.c
+./reverse.c
+./header.c
+./delete_all.c
+./find.c

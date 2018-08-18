@@ -9,7 +9,10 @@ int rand_num(){
 BNode * create_tree(int size){
     BNode * root = NULL;
     for(int i = 0; i < size; i++){
-        root = treap_insert_node(root, rand_num(), rand_num());
+        int k = rand_num();
+        int p = rand_num();
+        printf("%d   %d\n", k, p);
+        root = treap_insert_node(root, k, p);
     }
     return root;
 }

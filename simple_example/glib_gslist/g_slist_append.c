@@ -39,5 +39,6 @@ int main(int argc, char * argv[]){
     sscanf(argv[1],"%d",&size);
     Node * root = create_list(size);
     Node * res = g_slist_append(root, rand_num());
+    g_slist_append(NULL, rand_num());
     return 0;
 }

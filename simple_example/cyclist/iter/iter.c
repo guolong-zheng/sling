@@ -71,20 +71,20 @@ void llist_append(struct llist *list1, struct llist *list2)
 
 void llist_dispose(struct llist *list)
 {
-
+  //pre
   struct node *n = list->first;
   struct node *l = list->last;
   struct node *next = NULL;
   while (n != l)
   {
-
+    //loop
     next = n->next;
     free(n);
     n = next;
   }
   free(l);
   free(list);
-
+  //post
 }
 
 int llist_length(struct llist *list)
@@ -155,7 +155,7 @@ void main0()
 
 struct iter *llist_create_iter(struct llist *l)
 {
-
+    //pre
     struct iter *i = 0;
     struct node *f = 0;
     i = malloc(sizeof(struct iter));
@@ -164,26 +164,26 @@ struct iter *llist_create_iter(struct llist *l)
     }
     f = l->first;
     i->current = f;
-
+    //post
     return i;
 }
 
 int iter_next(struct iter *i)
 {
-
+    //pre
     struct node *c = i->current;
     int value = c->value;
     struct node *n = c->next;
     i->current = n;
-
+    //post
     return value;
 }
 
 void iter_dispose(struct iter *i)
 {
-
+    //pre
     free(i);
-
+    //post
 }
 
 int main(int argc, char *argv[])
