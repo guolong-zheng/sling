@@ -12,7 +12,10 @@ import timeit
 def main():
     aparser = argparse.ArgumentParser(description='SLING')
     ag = aparser.add_argument
-
+    
+    ag('--java', '-java',
+       action="store_true")
+       
     ag('--input', '-input',
        dest='infile')
 
@@ -79,17 +82,19 @@ def main():
 
         start_time = timeit.default_timer()
 
-        trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
-        # debug(trace_pairs)
+        if args.java:
+            trace_pairs, inv_traces = get_traces_from_file(infile)
+        else:
+            trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
 
         if trace_pairs:
             pre_traces, post_traces = zip(*trace_pairs)
         else:
             pre_traces, post_traces = [], []
 
-        # debug(pre_traces)
-        # debug(post_traces)
-        # debug(inv_traces)
+        debug(pre_traces)
+        debug(post_traces)
+        debug(inv_traces)
 
         pre_locs = List.remove_dups(map(lambda pr: pr.loc, pre_traces))
         post_locs = List.remove_dups(map(lambda po: po.loc, post_traces))
