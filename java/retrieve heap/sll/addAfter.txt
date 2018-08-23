@@ -1,0 +1,67 @@
+pre|30
+stack:
+head 0x610455d6
+tail 0x85ede7b
+heap:
+SlNode|0x7440e464 value|54 nextRef|0x4617c264 
+SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
+SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
+SlNode|0x355da254 value|32 nextRef|0x7440e464 
+SlNode|0x610455d6 value|3 nextRef|0x355da254 
+SlNode|0x85ede7b value|50 nextRef|null 
+end
+loop|37
+stack:
+head 0x610455d6
+tail 0x85ede7b
+tmp 0x610455d6
+heap:
+SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
+SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
+SlNode|0x85ede7b value|50 nextRef|null 
+SlNode|0x610455d6 value|3 nextRef|0x355da254 
+SlNode|0x355da254 value|32 nextRef|0x7440e464 
+SlNode|0x7440e464 value|54 nextRef|0x4617c264 
+end
+loop|37
+stack:
+head 0x610455d6
+tail 0x85ede7b
+tmp 0x355da254
+heap:
+SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
+SlNode|0x610455d6 value|3 nextRef|0x355da254 
+SlNode|0x355da254 value|32 nextRef|0x7440e464 
+SlNode|0x7440e464 value|54 nextRef|0x4617c264 
+SlNode|0x85ede7b value|50 nextRef|null 
+SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
+end
+loop|37
+stack:
+tmp 0x7440e464
+head 0x610455d6
+tail 0x85ede7b
+heap:
+SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
+SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
+SlNode|0x85ede7b value|50 nextRef|null 
+SlNode|0x355da254 value|32 nextRef|0x7440e464 
+SlNode|0x7440e464 value|54 nextRef|0x4617c264 
+SlNode|0x610455d6 value|3 nextRef|0x355da254 
+end
+post|62
+stack:
+refNode 0x7440e464
+head 0x610455d6
+tmp 0x7440e464
+tail 0x85ede7b
+nd 0x58372a00
+heap:
+SlNode|0x7440e464 value|54 nextRef|0x58372a00 
+SlNode|0x610455d6 value|3 nextRef|0x355da254 
+SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
+SlNode|0x355da254 value|32 nextRef|0x7440e464 
+SlNode|0x58372a00 value|76 nextRef|0x4617c264 
+SlNode|0x85ede7b value|50 nextRef|null 
+SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
+end

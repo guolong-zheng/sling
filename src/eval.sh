@@ -2,6 +2,6 @@ dir=$1
 
 for f in $dir/*.c;
     do 
-	./run.sh $f 5 $dir/defn.sl | tail -1 >> res.csv;
+	./run.sh 10 $dir/defn.sl $f | tail -1 >> newexp.csv;
         echo $f 
     done
