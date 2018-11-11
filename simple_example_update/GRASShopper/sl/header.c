@@ -18,3 +18,13 @@ Node * create_list(int size){
 
     return root;
 }
+
+void free_list(Node * root) {
+  Node * curr = root;
+  while (curr != NULL) {
+    Node * tmp = curr;
+    curr = curr->next;
+    free(tmp);
+  }
+  return;
+}

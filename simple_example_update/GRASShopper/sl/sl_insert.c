@@ -32,6 +32,10 @@ int main(int argc, char * argv[]){
     Node * elt = (Node *)malloc(sizeof(Node));
     elt->next = NULL;
     Node * res = sl_insert(lst, elt);
-    sl_insert(NULL, elt);
+    //loop
+    //Node * tmp = sl_insert(NULL, elt);
+    //free(tmp);
+    free(elt);
+    free_list(res);
     return 0;
 }

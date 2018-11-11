@@ -7,4 +7,5 @@ typedef struct node {
 
 Node * create_list(int size);
 
+void free_list(Node * root);
 #endif

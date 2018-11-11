@@ -32,5 +32,6 @@ int main(int argc, char * argv[]){
     elt->next = NULL;
     Node * res = rec_insert(lst, elt);
     rec_insert(NULL, elt);
+    //free(elt);
     return 0;
 }

@@ -32,10 +32,12 @@ int main(int argc, char * argv[]){
     elt->key = -1;
     elt->next = NULL;
     Node * res = sls_insert(lst, elt);
-    sls_insert(NULL, elt);
+    //sls_insert(NULL, elt);
+    free(elt);
     elt = (Node *)malloc(sizeof(Node));
     elt->next = NULL;
     elt->key = 100;
-    sls_insert(lst, elt);
+    //sls_insert(lst, elt);
+    free(elt);
     return 0;
 }
