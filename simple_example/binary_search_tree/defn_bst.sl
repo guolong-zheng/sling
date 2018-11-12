@@ -5,6 +5,7 @@ data b_node {
 };
 
 pred bst(x, mi, mx) :=
-  (exists k. x->b_node{nil, nil, k} & mi=k & mx=k)
+        emp & x=nil
+  	\/ (exists k. x->b_node{nil, nil, k} & mi=k & mx=k)
 	\/ (exists l,r,k. x->b_node{l,r,k} * bst(l, mil, mxl) * bst(r, mir, mxr)
-      & mxl <= k & k <= mir & mi = mil & mx = mxr);
+      		& mxl <= k & k <= mir & mi = mil & mx = mxr);
