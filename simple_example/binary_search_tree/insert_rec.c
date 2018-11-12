@@ -31,8 +31,8 @@ BNode * bst_insert_rec(BNode * x, int k)
 
 
 int main( int argc, char * argv[]){
-    int size = 0;
-    sscanf(argv[1], "%d", &size);
+    int size = 10;
+    //sscanf(argv[1], "%d", &size);
     BNode * root = create_tree(size);
 
     BNode * res = bst_insert_rec(root, rand_num());
