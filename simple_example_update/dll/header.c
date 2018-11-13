@@ -20,7 +20,14 @@ DLNode * create_dll(int size){
     int i = 0;
     for(i = 0; i < size; i++){
         DLNode * node = create_node(i);
-        root = dll_append_node(root, node);
+        if(root == NULL)
+            root = node;
+        else{
+            root->prev = node;
+            node->next = root;
+            root = node;
+        }
+        //root = dll_append_node(root, node);
     }
 
     return root;

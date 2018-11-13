@@ -9,12 +9,12 @@ Node * sl_insert(Node * lst, Node * elt)
     //post
     return elt;
   } else {
-    int nondet = rand()%3 - 1;
+    int nondet = 1;
     Node * curr = lst;
     while(nondet && curr->next != NULL)
     {
       //loop
-      nondet = rand()%3 -1;
+      nondet = rand()%4 -1;
       curr = curr->next;
     }
     Node * curr_next = curr->next;
@@ -32,10 +32,6 @@ int main(int argc, char * argv[]){
     Node * elt = (Node *)malloc(sizeof(Node));
     elt->next = NULL;
     Node * res = sl_insert(lst, elt);
-    //loop
-    //Node * tmp = sl_insert(NULL, elt);
-    //free(tmp);
-    free(elt);
-    free_list(res);
+    sl_insert(NULL, elt);
     return 0;
 }

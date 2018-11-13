@@ -18,8 +18,8 @@ CNode * lseg_delete_back(CNode * hd, CNode * tl)
 
 CNode * circular_list_delete_back(CNode * x)
 {
+	//pre
 	CNode * next = x->next;
-        //pre
 	if (next == x) {
 		free(next);
         //post

@@ -20,6 +20,7 @@ SNnode * quick_sort(SNnode * l)
 {
     //pre
 	if (l == NULL) {
+        //post
 		return l;
 	}
 	SNnode * curr = l->next;

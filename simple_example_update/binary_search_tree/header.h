@@ -1,7 +1,7 @@
 #ifndef HEADER_H_
 #define HEADER_H_
 
-#define MAX_RAND 100
+#define MAX_RAND 15
 
 typedef struct b_node {
   struct b_node * left;

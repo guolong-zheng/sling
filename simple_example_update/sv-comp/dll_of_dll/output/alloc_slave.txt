@@ -1,0 +1,26 @@
+dynsl.py:144 - Inferring pre-conditions at the location 9 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 13 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 9:
+dynsl.py:202 - emp
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 13:
+dynsl.py:213 - ptr:slave_item->slave_item{nil, nil} & ptr=res
+dynsl.py:213 - (exists fv!5, fv!6. dll(ptr, nil, fv!5, fv!6) & ptr=fv!5 & ptr=res & fv!5=res & fv!6=nil)
+dynsl.py:213 - (exists fv!3, fv!4. dll(ptr, fv!3, fv!4, nil) & fv!3=nil & ptr=fv!4 & ptr=res & fv!4=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 2
+dynsl.py:255 - Number of traces: 2
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 6
+dynsl.py:259 - Number of atomic singleton predicates: 1
+dynsl.py:260 - Number of atomic inductive predicates: 2
+dynsl.py:261 - Number of pure constraints: 9
+dynsl.py:262 - Number of total invs: 4
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:3
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 0.845137119293
+../simple_example_update/sv-comp/dll_of_dll//alloc_slave,2,2,4,6,1,2,9,4,1,3,0,0.84

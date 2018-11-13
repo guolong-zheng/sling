@@ -1,0 +1,53 @@
+dynsl.py:144 - Inferring post-conditions at the location 25 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 59 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 54 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 23 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 23:
+dynsl.py:202 - avl(x) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 25:
+dynsl.py:213 - x=nil & x=res & nil=res
+dynsl.py:208 - Postconditions at location 59:
+dynsl.py:213 - x:a_node->a_node{left, right, fv!51, fv!52} * avl(right) * avl(left) & right=new_right & x=res
+dynsl.py:213 - x:a_node->a_node{left, right, fv!29, fv!30} * avl(right) * avl(left) & right=new_right & x=res
+dynsl.py:213 - x:a_node->a_node{left, right, fv!73, fv!74} * avl(right) * avl(left) & right=new_right & x=res
+dynsl.py:208 - Postconditions at location 54:
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!463, fv!464} * new_left:a_node->a_node{right, right, fv!627, fv!628} & right=fv!628 & right=nil & new_left=left & x=res & fv!628=nil
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!463, fv!464} * avl(new_left) & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!453, fv!454} * new_left:a_node->a_node{right, right, fv!585, fv!586} & right=fv!586 & right=nil & new_left=left & x=res & fv!586=nil
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!463, fv!464} * new_left:a_node->a_node{right, right, fv!613, fv!614} & right=fv!614 & right=nil & fv!614=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!473, fv!474} * new_left:a_node->a_node{right, right, fv!697, fv!698} & fv!698=right & fv!698=nil & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!453, fv!454} * avl(new_left) & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!453, fv!454} * new_left:a_node->a_node{right, right, fv!571, fv!572} & right=fv!572 & right=nil & new_left=left & fv!572=nil & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!473, fv!474} * new_left:a_node->a_node{right, right, fv!669, fv!670} & right=fv!670 & right=nil & new_left=left & x=res & fv!670=nil
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!443, fv!444} * new_left:a_node->a_node{right, right, fv!487, fv!488} & right=fv!488 & right=nil & new_left=left & x=res & fv!488=nil
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!473, fv!474} * new_left:a_node->a_node{right, right, fv!655, fv!656} & fv!656=right & fv!656=nil & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!453, fv!454} * new_left:a_node->a_node{right, right, fv!543, fv!544} & right=fv!544 & right=nil & new_left=left & fv!544=nil & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!473, fv!474} * avl(new_left) & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!463, fv!464} * new_left:a_node->a_node{right, right, fv!641, fv!642} & fv!642=right & fv!642=nil & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!443, fv!444} * new_left:a_node->a_node{right, right, fv!529, fv!530} & right=fv!530 & right=nil & new_left=left & x=res & fv!530=nil
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!443, fv!444} * new_left:a_node->a_node{right, right, fv!515, fv!516} & right=fv!516 & right=nil & fv!516=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!443, fv!444} * avl(new_left) & right=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!473, fv!474} * new_left:a_node->a_node{right, right, fv!683, fv!684} & right=fv!684 & right=nil & fv!684=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!453, fv!454} * new_left:a_node->a_node{right, right, fv!557, fv!558} & right=fv!558 & right=nil & new_left=left & fv!558=nil & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!443, fv!444} * new_left:a_node->a_node{right, right, fv!501, fv!502} & right=fv!502 & right=nil & fv!502=nil & new_left=left & x=res
+dynsl.py:213 - x:a_node->a_node{new_left, right, fv!463, fv!464} * new_left:a_node->a_node{right, right, fv!599, fv!600} & right=fv!600 & right=nil & new_left=left & x=res & fv!600=nil
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 16
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 196
+dynsl.py:259 - Number of atomic singleton predicates: 39
+dynsl.py:260 - Number of atomic inductive predicates: 11
+dynsl.py:261 - Number of pure constraints: 101
+dynsl.py:262 - Number of total invs: 25
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:24
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 11.1416461468
+../simple_example_update/avl//delete,4,16,37,196,39,11,101,25,1,24(4),0,11.1,*

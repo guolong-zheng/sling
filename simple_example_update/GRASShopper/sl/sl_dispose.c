@@ -5,10 +5,11 @@
 void dispose(Node * lst)
 {
   //pre
+  Node * curr = NULL;
   while(lst != NULL)
   {
     //loop
-    Node * curr = lst;
+    curr = lst;
     lst = lst->next;
     free(curr);
   }

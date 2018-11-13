@@ -9,12 +9,12 @@ Node * sl_remove(Node * lst)
     //post
     return NULL;
   } else {
-    int nondet = rand() %3 - 1;
+    int nondet = 1;
     Node * curr = lst;
     while(nondet && curr->next != NULL)
     {
       //loop
-      nondet = rand()%3 - 1;
+      nondet = rand()%4 - 1;
       curr = curr->next;
     }
     Node * tmp = curr->next;
@@ -33,6 +33,7 @@ int main(int argc, char * argv[]){
     sscanf(argv[1],"%d",&size);
     Node * lst = create_list(size);
     Node * res = sl_remove(lst);
+    sl_remove(lst);
     sl_remove(NULL);
     return 0;
 }

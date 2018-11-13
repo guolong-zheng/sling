@@ -1,0 +1,27 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 19 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - lseg(h, nil) & True
+dynsl.py:202 - sll(h) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 19:
+dynsl.py:213 - sll(h) & h=res
+dynsl.py:213 - lseg(h, nil) & h=res
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 2
+dynsl.py:255 - Number of traces: 4
+dynsl.py:256 - Number of pre-defined predicates: 4
+dynsl.py:258 - Number of free variables: 6
+dynsl.py:259 - Number of atomic singleton predicates: 0
+dynsl.py:260 - Number of atomic inductive predicates: 4
+dynsl.py:261 - Number of pure constraints: 2
+dynsl.py:262 - Number of total invs: 4
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:2
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 1.40045690536
+../simple_example_update/AFWP/sll//sll_swap,2,4,4,6,0,4,2,4,2,2,0,1.40

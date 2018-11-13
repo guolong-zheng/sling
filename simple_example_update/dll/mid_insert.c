@@ -25,8 +25,9 @@ int main( int argc, char * argv[]){
     	sscanf(argv[1], "%d", &size);
 
     DLNode * hd = create_dll(size);
-    DLNode * node = hd->next->next->next;
-    dll_mid_insert(hd, node, 4);
+    DLNode * node = hd->next->next;
+    dll_mid_insert(hd->next, node, 4);
+    //dll_mid_insert(node, node->next->next, 5);
 
     return 0;
 }

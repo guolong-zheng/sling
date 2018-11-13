@@ -1,0 +1,47 @@
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 17 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 11 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - ls(lst, nil) * ls(elt, nil) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 11:
+dynsl.py:213 - ls(lst, nil) * ls(elt, lst) & elt=res
+dynsl.py:213 - ls(lst, nil) * elt:node->node{fv!625, lst} & elt=res
+dynsl.py:208 - Postconditions at location 23:
+dynsl.py:213 - ls(lst, curr) * ls(curr, elt) * ls(elt, curr_next) & curr_next=nil & lst=res
+dynsl.py:213 - ls(lst, curr) * curr:node->node{fv!650, elt} * elt:node->node{fv!670, curr_next} & lst=res & curr_next=nil
+dynsl.py:213 - ls(lst, curr) * ls(curr, elt) * elt:node->node{fv!660, curr_next} & lst=res & curr_next=nil
+dynsl.py:213 - ls(lst, curr) * curr:node->node{fv!650, elt} * ls(elt, curr_next) & lst=res & curr_next=nil
+dynsl.py:213 - ls(lst, curr) * ls(curr, elt) * elt:node->node{fv!655, curr_next} & lst=res & curr_next=nil
+dynsl.py:213 - ls(lst, curr) * ls(curr, elt) * ls(elt, nil) & curr_next=nil & lst=res
+dynsl.py:213 - ls(lst, curr) * curr:node->node{fv!650, elt} * ls(elt, nil) & lst=res & curr_next=nil
+dynsl.py:213 - ls(lst, curr) * curr:node->node{fv!650, elt} * elt:node->node{fv!665, curr_next} & lst=res & curr_next=nil
+dynsl.py:220 - Invariants at location 17:
+dynsl.py:227 - ls(lst, curr) * ls(curr, curr_next) * ls(elt, curr_next) & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, curr_next) * elt:node->node{fv!481, curr_next} & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, curr_next) * ls(elt, nil) & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, curr_next) * elt:node->node{fv!518, curr_next} & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, nil) * ls(elt, curr_next) & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, nil) * elt:node->node{fv!555, curr_next} & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, nil) * ls(elt, nil) & curr_next=nil
+dynsl.py:227 - ls(lst, curr) * ls(curr, nil) * elt:node->node{fv!592, curr_next} & curr_next=nil
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 15
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 93
+dynsl.py:259 - Number of atomic singleton predicates: 13
+dynsl.py:260 - Number of atomic inductive predicates: 41
+dynsl.py:261 - Number of pure constraints: 26
+dynsl.py:262 - Number of total invs: 19
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:10
+dynsl.py:265 - Number of loop:8
+dynsl.py:266 - Running time (sec): 9.75139713287
+../simple_example_update/GRASShopper/sls//sls_insert,4,15,19,93,13,41,26,19,1,10,8,9.75
