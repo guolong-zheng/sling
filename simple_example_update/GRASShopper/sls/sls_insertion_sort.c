@@ -13,12 +13,11 @@ Node * insertion_sort(Node * lst)
   int srt_key = 0;
   while(srt != NULL)
   {
-    //loop
     curr = srt->next;
     min = srt;
     while(curr != NULL)
     {
-      //loop
+        //loop
       if (curr->key < min->key) {
         min = curr;
       }

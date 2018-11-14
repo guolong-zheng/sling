@@ -22,7 +22,7 @@ int main(int argc, char * argv[]){
     int size;
     sscanf(argv[1],"%d",&size);
     DLNode * h = create_dll(size);
-    DLNode * i = h->next->next;
+    DLNode * i = h->next->next->next->next;
     splice(h, i);
     return 0;
 }

@@ -3,10 +3,8 @@
 #include <stdio.h>
 
 Node * filter(Node * h)
-  /*D_requires (sll^(h) & (~ (to_remove(h)))) */
-  /*D_ensures  (sll^(h) & (sll^(ret) * true)) */
 {
-  //pre
+    //pre
   Node * i = h;
   Node * j = NULL;
   Node * inxt = NULL;

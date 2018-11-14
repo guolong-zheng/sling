@@ -1,0 +1,27 @@
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 18 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists fv!3, fv!4. dll(x, fv!3, fv!4, nil) & fv!3=nil)
+dynsl.py:202 - (exists fv!6, fv!5. dll(x, nil, fv!5, fv!6) & fv!6=nil)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 18:
+dynsl.py:213 - (exists fv!69. dll(x, item, fv!69, nil) * item:slave_item->slave_item{x, nil} & x=next & item=res)
+dynsl.py:213 - (exists fv!69, fv!140. dll(x, item, fv!69, nil) * dll(item, nil, fv!140, next) & item=fv!140 & item=res & next=x & fv!140=res)
+dynsl.py:213 - (exists fv!69, fv!122. dll(x, item, fv!69, nil) * dll(item, nil, fv!122, x) & x=next & fv!122=item & fv!122=res & item=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 2
+dynsl.py:255 - Number of traces: 2
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 14
+dynsl.py:259 - Number of atomic singleton predicates: 1
+dynsl.py:260 - Number of atomic inductive predicates: 7
+dynsl.py:261 - Number of pure constraints: 12
+dynsl.py:262 - Number of total invs: 5
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:3
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 3.36218500137
+../simple_example_update/sv-comp/dll_of_dll//insert_slave,2,2,6,14,1,7,12,5,2,3,0,3.36

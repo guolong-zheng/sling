@@ -1,0 +1,27 @@
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 13 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists fv!5. lseg(x, fv!5) & x=fv!5)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 13:
+dynsl.py:213 - lseg(tmp, x) * lseg(x, hd) * lseg(hd, tmp) & hd=res
+dynsl.py:213 - lseg(tmp, x) * x:node->node{fv!52, hd} * lseg(hd, tmp) & hd=res
+dynsl.py:213 - lseg(tmp, x) * x:node->node{fv!52, hd} * hd:node->node{fv!62, tmp} & fv!62=nil & hd=res
+dynsl.py:213 - lseg(tmp, x) * lseg(x, hd) * hd:node->node{fv!57, tmp} & fv!57=nil & hd=res
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 2
+dynsl.py:255 - Number of traces: 2
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 21
+dynsl.py:259 - Number of atomic singleton predicates: 4
+dynsl.py:260 - Number of atomic inductive predicates: 9
+dynsl.py:261 - Number of pure constraints: 7
+dynsl.py:262 - Number of total invs: 5
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:4
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 1.719165802
+../simple_example_update/circular_list//insert_front,2,2,5,21,4,9,7,5,1,4,0,1.71,1

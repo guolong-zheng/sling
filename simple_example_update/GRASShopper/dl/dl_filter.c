@@ -12,7 +12,7 @@ DLNode * dl_filter(DLNode * x)
   DLNode * old_curr_next = NULL;
   while(curr != NULL)
   {
-    //loop
+      //loop
     old_curr = curr;
     curr = curr->next;
     int nondet = rand();

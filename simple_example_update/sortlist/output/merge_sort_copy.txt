@@ -1,0 +1,57 @@
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 10 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 30 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 22 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 13 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - ls(l2, nil) * ll(l1) & True
+dynsl.py:202 - ll(l2) * ls(l1, nil) & True
+dynsl.py:202 - ll(l2) * ll(l1) & True
+dynsl.py:202 - ls(l2, nil) * ls(l1, nil) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 10:
+dynsl.py:213 - ls(l2, l1) & l2=res & l1=nil
+dynsl.py:213 - ls(l2, nil) & l2=res & l1=nil
+dynsl.py:213 - ll(l2) & l2=res & l1=nil
+dynsl.py:208 - Postconditions at location 22:
+dynsl.py:213 - (exists fv!5657. nl:node->node{fv!4090, tl} * ls(tl, nil) * ls(l2, fv!5657) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!6020. nl:node->node{fv!4090, tl} * ll(tl) * ls(l2, fv!6020) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!5657. nl:node->node{fv!4090, tl} * ls(tl, nil) * ls(l2, fv!5657) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!4511. ls(nl, tl) * ls(tl, nil) * ls(l2, fv!4511) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!4874. ls(nl, tl) * ll(tl) * ls(l2, fv!4874) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!6020. nl:node->node{fv!4090, tl} * ll(tl) * ls(l2, fv!6020) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!4874. ls(nl, tl) * ll(tl) * ls(l2, fv!4874) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!4511. ls(nl, tl) * ls(tl, nil) * ls(l2, fv!4511) * ls(l1, nil) & nl=res)
+dynsl.py:208 - Postconditions at location 30:
+dynsl.py:213 - (exists fv!2583. ls(nl, tl) * ll(tl) * ls(l2, fv!2583) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!3697. nl:node->node{fv!1817, tl} * ll(tl) * ls(l2, fv!3697) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!2583. ls(nl, tl) * ll(tl) * ls(l2, fv!2583) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!3348. nl:node->node{fv!1817, tl} * ls(tl, nil) * ls(l2, fv!3348) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!3697. nl:node->node{fv!1817, tl} * ll(tl) * ls(l2, fv!3697) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!2234. ls(nl, tl) * ls(tl, nil) * ls(l2, fv!2234) * ll(l1) & nl=res)
+dynsl.py:213 - (exists fv!2234. ls(nl, tl) * ls(tl, nil) * ls(l2, fv!2234) * ls(l1, nil) & nl=res)
+dynsl.py:213 - (exists fv!3348. nl:node->node{fv!1817, tl} * ls(tl, nil) * ls(l2, fv!3348) * ll(l1) & nl=res)
+dynsl.py:208 - Postconditions at location 13:
+dynsl.py:213 - ls(l1, nil) & l2=nil & l1=res
+dynsl.py:213 - ll(l1) & l2=nil & l1=res
+dynsl.py:213 - ls(l1, l2) & l2=nil & l1=res
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 5
+dynsl.py:255 - Number of traces: 46
+dynsl.py:256 - Number of pre-defined predicates: 2
+dynsl.py:258 - Number of free variables: 114
+dynsl.py:259 - Number of atomic singleton predicates: 8
+dynsl.py:260 - Number of atomic inductive predicates: 70
+dynsl.py:261 - Number of pure constraints: 28
+dynsl.py:262 - Number of total invs: 26
+dynsl.py:263 - Number of pres:4
+dynsl.py:264 - Number of post:22
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 60.3207879066
+../simple_example_update/sortlist//merge_sort_copy,5,46,28,114,8,70,28,26(7),4(1),22(6),0,60.3,2

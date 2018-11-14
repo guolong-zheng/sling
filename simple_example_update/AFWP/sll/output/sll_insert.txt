@@ -1,0 +1,57 @@
+get_trace.py:65 - 10
+dynsl.py:144 - Inferring inv-conditions at the location 15 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 10 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 31 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 10:
+dynsl.py:202 - klseg(h, nil) & True
+dynsl.py:202 - klist(h) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 23:
+dynsl.py:213 - klist(i) * klseg(hd, i) & i=h & j=nil & hd=res
+dynsl.py:213 - klist(i) * hd:knode->knode{fv!1223, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, j) * klseg(hd, h) & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, nil) * hd:knode->knode{fv!1244, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klist(i) * klseg(hd, h) & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, nil) * klseg(hd, h) & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, nil) * hd:knode->knode{fv!1265, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, nil) * klseg(hd, i) & i=h & j=nil & hd=res
+dynsl.py:213 - klist(i) * hd:knode->knode{fv!1118, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, j) * hd:knode->knode{fv!1160, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klist(i) * hd:knode->knode{fv!1139, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klist(i) * hd:knode->knode{fv!1202, i} & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, j) * klseg(hd, i) & i=h & j=nil & hd=res
+dynsl.py:213 - klseg(i, j) * hd:knode->knode{fv!1181, i} & i=h & j=nil & hd=res
+dynsl.py:208 - Postconditions at location 31:
+dynsl.py:213 - klseg(h, j) * j:knode->knode{fv!781, e} * klseg(e, i) & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * klseg(j, e) * e:knode->knode{fv!790, i} & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * j:knode->knode{fv!781, e} * e:knode->knode{fv!808, i} & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * klseg(j, e) * e:knode->knode{fv!799, i} & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * klseg(j, e) * klist(e) & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * klseg(j, e) * klseg(e, nil) & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * j:knode->knode{fv!781, e} * klist(e) & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * klseg(j, e) * klseg(e, i) & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * j:knode->knode{fv!781, e} * klseg(e, nil) & i=nil & h=res
+dynsl.py:213 - klseg(h, j) * j:knode->knode{fv!781, e} * e:knode->knode{fv!817, i} & i=nil & h=res
+dynsl.py:220 - Invariants at location 15:
+dynsl.py:227 - (exists fv!275, fv!374. klist(i) * klseg(h, fv!275) * klseg(j, fv!374) & True)
+dynsl.py:227 - (exists fv!413, fv!512. klseg(i, nil) * klseg(h, fv!413) * klseg(j, fv!512) & True)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 20
+dynsl.py:256 - Number of pre-defined predicates: 4
+dynsl.py:258 - Number of free variables: 145
+dynsl.py:259 - Number of atomic singleton predicates: 17
+dynsl.py:260 - Number of atomic inductive predicates: 49
+dynsl.py:261 - Number of pure constraints: 62
+dynsl.py:262 - Number of total invs: 28
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:24
+dynsl.py:265 - Number of loop:2
+dynsl.py:266 - Running time (sec): 16.985255003
+../simple_example_update/AFWP/sll//sll_insert,4,20,4,145,17,49,62,28,2,24,2,16.9

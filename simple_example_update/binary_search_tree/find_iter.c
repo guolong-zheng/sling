@@ -28,5 +28,7 @@ int main( int argc, char * argv[]){
     BNode * root = create_tree(size);
 
     BNode * res = bst_find_iter(root, rand_num());
+    bst_insert_node(root, 6);
+    bst_find_iter(root, 6);
     return 0;
 }

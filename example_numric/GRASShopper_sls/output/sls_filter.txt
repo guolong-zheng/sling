@@ -1,0 +1,55 @@
+get_trace.py:65 - 5
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 33 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 17 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists min!slist!13. slist(x, min!slist!13:int) & True)
+dynsl.py:202 - ls(x, nil) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 33:
+dynsl.py:213 - ls(x, old_curr) * ls(old_curr, old_curr_next) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - ls(x, old_curr) * ls(old_curr, nil) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - (exists min!slist!123. ls(x, old_curr) * slist(old_curr, min!slist!123:int) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res)
+dynsl.py:213 - (exists min!slist!95. ls(x, old_curr) * slist(old_curr, min!slist!95:int) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res)
+dynsl.py:213 - ls(x, old_curr) * ls(old_curr, res) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - (exists min!slist!109. ls(x, old_curr) * slist(old_curr, min!slist!109:int) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res)
+dynsl.py:213 - ls(x, old_curr) * old_curr:node->node{fv!94, res} & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - ls(x, old_curr) * ls(old_curr, prv) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - (exists min!slist!81. ls(x, old_curr) * slist(old_curr, min!slist!81:int) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res)
+dynsl.py:213 - ls(x, old_curr) * old_curr:node->node{fv!136, res} & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - ls(x, old_curr) * old_curr:node->node{fv!122, res} & prv=old_curr_next & prv=curr & prv=res & prv=nil & prv=res & old_curr_next=curr & old_curr_next=res & old_curr_next=nil & old_curr_next=res & curr=res & curr=nil & curr=res & res=nil & res=res & nil=res
+dynsl.py:213 - (exists min!slist!137. ls(x, old_curr) * slist(old_curr, min!slist!137:int) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res)
+dynsl.py:213 - ls(x, old_curr) * old_curr:node->node{fv!150, res} & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - ls(x, old_curr) * old_curr:node->node{fv!108, res} & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:213 - ls(x, old_curr) * ls(old_curr, curr) & prv=curr & prv=old_curr_next & prv=res & prv=nil & prv=res & curr=old_curr_next & curr=res & curr=nil & curr=res & old_curr_next=res & old_curr_next=nil & old_curr_next=res & res=nil & res=res & nil=res
+dynsl.py:220 - Invariants at location 17:
+dynsl.py:227 - (exists min!slist!151, fv!1010, fv!1034. slist(curr, min!slist!151:int) * ls(old_curr, fv!1010) * ls(x, fv!1034) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists fv!1070, fv!1094. ls(curr, prv) * ls(old_curr, fv!1070) * ls(x, fv!1094) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists min!slist!312, fv!1130, fv!1154. slist(curr, min!slist!312:int) * ls(old_curr, fv!1130) * ls(x, fv!1154) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists fv!1190, fv!1214. ls(curr, old_curr_next) * ls(old_curr, fv!1190) * ls(x, fv!1214) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists min!slist!473, fv!1250, fv!1274. slist(curr, min!slist!473:int) * ls(old_curr, fv!1250) * ls(x, fv!1274) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists fv!1310, fv!1334. ls(curr, nil) * ls(old_curr, fv!1310) * ls(x, fv!1334) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists min!slist!634, fv!1370, fv!1394. slist(curr, min!slist!634:int) * ls(old_curr, fv!1370) * ls(x, fv!1394) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists fv!1430, fv!1454. ls(curr, prv) * ls(old_curr, fv!1430) * ls(x, fv!1454) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists min!slist!755, fv!1490, fv!1514. slist(curr, min!slist!755:int) * ls(old_curr, fv!1490) * ls(x, fv!1514) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists fv!1550, fv!1574. ls(curr, old_curr_next) * ls(old_curr, fv!1550) * ls(x, fv!1574) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists min!slist!876, fv!1610, fv!1634. slist(curr, min!slist!876:int) * ls(old_curr, fv!1610) * ls(x, fv!1634) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:227 - (exists fv!1670, fv!1694. ls(curr, nil) * ls(old_curr, fv!1670) * ls(x, fv!1694) & prv=old_curr_next & prv=nil & curr=res & old_curr_next=nil)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 7
+dynsl.py:256 - Number of pre-defined predicates: 2
+dynsl.py:258 - Number of free variables: 169
+dynsl.py:259 - Number of atomic singleton predicates: 5
+dynsl.py:260 - Number of atomic inductive predicates: 63
+dynsl.py:261 - Number of pure constraints: 273
+dynsl.py:262 - Number of total invs: 29
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:15
+dynsl.py:265 - Number of loop:12
+dynsl.py:266 - Running time (sec): 22.6392569542
+../example_numric/GRASShopper_sls/sls_filter,3,7,29,169,5,63,273,29,2,15,12,22.6

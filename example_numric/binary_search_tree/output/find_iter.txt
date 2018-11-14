@@ -1,0 +1,30 @@
+get_trace.py:65 - 4
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 12 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 22 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists mi!bst!9, mx!bst!10. bst(x, mi!bst!9:int, mx!bst!10:int) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 22:
+dynsl.py:213 - (exists mi!bst!757, mx!bst!758. bst(x, mi!bst!757:int, mx!bst!758:int) & curr=nil & curr=res & nil=res)
+dynsl.py:213 - (exists mx!bst!848, mi!bst!847. bst(x, mi!bst!847:int, mx!bst!848:int) & curr=nil & curr=res & nil=res)
+dynsl.py:220 - Invariants at location 12:
+dynsl.py:227 - (exists mi!bst!555, mx!bst!556. bst(curr, mi!bst!555:int, mx!bst!556:int) & True)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 6
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 8
+dynsl.py:259 - Number of atomic singleton predicates: 0
+dynsl.py:260 - Number of atomic inductive predicates: 4
+dynsl.py:261 - Number of pure constraints: 6
+dynsl.py:262 - Number of total invs: 4
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:2
+dynsl.py:265 - Number of loop:1
+dynsl.py:266 - Running time (sec): 10.1399531364
+../example_numric/binary_search_tree/find_iter,3,6,4,8,0,4,6,4,1,2,1,10.1

@@ -37,7 +37,6 @@ int main(int argc, char * argv[]){
     elt->next = NULL;
     elt->prev = NULL;
     DLNode * res = dl_insert(lst, elt);
-    res = dl_insert(NULL, elt);
-    free(elt);
+    dl_insert(NULL, elt);
     return 0;
 }

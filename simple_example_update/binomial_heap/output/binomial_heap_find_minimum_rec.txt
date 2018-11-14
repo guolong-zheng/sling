@@ -1,0 +1,29 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 18 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 13 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - bh(x) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 18:
+dynsl.py:213 - bh(xs) & True
+dynsl.py:208 - Postconditions at location 13:
+dynsl.py:213 - bh(x) & xs=nil
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 4
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 4
+dynsl.py:259 - Number of atomic singleton predicates: 0
+dynsl.py:260 - Number of atomic inductive predicates: 3
+dynsl.py:261 - Number of pure constraints: 1
+dynsl.py:262 - Number of total invs: 3
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:2
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 2.76359701157
+../simple_example_update/binomial_heap/binomial_heap_find_minimum_rec,3,4,1,4,0,3,1,3,1,2,0,2.76

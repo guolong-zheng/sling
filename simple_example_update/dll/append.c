@@ -21,12 +21,11 @@ int main(int argc, char * argv[]) {
     if (argc > 1)
     	sscanf(argv[1], "%d", &size);
 
-    DLNode * root = NULL;
-    root = create_dll(size);
-
-    DLNode * node = create_dll(size);
-    DLNode * res = NULL;
-    res = dll_append(root, node);
+    DLNode * root = create_dll(size);
+    root->prev = NULL;
+    //DLNode * node = create_dll(size);
+    //DLNode * res = NULL;
+    dll_append(root, create_dll(size));
     dll_append(NULL, NULL);
     dll_append(create_dll(size), NULL);
     dll_append(NULL, create_dll(size));

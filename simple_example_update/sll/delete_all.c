@@ -11,6 +11,7 @@ SNnode * sll_delete_all(SNnode * x, int k)
 	} else if (x->key == k) {
 		SNnode * tmp = sll_delete_all(x->next, k);
 		free(x);
+		x = NULL;
         //post
 		return tmp;
 	} else {

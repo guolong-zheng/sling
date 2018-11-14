@@ -8,7 +8,7 @@ SNnode * insertion_sort_copy(SNnode * l);
 int main( int argc, char * argv[]){
     int size;
     sscanf(argv[1], "%d", &size);
-    SNnode * root = create_list(size);
+    SNnode * root = create_random(size);
 
     SNnode * res = insertion_sort_copy(root);
     insertion_sort_copy(NULL);

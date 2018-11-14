@@ -1,0 +1,34 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 10 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 30 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 22 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists min!slist!9, min!slist!158. slist(l2, min!slist!9:int) * slist(l1, min!slist!158:int) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 10:
+dynsl.py:213 - (exists min!slist!299. slist(l2, min!slist!299:int) & l2=res & l1=nil)
+dynsl.py:213 - (exists min!slist!312. slist(l2, min!slist!312:int) & l2=res & l1=nil)
+dynsl.py:208 - Postconditions at location 22:
+dynsl.py:213 - (exists min!slist!525, min!slist!602. nl:node->node{fv!503, tl} * slist(l2, min!slist!525:int) * slist(l1, min!slist!602:int) & nl=res)
+dynsl.py:208 - Postconditions at location 30:
+dynsl.py:213 - (exists min!slist!335, min!slist!437. nl:node->node{fv!334, tl} * slist(tl, min!slist!335:int) * slist(l1, min!slist!437:int) & nl=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 18
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 19
+dynsl.py:259 - Number of atomic singleton predicates: 2
+dynsl.py:260 - Number of atomic inductive predicates: 8
+dynsl.py:261 - Number of pure constraints: 6
+dynsl.py:262 - Number of total invs: 5
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:4
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 6.34646391869
+../example_numric/sortlist/merge_sort_copy,4,18,5,19,2,8,6,5,1,4,0,6.34

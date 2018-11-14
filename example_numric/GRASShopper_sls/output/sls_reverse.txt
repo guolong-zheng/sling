@@ -1,0 +1,42 @@
+get_trace.py:65 - 5
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 20 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 14 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists min!slist!13. slist(lst, min!slist!13:int) & True)
+dynsl.py:202 - ls(lst, nil) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 20:
+dynsl.py:213 - ls(tmp, lst) * ls(lst, curr) & tmp=rev & tmp=res & rev=res & curr=nil
+dynsl.py:213 - (exists min!slist!164. ls(tmp, lst) * slist(lst, min!slist!164:int) & tmp=rev & tmp=res & rev=res & curr=nil)
+dynsl.py:213 - ls(tmp, lst) * lst:node->node{fv!177, curr} & tmp=rev & tmp=res & rev=res & curr=nil
+dynsl.py:213 - ls(tmp, lst) * lst:node->node{fv!149, curr} & tmp=rev & tmp=res & rev=res & curr=nil
+dynsl.py:213 - (exists min!slist!122. ls(tmp, lst) * slist(lst, min!slist!122:int) & tmp=rev & tmp=res & rev=res & curr=nil)
+dynsl.py:213 - ls(tmp, lst) * lst:node->node{fv!135, curr} & tmp=rev & tmp=res & rev=res & curr=nil
+dynsl.py:213 - (exists min!slist!136. ls(tmp, lst) * slist(lst, min!slist!136:int) & tmp=rev & tmp=res & rev=res & curr=nil)
+dynsl.py:213 - (exists min!slist!150. ls(tmp, lst) * slist(lst, min!slist!150:int) & tmp=rev & tmp=res & rev=res & curr=nil)
+dynsl.py:213 - ls(tmp, lst) * ls(lst, nil) & tmp=rev & tmp=res & rev=res & curr=nil
+dynsl.py:213 - ls(tmp, lst) * lst:node->node{fv!163, curr} & tmp=rev & tmp=res & rev=res & curr=nil
+dynsl.py:220 - Invariants at location 14:
+dynsl.py:227 - (exists min!slist!360, fv!450. ls(tmp, rev) * ls(rev, tmp) * slist(lst, min!slist!360:int) * ls(curr, fv!450) & tmp=rev)
+dynsl.py:227 - (exists fv!486. ls(tmp, rev) * ls(rev, tmp) * ls(lst, nil) * ls(curr, fv!486) & tmp=rev)
+dynsl.py:227 - (exists fv!335, fv!546, fv!578. ls(tmp, rev) * ls(rev, fv!335) * ls(lst, fv!546) * ls(curr, fv!578) & tmp=rev)
+dynsl.py:227 - (exists fv!244, fv!638, fv!670. ls(tmp, fv!244) * ls(lst, fv!638) * ls(curr, fv!670) & tmp=rev)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 7
+dynsl.py:256 - Number of pre-defined predicates: 2
+dynsl.py:258 - Number of free variables: 72
+dynsl.py:259 - Number of atomic singleton predicates: 4
+dynsl.py:260 - Number of atomic inductive predicates: 33
+dynsl.py:261 - Number of pure constraints: 44
+dynsl.py:262 - Number of total invs: 16
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:10
+dynsl.py:265 - Number of loop:4
+dynsl.py:266 - Running time (sec): 8.02007722855
+../example_numric/GRASShopper_sls/sls_reverse,3,7,18,72,4,33,44,16,2,10,4,8.02

@@ -33,5 +33,6 @@ int main( int argc, char * argv[] ){
     sscanf(argv[1], "%d", &size);
     CNode * root = create_list(size);
     CNode * res = circular_list_insert_back(root);
+    circular_list_insert_back(create_list(1));
     return 0;
 }
