@@ -1,0 +1,30 @@
+get_trace.py:65 - 4
+dynsl.py:144 - Inferring post-conditions at the location 16 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 12 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 7 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 7:
+dynsl.py:202 - (exists min!slist!186. slist(l, min!slist!186:int) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 16:
+dynsl.py:213 - curr:node->node{fv!18, nil} & curr=res
+dynsl.py:213 - (exists min!slist!9. slist(curr, min!slist!9:int) & curr=res)
+dynsl.py:220 - Invariants at location 12:
+dynsl.py:227 - (exists min!slist!103. slist(curr, min!slist!103:int) & True)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 6
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 7
+dynsl.py:259 - Number of atomic singleton predicates: 1
+dynsl.py:260 - Number of atomic inductive predicates: 3
+dynsl.py:261 - Number of pure constraints: 2
+dynsl.py:262 - Number of total invs: 4
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:2
+dynsl.py:265 - Number of loop:1
+dynsl.py:266 - Running time (sec): 1.93533396721
+../example_numric/sortlist/find_last_sorted,3,6,4,7,1,3,2,4,1,2,1,1.93

@@ -1,0 +1,69 @@
+get_trace.py:65 - 4
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 33 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 22 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - ls(y, nil) * ls(x, nil) & True
+dynsl.py:202 - (exists min!slist!13, min!slist!50. slist(y, min!slist!13:int) * slist(x, min!slist!50:int) & True)
+dynsl.py:202 - (exists min!slist!87. ls(y, nil) * slist(x, min!slist!87:int) & True)
+dynsl.py:202 - (exists min!slist!13. slist(y, min!slist!13:int) * ls(x, nil) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 33:
+dynsl.py:213 - (exists min!slist!2231. last_z:node->node{fv!137, nil} * ls(curr_y, nil) * slist(curr_x, min!slist!2231:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!1631. ls(last_z, nil) * curr_y:node->node{fv!1044, nil} * slist(curr_x, min!slist!1631:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!124, min!slist!138. slist(last_z, min!slist!124:int) * slist(curr_y, min!slist!138:int) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - ls(last_z, nil) * ls(curr_y, nil) * curr_x:node->node{fv!1351, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - last_z:node->node{fv!137, nil} * curr_y:node->node{fv!1937, nil} * curr_x:node->node{fv!2537, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - ls(last_z, nil) * ls(curr_y, nil) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - (exists min!slist!1924. last_z:node->node{fv!137, nil} * slist(curr_y, min!slist!1924:int) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!2524. last_z:node->node{fv!137, nil} * curr_y:node->node{fv!1937, nil} * slist(curr_x, min!slist!2524:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!124, min!slist!138, min!slist!152. slist(last_z, min!slist!124:int) * slist(curr_y, min!slist!138:int) * slist(curr_x, min!slist!152:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - last_z:node->node{fv!137, nil} * ls(curr_y, nil) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - (exists min!slist!124, min!slist!445. slist(last_z, min!slist!124:int) * ls(curr_y, nil) * slist(curr_x, min!slist!445:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!1924, min!slist!1938. last_z:node->node{fv!137, nil} * slist(curr_y, min!slist!1924:int) * slist(curr_x, min!slist!1938:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!124, min!slist!138. slist(last_z, min!slist!124:int) * slist(curr_y, min!slist!138:int) * curr_x:node->node{fv!165, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - ls(last_z, nil) * curr_y:node->node{fv!1044, nil} * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - (exists min!slist!1924. last_z:node->node{fv!137, nil} * slist(curr_y, min!slist!1924:int) * curr_x:node->node{fv!1951, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!1031. ls(last_z, nil) * slist(curr_y, min!slist!1031:int) * curr_x:node->node{fv!1058, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!1031, min!slist!1045. ls(last_z, nil) * slist(curr_y, min!slist!1031:int) * slist(curr_x, min!slist!1045:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - ls(last_z, nil) * curr_y:node->node{fv!1044, nil} * curr_x:node->node{fv!1644, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - (exists min!slist!1031. ls(last_z, nil) * slist(curr_y, min!slist!1031:int) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - last_z:node->node{fv!137, nil} * curr_y:node->node{fv!1937, nil} * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - (exists min!slist!124. slist(last_z, min!slist!124:int) * ls(curr_y, nil) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - last_z:node->node{fv!137, nil} * ls(curr_y, nil) * curr_x:node->node{fv!2244, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res
+dynsl.py:213 - (exists min!slist!124. slist(last_z, min!slist!124:int) * curr_y:node->node{fv!151, nil} * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!124. slist(last_z, min!slist!124:int) * ls(curr_y, nil) * curr_x:node->node{fv!458, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!124. slist(last_z, min!slist!124:int) * curr_y:node->node{fv!151, nil} * curr_x:node->node{fv!751, nil} * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!124, min!slist!738. slist(last_z, min!slist!124:int) * curr_y:node->node{fv!151, nil} * slist(curr_x, min!slist!738:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:213 - (exists min!slist!1338. ls(last_z, nil) * ls(curr_y, nil) * slist(curr_x, min!slist!1338:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, last_z) & z=res)
+dynsl.py:220 - Invariants at location 22:
+dynsl.py:227 - (exists fv!2834, min!slist!2853, fv!2924, min!slist!2959, fv!3123. ls(tmp, fv!2834) * slist(last_z, min!slist!2853:int) * ls(curr_y, fv!2924) * slist(curr_x, min!slist!2959:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!3123) & True)
+dynsl.py:227 - (exists fv!2834, min!slist!2853, fv!2924, fv!3193. ls(tmp, fv!2834) * slist(last_z, min!slist!2853:int) * ls(curr_y, fv!2924) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!3193) & True)
+dynsl.py:227 - (exists fv!2834, fv!3229, min!slist!3264, fv!3428. ls(tmp, fv!2834) * ls(last_z, nil) * ls(curr_y, fv!3229) * slist(curr_x, min!slist!3264:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!3428) & True)
+dynsl.py:227 - (exists fv!2834, fv!3229, fv!3498. ls(tmp, fv!2834) * ls(last_z, nil) * ls(curr_y, fv!3229) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!3498) & True)
+dynsl.py:227 - (exists fv!2834, fv!3534, min!slist!3569, fv!3733. ls(tmp, fv!2834) * last_z:node->node{fv!2902, nil} * ls(curr_y, fv!3534) * slist(curr_x, min!slist!3569:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!3733) & True)
+dynsl.py:227 - (exists fv!2834, fv!3534, fv!3803. ls(tmp, fv!2834) * last_z:node->node{fv!2902, nil} * ls(curr_y, fv!3534) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!3803) & True)
+dynsl.py:227 - (exists min!slist!3818, fv!3889, min!slist!3924, fv!4088. tmp:node->node{fv!2851, fv!2852} * slist(last_z, min!slist!3818:int) * ls(curr_y, fv!3889) * slist(curr_x, min!slist!3924:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!4088) & True)
+dynsl.py:227 - (exists min!slist!3818, fv!3889, fv!4158. tmp:node->node{fv!2851, fv!2852} * slist(last_z, min!slist!3818:int) * ls(curr_y, fv!3889) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!4158) & True)
+dynsl.py:227 - (exists fv!4194, min!slist!4229, fv!4393. tmp:node->node{fv!2851, fv!2852} * ls(last_z, nil) * ls(curr_y, fv!4194) * slist(curr_x, min!slist!4229:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!4393) & True)
+dynsl.py:227 - (exists fv!4194, fv!4463. tmp:node->node{fv!2851, fv!2852} * ls(last_z, nil) * ls(curr_y, fv!4194) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!4463) & True)
+dynsl.py:227 - (exists fv!4499, min!slist!4534, fv!4698. tmp:node->node{fv!2851, fv!2852} * last_z:node->node{fv!3867, nil} * ls(curr_y, fv!4499) * slist(curr_x, min!slist!4534:int) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!4698) & True)
+dynsl.py:227 - (exists fv!4499, fv!4768. tmp:node->node{fv!2851, fv!2852} * last_z:node->node{fv!3867, nil} * ls(curr_y, fv!4499) * ls(curr_x, nil) * ls(y, curr_y) * ls(x, curr_x) * ls(z, fv!4768) & True)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 6
+dynsl.py:256 - Number of pre-defined predicates: 2
+dynsl.py:258 - Number of free variables: 324
+dynsl.py:259 - Number of atomic singleton predicates: 37
+dynsl.py:260 - Number of atomic inductive predicates: 217
+dynsl.py:261 - Number of pure constraints: 27
+dynsl.py:262 - Number of total invs: 43
+dynsl.py:263 - Number of pres:4
+dynsl.py:264 - Number of post:27
+dynsl.py:265 - Number of loop:12
+dynsl.py:266 - Running time (sec): 57.1130340099
+../example_numric/GRASShopper_sls/sls_pairwise_sum,3,6,43,324,37,217,27,43,4,27,12,57.1
