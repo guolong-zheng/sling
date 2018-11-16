@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
 Node * g_slist_insert_sorted(Node * list, int data)
 /*@
@@ -21,7 +15,7 @@ Node * g_slist_insert_sorted(Node * list, int data)
 
 	if (list == NULL) {
 		new_list = (Node *) malloc(sizeof(Node));
-		_(assume new_list != NULL)
+
 		new_list->key = data;
 		new_list->next = NULL;
 		return new_list;
@@ -40,7 +34,7 @@ Node * g_slist_insert_sorted(Node * list, int data)
 	}
 
 	new_list = (Node *) malloc(sizeof(Node));
-	_(assume new_list != NULL)
+
 	new_list->key = data;
 	if (tmp_list->next == NULL && data >= tmp_list->key) { 
 		tmp_list->next = new_list;

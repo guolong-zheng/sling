@@ -1,12 +1,5 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
-
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
 Node * g_slist_sort_merge(Node * l1, Node * l2)
 /*@
@@ -17,10 +10,9 @@ Node * g_slist_sort_merge(Node * l1, Node * l2)
 {
 	Node * list, * l, * y;  
 	list = (Node *) malloc(sizeof(Node));
-	_(assume list != NULL)
 
   y = NULL;
-	list->key = INT_MIN; 
+	list->key = -999; 
 	list->next = y; 
 	l = list;
   Node * list_next =list->next;

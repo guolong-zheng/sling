@@ -1,22 +1,8 @@
-
-#include <stdlib.h>
-
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
-
-Node * g_slist_last(Node * list)
-  /*D_requires list^(x) */
-  /*D_ensures ((list^(old(x)) & (old(keys^(x)) s= keys^(old(x)))) & (((old(x) l= nil) => (ret l= nil)) &
-                      ((~ (old(x) l= nil)) => (lseg^(old(x), ret) 
-                                              * ((ret |-> loc next: temp; int key: kx) & (temp l= nil)))))) */
-;
+#include "stdhipmem.h"
 
 
-Node * g_slist_append(Node * list, int data)
+
+Node * g_slist_append_t(Node * list, int data)
 /*@
  infer[@shape]
  requires true
@@ -25,7 +11,6 @@ Node * g_slist_append(Node * list, int data)
 {
 
   Node * new_list = (Node *) malloc(sizeof(Node));
-  _(assume new_list != NULL)
 
   new_list->key = data;
   new_list->next = NULL;

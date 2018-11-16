@@ -1,16 +1,7 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
-_(pure) int havoc();
-
-_(dryad)
 DLNode * dl_remove(DLNode * lst)
 /*@
  infer[@shape]
@@ -30,7 +21,7 @@ DLNode * dl_remove(DLNode * lst)
      ensures true;
      */
     {
-      nondet = havoc();
+      nondet = random();
       curr = curr->next;
     }
     DLNode * tmp = curr->next;

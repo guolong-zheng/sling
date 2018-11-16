@@ -1,14 +1,8 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
-Node * g_slist_remove_link(Node * list, Node * link _(ghost Node * z))
+Node * g_slist_remove_link(Node * list, Node * link)
 /*@
  infer[@shape]
  requires true

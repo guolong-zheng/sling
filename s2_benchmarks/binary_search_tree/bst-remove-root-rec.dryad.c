@@ -1,13 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag b_node */
-struct b_node {
-  struct b_node * left;
-  struct b_node * right;
-  int key;
-} BNode;
 
 BNode * bst_remove_root_rec(BNode * x)
 /*@

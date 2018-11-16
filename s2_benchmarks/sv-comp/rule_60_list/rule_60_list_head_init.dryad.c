@@ -1,10 +1,5 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag slave_item */
-struct list_head {
-  struct list_head * next;
-  struct list_head * prev;
-};
 
 struct list_head * list_head_init(void)
 /*@

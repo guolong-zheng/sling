@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
 Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
 /*@
@@ -19,7 +13,7 @@ Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
   if (slist == NULL) {
     
     slist = (Node *) malloc (sizeof (Node));
-    _(assume slist != NULL)
+
     
     slist->key = data;
 
@@ -45,13 +39,13 @@ Node * g_slist_insert_before(Node * slist, Node * sibling, int data)
   
   if (last == NULL) {
     node = (Node *) malloc (sizeof(Node));
-    _(assume node != NULL)
+
     node->key = data;
     node->next = slist;
     return node;
   } else {
     node = (Node *) malloc (sizeof(Node));
-    _(assume node != NULL)
+
     Node * tmp_last = last->next;
     node->key = data;
     node->next = tmp_last;

@@ -1,20 +1,8 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag b_node */
-struct b_node {
-  struct b_node * left;
-  struct b_node * right;
-  int key;
-} BNode;
 
-typedef
-/*D_tag l_node */
-struct l_node {
-  struct l_node * next;
-  int key;
-} LNode;
 
-LNode * tree2list_rec(BNode * t, LNode * l)
+struct l_node * tree2list_rec(struct b_node * t, struct l_node * l)
 /*@
  infer[@shape]
  requires true
@@ -26,23 +14,23 @@ LNode * tree2list_rec(BNode * t, LNode * l)
 		return l;
 	} else {
 
-		LNode * lnode = (LNode *) malloc(sizeof(LNode));
+		struct l_node * lnode = (struct l_node *) malloc(sizeof(struct l_node));
 
 		int tkey = t->key;
 
 		lnode->key = tkey;
 		lnode->next = NULL;
   
-    BNode * tright = t->right;
-		BNode * tleft = t->left;
+    struct b_node * tright = t->right;
+		struct b_node * tleft = t->left;
 
-		LNode * tmp_list1 = tree2list_rec(tright, l);
+		struct l_node * tmp_list1 = tree2list_rec(tright, l);
 
 		lnode->next = tmp_list1;
 
-		free(t);
+		freel(t);
 
-		LNode * tmp_list2 = tree2list_rec(tleft, lnode);
+		struct l_node * tmp_list2 = tree2list_rec(tleft, lnode);
 		
 		return tmp_list2;
 	}

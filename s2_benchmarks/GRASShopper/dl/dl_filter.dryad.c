@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
 DLNode * dl_filter(DLNode * x)
 /*@

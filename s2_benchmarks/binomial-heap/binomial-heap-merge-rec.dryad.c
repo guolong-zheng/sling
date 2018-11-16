@@ -1,14 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef 
-/*D_tag node */
-struct node {
-  int key;
-  int order;
-  struct node * children;
-  struct node * sibling;
-} SNnode;
 
 SNnode * binomial_heap_merge_rec(SNnode * x, SNnode * y)
 /*@

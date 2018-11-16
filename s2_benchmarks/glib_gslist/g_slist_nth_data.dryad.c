@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
 int g_slist_nth_data(Node * list, int n)
 /*@

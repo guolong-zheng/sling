@@ -1,12 +1,7 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag slave_item */
-struct list_head {
-  struct list_head * next;
-  struct list_head * prev;
-};
 
-void * list_del(struct list_head * entry)
+void list_del(struct list_head * entry)
 /*@
  infer[@shape]
  requires true
@@ -26,4 +21,5 @@ void * list_del(struct list_head * entry)
   entry->next = NULL;
   entry->prev = NULL;
   free(entry);
+  return;
 }

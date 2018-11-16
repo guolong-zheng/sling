@@ -1,13 +1,9 @@
-
-#include <stdlib.h>
-
-typedef
-struct node {
-  struct node * next;
-} Node;
+#include "stdhipmem.h"
 
 
-Node * create(unsigned sz)
+
+
+Node * create(int sz)
 /*@
  infer[@shape]
  requires true
@@ -15,16 +11,16 @@ Node * create(unsigned sz)
  */
 {
   Node * h = NULL;
+
   while(sz > 0) 
   /*@
-   infer[@shape]
-   requires true
-   ensures true;
-   */
+ infer[@shape]
+ requires true
+ ensures true;
+ */
   {
     sz --;
     Node * e = (Node *)malloc(sizeof(Node));
-    _(assume e != NULL)
 
     e->next = h;
     h = e;

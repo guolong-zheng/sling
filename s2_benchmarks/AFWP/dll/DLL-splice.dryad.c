@@ -1,9 +1,5 @@
-#include <stdlib.h>
+#include "stdhipmem.h"
 
-typedef struct node {
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
 void splice(DLNode * h, DLNode * i)
 /*@

@@ -1,13 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-} Node;
-
-_(pure) int havoc();
 
 Node * sl_insert(Node * lst, Node * elt)
 /*@
@@ -28,7 +21,7 @@ Node * sl_insert(Node * lst, Node * elt)
      ensures true;
      */
     {
-      nondet = havoc();
+      nondet = random();
       curr = curr->next;
     }
     Node * curr_next = curr->next;

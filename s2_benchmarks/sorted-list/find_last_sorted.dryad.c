@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-   int key;
-   struct node * next;
-} SNnode;
 
 SNnode * find_last_sorted(SNnode * l)
 /*@

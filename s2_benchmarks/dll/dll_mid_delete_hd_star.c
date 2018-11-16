@@ -1,13 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-    int key;
-    struct node * next;
-    struct node * prev;
-} DLNode;
 
 void dll_mid_delete(DLNode** hd, DLNode* p)
 /*@

@@ -1,0 +1,85 @@
+
+!!!Full processing file "dll//dll-insert-back.dryad.c"
+Parsing file "dll//dll-insert-back.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E dll//dll-insert-back.dryad.c -o dll//dll-insert-back.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dll_insert_back: :HP_26
+!!! generate unknown predicate for Post synthesis of dll_insert_back: :GP_27
+!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(x))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_27(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure dll_insert_back$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_26,GP_27]requires HP_26(x)&
+truerequires emp
+ ensures GP_27(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_26(x)&x!=null --> x::node<key_20_1479,next_20_1480,prev_20_1481> * 
+HP_1482(next_20_1480) * HP_1483(prev_20_1481)&
+true,
+ // PRE_REC
+(2;0)HP_1482(next_20_1480)&true --> HP_26(next_20_1480)&
+true,
+ // BIND
+(2;0)GP_27(next_20_1480,tmp___69')&
+true --> tmp___69'::node<key_22_1497,next_22_1498,prev_22_1499> * 
+GP_1500(next_22_1498,next_20_1480@NI) * 
+GP_1501(prev_22_1499,next_20_1480@NI) * GP_1502(next_20_1480,tmp___69'@NI)&
+true,
+ // POST
+(1;0)HP_26(next_17_1504) * res::node<k,next_17_1504,x'>&next_17_1504=null & 
+x'=null & x'=next_17_1504 --> GP_27(next_17_1504,res)&
+true,
+ // POST
+(2;0)HP_1483(prev_20_1481) * 
+res::node<key_20_1479,tmp___1506,prev_20_1481> * 
+GP_1500(next_22_1498,next_21_1494@NI) * 
+tmp___1506::node<key_22_1497,next_22_1498,res>&x=res --> GP_27(x,res)&
+true]
+
+Procedure dll_insert_back$node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_26(x_1512) ::= 
+ HP_26(next_20_1509) * x_1512::node<key_20_1508,next_20_1509,DP_DP_HP_1483>
+ or emp&x_1512=null
+ (4,5),
+ GP_27(next_17_1513,res_1514) ::= 
+ res_1514::node<k,next_17_1513,next_17_1513>&next_17_1513=null
+ or next_17_1513::node<key_20_1479,tmp___1506,DP_DP_HP_1483> * 
+    GP_1500(next_22_1498,next_21_1494) * 
+    tmp___1506::node<key_22_1497,next_22_1498,next_17_1513>&
+    next_17_1513=res_1514
+ (4,5),
+ GP_1500(next_22_1576,next_20_1577) ::= 
+ GP_1500(next_22_1574,next_21_1571) * 
+ next_22_1576::node<key_22_1573,next_22_1574,next_20_1577>
+ or emp&next_20_1577=null & next_22_1576=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_26{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_27{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 107 invocations Stop Omega... 46 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.059873,491)
+Total verification time: 0.156 second(s)
+	Time spent in main process: 0.104 second(s)
+	Time spent in child processes: 0.052 second(s)
+	Z3 Prover Time: 0. second(s)

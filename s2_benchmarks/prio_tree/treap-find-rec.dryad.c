@@ -1,13 +1,5 @@
-#include <stdlib.h>
+#include "stdhipmem.h"
 
-typedef
-/*D_tag b_node */
-struct b_node {
-  struct b_node * left;
-  struct b_node * right;
-  int key;
-  int prio;
-} BNode;
 
 int treap_find_rec(BNode * x, int k)
 /*@

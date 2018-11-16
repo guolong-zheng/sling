@@ -1,13 +1,8 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-} Node;
 
-void dispose(Node * lst _(out \oset ALL_REACH))
+void dispose(Node * lst)
 /*@
  infer[@shape]
  requires true

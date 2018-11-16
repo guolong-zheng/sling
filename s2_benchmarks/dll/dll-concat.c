@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 #include <stdio.h>
 
-typedef
-/*D_tag node */
-struct node {
-    int key;
-    struct node * next;
-    struct node * prev;
-} DLNode;
 
 DLNode* dll_concat(DLNode* a, DLNode* b)
 /*@
@@ -22,6 +16,11 @@ DLNode* dll_concat(DLNode* a, DLNode* b)
   } else {
     DLNode* curr = a;
     while (curr->next != NULL)
+    /*@
+ infer[@shape]
+ requires true
+ ensures true;
+ */
     {
       //loop
       curr = curr->next;

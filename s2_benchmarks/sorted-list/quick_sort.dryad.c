@@ -1,12 +1,30 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag node */
-struct node {
-   int key;
-   struct node * next;
-} SNnode;
 
-SNnode * concat_sorted(SNnode * l1, SNnode * l2);
+SNnode * find_last_sorted(SNnode * l)
+{
+  SNnode * curr = l;
+	if (curr != NULL) {
+	  while (curr->next != NULL)
+		{ 
+			curr = curr->next;
+		}
+	}
+	return curr;
+}
+
+SNnode * concat_sorted(SNnode * l1, SNnode * l2)
+{
+	if (l2 != NULL) {
+		if (l1 != NULL) {
+			SNnode * last = find_last_sorted(l1);
+			last->next = l2;
+		} else {
+			l1 = l2;
+		}
+	} 
+	return l1;
+}
 
 SNnode * quick_sort(SNnode * l)
 /*@

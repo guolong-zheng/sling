@@ -1,22 +1,14 @@
-
-#include <stdlib.h>
-
-typedef 
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} SNnode;
+#include "stdhipmem.h"
 
 SNnode * sll_reverse(SNnode * x)
 /*@
- infer[@shape]
- requires true
- ensures true;
- */
+  infer[@shape]
+  requires true
+  ensures true;
+*/
 {
 	SNnode * y = NULL;
-
+        SNnode * tmp = NULL;
 	while (x != NULL)
     /*@
      infer[@shape]
@@ -24,7 +16,7 @@ SNnode * sll_reverse(SNnode * x)
      ensures true;
      */
 	{
-		SNnode * tmp = x->next;
+		tmp = x->next;
 		x->next = y;
 		y = x;
 		x = tmp;

@@ -1,11 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-} Node;
 
 void sl_traverse1(Node * lst)
 /*@

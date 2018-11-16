@@ -1,13 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
 DLNode * dll_insert_back(DLNode * x, int k)
 /*@
@@ -18,7 +11,7 @@ DLNode * dll_insert_back(DLNode * x, int k)
 {
   if (x == NULL) {
     DLNode * tail = (DLNode *) malloc(sizeof(DLNode));
-    _(assume tail != NULL)
+
     tail->key = k;
     tail->next = NULL;
     tail->prev= x;

@@ -1,18 +1,10 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag a_node */
-struct a_node {
-  struct a_node * left;
-  struct a_node * right;
-  int key;
-  int height;
-} AVLNode;
 
-int avl_find_smallest(AVLNode * x);
+//int avl_find_smallest(AVLNode * x);
 
-AVLNode * avl_balance(AVLNode * x);
+//AVLNode * avl_balance(AVLNode * x);
 
 
 AVLNode * avl_insert(AVLNode * x, int k)
@@ -25,7 +17,6 @@ AVLNode * avl_insert(AVLNode * x, int k)
 
 	if (x == NULL) {
 		AVLNode * leaf = (AVLNode *) malloc(sizeof(AVLNode));
-		_(assume leaf != NULL)
 
 		leaf->key = k;
 

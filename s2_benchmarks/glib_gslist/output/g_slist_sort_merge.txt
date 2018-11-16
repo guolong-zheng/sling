@@ -1,0 +1,183 @@
+
+!!!Full processing file "glib_gslist/g_slist_sort_merge.dryad.c"
+Parsing file "glib_gslist/g_slist_sort_merge.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist/g_slist_sort_merge.dryad.c -o glib_gslist/g_slist_sort_merge.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_sort_merge: :HP_18
+!!! generate unknown predicate for Post synthesis of g_slist_sort_merge: :GP_19
+!!! ss:EInfer @shape[HP_18,GP_19] EBase: [][](HRel HP_18(l1,l2))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_19(l1,l2,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_19_1$node~node~node~node: :HP_1344
+!!! generate unknown predicate for Post synthesis of while_19_1$node~node~node~node: :GP_1349Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_19_1$node~node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1344,GP_1349]requires HP_1344(y_66,l_65,l2,l1)&
+truerequires emp
+ ensures GP_1349(y_66,y_66',l_65,l_65',l2,l2',l1,l1')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;1;0)HP_1344(y_66,l_65,l2,l1)&l2!=null & 
+l1!=null --> l1::node<key_26_1469,next_26_1470> * 
+HP_1471(next_26_1470,y_66@NI,l_65@NI,l2@NI) * HP_1472(y_66,l_65,l2,l1@NI)&
+true,
+ // BIND
+(1;1;1;0)HP_1472(y_66,l_65,l2',l1@NI)&
+l2'!=null --> l2'::node<key_26_1477,next_26_1478> * 
+HP_1479(next_26_1478,y_66@NI,l_65@NI,l1@NI) * 
+HP_1480(y_66,l_65,l2'@NI,l1@NI)&
+true,
+ // BIND
+(1;1;1;1;0)HP_1480(y_66,l_65,l2@NI,l1@NI)&
+true --> l_65::node<key_28_1491,next_28_1492> * 
+HP_1493(next_28_1492,y_66@NI,l2@NI,l1@NI) * 
+HP_1494(y_66,l_65@NI,l2@NI,l1@NI)&
+true,
+ // BIND
+(2;1;1;1;0)HP_1480(y_66,l_65,l2@NI,l1@NI)&
+true --> l_65::node<key_31_1502,next_31_1503> * 
+HP_1504(next_31_1503,y_66@NI,l2@NI,l1@NI) * 
+HP_1505(y_66,l_65@NI,l2@NI,l1@NI)&
+true,
+ // PRE_REC
+(1;1;1;1;1;0)HP_1471(l1',v_node_39_1549@NI,l_1515@NI,l2@NI) * 
+HP_1479(next_26_1478,v_node_39_1549@NI,l_1515@NI,l_65'@NI) * 
+l2::node<key_26_1477,next_26_1478> * l_65'::node<key_26_1469,v_node_39_1549>&
+v_node_39_1549=null & y_66'=l_65' --> HP_1344(y_66',l_65',l2,l1')&
+true,
+ // PRE_REC
+(2;1;1;1;1;0)HP_1471(l1',y_66@NI,l_1515@NI,l2@NI) * 
+HP_1479(next_26_1478,y_66@NI,l_1515@NI,l1_1499@NI) * 
+l2::node<key_26_1477,next_26_1478> * 
+HP_1494(y_66,l_1515@NI,l2@NI,l1_1499@NI) * 
+l1_1499::node<key_26_1469,v_node_39_1554>&y_66!=null & 
+v_node_39_1554=null --> HP_1344(y_66,l1_1499,l2,l1')&
+true,
+ // PRE_REC
+(1;2;1;1;1;0)HP_1471(next_26_1470,v_node_39_1559@NI,l_1516@NI,l_65'@NI) * 
+l1::node<key_26_1469,next_26_1470> * 
+HP_1479(l2',v_node_39_1559@NI,l_1516@NI,l1@NI) * 
+l_65'::node<key_26_1477,v_node_39_1559>&v_node_39_1559=null & 
+y_66'=l_65' --> HP_1344(y_66',l_65',l2',l1)&
+true,
+ // PRE_REC
+(2;2;1;1;1;0)HP_1471(next_26_1470,y_66@NI,l_1516@NI,l2@NI) * 
+l1::node<key_26_1469,next_26_1470> * HP_1479(l2',y_66@NI,l_1516@NI,l1@NI) * 
+HP_1505(y_66,l_1516@NI,l2@NI,l1@NI) * l2::node<key_26_1477,v_node_39_1564>&
+y_66!=null & v_node_39_1564=null --> HP_1344(y_66,l2,l2',l1)&
+true,
+ // POST
+(1;1;1;1;1;0)l_65::node<key_28_1491,l1_1499> * 
+GP_1349(l1_1499,y_66',l1_1499,l_65',l2,l2',next_26_1470,l1')&l1_1499!=null & 
+l2!=null & 
+y_1523=null --> GP_1349(y_1523,y_66',l_65,l_65',l2,l2',l1_1499,l1')&
+true,
+ // POST
+(1;1;1;1;1;0)HP_1494(y_1523,l_1515@NI,l2@NI,l1_1499@NI)&y_1523=null --> emp&
+true,
+ // POST
+(1;1;1;1;1;0)HP_1493(next_28_1492,y_1523@NI,l2@NI,l1_1499@NI)&
+y_1523=null --> emp&
+true,
+ // POST
+(1;2;1;1;1;0)l_65::node<key_31_1502,l2> * 
+GP_1349(l2,y_66',l2,l_65',next_26_1478,l2',l1,l1')&l2!=null & l1!=null & 
+y_1524=null --> GP_1349(y_1524,y_66',l_65,l_65',l2,l2',l1,l1')&
+true,
+ // POST
+(1;2;1;1;1;0)HP_1505(y_1524,l_1516@NI,l2@NI,l1@NI)&y_1524=null --> emp&
+true,
+ // POST
+(1;2;1;1;1;0)HP_1504(next_31_1503,y_1524@NI,l2@NI,l1@NI)&y_1524=null --> emp&
+true,
+ // POST
+(2;1;1;0)HP_1344(y_66,l_65,l2,l1)&l1!=null & l2=null & l2'=null & l1'=l1 & 
+l2'=l2 & l_65'=l_65 & 
+y_66'=y_66 --> GP_1349(y_66,y_66',l_65,l_65',l2,l2',l1,l1')&
+true,
+ // POST
+(2;1;0)HP_1344(y_66,l_65,l2,l1)&l1=null & l1'=null & l1'=l1 & l2'=l2 & 
+l_65'=l_65 & y_66'=y_66 --> GP_1349(y_66,y_66',l_65,l_65',l2,l2',l1,l1')&
+true]
+
+Procedure while_19_1$node~node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "glib_gslist/g_slist_sort_merge.dryad.c",Line:19,Col:1
+
+ERROR: at _0:0_0:0
+Message: SA.infer_shapes_init_pre: HEAP CONJS do not SAT
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1344,GP_1349]
+   EBase HP_1344(y_66,l_65,l2,l1)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [y_66;l_65;l2;l1]
+                     GP_1349(y_66,y_66',l_65,l_65',l2,l2',l1,l1')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure g_slist_sort_merge$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_18,GP_19]requires HP_18(l1,l2)&
+truerequires emp
+ ensures GP_19(l1,l2,res)&true{,(4,5)=__norm#E};
+Proving binding in method g_slist_sort_merge$node~node for spec  EAssume 
+   GP_19(l1,l2,res)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,0 ); (,1 )]) bind: node  l_65'::node<key_42_1383',next_42_1384'> cannot be derived from context
+glib_gslist/g_slist_sort_merge.dryad.c_42:2_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,0 ); (,1 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]glib_gslist/g_slist_sort_merge.dryad.c_42:2_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "glib_gslist/g_slist_sort_merge.dryad.c",Line:42,Col:2
+
+Procedure g_slist_sort_merge$node~node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure g_slist_sort_merge$node~node
+Stop z3... 235 invocations Stop Omega... 99 invocations 
+1 false contexts at: ( (19,1) )
+
+!!! log(small):(0.26591,1308)
+Total verification time: 0.472 second(s)
+	Time spent in main process: 0.304 second(s)
+	Time spent in child processes: 0.168 second(s)
+	Z3 Prover Time: 0.008 second(s)

@@ -1,13 +1,10 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-struct node {
-   int key;
-   struct node * next;
-} Node;
 
-_(pure) int to_remove(Node * z);
+int to_remove(Node * z){
+    return random();
+}
 // 1 if x should be removed
 // 0 otherwise
 

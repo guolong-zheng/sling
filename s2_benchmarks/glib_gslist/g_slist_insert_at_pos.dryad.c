@@ -1,22 +1,16 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
-
+/*
 Node * g_slist_prepend (Node * list, int data)
   /*D_requires list^(x) */
   /*D_ensures (list^(ret) & (keys^(ret) s= (old(keys^(list)) union (singleton data)))) */
-;
+/*;
 
 Node * g_slist_append(Node * list, int data)
   /*D_requires list^(list) */
   /*D_ensures  (list^(ret) & (keys^(ret) s= (old(keys^(list)) union (singleton data)))) */
-;
+//;
 
 Node * g_slist_insert(Node * list, int data, int pos)
 /*@
@@ -36,7 +30,7 @@ Node * g_slist_insert(Node * list, int data, int pos)
   Node * new_list;
 
   new_list = (Node *) malloc(sizeof(Node));
-  _(assume new_list != NULL)
+
   new_list->key = data;
 
   if (list == NULL) {

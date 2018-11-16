@@ -1,11 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-struct node {
-   int key;
-   struct node * next;
-} Node;
 
 Node * delete(Node * h, int k) 
 /*@
@@ -20,7 +15,9 @@ Node * delete(Node * h, int k)
   if (i == NULL) {
     return h;
   }
-  while(i != NULL && t == NULL) 
+ // while(i != NULL && t == NULL) 
+  
+  while(i != NULL && t == NULL)
   /*@
    infer[@shape]
    requires true

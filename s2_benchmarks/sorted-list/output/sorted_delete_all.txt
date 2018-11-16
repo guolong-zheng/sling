@@ -1,0 +1,69 @@
+
+!!!Full processing file "sorted-list//sorted_delete_all.dryad.c"
+Parsing file "sorted-list//sorted_delete_all.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sorted-list//sorted_delete_all.dryad.c -o sorted-list//sorted_delete_all.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sorted_delete_all: :HP_22
+!!! generate unknown predicate for Post synthesis of sorted_delete_all: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(x))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_23(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure sorted_delete_all$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(x)&
+truerequires emp
+ ensures GP_23(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_22(x)&x!=null --> x::node<key_14_1391,next_14_1392> * 
+HP_1393(next_14_1392)&
+true,
+ // PRE_REC
+(1;2;0)HP_1393(next_14_1392)&true --> HP_22(next_14_1392)&
+true,
+ // POST
+(1;0)HP_22(res)&res=null & x=null & x=res --> GP_23(x,res)&
+true,
+ // POST
+(2;2;0)GP_23(next_14_1392,tmp___1430) * res::node<key_14_1391,tmp___1430>&
+x=res --> GP_23(x,res)&
+true]
+
+Procedure sorted_delete_all$node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_22(x_1435) ::= 
+ HP_22(next_14_1433) * x_1435::node<key_14_1432,next_14_1433>
+ or emp&x_1435=null
+ (4,5),
+ GP_23(x_1436,res_1437) ::= 
+ GP_23(next_14_1392,tmp___1430) * x_1436::node<key_14_1391,tmp___1430>&
+ next_14_1392=tmp___1430 & x_1436=res_1437
+ or emp&res_1437=null & x_1436=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_22{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_23{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 89 invocations Stop Omega... 30 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.043341,353)
+Total verification time: 0.124 second(s)
+	Time spent in main process: 0.084 second(s)
+	Time spent in child processes: 0.04 second(s)
+	Z3 Prover Time: 0. second(s)

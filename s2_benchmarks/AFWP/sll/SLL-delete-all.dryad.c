@@ -1,11 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-struct node {
-   int key;
-   struct node * next;
-} Node;
 
 void delete_all(Node * h, int k) 
 /*@

@@ -1,11 +1,5 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag t_node */
-struct t_node {
-  struct t_node * left;
-  struct t_node * right;
-  int key;
-} TNode;
 
 int preorder(TNode * x, int n)
 /*@

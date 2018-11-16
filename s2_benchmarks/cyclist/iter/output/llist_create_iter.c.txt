@@ -1,0 +1,59 @@
+
+!!!Full processing file "cyclist/iter/llist_create_iter.c"
+Parsing file "cyclist/iter/llist_create_iter.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E cyclist/iter/llist_create_iter.c -o cyclist/iter/llist_create_iter.c.prep
+
+!!! generate unknown predicate for Pre synthesis of llist_create_iter: :HP_25
+!!! generate unknown predicate for Post synthesis of llist_create_iter: :GP_26
+!!! ss:EInfer @shape[HP_25,GP_26] EBase: [][](HRel HP_25(l))*(true)( FLOW __norm) {EAssume: 14,:(HRel GP_26(l,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure llist_create_iter$llist... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_25,GP_26]requires HP_25(l)&
+truerequires emp
+ ensures GP_26(l,res)&true{,(4,5)=__norm#E};
+Starting Omega.../usr/local/bin/oc
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_25(l)&true --> l::llist<first_15_1462,last_15_1463> * 
+HP_1464(first_15_1462) * HP_1465(last_15_1463)&
+true,
+ // POST
+(0)HP_1464(first_15_1462) * HP_1465(last_15_1463) * 
+l::llist<first_15_1462,last_15_1463> * res::iter<first_15_1462>&
+true --> GP_26(l,res)&
+true]
+
+Procedure llist_create_iter$llist SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_25(l_1472) ::= l_1472::llist<DP_DP_HP_1464,DP_DP_HP_1465>(4,5),
+ GP_26(l_1473,res_1474) ::= l_1473::llist<DP_DP_HP_1464,DP_DP_HP_1465> * res_1474::iter<DP_DP_HP_1464>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase l::llist<DP_DP_HP_1464,DP_DP_HP_1465>&{FLOW,(1,29)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists DP_DP_HP_1465,
+                   DP_DP_HP_1464: l::llist<DP_DP_HP_1464,DP_DP_HP_1465> * 
+                   res::iter<DP_DP_HP_1464>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 54 invocations Stop Omega... 15 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.033878,272)
+Total verification time: 0.144 second(s)
+	Time spent in main process: 0.1 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0.004 second(s)

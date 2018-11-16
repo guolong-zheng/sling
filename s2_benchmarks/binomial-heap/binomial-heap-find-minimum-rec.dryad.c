@@ -1,14 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef 
-/*D_tag node */
-struct node {
-  int key;
-  int order;
-  struct node * children;
-  struct node * sibling;
-} SNnode;
 
 int binomial_heap_find__minimum_rec(SNnode * x)
 /*@

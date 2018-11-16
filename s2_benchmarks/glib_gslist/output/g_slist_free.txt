@@ -1,0 +1,107 @@
+
+!!!Full processing file "glib_gslist//g_slist_free.dryad.c"
+Parsing file "glib_gslist//g_slist_free.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist//g_slist_free.dryad.c -o glib_gslist//g_slist_free.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_free: :HP_22
+!!! generate unknown predicate for Post synthesis of g_slist_free: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(l))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_23(l))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_14_2$node~node: :HP_1342
+!!! generate unknown predicate for Post synthesis of while_14_2$node~node: :GP_1345Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_14_2$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1342,GP_1345]requires HP_1342(x_63,next_64)&
+truerequires emp
+ ensures GP_1345(x_63,x_63',next_64,next_64')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1342(x_63,next_64)&
+x_63!=null --> x_63::node<key_21_1396,next_21_1397> * 
+HP_1398(next_21_1397,next_64@NI) * HP_1399(next_64,x_63@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1398(next_64',next_64@NI)&
+x_63'=next_64' --> HP_1342(x_63',next_64')&
+true,
+ // POST
+(2;1;0)HP_1342(x_63,next_64)&x_63=null & x_63'=null & next_64'=next_64 & 
+x_63'=x_63 --> GP_1345(x_63,x_63',next_64,next_64')&
+true]
+
+Procedure while_14_2$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ GP_1345(x_1418,x_1419,next_1420,next_1421) ::= emp&next_1421=next_1420 & x_1419=x_1418 & x_1418=null & x_1419=null(4,5),
+ HP_1342(x_1416,next_1417) ::= 
+ x_1416::node<key_21_1396,DP_DP_HP_1398>&next_1417=DP_DP_HP_1399
+ or emp&x_1416=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x_63::HP_1342{}<next_64>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [x_63;next_64]
+                   emp&next_64'=next_64 & x_63'=x_63 & x_63=null & 
+                   x_63'=null&{FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure g_slist_free$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(l)&
+truerequires emp
+ ensures GP_23(l)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_22(l)&true --> l::HP_1342<next_1472>&
+true,
+ // POST
+(0)emp&l=null --> GP_23(l)&
+true]
+
+Procedure g_slist_free$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_22(l_1475) ::= l_1475::HP_1342<next_1472>(4,5),
+ GP_23(l_1476) ::= emp&l_1476=null(4,5),
+ GP_1345(x_1418,x_1419,next_1420,next_1421) ::= emp&next_1421=next_1420 & x_1419=x_1418 & x_1418=null & x_1419=null(4,5),
+ HP_1342(x_1416,next_1417) ::= 
+ x_1416::node<key_21_1396,DP_DP_HP_1398>&next_1417=DP_DP_HP_1399
+ or emp&x_1416=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase l::HP_1342{}<next_1472>&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   emp&l=null&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 75 invocations Stop Omega... 24 invocations 
+1 false contexts at: ( (14,2) )
+
+!!! log(small):(0.021676,320)
+Total verification time: 0.112 second(s)
+	Time spent in main process: 0.076 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0. second(s)

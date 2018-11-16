@@ -1,13 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
 DLNode * g_list_find(DLNode * list, int data) 
 /*@
@@ -16,7 +9,7 @@ DLNode * g_list_find(DLNode * list, int data)
  ensures true;
  */
 {
-  Node * curr = list;
+  DLNode * curr = list;
   while(curr != NULL) 
   /*@
    infer[@shape]

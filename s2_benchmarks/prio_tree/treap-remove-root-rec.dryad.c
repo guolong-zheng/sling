@@ -1,14 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag b_node */
-struct b_node {
-  struct b_node * left;
-  struct b_node * right;
-  int key;
-  int prio;
-} BNode;
 
 BNode * treap_remove_root_rec(BNode * x)
 /*@
@@ -17,7 +9,8 @@ BNode * treap_remove_root_rec(BNode * x)
  ensures true;
  */
 {
-
+  if(x==NULL)
+    return NULL;
   if(x->left == NULL && x->right == NULL) {
     free(x);
     return NULL;

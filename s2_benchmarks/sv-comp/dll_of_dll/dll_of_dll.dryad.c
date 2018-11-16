@@ -1,14 +1,6 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag slave_item */
-struct slave_item {
-  struct slave_item * next;
-  struct slave_item * prev;
-};
 
-_(abstract) void abort_()
-    _(ensures \false) 
-;
 
 
 struct slave_item * alloc_or_die_slave(void)
@@ -19,9 +11,6 @@ struct slave_item * alloc_or_die_slave(void)
  */
 {
   struct slave_item * ptr = (struct slave_item *) malloc(sizeof(struct slave_item));
-  if (!ptr) {
-    abort_();
-  }
 
   ptr->next = NULL;
   ptr->prev = NULL;
@@ -36,9 +25,7 @@ struct slave_item * dll_insert_slave(struct slave_item * x)
  */
 {
   struct slave_item * item = (struct slave_item *) malloc(sizeof(struct slave_item));
-  if (!item) {
-    abort_();
-  }
+  
   item->next = NULL;
   item->prev = NULL;
 

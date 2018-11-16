@@ -1,0 +1,104 @@
+
+!!!Full processing file "glib_gslist/g_slist_insert_before.dryad.c"
+Parsing file "glib_gslist/g_slist_insert_before.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist/g_slist_insert_before.dryad.c -o glib_gslist/g_slist_insert_before.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_insert_before: :HP_18
+!!! generate unknown predicate for Post synthesis of g_slist_insert_before: :GP_19
+!!! ss:EInfer @shape[HP_18,GP_19] EBase: [][](HRel HP_18(slist,sibling))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_19(slist,sibling,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_29_2$node~node~node: :HP_1347
+!!! generate unknown predicate for Post synthesis of while_29_2$node~node~node: :GP_1350Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_29_2$node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1347,GP_1350]requires HP_1347(node_65,last_66,sibling@NI)&
+truerequires emp
+ ensures GP_1350(node_65,node_65',last_66,last_66',sibling)&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;1;0)HP_1347(last_66',last_66,sibling@NI)&last_66'!=null & 
+sibling!=last_66' --> last_66'::node<key_37_1458,next_37_1459> * 
+HP_1460(next_37_1459,last_66@NI,sibling@NI) * 
+HP_1461(last_66,last_66'@NI,sibling@NI)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1460(next_37_1459,last_66@NI,sibling@NI) * 
+last_66'::node<key_37_1458,next_37_1459>&
+sibling!=last_66' --> HP_1347(next_37_1459,last_66',sibling@NI)&
+true,
+ // POST
+(1;1;1;0)HP_1461(last_66,node_65@NI,sibling@NI) * 
+GP_1350(next_37_1459,node_65',node_65,last_66',sibling)&node_65!=null & 
+node_65!=sibling --> GP_1350(node_65,node_65',last_66,last_66',sibling)&
+true,
+ // POST
+(2;1;1;0)HP_1347(node_65,last_66,sibling@NI)&node_65!=null & 
+last_66'=last_66 & node_65'=node_65 & 
+sibling=node_65 --> GP_1350(node_65,node_65',last_66,last_66',sibling)&
+true,
+ // POST
+(2;1;0)HP_1347(node_65,last_66,sibling@NI)&node_65=null & node_65'=null & 
+last_66'=last_66 & 
+node_65'=node_65 --> GP_1350(node_65,node_65',last_66,last_66',sibling)&
+true]
+
+Procedure while_29_2$node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at glib_gslist/g_slist_insert_before.dryad.c_29:2_38:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1347,GP_1350]
+   EBase HP_1347(node_65,last_66,sibling)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [node_65;last_66]
+                     GP_1350(node_65,node_65',last_66,last_66',sibling)&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure g_slist_insert_before$node~node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_18,GP_19]requires HP_18(slist,sibling@NI)&
+truerequires emp
+ ensures GP_19(slist,sibling,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure g_slist_insert_before$node~node~int FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure g_slist_insert_before$node~node~int
+Stop z3... 131 invocations Stop Omega... 46 invocations 
+1 false contexts at: ( (29,2) )
+
+!!! log(small):(0.045955,382)
+Total verification time: 0.2 second(s)
+	Time spent in main process: 0.128 second(s)
+	Time spent in child processes: 0.072 second(s)
+	Z3 Prover Time: 0. second(s)

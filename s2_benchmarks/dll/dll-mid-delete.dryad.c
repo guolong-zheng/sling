@@ -1,15 +1,8 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
-DLNode * dll_mid_delete(DLNode * p)
+void dll_mid_delete(DLNode * p)
 /*@
  infer[@shape]
  requires true

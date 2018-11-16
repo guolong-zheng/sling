@@ -1,11 +1,5 @@
-#include <stdlib.h>
+#include "stdhipmem.h"
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-  struct node * prev;
-} DLNode;
 
 DLNode * polarize(DLNode * h) 
 /*@
@@ -14,13 +8,17 @@ DLNode * polarize(DLNode * h)
    ensures true;
  */
 {
-  Node * i = h;
+  DLNode * i = h;
   DLNode * j = NULL;
   while(i != NULL) 
+  /*@
+   infer[@shape]
+   requires true
+   ensures true;
+ */
   { 
     DLNode * k = j;
     j = (DLNode *) malloc(sizeof(DLNode));
-    _(assume j != NULL)
     j->next = k;
     k->prev = j;
     i = i->next;

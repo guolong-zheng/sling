@@ -1,14 +1,6 @@
+#include "stdhipmem.h"
 
-typedef
-/*D_tag node */
-struct node
-{
-  struct node * next;
-  struct node * left;
-  struct node * right;
-  struct node * tree;
-  int key;
-} Node;
+
 
 Node * tree2list_iter(Node * t)
 /*@
@@ -43,7 +35,7 @@ Node * tree2list_iter(Node * t)
 			Node * tn = s->tree;
 			Node * s1 = s->next;
 
-			free(s);
+			freeh(s);
 
 			s = s1;
 			
@@ -60,15 +52,15 @@ Node * tree2list_iter(Node * t)
 			if (tn->right == NULL) {
 
 				Node * ln = (Node *) malloc(sizeof(Node));
-      	ln->key = k;
-      	ln->next = x;
+      	ln->key = random();
+      	ln->next = s;
       	ln->left  = NULL;
       	ln->right = NULL;
       	ln->tree  = NULL;
 
 				l = ln;
 
-				free(tn);
+				freeh(tn);
 
 			} else { 
 

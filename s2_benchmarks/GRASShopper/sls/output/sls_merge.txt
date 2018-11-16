@@ -1,0 +1,156 @@
+
+!!!Full processing file "GRASShopper//sls/sls_merge.dryad.c"
+Parsing file "GRASShopper//sls/sls_merge.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//sls/sls_merge.dryad.c -o GRASShopper//sls/sls_merge.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of merge: :HP_24
+!!! generate unknown predicate for Post synthesis of merge: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(a,b))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(a,b,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_29_2$node~node~node: :HP_1362
+!!! generate unknown predicate for Post synthesis of while_29_2$node~node~node: :GP_1366Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_29_2$node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1469,HP_1470,GP_1366]requires HP_1469(b,a) * 
+HP_1470(last_66)&
+truerequires emp
+ ensures GP_1366(last_66,last_66',b,b',a,a')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;2;1;0)HP_1362(last_66,b,a)&a=null & 
+b!=null --> last_66::node<key_37_1486,next_37_1487> * 
+HP_1488(next_37_1487,b@NI) * HP_1489(b,last_66@NI)&
+true,
+ // BIND
+(1;1;2;1;0)HP_1489(b',last_1491@NI)&
+b'!=null --> b'::node<key_39_1494,next_39_1495> * 
+HP_1496(next_39_1495,last_1491@NI)&
+true,
+ // BIND
+(1;2;1;1;0)HP_1362(last_66,b,a)&b!=null & 
+a!=null --> a::node<key_36_1505,next_36_1506> * 
+HP_1507(next_36_1506,last_66@NI,b@NI) * HP_1508(last_66,b,a@NI)&
+true,
+ // BIND
+(1;2;1;1;0)HP_1508(last_66,b',a@NI)&
+b'!=null --> b'::node<key_36_1513,next_36_1514> * 
+HP_1515(next_36_1514,last_66@NI,a@NI) * HP_1516(last_66,b'@NI,a@NI)&
+true,
+ // BIND
+(1;1;2;1;1;0)HP_1516(last_66,b@NI,a@NI)&
+true --> last_66::node<key_37_1527,next_37_1528> * 
+HP_1529(next_37_1528,b@NI,a@NI)&
+true,
+ // BIND
+(2;1;2;1;1;0)HP_1516(last_66,b@NI,a@NI)&
+true --> last_66::node<key_41_1538,next_41_1539> * 
+HP_1540(next_41_1539,b@NI,a@NI)&
+true,
+ // BIND
+(2;2;1;1;0)HP_1362(last_66,b,a)&b=null & 
+a!=null --> last_66::node<key_41_1549,next_41_1550> * 
+HP_1551(next_41_1550,a@NI) * HP_1552(a,last_66@NI)&
+true,
+ // BIND
+(2;2;1;1;0)HP_1552(a',last_1554@NI)&
+a'!=null --> a'::node<key_43_1557,next_43_1558> * 
+HP_1559(next_43_1558,last_1554@NI)&
+true,
+ // PRE_REC
+(1;1;2;1;1;0)HP_1507(next_36_1506,last_1531@NI,b@NI) * 
+a::node<key_36_1505,next_36_1506> * HP_1515(b',last_1531@NI,a@NI) * 
+b::node<key_36_1513,b'>&true --> HP_1362(b,b',a)&
+true,
+ // PRE_REC
+(2;2;1;1;0)HP_1559(a',last_1554@NI) * a_1561::node<key_43_1557,a'>&
+b'=null --> HP_1362(a_1561,b',a')&
+true,
+ // PRE_REC
+(1;1;2;1;0)HP_1496(b',last_1491@NI) * b_1498::node<key_39_1494,b'>&
+a'=null --> HP_1362(b_1498,b',a')&
+true,
+ // POST
+(1;1;2;1;1;0)last_66::node<key_37_1527,b> * 
+GP_1366(b,last_66',next_36_1514,b',a,a')&a!=null & 
+b!=null --> GP_1366(last_66,last_66',b,b',a,a')&
+true,
+ // POST
+(2;1;2;1;1;0)last_66::node<key_41_1538,a> * 
+GP_1366(a,last_66',b,b',next_36_1506,a')&b!=null & 
+a!=null --> GP_1366(last_66,last_66',b,b',a,a')&
+true,
+ // POST
+(2;2;1;1;0)last_66::node<key_41_1549,a> * 
+GP_1366(a,last_66',b,b',next_43_1558,a')&a!=null & 
+b=null --> GP_1366(last_66,last_66',b,b',a,a')&
+true,
+ // POST
+(1;1;2;1;0)last_66::node<key_37_1486,b> * 
+GP_1366(b,last_66',next_39_1495,b',a,a')&b!=null & 
+a=null --> GP_1366(last_66,last_66',b,b',a,a')&
+true,
+ // POST
+(2;2;1;0)HP_1362(last_66,b,a)&a=null & a'=null & b=null & b'=null & a'=a & 
+b'=a & b=a & last_66'=last_66 --> GP_1366(last_66,last_66',b,b',a,a')&
+true]
+
+Procedure while_29_2$node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at GRASShopper//sls/sls_merge.dryad.c_29:2_45:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1469,HP_1470,GP_1366]
+   EBase HP_1469(b,a) * HP_1470(last_66)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [last_66;b;a]
+                     GP_1366(last_66,last_66',b,b',a,a')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure merge$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(a,b)&
+truerequires emp
+ ensures GP_25(a,b,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure merge$node~node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure merge$node~node
+Stop z3... 234 invocations Stop Omega... 87 invocations 
+1 false contexts at: ( (29,2) )
+
+!!! log(small):(0.132687,942)
+Total verification time: 0.256 second(s)
+	Time spent in main process: 0.164 second(s)
+	Time spent in child processes: 0.092 second(s)
+	Z3 Prover Time: 0.004 second(s)

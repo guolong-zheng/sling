@@ -1,13 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag b_node */
-struct b_node {
-  struct b_node * left;
-  struct b_node * right;
-  int key;
-} BNode;
 
 BNode * bst_insert_rec(BNode * x, int k)
 /*@
@@ -19,7 +12,6 @@ BNode * bst_insert_rec(BNode * x, int k)
 
   if (x == NULL) {
     BNode * leaf = (BNode *) malloc(sizeof(BNode));
-    _(assume leaf != NULL)
 
     leaf->key   = k;
     leaf->left  = NULL;

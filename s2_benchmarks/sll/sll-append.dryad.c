@@ -1,11 +1,4 @@
-
-#include <stdlib.h>
-typedef 
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} SNnode;
+#include "stdhipmem.h"
 
 SNnode * sll_append(SNnode * x1, SNnode * x2)
 /*@

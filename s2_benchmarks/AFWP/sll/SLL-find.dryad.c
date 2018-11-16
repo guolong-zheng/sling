@@ -1,14 +1,10 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-   int key;
-   struct node * next;
-} Node;
 
-_(pure) int has_property(Node * x);
+int has_property(Node * x){
+  return random();
+}
 // 1 if x has desired propertiy
 // 0 otherwise
 

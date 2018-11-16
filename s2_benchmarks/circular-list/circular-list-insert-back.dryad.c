@@ -1,17 +1,21 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} CNode;
 
 CNode * lseg_insert_back(CNode * hd, CNode * tl)
-  /*D_requires (lseg^(hd, tl) & (~ (hd l= tl))) */
-  /*D_ensures lseg^(ret, tl) */
-;
+{
+  CNode * next = hd->next;
+
+	if (next == NULL) return next;
+	if (next == tl) {
+		free(hd);
+		return next;
+	} else {
+		CNode * hd_next = lseg_insert_back(next, tl);
+		hd->next = hd_next;
+		return hd;
+	}
+}
 
 CNode * circular_list_insert_back(CNode * x)
 /*@
@@ -24,7 +28,6 @@ CNode * circular_list_insert_back(CNode * x)
 
 	if (next == x) {
 		CNode * tl = (CNode *) malloc(sizeof(CNode));
-		_(assume tl != NULL)
 		tl->next = x;
 		x->next = tl;
 		

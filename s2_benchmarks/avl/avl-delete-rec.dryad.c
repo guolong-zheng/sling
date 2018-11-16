@@ -1,18 +1,8 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag a_node */
-struct a_node {
-  struct a_node * left;
-  struct a_node * right;
-  int key;
-  int height;
-} AVLNode;
 
-int avl_find_smallest(AVLNode * x);
 
-AVLNode * avl_balance(AVLNode * x);
 
 AVLNode * avl_delete(AVLNode * x, int k)
 /*@
@@ -38,7 +28,7 @@ AVLNode * avl_delete(AVLNode * x, int k)
 				free(x);
 				return left;
 			} else {
-				int succ = avl_find_smallest(right);
+				int succ = avl_find_smallest_h(right);
 
 				AVLNode * new_right = avl_delete(right, succ);
 

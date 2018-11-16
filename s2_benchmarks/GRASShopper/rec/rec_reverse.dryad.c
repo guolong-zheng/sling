@@ -1,11 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  struct node * next;
-} Node;
 
 Node * rec_reverse_acc(Node * curr, Node * rev)
 /*@

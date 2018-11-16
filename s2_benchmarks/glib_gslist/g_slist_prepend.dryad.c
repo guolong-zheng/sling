@@ -1,14 +1,8 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
-Node * g_slist_prepend (Node * list, int data)
+Node * g_slist_prepends (Node * list, int data)
 /*@
  infer[@shape]
  requires true
@@ -16,7 +10,7 @@ Node * g_slist_prepend (Node * list, int data)
  */
 {
   Node * new_list = (Node *) malloc(sizeof(Node));
-  _(assume new_list != NULL)
+
   new_list->key = data;
   new_list->next = list;    
   return new_list;

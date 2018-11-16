@@ -1,12 +1,6 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
 
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-} Node;
 
 Node * g_slist_copy(Node * list)
 /*@
@@ -20,7 +14,7 @@ Node * g_slist_copy(Node * list)
 		Node * last = NULL;
 
 		new_list = (Node *) malloc(sizeof(Node));
-		_(assume new_list != NULL)
+
     
     int list_key = list->key;
 		new_list->key = list_key;
@@ -39,7 +33,7 @@ Node * g_slist_copy(Node * list)
 
 		{
 			Node * tail = (Node *)malloc(sizeof(Node));
-			_(assume tail != NULL)
+
 
       int list_key = list->key;
  			tail->key = list_key;

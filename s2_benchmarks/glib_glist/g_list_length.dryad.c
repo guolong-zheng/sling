@@ -1,35 +1,27 @@
+#include "stdhipmem.h"
 
-#include <stdlib.h>
-
-typedef
-/*D_tag node */
-struct node {
-  int key;
-  struct node * next;
-  struct node * prev;
-} DLNode;
-
-typedef unsigned uint;
-
-uint g_list_length(DLNode * list, int data) 
+int g_list_length(DLNode * list)
 /*@
- infer[@shape]
- requires true
- ensures true;
- */
+  infer[@shape]
+  requires true
+  ensures true;
+*/
 {
-  uint length;
-
+  //pre
+  int length;
   length = 0;
   while(list != NULL)
-  /*@
-   infer[@shape]
-   requires true
-   ensures true;
-   */
+/*@
+  infer[@shape]
+  requires true
+  ensures true;
+*/
   {
     length ++;
     list = list->next;
   }
+  //post
   return length;
 }
+
+
