@@ -5,9 +5,10 @@ SIZE=$1
 DEFN=$2
 pushd $(dirname $FILE)
 mkdir -p output
-fname=${FILE%.c}
+fname=${FILE%.cpp}
 if [ ! -f $fname ]; then
-    gcc $(basename $FILE) header.c -g -o $(basename $fname)
+#    g++ $(basename $FILE) header.c -g -o $(basename $fname)
+     g++ $(basename $FILE) -g -o $(basename $fname)
 fi
 popd
 

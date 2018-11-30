@@ -15,7 +15,7 @@ def create_target(exe, bps):
     ldict = {}
     if target:
         for loc in bps:
-            bp = target.BreakpointCreateByLocation(exe+".c", loc)
+            bp = target.BreakpointCreateByLocation(exe+".cpp", loc)
             bp_loc = bp.GetLocationAtIndex(0)
             bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
             ldict[loc] = bp_line
@@ -60,9 +60,9 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
                 inv_traces.append(trace)
         process.Continue()
     # print "No breakpoint set up!"
-    # debug(pre_traces)
-    # debug(post_traces)
-    debug(len(inv_traces))
+    #debug(pre_traces)
+    #debug(post_traces)
+    #debug(len(inv_traces))
     return (pre_traces, post_traces, inv_traces)
 
 def traverse_heap(vars):
@@ -75,8 +75,10 @@ def traverse_heap(vars):
             if var.TypeIsPointerType():
                 stack.add(var.GetName(), Addr(var.GetValue()))
                 to_visit.append(var)
-            else:
-                stack.add(var.GetName(), Int(var.GetValue()))
+            #else:
+                #debug(var.GetName())
+                #debug(var.GetValue())
+                #stack.add(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
 
@@ -88,16 +90,17 @@ def expand_cell(heap, to_visit):
         var = to_visit.pop(0)
         if var.TypeIsPointerType() and var.GetValueAsUnsigned() == 0:
             continue
-        typ = str_type(var.GetType().GetCanonicalType())
+        typ = str_type(var.GetType().GetCanonicalType()).split()[-1]
         var = var.Dereference()
+        #debug(var.GetAddress())
         heap_addr = int(var.GetAddress())
 
         if heap_addr not in heap:
             fields = []
             for i in range(0, var.GetNumChildren()):
                 child = var.GetChildAtIndex(i)
-                child_typ = str_type(child.GetType().GetCanonicalType())
-                child_name = child.GetName()
+                child_typ = str_type(child.GetType().GetCanonicalType()).split()[-1]
+                child_name = child.GetName().split()[-1]
                 if child.TypeIsPointerType():
                     if child.GetValueAsUnsigned() == 0:
                         field = PtrField(child_name, Addr(Const.nil_addr))
