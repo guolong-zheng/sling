@@ -17,7 +17,7 @@ public class HeapCollector {
         for(int i = 0; i < objs.length; i++){
             HeapNode hn;
             if(objs[i] == null)
-                hn = new HeapNode(names[i], "null");
+                hn = new HeapNode(names[i], "nil");
             else {
                 hn = new HeapNode(names[i], normalize(objs[i].toString()));
                 toVisit.add(objs[i]);
@@ -44,12 +44,12 @@ public class HeapCollector {
                         e.printStackTrace();
                     }
                     if (newVar == null)
-                        fields.add(field.getName() + "|" + "null");
+                        fields.add(field.getName() + ":" + "nil");
                     else {
                         if(type.contains("Object"))
                             type = type.replace("java.lang.Object","int");
                         //fields.add(type.replace("class ", "") + "|" + normalize(newVar.toString()));
-                        fields.add(field.getName() + "|" + normalize(newVar.toString()));
+                        fields.add(field.getName() + ":" + normalize(newVar.toString()));
                         if (!isPrim(type) && !heap.contains(normalize(newVar.toString()))) {
                             toVisit.add(newVar);
                         }

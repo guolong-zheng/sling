@@ -1,139 +1,219 @@
-pre|106
-stack:
-head 0x610455d6
-tail 0x85ede7b
-heap:
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-end
-loop|109
-stack:
-head 0x610455d6
-tail 0x85ede7b
-tmp 0x610455d6
-heap:
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-end
-loop|109
-stack:
-tail 0x85ede7b
-tmp 0x355da254
-head 0x610455d6
-heap:
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-end
-loop|109
-stack:
-head 0x610455d6
-tail 0x85ede7b
-tmp 0x7440e464
-heap:
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-end
-loop|109
-stack:
-tail 0x85ede7b
-head 0x610455d6
-tmp 0x58372a00
-heap:
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-end
-loop|109
-stack:
-head 0x610455d6
-tail 0x85ede7b
-tmp 0x4617c264
-heap:
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-end
-loop|109
-stack:
-tmp 0x54bedef2
-tail 0x85ede7b
-head 0x610455d6
-heap:
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-end
-loop|109
-stack:
-head 0x610455d6
-tail 0x85ede7b
-tmp 0x85ede7b
-heap:
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-end
-loop|109
-stack:
-tmp null
-tail 0x85ede7b
-head 0x610455d6
-heap:
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-end
-post|116
-stack:
-tmp null
-tail 0x85ede7b
-head 0x610455d6
-heap:
-SlNode|0x355da254 value|32 nextRef|0x7440e464 
-SlNode|0x54bedef2 value|100 nextRef|0x85ede7b 
-SlNode|0x610455d6 value|3 nextRef|0x355da254 
-SlNode|0x85ede7b value|50 nextRef|null 
-SlNode|0x4617c264 value|89 nextRef|0x54bedef2 
-SlNode|0x58372a00 value|76 nextRef|0x4617c264 
-SlNode|0x7440e464 value|54 nextRef|0x58372a00 
-end
+
+pre|106;
+head = 0x610455d6;
+tail = 0x85ede7b;
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x610455d6;
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+tail = 0x85ede7b;
+tmp = 0x355da254;
+head = 0x610455d6;
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x7440e464;
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+loop|109;
+tail = 0x85ede7b;
+head = 0x610455d6;
+tmp = 0x58372a00;
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x4617c264;
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+loop|109;
+tmp = 0x54bedef2;
+tail = 0x85ede7b;
+head = 0x610455d6;
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x85ede7b;
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+tmp = null;
+tail = 0x85ede7b;
+head = 0x610455d6;
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+post|116;
+tmp = null;
+tail = 0x85ede7b;
+head = 0x610455d6;
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+pre|106;
+head = 0x610455d6;
+tail = 0x85ede7b;
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x610455d6;
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+tail = 0x85ede7b;
+tmp = 0x355da254;
+head = 0x610455d6;
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x7440e464;
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+loop|109;
+tail = 0x85ede7b;
+head = 0x610455d6;
+tmp = 0x58372a00;
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x4617c264;
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+loop|109;
+tmp = 0x54bedef2;
+tail = 0x85ede7b;
+head = 0x610455d6;
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+head = 0x610455d6;
+tail = 0x85ede7b;
+tmp = 0x85ede7b;
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+loop|109;
+tmp = nil;
+tail = 0x85ede7b;
+head = 0x610455d6;
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+post|116;
+tmp = nil;
+tail = 0x85ede7b;
+head = 0x610455d6;
+0x355da254 -> SlNode{value:32;nextRef:0x7440e464};
+0x54bedef2 -> SlNode{value:100;nextRef:0x85ede7b};
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x85ede7b -> SlNode{value:50;nextRef:nil};
+0x4617c264 -> SlNode{value:89;nextRef:0x54bedef2};
+0x58372a00 -> SlNode{value:76;nextRef:0x4617c264};
+0x7440e464 -> SlNode{value:54;nextRef:0x58372a00};

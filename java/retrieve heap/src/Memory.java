@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class Memory {
     Heap stack;
@@ -17,20 +18,19 @@ public class Memory {
         try {
             fw = new FileWriter(fileName, true);
             writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.append(loc + "\n");
-            writer.append("stack:\n");
+            writer.append(loc + ";\n");
             for(HeapNode hn : stack.heapNodes){
-                writer.append(hn.type + " " + hn.name + "\n");
+                writer.append(hn.type + " = " + hn.name + ";\n");
             }
-            writer.append("heap:\n");
             for(HeapNode hn : heap.heapNodes){
-                writer.append(hn.type + "|" + hn.name + " ");
-                for(String s : hn.fieldsByName){
-                    writer.append(s + " ");
+                writer.append(hn.name + " -> " + hn.type + "{");
+                List<String> fieldsByName= hn.fieldsByName;
+                for(int i = 0; i < fieldsByName.size() - 1; i++){
+                    writer.append(fieldsByName.get(i) + ";");
                 }
-                writer.append("\n");
+                writer.append(fieldsByName.get(fieldsByName.size() - 1));
+                writer.append("};\n");
             }
-            writer.append("end\n");
         } catch (IOException e) {
             e.printStackTrace();
         }finally {

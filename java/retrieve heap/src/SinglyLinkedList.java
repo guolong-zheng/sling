@@ -6,7 +6,7 @@ public class SinglyLinkedList<T> {
     public SlNode<T> tail;
 
     public void add(T element){
-        HeapCollector.collectMemory("sll/add.txt","pre|9",new Object[]{head,tail},"head","tail");
+        HeapCollector.collectMemory("sll/add.txt","9",new Object[]{head,tail},"head","tail");
         SlNode<T> nd = new SlNode<T>();
         nd.setValue(element);
         /**
@@ -23,7 +23,7 @@ public class SinglyLinkedList<T> {
             //set tail as newly created node
             tail = nd;
         }
-        HeapCollector.collectMemory("sll/add.txt","post|26",new Object[]{head,tail},"head","tail");
+        HeapCollector.collectMemory("sll/add.txt","26",new Object[]{head,tail},"head","tail");
     }
 
     public void addAfter(T element, T after){

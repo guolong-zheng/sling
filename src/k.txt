@@ -1,0 +1,13 @@
+26;
+tail = 0x610455d6;
+head = 0x610455d6;
+0x610455d6 -> SlNode{value:3;nextRef:nil};
+9;
+head = 0x610455d6;
+tail = 0x610455d6;
+0x610455d6 -> SlNode{value:3;nextRef:nil};
+26;
+tail = 0x355da254;
+head = 0x610455d6;
+0x610455d6 -> SlNode{value:3;nextRef:0x355da254};
+0x355da254 -> SlNode{value:32;nextRef:nil};

@@ -1,0 +1,15 @@
+Can't create debugger instance
+dynsl.py:243 - ==============================
+dynsl.py:266 - Number of locations: 0
+dynsl.py:267 - Number of traces: 0
+dynsl.py:268 - Number of pre-defined predicates: 1
+dynsl.py:270 - Number of free variables: 0
+dynsl.py:271 - Number of atomic singleton predicates: 0
+dynsl.py:272 - Number of atomic inductive predicates: 0
+dynsl.py:273 - Number of pure constraints: 0
+dynsl.py:274 - Number of total invs: 0
+dynsl.py:275 - Number of pres:0
+dynsl.py:276 - Number of post:0
+dynsl.py:277 - Number of loop:0
+dynsl.py:278 - Running time (sec): 0.105548858643
+../simple_example/prio_tree/delete_rec.c,0,0,0,0,0,0,0,0,0,0,0,0.10
