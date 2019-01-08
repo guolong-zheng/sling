@@ -6,6 +6,7 @@ from collections import defaultdict
 from trace import *
 from debug import *
 from model import *
+from parser import *
 
 def create_target(exe, bps):
     exe = os.path.join(os.getcwd(), exe)
@@ -128,16 +129,26 @@ def get_traces(input, pre_bps, post_bps, inv_bps, size):
         trace_pairs.extend(zip(pre_traces[::-1], post_traces))
     return trace_pairs, inv_traces
 
-def get_traces_from_file(filename):
+def get_traces_from_file(filename, pre_bps, post_bps, inv_bps):
     trace_pairs = []
-    (pre_traces, post_traces, inv_traces) = read_file(filename)
+    pre_traces = []
+    post_traces = []
+    inv_traces = []
+    traces = read_file(filename)
+    for trace in traces:
+        if trace.loc in pre_bps:
+            pre_traces.append(trace)
+        elif trace.loc in post_bps:
+            post_traces.append(trace)
+        else:
+            inv_traces.append(trace)
     trace_pairs.extend(zip(pre_traces[::-1], post_traces))
+
     return trace_pairs, inv_traces
 
 def str_type(typ):
     typ_str = str(typ).replace("struct",'')
     typ_str = typ_str.translate(None, '*').strip()
-
     return typ_str
 
 def write_file(exe, traces):
@@ -173,71 +184,17 @@ def traces_str(traces):
                 print hp[h]
 
 def read_file(filename):
-    lines = [line.rstrip('\n') for line in open(filename)]
-    pre_traces = [];
-    post_traces = [];
-    inv_traces = [];
-    stack = Stack()
-    heap = Heap()
-    for l in lines:
-        if 'end' in l:
-            trace = Traces(location, stack, heap)
-            if '|' in l:
-                s = l.split('|')[1]
-                if s.startswith('0x'):
-                    trace.ret = Addr(s)
-                else:
-                    trace.ret = Int(s)
-            visiting_trace.append(trace)
-            stack = Stack()
-            heap = Heap()
-            continue
-        elif 'pre' in l:
-            visiting_trace = pre_traces
-            location = l.split('|')[1]
-            continue
-        elif 'post' in l:
-            visiting_trace = post_traces
-            location = l.split('|')[1]
-            continue
-        elif 'loop' in l:
-            visiting_trace = inv_traces
-            location = l.split('|')[1]
-            continue
-        elif 'stack' in l:
-            mode = 0
-            continue
-        elif 'heap' in l:
-            mode = 1
-            continue
-        
-        if mode == 0:
-            words = l.split()
-            if words[1].startswith('0x'):
-                stack.add(words[0],Addr(words[1]))
-            elif 'null' in words[1]:
-                stack.add(words[0],Addr(Const.nil_addr))
-            else:
-                stack.add(words[0],Int(words[1]))
-        else:
-            words = l.split()
-            fields = []
-            for item in words[1:]:
-                if 'null' in item:
-                    field = PtrField(item.split('|')[0],Addr(Const.nil_addr))
-                else:
-                    ws = item.split('|')
-                    if ws[1].startswith('0x'):
-                        field = PtrField(ws[0],Addr(ws[1]))
-                    else:
-                        field = DataField(ws[0],Int(ws[1]))
-                fields.append(field)
-            roots = words[0].split('|')
-            heap.add(Addr(roots[1]),(roots[0], fields))
-    return (pre_traces, post_traces, inv_traces)
+    with open(filename, 'r') as myfile:
+        data = myfile.read()
+
+    fileparser = FileParser()
+    trace_ast = fileparser.file_parser.parse(data)
+    return fileparser.transform(trace_ast)
+    #debug(trace)
+
 
 def main():
-    read_file("test.txt")
+    read_file("k.txt")
 
 if __name__ == "__main__":
     main()

@@ -8,6 +8,16 @@ from get_trace import *
 from test import *
 import argparse
 import timeit
+import re
+
+def remove_redudent(inv_set):
+    new_set = {}
+    regex = r"fv![0-9]+"
+    for inv in inv_set:
+        match = re.match(regex, inv)
+        result = [x for x in match.groups() if x and x!=inv]
+        debug(result)
+
 
 def main():
     aparser = argparse.ArgumentParser(description='SLING')
@@ -83,7 +93,7 @@ def main():
         start_time = timeit.default_timer()
 
         if args.java:
-            trace_pairs, inv_traces = get_traces_from_file(infile)
+            trace_pairs, inv_traces = get_traces_from_file(infile, pre_bps, post_bps, inv_bps)
         else:
             trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
 
@@ -197,6 +207,7 @@ def main():
             for pre_loc in pre_invs:
                 pre_f_lst = pre_invs[pre_loc]
                 #debug('Precondition at location ' + str(pr_loc) + ':')
+
                 for pre_f in set(map(str,pre_f_lst)):
                     pre_num = pre_num + 1
                     debug(pre_f)
