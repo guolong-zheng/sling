@@ -10,13 +10,26 @@ import argparse
 import timeit
 import re
 
-def remove_redudent(inv_set):
-    new_set = {}
-    regex = r"fv![0-9]+"
+def normalize(inv):
+    regex = re.compile('fv![0-9]+')
+    match = regex.findall(inv)
+    i = 0
+    for x in match:
+        inv = inv.replace(x, "fv"+str(i))
+        i = i + 1
+    return inv
+
+def remove_redundent(inv_set):
+    new_set = set()
+    #regex = re.compile('fv![0-9]+')
     for inv in inv_set:
-        match = re.match(regex, inv)
-        result = [x for x in match.groups() if x and x!=inv]
-        debug(result)
+        #match = regex.findall(inv)
+        #i = 0
+        #for x in match:
+        #    inv = inv.replace(x, "fv"+str(i))
+        #    i = i + 1
+        new_set.add(normalize(inv))
+    return new_set
 
 
 def main():
@@ -206,9 +219,10 @@ def main():
             #debug(pr_f)
             for pre_loc in pre_invs:
                 pre_f_lst = pre_invs[pre_loc]
+                pre_f_lst = remove_redundent(set(map(str,pre_f_lst)))
                 #debug('Precondition at location ' + str(pr_loc) + ':')
 
-                for pre_f in set(map(str,pre_f_lst)):
+                for pre_f in pre_f_lst:
                     pre_num = pre_num + 1
                     debug(pre_f)
             # stat_specs = stat_specs + 1
@@ -216,9 +230,10 @@ def main():
             #specs_num = 1
             for po_loc in pr_f_posts:
                 po_f_lst = pr_f_posts[po_loc]
+		po_f_lst = remove_redundent(set(map(str,po_f_lst)))
                 debug('Postconditions at location ' + str(po_loc) + ':')
                 #debug(specs_num)
-                for po_f in set(map(str,po_f_lst)):
+                for po_f in po_f_lst:
                     #specs_num = specs_num + 1
                     post_num = post_num + 1
                     debug(po_f)
@@ -231,7 +246,7 @@ def main():
             debug('Invariants at location ' + str(inv_loc) + ':')
             loop_inv_set = []
             for (inv, inv_residue) in inv_residue_lst:
-                if str(inv) in loop_inv_set:
+                if normalize(str(inv)) in loop_inv_set:
                     pass
                 else:
                     loop_inv_set.append(str(inv))
@@ -251,7 +266,7 @@ def main():
             #debug(res_lst)
             stat_invs += len(res_lst)
             for (inv, _) in res_lst:
-                if str(inv) in inv_set:
+                if normalize(str(inv)) in inv_set:
                     pass
                 else:
                     #debug(inv)
@@ -265,7 +280,7 @@ def main():
         debug('Number of locations: ' + str(stat_locs))
         debug('Number of traces: ' + str(stat_traces))
         debug('Number of pre-defined predicates: ' + str(stat_preds))
-        #debug('Number of inferred assertions: ' + str(stat_invs))
+        debug('Number of inferred assertions: ' + str(stat_invs))
         debug('Number of free variables: ' + str(stat_free_vars))
         debug('Number of atomic singleton predicates: ' + str(stat_atom_data))
         debug('Number of atomic inductive predicates: ' + str(stat_atom_pred))

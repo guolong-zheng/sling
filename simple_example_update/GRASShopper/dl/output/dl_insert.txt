@@ -1,88 +1,89 @@
-dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+dynsl.py:167 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:144 - Inferring inv-conditions at the location 17 ...
+dynsl.py:167 - Inferring inv-conditions at the location 17 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 10 ...
+dynsl.py:167 - Inferring post-conditions at the location 10 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 28 ...
+dynsl.py:167 - Inferring post-conditions at the location 28 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 8:
-dynsl.py:202 - (exists fv!6, fv!5, fv!62, fv!63. dll(lst, nil, fv!5, fv!6) * dll(elt, fv!62, fv!63, nil) & fv!6=nil & elt=fv!63)
-dynsl.py:202 - (exists fv!3, fv!4, fv!45, fv!46. dll(lst, fv!3, fv!4, nil) * dll(elt, fv!45, fv!46, nil) & fv!46=elt)
-dynsl.py:202 - (exists fv!6, fv!5, fv!64, fv!65. dll(lst, nil, fv!5, fv!6) * dll(elt, nil, fv!64, fv!65) & fv!6=nil)
-dynsl.py:202 - (exists fv!3, fv!4, fv!47, fv!48. dll(lst, fv!3, fv!4, nil) * dll(elt, nil, fv!47, fv!48) & True)
-dynsl.py:202 - (exists fv!8, fv!7, fv!80, fv!79. dll(lst, fv!7, nil, fv!8) * dll(elt, fv!79, fv!80, nil) & lst=fv!8 & fv!7=nil & fv!80=elt)
-dynsl.py:202 - (exists fv!8, fv!7, fv!81, fv!82. dll(lst, fv!7, nil, fv!8) * dll(elt, nil, fv!81, fv!82) & lst=fv!8 & fv!7=nil)
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 10:
-dynsl.py:213 - (exists fv!1863, fv!1862. dll(elt, fv!1862, fv!1863, lst) & lst=nil & fv!1863=elt & fv!1863=res & elt=res)
-dynsl.py:213 - (exists fv!1871, fv!1872. dll(elt, fv!1871, fv!1872, nil) & fv!1872=elt & fv!1872=res & lst=nil & elt=res)
-dynsl.py:208 - Postconditions at location 28:
-dynsl.py:213 - (exists fv!1933, fv!2116. dll(lst, nil, fv!1933, curr) * curr:node->node{elt, fv!2065} * dll(elt, curr, fv!2116, nil) & fv!2116=elt & lst=res & fv!2065=fv!1933 & curr_next=nil)
-dynsl.py:213 - (exists fv!1933, fv!2057, fv!2056. dll(lst, nil, fv!1933, curr) * dll(curr, fv!2056, fv!2057, elt) * elt:node->node{curr_next, curr} & lst=res & curr=fv!2057 & fv!2056=fv!1933 & curr_next=nil)
-dynsl.py:213 - (exists fv!1887, fv!1980, fv!1981, fv!2008. dll(lst, curr_next, fv!1887, curr) * dll(curr, fv!1980, fv!1981, elt) * dll(elt, curr, fv!2008, nil) & curr=fv!1981 & fv!2008=elt & fv!1980=fv!1887 & lst=res & curr_next=nil)
-dynsl.py:213 - (exists fv!1887, fv!1980, fv!1981, fv!1993. dll(lst, curr_next, fv!1887, curr) * dll(curr, fv!1980, fv!1981, elt) * dll(elt, curr, fv!1993, curr_next) & curr=fv!1981 & fv!1980=fv!1887 & fv!1993=elt & lst=res & curr_next=nil)
-dynsl.py:213 - (exists fv!1933, fv!2101. dll(lst, nil, fv!1933, curr) * curr:node->node{elt, fv!2065} * dll(elt, curr, fv!2101, curr_next) & lst=res & fv!2065=fv!1933 & fv!2101=elt & curr_next=nil)
-dynsl.py:213 - (exists fv!1887. dll(lst, curr_next, fv!1887, curr) * curr:node->node{elt, fv!1989} * elt:node->node{curr_next, curr} & lst=res & fv!1989=fv!1887 & curr_next=nil)
-dynsl.py:213 - (exists fv!1933. dll(lst, nil, fv!1933, curr) * curr:node->node{elt, fv!2065} * elt:node->node{curr_next, curr} & lst=res & fv!2065=fv!1933 & curr_next=nil)
-dynsl.py:213 - (exists fv!1887, fv!2025. dll(lst, curr_next, fv!1887, curr) * curr:node->node{elt, fv!1989} * dll(elt, curr, fv!2025, curr_next) & lst=res & fv!1989=fv!1887 & curr_next=nil & elt=fv!2025)
-dynsl.py:213 - (exists fv!1887, fv!1980, fv!1981. dll(lst, curr_next, fv!1887, curr) * dll(curr, fv!1980, fv!1981, elt) * elt:node->node{curr_next, curr} & lst=res & curr=fv!1981 & curr_next=nil & fv!1980=fv!1887)
-dynsl.py:213 - (exists fv!1933, fv!2057, fv!2056, fv!2084. dll(lst, nil, fv!1933, curr) * dll(curr, fv!2056, fv!2057, elt) * dll(elt, curr, fv!2084, nil) & curr=fv!2057 & fv!2084=elt & fv!1933=fv!2056 & lst=res & curr_next=nil)
-dynsl.py:213 - (exists fv!1887, fv!2040. dll(lst, curr_next, fv!1887, curr) * curr:node->node{elt, fv!1989} * dll(elt, curr, fv!2040, nil) & lst=res & fv!1989=fv!1887 & curr_next=nil & fv!2040=elt)
-dynsl.py:213 - (exists fv!1933, fv!2057, fv!2056, fv!2069. dll(lst, nil, fv!1933, curr) * dll(curr, fv!2056, fv!2057, elt) * dll(elt, curr, fv!2069, curr_next) & curr=fv!2057 & fv!1933=fv!2056 & fv!2069=elt & lst=res & curr_next=nil)
-dynsl.py:220 - Invariants at location 17:
-dynsl.py:227 - (exists fv!101, fv!296, fv!297, fv!599, fv!598. dll(lst, curr_next, fv!101, curr) * dll(curr, curr_next, fv!296, fv!297) * dll(elt, curr_next, fv!598, fv!599) & fv!599=curr_next & fv!599=nil & fv!598=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!296, fv!297, fv!601, fv!600. dll(lst, curr_next, fv!101, curr) * dll(curr, curr_next, fv!296, fv!297) * dll(elt, fv!600, fv!601, curr_next) & fv!601=elt & curr_next=fv!600 & curr_next=nil & fv!600=nil)
-dynsl.py:227 - (exists fv!101, fv!296, fv!297. dll(lst, curr_next, fv!101, curr) * dll(curr, curr_next, fv!296, fv!297) * elt:node->node{curr_next, curr_next} & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!296, fv!297, fv!658, fv!659. dll(lst, curr_next, fv!101, curr) * dll(curr, curr_next, fv!296, fv!297) * dll(elt, fv!658, fv!659, nil) & fv!658=curr_next & fv!658=nil & fv!659=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!296, fv!297, fv!661, fv!660. dll(lst, curr_next, fv!101, curr) * dll(curr, curr_next, fv!296, fv!297) * dll(elt, nil, fv!660, fv!661) & fv!660=elt & fv!661=curr_next & fv!661=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!298, fv!299, fv!719, fv!718. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!298, fv!299, curr_next) * dll(elt, curr_next, fv!718, fv!719) & fv!101=fv!298 & curr_next=fv!719 & curr_next=nil & fv!719=nil & fv!718=elt)
-dynsl.py:227 - (exists fv!101, fv!298, fv!299, fv!720, fv!721. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!298, fv!299, curr_next) * dll(elt, fv!720, fv!721, curr_next) & fv!101=fv!298 & fv!720=curr_next & fv!720=nil & fv!721=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!298, fv!299. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!298, fv!299, curr_next) * elt:node->node{curr_next, curr_next} & fv!101=fv!298 & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!298, fv!299, fv!779, fv!778. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!298, fv!299, curr_next) * dll(elt, fv!778, fv!779, nil) & fv!101=fv!298 & fv!779=elt & fv!778=curr_next & fv!778=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!298, fv!299, fv!780, fv!781. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!298, fv!299, curr_next) * dll(elt, nil, fv!780, fv!781) & fv!101=fv!298 & fv!780=elt & fv!781=curr_next & fv!781=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!448, fv!447, fv!838, fv!839. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!447, fv!448, nil) * dll(elt, curr_next, fv!838, fv!839) & fv!101=fv!447 & fv!838=elt & fv!839=curr_next & fv!839=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!448, fv!447, fv!841, fv!840. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!447, fv!448, nil) * dll(elt, fv!840, fv!841, curr_next) & fv!101=fv!447 & fv!841=elt & fv!840=curr_next & fv!840=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!448, fv!447. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!447, fv!448, nil) * elt:node->node{curr_next, curr_next} & fv!101=fv!447 & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!448, fv!447, fv!898, fv!899. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!447, fv!448, nil) * dll(elt, fv!898, fv!899, nil) & fv!101=fv!447 & fv!898=curr_next & fv!898=nil & fv!899=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!448, fv!447, fv!900, fv!901. dll(lst, curr_next, fv!101, curr) * dll(curr, fv!447, fv!448, nil) * dll(elt, nil, fv!900, fv!901) & fv!101=fv!447 & fv!900=elt & fv!901=curr_next & fv!901=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!449, fv!450, fv!959, fv!958. dll(lst, curr_next, fv!101, curr) * dll(curr, nil, fv!449, fv!450) * dll(elt, curr_next, fv!958, fv!959) & fv!958=elt & fv!959=curr_next & fv!959=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!449, fv!450, fv!960, fv!961. dll(lst, curr_next, fv!101, curr) * dll(curr, nil, fv!449, fv!450) * dll(elt, fv!960, fv!961, curr_next) & fv!960=curr_next & fv!960=nil & fv!961=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!449, fv!450. dll(lst, curr_next, fv!101, curr) * dll(curr, nil, fv!449, fv!450) * elt:node->node{curr_next, curr_next} & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!449, fv!450, fv!1018, fv!1019. dll(lst, curr_next, fv!101, curr) * dll(curr, nil, fv!449, fv!450) * dll(elt, fv!1018, fv!1019, nil) & fv!1018=curr_next & fv!1018=nil & fv!1019=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!101, fv!449, fv!450, fv!1021, fv!1020. dll(lst, curr_next, fv!101, curr) * dll(curr, nil, fv!449, fv!450) * dll(elt, nil, fv!1020, fv!1021) & curr_next=fv!1021 & curr_next=nil & fv!1021=nil & fv!1020=elt)
-dynsl.py:227 - (exists fv!199, fv!1078, fv!1079, fv!1380, fv!1381. dll(lst, nil, fv!199, curr) * dll(curr, curr_next, fv!1078, fv!1079) * dll(elt, curr_next, fv!1380, fv!1381) & fv!1380=elt & fv!1381=curr_next & fv!1381=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1078, fv!1079, fv!1382, fv!1383. dll(lst, nil, fv!199, curr) * dll(curr, curr_next, fv!1078, fv!1079) * dll(elt, fv!1382, fv!1383, curr_next) & fv!1382=curr_next & fv!1382=nil & fv!1383=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1078, fv!1079. dll(lst, nil, fv!199, curr) * dll(curr, curr_next, fv!1078, fv!1079) * elt:node->node{curr_next, curr_next} & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1078, fv!1079, fv!1441, fv!1440. dll(lst, nil, fv!199, curr) * dll(curr, curr_next, fv!1078, fv!1079) * dll(elt, fv!1440, fv!1441, nil) & fv!1441=elt & fv!1440=curr_next & fv!1440=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1078, fv!1079, fv!1443, fv!1442. dll(lst, nil, fv!199, curr) * dll(curr, curr_next, fv!1078, fv!1079) * dll(elt, nil, fv!1442, fv!1443) & fv!1443=curr_next & fv!1443=nil & fv!1442=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1081, fv!1080, fv!1500, fv!1501. dll(lst, nil, fv!199, curr) * dll(curr, fv!1080, fv!1081, curr_next) * dll(elt, curr_next, fv!1500, fv!1501) & fv!1500=elt & fv!1501=curr_next & fv!1501=nil & fv!199=fv!1080 & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1081, fv!1080, fv!1502, fv!1503. dll(lst, nil, fv!199, curr) * dll(curr, fv!1080, fv!1081, curr_next) * dll(elt, fv!1502, fv!1503, curr_next) & fv!1502=curr_next & fv!1502=nil & fv!1503=elt & fv!199=fv!1080 & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1081, fv!1080. dll(lst, nil, fv!199, curr) * dll(curr, fv!1080, fv!1081, curr_next) * elt:node->node{curr_next, curr_next} & fv!199=fv!1080 & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1081, fv!1080, fv!1560, fv!1561. dll(lst, nil, fv!199, curr) * dll(curr, fv!1080, fv!1081, curr_next) * dll(elt, fv!1560, fv!1561, nil) & fv!1560=curr_next & fv!1560=nil & fv!1561=elt & fv!199=fv!1080 & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1081, fv!1080, fv!1562, fv!1563. dll(lst, nil, fv!199, curr) * dll(curr, fv!1080, fv!1081, curr_next) * dll(elt, nil, fv!1562, fv!1563) & fv!1562=elt & fv!1563=curr_next & fv!1563=nil & fv!199=fv!1080 & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1229, fv!1230, fv!1621, fv!1620. dll(lst, nil, fv!199, curr) * dll(curr, fv!1229, fv!1230, nil) * dll(elt, curr_next, fv!1620, fv!1621) & fv!199=fv!1229 & curr_next=fv!1621 & curr_next=nil & fv!1621=nil & fv!1620=elt)
-dynsl.py:227 - (exists fv!199, fv!1229, fv!1230, fv!1623, fv!1622. dll(lst, nil, fv!199, curr) * dll(curr, fv!1229, fv!1230, nil) * dll(elt, fv!1622, fv!1623, curr_next) & fv!199=fv!1229 & fv!1623=elt & curr_next=fv!1622 & curr_next=nil & fv!1622=nil)
-dynsl.py:227 - (exists fv!199, fv!1229, fv!1230. dll(lst, nil, fv!199, curr) * dll(curr, fv!1229, fv!1230, nil) * elt:node->node{curr_next, curr_next} & fv!199=fv!1229 & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1229, fv!1230, fv!1681, fv!1680. dll(lst, nil, fv!199, curr) * dll(curr, fv!1229, fv!1230, nil) * dll(elt, fv!1680, fv!1681, nil) & fv!199=fv!1229 & curr_next=fv!1680 & curr_next=nil & fv!1681=elt & fv!1680=nil)
-dynsl.py:227 - (exists fv!199, fv!1229, fv!1230, fv!1683, fv!1682. dll(lst, nil, fv!199, curr) * dll(curr, fv!1229, fv!1230, nil) * dll(elt, nil, fv!1682, fv!1683) & fv!199=fv!1229 & fv!1683=curr_next & fv!1683=nil & fv!1682=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1232, fv!1231, fv!1740, fv!1741. dll(lst, nil, fv!199, curr) * dll(curr, nil, fv!1231, fv!1232) * dll(elt, curr_next, fv!1740, fv!1741) & fv!1740=elt & fv!1741=curr_next & fv!1741=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1232, fv!1231, fv!1742, fv!1743. dll(lst, nil, fv!199, curr) * dll(curr, nil, fv!1231, fv!1232) * dll(elt, fv!1742, fv!1743, curr_next) & fv!1742=curr_next & fv!1742=nil & fv!1743=elt & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1232, fv!1231. dll(lst, nil, fv!199, curr) * dll(curr, nil, fv!1231, fv!1232) * elt:node->node{curr_next, curr_next} & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1232, fv!1231, fv!1801, fv!1800. dll(lst, nil, fv!199, curr) * dll(curr, nil, fv!1231, fv!1232) * dll(elt, fv!1800, fv!1801, nil) & fv!1801=elt & fv!1800=curr_next & fv!1800=nil & curr_next=nil)
-dynsl.py:227 - (exists fv!199, fv!1232, fv!1231, fv!1803, fv!1802. dll(lst, nil, fv!199, curr) * dll(curr, nil, fv!1231, fv!1232) * dll(elt, nil, fv!1802, fv!1803) & fv!1803=curr_next & fv!1803=nil & fv!1802=elt & curr_next=nil)
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 4
-dynsl.py:255 - Number of traces: 13
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 244
-dynsl.py:259 - Number of atomic singleton predicates: 18
-dynsl.py:260 - Number of atomic inductive predicates: 152
-dynsl.py:261 - Number of pure constraints: 223
-dynsl.py:262 - Number of total invs: 60
-dynsl.py:263 - Number of pres:6
-dynsl.py:264 - Number of post:14
-dynsl.py:265 - Number of loop:40
-dynsl.py:266 - Running time (sec): 611.20038414
-../simple_example_update/GRASShopper/dl//dl_insert,4,13,72,244,18,152,223,60,6(1),14(5),40(*),611.
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 8:
+dynsl.py:227 - (exists fv0, fv1, fv17, fv18. dll(lst, fv0, fv1, nil) * dll(elt, nil, fv17, fv18) & True)
+dynsl.py:227 - (exists fv0, fv1, fv17, fv18. dll(lst, fv1, nil, fv0) * dll(elt, nil, fv17, fv18) & lst=fv0 & fv1=nil)
+dynsl.py:227 - (exists fv0, fv1, fv02, fv03. dll(lst, nil, fv1, fv0) * dll(elt, nil, fv02, fv03) & fv0=nil)
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 10:
+dynsl.py:239 - (exists fv0, fv1, fv2. dll(elt, fv0, fv1, fv2) & lst=nil & fv1=elt & fv1=res & elt=res)
+dynsl.py:234 - Postconditions at location 28:
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. dll(curr_next, nil, fv1, fv0) * dll(lst, nil, fv2, curr) * curr:node->node{elt, fv7} * dll(elt, curr, fv3, curr_next) & fv3=elt & fv0=nil & lst=res & fv2=fv7)
+dynsl.py:239 - (exists fv0, fv1, fv2. dll(curr_next, nil, fv1, fv0) * dll(lst, nil, fv2, curr) * curr:node->node{elt, fv6} * elt:node->node{curr_next, curr} & fv0=nil & lst=res & fv2=fv6)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(curr_next, fv1, fv0, nil) * dll(lst, nil, fv2, curr) * dll(curr, fv4, fv3, elt) * elt:node->node{curr_next, curr} & fv2=fv4 & curr=fv3 & fv1=nil & lst=res)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(curr_next, nil, fv1, fv0) * dll(lst, nil, fv2, curr) * dll(curr, fv3, fv4, elt) * elt:node->node{curr_next, curr} & curr=fv4 & fv0=nil & lst=res & fv2=fv3)
+dynsl.py:239 - (exists fv0, fv1, fv2. dll(curr_next, fv1, fv0, nil) * dll(lst, nil, fv2, curr) * curr:node->node{elt, fv6} * elt:node->node{curr_next, curr} & fv2=fv6 & fv1=nil & lst=res)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. dll(curr_next, fv1, fv0, nil) * dll(lst, nil, fv2, curr) * curr:node->node{elt, fv7} * dll(elt, curr, fv3, curr_next) & fv2=fv7 & fv1=nil & lst=res & fv3=elt)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(curr_next, nil, fv1, fv0) * dll(lst, nil, fv2, curr) * dll(curr, fv3, fv4, elt) * dll(elt, curr, fv5, curr_next) & curr=fv4 & fv0=nil & lst=res & fv2=fv3 & fv5=elt)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(curr_next, fv1, fv0, nil) * dll(lst, nil, fv2, curr) * dll(curr, fv4, fv3, elt) * dll(elt, curr, fv5, curr_next) & fv2=fv4 & curr=fv3 & fv1=nil & lst=res & fv5=elt)
+dynsl.py:246 - Invariants at location 17:
+dynsl.py:253 - (exists fv!95, fv!221, fv!220, fv!412, fv!413. dll(lst, curr_next, fv!95, curr) * dll(curr, curr_next, fv!220, fv!221) * dll(elt, curr_next, fv!412, fv!413) & fv!412=elt & fv!413=curr_next & fv!413=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!221, fv!220, fv!414, fv!415. dll(lst, curr_next, fv!95, curr) * dll(curr, curr_next, fv!220, fv!221) * dll(elt, fv!414, fv!415, curr_next) & fv!415=elt & curr_next=fv!414 & curr_next=nil & fv!414=nil)
+dynsl.py:253 - (exists fv!95, fv!221, fv!220. dll(lst, curr_next, fv!95, curr) * dll(curr, curr_next, fv!220, fv!221) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!221, fv!220, fv!443, fv!442. dll(lst, curr_next, fv!95, curr) * dll(curr, curr_next, fv!220, fv!221) * dll(elt, fv!442, fv!443, nil) & fv!443=elt & fv!442=curr_next & fv!442=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!221, fv!220, fv!445, fv!444. dll(lst, curr_next, fv!95, curr) * dll(curr, curr_next, fv!220, fv!221) * dll(elt, nil, fv!444, fv!445) & fv!445=curr_next & fv!445=nil & fv!444=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!221, fv!220. dll(lst, curr_next, fv!95, curr) * dll(curr, curr_next, fv!220, fv!221) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!223, fv!222, fv!472, fv!473. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!222, fv!223, curr_next) * dll(elt, curr_next, fv!472, fv!473) & fv!95=fv!222 & fv!472=elt & curr_next=fv!473 & curr_next=nil & fv!473=nil)
+dynsl.py:253 - (exists fv!95, fv!223, fv!222, fv!474, fv!475. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!222, fv!223, curr_next) * dll(elt, fv!474, fv!475, curr_next) & fv!95=fv!222 & fv!475=elt & fv!474=curr_next & fv!474=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!223, fv!222. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!222, fv!223, curr_next) * elt:node->node{curr_next, curr_next} & fv!222=fv!95 & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!223, fv!222, fv!502, fv!503. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!222, fv!223, curr_next) * dll(elt, fv!502, fv!503, nil) & fv!502=curr_next & fv!502=nil & fv!503=elt & fv!95=fv!222 & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!223, fv!222, fv!504, fv!505. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!222, fv!223, curr_next) * dll(elt, nil, fv!504, fv!505) & fv!504=elt & fv!505=curr_next & fv!505=nil & fv!95=fv!222 & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!223, fv!222. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!222, fv!223, curr_next) * elt:node->node{curr_next, curr_next} & fv!222=fv!95 & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!317, fv!316, fv!533, fv!532. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!316, fv!317, nil) * dll(elt, curr_next, fv!532, fv!533) & fv!95=fv!316 & curr_next=fv!533 & curr_next=nil & fv!533=nil & fv!532=elt)
+dynsl.py:253 - (exists fv!95, fv!317, fv!316, fv!535, fv!534. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!316, fv!317, nil) * dll(elt, fv!534, fv!535, curr_next) & fv!95=fv!316 & curr_next=fv!534 & curr_next=nil & fv!535=elt & fv!534=nil)
+dynsl.py:253 - (exists fv!95, fv!317, fv!316. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!316, fv!317, nil) * elt:node->node{curr_next, curr_next} & fv!316=fv!95 & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!317, fv!316, fv!562, fv!563. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!316, fv!317, nil) * dll(elt, fv!562, fv!563, nil) & fv!95=fv!316 & fv!562=curr_next & fv!562=nil & fv!563=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!317, fv!316, fv!564, fv!565. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!316, fv!317, nil) * dll(elt, nil, fv!564, fv!565) & fv!95=fv!316 & fv!564=elt & fv!565=curr_next & fv!565=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!317, fv!316. dll(lst, curr_next, fv!95, curr) * dll(curr, fv!316, fv!317, nil) * elt:node->node{curr_next, curr_next} & fv!316=fv!95 & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!319, fv!318, fv!593, fv!592. dll(lst, curr_next, fv!95, curr) * dll(curr, nil, fv!318, fv!319) * dll(elt, curr_next, fv!592, fv!593) & fv!592=elt & fv!593=curr_next & fv!593=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!319, fv!318, fv!595, fv!594. dll(lst, curr_next, fv!95, curr) * dll(curr, nil, fv!318, fv!319) * dll(elt, fv!594, fv!595, curr_next) & fv!595=elt & curr_next=fv!594 & curr_next=nil & fv!594=nil)
+dynsl.py:253 - (exists fv!95, fv!319, fv!318. dll(lst, curr_next, fv!95, curr) * dll(curr, nil, fv!318, fv!319) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!319, fv!318, fv!623, fv!622. dll(lst, curr_next, fv!95, curr) * dll(curr, nil, fv!318, fv!319) * dll(elt, fv!622, fv!623, nil) & fv!622=curr_next & fv!622=nil & fv!623=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!319, fv!318, fv!625, fv!624. dll(lst, curr_next, fv!95, curr) * dll(curr, nil, fv!318, fv!319) * dll(elt, nil, fv!624, fv!625) & fv!625=curr_next & fv!625=nil & fv!624=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!95, fv!319, fv!318. dll(lst, curr_next, fv!95, curr) * dll(curr, nil, fv!318, fv!319) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!652, fv!653, fv!845, fv!844. dll(lst, nil, fv!158, curr) * dll(curr, curr_next, fv!652, fv!653) * dll(elt, curr_next, fv!844, fv!845) & fv!845=curr_next & fv!845=nil & fv!844=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!652, fv!653, fv!847, fv!846. dll(lst, nil, fv!158, curr) * dll(curr, curr_next, fv!652, fv!653) * dll(elt, fv!846, fv!847, curr_next) & fv!847=elt & fv!846=curr_next & fv!846=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!652, fv!653. dll(lst, nil, fv!158, curr) * dll(curr, curr_next, fv!652, fv!653) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!652, fv!653, fv!874, fv!875. dll(lst, nil, fv!158, curr) * dll(curr, curr_next, fv!652, fv!653) * dll(elt, fv!874, fv!875, nil) & fv!874=curr_next & fv!874=nil & fv!875=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!652, fv!653, fv!876, fv!877. dll(lst, nil, fv!158, curr) * dll(curr, curr_next, fv!652, fv!653) * dll(elt, nil, fv!876, fv!877) & fv!876=elt & fv!877=curr_next & fv!877=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!652, fv!653. dll(lst, nil, fv!158, curr) * dll(curr, curr_next, fv!652, fv!653) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!654, fv!655, fv!904, fv!905. dll(lst, nil, fv!158, curr) * dll(curr, fv!654, fv!655, curr_next) * dll(elt, curr_next, fv!904, fv!905) & fv!654=fv!158 & fv!904=elt & fv!905=curr_next & fv!905=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!654, fv!655, fv!906, fv!907. dll(lst, nil, fv!158, curr) * dll(curr, fv!654, fv!655, curr_next) * dll(elt, fv!906, fv!907, curr_next) & fv!654=fv!158 & fv!906=curr_next & fv!906=nil & fv!907=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!654, fv!655. dll(lst, nil, fv!158, curr) * dll(curr, fv!654, fv!655, curr_next) * elt:node->node{curr_next, curr_next} & fv!654=fv!158 & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!654, fv!655, fv!935, fv!934. dll(lst, nil, fv!158, curr) * dll(curr, fv!654, fv!655, curr_next) * dll(elt, fv!934, fv!935, nil) & fv!654=fv!158 & fv!935=elt & fv!934=curr_next & fv!934=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!654, fv!655, fv!937, fv!936. dll(lst, nil, fv!158, curr) * dll(curr, fv!654, fv!655, curr_next) * dll(elt, nil, fv!936, fv!937) & fv!654=fv!158 & fv!937=curr_next & fv!937=nil & fv!936=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!654, fv!655. dll(lst, nil, fv!158, curr) * dll(curr, fv!654, fv!655, curr_next) * elt:node->node{curr_next, curr_next} & fv!654=fv!158 & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!748, fv!749, fv!964, fv!965. dll(lst, nil, fv!158, curr) * dll(curr, fv!748, fv!749, nil) * dll(elt, curr_next, fv!964, fv!965) & fv!748=fv!158 & fv!964=elt & fv!965=curr_next & fv!965=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!748, fv!749, fv!966, fv!967. dll(lst, nil, fv!158, curr) * dll(curr, fv!748, fv!749, nil) * dll(elt, fv!966, fv!967, curr_next) & fv!748=fv!158 & fv!966=curr_next & fv!966=nil & fv!967=elt & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!748, fv!749. dll(lst, nil, fv!158, curr) * dll(curr, fv!748, fv!749, nil) * elt:node->node{curr_next, curr_next} & curr_next=nil & fv!158=fv!748)
+dynsl.py:253 - (exists fv!158, fv!748, fv!749, fv!995, fv!994. dll(lst, nil, fv!158, curr) * dll(curr, fv!748, fv!749, nil) * dll(elt, fv!994, fv!995, nil) & fv!994=curr_next & fv!994=nil & fv!748=fv!158 & curr_next=nil & fv!995=elt)
+dynsl.py:253 - (exists fv!158, fv!748, fv!749, fv!997, fv!996. dll(lst, nil, fv!158, curr) * dll(curr, fv!748, fv!749, nil) * dll(elt, nil, fv!996, fv!997) & fv!748=fv!158 & fv!996=elt & fv!997=curr_next & fv!997=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!748, fv!749. dll(lst, nil, fv!158, curr) * dll(curr, fv!748, fv!749, nil) * elt:node->node{curr_next, curr_next} & curr_next=nil & fv!158=fv!748)
+dynsl.py:253 - (exists fv!158, fv!751, fv!750, fv!1025, fv!1024. dll(lst, nil, fv!158, curr) * dll(curr, nil, fv!750, fv!751) * dll(elt, curr_next, fv!1024, fv!1025) & fv!1025=curr_next & fv!1025=nil & curr_next=nil & elt=fv!1024)
+dynsl.py:253 - (exists fv!158, fv!751, fv!750, fv!1027, fv!1026. dll(lst, nil, fv!158, curr) * dll(curr, nil, fv!750, fv!751) * dll(elt, fv!1026, fv!1027, curr_next) & curr_next=fv!1026 & curr_next=nil & fv!1027=elt & fv!1026=nil)
+dynsl.py:253 - (exists fv!158, fv!751, fv!750. dll(lst, nil, fv!158, curr) * dll(curr, nil, fv!750, fv!751) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!751, fv!750, fv!1054, fv!1055. dll(lst, nil, fv!158, curr) * dll(curr, nil, fv!750, fv!751) * dll(elt, fv!1054, fv!1055, nil) & fv!1055=elt & curr_next=fv!1054 & curr_next=nil & fv!1054=nil)
+dynsl.py:253 - (exists fv!158, fv!751, fv!750, fv!1056, fv!1057. dll(lst, nil, fv!158, curr) * dll(curr, nil, fv!750, fv!751) * dll(elt, nil, fv!1056, fv!1057) & fv!1056=elt & fv!1057=curr_next & fv!1057=nil & curr_next=nil)
+dynsl.py:253 - (exists fv!158, fv!751, fv!750. dll(lst, nil, fv!158, curr) * dll(curr, nil, fv!750, fv!751) * elt:node->node{curr_next, curr_next} & curr_next=nil)
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 4
+dynsl.py:281 - Number of traces: 8
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 60
+dynsl.py:284 - Number of free variables: 245
+dynsl.py:285 - Number of atomic singleton predicates: 24
+dynsl.py:286 - Number of atomic inductive predicates: 159
+dynsl.py:287 - Number of pure constraints: 207
+dynsl.py:288 - Number of total invs: 60
+dynsl.py:289 - Number of pres:3
+dynsl.py:290 - Number of post:9
+dynsl.py:291 - Number of loop:48
+dynsl.py:292 - Running time (sec): 45.9564900398
+../simple_example_update/GRASShopper/dl/dl_insert,4,8,60,245,24,159,207,60,3,9,48,45.9

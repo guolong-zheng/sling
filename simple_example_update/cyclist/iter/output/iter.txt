@@ -1,115 +1,114 @@
-get_trace.py:65 - 0
-dynsl.py:144 - Inferring post-conditions at the location 187 ...
+dynsl.py:167 - Inferring post-conditions at the location 187 ...
+
+dynsl.py:167 - Inferring pre-conditions at the location 37 ...
+
+dynsl.py:167 - Inferring post-conditions at the location 168 ...
+
+dynsl.py:167 - Inferring pre-conditions at the location 174 ...
 
 model.py:357 - Type mismatch: node - llist
-dynsl.py:144 - Inferring pre-conditions at the location 37 ...
+dynsl.py:167 - Inferring post-conditions at the location 49 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 168 ...
+dynsl.py:167 - Inferring post-conditions at the location 179 ...
 
-dynsl.py:144 - Inferring pre-conditions at the location 174 ...
+dynsl.py:167 - Inferring pre-conditions at the location 22 ...
 
-model.py:357 - Type mismatch: node - llist
-dynsl.py:144 - Inferring post-conditions at the location 49 ...
-
-dynsl.py:144 - Inferring post-conditions at the location 179 ...
-
-dynsl.py:144 - Inferring pre-conditions at the location 22 ...
-
-dynsl.py:144 - Inferring pre-conditions at the location 185 ...
+dynsl.py:167 - Inferring pre-conditions at the location 185 ...
 
 model.py:357 - Type mismatch: node - llist
-dynsl.py:144 - Inferring pre-conditions at the location 159 ...
+dynsl.py:167 - Inferring pre-conditions at the location 159 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 31 ...
+dynsl.py:167 - Inferring post-conditions at the location 31 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 185:
-dynsl.py:202 - emp
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 187:
-dynsl.py:213 - emp
-dynsl.py:208 - Postconditions at location 179:
-dynsl.py:213 - (exists f!lseg2!3859. i:iter->iter{n} * c:node->node{n, fv!1306} * lseg2(n, nil, f!lseg2!3859:TVar(6)) & fv!1306=res)
-dynsl.py:213 - i:iter->iter{n} * c:node->node{n, fv!1306} * lseg(n, nil) & fv!1306=res
-dynsl.py:213 - (exists f!lseg2!1125, f!lseg2!2838. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg2(n, nil, f!lseg2!2838:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1817. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1817:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1125. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg(n, nil) & True)
-dynsl.py:213 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
-dynsl.py:208 - Postconditions at location 31:
-dynsl.py:213 - llist_with_node(l, n) * lseg(n, nil) & l=res
-dynsl.py:213 - (exists f!lseg2!4603. llist_with_node(l, n) * lseg2(n, nil, f!lseg2!4603:TVar(6)) & l=res)
-dynsl.py:213 - l_list(l) * lseg(n, nil) & l=res
-dynsl.py:213 - llist_with_node(l, n) * n:node->node{nil, fv!4608} & fv!4608=nil & l=res
-dynsl.py:213 - (exists f!lseg2!4593. l_list(l) * lseg2(n, nil, f!lseg2!4593:TVar(6)) & l=res)
-dynsl.py:213 - l:llist->llist{n, n} * n:node->node{nil, fv!4618} & fv!4618=nil & l=res
-dynsl.py:213 - l_list(l) * n:node->node{nil, fv!4598} & fv!4598=nil & l=res
-dynsl.py:213 - (exists f!lseg2!4613. l:llist->llist{n, n} * lseg2(n, nil, f!lseg2!4613:TVar(6)) & l=res)
-dynsl.py:213 - l:llist->llist{n, n} * lseg(n, nil) & l=res
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 22:
-dynsl.py:202 - emp
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 187:
-dynsl.py:213 - emp
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 37:
-dynsl.py:202 - l_list(list) & True
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 179:
-dynsl.py:213 - (exists f!lseg2!3859. i:iter->iter{n} * c:node->node{n, fv!1306} * lseg2(n, nil, f!lseg2!3859:TVar(6)) & fv!1306=res)
-dynsl.py:213 - i:iter->iter{n} * c:node->node{n, fv!1306} * lseg(n, nil) & fv!1306=res
-dynsl.py:213 - (exists f!lseg2!1125, f!lseg2!2838. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg2(n, nil, f!lseg2!2838:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1817. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1817:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1125. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg(n, nil) & True)
-dynsl.py:213 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 174:
-dynsl.py:202 - emp
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 168:
-dynsl.py:213 - i:iter->iter{f} * lseg(f, nil) & i=res
-dynsl.py:213 - (exists f!lseg2!406. i:iter->iter{f} * lseg2(f, nil, f!lseg2!406:TVar(6)) & i=res)
-dynsl.py:208 - Postconditions at location 49:
-dynsl.py:213 - lseg(l, n) * n:node->node{nil, fv!776} & list=res & fv!776=nil
-dynsl.py:213 - (exists f!lseg2!653. lseg2(l, n, f!lseg2!653:TVar(6)) * lseg(n, nil) & list=res)
-dynsl.py:213 - lseg(l, n) * lseg(n, nil) & list=res
-dynsl.py:213 - (exists f!lseg2!899. l:node->node{n, fv!694} * lseg2(n, nil, f!lseg2!899:TVar(6)) & list=res)
-dynsl.py:213 - (exists f!lseg2!653. lseg2(l, n, f!lseg2!653:TVar(6)) * n:node->node{nil, fv!858} & list=res & fv!858=nil)
-dynsl.py:213 - l:node->node{n, fv!694} * n:node->node{nil, fv!940} & list=res & fv!940=nil
-dynsl.py:213 - (exists f!lseg2!653, f!lseg2!817. lseg2(l, n, f!lseg2!653:TVar(6)) * lseg2(n, nil, f!lseg2!817:TVar(6)) & list=res)
-dynsl.py:213 - (exists f!lseg2!735. lseg(l, n) * lseg2(n, nil, f!lseg2!735:TVar(6)) & list=res)
-dynsl.py:213 - l:node->node{n, fv!694} * lseg(n, nil) & list=res
-dynsl.py:208 - Postconditions at location 187:
-dynsl.py:213 - emp
-dynsl.py:208 - Postconditions at location 179:
-dynsl.py:213 - (exists f!lseg2!3859. i:iter->iter{n} * c:node->node{n, fv!1306} * lseg2(n, nil, f!lseg2!3859:TVar(6)) & fv!1306=res)
-dynsl.py:213 - i:iter->iter{n} * c:node->node{n, fv!1306} * lseg(n, nil) & fv!1306=res
-dynsl.py:213 - (exists f!lseg2!1125, f!lseg2!2838. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg2(n, nil, f!lseg2!2838:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1817. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1817:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1125. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg(n, nil) & True)
-dynsl.py:213 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 159:
-dynsl.py:202 - l_list(l) & True
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 179:
-dynsl.py:213 - (exists f!lseg2!3859. i:iter->iter{n} * c:node->node{n, fv!1306} * lseg2(n, nil, f!lseg2!3859:TVar(6)) & fv!1306=res)
-dynsl.py:213 - i:iter->iter{n} * c:node->node{n, fv!1306} * lseg(n, nil) & fv!1306=res
-dynsl.py:213 - (exists f!lseg2!1125, f!lseg2!2838. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg2(n, nil, f!lseg2!2838:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1817. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1817:TVar(6)) & True)
-dynsl.py:213 - (exists f!lseg2!1125. i:iter->iter{n} * lseg2(c, n, f!lseg2!1125:TVar(6)) * lseg(n, nil) & True)
-dynsl.py:213 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 10
-dynsl.py:255 - Number of traces: 152
-dynsl.py:256 - Number of pre-defined predicates: 5
-dynsl.py:258 - Number of free variables: 102
-dynsl.py:259 - Number of atomic singleton predicates: 22
-dynsl.py:260 - Number of atomic inductive predicates: 38
-dynsl.py:261 - Number of pure constraints: 28
-dynsl.py:262 - Number of total invs: 159
-dynsl.py:263 - Number of pres:5
-dynsl.py:264 - Number of post:47
-dynsl.py:265 - Number of loop:0
-dynsl.py:266 - Running time (sec): 43.0636379719
-../simple_example_update/cyclist/iter/iter,10,152,5,102,22,38,28,159,5,47,0,43.0
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 185:
+dynsl.py:227 - emp
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 187:
+dynsl.py:239 - i:iter->iter{nil}
+dynsl.py:234 - Postconditions at location 179:
+dynsl.py:239 - (exists f!lseg2!1120. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg(n, nil) & True)
+dynsl.py:239 - (exists f!lseg2!3854. i:iter->iter{n} * c:node->node{n, fv0} * lseg2(n, nil, f!lseg2!3854:TVar(6)) & fv0=res)
+dynsl.py:239 - (exists f!lseg2!1812. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1812:TVar(6)) & True)
+dynsl.py:239 - (exists f!lseg2!1120, f!lseg2!2833. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg2(n, nil, f!lseg2!2833:TVar(6)) & True)
+dynsl.py:239 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
+dynsl.py:239 - i:iter->iter{n} * c:node->node{n, fv0} * lseg(n, nil) & fv0=res
+dynsl.py:234 - Postconditions at location 31:
+dynsl.py:239 - llist_with_node(l, n) * lseg(n, nil) & l=res
+dynsl.py:239 - (exists f!lseg2!4598. llist_with_node(l, n) * lseg2(n, nil, f!lseg2!4598:TVar(6)) & l=res)
+dynsl.py:239 - (exists f!lseg2!4608. l:llist->llist{n, n} * lseg2(n, nil, f!lseg2!4608:TVar(6)) & l=res)
+dynsl.py:239 - l_list(l) * n:node->node{nil, fv0} & fv0=nil & l=res
+dynsl.py:239 - l:llist->llist{n, n} * n:node->node{nil, fv0} & fv0=nil & l=res
+dynsl.py:239 - l_list(l) * lseg(n, nil) & l=res
+dynsl.py:239 - llist_with_node(l, n) * n:node->node{nil, fv0} & fv0=nil & l=res
+dynsl.py:239 - (exists f!lseg2!4588. l_list(l) * lseg2(n, nil, f!lseg2!4588:TVar(6)) & l=res)
+dynsl.py:239 - l:llist->llist{n, n} * lseg(n, nil) & l=res
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 22:
+dynsl.py:227 - emp
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 187:
+dynsl.py:239 - i:iter->iter{nil}
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 37:
+dynsl.py:227 - l_list(list) & True
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 179:
+dynsl.py:239 - (exists f!lseg2!1120. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg(n, nil) & True)
+dynsl.py:239 - (exists f!lseg2!3854. i:iter->iter{n} * c:node->node{n, fv0} * lseg2(n, nil, f!lseg2!3854:TVar(6)) & fv0=res)
+dynsl.py:239 - (exists f!lseg2!1812. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1812:TVar(6)) & True)
+dynsl.py:239 - (exists f!lseg2!1120, f!lseg2!2833. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg2(n, nil, f!lseg2!2833:TVar(6)) & True)
+dynsl.py:239 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
+dynsl.py:239 - i:iter->iter{n} * c:node->node{n, fv0} * lseg(n, nil) & fv0=res
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 174:
+dynsl.py:227 - emp
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 168:
+dynsl.py:239 - i:iter->iter{f} * lseg(f, nil) & i=res
+dynsl.py:239 - (exists f!lseg2!401. i:iter->iter{f} * lseg2(f, nil, f!lseg2!401:TVar(6)) & i=res)
+dynsl.py:234 - Postconditions at location 49:
+dynsl.py:239 - (exists f!lseg2!648. lseg2(l, n, f!lseg2!648:TVar(6)) * n:node->node{nil, fv0} & list=res & fv0=nil)
+dynsl.py:239 - l:node->node{n, fv0} * lseg(n, nil) & list=res
+dynsl.py:239 - (exists f!lseg2!648. lseg2(l, n, f!lseg2!648:TVar(6)) * lseg(n, nil) & list=res)
+dynsl.py:239 - lseg(l, n) * lseg(n, nil) & list=res
+dynsl.py:239 - lseg(l, n) * n:node->node{nil, fv0} & fv0=nil & list=res
+dynsl.py:239 - (exists f!lseg2!730. lseg(l, n) * lseg2(n, nil, f!lseg2!730:TVar(6)) & list=res)
+dynsl.py:239 - (exists f!lseg2!894. l:node->node{n, fv0} * lseg2(n, nil, f!lseg2!894:TVar(6)) & list=res)
+dynsl.py:239 - l:node->node{n, fv0} * n:node->node{nil, fv1} & fv1=nil & list=res
+dynsl.py:239 - (exists f!lseg2!648, f!lseg2!812. lseg2(l, n, f!lseg2!648:TVar(6)) * lseg2(n, nil, f!lseg2!812:TVar(6)) & list=res)
+dynsl.py:234 - Postconditions at location 187:
+dynsl.py:239 - i:iter->iter{nil}
+dynsl.py:234 - Postconditions at location 179:
+dynsl.py:239 - (exists f!lseg2!1120. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg(n, nil) & True)
+dynsl.py:239 - (exists f!lseg2!3854. i:iter->iter{n} * c:node->node{n, fv0} * lseg2(n, nil, f!lseg2!3854:TVar(6)) & fv0=res)
+dynsl.py:239 - (exists f!lseg2!1812. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1812:TVar(6)) & True)
+dynsl.py:239 - (exists f!lseg2!1120, f!lseg2!2833. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg2(n, nil, f!lseg2!2833:TVar(6)) & True)
+dynsl.py:239 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
+dynsl.py:239 - i:iter->iter{n} * c:node->node{n, fv0} * lseg(n, nil) & fv0=res
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 159:
+dynsl.py:227 - l_list(l) & True
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 179:
+dynsl.py:239 - (exists f!lseg2!1120. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg(n, nil) & True)
+dynsl.py:239 - (exists f!lseg2!3854. i:iter->iter{n} * c:node->node{n, fv0} * lseg2(n, nil, f!lseg2!3854:TVar(6)) & fv0=res)
+dynsl.py:239 - (exists f!lseg2!1812. i:iter->iter{n} * lseg(c, n) * lseg2(n, nil, f!lseg2!1812:TVar(6)) & True)
+dynsl.py:239 - (exists f!lseg2!1120, f!lseg2!2833. i:iter->iter{n} * lseg2(c, n, f!lseg2!1120:TVar(6)) * lseg2(n, nil, f!lseg2!2833:TVar(6)) & True)
+dynsl.py:239 - i:iter->iter{n} * lseg(c, n) * lseg(n, nil) & True
+dynsl.py:239 - i:iter->iter{n} * c:node->node{n, fv0} * lseg(n, nil) & fv0=res
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 10
+dynsl.py:281 - Number of traces: 152
+dynsl.py:282 - Number of pre-defined predicates: 5
+dynsl.py:283 - Number of inferred assertions: 32
+dynsl.py:284 - Number of free variables: 103
+dynsl.py:285 - Number of atomic singleton predicates: 23
+dynsl.py:286 - Number of atomic inductive predicates: 38
+dynsl.py:287 - Number of pure constraints: 28
+dynsl.py:288 - Number of total invs: 159
+dynsl.py:289 - Number of pres:5
+dynsl.py:290 - Number of post:47
+dynsl.py:291 - Number of loop:0
+dynsl.py:292 - Running time (sec): 46.7681291103
+../simple_example_update/cyclist/iter/iter,10,152,32,103,23,38,28,159,5,47,0,46.7

@@ -1,42 +1,36 @@
-dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+dynsl.py:167 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:144 - Inferring inv-conditions at the location 17 ...
+dynsl.py:167 - Inferring inv-conditions at the location 17 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 10 ...
+dynsl.py:167 - Inferring post-conditions at the location 10 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 30 ...
+dynsl.py:167 - Inferring post-conditions at the location 30 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 8:
-dynsl.py:202 - (exists fv!3, fv!4. dll(lst, fv!3, fv!4, nil) & True)
-dynsl.py:202 - (exists fv!6, fv!5. dll(lst, nil, fv!5, fv!6) & fv!6=nil)
-dynsl.py:202 - (exists fv!8, fv!7. dll(lst, fv!7, nil, fv!8) & lst=fv!8 & fv!7=nil)
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 10:
-dynsl.py:213 - lst=nil & lst=res & nil=res
-dynsl.py:208 - Postconditions at location 30:
-dynsl.py:213 - (exists fv!587, fv!692, fv!693. dll(lst, tmp, fv!587, curr) * dll(curr, fv!692, fv!693, nil) & tmp=nil & lst=res & fv!693=curr & fv!692=fv!587)
-dynsl.py:213 - (exists fv!587. dll(lst, tmp, fv!587, curr) * curr:node->node{tmp, fv!691} & tmp=nil & fv!691=fv!587 & lst=res)
-dynsl.py:213 - (exists fv!635. dll(lst, nil, fv!635, curr) * curr:node->node{tmp, fv!715} & tmp=nil & fv!715=fv!635 & lst=res)
-dynsl.py:213 - (exists fv!587. dll(lst, tmp, fv!587, curr) * curr:node->node{tmp, fv!703} & tmp=nil & lst=res & fv!587=fv!703)
-dynsl.py:213 - (exists fv!635, fv!706, fv!707. dll(lst, nil, fv!635, curr) * dll(curr, fv!706, fv!707, tmp) & tmp=nil & fv!706=fv!635 & lst=res & curr=fv!707)
-dynsl.py:213 - (exists fv!587, fv!683, fv!682. dll(lst, tmp, fv!587, curr) * dll(curr, fv!682, fv!683, tmp) & tmp=nil & lst=res & curr=fv!683 & fv!682=fv!587)
-dynsl.py:213 - (exists fv!635. dll(lst, nil, fv!635, curr) * curr:node->node{tmp, fv!727} & tmp=nil & lst=res & fv!635=fv!727)
-dynsl.py:213 - (exists fv!635, fv!717, fv!716. dll(lst, nil, fv!635, curr) * dll(curr, fv!716, fv!717, nil) & tmp=nil & lst=res & fv!635=fv!716 & curr=fv!717)
-dynsl.py:220 - Invariants at location 17:
-dynsl.py:227 - (exists fv!59, fv!60, fv!149, fv!245, fv!244. dll(tmp, curr, fv!59, fv!60) * dll(lst, nil, fv!149, curr) * dll(curr, fv!244, fv!245, tmp) & fv!244=fv!149)
-dynsl.py:227 - (exists fv!96, fv!95, fv!368, fv!463, fv!464. dll(tmp, fv!95, fv!96, nil) * dll(lst, nil, fv!368, curr) * dll(curr, fv!463, fv!464, tmp) & tmp=fv!96 & fv!368=fv!463 & fv!95=fv!464)
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 4
-dynsl.py:255 - Number of traces: 13
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 47
-dynsl.py:259 - Number of atomic singleton predicates: 4
-dynsl.py:260 - Number of atomic inductive predicates: 21
-dynsl.py:261 - Number of pure constraints: 38
-dynsl.py:262 - Number of total invs: 14
-dynsl.py:263 - Number of pres:3
-dynsl.py:264 - Number of post:9
-dynsl.py:265 - Number of loop:2
-dynsl.py:266 - Running time (sec): 13.3923540115
-../simple_example_update/GRASShopper/dl//dl_remove,4,13,14,47,4,21,38,14,3(1),9(2),2(1),13.3
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 8:
+dynsl.py:227 - (exists fv0, fv1. dll(lst, nil, fv1, fv0) & fv0=nil)
+dynsl.py:227 - (exists fv0, fv1. dll(lst, fv1, nil, fv0) & lst=fv0 & fv1=nil)
+dynsl.py:227 - (exists fv0, fv1. dll(lst, fv0, fv1, nil) & True)
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 10:
+dynsl.py:239 - lst=nil & lst=res & nil=res
+dynsl.py:234 - Postconditions at location 30:
+dynsl.py:239 - (exists fv0, fv1, fv2. tmp:node->node{nil, curr} * dll(lst, nil, fv0, curr) * dll(curr, fv2, fv1, nil) & fv0=fv2 & lst=res)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. dll(tmp, curr, fv0, nil) * dll(lst, nil, fv1, curr) * dll(curr, fv3, fv2, nil) & tmp=fv0 & lst=res & fv3=fv1)
+dynsl.py:246 - Invariants at location 17:
+dynsl.py:253 - (exists fv!80, fv!79, fv!108, fv!168, fv!169. dll(tmp, fv!79, fv!80, nil) * dll(lst, nil, fv!108, curr) * dll(curr, fv!168, fv!169, tmp) & tmp=fv!80 & fv!168=fv!108 & fv!169=fv!79)
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 4
+dynsl.py:281 - Number of traces: 8
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 7
+dynsl.py:284 - Number of free variables: 16
+dynsl.py:285 - Number of atomic singleton predicates: 1
+dynsl.py:286 - Number of atomic inductive predicates: 11
+dynsl.py:287 - Number of pure constraints: 14
+dynsl.py:288 - Number of total invs: 7
+dynsl.py:289 - Number of pres:3
+dynsl.py:290 - Number of post:3
+dynsl.py:291 - Number of loop:1
+dynsl.py:292 - Running time (sec): 6.62700486183
+../simple_example_update/GRASShopper/dl/dl_remove,4,8,7,16,1,11,14,7,3,3,1,6.62

@@ -1,113 +1,142 @@
-get_trace.py:65 - 0
-dynsl.py:144 - Inferring post-conditions at the location 32 ...
+dynsl.py:167 - Inferring post-conditions at the location 32 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 97 ...
+dynsl.py:167 - Inferring post-conditions at the location 97 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 66 ...
+dynsl.py:167 - Inferring post-conditions at the location 66 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 101 ...
+dynsl.py:167 - Inferring post-conditions at the location 101 ...
 
-dynsl.py:144 - Inferring pre-conditions at the location 9 ...
+dynsl.py:167 - Inferring pre-conditions at the location 9 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 76 ...
+dynsl.py:167 - Inferring post-conditions at the location 76 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 46 ...
+dynsl.py:167 - Inferring post-conditions at the location 16 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 16 ...
+dynsl.py:167 - Inferring post-conditions at the location 53 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 53 ...
+dynsl.py:167 - Inferring post-conditions at the location 22 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 22 ...
+dynsl.py:167 - Inferring post-conditions at the location 57 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 57 ...
+dynsl.py:167 - Inferring post-conditions at the location 90 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 9:
-dynsl.py:202 - tree(x) & True
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 32:
-dynsl.py:213 - xr:node->node{fv!21, fv!22, nil, nil} * x:node->node{fv!61, fv!62, p, xr} * tree(p) & fv!22=nil & x=res
-dynsl.py:213 - tree(xr) * x:node->node{fv!31, fv!32, p, xr} * tree(p) & x=res
-dynsl.py:208 - Postconditions at location 97:
-dynsl.py:213 - pr:node->node{fv!109, fv!110, xl, xl} * p:node->node{fv!289, fv!290, x, pr} * x:node->node{fv!303, fv!304, xl, xl} & fv!290=xl & fv!290=fv!303 & fv!290=pl & fv!290=nil & xl=fv!303 & xl=pl & xl=nil & p=res & fv!110=fv!304 & fv!303=pl & fv!303=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!109, fv!110, xl, xl} * p:node->node{fv!289, fv!290, x, pr} * x:node->node{fv!317, fv!318, xl, xl} & fv!290=xl & fv!290=fv!317 & fv!290=pl & fv!290=nil & xl=fv!317 & xl=pl & xl=nil & fv!110=fv!318 & p=res & fv!317=pl & fv!317=nil & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!341, fv!342, x, pr} * tree(x) & p=res & xl=fv!342 & xl=pl & xl=nil & fv!342=pl & fv!342=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!123, fv!124, xl, xl} * p:node->node{fv!393, fv!394, x, pr} * x:node->node{fv!421, fv!422, xl, xl} & fv!124=fv!422 & xl=fv!421 & xl=fv!394 & xl=pl & xl=nil & p=res & fv!421=fv!394 & fv!421=pl & fv!421=nil & fv!394=pl & fv!394=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!95, fv!96, xl, xl} * p:node->node{fv!185, fv!186, x, pr} * x:node->node{fv!213, fv!214, xl, xl} & xl=pl & xl=fv!186 & xl=fv!213 & xl=nil & fv!96=fv!214 & p=res & pl=fv!186 & pl=fv!213 & pl=nil & fv!186=fv!213 & fv!186=nil & fv!213=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!237, fv!238, x, pr} * tree(x) & p=res & xl=fv!238 & xl=pl & xl=nil & fv!238=pl & fv!238=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!109, fv!110, xl, xl} * p:node->node{fv!289, fv!290, x, pr} * x:node->node{fv!331, fv!332, xl, xl} & fv!290=xl & fv!290=fv!331 & fv!290=pl & fv!290=nil & xl=fv!331 & xl=pl & xl=nil & fv!110=fv!332 & p=res & fv!331=pl & fv!331=nil & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!341, fv!342, x, pr} * x:node->node{fv!383, fv!384, xl, xl} & xl=fv!342 & xl=pl & xl=fv!383 & xl=nil & fv!342=pl & fv!342=fv!383 & fv!342=nil & p=res & pl=fv!383 & pl=nil & fv!383=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!133, fv!134, x, pr} * x:node->node{fv!161, fv!162, xl, xl} & fv!134=xl & fv!134=fv!161 & fv!134=pl & fv!134=nil & xl=fv!161 & xl=pl & xl=nil & fv!161=pl & fv!161=nil & p=res & pl=nil
-dynsl.py:213 - pr:node->node{fv!95, fv!96, xl, xl} * p:node->node{fv!185, fv!186, x, pr} * tree(x) & xl=pl & xl=fv!186 & xl=nil & p=res & pl=fv!186 & pl=nil & fv!186=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!133, fv!134, x, pr} * x:node->node{fv!175, fv!176, xl, xl} & fv!134=xl & fv!134=fv!175 & fv!134=pl & fv!134=nil & xl=fv!175 & xl=pl & xl=nil & fv!175=pl & fv!175=nil & p=res & pl=nil
-dynsl.py:213 - pr:node->node{fv!95, fv!96, xl, xl} * p:node->node{fv!185, fv!186, x, pr} * x:node->node{fv!199, fv!200, xl, xl} & xl=fv!199 & xl=pl & xl=fv!186 & xl=nil & fv!96=fv!200 & fv!199=pl & fv!199=fv!186 & fv!199=nil & p=res & pl=fv!186 & pl=nil & fv!186=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!341, fv!342, x, pr} * x:node->node{fv!355, fv!356, xl, xl} & xl=fv!355 & xl=fv!342 & xl=pl & xl=nil & fv!355=fv!342 & fv!355=pl & fv!355=nil & fv!342=pl & fv!342=nil & p=res & pl=nil
-dynsl.py:213 - pr:node->node{fv!95, fv!96, xl, xl} * p:node->node{fv!185, fv!186, x, pr} * x:node->node{fv!227, fv!228, xl, xl} & xl=pl & xl=fv!227 & xl=fv!186 & xl=nil & fv!96=fv!228 & p=res & pl=fv!227 & pl=fv!186 & pl=nil & fv!227=fv!186 & fv!227=nil & fv!186=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!237, fv!238, x, pr} * x:node->node{fv!251, fv!252, xl, xl} & xl=fv!251 & xl=fv!238 & xl=pl & xl=nil & fv!251=fv!238 & fv!251=pl & fv!251=nil & p=res & fv!238=pl & fv!238=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!109, fv!110, xl, xl} * p:node->node{fv!289, fv!290, x, pr} * tree(x) & fv!290=xl & fv!290=pl & fv!290=nil & xl=pl & xl=nil & p=res & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!133, fv!134, x, pr} * x:node->node{fv!147, fv!148, xl, xl} & fv!134=xl & fv!134=fv!147 & fv!134=pl & fv!134=nil & xl=fv!147 & xl=pl & xl=nil & p=res & fv!147=pl & fv!147=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!123, fv!124, xl, xl} * p:node->node{fv!393, fv!394, x, pr} * tree(x) & xl=fv!394 & xl=pl & xl=nil & p=res & fv!394=pl & fv!394=nil & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!133, fv!134, x, pr} * tree(x) & fv!134=xl & fv!134=pl & fv!134=nil & xl=pl & xl=nil & p=res & pl=nil
-dynsl.py:213 - pr:node->node{fv!123, fv!124, xl, xl} * p:node->node{fv!393, fv!394, x, pr} * x:node->node{fv!407, fv!408, xl, xl} & fv!124=fv!408 & xl=fv!407 & xl=fv!394 & xl=pl & xl=nil & fv!407=fv!394 & fv!407=pl & fv!407=nil & p=res & fv!394=pl & fv!394=nil & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!237, fv!238, x, pr} * x:node->node{fv!265, fv!266, xl, xl} & xl=fv!265 & xl=fv!238 & xl=pl & xl=nil & fv!265=fv!238 & fv!265=pl & fv!265=nil & p=res & fv!238=pl & fv!238=nil & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!237, fv!238, x, pr} * x:node->node{fv!279, fv!280, xl, xl} & xl=fv!279 & xl=fv!238 & xl=pl & xl=nil & fv!279=fv!238 & fv!279=pl & fv!279=nil & p=res & fv!238=pl & fv!238=nil & pl=nil
-dynsl.py:213 - pr:node->node{fv!123, fv!124, xl, xl} * p:node->node{fv!393, fv!394, x, pr} * x:node->node{fv!435, fv!436, xl, xl} & fv!124=fv!436 & xl=fv!435 & xl=fv!394 & xl=pl & xl=nil & fv!435=fv!394 & fv!435=pl & fv!435=nil & p=res & fv!394=pl & fv!394=nil & pl=nil
-dynsl.py:213 - tree(pr) * p:node->node{fv!341, fv!342, x, pr} * x:node->node{fv!369, fv!370, xl, xl} & fv!369=xl & fv!369=fv!342 & fv!369=pl & fv!369=nil & xl=fv!342 & xl=pl & xl=nil & fv!342=pl & fv!342=nil & p=res & pl=nil
-dynsl.py:208 - Postconditions at location 66:
-dynsl.py:213 - tree(p) & x=res
-dynsl.py:208 - Postconditions at location 101:
-dynsl.py:213 - tree(pr) * p:node->node{fv!645, fv!646, pl, pr} * tree(xl) * tree(pl) * x:node->node{fv!769, fv!770, xl, p} & x=res
-dynsl.py:213 - tree(pr) * p:node->node{fv!691, fv!692, pl, pr} * tree(xl) * tree(pl) * x:node->node{fv!847, fv!848, xl, p} & x=res
-dynsl.py:208 - Postconditions at location 76:
-dynsl.py:213 - x:node->node{fv!1637, fv!1638, xl, p} * tree(xl) * tree(p) & x=res
-dynsl.py:208 - Postconditions at location 46:
-dynsl.py:213 - pr:node->node{fv!1775, fv!1776, p, x} * tree(prl) * p:node->node{fv!1843, fv!1844, pl, prl} * tree(prr) * tree(xr) * x:node->node{fv!2027, fv!2028, prr, xr} * tree(pl) & pr=res & fv!2028=fv!1844 & fv!1776=nil
-dynsl.py:213 - pr:node->node{fv!1775, fv!1776, p, x} * tree(prl) * p:node->node{fv!1843, fv!1844, pl, prl} * tree(prr) * tree(xr) * x:node->node{fv!2005, fv!2006, prr, xr} * tree(pl) & pr=res & fv!2006=fv!1844 & fv!1776=nil
-dynsl.py:213 - pr:node->node{fv!1775, fv!1776, p, x} * tree(prl) * p:node->node{fv!1821, fv!1822, pl, prl} * tree(prr) * tree(xr) * x:node->node{fv!1919, fv!1920, prr, xr} * tree(pl) & pr=res & fv!1822=fv!1920 & fv!1776=nil
-dynsl.py:213 - pr:node->node{fv!1775, fv!1776, p, x} * tree(prl) * p:node->node{fv!1821, fv!1822, pl, prl} * tree(prr) * tree(xr) * x:node->node{fv!1897, fv!1898, prr, xr} * tree(pl) & pr=res & fv!1822=fv!1898 & fv!1776=nil
-dynsl.py:208 - Postconditions at location 16:
-dynsl.py:213 - tree(nr) & x=nil & nr=res
-dynsl.py:213 - nr:node->node{fv!2303, fv!2304, x, x} & x=nil & nr=res
-dynsl.py:213 - nr:node->node{fv!2181, fv!2182, x, x} & x=nil & nr=res
-dynsl.py:208 - Postconditions at location 53:
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2327, fv!2328, pr, pr} * x:node->node{fv!2411, fv!2412, pr, pr} & pr=fv!2411 & pr=fv!2314 & pr=xr & pr=nil & fv!2412=fv!2328 & fv!2411=fv!2314 & fv!2411=xr & fv!2411=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2467, fv!2468, pr, pr} & pr=fv!2314 & pr=fv!2467 & pr=xr & pr=nil & fv!2314=fv!2467 & fv!2314=xr & fv!2314=nil & p=res & fv!2467=xr & fv!2467=nil & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2355, fv!2356, pr, pr} * tree(x) & pr=fv!2314 & pr=xr & pr=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * tree(x) & pr=xr & pr=fv!2314 & pr=nil & p=res & xr=fv!2314 & xr=nil & fv!2314=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2355, fv!2356, pr, pr} * x:node->node{fv!2579, fv!2580, pr, pr} & pr=fv!2579 & pr=fv!2314 & pr=xr & pr=nil & fv!2356=fv!2580 & fv!2579=fv!2314 & fv!2579=xr & fv!2579=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2341, fv!2342, pr, pr} * x:node->node{fv!2495, fv!2496, pr, pr} & pr=fv!2314 & pr=xr & pr=fv!2495 & pr=nil & fv!2342=fv!2496 & fv!2314=xr & fv!2314=fv!2495 & fv!2314=nil & p=res & xr=fv!2495 & xr=nil & fv!2495=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2341, fv!2342, pr, pr} * x:node->node{fv!2509, fv!2510, pr, pr} & pr=fv!2314 & pr=fv!2509 & pr=xr & pr=nil & fv!2342=fv!2510 & fv!2314=fv!2509 & fv!2314=xr & fv!2314=nil & p=res & fv!2509=xr & fv!2509=nil & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2481, fv!2482, pr, pr} & pr=fv!2314 & pr=xr & pr=fv!2481 & pr=nil & fv!2314=xr & fv!2314=fv!2481 & fv!2314=nil & p=res & xr=fv!2481 & xr=nil & fv!2481=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2327, fv!2328, pr, pr} * x:node->node{fv!2439, fv!2440, pr, pr} & pr=fv!2439 & pr=fv!2314 & pr=xr & pr=nil & p=res & fv!2439=fv!2314 & fv!2439=xr & fv!2439=nil & fv!2314=xr & fv!2314=nil & fv!2440=fv!2328 & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2551, fv!2552, pr, pr} & pr=fv!2314 & pr=fv!2551 & pr=xr & pr=nil & fv!2314=fv!2551 & fv!2314=xr & fv!2314=nil & p=res & fv!2551=xr & fv!2551=nil & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2383, fv!2384, pr, pr} & pr=fv!2383 & pr=fv!2314 & pr=xr & pr=nil & fv!2383=fv!2314 & fv!2383=xr & fv!2383=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2327, fv!2328, pr, pr} * tree(x) & pr=fv!2314 & pr=xr & pr=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2341, fv!2342, pr, pr} * tree(x) & pr=fv!2314 & pr=xr & pr=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2327, fv!2328, pr, pr} * x:node->node{fv!2425, fv!2426, pr, pr} & pr=fv!2425 & pr=fv!2314 & pr=xr & pr=nil & fv!2425=fv!2314 & fv!2425=xr & fv!2425=nil & fv!2426=fv!2328 & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2341, fv!2342, pr, pr} * x:node->node{fv!2523, fv!2524, pr, pr} & pr=fv!2314 & pr=fv!2523 & pr=xr & pr=nil & fv!2342=fv!2524 & fv!2314=fv!2523 & fv!2314=xr & fv!2314=nil & fv!2523=xr & fv!2523=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2369, fv!2370, pr, pr} & pr=fv!2369 & pr=fv!2314 & pr=xr & pr=nil & fv!2369=fv!2314 & fv!2369=xr & fv!2369=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2565, fv!2566, pr, pr} & pr=fv!2565 & pr=fv!2314 & pr=xr & pr=nil & fv!2565=fv!2314 & fv!2565=xr & fv!2565=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2355, fv!2356, pr, pr} * x:node->node{fv!2607, fv!2608, pr, pr} & pr=fv!2314 & pr=fv!2607 & pr=xr & pr=nil & fv!2356=fv!2608 & p=res & fv!2314=fv!2607 & fv!2314=xr & fv!2314=nil & fv!2607=xr & fv!2607=nil & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2453, fv!2454, pr, pr} & pr=fv!2453 & pr=fv!2314 & pr=xr & pr=nil & fv!2453=fv!2314 & fv!2453=xr & fv!2453=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2397, fv!2398, pr, pr} & pr=fv!2397 & pr=fv!2314 & pr=xr & pr=nil & fv!2397=fv!2314 & fv!2397=xr & fv!2397=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * pl:node->node{fv!2355, fv!2356, pr, pr} * x:node->node{fv!2593, fv!2594, pr, pr} & pr=fv!2593 & pr=fv!2314 & pr=xr & pr=nil & fv!2356=fv!2594 & fv!2593=fv!2314 & fv!2593=xr & fv!2593=nil & fv!2314=xr & fv!2314=nil & p=res & xr=nil
-dynsl.py:213 - p:node->node{fv!2313, fv!2314, pl, x} * tree(pl) * x:node->node{fv!2537, fv!2538, pr, pr} & pr=fv!2314 & pr=fv!2537 & pr=xr & pr=nil & fv!2314=fv!2537 & fv!2314=xr & fv!2314=nil & p=res & fv!2537=xr & fv!2537=nil & xr=nil
-dynsl.py:208 - Postconditions at location 22:
-dynsl.py:213 - tree(p) & x=res
-dynsl.py:208 - Postconditions at location 57:
-dynsl.py:213 - tree(pr) * p:node->node{fv!2849, fv!2850, pl, pr} * tree(xr) * tree(pl) * x:node->node{fv!2973, fv!2974, p, xr} & x=res
-dynsl.py:213 - tree(pr) * p:node->node{fv!2883, fv!2884, pl, pr} * tree(xr) * tree(pl) * x:node->node{fv!3063, fv!3064, p, xr} & x=res
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 11
-dynsl.py:255 - Number of traces: 70
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 621
-dynsl.py:259 - Number of atomic singleton predicates: 132
-dynsl.py:260 - Number of atomic inductive predicates: 68
-dynsl.py:261 - Number of pure constraints: 511
-dynsl.py:262 - Number of total invs: 63
-dynsl.py:263 - Number of pres:1
-dynsl.py:264 - Number of post:62
-dynsl.py:265 - Number of loop:0
-dynsl.py:266 - Running time (sec): 44.8296129704
-../simple_example_update/red_black_tree/rbt_insert_rec,11,70,1,621,132,68,511,63,1,62(18),0,44.8,*
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 9:
+dynsl.py:227 - tree(x) & True
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 32:
+dynsl.py:239 - tree(xr) * x:node->node{fv0, fv1, p, xr} * tree(p) & x=res
+dynsl.py:234 - Postconditions at location 97:
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=fv3 & xl=pl & xl=fv2 & xl=nil & p=res & fv3=pl & fv3=fv2 & fv3=nil & pl=fv2 & pl=nil & fv2=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=fv4 & xl=pl & xl=fv5 & xl=nil & fv3=fv1 & fv4=pl & fv4=fv5 & fv4=nil & p=res & pl=fv5 & pl=nil & fv5=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=pl & xl=fv5 & xl=fv4 & xl=nil & fv1=fv3 & p=res & pl=fv5 & pl=fv4 & pl=nil & fv5=fv4 & fv5=nil & fv4=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & fv0=xl & fv0=fv1 & fv0=pl & fv0=nil & xl=fv1 & xl=pl & xl=nil & fv1=pl & fv1=nil & pl=nil
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, xl} * p:node->node{fv2, fv3, x, pr} & xl=pl & xl=fv2 & xl=fv3 & xl=nil & p=res & pl=fv2 & pl=fv3 & pl=nil & fv2=fv3 & fv2=nil & fv3=nil
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, xl} * p:node->node{fv2, fv3, x, pr} & fv3=xl & fv3=fv2 & fv3=pl & fv3=nil & xl=fv2 & xl=pl & xl=nil & p=res & fv2=pl & fv2=nil & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=pl & xl=fv3 & xl=fv2 & xl=nil & p=res & pl=fv3 & pl=fv2 & pl=nil & fv3=fv2 & fv3=nil & fv2=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=fv3 & xl=fv2 & xl=pl & xl=nil & p=res & fv3=fv2 & fv3=pl & fv3=nil & fv2=pl & fv2=nil & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & fv1=fv0 & fv1=xl & fv1=pl & fv1=nil & fv0=xl & fv0=pl & fv0=nil & xl=pl & xl=nil & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=fv5 & xl=fv4 & xl=pl & xl=nil & fv1=fv3 & p=res & fv5=fv4 & fv5=pl & fv5=nil & fv4=pl & fv4=nil & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & fv0=fv1 & fv0=xl & fv0=pl & fv0=nil & fv1=xl & fv1=pl & fv1=nil & xl=pl & xl=nil & p=res & pl=nil
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, xl} * p:node->node{fv2, fv3, x, pr} & fv3=xl & fv3=fv2 & fv3=pl & fv3=nil & xl=fv2 & xl=pl & xl=nil & fv2=pl & fv2=nil & p=res & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & fv5=xl & fv5=fv4 & fv5=pl & fv5=nil & xl=fv4 & xl=pl & xl=nil & fv4=pl & fv4=nil & fv3=fv1 & p=res & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & pl=xl & pl=fv0 & pl=fv1 & pl=nil & xl=fv0 & xl=fv1 & xl=nil & fv0=fv1 & fv0=nil & fv1=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=fv2 & xl=pl & xl=fv3 & xl=nil & fv2=pl & fv2=fv3 & fv2=nil & p=res & pl=fv3 & pl=nil & fv3=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=fv3 & xl=fv2 & xl=pl & xl=nil & fv3=fv2 & fv3=pl & fv3=nil & fv2=pl & fv2=nil & p=res & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=fv4 & xl=fv5 & xl=pl & xl=nil & fv1=fv3 & p=res & fv4=fv5 & fv4=pl & fv4=nil & fv5=pl & fv5=nil & pl=nil
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, xl} * p:node->node{fv2, fv3, x, pr} & xl=fv2 & xl=fv3 & xl=pl & xl=nil & fv2=fv3 & fv2=pl & fv2=nil & fv3=pl & fv3=nil & p=res & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & fv0=xl & fv0=pl & fv0=fv1 & fv0=nil & xl=pl & xl=fv1 & xl=nil & pl=fv1 & pl=nil & fv1=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=fv4 & xl=pl & xl=fv5 & xl=nil & fv1=fv3 & p=res & fv4=pl & fv4=fv5 & fv4=nil & pl=fv5 & pl=nil & fv5=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=fv2 & xl=fv3 & xl=pl & xl=nil & p=res & fv2=fv3 & fv2=pl & fv2=nil & fv3=pl & fv3=nil & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & xl=fv1 & xl=fv0 & xl=pl & xl=nil & fv1=fv0 & fv1=pl & fv1=nil & fv0=pl & fv0=nil & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & xl=pl & xl=fv2 & xl=fv3 & xl=nil & p=res & pl=fv2 & pl=fv3 & pl=nil & fv2=fv3 & fv2=nil & fv3=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & fv3=xl & fv3=fv2 & fv3=pl & fv3=nil & xl=fv2 & xl=pl & xl=nil & fv2=pl & fv2=nil & p=res & pl=nil
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, xl} * p:node->node{fv2, fv3, x, pr} & xl=fv3 & xl=fv2 & xl=pl & xl=nil & p=res & fv3=fv2 & fv3=pl & fv3=nil & fv2=pl & fv2=nil & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=fv4 & xl=fv5 & xl=pl & xl=nil & fv4=fv5 & fv4=pl & fv4=nil & fv5=pl & fv5=nil & fv3=fv1 & p=res & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & xl=fv0 & xl=fv1 & xl=pl & xl=nil & fv0=fv1 & fv0=pl & fv0=nil & fv1=pl & fv1=nil & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & xl=fv5 & xl=fv4 & xl=pl & xl=nil & p=res & fv5=fv4 & fv5=pl & fv5=nil & fv4=pl & fv4=nil & fv3=fv1 & pl=nil
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, xl} * p:node->node{fv2, fv3, x, pr} & xl=fv2 & xl=fv3 & xl=pl & xl=nil & p=res & fv2=fv3 & fv2=pl & fv2=nil & fv3=pl & fv3=nil & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * tree(x) * p:node->node{fv2, fv3, x, pr} & fv2=fv3 & fv2=xl & fv2=pl & fv2=nil & fv3=xl & fv3=pl & fv3=nil & xl=pl & xl=nil & p=res & pl=nil
+dynsl.py:239 - pr:node->node{fv0, fv1, xl, xl} * x:node->node{fv2, fv3, xl, xl} * p:node->node{fv4, fv5, x, pr} & fv5=xl & fv5=fv4 & fv5=pl & fv5=nil & xl=fv4 & xl=pl & xl=nil & fv1=fv3 & p=res & fv4=pl & fv4=nil & pl=nil
+dynsl.py:239 - tree(pr) * tree(x) * p:node->node{fv0, fv1, x, pr} & p=res & fv1=xl & fv1=pl & fv1=fv0 & fv1=nil & xl=pl & xl=fv0 & xl=nil & pl=fv0 & pl=nil & fv0=nil
+dynsl.py:234 - Postconditions at location 66:
+dynsl.py:239 - tree(p) & x=res
+dynsl.py:234 - Postconditions at location 101:
+dynsl.py:239 - tree(pr) * x:node->node{fv0, fv1, xl, p} * tree(pl) * tree(xl) * p:node->node{fv2, fv3, pl, pr} & x=res
+dynsl.py:234 - Postconditions at location 76:
+dynsl.py:239 - x:node->node{fv0, fv1, xl, p} * tree(xl) * tree(p) & fv0=nil & x=res
+dynsl.py:239 - x:node->node{fv0, fv1, xl, p} * xl:node->node{fv2, fv3, nil, nil} * tree(p) & x=res & fv3=fv0 & fv3=nil & fv0=nil
+dynsl.py:234 - Postconditions at location 16:
+dynsl.py:239 - tree(nr) & x=nil & nr=res
+dynsl.py:239 - nr:node->node{fv0, fv1, x, x} & nr=res & x=nil
+dynsl.py:234 - Postconditions at location 53:
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * pl:node->node{fv2, fv3, xr, xr} * p:node->node{fv4, fv5, pl, x} & pr=xr & pr=fv5 & pr=nil & fv1=fv3 & p=res & xr=fv5 & xr=nil & fv5=nil
+dynsl.py:239 - tree(x) * pl:node->node{fv0, fv1, xr, xr} * p:node->node{fv2, fv3, pl, x} & pr=xr & pr=fv3 & pr=nil & xr=fv3 & xr=nil & p=res & fv3=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * tree(pl) * p:node->node{fv2, fv3, pl, x} & pr=fv3 & pr=xr & pr=nil & fv3=xr & fv3=nil & p=res & xr=nil
+dynsl.py:239 - tree(x) * tree(pl) * p:node->node{fv0, fv1, pl, x} & pr=fv1 & pr=xr & pr=nil & p=res & fv1=xr & fv1=nil & xr=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * pl:node->node{fv2, fv3, xr, xr} * p:node->node{fv4, fv5, pl, x} & pr=xr & pr=fv5 & pr=nil & fv3=fv1 & p=res & xr=fv5 & xr=nil & fv5=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * pl:node->node{fv2, fv3, xr, xr} * p:node->node{fv4, fv5, pl, x} & pr=fv5 & pr=xr & pr=nil & fv1=fv3 & fv5=xr & fv5=nil & p=res & xr=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * pl:node->node{fv2, fv3, xr, xr} * p:node->node{fv4, fv5, pl, x} & pr=fv5 & pr=xr & pr=nil & fv1=fv3 & p=res & fv5=xr & fv5=nil & xr=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * pl:node->node{fv2, fv3, xr, xr} * p:node->node{fv4, fv5, pl, x} & pr=fv5 & pr=xr & pr=nil & fv5=xr & fv5=nil & fv3=fv1 & p=res & xr=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * pl:node->node{fv2, fv3, xr, xr} * p:node->node{fv4, fv5, pl, x} & pr=fv5 & pr=xr & pr=nil & fv3=fv1 & fv5=xr & fv5=nil & p=res & xr=nil
+dynsl.py:239 - tree(x) * pl:node->node{fv0, fv1, xr, xr} * p:node->node{fv2, fv3, pl, x} & pr=xr & pr=fv3 & pr=nil & p=res & xr=fv3 & xr=nil & fv3=nil
+dynsl.py:239 - tree(x) * tree(pl) * p:node->node{fv0, fv1, pl, x} & pr=fv1 & pr=xr & pr=nil & fv1=xr & fv1=nil & p=res & xr=nil
+dynsl.py:239 - tree(x) * pl:node->node{fv0, fv1, xr, xr} * p:node->node{fv2, fv3, pl, x} & pr=fv3 & pr=xr & pr=nil & p=res & fv3=xr & fv3=nil & xr=nil
+dynsl.py:239 - tree(x) * pl:node->node{fv0, fv1, xr, xr} * p:node->node{fv2, fv3, pl, x} & pr=fv3 & pr=xr & pr=nil & fv3=xr & fv3=nil & p=res & xr=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * tree(pl) * p:node->node{fv2, fv3, pl, x} & pr=xr & pr=fv3 & pr=nil & xr=fv3 & xr=nil & p=res & fv3=nil
+dynsl.py:239 - tree(x) * tree(pl) * p:node->node{fv0, fv1, pl, x} & pr=xr & pr=fv1 & pr=nil & p=res & xr=fv1 & xr=nil & fv1=nil
+dynsl.py:239 - x:node->node{fv0, fv1, xr, xr} * tree(pl) * p:node->node{fv2, fv3, pl, x} & pr=fv3 & pr=xr & pr=nil & p=res & fv3=xr & fv3=nil & xr=nil
+dynsl.py:234 - Postconditions at location 22:
+dynsl.py:239 - tree(p) & x=res
+dynsl.py:234 - Postconditions at location 57:
+dynsl.py:239 - x:node->node{fv0, fv1, p, xr} * p:node->node{fv2, fv3, xr, xr} & pr=xr & pr=pl & pr=nil & fv3=fv1 & xr=pl & xr=nil & x=res & pl=nil
+dynsl.py:239 - x:node->node{fv0, fv1, p, xr} * p:node->node{fv2, fv3, xr, xr} & pr=xr & pr=pl & pr=nil & xr=pl & xr=nil & fv1=fv3 & x=res & pl=nil
+dynsl.py:239 - x:node->node{fv0, fv1, p, xr} * p:node->node{fv2, fv3, xr, xr} & pr=xr & pr=pl & pr=nil & fv1=fv3 & xr=pl & xr=nil & x=res & pl=nil
+dynsl.py:239 - x:node->node{fv0, fv1, p, xr} * tree(p) & pr=pl & pr=xr & pr=nil & pl=xr & pl=nil & x=res & xr=nil
+dynsl.py:239 - x:node->node{fv0, fv1, p, xr} * tree(p) & pr=xr & pr=pl & pr=nil & xr=pl & xr=nil & x=res & pl=nil
+dynsl.py:234 - Postconditions at location 90:
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & fv3=fv1 & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv5=pll & fv5=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=fv3 & pr=plr & pr=xl & pr=pll & pr=nil & fv3=plr & fv3=xl & fv3=pll & fv3=nil & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & fv3=fv1 & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv5=pll & fv5=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv5=pll & fv5=nil & fv3=fv1 & pll=nil & pl=res
+dynsl.py:239 - tree(p) * x:node->node{fv0, fv1, pr, pr} * pl:node->node{fv2, fv3, x, p} & pr=pll & pr=plr & pr=xl & pr=fv3 & pr=nil & pll=plr & pll=xl & pll=fv3 & pll=nil & plr=xl & plr=fv3 & plr=nil & xl=fv3 & xl=nil & fv3=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv1=fv3 & fv5=pll & fv5=nil & pl=res & pll=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=pll & pr=fv5 & pr=nil & plr=xl & plr=pll & plr=fv5 & plr=nil & xl=pll & xl=fv5 & xl=nil & fv3=fv1 & pll=fv5 & pll=nil & pl=res & fv5=nil
+dynsl.py:239 - tree(p) * tree(x) * pl:node->node{fv0, fv1, x, p} & pr=plr & pr=xl & pr=fv1 & pr=pll & pr=nil & plr=xl & plr=fv1 & plr=pll & plr=nil & xl=fv1 & xl=pll & xl=nil & fv1=pll & fv1=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv3=fv1 & fv5=pll & fv5=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=fv3 & pr=pll & pr=plr & pr=xl & pr=nil & fv3=pll & fv3=plr & fv3=xl & fv3=nil & pll=plr & pll=xl & pll=nil & plr=xl & plr=nil & xl=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & fv5=pr & fv5=plr & fv5=xl & fv5=pll & fv5=nil & pr=plr & pr=xl & pr=pll & pr=nil & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & fv3=fv1 & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=pll & pr=fv5 & pr=nil & plr=xl & plr=pll & plr=fv5 & plr=nil & xl=pll & xl=fv5 & xl=nil & fv3=fv1 & pl=res & pll=fv5 & pll=nil & fv5=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=fv5 & pr=plr & pr=xl & pr=pll & pr=nil & fv5=plr & fv5=xl & fv5=pll & fv5=nil & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & fv3=fv1 & pll=nil & pl=res
+dynsl.py:239 - tree(p) * x:node->node{fv0, fv1, pr, pr} * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=pll & pr=fv3 & pr=nil & plr=xl & plr=pll & plr=fv3 & plr=nil & xl=pll & xl=fv3 & xl=nil & pl=res & pll=fv3 & pll=nil & fv3=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=fv5 & pr=plr & pr=xl & pr=pll & pr=nil & fv3=fv1 & fv5=plr & fv5=xl & fv5=pll & fv5=nil & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & pll=nil & pl=res
+dynsl.py:239 - tree(p) * x:node->node{fv0, fv1, pr, pr} * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=fv3 & pr=pll & pr=nil & plr=xl & plr=fv3 & plr=pll & plr=nil & xl=fv3 & xl=pll & xl=nil & fv3=pll & fv3=nil & pl=res & pll=nil
+dynsl.py:239 - tree(p) * tree(x) * pl:node->node{fv0, fv1, x, p} & pr=fv1 & pr=plr & pr=xl & pr=pll & pr=nil & fv1=plr & fv1=xl & fv1=pll & fv1=nil & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=fv3 & pr=pll & pr=nil & plr=xl & plr=fv3 & plr=pll & plr=nil & xl=fv3 & xl=pll & xl=nil & fv3=pll & fv3=nil & pll=nil & pl=res
+dynsl.py:239 - tree(p) * x:node->node{fv0, fv1, pr, pr} * pl:node->node{fv2, fv3, x, p} & pr=fv3 & pr=plr & pr=xl & pr=pll & pr=nil & fv3=plr & fv3=xl & fv3=pll & fv3=nil & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv5=pll & fv5=nil & fv1=fv3 & pll=nil & pl=res
+dynsl.py:239 - tree(p) * tree(x) * pl:node->node{fv0, fv1, x, p} & pr=plr & pr=xl & pr=pll & pr=fv1 & pr=nil & plr=xl & plr=pll & plr=fv1 & plr=nil & xl=pll & xl=fv1 & xl=nil & pll=fv1 & pll=nil & pl=res & fv1=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=pll & pr=fv3 & pr=nil & plr=xl & plr=pll & plr=fv3 & plr=nil & xl=pll & xl=fv3 & xl=nil & pll=fv3 & pll=nil & pl=res & fv3=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & pr=plr & pr=xl & pr=fv5 & pr=pll & pr=nil & plr=xl & plr=fv5 & plr=pll & plr=nil & xl=fv5 & xl=pll & xl=nil & fv1=fv3 & fv5=pll & fv5=nil & pll=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=fv3 & pr=xl & pr=pll & pr=plr & pr=nil & fv3=xl & fv3=pll & fv3=plr & fv3=nil & xl=pll & xl=plr & xl=nil & pll=plr & pll=nil & pl=res & plr=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=pll & pr=fv3 & pr=nil & plr=xl & plr=pll & plr=fv3 & plr=nil & xl=pll & xl=fv3 & xl=nil & pl=res & pll=fv3 & pll=nil & fv3=nil
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * x:node->node{fv2, fv3, pr, pr} * pl:node->node{fv4, fv5, x, p} & fv5=pr & fv5=plr & fv5=xl & fv5=pll & fv5=nil & pr=plr & pr=xl & pr=pll & pr=nil & fv3=fv1 & plr=xl & plr=pll & plr=nil & xl=pll & xl=nil & pll=nil & pl=res
+dynsl.py:239 - tree(p) * x:node->node{fv0, fv1, pr, pr} * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=fv3 & pr=pll & pr=nil & plr=xl & plr=fv3 & plr=pll & plr=nil & xl=fv3 & xl=pll & xl=nil & fv3=pll & fv3=nil & pll=nil & pl=res
+dynsl.py:239 - tree(p) * tree(x) * pl:node->node{fv0, fv1, x, p} & pr=pll & pr=plr & pr=xl & pr=fv1 & pr=nil & pll=plr & pll=xl & pll=fv1 & pll=nil & plr=xl & plr=fv1 & plr=nil & xl=fv1 & xl=nil & fv1=nil & pl=res
+dynsl.py:239 - tree(p) * x:node->node{fv0, fv1, pr, pr} * pl:node->node{fv2, fv3, x, p} & pr=plr & pr=xl & pr=pll & pr=fv3 & pr=nil & plr=xl & plr=pll & plr=fv3 & plr=nil & xl=pll & xl=fv3 & xl=nil & pll=fv3 & pll=nil & fv3=nil & pl=res
+dynsl.py:239 - p:node->node{fv0, fv1, pr, pr} * tree(x) * pl:node->node{fv2, fv3, x, p} & pr=pll & pr=plr & pr=xl & pr=fv3 & pr=nil & pll=plr & pll=xl & pll=fv3 & pll=nil & plr=xl & plr=fv3 & plr=nil & xl=fv3 & xl=nil & fv3=nil & pl=res
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 11
+dynsl.py:281 - Number of traces: 66
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 216
+dynsl.py:284 - Number of free variables: 2265
+dynsl.py:285 - Number of atomic singleton predicates: 402
+dynsl.py:286 - Number of atomic inductive predicates: 202
+dynsl.py:287 - Number of pure constraints: 2547
+dynsl.py:288 - Number of total invs: 92
+dynsl.py:289 - Number of pres:1
+dynsl.py:290 - Number of post:91
+dynsl.py:291 - Number of loop:0
+dynsl.py:292 - Running time (sec): 137.500216961
+../simple_example_update/red_black_tree/rbt_insert_rec,11,66,216,2265,402,202,2547,92,1,91,0,137.

@@ -1,58 +1,59 @@
-dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+dynsl.py:167 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 24 ...
+dynsl.py:167 - Inferring post-conditions at the location 24 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 8:
-dynsl.py:202 - (exists fv!6, fv!5. dll(p, fv!5, fv!6, nil) * hd:node->node{fv!53, fv!54, nil} & fv!5=nil)
-dynsl.py:202 - (exists fv!8, fv!7. dll(p, nil, fv!7, fv!8) * hd:node->node{fv!73, fv!74, nil} & fv!8=nil)
-dynsl.py:202 - (exists fv!6, fv!5, fv!38, fv!37. dll(p, fv!5, fv!6, nil) * dll(hd, nil, fv!37, fv!38) & fv!37=hd & fv!5=nil)
-dynsl.py:202 - (exists fv!8, fv!7, fv!58, fv!57. dll(p, nil, fv!7, fv!8) * dll(hd, nil, fv!57, fv!58) & fv!57=hd & fv!8=nil)
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 24:
-dynsl.py:213 - (exists fv!818, fv!817, fv!905, fv!906. p:node->node{fv!128, v, u} * dll(hd, nil, fv!817, fv!818) * dll(v, fv!905, fv!906, nil) & fv!906=fv!818 & fv!905=u & fv!905=nil & u=nil & fv!817=hd)
-dynsl.py:213 - (exists fv!383, fv!384, fv!458, fv!457. p:node->node{fv!101, v, u} * dll(hd, u, fv!383, fv!384) * dll(v, fv!457, fv!458, nil) & u=fv!457 & u=nil & fv!457=nil & fv!383=hd & fv!458=fv!384)
-dynsl.py:213 - (exists fv!784, fv!783, fv!834, fv!833. p:node->node{fv!128, v, u} * dll(hd, u, fv!783, fv!784) * dll(v, fv!833, fv!834, u) & fv!784=fv!834 & fv!783=hd & u=fv!833 & u=nil & fv!833=nil)
-dynsl.py:213 - (exists fv!106, fv!618, fv!617, fv!706, fv!705. dll(p, nil, fv!106, v) * dll(hd, nil, fv!617, fv!618) * dll(v, fv!705, fv!706, nil) & fv!106=p & fv!617=hd & fv!706=fv!618 & fv!705=u & fv!705=nil & u=nil)
-dynsl.py:213 - (exists fv!76, fv!217, fv!218, fv!282, fv!281. dll(p, u, fv!76, v) * dll(hd, nil, fv!217, fv!218) * dll(v, fv!281, fv!282, u) & fv!282=fv!218 & fv!281=u & fv!281=nil & fv!76=p & u=nil & fv!217=hd)
-dynsl.py:213 - (exists fv!76, fv!183, fv!184, fv!259, fv!260. dll(p, u, fv!76, v) * dll(hd, u, fv!183, fv!184) * dll(v, nil, fv!259, fv!260) & fv!259=fv!184 & fv!76=p & fv!260=u & fv!260=nil & u=nil & fv!183=hd)
-dynsl.py:213 - (exists fv!383, fv!384, fv!459, fv!460. p:node->node{fv!101, v, u} * dll(hd, u, fv!383, fv!384) * dll(v, nil, fv!459, fv!460) & fv!460=u & fv!460=nil & u=nil & fv!384=fv!459 & fv!383=hd)
-dynsl.py:213 - (exists fv!784, fv!783, fv!859, fv!860. p:node->node{fv!128, v, u} * dll(hd, u, fv!783, fv!784) * dll(v, nil, fv!859, fv!860) & fv!859=fv!784 & fv!860=u & fv!860=nil & fv!783=hd & u=nil)
-dynsl.py:213 - (exists fv!106, fv!584, fv!583, fv!657, fv!658. dll(p, nil, fv!106, v) * dll(hd, u, fv!583, fv!584) * dll(v, fv!657, fv!658, nil) & fv!657=u & fv!657=nil & fv!106=p & fv!658=fv!584 & u=nil & hd=fv!583)
-dynsl.py:213 - (exists fv!76, fv!183, fv!184, fv!258, fv!257. dll(p, u, fv!76, v) * dll(hd, u, fv!183, fv!184) * dll(v, fv!257, fv!258, nil) & fv!258=fv!184 & fv!76=p & fv!257=u & fv!257=nil & u=nil & fv!183=hd)
-dynsl.py:213 - (exists fv!76, fv!217, fv!218, fv!283, fv!284. dll(p, u, fv!76, v) * dll(hd, nil, fv!217, fv!218) * dll(v, u, fv!283, fv!284) & fv!283=fv!218 & fv!76=p & fv!284=u & fv!284=nil & u=nil & fv!217=hd)
-dynsl.py:213 - (exists fv!818, fv!817, fv!908, fv!907. p:node->node{fv!128, v, u} * dll(hd, nil, fv!817, fv!818) * dll(v, nil, fv!907, fv!908) & fv!908=u & fv!908=nil & fv!907=fv!818 & u=nil & fv!817=hd)
-dynsl.py:213 - (exists fv!76, fv!183, fv!184, fv!233, fv!234. dll(p, u, fv!76, v) * dll(hd, u, fv!183, fv!184) * dll(v, fv!233, fv!234, u) & fv!76=p & fv!233=u & fv!233=nil & u=nil & fv!234=fv!184 & fv!183=hd)
-dynsl.py:213 - (exists fv!417, fv!418, fv!507, fv!508. p:node->node{fv!101, v, u} * dll(hd, nil, fv!417, fv!418) * dll(v, nil, fv!507, fv!508) & fv!507=fv!418 & fv!417=hd & fv!508=u & fv!508=nil & u=nil)
-dynsl.py:213 - (exists fv!383, fv!384, fv!435, fv!436. p:node->node{fv!101, v, u} * dll(hd, u, fv!383, fv!384) * dll(v, u, fv!435, fv!436) & fv!435=fv!384 & fv!436=u & fv!436=nil & u=nil & fv!383=hd)
-dynsl.py:213 - (exists fv!417, fv!418, fv!484, fv!483. p:node->node{fv!101, v, u} * dll(hd, nil, fv!417, fv!418) * dll(v, u, fv!483, fv!484) & fv!418=fv!483 & fv!484=u & fv!484=nil & fv!417=hd & u=nil)
-dynsl.py:213 - (exists fv!818, fv!817, fv!883, fv!884. p:node->node{fv!128, v, u} * dll(hd, nil, fv!817, fv!818) * dll(v, u, fv!883, fv!884) & fv!883=fv!818 & u=fv!884 & u=nil & fv!817=hd & fv!884=nil)
-dynsl.py:213 - (exists fv!106, fv!618, fv!617, fv!707, fv!708. dll(p, nil, fv!106, v) * dll(hd, nil, fv!617, fv!618) * dll(v, nil, fv!707, fv!708) & fv!106=p & fv!707=fv!618 & fv!617=hd & u=fv!708 & u=nil & fv!708=nil)
-dynsl.py:213 - (exists fv!106, fv!618, fv!617, fv!682, fv!681. dll(p, nil, fv!106, v) * dll(hd, nil, fv!617, fv!618) * dll(v, fv!681, fv!682, u) & fv!106=p & fv!617=hd & u=fv!681 & u=nil & fv!682=fv!618 & fv!681=nil)
-dynsl.py:213 - (exists fv!76, fv!217, fv!218, fv!306, fv!305. dll(p, u, fv!76, v) * dll(hd, nil, fv!217, fv!218) * dll(v, fv!305, fv!306, nil) & fv!76=p & fv!305=u & fv!305=nil & u=nil & fv!306=fv!218 & fv!217=hd)
-dynsl.py:213 - (exists fv!106, fv!584, fv!583, fv!634, fv!633. dll(p, nil, fv!106, v) * dll(hd, u, fv!583, fv!584) * dll(v, fv!633, fv!634, u) & fv!106=p & fv!634=fv!584 & u=fv!633 & u=nil & fv!633=nil & hd=fv!583)
-dynsl.py:213 - (exists fv!106, fv!584, fv!583, fv!636, fv!635. dll(p, nil, fv!106, v) * dll(hd, u, fv!583, fv!584) * dll(v, u, fv!635, fv!636) & fv!106=p & fv!636=u & fv!636=nil & fv!635=fv!584 & u=nil & hd=fv!583)
-dynsl.py:213 - (exists fv!106, fv!618, fv!617, fv!684, fv!683. dll(p, nil, fv!106, v) * dll(hd, nil, fv!617, fv!618) * dll(v, u, fv!683, fv!684) & fv!106=p & fv!617=hd & fv!684=u & fv!684=nil & u=nil & fv!618=fv!683)
-dynsl.py:213 - (exists fv!76, fv!217, fv!218, fv!308, fv!307. dll(p, u, fv!76, v) * dll(hd, nil, fv!217, fv!218) * dll(v, nil, fv!307, fv!308) & fv!76=p & u=fv!308 & u=nil & fv!307=fv!218 & fv!308=nil & fv!217=hd)
-dynsl.py:213 - (exists fv!383, fv!384, fv!434, fv!433. p:node->node{fv!101, v, u} * dll(hd, u, fv!383, fv!384) * dll(v, fv!433, fv!434, u) & fv!433=u & fv!433=nil & fv!434=fv!384 & u=nil & fv!383=hd)
-dynsl.py:213 - (exists fv!784, fv!783, fv!835, fv!836. p:node->node{fv!128, v, u} * dll(hd, u, fv!783, fv!784) * dll(v, u, fv!835, fv!836) & fv!784=fv!835 & fv!783=hd & u=fv!836 & u=nil & fv!836=nil)
-dynsl.py:213 - (exists fv!417, fv!418, fv!481, fv!482. p:node->node{fv!101, v, u} * dll(hd, nil, fv!417, fv!418) * dll(v, fv!481, fv!482, u) & fv!418=fv!482 & fv!417=hd & u=fv!481 & u=nil & fv!481=nil)
-dynsl.py:213 - (exists fv!818, fv!817, fv!881, fv!882. p:node->node{fv!128, v, u} * dll(hd, nil, fv!817, fv!818) * dll(v, fv!881, fv!882, u) & u=fv!881 & u=nil & fv!817=hd & fv!881=nil & fv!818=fv!882)
-dynsl.py:213 - (exists fv!106, fv!584, fv!583, fv!660, fv!659. dll(p, nil, fv!106, v) * dll(hd, u, fv!583, fv!584) * dll(v, nil, fv!659, fv!660) & fv!106=p & fv!659=fv!584 & u=fv!660 & u=nil & fv!660=nil & hd=fv!583)
-dynsl.py:213 - (exists fv!76, fv!183, fv!184, fv!236, fv!235. dll(p, u, fv!76, v) * dll(hd, u, fv!183, fv!184) * dll(v, u, fv!235, fv!236) & fv!76=p & fv!235=fv!184 & u=fv!236 & u=nil & fv!236=nil & fv!183=hd)
-dynsl.py:213 - (exists fv!417, fv!418, fv!505, fv!506. p:node->node{fv!101, v, u} * dll(hd, nil, fv!417, fv!418) * dll(v, fv!505, fv!506, nil) & fv!506=fv!418 & fv!505=u & fv!505=nil & fv!417=hd & u=nil)
-dynsl.py:213 - (exists fv!784, fv!783, fv!857, fv!858. p:node->node{fv!128, v, u} * dll(hd, u, fv!783, fv!784) * dll(v, fv!857, fv!858, nil) & fv!858=fv!784 & fv!857=u & fv!857=nil & fv!783=hd & u=nil)
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 2
-dynsl.py:255 - Number of traces: 2
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 156
-dynsl.py:259 - Number of atomic singleton predicates: 18
-dynsl.py:260 - Number of atomic inductive predicates: 86
-dynsl.py:261 - Number of pure constraints: 182
-dynsl.py:262 - Number of total invs: 36
-dynsl.py:263 - Number of pres:4
-dynsl.py:264 - Number of post:32
-dynsl.py:265 - Number of loop:0
-dynsl.py:266 - Running time (sec): 15.8229498863
-../simple_example_update/dll//mid_delete_hd_star,2,2,36,156,18,86,182,36,4,32,0,15.8
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 8:
+dynsl.py:227 - (exists fv0, fv1. dll(p, fv1, fv0, nil) * hd:node->node{fv13, fv14, nil} & fv1=nil)
+dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(p, nil, fv1, fv0) * dll(hd, nil, fv3, fv2) & fv3=hd & fv0=nil)
+dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(p, fv1, fv0, nil) * dll(hd, nil, fv3, fv2) & fv3=hd & fv1=nil)
+dynsl.py:227 - (exists fv0, fv1. dll(p, nil, fv1, fv0) * hd:node->node{fv13, fv14, nil} & fv0=nil)
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 24:
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv1, fv0) * dll(v, fv2, fv3, nil) & fv3=fv0 & fv2=fv4 & fv2=u & fv2=nil & fv1=hd & fv4=u & fv4=nil & u=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, u, fv2, fv1) * dll(v, nil, fv4, fv3) & fv0=p & fv4=fv1 & u=fv3 & u=nil & fv3=nil & hd=fv2)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv0, fv1) * dll(v, nil, fv2, fv3) & fv4=fv3 & fv4=u & fv4=nil & fv2=fv1 & fv0=hd & fv3=u & fv3=nil & u=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, nil, fv1, fv2) * dll(v, nil, fv4, fv3) & fv0=p & u=fv3 & u=nil & fv4=fv2 & fv3=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv0, fv1) * dll(v, fv2, fv3, u) & fv4=u & fv4=fv2 & fv4=nil & fv1=fv3 & fv0=hd & u=fv2 & u=nil & fv2=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv1, fv0) * dll(v, fv3, fv2, u) & fv0=fv2 & fv1=hd & fv4=u & fv4=fv3 & fv4=nil & u=fv3 & u=nil & fv3=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, nil, fv1, fv2) * dll(v, fv4, fv3, u) & fv3=fv2 & fv4=u & fv4=nil & fv0=p & u=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, nil, fv1, fv2) * dll(v, u, fv3, fv4) & fv3=fv2 & fv0=p & fv4=u & fv4=nil & u=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv1, fv0) * dll(v, nil, fv3, fv2) & fv2=fv4 & fv2=u & fv2=nil & fv4=u & fv4=nil & fv3=fv0 & u=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv0, fv1) * dll(v, fv2, fv3, nil) & fv4=fv2 & fv4=u & fv4=nil & fv3=fv1 & fv2=u & fv2=nil & fv0=hd & u=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv1, fv0) * dll(v, fv2, fv3, u) & fv4=u & fv4=fv2 & fv4=nil & u=fv2 & u=nil & fv1=hd & fv2=nil & fv0=fv3)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, nil, fv2, fv1) * dll(v, nil, fv3, fv4) & fv0=p & fv3=fv1 & fv2=hd & u=fv4 & u=nil & fv4=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv0, fv1) * dll(v, fv3, fv2, nil) & fv4=u & fv4=fv3 & fv4=nil & u=fv3 & u=nil & fv3=nil & fv0=hd & fv2=fv1)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, nil, fv2, fv1) * dll(v, fv4, fv3, u) & fv0=p & fv2=hd & u=fv4 & u=nil & fv3=fv1 & fv4=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, u, fv1, fv2) * dll(v, fv3, fv4, u) & fv0=p & fv3=u & fv3=nil & u=nil & fv4=fv2 & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, u, fv1, fv2) * dll(v, u, fv4, fv3) & fv0=p & fv4=fv2 & u=fv3 & u=nil & fv3=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv0, fv1) * dll(v, nil, fv2, fv3) & fv4=fv3 & fv4=u & fv4=nil & fv3=u & fv3=nil & u=nil & fv1=fv2 & fv0=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, nil, fv1, fv2) * dll(v, fv4, fv3, nil) & fv0=p & fv4=u & fv4=nil & u=nil & fv3=fv2 & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv0, fv1) * dll(v, fv3, fv2, u) & fv4=fv3 & fv4=u & fv4=nil & fv3=u & fv3=nil & fv2=fv1 & u=nil & fv0=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, u, fv2, fv1) * dll(v, fv3, fv4, nil) & fv3=u & fv3=nil & fv0=p & fv4=fv1 & u=nil & hd=fv2)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv1, fv0) * dll(v, nil, fv2, fv3) & fv2=fv0 & fv3=fv4 & fv3=u & fv3=nil & fv1=hd & fv4=u & fv4=nil & u=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv1, fv0) * dll(v, fv2, fv3, nil) & fv3=fv0 & fv2=fv4 & fv2=u & fv2=nil & fv4=u & fv4=nil & u=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv1, fv0) * dll(v, u, fv2, fv3) & fv0=fv2 & fv1=hd & fv4=u & fv4=fv3 & fv4=nil & u=fv3 & u=nil & fv3=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv0, fv1) * dll(v, u, fv3, fv2) & fv4=fv2 & fv4=u & fv4=nil & fv1=fv3 & fv2=u & fv2=nil & fv0=hd & u=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, u, fv1, fv2) * dll(v, nil, fv3, fv4) & fv3=fv2 & fv0=p & fv4=u & fv4=nil & u=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, u, fv0, v) * dll(hd, u, fv1, fv2) * dll(v, fv4, fv3, nil) & fv3=fv2 & fv0=p & fv4=u & fv4=nil & u=nil & fv1=hd)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, nil, fv2, fv1) * dll(v, fv4, fv3, nil) & fv0=p & fv2=hd & fv3=fv1 & fv4=u & fv4=nil & u=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, nil, fv1, fv0) * dll(v, u, fv2, fv3) & fv2=fv0 & fv4=u & fv4=fv3 & fv4=nil & u=fv3 & u=nil & fv1=hd & fv3=nil)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, nil, fv2, fv1) * dll(v, u, fv4, fv3) & fv0=p & fv2=hd & fv3=u & fv3=nil & u=nil & fv1=fv4)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, u, fv2, fv1) * dll(v, fv4, fv3, u) & fv0=p & fv3=fv1 & u=fv4 & u=nil & fv4=nil & hd=fv2)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4. dll(p, nil, fv0, v) * dll(hd, u, fv2, fv1) * dll(v, u, fv4, fv3) & fv0=p & fv3=u & fv3=nil & fv4=fv1 & u=nil & hd=fv2)
+dynsl.py:239 - (exists fv0, fv1, fv2, fv3. p:node->node{fv4, v, u} * dll(hd, u, fv0, fv1) * dll(v, u, fv2, fv3) & fv4=fv3 & fv4=u & fv4=nil & fv2=fv1 & fv3=u & fv3=nil & u=nil & fv0=hd)
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 2
+dynsl.py:281 - Number of traces: 2
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 36
+dynsl.py:284 - Number of free variables: 156
+dynsl.py:285 - Number of atomic singleton predicates: 18
+dynsl.py:286 - Number of atomic inductive predicates: 86
+dynsl.py:287 - Number of pure constraints: 230
+dynsl.py:288 - Number of total invs: 36
+dynsl.py:289 - Number of pres:4
+dynsl.py:290 - Number of post:32
+dynsl.py:291 - Number of loop:0
+dynsl.py:292 - Running time (sec): 16.921462059
+../simple_example_update/dll/mid_delete_hd_star,2,2,36,156,18,86,230,36,4,32,0,16.9

@@ -1,118 +1,53 @@
-get_trace.py:65 - 0
-dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+dynsl.py:167 - Inferring post-conditions at the location 64 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 64 ...
+dynsl.py:167 - Inferring post-conditions at the location 68 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 10 ...
+dynsl.py:167 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 68 ...
+dynsl.py:167 - Inferring post-conditions at the location 10 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 29 ...
+dynsl.py:167 - Inferring post-conditions at the location 55 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 8:
-dynsl.py:202 - bh(y) * bh(x) & True
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 64:
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2387, fv!2388, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1005, fv!1006, zsib, zsib} * x:node->node{fv!1369, fv!1370, xs, zsib} & fv!1006=zsib & fv!1006=nil & z=xs & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1675, fv!1676, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2367, fv!2368, zsib, zsib} * x:node->node{fv!3295, fv!3296, xs, zsib} & fv!2368=zsib & fv!2368=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1083, fv!1084, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1043, fv!1044, zsib, zsib} * x:node->node{fv!1941, fv!1942, xs, zsib} & fv!1044=zsib & fv!1044=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1043, fv!1044, zsib, zsib} * x:node->node{fv!1951, fv!1952, xs, zsib} & xs=z & fv!1044=zsib & fv!1044=nil & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2999, fv!3000, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1053, fv!1054, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2329, fv!2330, zsib, zsib} * x:node->node{fv!2673, fv!2674, xs, zsib} & zsib=fv!2330 & zsib=nil & xs=z & fv!2330=nil & x=res
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2377, fv!2378, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2969, fv!2970, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2329, fv!2330, zsib, zsib} * x:node->node{fv!2703, fv!2704, xs, zsib} & zsib=fv!2330 & zsib=nil & fv!2330=nil & xs=z & x=res
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2329, fv!2330, zsib, zsib} * x:node->node{fv!2693, fv!2694, xs, zsib} & zsib=fv!2330 & zsib=nil & fv!2330=nil & xs=z & x=res
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2407, fv!2408, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1655, fv!1656, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2367, fv!2368, zsib, zsib} * x:node->node{fv!3265, fv!3266, xs, zsib} & fv!2368=zsib & fv!2368=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2397, fv!2398, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1005, fv!1006, zsib, zsib} * x:node->node{fv!1349, fv!1350, xs, zsib} & fv!1006=zsib & fv!1006=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2979, fv!2980, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2367, fv!2368, zsib, zsib} * x:node->node{fv!3275, fv!3276, xs, zsib} & fv!2368=zsib & fv!2368=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1005, fv!1006, zsib, zsib} * x:node->node{fv!1379, fv!1380, xs, zsib} & fv!1006=zsib & fv!1006=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1043, fv!1044, zsib, zsib} * x:node->node{fv!1961, fv!1962, xs, zsib} & fv!1044=zsib & fv!1044=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1063, fv!1064, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2329, fv!2330, zsib, zsib} * x:node->node{fv!2683, fv!2684, xs, zsib} & zsib=fv!2330 & zsib=nil & fv!2330=nil & xs=z & x=res
-dynsl.py:213 - bh(xchld) * y:node->node{fv!2367, fv!2368, zsib, zsib} * x:node->node{fv!3285, fv!3286, xs, zsib} & fv!2368=zsib & fv!2368=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!2989, fv!2990, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1043, fv!1044, zsib, zsib} * x:node->node{fv!1971, fv!1972, xs, zsib} & xs=z & fv!1044=zsib & fv!1044=nil & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * y:node->node{fv!1005, fv!1006, zsib, zsib} * x:node->node{fv!1359, fv!1360, xs, zsib} & fv!1006=zsib & fv!1006=nil & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1073, fv!1074, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1665, fv!1666, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:213 - bh(xchld) * bh(y) * x:node->node{fv!1645, fv!1646, xs, zsib} & xs=z & x=res & zsib=nil
-dynsl.py:208 - Postconditions at location 10:
-dynsl.py:213 - bh(y) & y=res & x=nil
-dynsl.py:208 - Postconditions at location 68:
-dynsl.py:213 - y:node->node{fv!3797, fv!3798, fv!3799, fv!3800} & fv!3800=fv!3799 & fv!3800=fv!3798 & fv!3800=nil & fv!3799=fv!3798 & fv!3799=nil & fv!3798=nil & x=res
-dynsl.py:213 - bh(y) & x=res
-dynsl.py:208 - Postconditions at location 29:
-dynsl.py:213 - y:node->node{fv!4327, fv!4328, xs, xs} * x:node->node{fv!4759, fv!4760, y, xs} & xchld=z & xchld=xs & xchld=ys & xchld=fv!4328 & xchld=nil & z=xs & z=ys & z=fv!4328 & z=nil & xs=ys & xs=fv!4328 & xs=nil & x=res & ys=fv!4328 & ys=nil & fv!4328=nil
-dynsl.py:213 - y:node->node{fv!4203, fv!4204, xs, xs} * x:node->node{fv!4589, fv!4590, y, xs} & fv!4204=xchld & fv!4204=xs & fv!4204=ys & fv!4204=z & fv!4204=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4609, fv!4610, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4419, fv!4420, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4439, fv!4440, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4389, fv!4390, xs, xs} * x:node->node{fv!4889, fv!4890, y, xs} & fv!4390=xchld & fv!4390=xs & fv!4390=ys & fv!4390=z & fv!4390=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4265, fv!4266, xs, xs} * x:node->node{fv!4689, fv!4690, y, xs} & xchld=xs & xchld=fv!4266 & xchld=ys & xchld=z & xchld=nil & xs=fv!4266 & xs=ys & xs=z & xs=nil & fv!4266=ys & fv!4266=z & fv!4266=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4203, fv!4204, xs, xs} * x:node->node{fv!4559, fv!4560, y, xs} & fv!4204=xchld & fv!4204=xs & fv!4204=ys & fv!4204=z & fv!4204=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4819, fv!4820, y, xs} & xs=xchld & xs=ys & xs=z & xs=nil & x=res & xchld=ys & xchld=z & xchld=nil & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4509, fv!4510, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4141, fv!4142, xs, xs} * x:node->node{fv!4459, fv!4460, y, xs} & xchld=xs & xchld=fv!4142 & xchld=ys & xchld=z & xchld=nil & xs=fv!4142 & xs=ys & xs=z & xs=nil & fv!4142=ys & fv!4142=z & fv!4142=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4327, fv!4328, xs, xs} * x:node->node{fv!4789, fv!4790, y, xs} & z=xchld & z=xs & z=ys & z=fv!4328 & z=nil & xchld=xs & xchld=ys & xchld=fv!4328 & xchld=nil & xs=ys & xs=fv!4328 & xs=nil & x=res & ys=fv!4328 & ys=nil & fv!4328=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4619, fv!4620, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4203, fv!4204, xs, xs} * x:node->node{fv!4549, fv!4550, y, xs} & fv!4204=xchld & fv!4204=xs & fv!4204=ys & fv!4204=z & fv!4204=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4639, fv!4640, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4709, fv!4710, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4539, fv!4540, y, xs} & z=xchld & z=xs & z=ys & z=nil & xchld=xs & xchld=ys & xchld=nil & xs=ys & xs=nil & x=res & ys=nil
-dynsl.py:213 - y:node->node{fv!4265, fv!4266, xs, xs} * x:node->node{fv!4649, fv!4650, y, xs} & xchld=xs & xchld=fv!4266 & xchld=ys & xchld=z & xchld=nil & xs=fv!4266 & xs=ys & xs=z & xs=nil & fv!4266=ys & fv!4266=z & fv!4266=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4409, fv!4410, y, xs} & z=xchld & z=xs & z=ys & z=nil & xchld=xs & xchld=ys & xchld=nil & xs=ys & xs=nil & x=res & ys=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4829, fv!4830, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4399, fv!4400, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4141, fv!4142, xs, xs} * x:node->node{fv!4449, fv!4450, y, xs} & xchld=fv!4142 & xchld=xs & xchld=ys & xchld=z & xchld=nil & fv!4142=xs & fv!4142=ys & fv!4142=z & fv!4142=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4389, fv!4390, xs, xs} * x:node->node{fv!4869, fv!4870, y, xs} & fv!4390=xchld & fv!4390=xs & fv!4390=ys & fv!4390=z & fv!4390=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4519, fv!4520, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4265, fv!4266, xs, xs} * x:node->node{fv!4679, fv!4680, y, xs} & xchld=xs & xchld=fv!4266 & xchld=ys & xchld=z & xchld=nil & xs=fv!4266 & xs=ys & xs=z & xs=nil & fv!4266=ys & fv!4266=z & fv!4266=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4529, fv!4530, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4809, fv!4810, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4327, fv!4328, xs, xs} * x:node->node{fv!4769, fv!4770, y, xs} & z=xchld & z=xs & z=ys & z=fv!4328 & z=nil & xchld=xs & xchld=ys & xchld=fv!4328 & xchld=nil & xs=ys & xs=fv!4328 & xs=nil & x=res & ys=fv!4328 & ys=nil & fv!4328=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4839, fv!4840, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4799, fv!4800, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4203, fv!4204, xs, xs} * x:node->node{fv!4569, fv!4570, y, xs} & fv!4204=xchld & fv!4204=xs & fv!4204=ys & fv!4204=z & fv!4204=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4389, fv!4390, xs, xs} * x:node->node{fv!4859, fv!4860, y, xs} & fv!4390=xchld & fv!4390=xs & fv!4390=ys & fv!4390=z & fv!4390=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4265, fv!4266, xs, xs} * x:node->node{fv!4669, fv!4670, y, xs} & x=res & xchld=xs & xchld=fv!4266 & xchld=ys & xchld=z & xchld=nil & xs=fv!4266 & xs=ys & xs=z & xs=nil & fv!4266=ys & fv!4266=z & fv!4266=nil & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4141, fv!4142, xs, xs} * x:node->node{fv!4479, fv!4480, y, xs} & xchld=fv!4142 & xchld=xs & xchld=ys & xchld=z & xchld=nil & fv!4142=xs & fv!4142=ys & fv!4142=z & fv!4142=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4203, fv!4204, xs, xs} * x:node->node{fv!4579, fv!4580, y, xs} & fv!4204=xchld & fv!4204=xs & fv!4204=ys & fv!4204=z & fv!4204=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4729, fv!4730, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4499, fv!4500, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4699, fv!4700, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4629, fv!4630, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4719, fv!4720, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4389, fv!4390, xs, xs} * x:node->node{fv!4879, fv!4880, y, xs} & fv!4390=xchld & fv!4390=xs & fv!4390=ys & fv!4390=z & fv!4390=nil & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4739, fv!4740, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4389, fv!4390, xs, xs} * x:node->node{fv!4849, fv!4850, y, xs} & fv!4390=z & fv!4390=xchld & fv!4390=xs & fv!4390=ys & fv!4390=nil & z=xchld & z=xs & z=ys & z=nil & xchld=xs & xchld=ys & xchld=nil & xs=ys & xs=nil & x=res & ys=nil
-dynsl.py:213 - y:node->node{fv!4265, fv!4266, xs, xs} * x:node->node{fv!4659, fv!4660, y, xs} & xchld=xs & xchld=fv!4266 & xchld=ys & xchld=z & xchld=nil & xs=fv!4266 & xs=ys & xs=z & xs=nil & fv!4266=ys & fv!4266=z & fv!4266=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4327, fv!4328, xs, xs} * x:node->node{fv!4749, fv!4750, y, xs} & z=xchld & z=xs & z=ys & z=fv!4328 & z=nil & xchld=xs & xchld=ys & xchld=fv!4328 & xchld=nil & xs=ys & xs=fv!4328 & xs=nil & x=res & ys=fv!4328 & ys=nil & fv!4328=nil
-dynsl.py:213 - y:node->node{fv!4141, fv!4142, xs, xs} * x:node->node{fv!4469, fv!4470, y, xs} & xchld=fv!4142 & xchld=xs & xchld=ys & xchld=z & xchld=nil & fv!4142=xs & fv!4142=ys & fv!4142=z & fv!4142=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - y:node->node{fv!4327, fv!4328, xs, xs} * x:node->node{fv!4779, fv!4780, y, xs} & z=xchld & z=xs & z=ys & z=fv!4328 & z=nil & xchld=xs & xchld=ys & xchld=fv!4328 & xchld=nil & xs=ys & xs=fv!4328 & xs=nil & x=res & ys=fv!4328 & ys=nil & fv!4328=nil
-dynsl.py:213 - y:node->node{fv!4141, fv!4142, xs, xs} * x:node->node{fv!4489, fv!4490, y, xs} & xchld=fv!4142 & xchld=xs & xchld=ys & xchld=z & xchld=nil & fv!4142=xs & fv!4142=ys & fv!4142=z & fv!4142=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4599, fv!4600, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:213 - bh(y) * x:node->node{fv!4429, fv!4430, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 5
-dynsl.py:255 - Number of traces: 50
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 835
-dynsl.py:259 - Number of atomic singleton predicates: 124
-dynsl.py:260 - Number of atomic inductive predicates: 77
-dynsl.py:261 - Number of pure constraints: 813
-dynsl.py:262 - Number of total invs: 86
-dynsl.py:263 - Number of pres:1
-dynsl.py:264 - Number of post:85
-dynsl.py:265 - Number of loop:0
-dynsl.py:266 - Running time (sec): 73.8289120197
-../simple_example_update/binomial_heap/binomial_heap_merge_rec,5,50,1,835,124,77,813,86,1,85,0,73.8
+dynsl.py:167 - Inferring post-conditions at the location 29 ...
+
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 8:
+dynsl.py:227 - bh(y) * bh(x) & True
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 64:
+dynsl.py:239 - bh(xchld) * bh(y) * x:node->node{fv0, fv1, z, zsib} * z:node->node{fv2, fv3, xs, xchld} & x=res & zsib=nil
+dynsl.py:239 - bh(xchld) * y:node->node{fv0, fv1, zsib, zsib} * x:node->node{fv2, fv3, z, zsib} * z:node->node{fv4, fv5, xs, xchld} & x=res & zsib=fv1 & zsib=nil & fv1=nil
+dynsl.py:239 - bh(xchld) * y:node->node{fv0, fv1, zsib, zsib} * x:node->node{fv2, fv3, z, zsib} * z:node->node{fv4, fv5, xs, xchld} & x=res & fv1=zsib & fv1=nil & zsib=nil
+dynsl.py:239 - bh(xchld) * y:node->node{fv0, fv1, zsib, zsib} * x:node->node{fv2, fv3, z, zsib} * z:node->node{fv4, fv5, xs, xchld} & fv1=zsib & fv1=nil & x=res & zsib=nil
+dynsl.py:234 - Postconditions at location 10:
+dynsl.py:239 - bh(y) & y=res & x=nil
+dynsl.py:234 - Postconditions at location 68:
+dynsl.py:239 - bh(y) & x=res
+dynsl.py:239 - y:node->node{fv0, fv1, fv2, fv3} & fv1=fv2 & fv1=fv3 & fv1=nil & fv2=fv3 & fv2=nil & fv3=nil & x=res
+dynsl.py:234 - Postconditions at location 29:
+dynsl.py:239 - y:node->node{fv0, fv1, xs, xs} * x:node->node{fv2, fv3, y, xs} & z=xchld & z=xs & z=ys & z=fv1 & z=nil & xchld=xs & xchld=ys & xchld=fv1 & xchld=nil & xs=ys & xs=fv1 & xs=nil & x=res & ys=fv1 & ys=nil & fv1=nil
+dynsl.py:239 - y:node->node{fv0, fv1, xs, xs} * x:node->node{fv2, fv3, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=fv1 & xchld=nil & xs=ys & xs=z & xs=fv1 & xs=nil & x=res & ys=z & ys=fv1 & ys=nil & z=fv1 & z=nil & fv1=nil
+dynsl.py:239 - bh(y) * x:node->node{fv0, fv1, y, xs} & z=xchld & z=xs & z=ys & z=nil & xchld=xs & xchld=ys & xchld=nil & xs=ys & xs=nil & x=res & ys=nil
+dynsl.py:239 - bh(y) * x:node->node{fv0, fv1, y, xs} & xchld=xs & xchld=ys & xchld=z & xchld=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
+dynsl.py:239 - y:node->node{fv0, fv1, xs, xs} * x:node->node{fv2, fv3, y, xs} & xs=xchld & xs=ys & xs=z & xs=fv1 & xs=nil & x=res & xchld=ys & xchld=z & xchld=fv1 & xchld=nil & ys=z & ys=fv1 & ys=nil & z=fv1 & z=nil & fv1=nil
+dynsl.py:239 - y:node->node{fv0, fv1, xs, xs} * x:node->node{fv2, fv3, y, xs} & xchld=fv1 & xchld=xs & xchld=ys & xchld=z & xchld=nil & fv1=xs & fv1=ys & fv1=z & fv1=nil & xs=ys & xs=z & xs=nil & x=res & ys=z & ys=nil & z=nil
+dynsl.py:239 - y:node->node{fv0, fv1, xs, xs} * x:node->node{fv2, fv3, y, xs} & xchld=xs & xchld=fv1 & xchld=ys & xchld=z & xchld=nil & xs=fv1 & xs=ys & xs=z & xs=nil & fv1=ys & fv1=z & fv1=nil & x=res & ys=z & ys=nil & z=nil
+dynsl.py:234 - Postconditions at location 55:
+dynsl.py:239 - bh(y) * z:node->node{fv0, fv1, x, nil} & zchld=y & xs=z & xs=res & z=res
+dynsl.py:239 - y:node->node{fv0, fv1, nil, nil} * z:node->node{fv2, fv3, x, nil} & zchld=y & fv1=nil & xs=z & xs=res & z=res
+dynsl.py:239 - y:node->node{fv0, fv1, nil, nil} * z:node->node{fv2, fv3, x, nil} & zchld=y & xs=z & xs=res & z=res & fv1=nil
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 6
+dynsl.py:281 - Number of traces: 50
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 79
+dynsl.py:284 - Number of free variables: 779
+dynsl.py:285 - Number of atomic singleton predicates: 128
+dynsl.py:286 - Number of atomic inductive predicates: 57
+dynsl.py:287 - Number of pure constraints: 769
+dynsl.py:288 - Number of total invs: 18
+dynsl.py:289 - Number of pres:1
+dynsl.py:290 - Number of post:17
+dynsl.py:291 - Number of loop:0
+dynsl.py:292 - Running time (sec): 69.5899710655
+../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,79,779,128,57,769,18,1,17,0,69.5

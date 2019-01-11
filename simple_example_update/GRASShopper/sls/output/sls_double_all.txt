@@ -1,71 +1,62 @@
-dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+dynsl.py:167 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 32 ...
+dynsl.py:167 - Inferring post-conditions at the location 32 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 10 ...
+dynsl.py:167 - Inferring post-conditions at the location 10 ...
 
-dynsl.py:144 - Inferring inv-conditions at the location 23 ...
+dynsl.py:167 - Inferring inv-conditions at the location 23 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 8:
-dynsl.py:202 - ls(lst, nil) & True
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 32:
-dynsl.py:213 - old_cp:node->node{fv!33, cp} * ls(lst, curr) * cp:node->node{fv!165, nil} * curr:node->node{fv!211, nil} * ls(res, old_cp) & res=res
-dynsl.py:213 - ls(old_cp, cp) * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(res, old_cp) & res=res
-dynsl.py:213 - ls(old_cp, cp) * ls(lst, curr) * cp:node->node{fv!58, nil} * ls(curr, nil) * ls(res, old_cp) & res=res
-dynsl.py:213 - ls(old_cp, cp) * ls(lst, curr) * cp:node->node{fv!58, nil} * curr:node->node{fv!104, nil} * ls(res, old_cp) & res=res
-dynsl.py:213 - old_cp:node->node{fv!33, cp} * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(res, old_cp) & res=res
-dynsl.py:213 - ls(old_cp, cp) * ls(lst, curr) * ls(cp, nil) * curr:node->node{fv!63, nil} * ls(res, old_cp) & res=res
-dynsl.py:213 - old_cp:node->node{fv!33, cp} * ls(lst, curr) * ls(cp, nil) * curr:node->node{fv!170, nil} * ls(res, old_cp) & res=res
-dynsl.py:213 - old_cp:node->node{fv!33, cp} * ls(lst, curr) * cp:node->node{fv!165, nil} * ls(curr, nil) * ls(res, old_cp) & res=res
-dynsl.py:208 - Postconditions at location 10:
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, lst) * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, nil) * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!257, lst} * curr:node->node{fv!349, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!262, lst} * curr:node->node{fv!513, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!262, lst} * curr:node->node{fv!518, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, nil) * curr:node->node{fv!431, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, lst) * curr:node->node{fv!610, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!257, lst} * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, nil) * curr:node->node{fv!774, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!600, lst} * curr:node->node{fv!851, lst} * ls(res, old_cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!595, lst} * curr:node->node{fv!692, lst} * ls(res, old_cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, lst) * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!257, lst} * curr:node->node{fv!354, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, nil) * curr:node->node{fv!769, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!262, lst} * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, nil) * curr:node->node{fv!436, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, lst) * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, lst) * curr:node->node{fv!267, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!600, lst} * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, lst) * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!595, lst} * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!595, lst} * curr:node->node{fv!687, lst} * ls(res, old_cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, lst) * curr:node->node{fv!605, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!600, lst} * curr:node->node{fv!856, lst} * ls(res, old_cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!262, lst} * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, nil) * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!600, lst} * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * cp:node->node{fv!595, lst} * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, nil) * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - old_cp:node->node{fv!252, cp} * ls(cp, nil) * ls(curr, nil) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * cp:node->node{fv!257, lst} * ls(curr, lst) * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:213 - ls(old_cp, cp) * ls(cp, lst) * curr:node->node{fv!272, lst} * ls(res, old_cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
-dynsl.py:220 - Invariants at location 23:
-dynsl.py:227 - (exists fv!929, fv!1238. ls(old_cp, fv!929) * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(res, fv!1238) & True)
-dynsl.py:227 - (exists fv!929, fv!1439. ls(old_cp, fv!929) * ls(lst, curr) * cp:node->node{fv!1110, fv!1111} * ls(curr, nil) * ls(res, fv!1439) & fv!1111=nil)
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 4
-dynsl.py:255 - Number of traces: 13
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 273
-dynsl.py:259 - Number of atomic singleton predicates: 61
-dynsl.py:260 - Number of atomic inductive predicates: 118
-dynsl.py:261 - Number of pure constraints: 201
-dynsl.py:262 - Number of total invs: 43
-dynsl.py:263 - Number of pres:1
-dynsl.py:264 - Number of post:40
-dynsl.py:265 - Number of loop:2
-dynsl.py:266 - Running time (sec): 25.5903699398
-../simple_example_update/GRASShopper/sls//sls_double_all,4,13,43,273,61,118,201,43,1,40,2,25.5
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 8:
+dynsl.py:227 - ls(lst, nil) & True
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 32:
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * cp:node->node{fv0, nil} * curr:node->node{fv1, nil} * old_cp:node->node{fv2, cp} & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * ls(cp, nil) * curr:node->node{fv0, nil} * ls(old_cp, cp) & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * ls(cp, nil) * curr:node->node{fv0, nil} * old_cp:node->node{fv1, cp} & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * cp:node->node{fv0, nil} * ls(curr, nil) * ls(old_cp, cp) & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * old_cp:node->node{fv0, cp} & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * cp:node->node{fv0, nil} * ls(curr, nil) * old_cp:node->node{fv1, cp} & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * cp:node->node{fv0, nil} * curr:node->node{fv1, nil} * ls(old_cp, cp) & res=res
+dynsl.py:239 - ls(res, old_cp) * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(old_cp, cp) & res=res
+dynsl.py:234 - Postconditions at location 10:
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * curr:node->node{fv0, lst} * old_cp:node->node{fv1, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * curr:node->node{fv1, lst} * ls(old_cp, cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, lst) * ls(curr, lst) * old_cp:node->node{fv0, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * curr:node->node{fv0, lst} * old_cp:node->node{fv1, cp} & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, lst) * curr:node->node{fv0, lst} * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * curr:node->node{fv1, lst} * old_cp:node->node{fv2, cp} & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * curr:node->node{fv0, lst} * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, lst) * old_cp:node->node{fv1, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * ls(curr, lst) * old_cp:node->node{fv0, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * ls(curr, nil) * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, lst) * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, nil) * ls(old_cp, cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * curr:node->node{fv1, lst} * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, nil) * old_cp:node->node{fv1, cp} & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, lst) * ls(old_cp, cp) & res=lst & res=nil & res=res & lst=nil & lst=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, lst) * ls(curr, lst) * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, nil) * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, lst) * ls(curr, nil) * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * cp:node->node{fv0, lst} * ls(curr, nil) * old_cp:node->node{fv1, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, lst) * ls(curr, nil) * old_cp:node->node{fv0, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * ls(curr, lst) * ls(old_cp, cp) & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, nil) * ls(curr, nil) * old_cp:node->node{fv0, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:239 - ls(res, old_cp) * ls(cp, lst) * curr:node->node{fv0, lst} * old_cp:node->node{fv1, cp} & lst=res & lst=nil & lst=res & res=nil & res=res & nil=res
+dynsl.py:246 - Invariants at location 23:
+dynsl.py:253 - (exists fv!438, fv!599. ls(res, old_cp) * ls(lst, curr) * ls(cp, fv!438) * ls(curr, nil) * ls(old_cp, fv!599) & True)
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 4
+dynsl.py:281 - Number of traces: 13
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 42
+dynsl.py:284 - Number of free variables: 266
+dynsl.py:285 - Number of atomic singleton predicates: 60
+dynsl.py:286 - Number of atomic inductive predicates: 114
+dynsl.py:287 - Number of pure constraints: 200
+dynsl.py:288 - Number of total invs: 33
+dynsl.py:289 - Number of pres:1
+dynsl.py:290 - Number of post:31
+dynsl.py:291 - Number of loop:1
+dynsl.py:292 - Running time (sec): 18.1074168682
+../simple_example_update/GRASShopper/sls/sls_double_all,4,13,42,266,60,114,200,33,1,31,1,18.1

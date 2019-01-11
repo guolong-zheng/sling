@@ -1,78 +1,43 @@
-dynsl.py:144 - Inferring post-conditions at the location 39 ...
+dynsl.py:167 - Inferring post-conditions at the location 39 ...
 
-dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+dynsl.py:167 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 45 ...
+dynsl.py:167 - Inferring post-conditions at the location 45 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 15 ...
+dynsl.py:167 - Inferring post-conditions at the location 15 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 24 ...
+dynsl.py:167 - Inferring post-conditions at the location 24 ...
 
-dynsl.py:144 - Inferring post-conditions at the location 30 ...
+dynsl.py:167 - Inferring post-conditions at the location 30 ...
 
-dynsl.py:194 - ==============================
-dynsl.py:195 - Precondition at location 8:
-dynsl.py:202 - tree(x) & True
-dynsl.py:204 - Corresponding postconditions:
-dynsl.py:208 - Postconditions at location 24:
-dynsl.py:213 - tree(tmp) * tree(xr) * x:b_node->b_node{tmp, xr, fv!1735, fv!1736} & x=res
-dynsl.py:213 - tree(tmp) * tree(xr) * x:b_node->b_node{tmp, xr, fv!1817, fv!1818} & x=res
-dynsl.py:208 - Postconditions at location 15:
-dynsl.py:213 - tree(leaf) & x=nil & leaf=res
-dynsl.py:213 - leaf:b_node->b_node{x, x, fv!1359, fv!1360} & x=nil & leaf=res
-dynsl.py:213 - leaf:b_node->b_node{x, x, fv!1397, fv!1398} & leaf=res & x=nil
-dynsl.py:208 - Postconditions at location 45:
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1291, fv!1292} & tmp=res & fv!871=fv!1291 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!991, fv!992} & tmp=res & fv!851=fv!991 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1251, fv!1252} & tmp=res & fv!871=fv!1251 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!981, fv!982} & tmp=res & rl=xr & rl=nil & fv!851=fv!981 & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1141, fv!1142} & tmp=res & rl=xr & rl=nil & fv!1141=fv!861 & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1301, fv!1302} & tmp=res & fv!871=fv!1301 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1171, fv!1172} & tmp=res & rl=xr & rl=nil & fv!861=fv!1171 & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1311, fv!1312} & tmp=res & fv!871=fv!1311 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!961, fv!962} & tmp=res & fv!851=fv!961 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1131, fv!1132} & tmp=res & fv!1131=fv!861 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!971, fv!972} & tmp=res & fv!851=fv!971 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!941, fv!942} & tmp=res & fv!851=fv!941 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!951, fv!952} & tmp=res & fv!851=fv!951 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!1001, fv!1002} & tmp=res & fv!1001=fv!851 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1271, fv!1272} & tmp=res & fv!1271=fv!871 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!1021, fv!1022} & tmp=res & fv!851=fv!1021 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!851, fv!852} * tree(xl) * x:b_node->b_node{xl, rl, fv!1011, fv!1012} & tmp=res & fv!1011=fv!851 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1281, fv!1282} & tmp=res & fv!871=fv!1281 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1151, fv!1152} & tmp=res & rl=xr & rl=nil & fv!1151=fv!861 & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1261, fv!1262} & tmp=res & fv!1261=fv!871 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1101, fv!1102} & tmp=res & fv!1101=fv!861 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1321, fv!1322} & tmp=res & fv!871=fv!1321 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1121, fv!1122} & tmp=res & rl=xr & rl=nil & fv!861=fv!1121 & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1091, fv!1092} & tmp=res & rl=xr & rl=nil & xr=nil & fv!861=fv!1091
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!871, fv!872} * tree(xl) * x:b_node->b_node{xl, rl, fv!1241, fv!1242} & tmp=res & fv!871=fv!1241 & rl=xr & rl=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1161, fv!1162} & tmp=res & rl=xr & rl=nil & xr=nil & fv!861=fv!1161
-dynsl.py:213 - tmp:b_node->b_node{x, rl, fv!861, fv!862} * tree(xl) * x:b_node->b_node{xl, rl, fv!1111, fv!1112} & tmp=res & fv!1111=fv!861 & rl=xr & rl=nil & xr=nil
-dynsl.py:208 - Postconditions at location 30:
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!1939, fv!1940} & tmp=res & xr=lr & xr=nil & lr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!1925, fv!1926} & tmp=res & xr=lr & xr=nil & lr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!2009, fv!2010} & tmp=res & lr=xr & lr=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!2037, fv!2038} & tmp=res & lr=xr & lr=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!1981, fv!1982} & tmp=res & lr=xr & lr=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!2023, fv!2024} & tmp=res & lr=xr & lr=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!1995, fv!1996} & tmp=res & lr=xr & lr=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!1967, fv!1968} & tmp=res & lr=xr & lr=nil & xr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * x:b_node->b_node{xr, xr, fv!1953, fv!1954} & tmp=res & xr=lr & xr=nil & lr=nil
-dynsl.py:213 - tmp:b_node->b_node{xl, x, fv!1827, fv!1828} * tree(xl) * tree(x) & tmp=res & xr=lr & xr=nil & lr=nil
-dynsl.py:208 - Postconditions at location 39:
-dynsl.py:213 - tree(xr) * tree(xl) * x:b_node->b_node{xl, tmp, fv!341, fv!342} & x=res
-dynsl.py:231 - ==============================
-dynsl.py:254 - Number of locations: 6
-dynsl.py:255 - Number of traces: 26
-dynsl.py:256 - Number of pre-defined predicates: 1
-dynsl.py:258 - Number of free variables: 401
-dynsl.py:259 - Number of atomic singleton predicates: 78
-dynsl.py:260 - Number of atomic inductive predicates: 46
-dynsl.py:261 - Number of pure constraints: 184
-dynsl.py:262 - Number of total invs: 44
-dynsl.py:263 - Number of pres:1
-dynsl.py:264 - Number of post:43
-dynsl.py:265 - Number of loop:0
-dynsl.py:266 - Running time (sec): 27.6071548462
-../simple_example_update/prio_tree//insert_rec,6,26,53,401,78,46,184,44,1,43(7),0,27.6,6
+dynsl.py:217 - ==============================
+dynsl.py:218 - Precondition at location 8:
+dynsl.py:227 - tree(x) & True
+dynsl.py:229 - Corresponding postconditions:
+dynsl.py:234 - Postconditions at location 24:
+dynsl.py:239 - tree(xr) * x:b_node->b_node{tmp, xr, fv0, fv1} * tree(xl) & x=res
+dynsl.py:234 - Postconditions at location 15:
+dynsl.py:239 - leaf:b_node->b_node{x, x, fv0, fv1} & x=nil & leaf=res
+dynsl.py:239 - tree(leaf) & x=nil & leaf=res
+dynsl.py:239 - leaf:b_node->b_node{x, x, fv0, fv1} & leaf=res & x=nil
+dynsl.py:234 - Postconditions at location 45:
+dynsl.py:239 - tree(xr) * x:b_node->b_node{xl, xr, fv0, fv1} * tmp:b_node->b_node{x, xl, fv2, fv3} & tmp=res & xl=nil & xr=rl
+dynsl.py:234 - Postconditions at location 30:
+dynsl.py:239 - tree(xr) * x:b_node->b_node{lr, xr, fv0, fv1} * tmp:b_node->b_node{lr, x, fv2, fv3} & tmp=res & xl=lr & xl=nil & lr=nil
+dynsl.py:234 - Postconditions at location 39:
+dynsl.py:239 - tree(xr) * x:b_node->b_node{xl, tmp, fv0, fv1} * tree(xl) & x=res
+dynsl.py:257 - ==============================
+dynsl.py:280 - Number of locations: 6
+dynsl.py:281 - Number of traces: 30
+dynsl.py:282 - Number of pre-defined predicates: 1
+dynsl.py:283 - Number of inferred assertions: 50
+dynsl.py:284 - Number of free variables: 458
+dynsl.py:285 - Number of atomic singleton predicates: 90
+dynsl.py:286 - Number of atomic inductive predicates: 49
+dynsl.py:287 - Number of pure constraints: 164
+dynsl.py:288 - Number of total invs: 8
+dynsl.py:289 - Number of pres:1
+dynsl.py:290 - Number of post:7
+dynsl.py:291 - Number of loop:0
+dynsl.py:292 - Running time (sec): 30.6176769733
+../simple_example_update/prio_tree/insert_rec,6,30,50,458,90,49,164,8,1,7,0,30.6

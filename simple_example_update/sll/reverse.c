@@ -25,6 +25,6 @@ int main( int argc, char * argv[]){
     SNnode * root = create_sll(size);
     SNnode * res;
     res = sll_reverse(root);
-	sll_reverse(NULL);
+    sll_reverse(NULL);
     return 0;
 }

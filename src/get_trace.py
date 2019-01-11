@@ -16,7 +16,7 @@ def create_target(exe, bps):
     ldict = {}
     if target:
         for loc in bps:
-            bp = target.BreakpointCreateByLocation(exe+".cpp", loc)
+            bp = target.BreakpointCreateByLocation(exe+".c", loc)
             bp_loc = bp.GetLocationAtIndex(0)
             bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
             ldict[loc] = bp_line
