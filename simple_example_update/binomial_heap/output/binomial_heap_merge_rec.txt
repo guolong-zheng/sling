@@ -1,46 +1,47 @@
-dynsl.py:201 - Inferring post-conditions at the location 64 ...
+dynsl.py:221 - Inferring post-conditions at the location 64 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 68 ...
+dynsl.py:221 - Inferring post-conditions at the location 68 ...
 
-dynsl.py:201 - Inferring pre-conditions at the location 8 ...
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 10 ...
+dynsl.py:221 - Inferring post-conditions at the location 10 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 55 ...
+dynsl.py:221 - Inferring post-conditions at the location 55 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 29 ...
+dynsl.py:221 - Inferring post-conditions at the location 29 ...
 
-dynsl.py:251 - ==============================
-dynsl.py:252 - Precondition at location 8:
-dynsl.py:261 - bh(y) * bh(x) 
-dynsl.py:268 - Postconditions at location 64:
-dynsl.py:273 - bh(xchld) * bh(y) * x:node->node{fv3, fv2, z, zsib} * z:node->node{fv1, fv0, xs, xchld} 
-dynsl.py:273 - bh(xchld) * y:node->node{fv4, zsib, zsib, zsib} * x:node->node{fv3, fv2, z, zsib} * z:node->node{fv1, fv0, xs, xchld} 
-dynsl.py:268 - Postconditions at location 10:
-dynsl.py:273 - bh(y) 
-dynsl.py:268 - Postconditions at location 68:
-dynsl.py:273 - bh(y) 
-dynsl.py:273 - y:node->node{fv1, nil, nil, fv0} 
-dynsl.py:268 - Postconditions at location 29:
-dynsl.py:273 - y:node->node{fv2, z, xs, xs} * x:node->node{fv1, fv0, y, xs} 
-dynsl.py:273 - y:node->node{fv2, xchld, xs, xs} * x:node->node{fv1, fv0, y, xs} 
-dynsl.py:273 - bh(y) * x:node->node{fv1, fv0, y, xs} 
-dynsl.py:273 - y:node->node{fv2, xs, xs, xs} * x:node->node{fv1, fv0, y, xs} 
-dynsl.py:268 - Postconditions at location 55:
-dynsl.py:273 - bh(y) * z:node->node{fv1, fv0, x, nil} 
-dynsl.py:273 - y:node->node{fv2, ni, nil, nil} * z:node->node{fv1, fv0, x, nil} 
-dynsl.py:273 - y:node->node{fv2, nil, nil, nil} * z:node->node{fv1, fv0, x, nil} 
-dynsl.py:292 - ==============================
-dynsl.py:315 - Number of locations: 6
-dynsl.py:316 - Number of traces: 50
-dynsl.py:317 - Number of pre-defined predicates: 1
-dynsl.py:319 - Number of free variables: 106
-dynsl.py:320 - Number of atomic singleton predicates: 18
-dynsl.py:321 - Number of atomic inductive predicates: 8
-dynsl.py:322 - Number of pure constraints: 87
-dynsl.py:323 - Number of total invs: 13
-dynsl.py:324 - Number of pres:1
-dynsl.py:325 - Number of post:12
-dynsl.py:326 - Number of loop:0
-dynsl.py:327 - Running time (sec): 69.1039690971
-../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,106,18,8,87,13,1,12,0,69.1
+dynsl.py:271 - ==============================
+dynsl.py:272 - Precondition at location 8:
+dynsl.py:281 - bh(y) * bh(x) 
+dynsl.py:288 - Postconditions at location 64:
+dynsl.py:293 - bh(xchld) * y:node->node{fv4, zsib, zsib, zsib} * x:node->node{fv3, fv2, z, zsib} * z:node->node{fv1, fv0, xs, xchld}  & x = res
+dynsl.py:293 - bh(xchld) * y:node->node{fv4, nil, nil, zsib} * x:node->node{fv3, fv2, z, zsib} * z:node->node{fv1, fv0, xs, xchld}  & zsib = nil & x = res
+dynsl.py:293 - bh(xchld) * bh(y) * x:node->node{fv3, fv2, z, zsib} * z:node->node{fv1, fv0, xs, xchld}  & x = res
+dynsl.py:288 - Postconditions at location 10:
+dynsl.py:293 - bh(y)  & y = res
+dynsl.py:288 - Postconditions at location 68:
+dynsl.py:293 - bh(y) 
+dynsl.py:293 - y:node->node{fv1, nil, nil, fv0} 
+dynsl.py:288 - Postconditions at location 29:
+dynsl.py:293 - bh(y) * x:node->node{fv1, fv0, y, xs}  & xs = nil & z = nil & xchld = nil & x = res
+dynsl.py:293 - y:node->node{fv2, nil, nil, xs} * x:node->node{fv1, fv0, y, xs}  & xs = nil & ys = nil & z = nil & xchld = nil & x = res
+dynsl.py:293 - bh(y) * x:node->node{fv1, fv0, y, xs}  & xs = nil & ys = nil & xchld = nil & x = res
+dynsl.py:293 - y:node->node{fv2, nil, nil, xs} * x:node->node{fv1, fv0, y, xs}  & xs = nil & ys = nil & xchld = nil & x = res
+dynsl.py:288 - Postconditions at location 55:
+dynsl.py:293 - bh(y) * z:node->node{fv1, fv0, x, nil}  & xs = res
+dynsl.py:293 - y:node->node{fv2, ni, nil, nil} * z:node->node{fv1, fv0, x, nil}  & z = res
+dynsl.py:293 - y:node->node{fv2, nil, nil, nil} * z:node->node{fv1, fv0, x, nil}  & xs = res
+dynsl.py:312 - ==============================
+dynsl.py:336 - Number of locations: 6
+dynsl.py:337 - Number of traces: 50
+dynsl.py:338 - Number of pre-defined predicates: 1
+dynsl.py:340 - Number of free variables: 34
+dynsl.py:341 - Number of atomic singleton predicates: 20
+dynsl.py:342 - Number of atomic inductive predicates: 11
+dynsl.py:343 - Number of pure constraints: 25
+dynsl.py:344 - Number of total invs: 14
+dynsl.py:345 - Number of pres:1
+dynsl.py:346 - Number of post:13
+dynsl.py:347 - Number of loop:0
+dynsl.py:348 - Running time (sec): 70.3120319843
+../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,34,20,11,25,14,1,13,0,70.3

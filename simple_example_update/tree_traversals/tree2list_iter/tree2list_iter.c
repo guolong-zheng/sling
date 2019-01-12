@@ -41,7 +41,7 @@ Node * tree2list_iter(Node * t)
 			if (tn->right == NULL) {
 				Node * ln = (Node *) malloc(sizeof(Node));
       	        ln->key = random();
-      	        ln->next = x;
+      	        ln->next = s;
       	        ln->left  = NULL;
       	        ln->right = NULL;
       	        ln->tree  = NULL;

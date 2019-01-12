@@ -1,327 +1,112 @@
-dynsl.py:201 - Inferring pre-conditions at the location 8 ...
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 24 ...
+dynsl.py:221 - Inferring post-conditions at the location 24 ...
 
-dynsl.py:201 - Inferring inv-conditions at the location 15 ...
+dynsl.py:221 - Inferring inv-conditions at the location 15 ...
 
-dynsl.py:251 - ==============================
-dynsl.py:252 - Precondition at location 8:
-dynsl.py:261 -  dll(lst, nil, fv0, nil) 
-dynsl.py:261 -  dll(lst, nil, nil, lst) 
-dynsl.py:261 -  dll(lst, fv1, fv0, nil) 
-dynsl.py:268 - Postconditions at location 24:
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, curr, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, curr, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, fv2) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv4, fv3, curr) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, curr, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, fv1, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, curr, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv3, curr) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv4, fv3, curr) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, fv2, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv4, curr) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, fv1, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, fv1) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, fv0, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, old_cp, fv0, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv4, fv3, nil) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, curr, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, fv1, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, fv2, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, fv0) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, nil, fv1) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, fv0) 
-dynsl.py:273 -  dll(old_cp, cp, fv4, curr) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, fv2) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, fv1, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, fv2, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, curr, fv1) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, fv1) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv3, curr) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, fv1) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, fv0) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, old_cp, fv0, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, fv2) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, curr, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, curr, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, fv2) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, fv0, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, fv0, nil) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, fv0) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, fv1) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, curr, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, old_cp, old_cp, fv1) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, fv2) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv5, fv4, nil) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, fv1, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv5, fv4, curr) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, nil, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, fv1) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, nil, lst) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, curr, curr, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, nil, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv1, fv0, nil) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, fv2) 
-dynsl.py:273 -  dll(old_cp, curr, nil, old_cp) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, nil, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, fv2, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, nil, lst) * dll(cp, curr, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv5, fv4, nil) * dll(lst, fv3, fv2, curr) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv5, fv4, curr) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv0, curr) * dll(lst, curr, curr, lst) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, fv1, fv0, curr) * dll(cp, fv2, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, curr, nil, lst) * dll(cp, fv1, fv0, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv2, curr) * dll(lst, fv1, fv0, curr) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, fv0, nil) * dll(cp, old_cp, old_cp, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, fv3, fv2, curr) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, curr) * dll(cp, curr, curr, cp) 
-dynsl.py:273 -  dll(old_cp, cp, cp, old_cp) * dll(lst, curr, curr, lst) * dll(cp, curr, curr, fv0) 
-dynsl.py:273 -  dll(old_cp, curr, curr, old_cp) * dll(lst, curr, curr, lst) * dll(cp, nil, cp, fv0) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, nil, fv0, curr) * dll(cp, nil, cp, old_cp) 
-dynsl.py:273 -  dll(old_cp, cp, fv1, curr) * dll(lst, curr, fv0, curr) * dll(cp, curr, nil, cp) 
-dynsl.py:280 - Invariants at location 15:
-dynsl.py:288 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv4, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv1, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv4, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv1, curr) * dll(cp, nil, cp, old_cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, nil, cp, old_cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv1, curr) * dll(cp, nil, nil, cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, nil, nil, cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv4, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv4, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, nil, cp, old_cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, nil, cp, old_cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, nil, nil, cp) * dll(curr, fv1, fv0, nil) 
-dynsl.py:288 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, nil, nil, cp) * dll(curr, nil, fv1, fv0) 
-dynsl.py:292 - ==============================
-dynsl.py:315 - Number of locations: 3
-dynsl.py:316 - Number of traces: 14
-dynsl.py:317 - Number of pre-defined predicates: 1
-dynsl.py:319 - Number of free variables: 1483
-dynsl.py:320 - Number of atomic singleton predicates: 0
-dynsl.py:321 - Number of atomic inductive predicates: 923
-dynsl.py:322 - Number of pure constraints: 2832
-dynsl.py:323 - Number of total invs: 303
-dynsl.py:324 - Number of pres:3
-dynsl.py:325 - Number of post:280
-dynsl.py:326 - Number of loop:20
-dynsl.py:327 - Running time (sec): 341.989276886
-../simple_example_update/GRASShopper/dl/dl_copy,3,14,1483,0,923,2832,303,3,280,20,341.
+dynsl.py:271 - ==============================
+dynsl.py:272 - Precondition at location 8:
+dynsl.py:281 -  dll(lst, nil, fv0, nil) 
+dynsl.py:281 -  dll(lst, nil, nil, lst) 
+dynsl.py:281 -  dll(lst, fv1, fv0, nil) 
+dynsl.py:288 - Postconditions at location 24:
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv1, nil) * dll(lst, nil, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, fv0) * dll(lst, nil, nil, lst) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv3, fv2, nil) * dll(lst, nil, nil, lst) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, res, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, nil, res)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, fv2, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv4, nil) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, cp, fv0)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv5, fv4, nil) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv0, nil) * dll(lst, nil, nil, lst) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv0, nil) * dll(lst, nil, nil, lst) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv1, fv0, nil) * dll(lst, nil, nil, lst) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, res, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, fv0, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, old_cp, fv1, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, nil, lst) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, nil, lst) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, old_cp, fv0, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, cp, fv1)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv1, nil) * dll(lst, nil, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv1, fv0, nil) * dll(lst, nil, nil, lst) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, nil, res)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv3, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, nil, res)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, fv2, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, fv2)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv3, nil) * dll(lst, nil, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv1, fv0, nil) * dll(lst, nil, nil, lst) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, fv1, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, old_cp, old_cp, res)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv1, nil) * dll(lst, nil, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv2, nil) * dll(lst, nil, nil, lst) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv0, nil) * dll(lst, nil, nil, lst) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, fv2, nil) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, fv2, fv1, nil) * dll(lst, nil, fv0, nil) * dll(cp, nil, cp, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, nil, lst) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv0, nil) * dll(cp, nil, nil, cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv3, fv2, nil) * dll(cp, fv1, fv0, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, nil, nil, lst) * dll(cp, nil, res, old_cp)  & curr = nil & cp = res
+dynsl.py:293 -  dll(old_cp, cp, cp, old_cp) * dll(lst, fv1, fv0, nil) * dll(cp, old_cp, old_cp, cp)  & curr = nil & cp = res
+dynsl.py:300 - Invariants at location 15:
+dynsl.py:308 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv4, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv1, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, fv6, fv5, nil) * dll(lst, nil, fv4, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv1, curr) * dll(cp, nil, cp, old_cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, nil, cp, old_cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv1, curr) * dll(cp, nil, nil, cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, fv4, fv3, nil) * dll(lst, nil, fv2, curr) * dll(cp, nil, nil, cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv4, curr) * dll(cp, old_cp, fv3, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv4, curr) * dll(cp, fv3, fv2, old_cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, old_cp, old_cp, cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, nil, cp, old_cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, nil, cp, old_cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv1, curr) * dll(cp, nil, nil, cp) * dll(curr, fv1, fv0, nil) 
+dynsl.py:308 -  dll(old_cp, nil, nil, old_cp) * dll(lst, nil, fv2, curr) * dll(cp, nil, nil, cp) * dll(curr, nil, fv1, fv0) 
+dynsl.py:312 - ==============================
+dynsl.py:336 - Number of locations: 3
+dynsl.py:337 - Number of traces: 14
+dynsl.py:338 - Number of pre-defined predicates: 1
+dynsl.py:340 - Number of free variables: 223
+dynsl.py:341 - Number of atomic singleton predicates: 0
+dynsl.py:342 - Number of atomic inductive predicates: 278
+dynsl.py:343 - Number of pure constraints: 130
+dynsl.py:344 - Number of total invs: 88
+dynsl.py:345 - Number of pres:3
+dynsl.py:346 - Number of post:65
+dynsl.py:347 - Number of loop:20
+dynsl.py:348 - Running time (sec): 348.280633926
+../simple_example_update/GRASShopper/dl/dl_copy,3,14,223,0,278,130,88,3,65,20,348.

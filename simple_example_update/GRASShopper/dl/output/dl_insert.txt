@@ -1,67 +1,39 @@
-dynsl.py:201 - Inferring pre-conditions at the location 8 ...
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:201 - Inferring inv-conditions at the location 17 ...
+dynsl.py:221 - Inferring inv-conditions at the location 17 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 10 ...
+dynsl.py:221 - Inferring post-conditions at the location 10 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 28 ...
+dynsl.py:221 - Inferring post-conditions at the location 28 ...
 
-dynsl.py:251 - ==============================
-dynsl.py:252 - Precondition at location 8:
-dynsl.py:261 -  dll(lst, fv3, fv2, nil) * dll(elt, nil, fv1, fv0) 
-dynsl.py:261 -  dll(lst, nil, nil, lst) * dll(elt, nil, fv1, fv0) 
-dynsl.py:261 -  dll(lst, nil, fv2, nil) * dll(elt, nil, fv1, fv0) 
-dynsl.py:268 - Postconditions at location 10:
-dynsl.py:273 -  dll(elt, fv1, elt, fv0) 
-dynsl.py:268 - Postconditions at location 28:
-dynsl.py:273 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv0, curr) * dll(curr, fv0, curr, elt) * elt:node->node{curr_next, curr} 
-dynsl.py:273 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv0, curr) * dll(curr, fv0, curr, elt) * dll(elt, curr, elt, curr_next) 
-dynsl.py:273 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv1, curr) * curr:node->node{elt, fv0} * elt:node->node{curr_next, curr} 
-dynsl.py:273 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv1, curr) * curr:node->node{elt, fv0} * dll(elt, curr, elt, curr_next) 
-dynsl.py:280 - Invariants at location 17:
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, curr_next, fv1, fv0) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, curr_next, fv1, fv0) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, curr_next, fv1, fv0) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, curr_next, fv1, fv0) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, curr_next) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, curr_next) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, curr_next) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, curr_next) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, nil) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, curr_next, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, nil, fv1, fv0) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, curr_next, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, curr_next, fv1, fv0) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, curr_next, fv1, fv0) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, curr_next, fv1, fv0) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, curr_next, fv1, fv0) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, curr_next) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, curr_next) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, curr_next) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, curr_next) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, nil, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, curr_next, elt, curr_next) 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) * elt:node->node{curr_next, curr_next} 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, curr_next, elt, nil) 
-dynsl.py:288 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, nil, elt, curr_next) 
-dynsl.py:292 - ==============================
-dynsl.py:315 - Number of locations: 4
-dynsl.py:316 - Number of traces: 8
-dynsl.py:317 - Number of pre-defined predicates: 1
-dynsl.py:319 - Number of free variables: 159
-dynsl.py:320 - Number of atomic singleton predicates: 12
-dynsl.py:321 - Number of atomic inductive predicates: 107
-dynsl.py:322 - Number of pure constraints: 143
-dynsl.py:323 - Number of total invs: 40
-dynsl.py:324 - Number of pres:3
-dynsl.py:325 - Number of post:5
-dynsl.py:326 - Number of loop:32
-dynsl.py:327 - Running time (sec): 46.7105190754
-../simple_example_update/GRASShopper/dl/dl_insert,4,8,159,12,107,143,40,3,5,32,46.7
+dynsl.py:271 - ==============================
+dynsl.py:272 - Precondition at location 8:
+dynsl.py:281 -  dll(lst, fv3, fv2, nil) * dll(elt, nil, fv1, fv0) 
+dynsl.py:281 -  dll(lst, nil, nil, lst) * dll(elt, nil, fv1, fv0) 
+dynsl.py:281 -  dll(lst, nil, fv2, nil) * dll(elt, nil, fv1, fv0) 
+dynsl.py:288 - Postconditions at location 10:
+dynsl.py:293 -  dll(elt, fv1, elt, fv0)  & lst = nil & elt = res
+dynsl.py:288 - Postconditions at location 28:
+dynsl.py:293 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv0, curr) * dll(curr, fv0, curr, elt) * dll(elt, curr, elt, curr_next)  & lst = res
+dynsl.py:293 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv1, curr) * curr:node->node{elt, fv0} * dll(elt, curr, elt, curr_next)  & lst = res
+dynsl.py:293 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv0, curr) * dll(curr, fv0, curr, elt) * elt:node->node{curr_next, curr}  & lst = res
+dynsl.py:293 -  dll(curr_next, nil, fv2, nil) * dll(lst, nil, fv1, curr) * curr:node->node{elt, fv0} * elt:node->node{curr_next, curr}  & lst = res
+dynsl.py:300 - Invariants at location 17:
+dynsl.py:308 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) * dll(elt, nil, elt, nil)  & curr_next = nil
+dynsl.py:308 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) * elt:node->node{nil, curr_next}  & curr_next = nil
+dynsl.py:308 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) * dll(elt, nil, elt, nil)  & curr_next = nil
+dynsl.py:308 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) * elt:node->node{nil, curr_next}  & curr_next = nil
+dynsl.py:312 - ==============================
+dynsl.py:336 - Number of locations: 4
+dynsl.py:337 - Number of traces: 8
+dynsl.py:338 - Number of pre-defined predicates: 1
+dynsl.py:340 - Number of free variables: 31
+dynsl.py:341 - Number of atomic singleton predicates: 6
+dynsl.py:342 - Number of atomic inductive predicates: 29
+dynsl.py:343 - Number of pure constraints: 10
+dynsl.py:344 - Number of total invs: 12
+dynsl.py:345 - Number of pres:3
+dynsl.py:346 - Number of post:5
+dynsl.py:347 - Number of loop:4
+dynsl.py:348 - Running time (sec): 46.155328989
+../simple_example_update/GRASShopper/dl/dl_insert,4,8,31,6,29,10,12,3,5,4,46.1

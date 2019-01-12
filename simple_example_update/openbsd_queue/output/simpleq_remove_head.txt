@@ -1,29 +1,29 @@
-dynsl.py:201 - Inferring pre-conditions at the location 8 ...
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:201 - Inferring post-conditions at the location 16 ...
+dynsl.py:221 - Inferring post-conditions at the location 16 ...
 
-dynsl.py:251 - ==============================
-dynsl.py:252 - Precondition at location 8:
-dynsl.py:261 - ll(head) 
-dynsl.py:261 - lseg(head, nil) 
-dynsl.py:268 - Postconditions at location 16:
-dynsl.py:273 - lseg(head, fstn) * fst:node->node{nil, nil} * ll(fstn) 
-dynsl.py:273 - lseg(head, fstn) * ll(fst) * lseg(fstn, nil) 
-dynsl.py:273 - lseg(head, fstn) * ll(fst) * ll(fstn) 
-dynsl.py:273 - lseg(head, fstn) * lseg(fst, nil) * ll(fstn) 
-dynsl.py:273 - lseg(head, fstn) * lseg(fst, nil) * lseg(fstn, nil) 
-dynsl.py:273 - lseg(head, fstn) * fst:node->node{nil, nil} * lseg(fstn, nil) 
-dynsl.py:292 - ==============================
-dynsl.py:315 - Number of locations: 2
-dynsl.py:316 - Number of traces: 2
-dynsl.py:317 - Number of pre-defined predicates: 2
-dynsl.py:319 - Number of free variables: 20
-dynsl.py:320 - Number of atomic singleton predicates: 2
-dynsl.py:321 - Number of atomic inductive predicates: 18
-dynsl.py:322 - Number of pure constraints: 0
-dynsl.py:323 - Number of total invs: 8
-dynsl.py:324 - Number of pres:2
-dynsl.py:325 - Number of post:6
-dynsl.py:326 - Number of loop:0
-dynsl.py:327 - Running time (sec): 2.59584593773
-../simple_example_update/openbsd_queue/simpleq_remove_head,2,2,20,2,18,0,8,2,6,0,2.59
+dynsl.py:271 - ==============================
+dynsl.py:272 - Precondition at location 8:
+dynsl.py:281 - ll(head) 
+dynsl.py:281 - lseg(head, nil) 
+dynsl.py:288 - Postconditions at location 16:
+dynsl.py:293 - lseg(head, fstn) * fst:node->node{nil, nil} * ll(fstn) 
+dynsl.py:293 - lseg(head, fstn) * ll(fst) * lseg(fstn, nil) 
+dynsl.py:293 - lseg(head, fstn) * ll(fst) * ll(fstn) 
+dynsl.py:293 - lseg(head, fstn) * lseg(fst, nil) * ll(fstn) 
+dynsl.py:293 - lseg(head, fstn) * lseg(fst, nil) * lseg(fstn, nil) 
+dynsl.py:293 - lseg(head, fstn) * fst:node->node{nil, nil} * lseg(fstn, nil) 
+dynsl.py:312 - ==============================
+dynsl.py:336 - Number of locations: 2
+dynsl.py:337 - Number of traces: 2
+dynsl.py:338 - Number of pre-defined predicates: 2
+dynsl.py:340 - Number of free variables: 0
+dynsl.py:341 - Number of atomic singleton predicates: 2
+dynsl.py:342 - Number of atomic inductive predicates: 18
+dynsl.py:343 - Number of pure constraints: 0
+dynsl.py:344 - Number of total invs: 8
+dynsl.py:345 - Number of pres:2
+dynsl.py:346 - Number of post:6
+dynsl.py:347 - Number of loop:0
+dynsl.py:348 - Running time (sec): 2.54691004753
+../simple_example_update/openbsd_queue/simpleq_remove_head,2,2,0,2,18,0,8,2,6,0,2.54

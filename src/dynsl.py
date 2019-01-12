@@ -12,6 +12,8 @@ import re
 
 def normalize(inv):
     #debug(inv)
+    nilvars = set()
+    resvar = None
     if "=" in inv:
         inv = inv[:-1]
 	subs = inv.split('&')
@@ -19,7 +21,7 @@ def normalize(inv):
 	    if "=" in sub:
                 left = sub.split('=')[0].strip()
                 right = sub.split('=')[1].strip()
-                if left == right or 'res' in left or 'res' in right:
+                if left == right:
                    continue;
                 else:
                    if 'fv' in left and 'fv' in right:
@@ -32,26 +34,43 @@ def normalize(inv):
                         inv = inv.replace(right+',', left+',')
                         inv = inv.replace(right+')', left+')')
                    elif 'nil' in left:
-                        inv = inv.replace(left+',', 'nil'+',')
-                        inv = inv.replace(left+')', 'nil'+')')
-                   elif 'nil' in right:
                         inv = inv.replace(right+',', 'nil'+',')
                         inv = inv.replace(right+')', 'nil'+')')
+                        nilvars.add(right)
+                   elif 'nil' in right:
+                        inv = inv.replace(left+',', 'nil'+',')
+                        inv = inv.replace(left+')', 'nil'+')')
+                        nilvars.add(left)
+                   elif 'res' in left:
+                        resvar = right
+                   elif 'res' in right:
+                        resvar = left
     inv = inv[inv.find('.')+1:inv.find('&')]
     #debug(inv)
     regex = re.compile('fv![0-9]+')
     match = regex.findall(inv)
+    fvs = set(map(str,match))
     i = 0
     if match:
         match.sort(key=len)
         match.reverse()
 
+    pures = 0
     for x in match:
         inv = inv.replace(x, "fv"+str(i))
         i = i + 1
+    for nils in nilvars:
+        inv = inv + ' & ' + nils + ' = nil'
+    if resvar:
+        pures = pures + 1
+        inv = inv + ' & ' + resvar + ' = res'
+    pures = pures + len(nilvars)
+    fvnum = len(fvs)
+    #debug(pures)
+    #debug(fvnum)
     #debug(inv)
     #print "\n"
-    return inv
+    return (inv, pures, fvnum)
 
 def remove_redundent(inv_set):
     new_set = set()
@@ -62,7 +81,8 @@ def remove_redundent(inv_set):
         #for x in match:
         #    inv = inv.replace(x, "fv"+str(i))
         #    i = i + 1
-        new_set.add(normalize(inv))
+        (newinv, _, _) = normalize(inv)
+        new_set.add(newinv)
     return new_set
 
 
@@ -280,7 +300,7 @@ def main():
             debug('Invariants at location ' + str(inv_loc) + ':')
             loop_inv_set = []
             for (inv, inv_residue) in inv_residue_lst:
-                inv = normalize(str(inv))
+                (inv, _, _) = normalize(str(inv))
                 if inv in loop_inv_set:
                     pass
                 else:
@@ -301,16 +321,17 @@ def main():
             #debug(res_lst)
             #stat_invs += len(res_lst)
             for (inv, _) in res_lst:
-                if normalize(str(inv)) in inv_set:
+                (ninv, pures, fvnum) = normalize(str(inv))
+                if ninv in inv_set:
                     pass
                 else:
                     #debug(inv)
-                    inv_set.append(normalize(str(inv)))
+                    inv_set.append(ninv)
                     inv_atom_data, inv_atom_pred = inv.stat_atomic_preds()
                     stat_atom_data += inv_atom_data
                     stat_atom_pred += inv_atom_pred
-                    stat_pure_constrs += inv.stat_pure_constrs()
-                    stat_free_vars += len(inv.fv())
+                    stat_pure_constrs += pures
+                    stat_free_vars += fvnum
 
         debug('Number of locations: ' + str(stat_locs))
         debug('Number of traces: ' + str(stat_traces))
