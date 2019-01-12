@@ -11,12 +11,46 @@ import timeit
 import re
 
 def normalize(inv):
+    #debug(inv)
+    if "=" in inv:
+        inv = inv[:-1]
+	subs = inv.split('&')
+        for sub in subs:
+	    if "=" in sub:
+                left = sub.split('=')[0].strip()
+                right = sub.split('=')[1].strip()
+                if left == right or 'res' in left or 'res' in right:
+                   continue;
+                else:
+                   if 'fv' in left and 'fv' in right:
+			inv = inv.replace(right+',', left+',')
+			inv = inv.replace(right+')', left+')')
+                   elif 'fv' in left:
+                        inv = inv.replace(left+',', right+',')
+                        inv = inv.replace(left+')', right+')')
+                   elif 'fv' in right:
+                        inv = inv.replace(right+',', left+',')
+                        inv = inv.replace(right+')', left+')')
+                   elif 'nil' in left:
+                        inv = inv.replace(left+',', 'nil'+',')
+                        inv = inv.replace(left+')', 'nil'+')')
+                   elif 'nil' in right:
+                        inv = inv.replace(right+',', 'nil'+',')
+                        inv = inv.replace(right+')', 'nil'+')')
+    inv = inv[inv.find('.')+1:inv.find('&')]
+    #debug(inv)
     regex = re.compile('fv![0-9]+')
     match = regex.findall(inv)
     i = 0
+    if match:
+        match.sort(key=len)
+        match.reverse()
+
     for x in match:
         inv = inv.replace(x, "fv"+str(i))
         i = i + 1
+    #debug(inv)
+    #print "\n"
     return inv
 
 def remove_redundent(inv_set):
@@ -226,7 +260,7 @@ def main():
                     pre_num = pre_num + 1
                     debug(pre_f)
             # stat_specs = stat_specs + 1
-            debug('Corresponding postconditions:')
+            # debug('Corresponding postconditions:')
             #specs_num = 1
             for po_loc in pr_f_posts:
                 po_f_lst = pr_f_posts[po_loc]
@@ -246,10 +280,11 @@ def main():
             debug('Invariants at location ' + str(inv_loc) + ':')
             loop_inv_set = []
             for (inv, inv_residue) in inv_residue_lst:
-                if normalize(str(inv)) in loop_inv_set:
+                inv = normalize(str(inv))
+                if inv in loop_inv_set:
                     pass
                 else:
-                    loop_inv_set.append(str(inv))
+                    loop_inv_set.append(inv)
                     debug(inv)
                     loop_num = loop_num + 1
         stat_specs += loop_num
@@ -264,13 +299,13 @@ def main():
         for loc in rdict:
             res_lst = rdict[loc]
             #debug(res_lst)
-            stat_invs += len(res_lst)
+            #stat_invs += len(res_lst)
             for (inv, _) in res_lst:
                 if normalize(str(inv)) in inv_set:
                     pass
                 else:
                     #debug(inv)
-                    inv_set.append(str(inv))
+                    inv_set.append(normalize(str(inv)))
                     inv_atom_data, inv_atom_pred = inv.stat_atomic_preds()
                     stat_atom_data += inv_atom_data
                     stat_atom_pred += inv_atom_pred
@@ -280,7 +315,7 @@ def main():
         debug('Number of locations: ' + str(stat_locs))
         debug('Number of traces: ' + str(stat_traces))
         debug('Number of pre-defined predicates: ' + str(stat_preds))
-        debug('Number of inferred assertions: ' + str(stat_invs))
+        #debug('Number of inferred assertions: ' + str(stat_invs))
         debug('Number of free variables: ' + str(stat_free_vars))
         debug('Number of atomic singleton predicates: ' + str(stat_atom_data))
         debug('Number of atomic inductive predicates: ' + str(stat_atom_pred))
@@ -292,8 +327,8 @@ def main():
         debug('Running time (sec): ' + str(stat_time))
 
 	print(infile+","+str(stat_locs)+","+str(stat_traces) +
-            "," + str(stat_invs) + "," +
-            str(stat_free_vars) + "," + str(stat_atom_data) + "," +
+            #"," + str(stat_specs) + 
+            "," + str(stat_free_vars) + "," + str(stat_atom_data) + "," +
             str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
             str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","
             + str(loop_num) + ","+ str(stat_time)[:4])

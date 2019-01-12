@@ -1,28 +1,24 @@
-dynsl.py:167 - Inferring post-conditions at the location 18 ...
+dynsl.py:201 - Inferring post-conditions at the location 18 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 11 ...
+dynsl.py:201 - Inferring pre-conditions at the location 11 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 11:
-dynsl.py:227 - (exists fv0, fv1, fv2. dll(i, fv1, fv0, nil) * dll(h, nil, fv2, i) & fv1=fv2)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 18:
-dynsl.py:239 - (exists fv0, fv1, fv13, fv3, fv4. dll(i, nil, fv1, fv0) * dll(h, nil, fv13, j) * dll(j, fv4, fv3, nil) & fv13=fv4 & j=fv3 & fv0=nil)
-dynsl.py:239 - (exists fv0, fv1, fv2. dll(i, fv1, fv0, nil) * dll(h, nil, fv2, j) * j:node->node{nil, fv07} & fv07=fv2 & fv1=nil)
-dynsl.py:239 - (exists fv0, fv1, fv13. dll(i, nil, fv1, fv0) * dll(h, nil, fv13, j) * j:node->node{nil, fv6} & fv6=fv13 & fv0=nil)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv17, fv16. dll(i, fv1, fv0, nil) * dll(h, nil, fv2, j) * dll(j, fv16, fv17, nil) & fv17=j & fv16=fv2 & fv1=nil)
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 2
-dynsl.py:281 - Number of traces: 2
-dynsl.py:282 - Number of pre-defined predicates: 2
-dynsl.py:283 - Number of inferred assertions: 5
-dynsl.py:284 - Number of free variables: 16
-dynsl.py:285 - Number of atomic singleton predicates: 2
-dynsl.py:286 - Number of atomic inductive predicates: 12
-dynsl.py:287 - Number of pure constraints: 11
-dynsl.py:288 - Number of total invs: 5
-dynsl.py:289 - Number of pres:1
-dynsl.py:290 - Number of post:4
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 3.95738887787
-../simple_example_update/AFWP/dll/dll_splice,2,2,5,16,2,12,11,5,1,4,0,3.95
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 11:
+dynsl.py:261 -  dll(i, fv0, fv1, nil) * dll(h, nil, fv0, i) 
+dynsl.py:268 - Postconditions at location 18:
+dynsl.py:273 -  dll(i, nil, fv2, nil) * dll(h, nil, fv0, j) * j:node->node{nil, fv0} 
+dynsl.py:273 -  dll(i, nil, fv2, nil) * dll(h, nil, fv0, j) * dll(j, fv0, j, nil) 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 2
+dynsl.py:316 - Number of traces: 2
+dynsl.py:317 - Number of pre-defined predicates: 2
+dynsl.py:319 - Number of free variables: 9
+dynsl.py:320 - Number of atomic singleton predicates: 1
+dynsl.py:321 - Number of atomic inductive predicates: 7
+dynsl.py:322 - Number of pure constraints: 6
+dynsl.py:323 - Number of total invs: 3
+dynsl.py:324 - Number of pres:1
+dynsl.py:325 - Number of post:2
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 3.92954492569
+../simple_example_update/AFWP/dll/dll_splice,2,2,9,1,7,6,3,1,2,0,3.92

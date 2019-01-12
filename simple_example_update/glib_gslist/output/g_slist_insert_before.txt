@@ -1,63 +1,56 @@
-dynsl.py:167 - Inferring pre-conditions at the location 8 ...
+dynsl.py:201 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 41 ...
+dynsl.py:201 - Inferring post-conditions at the location 41 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 14 ...
+dynsl.py:201 - Inferring post-conditions at the location 14 ...
 
-dynsl.py:167 - Inferring inv-conditions at the location 24 ...
+dynsl.py:201 - Inferring inv-conditions at the location 24 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 8:
-dynsl.py:227 - (exists fv0. lseg(sibling, nil) * lseg(slist, fv0) & True)
-dynsl.py:227 - (exists fv0. list(sibling) * lseg(slist, fv0) & True)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 41:
-dynsl.py:239 - lseg(node, tmp_last) * lseg(sibling, nil) * lseg(slist, node) & sibling=tmp_last & slist=last & slist=res & last=res
-dynsl.py:239 - lseg(node, tmp_last) * lseg(sibling, nil) * slist:node->node{fv0, node} & sibling=tmp_last & slist=last & slist=res & last=res & fv0=nil
-dynsl.py:239 - node:node->node{fv0, sibling} * list(sibling) * slist:node->node{fv1, node} & sibling=tmp_last & slist=last & slist=res & last=res & fv1=nil
-dynsl.py:239 - lseg(node, tmp_last) * list(sibling) * slist:node->node{fv0, node} & fv0=nil & slist=last & slist=res & last=res & sibling=tmp_last
-dynsl.py:239 - lseg(node, sibling) * list(sibling) * slist:node->node{fv0, node} & fv0=nil & slist=last & slist=res & last=res & sibling=tmp_last
-dynsl.py:239 - lseg(node, sibling) * lseg(sibling, nil) * slist:node->node{fv0, node} & sibling=tmp_last & slist=last & slist=res & last=res & fv0=nil
-dynsl.py:239 - node:node->node{fv0, sibling} * lseg(sibling, nil) * slist:node->node{fv1, node} & sibling=tmp_last & slist=last & slist=res & last=res & fv1=nil
-dynsl.py:239 - node:node->node{fv0, sibling} * lseg(sibling, nil) * slist:node->node{fv1, node} & sibling=tmp_last & slist=last & slist=res & fv1=nil & last=res
-dynsl.py:239 - lseg(node, tmp_last) * list(sibling) * lseg(slist, node) & sibling=tmp_last & slist=last & slist=res & last=res
-dynsl.py:239 - lseg(node, sibling) * list(sibling) * lseg(slist, node) & sibling=tmp_last & slist=last & slist=res & last=res
-dynsl.py:239 - lseg(node, sibling) * lseg(sibling, nil) * lseg(slist, node) & sibling=tmp_last & slist=last & slist=res & last=res
-dynsl.py:239 - node:node->node{fv0, sibling} * list(sibling) * lseg(slist, node) & sibling=tmp_last & slist=last & slist=res & last=res
-dynsl.py:239 - lseg(node, sibling) * list(sibling) * slist:node->node{fv0, node} & sibling=tmp_last & slist=last & slist=res & last=res & fv0=nil
-dynsl.py:239 - node:node->node{fv0, sibling} * lseg(sibling, nil) * lseg(slist, node) & sibling=tmp_last & slist=last & slist=res & last=res
-dynsl.py:239 - lseg(node, tmp_last) * list(sibling) * slist:node->node{fv0, node} & sibling=tmp_last & slist=last & slist=res & last=res & fv0=nil
-dynsl.py:234 - Postconditions at location 14:
-dynsl.py:239 - list(sibling) * list(slist) * lseg(last, sibling) & slist=res
-dynsl.py:239 - lseg(sibling, nil) * slist:node->node{fv0, nil} * lseg(last, sibling) & slist=res & fv0=nil
-dynsl.py:239 - list(sibling) * lseg(slist, nil) * lseg(last, sibling) & slist=res
-dynsl.py:239 - lseg(sibling, nil) * lseg(slist, nil) * lseg(last, sibling) & slist=res
-dynsl.py:239 - list(sibling) * slist:node->node{fv0, nil} * lseg(last, sibling) & slist=res & fv0=nil
-dynsl.py:239 - lseg(sibling, nil) * list(slist) * lseg(last, sibling) & slist=res
-dynsl.py:246 - Invariants at location 24:
-dynsl.py:253 - lseg(node, sibling) * lseg(sibling, last) & node=slist & last=nil
-dynsl.py:253 - lseg(node, sibling) * list(sibling) & node=slist & last=nil
-dynsl.py:253 - lseg(node, sibling) * lseg(sibling, nil) & node=slist & last=nil
-dynsl.py:253 - node:node->node{fv!1027, sibling} * lseg(sibling, last) & node=slist & last=fv!1027 & last=nil & fv!1027=nil
-dynsl.py:253 - node:node->node{fv!1027, sibling} * list(sibling) & node=slist & last=fv!1027 & last=nil & fv!1027=nil
-dynsl.py:253 - node:node->node{fv!1027, sibling} * lseg(sibling, nil) & node=slist & last=fv!1027 & last=nil & fv!1027=nil
-dynsl.py:253 - node:node->node{fv!1027, sibling} * list(sibling) & node=slist & last=fv!1027 & last=nil & fv!1027=nil
-dynsl.py:253 - node:node->node{fv!1036, sibling} * lseg(sibling, last) & node=slist & last=fv!1036 & last=nil & fv!1036=nil
-dynsl.py:253 - node:node->node{fv!1036, sibling} * list(sibling) & node=slist & last=fv!1036 & last=nil & fv!1036=nil
-dynsl.py:253 - node:node->node{fv!1036, sibling} * lseg(sibling, nil) & node=slist & last=fv!1036 & last=nil & fv!1036=nil
-dynsl.py:253 - node:node->node{fv!1036, sibling} * list(sibling) & node=slist & last=fv!1036 & last=nil & fv!1036=nil
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 4
-dynsl.py:281 - Number of traces: 5
-dynsl.py:282 - Number of pre-defined predicates: 2
-dynsl.py:283 - Number of inferred assertions: 88
-dynsl.py:284 - Number of free variables: 458
-dynsl.py:285 - Number of atomic singleton predicates: 74
-dynsl.py:286 - Number of atomic inductive predicates: 126
-dynsl.py:287 - Number of pure constraints: 286
-dynsl.py:288 - Number of total invs: 34
-dynsl.py:289 - Number of pres:2
-dynsl.py:290 - Number of post:21
-dynsl.py:291 - Number of loop:11
-dynsl.py:292 - Running time (sec): 30.3128700256
-../simple_example_update/glib_gslist/g_slist_insert_before,4,5,88,458,74,126,286,34,2,21,11,30.3
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 8:
+dynsl.py:261 -  list(sibling) * lseg(slist, fv0) 
+dynsl.py:261 -  lseg(sibling, nil) * lseg(slist, fv0) 
+dynsl.py:268 - Postconditions at location 41:
+dynsl.py:273 - node:node->node{fv0, sibling} * lseg(sibling, nil) * lseg(slist, node) 
+dynsl.py:273 - lseg(node, sibling) * lseg(sibling, nil) * lseg(slist, node) 
+dynsl.py:273 - lseg(node, sibling) * lseg(sibling, nil) * slist:node->node{ni, node} 
+dynsl.py:273 - lseg(node, tmp_last) * list(sibling) * lseg(slist, node) 
+dynsl.py:273 - node:node->node{fv0, sibling} * list(sibling) * slist:node->node{ni, node} 
+dynsl.py:273 - lseg(node, tmp_last) * lseg(sibling, nil) * slist:node->node{ni, node} 
+dynsl.py:273 - lseg(node, tmp_last) * list(sibling) * slist:node->node{nil, node} 
+dynsl.py:273 - node:node->node{fv0, sibling} * lseg(sibling, nil) * slist:node->node{ni, node} 
+dynsl.py:273 - lseg(node, tmp_last) * list(sibling) * slist:node->node{ni, node} 
+dynsl.py:273 - lseg(node, sibling) * list(sibling) * slist:node->node{ni, node} 
+dynsl.py:273 - node:node->node{fv0, sibling} * lseg(sibling, nil) * slist:node->node{nil, node} 
+dynsl.py:273 - node:node->node{fv0, sibling} * list(sibling) * lseg(slist, node) 
+dynsl.py:273 - lseg(node, sibling) * list(sibling) * slist:node->node{nil, node} 
+dynsl.py:273 - lseg(node, tmp_last) * lseg(sibling, nil) * lseg(slist, node) 
+dynsl.py:273 - lseg(node, sibling) * list(sibling) * lseg(slist, node) 
+dynsl.py:268 - Postconditions at location 14:
+dynsl.py:273 - lseg(sibling, nil) * list(slist) * lseg(last, sibling) 
+dynsl.py:273 - lseg(sibling, nil) * lseg(slist, nil) * lseg(last, sibling) 
+dynsl.py:273 - lseg(sibling, nil) * slist:node->node{ni, nil} * lseg(last, sibling) 
+dynsl.py:273 - list(sibling) * lseg(slist, nil) * lseg(last, sibling) 
+dynsl.py:273 - list(sibling) * list(slist) * lseg(last, sibling) 
+dynsl.py:273 - list(sibling) * slist:node->node{ni, nil} * lseg(last, sibling) 
+dynsl.py:280 - Invariants at location 24:
+dynsl.py:288 - lseg(node, sibling) * lseg(sibling, last) 
+dynsl.py:288 - lseg(node, sibling) * list(sibling) 
+dynsl.py:288 - lseg(node, sibling) * lseg(sibling, nil) 
+dynsl.py:288 - node:node->node{last, sibling} * lseg(sibling, last) 
+dynsl.py:288 - node:node->node{last, sibling} * list(sibling) 
+dynsl.py:288 - node:node->node{last, sibling} * lseg(sibling, nil) 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 4
+dynsl.py:316 - Number of traces: 5
+dynsl.py:317 - Number of pre-defined predicates: 2
+dynsl.py:319 - Number of free variables: 161
+dynsl.py:320 - Number of atomic singleton predicates: 19
+dynsl.py:321 - Number of atomic inductive predicates: 60
+dynsl.py:322 - Number of pure constraints: 95
+dynsl.py:323 - Number of total invs: 29
+dynsl.py:324 - Number of pres:2
+dynsl.py:325 - Number of post:21
+dynsl.py:326 - Number of loop:6
+dynsl.py:327 - Running time (sec): 30.2031331062
+../simple_example_update/glib_gslist/g_slist_insert_before,4,5,161,19,60,95,29,2,21,6,30.2

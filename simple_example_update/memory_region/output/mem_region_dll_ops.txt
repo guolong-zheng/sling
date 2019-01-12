@@ -1,94 +1,78 @@
-dynsl.py:167 - Inferring post-conditions at the location 32 ...
+dynsl.py:201 - Inferring post-conditions at the location 32 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 38 ...
+dynsl.py:201 - Inferring pre-conditions at the location 38 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 40 ...
+dynsl.py:201 - Inferring post-conditions at the location 40 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 12 ...
+dynsl.py:201 - Inferring pre-conditions at the location 12 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 21 ...
+dynsl.py:201 - Inferring post-conditions at the location 21 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 27 ...
+dynsl.py:201 - Inferring pre-conditions at the location 27 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 61 ...
+dynsl.py:201 - Inferring post-conditions at the location 61 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 27:
-dynsl.py:227 - emp
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 40:
-dynsl.py:239 - (exists fv0, fv1. dll(curr, nil, fv0, next) * dll(next, curr, fv1, nil) & old_next=nil & old_next=res & fv0=curr & fv1=next & nil=res)
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & fv4=fv5 & fv4=old_next & fv4=fv1 & fv4=fv0 & fv4=nil & fv4=res & fv5=old_next & fv5=fv1 & fv5=fv0 & fv5=nil & fv5=res & old_next=fv1 & old_next=fv0 & old_next=nil & old_next=res & fv1=fv0 & fv1=nil & fv1=res & fv0=nil & fv0=res & nil=res
-dynsl.py:239 - (exists fv0. dll(curr, old_next, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & fv3=fv2 & fv3=old_next & fv3=nil & fv3=res & fv2=old_next & fv2=nil & fv2=res & curr=fv0 & old_next=nil & old_next=res & nil=res)
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, old_next) & old_next=fv2 & old_next=fv1 & old_next=nil & old_next=res & fv0=next & fv2=fv1 & fv2=nil & fv2=res & fv1=nil & fv1=res & nil=res)
-dynsl.py:239 - (exists fv0, fv1. dll(curr, nil, fv0, next) * dll(next, curr, fv1, old_next) & old_next=nil & old_next=res & fv0=curr & fv1=next & nil=res)
-dynsl.py:239 - (exists fv0. dll(curr, old_next, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & fv0=curr & old_next=fv3 & old_next=fv2 & old_next=nil & old_next=res & fv3=fv2 & fv3=nil & fv3=res & fv2=nil & fv2=res & nil=res)
-dynsl.py:239 - (exists fv0, fv1. dll(curr, old_next, fv0, next) * dll(next, curr, fv1, old_next) & old_next=nil & old_next=res & fv0=curr & fv1=next & nil=res)
-dynsl.py:239 - (exists fv0. dll(curr, nil, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & curr=fv0 & fv2=fv3 & fv2=old_next & fv2=nil & fv2=res & fv3=old_next & fv3=nil & fv3=res & old_next=nil & old_next=res & nil=res)
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, nil) & fv0=next & old_next=fv2 & old_next=fv1 & old_next=nil & old_next=res & fv2=fv1 & fv2=nil & fv2=res & fv1=nil & fv1=res & nil=res)
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & old_next=fv4 & old_next=fv5 & old_next=fv0 & old_next=fv1 & old_next=nil & old_next=res & fv4=fv5 & fv4=fv0 & fv4=fv1 & fv4=nil & fv4=res & fv5=fv0 & fv5=fv1 & fv5=nil & fv5=res & fv0=fv1 & fv0=nil & fv0=res & fv1=nil & fv1=res & nil=res
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, nil) & fv0=next & fv1=fv2 & fv1=old_next & fv1=nil & fv1=res & fv2=old_next & fv2=nil & fv2=res & old_next=nil & old_next=res & nil=res)
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, old_next) & fv1=fv2 & fv1=old_next & fv1=nil & fv1=res & fv2=old_next & fv2=nil & fv2=res & old_next=nil & old_next=res & fv0=next & nil=res)
-dynsl.py:239 - (exists fv0, fv1. dll(curr, old_next, fv0, next) * dll(next, curr, fv1, nil) & old_next=nil & old_next=res & fv1=next & curr=fv0 & nil=res)
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & old_next=fv4 & old_next=fv5 & old_next=fv1 & old_next=fv0 & old_next=nil & old_next=res & fv4=fv5 & fv4=fv1 & fv4=fv0 & fv4=nil & fv4=res & fv5=fv1 & fv5=fv0 & fv5=nil & fv5=res & fv1=fv0 & fv1=nil & fv1=res & fv0=nil & fv0=res & nil=res
-dynsl.py:239 - (exists fv0. dll(curr, nil, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & fv0=curr & fv2=old_next & fv2=fv3 & fv2=nil & fv2=res & old_next=fv3 & old_next=nil & old_next=res & fv3=nil & fv3=res & nil=res)
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 12:
-dynsl.py:227 - file_=nil
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 21:
-dynsl.py:239 - (exists fv0, fv1. dll(mr, file_, fv1, fv0) & fv0=file_ & fv0=nil & file_=nil & fv1=mr & fv1=res & mr=res)
-dynsl.py:239 - (exists fv0, fv1. dll(mr, nil, fv0, fv1) & fv0=mr & fv0=res & fv1=file_ & fv1=nil & file_=nil & mr=res)
-dynsl.py:239 - mr:mem_reg->mem_reg{file_, fv0, fv1, fv2, fv3, file_, file_} & mr=res & fv0=fv1 & fv0=file_ & fv0=nil & fv1=file_ & fv1=nil & file_=nil
-dynsl.py:239 - (exists fv0, fv1. dll(mr, fv0, fv1, nil) & file_=nil & fv1=mr & fv1=res & mr=res)
-dynsl.py:239 - mr:mem_reg->mem_reg{file_, fv0, fv1, fv2, fv3, file_, file_} & fv0=fv1 & fv0=file_ & fv0=nil & fv1=file_ & fv1=nil & mr=res & file_=nil
-dynsl.py:239 - (exists fv0, fv1. dll(mr, fv0, fv1, file_) & fv1=mr & fv1=res & file_=nil & mr=res)
-dynsl.py:234 - Postconditions at location 61:
-dynsl.py:239 - (exists fv0. dll(curr, old_next, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & fv0=curr & old_next=fv2 & old_next=fv3 & old_next=nil & fv2=fv3 & fv2=nil & fv3=nil & next=res)
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, old_next) & fv0=next & fv0=res & old_next=fv2 & old_next=fv1 & old_next=nil & fv2=fv1 & fv2=nil & fv1=nil & next=res)
-dynsl.py:239 - (exists fv0. dll(curr, old_next, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & fv0=curr & old_next=fv3 & old_next=fv2 & old_next=nil & fv3=fv2 & fv3=nil & fv2=nil & next=res)
-dynsl.py:239 - (exists fv0, fv1. dll(curr, nil, fv0, next) * dll(next, curr, fv1, nil) & old_next=nil & fv0=curr & fv1=next & fv1=res & next=res)
-dynsl.py:239 - (exists fv0, fv1. dll(curr, old_next, fv0, next) * dll(next, curr, fv1, nil) & old_next=nil & fv0=curr & fv1=next & fv1=res & next=res)
-dynsl.py:239 - (exists fv0, fv1. dll(curr, nil, fv0, next) * dll(next, curr, fv1, old_next) & old_next=nil & fv1=next & fv1=res & fv0=curr & next=res)
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, nil) & fv0=next & fv0=res & old_next=fv2 & old_next=fv1 & old_next=nil & fv2=fv1 & fv2=nil & fv1=nil & next=res)
-dynsl.py:239 - (exists fv0. dll(curr, nil, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & curr=fv0 & old_next=fv2 & old_next=fv3 & old_next=nil & fv2=fv3 & fv2=nil & fv3=nil & next=res)
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & fv1=fv0 & fv1=fv5 & fv1=old_next & fv1=fv4 & fv1=nil & fv0=fv5 & fv0=old_next & fv0=fv4 & fv0=nil & fv5=old_next & fv5=fv4 & fv5=nil & old_next=fv4 & old_next=nil & fv4=nil & next=res
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & old_next=fv5 & old_next=fv4 & old_next=fv1 & old_next=fv0 & old_next=nil & fv5=fv4 & fv5=fv1 & fv5=fv0 & fv5=nil & next=res & fv4=fv1 & fv4=fv0 & fv4=nil & fv1=fv0 & fv1=nil & fv0=nil
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, old_next) & fv2=fv1 & fv2=old_next & fv2=nil & fv1=old_next & fv1=nil & fv0=next & fv0=res & old_next=nil & next=res)
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & old_next=fv4 & old_next=fv5 & old_next=fv1 & old_next=fv0 & old_next=nil & next=res & fv4=fv5 & fv4=fv1 & fv4=fv0 & fv4=nil & fv5=fv1 & fv5=fv0 & fv5=nil & fv1=fv0 & fv1=nil & fv0=nil
-dynsl.py:239 - (exists fv0, fv1. dll(curr, old_next, fv0, next) * dll(next, curr, fv1, old_next) & fv1=next & fv1=res & old_next=nil & fv0=curr & next=res)
-dynsl.py:239 - curr:mem_reg->mem_reg{old_next, fv0, fv1, fv2, fv3, old_next, next} * next:mem_reg->mem_reg{old_next, fv4, fv5, fv6, fv7, curr, old_next} & fv1=fv0 & fv1=fv5 & fv1=old_next & fv1=fv4 & fv1=nil & fv0=fv5 & fv0=old_next & fv0=fv4 & fv0=nil & fv5=old_next & fv5=fv4 & fv5=nil & old_next=fv4 & old_next=nil & next=res & fv4=nil
-dynsl.py:239 - (exists fv0. curr:mem_reg->mem_reg{old_next, fv1, fv2, fv3, fv4, old_next, next} * dll(next, curr, fv0, nil) & fv2=fv1 & fv2=old_next & fv2=nil & fv1=old_next & fv1=nil & fv0=next & fv0=res & old_next=nil & next=res)
-dynsl.py:239 - (exists fv0. dll(curr, nil, fv0, next) * next:mem_reg->mem_reg{old_next, fv2, fv3, fv4, fv5, curr, old_next} & curr=fv0 & fv2=fv3 & fv2=old_next & fv2=nil & fv3=old_next & fv3=nil & old_next=nil & next=res)
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 38:
-dynsl.py:227 - (exists fv0, fv1. dll(curr, nil, fv1, fv0) & fv0=nil)
-dynsl.py:227 - (exists fv0, fv1. dll(curr, fv0, fv1, nil) & True)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 32:
-dynsl.py:239 - (exists fv0. r:mem_reg->mem_reg{nil, fv1, fv2, fv3, fv4, nil, r1} * dll(r1, r, fv0, nil) & fv0=r1 & r=res & fv2=fv3 & fv2=fv1 & fv2=nil & fv3=fv1 & fv3=nil & fv1=nil)
-dynsl.py:239 - (exists fv0, fv1. dll(r, nil, fv0, r1) * dll(r1, r, fv1, nil) & fv0=r & fv0=res & fv1=r1 & r=res)
-dynsl.py:239 - (exists fv0. dll(r, nil, fv0, r1) * r1:mem_reg->mem_reg{nil, fv2, fv3, fv4, fv5, r, nil} & fv0=r & fv0=res & r=res & fv3=fv2 & fv3=nil & fv2=nil)
-dynsl.py:239 - r:mem_reg->mem_reg{nil, fv0, fv1, fv2, fv3, nil, r1} * r1:mem_reg->mem_reg{nil, fv4, fv5, fv6, fv7, r, nil} & fv5=fv1 & fv5=fv2 & fv5=fv4 & fv5=fv0 & fv5=nil & fv1=fv2 & fv1=fv4 & fv1=fv0 & fv1=nil & fv2=fv4 & fv2=fv0 & fv2=nil & fv4=fv0 & fv4=nil & r=res & fv0=nil
-dynsl.py:234 - Postconditions at location 21:
-dynsl.py:239 - (exists fv0, fv1. dll(mr, file_, fv1, fv0) & fv0=file_ & fv0=nil & file_=nil & fv1=mr & fv1=res & mr=res)
-dynsl.py:239 - (exists fv0, fv1. dll(mr, nil, fv0, fv1) & fv0=mr & fv0=res & fv1=file_ & fv1=nil & file_=nil & mr=res)
-dynsl.py:239 - mr:mem_reg->mem_reg{file_, fv0, fv1, fv2, fv3, file_, file_} & mr=res & fv0=fv1 & fv0=file_ & fv0=nil & fv1=file_ & fv1=nil & file_=nil
-dynsl.py:239 - (exists fv0, fv1. dll(mr, fv0, fv1, nil) & file_=nil & fv1=mr & fv1=res & mr=res)
-dynsl.py:239 - mr:mem_reg->mem_reg{file_, fv0, fv1, fv2, fv3, file_, file_} & fv0=fv1 & fv0=file_ & fv0=nil & fv1=file_ & fv1=nil & mr=res & file_=nil
-dynsl.py:239 - (exists fv0, fv1. dll(mr, fv0, fv1, file_) & fv1=mr & fv1=res & file_=nil & mr=res)
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 7
-dynsl.py:281 - Number of traces: 14
-dynsl.py:282 - Number of pre-defined predicates: 1
-dynsl.py:283 - Number of inferred assertions: 46
-dynsl.py:284 - Number of free variables: 313
-dynsl.py:285 - Number of atomic singleton predicates: 38
-dynsl.py:286 - Number of atomic inductive predicates: 42
-dynsl.py:287 - Number of pure constraints: 414
-dynsl.py:288 - Number of total invs: 106
-dynsl.py:289 - Number of pres:4
-dynsl.py:290 - Number of post:47
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 19.5598320961
-../simple_example_update/memory_region/mem_region_dll_ops,7,14,46,313,38,42,414,106,4,47,0,19.5
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 27:
+dynsl.py:261 - em
+dynsl.py:268 - Postconditions at location 40:
+dynsl.py:273 -  curr:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, old_next, next} * dll(next, curr, next, old_next) 
+dynsl.py:273 -  dll(curr, old_next, curr, next) * dll(next, curr, next, old_next) 
+dynsl.py:273 -  dll(curr, nil, curr, next) * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, nil, curr, next) * next:mem_reg->mem_reg{old_next, old_next, nil, fv1, fv0, curr, old_next} 
+dynsl.py:273 - curr:mem_reg->mem_reg{old_next, old_next, old_next, fv3, fv2, old_next, next} * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, nil, curr, next) * dll(next, curr, next, nil) 
+dynsl.py:273 - curr:mem_reg->mem_reg{old_next, nil, nil, fv3, fv2, old_next, next} * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, old_next, curr, next) * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, nil, curr, next) * dll(next, curr, next, old_next) 
+dynsl.py:273 -  curr:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, old_next, next} * dll(next, curr, next, nil) 
+dynsl.py:273 -  dll(curr, old_next, curr, next) * dll(next, curr, next, nil) 
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 12:
+dynsl.py:261 - file_=n
+dynsl.py:268 - Postconditions at location 21:
+dynsl.py:273 -  dll(mr, nil, mr, file_) 
+dynsl.py:273 -  dll(mr, fv0, mr, nil) 
+dynsl.py:273 -  dll(mr, file_, mr, file_) 
+dynsl.py:273 -  dll(mr, fv0, mr, file_) 
+dynsl.py:273 - mr:mem_reg->mem_reg{file_, file_, file_, fv1, fv0, file_, file_} 
+dynsl.py:268 - Postconditions at location 61:
+dynsl.py:273 -  curr:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, old_next, next} * dll(next, curr, next, old_next) 
+dynsl.py:273 -  dll(curr, old_next, curr, next) * dll(next, curr, next, old_next) 
+dynsl.py:273 - curr:mem_reg->mem_reg{old_next, old_next, old_next, fv3, fv2, old_next, next} * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, nil, curr, next) * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 - curr:mem_reg->mem_reg{old_next, old_next, old_next, fv3, fv2, old_next, next} * next:mem_reg->mem_reg{old_next, nil, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, nil, curr, next) * dll(next, curr, next, nil) 
+dynsl.py:273 -  dll(curr, old_next, curr, next) * next:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, curr, old_next} 
+dynsl.py:273 -  dll(curr, nil, curr, next) * dll(next, curr, next, old_next) 
+dynsl.py:273 -  curr:mem_reg->mem_reg{old_next, old_next, old_next, fv1, fv0, old_next, next} * dll(next, curr, next, nil) 
+dynsl.py:273 -  dll(curr, old_next, curr, next) * dll(next, curr, next, nil) 
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 38:
+dynsl.py:261 -  dll(curr, nil, fv0, nil) 
+dynsl.py:261 -  dll(curr, fv1, fv0, nil) 
+dynsl.py:268 - Postconditions at location 32:
+dynsl.py:273 - r:mem_reg->mem_reg{nil, nil, nil, nil, fv2, nil, r1} * r1:mem_reg->mem_reg{nil, nil, nil, fv1, fv0, r, nil} 
+dynsl.py:273 -  r:mem_reg->mem_reg{nil, nil, nil, nil, fv0, nil, r1} * dll(r1, r, r1, nil) 
+dynsl.py:273 -  dll(r, nil, r, r1) * dll(r1, r, r1, nil) 
+dynsl.py:273 -  dll(r, nil, r, r1) * r1:mem_reg->mem_reg{nil, nil, nil, fv1, fv0, r, nil} 
+dynsl.py:268 - Postconditions at location 21:
+dynsl.py:273 -  dll(mr, nil, mr, file_) 
+dynsl.py:273 -  dll(mr, fv0, mr, nil) 
+dynsl.py:273 -  dll(mr, file_, mr, file_) 
+dynsl.py:273 -  dll(mr, fv0, mr, file_) 
+dynsl.py:273 - mr:mem_reg->mem_reg{file_, file_, file_, fv1, fv0, file_, file_} 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 7
+dynsl.py:316 - Number of traces: 14
+dynsl.py:317 - Number of pre-defined predicates: 1
+dynsl.py:319 - Number of free variables: 142
+dynsl.py:320 - Number of atomic singleton predicates: 16
+dynsl.py:321 - Number of atomic inductive predicates: 23
+dynsl.py:322 - Number of pure constraints: 196
+dynsl.py:323 - Number of total invs: 79
+dynsl.py:324 - Number of pres:4
+dynsl.py:325 - Number of post:35
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 19.6459650993
+../simple_example_update/memory_region/mem_region_dll_ops,7,14,142,16,23,196,79,4,35,0,19.6

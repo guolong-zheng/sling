@@ -1,59 +1,51 @@
-dynsl.py:167 - Inferring post-conditions at the location 9 ...
+dynsl.py:201 - Inferring post-conditions at the location 9 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 15 ...
+dynsl.py:201 - Inferring post-conditions at the location 15 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 7 ...
+dynsl.py:201 - Inferring pre-conditions at the location 7 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 7:
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, nil, fv0, fv1) * dll(x1, nil, fv2, fv3) & fv1=nil)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, fv1, fv0, nil) * dll(x1, nil, fv3, fv2) & True)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, fv1, fv0, nil) * dll(x1, fv2, fv3, nil) & True)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, fv1, fv0, nil) * dll(x1, fv3, nil, fv2) & fv2=x1 & fv3=nil)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, fv0, nil, fv1) * dll(x1, fv2, fv3, nil) & fv0=nil & x2=fv1)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, fv0, nil, fv1) * dll(x1, fv3, nil, fv2) & fv2=x1 & fv0=fv3 & fv0=nil & x2=fv1 & fv3=nil)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, nil, fv0, fv1) * dll(x1, fv3, fv2, nil) & fv1=nil)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, fv0, nil, fv1) * dll(x1, nil, fv2, fv3) & fv0=nil & x2=fv1)
-dynsl.py:227 - (exists fv0, fv1, fv2, fv3. dll(x2, nil, fv0, fv1) * dll(x1, fv3, nil, fv2) & fv3=fv1 & fv3=nil & fv2=x1 & fv1=nil)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 9:
-dynsl.py:239 - (exists fv0, fv1. dll(x2, fv0, x1, fv1) & x2=fv1 & x2=res & x1=fv0 & x1=nil & fv0=nil & fv1=res)
-dynsl.py:239 - (exists fv0, fv1. dll(x2, fv1, fv0, nil) & x2=res & x1=nil)
-dynsl.py:239 - (exists fv0, fv1. dll(x2, fv0, nil, fv1) & x2=fv1 & x2=res & fv0=x1 & fv0=nil & x1=nil & fv1=res)
-dynsl.py:239 - (exists fv0, fv1. dll(x2, x1, fv1, fv0) & x2=res & x1=fv0 & x1=nil & fv0=nil)
-dynsl.py:239 - (exists fv0, fv1. dll(x2, nil, fv1, fv0) & x2=res & x1=fv0 & x1=nil & fv0=nil)
-dynsl.py:239 - (exists fv0, fv1. dll(x2, fv0, fv1, x1) & x2=res & x1=nil)
-dynsl.py:234 - Postconditions at location 15:
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, nil, fv0) * dll(tmp, fv3, x2, fv2) * dll(x1, nil, fv5, fv4) & fv1=nil & fv0=x2 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, fv0, nil) * dll(tmp, fv3, x2, fv2) * dll(x1, fv5, fv4, tmp) & tmp=fv2 & fv4=x1 & fv4=res & x2=fv3 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, nil, fv0) * dll(tmp, fv3, x2, fv2) * dll(x1, fv5, fv4, tmp) & fv1=nil & fv4=x1 & fv4=res & fv0=x2 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, fv0, nil) * dll(tmp, x2, fv3, fv2) * dll(x1, fv5, fv4, tmp) & tmp=fv2 & fv4=x1 & fv4=res & x2=fv3 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, nil, fv0) * dll(tmp, fv2, fv3, x2) * dll(x1, fv4, fv5, tmp) & fv1=nil & fv0=x2 & fv5=x1 & fv5=res & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, nil, fv0) * dll(tmp, x2, fv3, fv2) * dll(x1, nil, fv5, fv4) & tmp=fv2 & fv3=fv0 & fv3=x2 & fv0=x2 & fv1=nil & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, fv0, nil) * dll(tmp, fv3, x2, fv2) * dll(x1, nil, fv5, fv4) & tmp=fv2 & x2=fv3 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, nil, fv1, fv0) * dll(tmp, fv2, x2, fv3) * dll(x1, nil, fv4, fv5) & fv1=nil & x2=fv0 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, nil, fv0) * dll(tmp, x2, fv3, fv2) * dll(x1, fv5, fv4, tmp) & tmp=fv2 & fv3=fv0 & fv3=x2 & fv0=x2 & fv4=x1 & fv4=res & fv1=nil & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, nil, fv1, fv0) * dll(tmp, fv3, fv2, x2) * dll(x1, fv5, fv4, tmp) & fv4=x1 & fv4=res & fv1=nil & x2=fv0 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, nil, fv1, fv0) * dll(tmp, x2, fv3, fv2) * dll(x1, nil, fv5, fv4) & tmp=fv2 & fv3=x2 & fv3=fv0 & fv1=nil & x2=fv0 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, fv0, nil) * dll(tmp, x2, fv3, fv2) * dll(x1, nil, fv5, fv4) & tmp=fv2 & fv3=x2 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, nil, fv0) * dll(tmp, fv2, fv3, x2) * dll(x1, nil, fv5, fv4) & fv1=nil & fv0=x2 & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, nil, fv1, fv0) * dll(tmp, x2, fv3, fv2) * dll(x1, fv5, fv4, tmp) & tmp=fv2 & fv3=x2 & fv3=fv0 & fv1=nil & x2=fv0 & x1=fv4 & x1=res & fv4=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, fv0, nil) * dll(tmp, fv2, fv3, x2) * dll(x1, fv4, fv5, tmp) & fv5=x1 & fv5=res & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, nil, fv1, fv0) * dll(tmp, fv2, x2, fv3) * dll(x1, fv4, fv5, tmp) & fv1=nil & x2=fv0 & x1=fv5 & x1=res & fv5=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv4, fv5. dll(x2, fv1, fv0, nil) * dll(tmp, fv2, fv3, x2) * dll(x1, nil, fv5, fv4) & x1=res)
-dynsl.py:239 - (exists fv0, fv1, fv2, fv3, fv12, fv11. dll(x2, nil, fv1, fv0) * dll(tmp, fv3, fv2, x2) * dll(x1, nil, fv11, fv12) & fv1=nil & x2=fv0 & x1=res)
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 3
-dynsl.py:281 - Number of traces: 48
-dynsl.py:282 - Number of pre-defined predicates: 1
-dynsl.py:283 - Number of inferred assertions: 33
-dynsl.py:284 - Number of free variables: 108
-dynsl.py:285 - Number of atomic singleton predicates: 0
-dynsl.py:286 - Number of atomic inductive predicates: 78
-dynsl.py:287 - Number of pure constraints: 121
-dynsl.py:288 - Number of total invs: 33
-dynsl.py:289 - Number of pres:9
-dynsl.py:290 - Number of post:24
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 111.593624115
-../simple_example_update/dll/append,3,48,33,108,0,78,121,33,9,24,0,111.
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 7:
+dynsl.py:261 -  dll(x2, nil, fv2, nil) * dll(x1, fv1, fv0, nil) 
+dynsl.py:261 -  dll(x2, nil, nil, x2) * dll(x1, nil, fv1, fv0) 
+dynsl.py:261 -  dll(x2, nil, fv2, nil) * dll(x1, nil, fv1, fv0) 
+dynsl.py:261 -  dll(x2, nil, fv0, nil) * dll(x1, nil, nil, x1) 
+dynsl.py:261 -  dll(x2, nil, nil, x2) * dll(x1, fv1, fv0, nil) 
+dynsl.py:261 -  dll(x2, fv3, fv2, nil) * dll(x1, nil, fv1, fv0) 
+dynsl.py:261 -  dll(x2, fv3, fv2, nil) * dll(x1, fv1, fv0, nil) 
+dynsl.py:261 -  dll(x2, fv1, fv0, nil) * dll(x1, nil, nil, x1) 
+dynsl.py:261 -  dll(x2, nil, nil, x2) * dll(x1, nil, nil, x1) 
+dynsl.py:268 - Postconditions at location 9:
+dynsl.py:273 -  dll(x2, x1, x1, x2) 
+dynsl.py:273 -  dll(x2, nil, fv0, x1) 
+dynsl.py:273 -  dll(x2, fv1, fv0, nil) 
+dynsl.py:273 -  dll(x2, x1, nil, x2) 
+dynsl.py:273 -  dll(x2, fv1, fv0, x1) 
+dynsl.py:273 -  dll(x2, x1, fv0, x1) 
+dynsl.py:268 - Postconditions at location 15:
+dynsl.py:273 -  dll(x2, nil, nil, x2) * dll(tmp, fv2, x2, fv1) * dll(x1, fv0, x1, tmp) 
+dynsl.py:273 -  dll(x2, nil, nil, x2) * dll(tmp, fv2, fv1, x2) * dll(x1, fv0, x1, tmp) 
+dynsl.py:273 -  dll(x2, nil, nil, x2) * dll(tmp, fv3, x2, fv2) * dll(x1, nil, fv1, fv0) 
+dynsl.py:273 -  dll(x2, fv4, fv3, nil) * dll(tmp, fv2, fv1, x2) * dll(x1, fv0, x1, tmp) 
+dynsl.py:273 -  dll(x2, nil, nil, x2) * dll(tmp, x2, x2, tmp) * dll(x1, nil, fv1, fv0) 
+dynsl.py:273 -  dll(x2, nil, nil, fv2) * dll(tmp, x2, x2, tmp) * dll(x1, nil, fv1, fv0) 
+dynsl.py:273 -  dll(x2, nil, nil, x2) * dll(tmp, fv3, fv2, x2) * dll(x1, nil, fv1, fv0) 
+dynsl.py:273 -  dll(x2, fv5, fv4, nil) * dll(tmp, fv3, fv2, x2) * dll(x1, nil, fv1, fv0) 
+dynsl.py:273 -  dll(x2, nil, nil, fv1) * dll(tmp, x2, x2, tmp) * dll(x1, fv0, x1, tmp) 
+dynsl.py:273 -  dll(x2, nil, nil, x2) * dll(tmp, x2, x2, tmp) * dll(x1, fv0, x1, tmp) 
+dynsl.py:273 -  dll(x2, fv2, fv1, nil) * dll(tmp, x2, x2, tmp) * dll(x1, fv0, x1, tmp) 
+dynsl.py:273 -  dll(x2, fv3, fv2, nil) * dll(tmp, x2, x2, tmp) * dll(x1, nil, fv1, fv0) 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 3
+dynsl.py:316 - Number of traces: 48
+dynsl.py:317 - Number of pre-defined predicates: 1
+dynsl.py:319 - Number of free variables: 84
+dynsl.py:320 - Number of atomic singleton predicates: 0
+dynsl.py:321 - Number of atomic inductive predicates: 60
+dynsl.py:322 - Number of pure constraints: 97
+dynsl.py:323 - Number of total invs: 27
+dynsl.py:324 - Number of pres:9
+dynsl.py:325 - Number of post:18
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 110.696173906
+../simple_example_update/dll/append,3,48,84,0,60,97,27,9,18,0,110.

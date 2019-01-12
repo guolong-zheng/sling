@@ -1,34 +1,32 @@
-dynsl.py:167 - Inferring pre-conditions at the location 8 ...
+dynsl.py:201 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 18 ...
+dynsl.py:201 - Inferring post-conditions at the location 18 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 12 ...
+dynsl.py:201 - Inferring post-conditions at the location 12 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 8:
-dynsl.py:227 - (exists fv0. lseg(x, fv0) & x=fv0)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 18:
-dynsl.py:239 - lseg(x, next_next) * lseg(next_next, x) * next:node->node{fv0, next_next} & fv0=nil & next_next=res
-dynsl.py:239 - x:node->node{fv0, next_next} * lseg(next_next, x) * lseg(next, next_next) & next_next=res
-dynsl.py:239 - lseg(x, next_next) * lseg(next_next, x) * lseg(next, next_next) & next_next=res
-dynsl.py:239 - x:node->node{fv0, next_next} * lseg(next_next, x) * next:node->node{fv1, next_next} & fv1=nil & next_next=res
-dynsl.py:234 - Postconditions at location 12:
-dynsl.py:239 - x:node->node{fv0, x} & x=next & fv0=nil & fv0=res & nil=res
-dynsl.py:239 - (exists fv0. lseg(x, fv0) & fv0=x & fv0=next & x=next & nil=res)
-dynsl.py:239 - lseg(x, next) & x=next & nil=res
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 3
-dynsl.py:281 - Number of traces: 4
-dynsl.py:282 - Number of pre-defined predicates: 1
-dynsl.py:283 - Number of inferred assertions: 9
-dynsl.py:284 - Number of free variables: 35
-dynsl.py:285 - Number of atomic singleton predicates: 6
-dynsl.py:286 - Number of atomic inductive predicates: 11
-dynsl.py:287 - Number of pure constraints: 21
-dynsl.py:288 - Number of total invs: 8
-dynsl.py:289 - Number of pres:1
-dynsl.py:290 - Number of post:7
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 1.73519515991
-../simple_example_update/circular_list/delete_front,3,4,9,35,6,11,21,8,1,7,0,1.73
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 8:
+dynsl.py:261 -  lseg(x, x) 
+dynsl.py:268 - Postconditions at location 18:
+dynsl.py:273 - lseg(x, next_next) * lseg(next_next, x) * lseg(next, next_next) 
+dynsl.py:273 - x:node->node{fv0, next_next} * lseg(next_next, x) * next:node->node{nil, next_next} 
+dynsl.py:273 - lseg(x, next_next) * lseg(next_next, x) * next:node->node{nil, next_next} 
+dynsl.py:273 - x:node->node{fv0, next_next} * lseg(next_next, x) * lseg(next, next_next) 
+dynsl.py:268 - Postconditions at location 12:
+dynsl.py:273 - lseg(x, next) 
+dynsl.py:273 -  lseg(x, x) 
+dynsl.py:273 - x:node->node{nil, x} 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 3
+dynsl.py:316 - Number of traces: 4
+dynsl.py:317 - Number of pre-defined predicates: 1
+dynsl.py:319 - Number of free variables: 28
+dynsl.py:320 - Number of atomic singleton predicates: 5
+dynsl.py:321 - Number of atomic inductive predicates: 10
+dynsl.py:322 - Number of pure constraints: 13
+dynsl.py:323 - Number of total invs: 8
+dynsl.py:324 - Number of pres:1
+dynsl.py:325 - Number of post:7
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 2.0117559433
+../simple_example_update/circular_list/delete_front,3,4,28,5,10,13,8,1,7,0,2.01

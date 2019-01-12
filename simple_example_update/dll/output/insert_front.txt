@@ -1,36 +1,33 @@
-dynsl.py:167 - Inferring pre-conditions at the location 8 ...
+dynsl.py:201 - Inferring pre-conditions at the location 8 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 21 ...
+dynsl.py:201 - Inferring post-conditions at the location 21 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 14 ...
+dynsl.py:201 - Inferring post-conditions at the location 14 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 8:
-dynsl.py:227 - (exists fv0, fv1. dll(x, fv1, fv0, nil) & True)
-dynsl.py:227 - (exists fv0, fv1. dll(x, fv0, nil, fv1) & x=fv1 & fv0=nil)
-dynsl.py:227 - (exists fv0, fv1. dll(x, nil, fv1, fv0) & fv0=nil)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 21:
-dynsl.py:239 - (exists fv0. dll(x, head, fv0, nil) * head:node->node{fv2, x, nil} & head=res)
-dynsl.py:239 - (exists fv0, fv1. dll(x, head, fv0, nil) * dll(head, nil, fv1, x) & head=fv1 & head=res & fv1=res)
-dynsl.py:234 - Postconditions at location 14:
-dynsl.py:239 - (exists fv0, fv1. dll(head, fv0, fv1, x) & x=fv0 & x=nil & head=fv1 & head=res & fv0=nil & fv1=res)
-dynsl.py:239 - (exists fv0, fv1. dll(head, nil, fv0, fv1) & fv0=head & fv0=res & x=fv1 & x=nil & head=res & fv1=nil)
-dynsl.py:239 - (exists fv0, fv1. dll(head, x, fv0, fv1) & x=fv1 & x=nil & head=fv0 & head=res & fv0=res & fv1=nil)
-dynsl.py:239 - (exists fv0, fv1. dll(head, fv1, fv0, nil) & x=fv1 & x=nil & head=fv0 & head=res & fv1=nil & fv0=res)
-dynsl.py:239 - head:node->node{fv0, x, x} & x=nil & head=res
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 3
-dynsl.py:281 - Number of traces: 4
-dynsl.py:282 - Number of pre-defined predicates: 1
-dynsl.py:283 - Number of inferred assertions: 11
-dynsl.py:284 - Number of free variables: 30
-dynsl.py:285 - Number of atomic singleton predicates: 3
-dynsl.py:286 - Number of atomic inductive predicates: 10
-dynsl.py:287 - Number of pure constraints: 35
-dynsl.py:288 - Number of total invs: 10
-dynsl.py:289 - Number of pres:3
-dynsl.py:290 - Number of post:7
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 3.42844891548
-../simple_example_update/dll/insert_front,3,4,11,30,3,10,35,10,3,7,0,3.42
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 8:
+dynsl.py:261 -  dll(x, nil, fv0, nil) 
+dynsl.py:261 -  dll(x, fv1, fv0, nil) 
+dynsl.py:261 -  dll(x, nil, nil, x) 
+dynsl.py:268 - Postconditions at location 21:
+dynsl.py:273 -  dll(x, head, fv0, nil) * dll(head, nil, head, x) 
+dynsl.py:273 -  dll(x, head, fv1, nil) * head:node->node{fv0, x, nil} 
+dynsl.py:268 - Postconditions at location 14:
+dynsl.py:273 - head:node->node{fv0, x, x} 
+dynsl.py:273 -  dll(head, x, head, nil) 
+dynsl.py:273 -  dll(head, x, head, x) 
+dynsl.py:273 -  dll(head, nil, head, x) 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 3
+dynsl.py:316 - Number of traces: 4
+dynsl.py:317 - Number of pre-defined predicates: 1
+dynsl.py:319 - Number of free variables: 23
+dynsl.py:320 - Number of atomic singleton predicates: 2
+dynsl.py:321 - Number of atomic inductive predicates: 9
+dynsl.py:322 - Number of pure constraints: 27
+dynsl.py:323 - Number of total invs: 9
+dynsl.py:324 - Number of pres:3
+dynsl.py:325 - Number of post:6
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 3.4920399189
+../simple_example_update/dll/insert_front,3,4,23,2,9,27,9,3,6,0,3.49

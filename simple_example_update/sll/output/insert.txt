@@ -1,34 +1,32 @@
-dynsl.py:167 - Inferring post-conditions at the location 17 ...
+dynsl.py:201 - Inferring post-conditions at the location 17 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 23 ...
+dynsl.py:201 - Inferring post-conditions at the location 23 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 12 ...
+dynsl.py:201 - Inferring post-conditions at the location 12 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 7 ...
+dynsl.py:201 - Inferring pre-conditions at the location 7 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 7:
-dynsl.py:227 - ll(x) & True
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 17:
-dynsl.py:239 - ll(tmp) * x:node->node{fv0, tmp} & x=res
-dynsl.py:234 - Postconditions at location 12:
-dynsl.py:239 - ll(leaf) & x=nil & leaf=res
-dynsl.py:239 - leaf:node->node{fv0, x} & x=nil & leaf=res
-dynsl.py:234 - Postconditions at location 23:
-dynsl.py:239 - ll(x) * new_root:node->node{fv0, x} & new_root=res
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 4
-dynsl.py:281 - Number of traces: 26
-dynsl.py:282 - Number of pre-defined predicates: 1
-dynsl.py:283 - Number of inferred assertions: 7
-dynsl.py:284 - Number of free variables: 20
-dynsl.py:285 - Number of atomic singleton predicates: 4
-dynsl.py:286 - Number of atomic inductive predicates: 4
-dynsl.py:287 - Number of pure constraints: 8
-dynsl.py:288 - Number of total invs: 5
-dynsl.py:289 - Number of pres:1
-dynsl.py:290 - Number of post:4
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 3.85298395157
-../simple_example_update/sll/insert,4,26,7,20,4,4,8,5,1,4,0,3.85
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 7:
+dynsl.py:261 - ll(x) 
+dynsl.py:268 - Postconditions at location 17:
+dynsl.py:273 - ll(tmp) * x:node->node{fv0, tmp} 
+dynsl.py:268 - Postconditions at location 12:
+dynsl.py:273 - leaf:node->node{fv0, x} 
+dynsl.py:273 - ll(leaf) 
+dynsl.py:268 - Postconditions at location 23:
+dynsl.py:273 - ll(x) * new_root:node->node{fv0, x} 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 4
+dynsl.py:316 - Number of traces: 26
+dynsl.py:317 - Number of pre-defined predicates: 1
+dynsl.py:319 - Number of free variables: 16
+dynsl.py:320 - Number of atomic singleton predicates: 3
+dynsl.py:321 - Number of atomic inductive predicates: 4
+dynsl.py:322 - Number of pure constraints: 6
+dynsl.py:323 - Number of total invs: 5
+dynsl.py:324 - Number of pres:1
+dynsl.py:325 - Number of post:4
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 4.09949707985
+../simple_example_update/sll/insert,4,26,16,3,4,6,5,1,4,0,4.09

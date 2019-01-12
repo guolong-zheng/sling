@@ -1,27 +1,25 @@
-dynsl.py:167 - Inferring pre-conditions at the location 10 ...
+dynsl.py:201 - Inferring pre-conditions at the location 10 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 18 ...
+dynsl.py:201 - Inferring post-conditions at the location 18 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 10:
-dynsl.py:227 - (exists fv0. lseg(h, fv0) * sll(j) & True)
-dynsl.py:227 - (exists fv0. lseg(h, fv0) * lseg(j, nil) & True)
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 18:
-dynsl.py:239 - (exists fv0. lseg(h, fv0) * sll(j) & True)
-dynsl.py:239 - (exists fv0. lseg(h, fv0) * lseg(j, nil) & True)
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 2
-dynsl.py:281 - Number of traces: 4
-dynsl.py:282 - Number of pre-defined predicates: 4
-dynsl.py:283 - Number of inferred assertions: 4
-dynsl.py:284 - Number of free variables: 8
-dynsl.py:285 - Number of atomic singleton predicates: 0
-dynsl.py:286 - Number of atomic inductive predicates: 8
-dynsl.py:287 - Number of pure constraints: 0
-dynsl.py:288 - Number of total invs: 4
-dynsl.py:289 - Number of pres:2
-dynsl.py:290 - Number of post:2
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 1.30224895477
-../simple_example_update/AFWP/sll/sll_rotate,2,4,4,8,0,8,0,4,2,2,0,1.30
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 10:
+dynsl.py:261 -  lseg(h, fv0) * sll(j) 
+dynsl.py:261 -  lseg(h, fv0) * lseg(j, nil) 
+dynsl.py:268 - Postconditions at location 18:
+dynsl.py:273 -  lseg(h, fv0) * sll(j) 
+dynsl.py:273 -  lseg(h, fv0) * lseg(j, nil) 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 2
+dynsl.py:316 - Number of traces: 4
+dynsl.py:317 - Number of pre-defined predicates: 4
+dynsl.py:319 - Number of free variables: 4
+dynsl.py:320 - Number of atomic singleton predicates: 0
+dynsl.py:321 - Number of atomic inductive predicates: 4
+dynsl.py:322 - Number of pure constraints: 0
+dynsl.py:323 - Number of total invs: 4
+dynsl.py:324 - Number of pres:2
+dynsl.py:325 - Number of post:2
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 1.38666605949
+../simple_example_update/AFWP/sll/sll_rotate,2,4,4,0,4,0,4,2,2,0,1.38

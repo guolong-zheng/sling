@@ -1,29 +1,27 @@
-dynsl.py:167 - Inferring post-conditions at the location 43 ...
+dynsl.py:201 - Inferring post-conditions at the location 43 ...
 
-dynsl.py:167 - Inferring pre-conditions at the location 21 ...
+dynsl.py:201 - Inferring pre-conditions at the location 21 ...
 
-dynsl.py:167 - Inferring post-conditions at the location 23 ...
+dynsl.py:201 - Inferring post-conditions at the location 23 ...
 
-dynsl.py:217 - ==============================
-dynsl.py:218 - Precondition at location 21:
-dynsl.py:227 - tree(x) & True
-dynsl.py:229 - Corresponding postconditions:
-dynsl.py:234 - Postconditions at location 43:
-dynsl.py:239 - tree(xr) * x:b_node->b_node{xl, xr, fv0} * tree(xl) & xr=r & x=res
-dynsl.py:234 - Postconditions at location 23:
-dynsl.py:239 - x=nil & x=res & nil=res
-dynsl.py:257 - ==============================
-dynsl.py:280 - Number of locations: 3
-dynsl.py:281 - Number of traces: 10
-dynsl.py:282 - Number of pre-defined predicates: 1
-dynsl.py:283 - Number of inferred assertions: 5
-dynsl.py:284 - Number of free variables: 21
-dynsl.py:285 - Number of atomic singleton predicates: 3
-dynsl.py:286 - Number of atomic inductive predicates: 7
-dynsl.py:287 - Number of pure constraints: 9
-dynsl.py:288 - Number of total invs: 3
-dynsl.py:289 - Number of pres:1
-dynsl.py:290 - Number of post:2
-dynsl.py:291 - Number of loop:0
-dynsl.py:292 - Running time (sec): 2.94264411926
-../simple_example_update/binary_search_tree/delete_rec,3,10,5,21,3,7,9,3,1,2,0,2.94
+dynsl.py:251 - ==============================
+dynsl.py:252 - Precondition at location 21:
+dynsl.py:261 - tree(x) 
+dynsl.py:268 - Postconditions at location 43:
+dynsl.py:273 - tree(xr) * x:b_node->b_node{xl, xr, fv0} * tree(xl) 
+dynsl.py:268 - Postconditions at location 23:
+dynsl.py:273 - x=nil 
+dynsl.py:292 - ==============================
+dynsl.py:315 - Number of locations: 3
+dynsl.py:316 - Number of traces: 10
+dynsl.py:317 - Number of pre-defined predicates: 1
+dynsl.py:319 - Number of free variables: 9
+dynsl.py:320 - Number of atomic singleton predicates: 1
+dynsl.py:321 - Number of atomic inductive predicates: 3
+dynsl.py:322 - Number of pure constraints: 5
+dynsl.py:323 - Number of total invs: 3
+dynsl.py:324 - Number of pres:1
+dynsl.py:325 - Number of post:2
+dynsl.py:326 - Number of loop:0
+dynsl.py:327 - Running time (sec): 2.90716314316
+../simple_example_update/binary_search_tree/delete_rec,3,10,9,1,3,5,3,1,2,0,2.90
