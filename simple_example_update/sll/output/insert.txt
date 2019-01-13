@@ -6,27 +6,29 @@ dynsl.py:221 - Inferring post-conditions at the location 12 ...
 
 dynsl.py:221 - Inferring pre-conditions at the location 7 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 7:
-dynsl.py:281 - ll(x) 
-dynsl.py:288 - Postconditions at location 17:
-dynsl.py:293 - ll(tmp) * x:node->node{fv0, tmp} 
-dynsl.py:288 - Postconditions at location 12:
-dynsl.py:293 - leaf:node->node{fv0, x}  & x = nil
-dynsl.py:293 - ll(leaf)  & x = nil
-dynsl.py:288 - Postconditions at location 23:
-dynsl.py:293 - ll(x) * new_root:node->node{fv0, x} 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 4
-dynsl.py:337 - Number of traces: 26
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 3
-dynsl.py:341 - Number of atomic singleton predicates: 3
-dynsl.py:342 - Number of atomic inductive predicates: 4
-dynsl.py:343 - Number of pure constraints: 2
-dynsl.py:344 - Number of total invs: 5
-dynsl.py:345 - Number of pres:1
-dynsl.py:346 - Number of post:4
-dynsl.py:347 - Number of loop:0
-dynsl.py:348 - Running time (sec): 4.04163098335
-../simple_example_update/sll/insert,4,26,3,3,4,2,5,1,4,0,4.04
+dynsl.py:299 - Precondition at location 7:
+dynsl.py:307 - ll(x) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 17:
+dynsl.py:320 - ll(tmp) * x:node->node{fv0, tmp} 
+dynsl.py:312 - Postcondition at location 12:
+dynsl.py:320 - ll(leaf)  & x = nil
+dynsl.py:320 - leaf:node->node{fv0, x}  & x = nil
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 - ll(x) * new_root:node->node{fv0, x} 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 4
+dynsl.py:364 - Number of traces: 26
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 3
+dynsl.py:368 - Number of atomic singleton predicates: 3
+dynsl.py:369 - Number of atomic inductive predicates: 4
+dynsl.py:370 - Number of pure constraints: 2
+dynsl.py:371 - Number of total invs: 5
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:4
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 4.10754299164
+../simple_example_update/sll/insert,4,26,3,3,4,2,5,1,4,0,4.10
+../simple_example_update/sll/insert,4,26,3,4,2,5,1,4,0,4.10

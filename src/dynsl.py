@@ -239,61 +239,87 @@ def main():
         pre_num = 0
         post_num = 0
         loop_num = 0
-        for pr_loc in pre_locs:
-            pr_po_pairs = pre_post_dict[pr_loc]
-            pr_residue_lst = rdict[pr_loc]
-            
-            pr_f_posts = {}
-            pre_invs = {}
-            for (pr_f, pr_residue) in pr_residue_lst:
-                # debug(pr_f)
-                pre_invs.setdefault(pr_loc,[]).append(pr_f)
-                for po_loc in pr_po_pairs:
-                    pairs = pr_po_pairs[po_loc]
-                    # debug(pairs)
-                    po_residue_lst = rdict[po_loc]
-                    for (po_f, po_residue) in po_residue_lst:
-                        # debug(po_f)
-                        #if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
-                        #       for (pr_id, po_id) in pairs):
-                            pr_f_posts.setdefault(po_loc, []).append(po_f)
-                        #else:
-                            # for (pr_id, po_id) in pairs:
-                            #     prr = pr_residue[pr_id]
-                            #     por = po_residue[po_id]
-                            #     if not prr.is_same_heap_dom(por):
-                            #         debug(pr_f)
-                            #         debug(prr)
-                            #         debug(po_f)
-                            #         debug(por)
-                            pass
-                                #if len(pr_f_posts) == len(pr_po_pairs):
-            debug('==============================')
-            debug('Precondition at location ' + str(pr_loc) + ':')
-            #debug(pr_f)
-            for pre_loc in pre_invs:
-                pre_f_lst = pre_invs[pre_loc]
-                pre_f_lst = remove_redundent(set(map(str,pre_f_lst)))
-                #debug('Precondition at location ' + str(pr_loc) + ':')
+#        for pr_loc in pre_locs:
+#            pr_po_pairs = pre_post_dict[pr_loc]
+#            pr_residue_lst = rdict[pr_loc]
+#            
+#            pr_f_posts = {}
+#            pre_invs = {}
+#            for (pr_f, pr_residue) in pr_residue_lst:
+#                # debug(pr_f)
+#                pre_invs.setdefault(pr_loc,[]).append(pr_f)
+#                for po_loc in pr_po_pairs:
+#                    pairs = pr_po_pairs[po_loc]
+#                    # debug(pairs)
+#                    po_residue_lst = rdict[po_loc]
+#                    for (po_f, po_residue) in po_residue_lst:
+#                        # debug(po_f)
+#                        #if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
+#                        #       for (pr_id, po_id) in pairs):
+#                            pr_f_posts.setdefault(po_loc, []).append(po_f)
+#                        #else:
+#                            # for (pr_id, po_id) in pairs:
+#                            #     prr = pr_residue[pr_id]
+#                            #     por = po_residue[po_id]
+#                            #     if not prr.is_same_heap_dom(por):
+#                            #         debug(pr_f)
+#                            #         debug(prr)
+#                            #         debug(po_f)
+#                            #         debug(por)
+#                            pass
+#                                #if len(pr_f_posts) == len(pr_po_pairs):
+#            debug('==============================')
+#            debug('Precondition at location ' + str(pr_loc) + ':')
+#            #debug(pr_f)
+#            for pre_loc in pre_invs:
+#                pre_f_lst = pre_invs[pre_loc]
+#                pre_f_lst = remove_redundent(set(map(str,pre_f_lst)))
+#                #debug('Precondition at location ' + str(pr_loc) + ':')
+#
+#                for pre_f in pre_f_lst:
+#                    pre_num = pre_num + 1
+#                    debug(pre_f)
+#            # stat_specs = stat_specs + 1
+#            # debug('Corresponding postconditions:')
+#            #specs_num = 1
+#            for po_loc in pr_f_posts:
+#                po_f_lst = pr_f_posts[po_loc]
+#		po_f_lst = remove_redundent(set(map(str,po_f_lst)))
+#                debug('Postconditions at location ' + str(po_loc) + ':')
+#                #debug(specs_num)
+#                for po_f in po_f_lst:
+#                    #specs_num = specs_num + 1
+#                    post_num = post_num + 1
+#                    debug(po_f)
+#            stat_specs += (post_num + pre_num)
+#                #debug('==============================')
 
-                for pre_f in pre_f_lst:
+	for pre_loc in pre_locs:
+            pre_residue_lst = rdict[pre_loc]
+            debug('Precondition at location ' + str(pre_loc) + ':')
+            pre_set = []
+            for (pre, pre_residue) in pre_residue_lst:
+                (pre, _, _) = normalize(str(pre))
+                if pre in pre_set:
+                    pass
+                else:
+                    pre_set.append(pre)
+                    debug(pre)
                     pre_num = pre_num + 1
-                    debug(pre_f)
-            # stat_specs = stat_specs + 1
-            # debug('Corresponding postconditions:')
-            #specs_num = 1
-            for po_loc in pr_f_posts:
-                po_f_lst = pr_f_posts[po_loc]
-		po_f_lst = remove_redundent(set(map(str,po_f_lst)))
-                debug('Postconditions at location ' + str(po_loc) + ':')
-                #debug(specs_num)
-                for po_f in po_f_lst:
-                    #specs_num = specs_num + 1
+	debug('==============================')
+	for post_loc in post_locs:
+            post_residue_lst = rdict[post_loc]
+            debug('Postcondition at location ' + str(post_loc) + ':')
+            post_set = []
+            for (post, post_residue) in post_residue_lst:
+                (post, _, _) = normalize(str(post))
+                if post in post_set:
+                    pass
+                else:
+                    post_set.append(post)
+                    debug(post)
                     post_num = post_num + 1
-                    debug(po_f)
-            stat_specs += (post_num + pre_num)
-                #debug('==============================')
-
+	debug('==============================')
         # debug(inv_models)
         for inv_loc in inv_locs:
             inv_residue_lst = rdict[inv_loc]
@@ -307,7 +333,7 @@ def main():
                     loop_inv_set.append(inv)
                     debug(inv)
                     loop_num = loop_num + 1
-        stat_specs += loop_num
+        stat_specs += loop_num + pre_num + post_num
                 # debug(inv_residue)
         debug('==============================')
 
@@ -332,6 +358,7 @@ def main():
                     stat_atom_pred += inv_atom_pred
                     stat_pure_constrs += pures
                     stat_free_vars += fvnum
+                
 
         debug('Number of locations: ' + str(stat_locs))
         debug('Number of traces: ' + str(stat_traces))
@@ -350,6 +377,13 @@ def main():
 	print(infile+","+str(stat_locs)+","+str(stat_traces) +
             #"," + str(stat_specs) + 
             "," + str(stat_free_vars) + "," + str(stat_atom_data) + "," +
+            str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
+            str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","
+            + str(loop_num) + ","+ str(stat_time)[:4])
+        
+        print(infile+","+str(stat_locs)+","+str(stat_traces) +
+#           "," + str(stat_free_vars) + 
+            "," + str(stat_atom_data) + "," +
             str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
             str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","
             + str(loop_num) + ","+ str(stat_time)[:4])

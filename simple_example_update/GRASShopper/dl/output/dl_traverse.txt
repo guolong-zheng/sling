@@ -4,29 +4,31 @@ dynsl.py:221 - Inferring inv-conditions at the location 12 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 15 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 -  dll(lst, nil, fv0, nil) 
-dynsl.py:281 -  dll(lst, nil, nil, lst) 
-dynsl.py:281 -  dll(lst, fv1, fv0, nil) 
-dynsl.py:288 - Postconditions at location 15:
-dynsl.py:293 -  dll(lst, nil, fv0, nil)  & curr = nil
-dynsl.py:293 -  dll(lst, fv1, fv0, nil)  & curr = nil
-dynsl.py:293 -  dll(lst, nil, nil, lst)  & curr = nil
-dynsl.py:300 - Invariants at location 12:
-dynsl.py:308 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) 
-dynsl.py:308 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 3
-dynsl.py:337 - Number of traces: 14
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 11
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 10
-dynsl.py:343 - Number of pure constraints: 3
-dynsl.py:344 - Number of total invs: 8
-dynsl.py:345 - Number of pres:3
-dynsl.py:346 - Number of post:3
-dynsl.py:347 - Number of loop:2
-dynsl.py:348 - Running time (sec): 8.3100259304
-../simple_example_update/GRASShopper/dl/dl_traverse,3,14,11,0,10,3,8,3,3,2,8.31
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 -  dll(lst, fv1, fv0, nil) 
+dynsl.py:307 -  dll(lst, nil, fv0, nil) 
+dynsl.py:307 -  dll(lst, nil, nil, lst) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 15:
+dynsl.py:320 -  dll(lst, nil, fv0, nil)  & curr = nil
+dynsl.py:320 -  dll(lst, fv1, fv0, nil)  & curr = nil
+dynsl.py:320 -  dll(lst, nil, nil, lst)  & curr = nil
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 12:
+dynsl.py:334 -  dll(lst, nil, fv1, curr) * dll(curr, fv1, fv0, nil) 
+dynsl.py:334 -  dll(lst, nil, fv2, curr) * dll(curr, nil, fv1, fv0) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 14
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 11
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 10
+dynsl.py:370 - Number of pure constraints: 3
+dynsl.py:371 - Number of total invs: 8
+dynsl.py:372 - Number of pres:3
+dynsl.py:373 - Number of post:3
+dynsl.py:374 - Number of loop:2
+dynsl.py:375 - Running time (sec): 8.08099389076
+../simple_example_update/GRASShopper/dl/dl_traverse,3,14,11,0,10,3,8,3,3,2,8.08
+../simple_example_update/GRASShopper/dl/dl_traverse,3,14,0,10,3,8,3,3,2,8.08

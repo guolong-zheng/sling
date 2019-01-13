@@ -6,26 +6,28 @@ dynsl.py:221 - Inferring post-conditions at the location 18 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 22 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 - tree(x) 
-dynsl.py:288 - Postconditions at location 10:
-dynsl.py:293 - x=nil  & x = nil & re = nil & x = res
-dynsl.py:288 - Postconditions at location 18:
-dynsl.py:293 - tree(x)  & re = nil
-dynsl.py:288 - Postconditions at location 22:
-dynsl.py:293 - tree(x)  & re = nil
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 4
-dynsl.py:337 - Number of traces: 26
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 0
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 2
-dynsl.py:343 - Number of pure constraints: 4
-dynsl.py:344 - Number of total invs: 4
-dynsl.py:345 - Number of pres:1
-dynsl.py:346 - Number of post:3
-dynsl.py:347 - Number of loop:0
-dynsl.py:348 - Running time (sec): 4.43392205238
-../simple_example_update/binary_search_tree/find_rec,4,26,0,0,2,4,4,1,3,0,4.43
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 - tree(x) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 10:
+dynsl.py:320 - x=nil  & x = nil & re = nil & x = res
+dynsl.py:312 - Postcondition at location 18:
+dynsl.py:320 - tree(x)  & re = nil
+dynsl.py:312 - Postcondition at location 22:
+dynsl.py:320 - tree(x)  & re = nil
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 4
+dynsl.py:364 - Number of traces: 26
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 0
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 2
+dynsl.py:370 - Number of pure constraints: 4
+dynsl.py:371 - Number of total invs: 4
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:3
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 4.44121408463
+../simple_example_update/binary_search_tree/find_rec,4,26,0,0,2,4,4,1,3,0,4.44
+../simple_example_update/binary_search_tree/find_rec,4,26,0,2,4,4,1,3,0,4.44

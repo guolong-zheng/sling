@@ -2,25 +2,27 @@ dynsl.py:221 - Inferring pre-conditions at the location 8 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 13 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 -  lseg(x, x) 
-dynsl.py:288 - Postconditions at location 13:
-dynsl.py:293 - lseg(tmp, x) * x:node->node{fv0, hd} * hd:node->node{nil, tmp} 
-dynsl.py:293 - lseg(tmp, x) * lseg(x, hd) * lseg(hd, tmp) 
-dynsl.py:293 - lseg(tmp, x) * x:node->node{fv0, hd} * lseg(hd, tmp) 
-dynsl.py:293 - lseg(tmp, x) * lseg(x, hd) * hd:node->node{nil, tmp} 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 2
-dynsl.py:337 - Number of traces: 2
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 2
-dynsl.py:341 - Number of atomic singleton predicates: 4
-dynsl.py:342 - Number of atomic inductive predicates: 9
-dynsl.py:343 - Number of pure constraints: 0
-dynsl.py:344 - Number of total invs: 5
-dynsl.py:345 - Number of pres:1
-dynsl.py:346 - Number of post:4
-dynsl.py:347 - Number of loop:0
-dynsl.py:348 - Running time (sec): 1.60162496567
-../simple_example_update/circular_list/insert_front,2,2,2,4,9,0,5,1,4,0,1.60
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 -  lseg(x, x) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 13:
+dynsl.py:320 - lseg(tmp, x) * lseg(x, hd) * lseg(hd, tmp) 
+dynsl.py:320 - lseg(tmp, x) * lseg(x, hd) * hd:node->node{nil, tmp} 
+dynsl.py:320 - lseg(tmp, x) * x:node->node{fv0, hd} * lseg(hd, tmp) 
+dynsl.py:320 - lseg(tmp, x) * x:node->node{fv0, hd} * hd:node->node{nil, tmp} 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 2
+dynsl.py:364 - Number of traces: 2
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 2
+dynsl.py:368 - Number of atomic singleton predicates: 4
+dynsl.py:369 - Number of atomic inductive predicates: 9
+dynsl.py:370 - Number of pure constraints: 0
+dynsl.py:371 - Number of total invs: 5
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:4
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 1.554074049
+../simple_example_update/circular_list/insert_front,2,2,2,4,9,0,5,1,4,0,1.55
+../simple_example_update/circular_list/insert_front,2,2,4,9,0,5,1,4,0,1.55

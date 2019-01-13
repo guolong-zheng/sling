@@ -24,102 +24,66 @@ dynsl.py:221 - Inferring post-conditions at the location 31 ...
 
 dynsl.py:221 - Inferring pre-conditions at the location 127 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 37:
-dynsl.py:281 - tseg(node, nil) 
-dynsl.py:281 - tree(node) 
-dynsl.py:288 - Postconditions at location 40:
-dynsl.py:293 - tseg(node, nil) 
-dynsl.py:293 - tree(node) 
-dynsl.py:288 - Postconditions at location 65:
-dynsl.py:293 - tseg(p, n) * tseg(n, nil) 
-dynsl.py:293 - tseg(p, n) * tree(n) 
-dynsl.py:288 - Postconditions at location 122:
-dynsl.py:293 -  tseg(node, fv0) 
-dynsl.py:288 - Postconditions at location 96:
-dynsl.py:293 - tseg(node, n) * n:node->node{nil, nil, node, fv0}  & nodeRight = nil
-dynsl.py:293 - tseg(node, n) * tseg(n, nil)  & nodeRight = nil
-dynsl.py:293 - tseg(node, n) * tree(n)  & nodeRight = nil
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 71:
-dynsl.py:281 - tseg(node, nil) 
-dynsl.py:281 - tree(node) 
-dynsl.py:288 - Postconditions at location 122:
-dynsl.py:293 -  tseg(node, fv0) 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 46:
-dynsl.py:281 -  tseg(p, fv0) * tseg(n, nil) 
-dynsl.py:281 -  tseg(p, fv0) * tree(n) 
-dynsl.py:288 - Postconditions at location 40:
-dynsl.py:293 - tseg(node, nil) 
-dynsl.py:293 - tree(node) 
-dynsl.py:288 - Postconditions at location 65:
-dynsl.py:293 - tseg(p, n) * tseg(n, nil) 
-dynsl.py:293 - tseg(p, n) * tree(n) 
-dynsl.py:288 - Postconditions at location 122:
-dynsl.py:293 -  tseg(node, fv0) 
-dynsl.py:288 - Postconditions at location 81:
-dynsl.py:293 - tseg(node, n) * tree(n)  & n = res
-dynsl.py:293 - tseg(node, n) * tseg(n, nil)  & n = res
-dynsl.py:293 - tseg(node, n) * tseg(n, nodeLeft)  & n = res
-dynsl.py:293 - tseg(node, n) * n:node->node{nodeLeft, nodeLeft, node, fv0}  & n = res
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 110:
-dynsl.py:281 - tseg(node, nil) 
-dynsl.py:281 - tree(node) 
-dynsl.py:288 - Postconditions at location 40:
-dynsl.py:293 - tseg(node, nil) 
-dynsl.py:293 - tree(node) 
-dynsl.py:288 - Postconditions at location 65:
-dynsl.py:293 - tseg(p, n) * tseg(n, nil) 
-dynsl.py:293 - tseg(p, n) * tree(n) 
-dynsl.py:288 - Postconditions at location 23:
-dynsl.py:293 - tseg(n, nil)  & p = nil
-dynsl.py:293 - root(n)  & p = nil
-dynsl.py:293 - tree(n)  & p = nil
-dynsl.py:293 - n:node->node{nil, nil, nil, fv0}  & p = nil
-dynsl.py:288 - Postconditions at location 96:
-dynsl.py:293 - tseg(node, n) * n:node->node{nil, nil, node, fv0}  & nodeRight = nil
-dynsl.py:293 - tseg(node, n) * tseg(n, nil)  & nodeRight = nil
-dynsl.py:293 - tseg(node, n) * tree(n)  & nodeRight = nil
-dynsl.py:288 - Postconditions at location 31:
-dynsl.py:293 - tseg(n, nil) 
-dynsl.py:293 - root(n) 
-dynsl.py:293 - tree(n) 
-dynsl.py:293 - n:node->node{nil, nil, nil, fv0} 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 88:
-dynsl.py:281 - tseg(node, nil) 
-dynsl.py:281 - tree(node) 
-dynsl.py:288 - Postconditions at location 40:
-dynsl.py:293 - tseg(node, nil) 
-dynsl.py:293 - tree(node) 
-dynsl.py:288 - Postconditions at location 65:
-dynsl.py:293 - tseg(p, n) * tseg(n, nil) 
-dynsl.py:293 - tseg(p, n) * tree(n) 
-dynsl.py:288 - Postconditions at location 96:
-dynsl.py:293 - tseg(node, n) * n:node->node{nil, nil, node, fv0}  & nodeRight = nil
-dynsl.py:293 - tseg(node, n) * tseg(n, nil)  & nodeRight = nil
-dynsl.py:293 - tseg(node, n) * tree(n)  & nodeRight = nil
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 127:
-dynsl.py:281 - root(node) 
-dynsl.py:281 - tree(node) 
-dynsl.py:281 - tseg(node, nil) 
-dynsl.py:288 - Postconditions at location 40:
-dynsl.py:293 - tseg(node, nil) 
-dynsl.py:293 - tree(node) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 13
-dynsl.py:337 - Number of traces: 158
-dynsl.py:338 - Number of pre-defined predicates: 3
-dynsl.py:340 - Number of free variables: 7
-dynsl.py:341 - Number of atomic singleton predicates: 4
-dynsl.py:342 - Number of atomic inductive predicates: 30
-dynsl.py:343 - Number of pure constraints: 11
-dynsl.py:344 - Number of total invs: 193
-dynsl.py:345 - Number of pres:13
-dynsl.py:346 - Number of post:42
-dynsl.py:347 - Number of loop:0
-dynsl.py:348 - Running time (sec): 375.193403959
-../simple_example_update/cyclist/composite4/composite4,13,158,7,4,30,11,193,13,42,0,375.
+dynsl.py:299 - Precondition at location 37:
+dynsl.py:307 - tree(node) 
+dynsl.py:307 - tseg(node, nil) 
+dynsl.py:299 - Precondition at location 71:
+dynsl.py:307 - tree(node) 
+dynsl.py:307 - tseg(node, nil) 
+dynsl.py:299 - Precondition at location 46:
+dynsl.py:307 -  tseg(p, fv0) * tree(n) 
+dynsl.py:307 -  tseg(p, fv0) * tseg(n, nil) 
+dynsl.py:299 - Precondition at location 110:
+dynsl.py:307 - tree(node) 
+dynsl.py:307 - tseg(node, nil) 
+dynsl.py:299 - Precondition at location 88:
+dynsl.py:307 - tree(node) 
+dynsl.py:307 - tseg(node, nil) 
+dynsl.py:299 - Precondition at location 127:
+dynsl.py:307 - root(node) 
+dynsl.py:307 - tree(node) 
+dynsl.py:307 - tseg(node, nil) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 96:
+dynsl.py:320 - tseg(node, n) * tree(n)  & nodeRight = nil
+dynsl.py:320 - tseg(node, n) * tseg(n, nil)  & nodeRight = nil
+dynsl.py:320 - tseg(node, n) * n:node->node{nil, nil, node, fv0}  & nodeRight = nil
+dynsl.py:312 - Postcondition at location 65:
+dynsl.py:320 - tseg(p, n) * tree(n) 
+dynsl.py:320 - tseg(p, n) * tseg(n, nil) 
+dynsl.py:312 - Postcondition at location 40:
+dynsl.py:320 - tree(node) 
+dynsl.py:320 - tseg(node, nil) 
+dynsl.py:312 - Postcondition at location 81:
+dynsl.py:320 - tseg(node, n) * tree(n)  & n = res
+dynsl.py:320 - tseg(node, n) * tseg(n, nodeLeft)  & n = res
+dynsl.py:320 - tseg(node, n) * n:node->node{nodeLeft, nodeLeft, node, fv0}  & n = res
+dynsl.py:320 - tseg(node, n) * tseg(n, nil)  & n = res
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 - root(n)  & p = nil
+dynsl.py:320 - tree(n)  & p = nil
+dynsl.py:320 - tseg(n, nil)  & p = nil
+dynsl.py:320 - n:node->node{nil, nil, nil, fv0}  & p = nil
+dynsl.py:312 - Postcondition at location 122:
+dynsl.py:320 -  tseg(node, fv0) 
+dynsl.py:312 - Postcondition at location 31:
+dynsl.py:320 - root(n) 
+dynsl.py:320 - tree(n) 
+dynsl.py:320 - tseg(n, nil) 
+dynsl.py:320 - n:node->node{nil, nil, nil, fv0} 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 13
+dynsl.py:364 - Number of traces: 158
+dynsl.py:365 - Number of pre-defined predicates: 3
+dynsl.py:367 - Number of free variables: 7
+dynsl.py:368 - Number of atomic singleton predicates: 4
+dynsl.py:369 - Number of atomic inductive predicates: 30
+dynsl.py:370 - Number of pure constraints: 11
+dynsl.py:371 - Number of total invs: 33
+dynsl.py:372 - Number of pres:13
+dynsl.py:373 - Number of post:20
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 371.791235924
+../simple_example_update/cyclist/composite4/composite4,13,158,7,4,30,11,33,13,20,0,371.
+../simple_example_update/cyclist/composite4/composite4,13,158,4,30,11,33,13,20,0,371.

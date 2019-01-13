@@ -35,7 +35,8 @@ int main( int argc, char * argv[]){
     //sscanf(argv[1], "%d", &size);
     BNode * root = create_tree(size);
 
-    BNode * res = bst_insert_rec(root, rand_num());
+    root = bst_insert_rec(root, -10);
+    root = bst_insert_rec(root, 100);
 
     return 0;
 }

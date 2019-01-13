@@ -4,49 +4,51 @@ dynsl.py:221 - Inferring post-conditions at the location 20 ...
 
 dynsl.py:221 - Inferring inv-conditions at the location 13 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 -  dll(list, nil, nil, list) 
-dynsl.py:281 -  dll(list, nil, fv0, nil) 
-dynsl.py:281 -  dll(list, fv1, fv0, nil) 
-dynsl.py:288 - Postconditions at location 20:
-dynsl.py:293 -  dll(list, fv1, fv0, nil)  & x = nil & next = nil
-dynsl.py:293 -  dll(list, nil, fv0, nil)  & x = nil & next = nil
-dynsl.py:293 -  dll(list, nil, nil, list)  & x = nil & next = nil
-dynsl.py:300 - Invariants at location 13:
-dynsl.py:308 -  dll(x, fv0, next, fv1) * dll(list, nil, fv0, x) 
-dynsl.py:308 -  dll(x, fv3, fv2, next) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, fv1, fv0, next) * dll(list, x, x, list) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, fv5, fv4, next) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, fv3, fv2, next) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, next, fv2, next) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, next, fv1, fv0) * dll(list, x, x, list) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, next, fv0, next) * dll(list, x, x, list) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, next, fv4, next) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, next, fv3, fv2) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, list, fv5, fv4) * dll(list, nil, fv3, x) * dll(next, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(x, fv3, list, fv2) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, fv1, list, fv0) * dll(list, x, x, list) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, fv5, list, fv4) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, fv3, list, fv2) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, fv1, fv0, nil) * dll(list, x, x, list) 
-dynsl.py:308 -  dll(x, fv3, fv2, nil) * dll(list, fv1, fv0, x) 
-dynsl.py:308 -  dll(x, nil, fv2, next) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, nil, fv1, next) * dll(list, x, x, list) * dll(next, nil, nil, fv0) 
-dynsl.py:308 -  dll(x, nil, fv4, next) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
-dynsl.py:308 -  dll(x, nil, fv3, fv2) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
-dynsl.py:308 -  dll(x, nil, fv1, fv0) * dll(list, x, x, list) * dll(next, nil, nil, next) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 3
-dynsl.py:337 - Number of traces: 14
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 83
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 69
-dynsl.py:343 - Number of pure constraints: 6
-dynsl.py:344 - Number of total invs: 28
-dynsl.py:345 - Number of pres:3
-dynsl.py:346 - Number of post:3
-dynsl.py:347 - Number of loop:22
-dynsl.py:348 - Running time (sec): 88.2350301743
-../simple_example_update/glib_glist/g_list_free,3,14,83,0,69,6,28,3,3,22,88.2
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 -  dll(list, fv1, fv0, nil) 
+dynsl.py:307 -  dll(list, nil, fv0, nil) 
+dynsl.py:307 -  dll(list, nil, nil, list) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 20:
+dynsl.py:320 -  dll(list, nil, fv0, nil)  & x = nil & next = nil
+dynsl.py:320 -  dll(list, fv1, fv0, nil)  & x = nil & next = nil
+dynsl.py:320 -  dll(list, nil, nil, list)  & x = nil & next = nil
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 13:
+dynsl.py:334 -  dll(x, fv0, next, fv1) * dll(list, nil, fv0, x) 
+dynsl.py:334 -  dll(x, fv3, fv2, next) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, fv1, fv0, next) * dll(list, x, x, list) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, fv5, fv4, next) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, fv3, fv2, next) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, next, fv2, next) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, next, fv1, fv0) * dll(list, x, x, list) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, next, fv0, next) * dll(list, x, x, list) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, next, fv4, next) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, next, fv3, fv2) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, list, fv5, fv4) * dll(list, nil, fv3, x) * dll(next, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(x, fv3, list, fv2) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, fv1, list, fv0) * dll(list, x, x, list) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, fv5, list, fv4) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, fv3, list, fv2) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, fv1, fv0, nil) * dll(list, x, x, list) 
+dynsl.py:334 -  dll(x, fv3, fv2, nil) * dll(list, fv1, fv0, x) 
+dynsl.py:334 -  dll(x, nil, fv2, next) * dll(list, x, x, list) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, nil, fv1, next) * dll(list, x, x, list) * dll(next, nil, nil, fv0) 
+dynsl.py:334 -  dll(x, nil, fv4, next) * dll(list, fv3, fv2, x) * dll(next, fv1, fv0, nil) 
+dynsl.py:334 -  dll(x, nil, fv3, fv2) * dll(list, fv1, fv0, x) * dll(next, nil, nil, next) 
+dynsl.py:334 -  dll(x, nil, fv1, fv0) * dll(list, x, x, list) * dll(next, nil, nil, next) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 14
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 83
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 69
+dynsl.py:370 - Number of pure constraints: 6
+dynsl.py:371 - Number of total invs: 28
+dynsl.py:372 - Number of pres:3
+dynsl.py:373 - Number of post:3
+dynsl.py:374 - Number of loop:22
+dynsl.py:375 - Running time (sec): 88.6083328724
+../simple_example_update/glib_glist/g_list_free,3,14,83,0,69,6,28,3,3,22,88.6
+../simple_example_update/glib_glist/g_list_free,3,14,0,69,6,28,3,3,22,88.6

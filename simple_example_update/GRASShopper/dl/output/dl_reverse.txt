@@ -4,111 +4,113 @@ dynsl.py:221 - Inferring inv-conditions at the location 14 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 23 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 -  dll(lst, nil, fv0, nil) 
-dynsl.py:281 -  dll(lst, nil, nil, lst) 
-dynsl.py:281 -  dll(lst, fv1, fv0, nil) 
-dynsl.py:288 - Postconditions at location 23:
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv3, fv2, lst) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, rev, tmp, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, tmp, tmp, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv2, tmp) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, tmp, rev, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv1, fv0, lst) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, nil, nil, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, nil, nil, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, tmp, tmp, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv1, fv0, lst) * dll(lst, nil, nil, fv2)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, tmp, tmp, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, rev, tmp, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, fv2, lst, tmp) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, fv1, fv0, lst) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, fv3, fv2, lst) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, tmp, tmp, lst)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, tmp, rev, fv0)  & curr = nil & rev = res
-dynsl.py:293 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, rev, tmp, fv0)  & curr = nil & rev = res
-dynsl.py:300 - Invariants at location 14:
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv4, fv4, rev) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, tmp, lst) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, tmp, fv5) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, tmp, fv5) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv4, fv4, rev) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, rev, lst) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv6, fv6, rev) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv6, fv6, rev) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv4, fv4, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv4, fv4, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv9, fv9, rev) * dll(rev, fv8, fv7, fv6) * dll(lst, fv5, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, tmp, lst) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, tmp, fv5) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, tmp, fv5) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, rev, lst) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv8, fv7, fv6) * dll(lst, fv5, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv2, rev, fv2) * dll(lst, tmp, tmp, lst) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, rev, fv5) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv5, rev, fv5) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, rev, lst) * dll(curr, tmp, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, rev, lst) * dll(curr, rev, fv0, nil) 
-dynsl.py:308 -  dll(tmp, fv2, rev, fv2) * dll(lst, tmp, rev, lst) * dll(curr, nil, fv1, fv0) 
-dynsl.py:308 -  dll(tmp, fv8, fv7, fv6) * dll(lst, fv5, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 3
-dynsl.py:337 - Number of traces: 14
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 351
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 320
-dynsl.py:343 - Number of pure constraints: 40
-dynsl.py:344 - Number of total invs: 90
-dynsl.py:345 - Number of pres:3
-dynsl.py:346 - Number of post:20
-dynsl.py:347 - Number of loop:67
-dynsl.py:348 - Running time (sec): 337.26753211
-../simple_example_update/GRASShopper/dl/dl_reverse,3,14,351,0,320,40,90,3,20,67,337.
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 -  dll(lst, fv1, fv0, nil) 
+dynsl.py:307 -  dll(lst, nil, fv0, nil) 
+dynsl.py:307 -  dll(lst, nil, nil, lst) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, tmp, tmp, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv2, tmp) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, rev, tmp, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, tmp, rev, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, nil, nil, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv1, fv0, lst) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv3, fv2, lst) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv1, fv0, lst) * dll(lst, nil, nil, fv2)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, tmp, tmp, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv2, lst, tmp) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, rev, tmp, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, tmp, rev, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, nil, nil, fv0)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, fv1, fv0, lst) * dll(lst, nil, nil, lst)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, fv3, fv2, lst) * dll(lst, fv1, fv0, nil)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, lst, fv0, tmp) * dll(lst, tmp, tmp, lst)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, tmp, tmp, lst)  & curr = nil & rev = res
+dynsl.py:320 -  dll(tmp, lst, lst, tmp) * dll(rev, fv0, lst, tmp) * dll(lst, rev, tmp, lst)  & curr = nil & rev = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 14:
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv4, fv4, rev) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, tmp, lst) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, tmp, fv5) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, tmp, fv5) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv4, fv4, rev) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, rev, lst) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv6, fv6, rev) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv6, fv6, rev) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv7, fv7, rev) * dll(rev, fv5, fv5, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv4, fv4, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv3, fv3, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv4, fv4, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, fv5, rev) * dll(rev, tmp, tmp, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv9, fv9, rev) * dll(rev, fv8, fv7, fv6) * dll(lst, fv5, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, tmp, lst) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, tmp, fv5) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, tmp, fv5) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv1, tmp, fv1) * dll(lst, tmp, rev, lst) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv2, tmp, fv2) * dll(lst, tmp, rev, lst) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv3, fv3, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv4, fv4, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv5, fv5, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, tmp, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, tmp, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv2, rev, fv1) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv3, rev, fv2) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, fv4, fv3, nil) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, tmp, tmp, tmp) * dll(lst, nil, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, rev, tmp, tmp) * dll(rev, fv8, fv7, fv6) * dll(lst, fv5, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, tmp, lst) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv2, rev, fv2) * dll(lst, tmp, tmp, lst) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, rev, fv5) * dll(lst, tmp, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv5, rev, fv5) * dll(lst, rev, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, rev, lst) * dll(curr, tmp, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv1, rev, fv1) * dll(lst, tmp, rev, lst) * dll(curr, rev, fv0, nil) 
+dynsl.py:334 -  dll(tmp, fv2, rev, fv2) * dll(lst, tmp, rev, lst) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(tmp, fv8, fv7, fv6) * dll(lst, fv5, fv4, fv3) * dll(curr, fv2, fv1, fv0) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 14
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 351
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 320
+dynsl.py:370 - Number of pure constraints: 40
+dynsl.py:371 - Number of total invs: 90
+dynsl.py:372 - Number of pres:3
+dynsl.py:373 - Number of post:20
+dynsl.py:374 - Number of loop:67
+dynsl.py:375 - Running time (sec): 333.113090038
+../simple_example_update/GRASShopper/dl/dl_reverse,3,14,351,0,320,40,90,3,20,67,333.
+../simple_example_update/GRASShopper/dl/dl_reverse,3,14,0,320,40,90,3,20,67,333.

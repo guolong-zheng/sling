@@ -4,26 +4,28 @@ dynsl.py:221 - Inferring post-conditions at the location 19 ...
 
 dynsl.py:221 - Inferring inv-conditions at the location 13 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 - em
-dynsl.py:288 - Postconditions at location 19:
-dynsl.py:293 - sll(h)  & h = res
-dynsl.py:293 - lseg(h, nil)  & h = res
-dynsl.py:300 - Invariants at location 13:
-dynsl.py:308 - sll(h) 
-dynsl.py:308 - lseg(h, nil) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 3
-dynsl.py:337 - Number of traces: 12
-dynsl.py:338 - Number of pre-defined predicates: 4
-dynsl.py:340 - Number of free variables: 0
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 4
-dynsl.py:343 - Number of pure constraints: 2
-dynsl.py:344 - Number of total invs: 5
-dynsl.py:345 - Number of pres:1
-dynsl.py:346 - Number of post:2
-dynsl.py:347 - Number of loop:2
-dynsl.py:348 - Running time (sec): 3.5485329628
-../simple_example_update/AFWP/sll/sll_create,3,12,0,0,4,2,5,1,2,2,3.54
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 - em
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 19:
+dynsl.py:320 - sll(h)  & h = res
+dynsl.py:320 - lseg(h, nil)  & h = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 13:
+dynsl.py:334 - sll(h) 
+dynsl.py:334 - lseg(h, nil) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 12
+dynsl.py:365 - Number of pre-defined predicates: 4
+dynsl.py:367 - Number of free variables: 0
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 4
+dynsl.py:370 - Number of pure constraints: 2
+dynsl.py:371 - Number of total invs: 5
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:2
+dynsl.py:374 - Number of loop:2
+dynsl.py:375 - Running time (sec): 3.52417588234
+../simple_example_update/AFWP/sll/sll_create,3,12,0,0,4,2,5,1,2,2,3.52
+../simple_example_update/AFWP/sll/sll_create,3,12,0,4,2,5,1,2,2,3.52

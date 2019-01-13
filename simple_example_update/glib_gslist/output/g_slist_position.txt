@@ -6,31 +6,33 @@ dynsl.py:221 - Inferring post-conditions at the location 21 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 15 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 9:
-dynsl.py:281 -  lseg(link, nil) * lseg(list, fv0) 
-dynsl.py:281 -  list(link) * lseg(list, fv0) 
-dynsl.py:288 - Postconditions at location 21:
-dynsl.py:293 - list(link) 
-dynsl.py:293 - lseg(link, list) 
-dynsl.py:293 - lseg(link, nil) 
-dynsl.py:288 - Postconditions at location 15:
-dynsl.py:293 - list(link) 
-dynsl.py:293 - lseg(link, nil) 
-dynsl.py:300 - Invariants at location 13:
-dynsl.py:308 -  lseg(link, nil) * lseg(list, fv0) 
-dynsl.py:308 -  list(link) * lseg(list, fv0) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 4
-dynsl.py:337 - Number of traces: 17
-dynsl.py:338 - Number of pre-defined predicates: 2
-dynsl.py:340 - Number of free variables: 2
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 7
-dynsl.py:343 - Number of pure constraints: 0
-dynsl.py:344 - Number of total invs: 9
-dynsl.py:345 - Number of pres:2
-dynsl.py:346 - Number of post:5
-dynsl.py:347 - Number of loop:2
-dynsl.py:348 - Running time (sec): 8.78414988518
-../simple_example_update/glib_gslist/g_slist_position,4,17,2,0,7,0,9,2,5,2,8.78
+dynsl.py:299 - Precondition at location 9:
+dynsl.py:307 -  lseg(link, nil) * lseg(list, fv0) 
+dynsl.py:307 -  list(link) * lseg(list, fv0) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 21:
+dynsl.py:320 - lseg(link, list) 
+dynsl.py:320 - list(link) 
+dynsl.py:320 - lseg(link, nil) 
+dynsl.py:312 - Postcondition at location 15:
+dynsl.py:320 - lseg(link, nil) 
+dynsl.py:320 - list(link) 
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 13:
+dynsl.py:334 -  lseg(link, nil) * lseg(list, fv0) 
+dynsl.py:334 -  list(link) * lseg(list, fv0) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 4
+dynsl.py:364 - Number of traces: 17
+dynsl.py:365 - Number of pre-defined predicates: 2
+dynsl.py:367 - Number of free variables: 2
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 7
+dynsl.py:370 - Number of pure constraints: 0
+dynsl.py:371 - Number of total invs: 9
+dynsl.py:372 - Number of pres:2
+dynsl.py:373 - Number of post:5
+dynsl.py:374 - Number of loop:2
+dynsl.py:375 - Running time (sec): 8.72495889664
+../simple_example_update/glib_gslist/g_slist_position,4,17,2,0,7,0,9,2,5,2,8.72
+../simple_example_update/glib_gslist/g_slist_position,4,17,0,7,0,9,2,5,2,8.72

@@ -4,24 +4,26 @@ dynsl.py:221 - Inferring post-conditions at the location 10 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 15 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 8:
-dynsl.py:281 - ll(x2) * ll(x1) 
-dynsl.py:288 - Postconditions at location 10:
-dynsl.py:293 - ll(x2)  & x2 = res
-dynsl.py:288 - Postconditions at location 15:
-dynsl.py:293 - ll(x2) * x1:node->node{fv0, tmp} 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 3
-dynsl.py:337 - Number of traces: 48
-dynsl.py:338 - Number of pre-defined predicates: 1
-dynsl.py:340 - Number of free variables: 1
-dynsl.py:341 - Number of atomic singleton predicates: 1
-dynsl.py:342 - Number of atomic inductive predicates: 4
-dynsl.py:343 - Number of pure constraints: 1
-dynsl.py:344 - Number of total invs: 3
-dynsl.py:345 - Number of pres:1
-dynsl.py:346 - Number of post:2
-dynsl.py:347 - Number of loop:0
-dynsl.py:348 - Running time (sec): 13.8800251484
-../simple_example_update/sll/append,3,48,1,1,4,1,3,1,2,0,13.8
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 - ll(x2) * ll(x1) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 10:
+dynsl.py:320 - ll(x2)  & x2 = res
+dynsl.py:312 - Postcondition at location 15:
+dynsl.py:320 - ll(x2) * x1:node->node{fv0, tmp} 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 48
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 1
+dynsl.py:368 - Number of atomic singleton predicates: 1
+dynsl.py:369 - Number of atomic inductive predicates: 4
+dynsl.py:370 - Number of pure constraints: 1
+dynsl.py:371 - Number of total invs: 3
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:2
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 14.0778210163
+../simple_example_update/sll/append,3,48,1,1,4,1,3,1,2,0,14.0
+../simple_example_update/sll/append,3,48,1,4,1,3,1,2,0,14.0

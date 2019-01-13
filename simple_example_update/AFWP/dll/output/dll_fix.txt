@@ -4,60 +4,62 @@ dynsl.py:221 - Inferring pre-conditions at the location 13 ...
 
 dynsl.py:221 - Inferring inv-conditions at the location 17 ...
 
-dynsl.py:271 - ==============================
-dynsl.py:272 - Precondition at location 13:
-dynsl.py:281 - sll(h) 
-dynsl.py:288 - Postconditions at location 25:
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, nil, j, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, fv2, nil) * dll(j, fv1, fv0, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, k, k, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, res, j, k) * dll(j, nil, nil, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, res, j, fv0) * dll(j, nil, j, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, nil, nil, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, fv0, nil) * dll(j, nil, j, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, fv1, fv0, nil) * dll(j, nil, nil, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, nil, j, fv0)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, nil, j, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, k, fv0, res)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, k, k, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, fv3, fv2, nil) * dll(j, fv1, fv0, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, fv1, fv0, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, fv0, nil) * dll(j, k, k, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, nil, res, fv0)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, fv1, fv0, nil) * dll(j, k, k, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, nil, nil, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, fv0, k, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, fv1, fv0, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, fv0) * dll(j, k, k, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, fv0, k, res)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, fv0) * dll(j, nil, j, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, nil, nil, k) * dll(j, k, fv0, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, fv1, fv0, nil) * dll(j, nil, j, k)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, fv0, nil) * dll(j, nil, nil, j)  & i = nil & j = res
-dynsl.py:293 -  sll(h) * dll(k, j, j, k) * dll(j, nil, nil, res)  & i = nil & j = res
-dynsl.py:300 - Invariants at location 17:
-dynsl.py:308 -  sll(i) * dll(k, fv3, fv2, nil) * dll(j, fv1, fv0, k) 
-dynsl.py:308 -  sll(i) * dll(k, fv3, fv2, nil) * dll(j, k, fv1, fv0) 
-dynsl.py:308 -  sll(i) * dll(k, fv1, fv0, nil) * dll(j, k, k, j) 
-dynsl.py:308 -  sll(i) * dll(k, fv1, fv0, nil) * dll(j, nil, j, k) 
-dynsl.py:308 -  sll(i) * dll(k, fv1, fv0, nil) * dll(j, nil, nil, j) 
-dynsl.py:308 -  sll(i) * dll(k, nil, nil, k) * dll(j, fv1, fv0, k) 
-dynsl.py:308 -  sll(i) * dll(k, nil, nil, k) * dll(j, k, fv1, fv0) 
-dynsl.py:308 -  sll(i) * dll(k, nil, nil, k) * dll(j, k, k, j) 
-dynsl.py:308 -  sll(i) * dll(k, nil, nil, k) * dll(j, nil, j, k) 
-dynsl.py:308 -  sll(i) * dll(k, nil, nil, k) * dll(j, nil, nil, j) 
-dynsl.py:308 -  sll(i) * dll(k, nil, nil, fv0) * dll(j, nil, j, k) 
-dynsl.py:312 - ==============================
-dynsl.py:336 - Number of locations: 3
-dynsl.py:337 - Number of traces: 14
-dynsl.py:338 - Number of pre-defined predicates: 2
-dynsl.py:340 - Number of free variables: 48
-dynsl.py:341 - Number of atomic singleton predicates: 0
-dynsl.py:342 - Number of atomic inductive predicates: 115
-dynsl.py:343 - Number of pure constraints: 54
-dynsl.py:344 - Number of total invs: 39
-dynsl.py:345 - Number of pres:1
-dynsl.py:346 - Number of post:27
-dynsl.py:347 - Number of loop:11
-dynsl.py:348 - Running time (sec): 74.5627319813
-../simple_example_update/AFWP/dll/dll_fix,3,14,48,0,115,54,39,1,27,11,74.5
+dynsl.py:299 - Precondition at location 13:
+dynsl.py:307 - sll(h) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 25:
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, nil, nil, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, fv0) * dll(j, nil, j, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, fv1, fv0, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, k, k, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, nil, j, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, fv1, fv0, nil) * dll(j, nil, nil, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, fv1, fv0, nil) * dll(j, nil, j, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, fv3, fv2, nil) * dll(j, fv1, fv0, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, fv1, fv0, nil) * dll(j, k, k, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, fv0, nil) * dll(j, nil, nil, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, fv0, nil) * dll(j, nil, j, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, fv2, nil) * dll(j, fv1, fv0, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, fv0, nil) * dll(j, k, k, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, nil, nil, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, nil, res, fv0)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, fv1, fv0, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, k, fv0, res)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, fv0, k, res)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, nil, nil, res)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, nil, j, fv0)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, k, fv0, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, k) * dll(j, fv0, k, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, nil, j, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, j, j, k) * dll(j, k, k, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, res, j, fv0) * dll(j, nil, j, k)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, res, j, k) * dll(j, nil, nil, j)  & i = nil & j = res
+dynsl.py:320 -  sll(h) * dll(k, nil, nil, fv0) * dll(j, k, k, j)  & i = nil & j = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 17:
+dynsl.py:334 -  sll(i) * dll(k, fv3, fv2, nil) * dll(j, fv1, fv0, k) 
+dynsl.py:334 -  sll(i) * dll(k, fv3, fv2, nil) * dll(j, k, fv1, fv0) 
+dynsl.py:334 -  sll(i) * dll(k, fv1, fv0, nil) * dll(j, k, k, j) 
+dynsl.py:334 -  sll(i) * dll(k, fv1, fv0, nil) * dll(j, nil, j, k) 
+dynsl.py:334 -  sll(i) * dll(k, fv1, fv0, nil) * dll(j, nil, nil, j) 
+dynsl.py:334 -  sll(i) * dll(k, nil, nil, k) * dll(j, fv1, fv0, k) 
+dynsl.py:334 -  sll(i) * dll(k, nil, nil, k) * dll(j, k, fv1, fv0) 
+dynsl.py:334 -  sll(i) * dll(k, nil, nil, k) * dll(j, k, k, j) 
+dynsl.py:334 -  sll(i) * dll(k, nil, nil, k) * dll(j, nil, j, k) 
+dynsl.py:334 -  sll(i) * dll(k, nil, nil, k) * dll(j, nil, nil, j) 
+dynsl.py:334 -  sll(i) * dll(k, nil, nil, fv0) * dll(j, nil, j, k) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 14
+dynsl.py:365 - Number of pre-defined predicates: 2
+dynsl.py:367 - Number of free variables: 48
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 115
+dynsl.py:370 - Number of pure constraints: 54
+dynsl.py:371 - Number of total invs: 39
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:27
+dynsl.py:374 - Number of loop:11
+dynsl.py:375 - Running time (sec): 75.1807599068
+../simple_example_update/AFWP/dll/dll_fix,3,14,48,0,115,54,39,1,27,11,75.1
+../simple_example_update/AFWP/dll/dll_fix,3,14,0,115,54,39,1,27,11,75.1
