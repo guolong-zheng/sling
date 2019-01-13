@@ -28,6 +28,6 @@ dynsl.py:371 - Number of total invs: 4
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:3
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 4.87832713127
-../simple_example_update/sll/find,4,40,1,1,2,0,4,1,3,0,4.87
-../simple_example_update/sll/find,4,40,1,2,0,4,1,3,0,4.87
+dynsl.py:375 - Running time (sec): 5.03402805328
+../simple_example_update/sll/find,4,40,1,1,2,0,4,1,3,0,5.03
+../simple_example_update/sll/find,4,40,1,2,0,4,1,3,0,5.03

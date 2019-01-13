@@ -24,6 +24,6 @@ dynsl.py:371 - Number of total invs: 6
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:4
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 2.19094896317
-../simple_example_update/glib_gslist/g_slist_prepend,2,2,2,2,8,0,6,2,4,0,2.19
-../simple_example_update/glib_gslist/g_slist_prepend,2,2,2,8,0,6,2,4,0,2.19
+dynsl.py:375 - Running time (sec): 2.14579796791
+../simple_example_update/glib_gslist/g_slist_prepend,2,2,2,2,8,0,6,2,4,0,2.14
+../simple_example_update/glib_gslist/g_slist_prepend,2,2,2,8,0,6,2,4,0,2.14

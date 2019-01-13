@@ -89,6 +89,6 @@ dynsl.py:371 - Number of total invs: 44
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:43
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 141.857424974
-../simple_example_update/red_black_tree/rbt_insert_rec,11,66,93,75,45,111,44,1,43,0,141.
-../simple_example_update/red_black_tree/rbt_insert_rec,11,66,75,45,111,44,1,43,0,141.
+dynsl.py:375 - Running time (sec): 139.144118071
+../simple_example_update/red_black_tree/rbt_insert_rec,11,66,93,75,45,111,44,1,43,0,139.
+../simple_example_update/red_black_tree/rbt_insert_rec,11,66,75,45,111,44,1,43,0,139.

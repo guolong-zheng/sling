@@ -45,6 +45,6 @@ dynsl.py:371 - Number of total invs: 24
 dynsl.py:372 - Number of pres:9
 dynsl.py:373 - Number of post:15
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 111.075293064
-../simple_example_update/dll/append,3,48,64,0,57,18,24,9,15,0,111.
-../simple_example_update/dll/append,3,48,0,57,18,24,9,15,0,111.
+dynsl.py:375 - Running time (sec): 112.738930941
+../simple_example_update/dll/append,3,48,64,0,57,18,24,9,15,0,112.
+../simple_example_update/dll/append,3,48,0,57,18,24,9,15,0,112.

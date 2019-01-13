@@ -29,6 +29,6 @@ dynsl.py:371 - Number of total invs: 5
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:4
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 8.48194885254
-../simple_example_update/binary_search_tree/insert_rec,4,28,3,3,6,2,5,1,4,0,8.48
-../simple_example_update/binary_search_tree/insert_rec,4,28,3,6,2,5,1,4,0,8.48
+dynsl.py:375 - Running time (sec): 8.42217493057
+../simple_example_update/binary_search_tree/insert_rec,4,28,3,3,6,2,5,1,4,0,8.42
+../simple_example_update/binary_search_tree/insert_rec,4,28,3,6,2,5,1,4,0,8.42

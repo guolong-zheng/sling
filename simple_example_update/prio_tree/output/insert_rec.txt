@@ -38,6 +38,6 @@ dynsl.py:371 - Number of total invs: 8
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:7
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 30.6038448811
-../simple_example_update/prio_tree/insert_rec,6,30,16,8,8,7,8,1,7,0,30.6
-../simple_example_update/prio_tree/insert_rec,6,30,8,8,7,8,1,7,0,30.6
+dynsl.py:375 - Running time (sec): 30.3716678619
+../simple_example_update/prio_tree/insert_rec,6,30,16,8,8,7,8,1,7,0,30.3
+../simple_example_update/prio_tree/insert_rec,6,30,8,8,7,8,1,7,0,30.3

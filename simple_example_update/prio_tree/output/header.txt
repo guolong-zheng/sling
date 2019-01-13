@@ -13,6 +13,6 @@ dynsl.py:371 - Number of total invs: 0
 dynsl.py:372 - Number of pres:0
 dynsl.py:373 - Number of post:0
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 0.0471529960632
+dynsl.py:375 - Running time (sec): 0.0454621315002
 ../simple_example_update/prio_tree/header,0,0,0,0,0,0,0,0,0,0,0.04
 ../simple_example_update/prio_tree/header,0,0,0,0,0,0,0,0,0,0.04

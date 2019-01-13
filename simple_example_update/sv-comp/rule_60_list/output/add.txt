@@ -24,6 +24,6 @@ dynsl.py:371 - Number of total invs: 6
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:4
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 6.25040912628
-../simple_example_update/sv-comp/rule_60_list/add,2,2,6,5,11,4,6,2,4,0,6.25
-../simple_example_update/sv-comp/rule_60_list/add,2,2,5,11,4,6,2,4,0,6.25
+dynsl.py:375 - Running time (sec): 6.28102588654
+../simple_example_update/sv-comp/rule_60_list/add,2,2,6,5,11,4,6,2,4,0,6.28
+../simple_example_update/sv-comp/rule_60_list/add,2,2,5,11,4,6,2,4,0,6.28

@@ -30,6 +30,6 @@ dynsl.py:371 - Number of total invs: 6
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:5
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 8.53458404541
-../simple_example_update/avl/insert_rec,4,30,8,4,6,3,6,1,5,0,8.53
-../simple_example_update/avl/insert_rec,4,30,4,6,3,6,1,5,0,8.53
+dynsl.py:375 - Running time (sec): 8.80288219452
+../simple_example_update/avl/insert_rec,4,30,8,4,6,3,6,1,5,0,8.80
+../simple_example_update/avl/insert_rec,4,30,4,6,3,6,1,5,0,8.80

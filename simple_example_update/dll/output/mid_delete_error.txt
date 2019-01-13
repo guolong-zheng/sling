@@ -24,6 +24,6 @@ dynsl.py:371 - Number of total invs: 6
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:5
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 3.73233890533
-../simple_example_update/dll/mid_delete_error,2,2,5,6,5,4,6,1,5,0,3.73
-../simple_example_update/dll/mid_delete_error,2,2,6,5,4,6,1,5,0,3.73
+dynsl.py:375 - Running time (sec): 3.76677489281
+../simple_example_update/dll/mid_delete_error,2,2,5,6,5,4,6,1,5,0,3.76
+../simple_example_update/dll/mid_delete_error,2,2,6,5,4,6,1,5,0,3.76

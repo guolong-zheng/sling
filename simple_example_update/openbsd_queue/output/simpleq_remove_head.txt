@@ -26,6 +26,6 @@ dynsl.py:371 - Number of total invs: 8
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:6
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 2.38008284569
-../simple_example_update/openbsd_queue/simpleq_remove_head,2,2,0,2,18,0,8,2,6,0,2.38
-../simple_example_update/openbsd_queue/simpleq_remove_head,2,2,2,18,0,8,2,6,0,2.38
+dynsl.py:375 - Running time (sec): 2.55078411102
+../simple_example_update/openbsd_queue/simpleq_remove_head,2,2,0,2,18,0,8,2,6,0,2.55
+../simple_example_update/openbsd_queue/simpleq_remove_head,2,2,2,18,0,8,2,6,0,2.55

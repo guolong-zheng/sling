@@ -22,6 +22,6 @@ dynsl.py:371 - Number of total invs: 4
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 17.3822190762
-../simple_example_update/dll/mid_delete_hd_star,2,2,7,2,8,2,4,2,2,0,17.3
-../simple_example_update/dll/mid_delete_hd_star,2,2,2,8,2,4,2,2,0,17.3
+dynsl.py:375 - Running time (sec): 17.4549720287
+../simple_example_update/dll/mid_delete_hd_star,2,2,7,2,8,2,4,2,2,0,17.4
+../simple_example_update/dll/mid_delete_hd_star,2,2,2,8,2,4,2,2,0,17.4

@@ -35,6 +35,6 @@ dynsl.py:371 - Number of total invs: 14
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:11
-dynsl.py:375 - Running time (sec): 51.0623810291
-../simple_example_update/sv-comp/dll_of_dll/destroy_slave,3,12,51,1,35,5,14,1,2,11,51.0
-../simple_example_update/sv-comp/dll_of_dll/destroy_slave,3,12,1,35,5,14,1,2,11,51.0
+dynsl.py:375 - Running time (sec): 51.9384319782
+../simple_example_update/sv-comp/dll_of_dll/destroy_slave,3,12,51,1,35,5,14,1,2,11,51.9
+../simple_example_update/sv-comp/dll_of_dll/destroy_slave,3,12,1,35,5,14,1,2,11,51.9

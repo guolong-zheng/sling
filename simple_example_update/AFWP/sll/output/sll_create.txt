@@ -26,6 +26,6 @@ dynsl.py:371 - Number of total invs: 5
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:2
-dynsl.py:375 - Running time (sec): 3.52417588234
-../simple_example_update/AFWP/sll/sll_create,3,12,0,0,4,2,5,1,2,2,3.52
-../simple_example_update/AFWP/sll/sll_create,3,12,0,4,2,5,1,2,2,3.52
+dynsl.py:375 - Running time (sec): 3.48472881317
+../simple_example_update/AFWP/sll/sll_create,3,12,0,0,4,2,5,1,2,2,3.48
+../simple_example_update/AFWP/sll/sll_create,3,12,0,4,2,5,1,2,2,3.48

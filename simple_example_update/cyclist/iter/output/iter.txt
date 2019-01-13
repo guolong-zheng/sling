@@ -76,6 +76,6 @@ dynsl.py:371 - Number of total invs: 32
 dynsl.py:372 - Number of pres:5
 dynsl.py:373 - Number of post:27
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 46.1950278282
-../simple_example_update/cyclist/iter/iter,10,152,11,23,38,9,32,5,27,0,46.1
-../simple_example_update/cyclist/iter/iter,10,152,23,38,9,32,5,27,0,46.1
+dynsl.py:375 - Running time (sec): 45.2642798424
+../simple_example_update/cyclist/iter/iter,10,152,11,23,38,9,32,5,27,0,45.2
+../simple_example_update/cyclist/iter/iter,10,152,23,38,9,32,5,27,0,45.2

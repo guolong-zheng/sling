@@ -28,6 +28,6 @@ dynsl.py:371 - Number of total invs: 7
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:6
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 3.84937310219
-../simple_example_update/circular_list/delete_back,3,4,1,2,8,6,7,1,6,0,3.84
-../simple_example_update/circular_list/delete_back,3,4,2,8,6,7,1,6,0,3.84
+dynsl.py:375 - Running time (sec): 4.2807290554
+../simple_example_update/circular_list/delete_back,3,4,1,2,8,6,7,1,6,0,4.28
+../simple_example_update/circular_list/delete_back,3,4,2,8,6,7,1,6,0,4.28

@@ -13,6 +13,6 @@ dynsl.py:371 - Number of total invs: 0
 dynsl.py:372 - Number of pres:0
 dynsl.py:373 - Number of post:0
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 0.0888369083405
+dynsl.py:375 - Running time (sec): 0.0820488929749
 ../simple_example_update/AFWP/sll/header,0,0,0,0,0,0,0,0,0,0,0.08
 ../simple_example_update/AFWP/sll/header,0,0,0,0,0,0,0,0,0,0.08

@@ -45,6 +45,6 @@ dynsl.py:371 - Number of total invs: 21
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:16
 dynsl.py:374 - Number of loop:4
-dynsl.py:375 - Running time (sec): 52.3989880085
-../simple_example_update/GRASShopper/sls/sls_pairwise_sum,4,17,68,28,98,8,21,1,16,4,52.3
-../simple_example_update/GRASShopper/sls/sls_pairwise_sum,4,17,28,98,8,21,1,16,4,52.3
+dynsl.py:375 - Running time (sec): 52.694190979
+../simple_example_update/GRASShopper/sls/sls_pairwise_sum,4,17,68,28,98,8,21,1,16,4,52.6
+../simple_example_update/GRASShopper/sls/sls_pairwise_sum,4,17,28,98,8,21,1,16,4,52.6

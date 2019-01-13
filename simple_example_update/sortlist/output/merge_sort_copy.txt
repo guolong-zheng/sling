@@ -48,6 +48,6 @@ dynsl.py:371 - Number of total invs: 21
 dynsl.py:372 - Number of pres:4
 dynsl.py:373 - Number of post:17
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 61.0823190212
-../simple_example_update/sortlist/merge_sort_copy,5,46,22,6,55,17,21,4,17,0,61.0
-../simple_example_update/sortlist/merge_sort_copy,5,46,6,55,17,21,4,17,0,61.0
+dynsl.py:375 - Running time (sec): 61.9037091732
+../simple_example_update/sortlist/merge_sort_copy,5,46,22,6,55,17,21,4,17,0,61.9
+../simple_example_update/sortlist/merge_sort_copy,5,46,6,55,17,21,4,17,0,61.9

@@ -44,6 +44,6 @@ dynsl.py:371 - Number of total invs: 14
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:13
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 69.8742899895
-../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,34,20,11,25,14,1,13,0,69.8
-../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,20,11,25,14,1,13,0,69.8
+dynsl.py:375 - Running time (sec): 69.5826311111
+../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,34,20,11,25,14,1,13,0,69.5
+../simple_example_update/binomial_heap/binomial_heap_merge_rec,6,50,20,11,25,14,1,13,0,69.5

@@ -13,6 +13,6 @@ dynsl.py:371 - Number of total invs: 0
 dynsl.py:372 - Number of pres:0
 dynsl.py:373 - Number of post:0
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 0.055743932724
-../simple_example_update/binomial_heap/header,0,0,0,0,0,0,0,0,0,0,0.05
-../simple_example_update/binomial_heap/header,0,0,0,0,0,0,0,0,0,0.05
+dynsl.py:375 - Running time (sec): 0.0428731441498
+../simple_example_update/binomial_heap/header,0,0,0,0,0,0,0,0,0,0,0.04
+../simple_example_update/binomial_heap/header,0,0,0,0,0,0,0,0,0,0.04

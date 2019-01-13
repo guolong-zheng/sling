@@ -34,6 +34,6 @@ dynsl.py:371 - Number of total invs: 13
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:12
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 4.03432393074
-../simple_example_update/circular_list/insert_back,3,4,6,12,17,5,13,1,12,0,4.03
-../simple_example_update/circular_list/insert_back,3,4,12,17,5,13,1,12,0,4.03
+dynsl.py:375 - Running time (sec): 4.08429503441
+../simple_example_update/circular_list/insert_back,3,4,6,12,17,5,13,1,12,0,4.08
+../simple_example_update/circular_list/insert_back,3,4,12,17,5,13,1,12,0,4.08

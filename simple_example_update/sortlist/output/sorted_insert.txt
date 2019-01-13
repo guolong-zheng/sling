@@ -22,6 +22,6 @@ dynsl.py:371 - Number of total invs: 4
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 7.55527019501
-../simple_example_update/sortlist/sorted_insert,2,26,0,0,6,0,4,2,2,0,7.55
-../simple_example_update/sortlist/sorted_insert,2,26,0,6,0,4,2,2,0,7.55
+dynsl.py:375 - Running time (sec): 7.65063810349
+../simple_example_update/sortlist/sorted_insert,2,26,0,0,6,0,4,2,2,0,7.65
+../simple_example_update/sortlist/sorted_insert,2,26,0,6,0,4,2,2,0,7.65

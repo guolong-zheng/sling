@@ -13,6 +13,6 @@ dynsl.py:371 - Number of total invs: 0
 dynsl.py:372 - Number of pres:0
 dynsl.py:373 - Number of post:0
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 0.0674369335175
-../simple_example_update/openbsd_queue/header,0,0,0,0,0,0,0,0,0,0,0.06
-../simple_example_update/openbsd_queue/header,0,0,0,0,0,0,0,0,0,0.06
+dynsl.py:375 - Running time (sec): 0.0391430854797
+../simple_example_update/openbsd_queue/header,0,0,0,0,0,0,0,0,0,0,0.03
+../simple_example_update/openbsd_queue/header,0,0,0,0,0,0,0,0,0,0.03

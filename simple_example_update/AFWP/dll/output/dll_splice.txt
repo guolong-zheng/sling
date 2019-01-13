@@ -21,6 +21,6 @@ dynsl.py:371 - Number of total invs: 3
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 4.08874893188
-../simple_example_update/AFWP/dll/dll_splice,2,2,6,1,7,0,3,1,2,0,4.08
-../simple_example_update/AFWP/dll/dll_splice,2,2,1,7,0,3,1,2,0,4.08
+dynsl.py:375 - Running time (sec): 4.06926512718
+../simple_example_update/AFWP/dll/dll_splice,2,2,6,1,7,0,3,1,2,0,4.06
+../simple_example_update/AFWP/dll/dll_splice,2,2,1,7,0,3,1,2,0,4.06

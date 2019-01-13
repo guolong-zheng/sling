@@ -22,6 +22,6 @@ dynsl.py:371 - Number of total invs: 4
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 5.36244392395
-../simple_example_update/sortlist/sorted_find,2,24,0,0,2,0,4,2,2,0,5.36
-../simple_example_update/sortlist/sorted_find,2,24,0,2,0,4,2,2,0,5.36
+dynsl.py:375 - Running time (sec): 5.52177286148
+../simple_example_update/sortlist/sorted_find,2,24,0,0,2,0,4,2,2,0,5.52
+../simple_example_update/sortlist/sorted_find,2,24,0,2,0,4,2,2,0,5.52

@@ -29,6 +29,6 @@ dynsl.py:371 - Number of total invs: 5
 dynsl.py:372 - Number of pres:2
 dynsl.py:373 - Number of post:3
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 2.75745916367
-../simple_example_update/cyclist/aplas-stack/aplas-stack,4,22,0,2,2,0,5,2,3,0,2.75
-../simple_example_update/cyclist/aplas-stack/aplas-stack,4,22,2,2,0,5,2,3,0,2.75
+dynsl.py:375 - Running time (sec): 2.93140292168
+../simple_example_update/cyclist/aplas-stack/aplas-stack,4,22,0,2,2,0,5,2,3,0,2.93
+../simple_example_update/cyclist/aplas-stack/aplas-stack,4,22,2,2,0,5,2,3,0,2.93

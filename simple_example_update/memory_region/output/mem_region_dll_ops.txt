@@ -53,6 +53,6 @@ dynsl.py:371 - Number of total invs: 20
 dynsl.py:372 - Number of pres:4
 dynsl.py:373 - Number of post:16
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 19.5918917656
+dynsl.py:375 - Running time (sec): 19.5441360474
 ../simple_example_update/memory_region/mem_region_dll_ops,7,14,32,15,16,30,20,4,16,0,19.5
 ../simple_example_update/memory_region/mem_region_dll_ops,7,14,15,16,30,20,4,16,0,19.5
