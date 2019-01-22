@@ -1,3 +1,456 @@
+create break point at : 8
+create break point at : 10
+create break point at : 15
+stop at : 8
+stop at : 10
+stop at : 8
+stop at : 10
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 10
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 8
+stop at : 10
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+get_trace.py:66 - [
+1 - 8:
+{
+x2: 0
+x1: 0}
+
+{
+}
+
+,
+
+
+3 - 8:
+{
+x2: 21221392
+x1: 0}
+
+{
+21221392: (node, [key:0, next:21221424])
+21221424: (node, [key:1, next:21221456])
+21221488: (node, [key:3, next:21221520])
+21221456: (node, [key:2, next:21221488])
+21221520: (node, [key:4, next:0])}
+
+,
+
+
+5 - 8:
+{
+x2: 0
+x1: 21221552}
+
+{
+21221552: (node, [key:0, next:21221584])
+21221584: (node, [key:1, next:21221616])
+21221616: (node, [key:2, next:21221648])
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+,
+
+
+6 - 8:
+{
+x2: 0
+x1: 21221584}
+
+{
+21221584: (node, [key:1, next:21221616])
+21221616: (node, [key:2, next:21221648])
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+,
+
+
+7 - 8:
+{
+x2: 0
+x1: 21221616}
+
+{
+21221616: (node, [key:2, next:21221648])
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+,
+
+
+8 - 8:
+{
+x2: 0
+x1: 21221648}
+
+{
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+,
+
+
+9 - 8:
+{
+x2: 0
+x1: 21221680}
+
+{
+21221680: (node, [key:4, next:0])}
+
+,
+
+
+10 - 8:
+{
+x2: 0
+x1: 0}
+
+{
+}
+
+,
+
+
+17 - 8:
+{
+x2: 21221872
+x1: 21221712}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221712: (node, [key:0, next:21221744])
+21221744: (node, [key:1, next:21221776])
+21221776: (node, [key:2, next:21221808])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:0])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+,
+
+
+18 - 8:
+{
+x2: 21221872
+x1: 21221744}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221744: (node, [key:1, next:21221776])
+21221776: (node, [key:2, next:21221808])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:0])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+,
+
+
+19 - 8:
+{
+x2: 21221872
+x1: 21221776}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221776: (node, [key:2, next:21221808])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:0])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+,
+
+
+20 - 8:
+{
+x2: 21221872
+x1: 21221808}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:0])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+,
+
+
+21 - 8:
+{
+x2: 21221872
+x1: 21221840}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221840: (node, [key:4, next:0])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+,
+
+
+22 - 8:
+{
+x2: 21221872
+x1: 0}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221904: (node, [key:1, next:21221936])
+21222000: (node, [key:4, next:0])
+21221968: (node, [key:3, next:21222000])
+21221936: (node, [key:2, next:21221968])}
+
+]
+get_trace.py:67 - [
+2 - 10:
+{
+x2: 0
+x1: 0}
+
+{
+}
+
+return: 0,
+
+
+4 - 10:
+{
+x2: 21221392
+x1: 0}
+
+{
+21221392: (node, [key:0, next:21221424])
+21221424: (node, [key:1, next:21221456])
+21221488: (node, [key:3, next:21221520])
+21221456: (node, [key:2, next:21221488])
+21221520: (node, [key:4, next:0])}
+
+return: 21221392,
+
+
+11 - 10:
+{
+x2: 0
+x1: 0}
+
+{
+}
+
+return: 0,
+
+
+12 - 15:
+{
+x2: 0
+tmp: 0
+x1: 21221680}
+
+{
+21221680: (node, [key:4, next:0])}
+
+return: 21221680,
+
+
+13 - 15:
+{
+x2: 0
+tmp: 21221680
+x1: 21221648}
+
+{
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+return: 21221648,
+
+
+14 - 15:
+{
+x2: 0
+tmp: 21221648
+x1: 21221616}
+
+{
+21221616: (node, [key:2, next:21221648])
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+return: 21221616,
+
+
+15 - 15:
+{
+x2: 0
+tmp: 21221616
+x1: 21221584}
+
+{
+21221584: (node, [key:1, next:21221616])
+21221616: (node, [key:2, next:21221648])
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+return: 21221584,
+
+
+16 - 15:
+{
+x2: 0
+tmp: 21221584
+x1: 21221552}
+
+{
+21221552: (node, [key:0, next:21221584])
+21221584: (node, [key:1, next:21221616])
+21221616: (node, [key:2, next:21221648])
+21221648: (node, [key:3, next:21221680])
+21221680: (node, [key:4, next:0])}
+
+return: 21221552,
+
+
+23 - 10:
+{
+x2: 21221872
+x1: 0}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221904: (node, [key:1, next:21221936])
+21222000: (node, [key:4, next:0])
+21221968: (node, [key:3, next:21222000])
+21221936: (node, [key:2, next:21221968])}
+
+return: 21221872,
+
+
+24 - 15:
+{
+x2: 21221872
+tmp: 21221872
+x1: 21221840}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221840: (node, [key:4, next:21221872])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+return: 21221840,
+
+
+25 - 15:
+{
+x2: 21221872
+tmp: 21221840
+x1: 21221808}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:21221872])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+return: 21221808,
+
+
+26 - 15:
+{
+x2: 21221872
+tmp: 21221808
+x1: 21221776}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221776: (node, [key:2, next:21221808])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:21221872])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+return: 21221776,
+
+
+27 - 15:
+{
+x2: 21221872
+tmp: 21221776
+x1: 21221744}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221744: (node, [key:1, next:21221776])
+21221776: (node, [key:2, next:21221808])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:21221872])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+return: 21221744,
+
+
+28 - 15:
+{
+x2: 21221872
+tmp: 21221744
+x1: 21221712}
+
+{
+21221872: (node, [key:0, next:21221904])
+21221712: (node, [key:0, next:21221744])
+21221744: (node, [key:1, next:21221776])
+21221776: (node, [key:2, next:21221808])
+21221808: (node, [key:3, next:21221840])
+21221840: (node, [key:4, next:21221872])
+21221904: (node, [key:1, next:21221936])
+21221936: (node, [key:2, next:21221968])
+21221968: (node, [key:3, next:21222000])
+21222000: (node, [key:4, next:0])}
+
+return: 21221712]
 dynsl.py:221 - Inferring pre-conditions at the location 8 ...
 
 dynsl.py:221 - Inferring post-conditions at the location 10 ...
@@ -9,12 +462,13 @@ dynsl.py:307 - ll(x2) * ll(x1)
 dynsl.py:309 - ==============================
 dynsl.py:312 - Postcondition at location 10:
 dynsl.py:320 - ll(x2)  & x2 = res
+dynsl.py:322 - ==============================
 dynsl.py:312 - Postcondition at location 15:
 dynsl.py:320 - ll(x2) * x1:node->node{fv0, tmp} 
 dynsl.py:322 - ==============================
 dynsl.py:338 - ==============================
 dynsl.py:363 - Number of locations: 3
-dynsl.py:364 - Number of traces: 48
+dynsl.py:364 - Number of traces: 28
 dynsl.py:365 - Number of pre-defined predicates: 1
 dynsl.py:367 - Number of free variables: 1
 dynsl.py:368 - Number of atomic singleton predicates: 1
@@ -24,6 +478,6 @@ dynsl.py:371 - Number of total invs: 3
 dynsl.py:372 - Number of pres:1
 dynsl.py:373 - Number of post:2
 dynsl.py:374 - Number of loop:0
-dynsl.py:375 - Running time (sec): 13.7729179859
-../simple_example_update/sll/append,3,48,1,1,4,1,3,1,2,0,13.7
-../simple_example_update/sll/append,3,48,1,4,1,3,1,2,0,13.7
+dynsl.py:375 - Running time (sec): 4.12648892403
+../simple_example_update/sll/append,3,28,1,1,4,1,3,1,2,0,4.12
+../simple_example_update/sll/append,3,28,1,4,1,3,1,2,0,4.12

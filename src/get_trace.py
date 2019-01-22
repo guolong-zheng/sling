@@ -16,7 +16,7 @@ def create_target(exe, bps):
     ldict = {}
     if target:
         for loc in bps:
-            bp = target.BreakpointCreateByLocation(exe+".c", loc)
+            bp = target.BreakpointCreateByLocation(exe+".cpp", loc)
             bp_loc = bp.GetLocationAtIndex(0)
             bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
             ldict[loc] = bp_line
@@ -52,13 +52,13 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
             elif location in post_locs:
                 thread.StepOut()
                 ret = thread.GetStopReturnValue()
-                if ret:
-                    if ret.TypeIsPointerType():
-                        val = Addr(ret.GetValue())
-                    else:
-                        val = Int(ret.GetValue())
-                    trace.ret = val
-                post_traces.append(trace)
+                #if ret:
+                #    if ret.TypeIsPointerType():
+                #        val = Addr(ret.GetValue())
+                #    else:
+                #        val = Int(ret.GetValue())
+                #    trace.ret = val
+                #post_traces.append(trace)
             else:
                 inv_traces.append(trace)
         process.Continue()
