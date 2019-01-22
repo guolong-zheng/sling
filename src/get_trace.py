@@ -20,6 +20,7 @@ def create_target(exe, bps):
             bp_loc = bp.GetLocationAtIndex(0)
             bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
             ldict[loc] = bp_line
+            print "create break point at : " + str(bp_line)
     else:
         print "Can't create debugger instance"
 
@@ -36,6 +37,7 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex(0)
         location = frame.GetLineEntry().GetLine()
+        print "stop at : " + str(location)
         if frame:
             if location in pre_locs:
                 # Do not get local variables in the precondition inference
@@ -61,9 +63,9 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
                 inv_traces.append(trace)
         process.Continue()
     # print "No breakpoint set up!"
-    #debug(pre_traces)
-    #debug(post_traces)
-    #debug(len(inv_traces))
+    debug(pre_traces)
+    debug(post_traces)
+    # debug(len(inv_traces))
     return (pre_traces, post_traces, inv_traces)
 
 def traverse_heap(vars):

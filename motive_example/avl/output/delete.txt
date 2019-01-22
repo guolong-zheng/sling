@@ -1,0 +1,161 @@
+create break point at : 57
+create break point at : 91
+stop at : 57
+stop at : 57
+stop at : 91
+stop at : 57
+stop at : 57
+stop at : 57
+stop at : 57
+stop at : 91
+get_trace.py:66 - [
+1 - 57:
+{
+x: 33206288}
+
+{
+33206512: (a_node, [left:33206384, right:33206320, key:1, height:2])
+33206320: (a_node, [left:33206544, right:33206416, key:5, height:1])
+33206352: (a_node, [left:0, right:33206448, key:10, height:1])
+33206384: (a_node, [left:33206480, right:0, key:0, height:1])
+33206416: (a_node, [left:0, right:0, key:6, height:0])
+33206448: (a_node, [left:0, right:0, key:11, height:0])
+33206480: (a_node, [left:0, right:0, key:-1, height:0])
+33206544: (a_node, [left:0, right:0, key:2, height:0])
+33206288: (a_node, [left:33206512, right:33206352, key:9, height:3])}
+
+,
+
+
+2 - 57:
+{
+x: 33206352}
+
+{
+33206352: (a_node, [left:0, right:33206448, key:10, height:1])
+33206448: (a_node, [left:0, right:0, key:11, height:0])}
+
+,
+
+
+4 - 57:
+{
+x: 33206512}
+
+{
+33206384: (a_node, [left:33206480, right:0, key:0, height:1])
+33206288: (a_node, [left:33206320, right:33206448, key:9, height:2])
+33206320: (a_node, [left:33206544, right:33206416, key:5, height:1])
+33206416: (a_node, [left:0, right:0, key:6, height:0])
+33206448: (a_node, [left:0, right:0, key:11, height:0])
+33206480: (a_node, [left:0, right:0, key:-1, height:0])
+33206544: (a_node, [left:0, right:0, key:2, height:0])
+33206512: (a_node, [left:33206384, right:33206288, key:1, height:3])}
+
+,
+
+
+5 - 57:
+{
+x: 33206288}
+
+{
+33206288: (a_node, [left:33206320, right:33206448, key:9, height:2])
+33206320: (a_node, [left:33206544, right:33206416, key:5, height:1])
+33206416: (a_node, [left:0, right:0, key:6, height:0])
+33206448: (a_node, [left:0, right:0, key:11, height:0])
+33206544: (a_node, [left:0, right:0, key:2, height:0])}
+
+,
+
+
+6 - 57:
+{
+x: 33206320}
+
+{
+33206320: (a_node, [left:33206544, right:33206416, key:5, height:1])
+33206544: (a_node, [left:0, right:0, key:2, height:0])
+33206416: (a_node, [left:0, right:0, key:6, height:0])}
+
+,
+
+
+7 - 57:
+{
+x: 33206416}
+
+{
+33206416: (a_node, [left:0, right:0, key:6, height:0])}
+
+]
+get_trace.py:67 - [
+3 - 91:
+{
+x: 33206288
+oldLeft: 33206512
+newRight: 33206448
+m: 33206512
+oldRight: 33206352}
+
+{
+33206352: (a_node, [left:0, right:33206448, key:10, height:1])
+33206320: (a_node, [left:33206544, right:33206416, key:5, height:1])
+33206384: (a_node, [left:33206480, right:0, key:0, height:1])
+33206416: (a_node, [left:0, right:0, key:6, height:0])
+33206448: (a_node, [left:0, right:0, key:11, height:0])
+33206480: (a_node, [left:0, right:0, key:-1, height:0])
+33206512: (a_node, [left:33206384, right:33206288, key:1, height:3])
+33206544: (a_node, [left:0, right:0, key:2, height:0])
+33206288: (a_node, [left:33206320, right:33206448, key:9, height:2])}
+
+return: 33206512,
+
+
+8 - 91:
+{
+x: 33206512
+oldLeft: 33206384
+newRight: 33206288
+m: 33206512
+oldRight: 33206288}
+
+{
+33206288: (a_node, [left:33206320, right:33206448, key:9, height:2])
+33206320: (a_node, [left:33206544, right:0, key:6, height:1])
+33206384: (a_node, [left:33206480, right:0, key:0, height:1])
+33206448: (a_node, [left:0, right:0, key:11, height:0])
+33206480: (a_node, [left:0, right:0, key:-1, height:0])
+33206544: (a_node, [left:0, right:0, key:2, height:0])
+33206512: (a_node, [left:33206384, right:33206288, key:1, height:3])}
+
+return: 33206512]
+dynsl.py:221 - Inferring pre-conditions at the location 57 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 91 ...
+
+dynsl.py:299 - Precondition at location 57:
+dynsl.py:307 - btree(x) 
+dynsl.py:307 -  height(x, h!height!85:int) 
+dynsl.py:307 -  bst(x, mi!bst!374:int, mx!bst!375:int) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 91:
+dynsl.py:320 - btree(newRight) 
+dynsl.py:320 -  height(newRight, h!height!2538:int)  & m = res
+dynsl.py:320 -  bst(newRight, mi!bst!3031:int, mx!bst!3032:int)  & m = res
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 2
+dynsl.py:364 - Number of traces: 4
+dynsl.py:365 - Number of pre-defined predicates: 3
+dynsl.py:367 - Number of free variables: 0
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 6
+dynsl.py:370 - Number of pure constraints: 2
+dynsl.py:371 - Number of total invs: 6
+dynsl.py:372 - Number of pres:3
+dynsl.py:373 - Number of post:3
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 27.1727600098
+../motive_example/avl/delete,2,4,0,0,6,2,6,3,3,0,27.1
+../motive_example/avl/delete,2,4,0,6,2,6,3,3,0,27.1

@@ -306,7 +306,7 @@ def main():
                     pre_set.append(pre)
                     debug(pre)
                     pre_num = pre_num + 1
-	debug('==============================')
+            debug('==============================')
 	for post_loc in post_locs:
             post_residue_lst = rdict[post_loc]
             debug('Postcondition at location ' + str(post_loc) + ':')
@@ -319,7 +319,7 @@ def main():
                     post_set.append(post)
                     debug(post)
                     post_num = post_num + 1
-	debug('==============================')
+	    debug('==============================')
         # debug(inv_models)
         for inv_loc in inv_locs:
             inv_residue_lst = rdict[inv_loc]
