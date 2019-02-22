@@ -16,7 +16,7 @@ def create_target(exe, bps):
     ldict = {}
     if target:
         for loc in bps:
-            bp = target.BreakpointCreateByLocation(exe+".cpp", loc)
+            bp = target.BreakpointCreateByLocation(exe+".c", loc)
             bp_loc = bp.GetLocationAtIndex(0)
             bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
             ldict[loc] = bp_line
@@ -52,20 +52,20 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
             elif location in post_locs:
                 thread.StepOut()
                 ret = thread.GetStopReturnValue()
-                #if ret:
-                #    if ret.TypeIsPointerType():
-                #        val = Addr(ret.GetValue())
-                #    else:
-                #        val = Int(ret.GetValue())
-                #    trace.ret = val
-                #post_traces.append(trace)
+                if ret:
+                    if ret.TypeIsPointerType():
+                        val = Addr(ret.GetValue())
+                    else:
+                        val = Int(ret.GetValue())
+                    trace.ret = val
+                post_traces.append(trace)
             else:
                 inv_traces.append(trace)
         process.Continue()
     # print "No breakpoint set up!"
-    debug(pre_traces)
-    debug(post_traces)
-    # debug(len(inv_traces))
+    #debug(pre_traces)
+    #debug(post_traces)
+    debug(len(inv_traces))
     return (pre_traces, post_traces, inv_traces)
 
 def traverse_heap(vars):

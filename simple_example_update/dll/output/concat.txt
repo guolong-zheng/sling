@@ -1,51 +1,734 @@
+create break point at : 7
+create break point at : 9
+create break point at : 24
+create break point at : 15
+stop at : 7
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 24
+stop at : 7
+stop at : 9
+stop at : 7
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 15
+stop at : 24
+stop at : 7
+stop at : 9
+get_trace.py:66 - [
+1 - 7:
+{
+a: 38310192
+b: 38310512}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+12 - 7:
+{
+a: 0
+b: 0}
+
+{
+}
+
+,
+
+
+14 - 7:
+{
+a: 38310832
+b: 0}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+25 - 7:
+{
+a: 0
+b: 38311152}
+
+{
+38311120: (node, [key:8, next:38311088, prev:38311152])
+38310864: (node, [key:0, next:0, prev:38310896])
+38310896: (node, [key:1, next:38310864, prev:38310928])
+38310928: (node, [key:2, next:38310896, prev:38310960])
+38310960: (node, [key:3, next:38310928, prev:38310992])
+38310992: (node, [key:4, next:38310960, prev:38311024])
+38311024: (node, [key:5, next:38310992, prev:38311056])
+38311056: (node, [key:6, next:38311024, prev:38311088])
+38311088: (node, [key:7, next:38311056, prev:38311120])
+38311152: (node, [key:9, next:38311120, prev:0])}
+
+]
+get_trace.py:67 - [
+11 - 24:
+{
+a: 38310192
+b: 38310512
+curr: 38309904}
+
+{
+38310512: (node, [key:9, next:38310480, prev:38309904])
+38309904: (node, [key:0, next:38310512, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+return: 38310192,
+
+
+13 - 9:
+{
+a: 0
+b: 0}
+
+{
+}
+
+return: 0,
+
+
+24 - 24:
+{
+a: 38310832
+b: 0
+curr: 38310544}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+return: 38310832,
+
+
+26 - 9:
+{
+a: 0
+b: 38311152}
+
+{
+38311120: (node, [key:8, next:38311088, prev:38311152])
+38310864: (node, [key:0, next:0, prev:38310896])
+38310896: (node, [key:1, next:38310864, prev:38310928])
+38310928: (node, [key:2, next:38310896, prev:38310960])
+38310960: (node, [key:3, next:38310928, prev:38310992])
+38310992: (node, [key:4, next:38310960, prev:38311024])
+38311024: (node, [key:5, next:38310992, prev:38311056])
+38311056: (node, [key:6, next:38311024, prev:38311088])
+38311088: (node, [key:7, next:38311056, prev:38311120])
+38311152: (node, [key:9, next:38311120, prev:0])}
+
+return: 38311152]
+get_trace.py:68 - [
+2 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310192}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+3 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310160}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+4 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310128}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+5 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310096}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+6 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310064}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+7 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310032}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+8 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38310000}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+9 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38309968}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+10 - 15:
+{
+a: 38310192
+b: 38310512
+curr: 38309936}
+
+{
+38310512: (node, [key:9, next:38310480, prev:0])
+38309904: (node, [key:0, next:0, prev:38309936])
+38309936: (node, [key:1, next:38309904, prev:38309968])
+38309968: (node, [key:2, next:38309936, prev:38310000])
+38310000: (node, [key:3, next:38309968, prev:38310032])
+38310032: (node, [key:4, next:38310000, prev:38310064])
+38310064: (node, [key:5, next:38310032, prev:38310096])
+38310096: (node, [key:6, next:38310064, prev:38310128])
+38310128: (node, [key:7, next:38310096, prev:38310160])
+38310160: (node, [key:8, next:38310128, prev:38310192])
+38310192: (node, [key:9, next:38310160, prev:0])
+38310256: (node, [key:1, next:38310224, prev:38310288])
+38310288: (node, [key:2, next:38310256, prev:38310320])
+38310320: (node, [key:3, next:38310288, prev:38310352])
+38310352: (node, [key:4, next:38310320, prev:38310384])
+38310384: (node, [key:5, next:38310352, prev:38310416])
+38310416: (node, [key:6, next:38310384, prev:38310448])
+38310448: (node, [key:7, next:38310416, prev:38310480])
+38310480: (node, [key:8, next:38310448, prev:38310512])
+38310224: (node, [key:0, next:0, prev:38310256])}
+
+,
+
+
+15 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310832}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+16 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310800}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+17 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310768}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+18 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310736}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+19 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310704}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310704: (node, [key:5, next:38310672, prev:38310736])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])}
+
+,
+
+
+20 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310672}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+21 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310640}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+22 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310608}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+,
+
+
+23 - 15:
+{
+a: 38310832
+b: 0
+curr: 38310576}
+
+{
+38310736: (node, [key:6, next:38310704, prev:38310768])
+38310576: (node, [key:1, next:38310544, prev:38310608])
+38310800: (node, [key:8, next:38310768, prev:38310832])
+38310768: (node, [key:7, next:38310736, prev:38310800])
+38310832: (node, [key:9, next:38310800, prev:0])
+38310544: (node, [key:0, next:0, prev:38310576])
+38310608: (node, [key:2, next:38310576, prev:38310640])
+38310640: (node, [key:3, next:38310608, prev:38310672])
+38310672: (node, [key:4, next:38310640, prev:38310704])
+38310704: (node, [key:5, next:38310672, prev:38310736])}
+
+]
 dynsl.py:221 - Inferring post-conditions at the location 24 ...
 
+iincr.py:152 - [a, b, curr]
+iincr.py:154 - [a, curr, b]
 dynsl.py:221 - Inferring post-conditions at the location 9 ...
 
+iincr.py:152 - [a, b]
+iincr.py:154 - [a, b]
 dynsl.py:221 - Inferring inv-conditions at the location 15 ...
 
+iincr.py:152 - [a, b, curr]
+iincr.py:154 - [curr, b, a]
 dynsl.py:221 - Inferring pre-conditions at the location 7 ...
 
+iincr.py:152 - [a, b]
+iincr.py:154 - [b, a]
 dynsl.py:299 - Precondition at location 7:
-dynsl.py:307 -  dll(a, fv3, fv2, nil) * dll(b, fv1, fv0, nil) 
-dynsl.py:307 -  dll(a, fv2, fv1, nil) * dll(b, nil, fv0, nil) 
-dynsl.py:307 -  dll(a, fv1, fv0, nil) * dll(b, nil, nil, b) 
-dynsl.py:307 -  dll(a, nil, fv2, nil) * dll(b, fv1, fv0, nil) 
-dynsl.py:307 -  dll(a, nil, fv1, nil) * dll(b, nil, fv0, nil) 
-dynsl.py:307 -  dll(a, nil, fv0, nil) * dll(b, nil, nil, b) 
-dynsl.py:307 -  dll(a, nil, nil, a) * dll(b, fv1, fv0, nil) 
-dynsl.py:307 -  dll(a, nil, nil, a) * dll(b, nil, fv0, nil) 
-dynsl.py:307 -  dll(a, nil, nil, a) * dll(b, nil, nil, b) 
+dynsl.py:307 -  dll(b, fv3, fv2, nil) * dll(a, fv1, fv0, nil) 
+dynsl.py:307 -  dll(b, fv2, fv1, nil) * dll(a, nil, fv0, nil) 
+dynsl.py:307 -  dll(b, fv1, fv0, nil) * dll(a, nil, nil, a) 
+dynsl.py:307 -  dll(b, nil, fv2, nil) * dll(a, fv1, fv0, nil) 
+dynsl.py:307 -  dll(b, nil, fv1, nil) * dll(a, nil, fv0, nil) 
+dynsl.py:307 -  dll(b, nil, fv0, nil) * dll(a, nil, nil, a) 
+dynsl.py:307 -  dll(b, nil, nil, b) * dll(a, fv1, fv0, nil) 
+dynsl.py:307 -  dll(b, nil, nil, b) * dll(a, nil, fv0, nil) 
+dynsl.py:307 -  dll(b, nil, nil, b) * dll(a, nil, nil, a) 
 dynsl.py:309 - ==============================
 dynsl.py:312 - Postcondition at location 24:
-dynsl.py:320 -  dll(a, nil, fv0, curr) * dll(b, fv2, fv1, nil) * dll(curr, fv0, curr, b)  & a = res
-dynsl.py:320 -  dll(a, nil, fv3, curr) * dll(b, fv2, fv1, nil) * curr:node->node{nil, b, fv0}  & a = res
-dynsl.py:320 -  dll(a, nil, fv0, curr) * dll(b, nil, nil, b) * dll(curr, fv0, curr, b)  & a = res
-dynsl.py:320 -  dll(a, nil, fv0, curr) * dll(b, nil, nil, b) * curr:node->node{nil, b, fv0}  & a = res
+dynsl.py:320 -  dll(a, nil, fv2, curr) * dll(curr, fv2, curr, b) * dll(b, fv1, fv0, nil)  & a = res
+dynsl.py:320 -  dll(a, nil, fv0, curr) * dll(curr, fv0, curr, b) * dll(b, nil, nil, b)  & a = res
+dynsl.py:320 -  dll(a, nil, fv2, curr) * curr:node->node{nil, b, fv2} * dll(b, fv1, fv0, nil)  & a = res
+dynsl.py:320 -  dll(a, nil, fv0, curr) * curr:node->node{nil, b, fv0} * dll(b, nil, nil, b)  & a = res
+dynsl.py:322 - ==============================
 dynsl.py:312 - Postcondition at location 9:
 dynsl.py:320 -  dll(b, nil, nil, b)  & a = nil & b = res
 dynsl.py:320 -  dll(b, fv1, fv0, nil)  & a = nil & b = res
 dynsl.py:320 -  dll(b, nil, fv0, nil)  & a = nil & b = res
 dynsl.py:322 - ==============================
 dynsl.py:326 - Invariants at location 15:
-dynsl.py:334 -  dll(a, nil, fv1, curr) * dll(b, fv3, fv2, nil) * dll(curr, fv1, fv0, nil) 
-dynsl.py:334 -  dll(a, nil, fv4, curr) * dll(b, fv3, fv2, nil) * dll(curr, nil, fv1, fv0) 
-dynsl.py:334 -  dll(a, nil, fv1, curr) * dll(b, nil, fv2, nil) * dll(curr, fv1, fv0, nil) 
-dynsl.py:334 -  dll(a, nil, fv3, curr) * dll(b, nil, fv2, nil) * dll(curr, nil, fv1, fv0) 
-dynsl.py:334 -  dll(a, nil, fv1, curr) * dll(b, nil, nil, b) * dll(curr, fv1, fv0, nil) 
-dynsl.py:334 -  dll(a, nil, fv2, curr) * dll(b, nil, nil, b) * dll(curr, nil, fv1, fv0) 
+dynsl.py:334 -  dll(curr, fv3, a, fv2) * dll(b, fv1, fv0, nil) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, fv5, a, fv4) * dll(b, fv3, fv2, nil) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, fv2, a, fv1) * dll(b, nil, fv0, nil) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, fv4, a, fv3) * dll(b, nil, fv2, nil) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, fv1, a, fv0) * dll(b, nil, nil, b) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, fv3, a, fv2) * dll(b, nil, nil, b) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, a, fv4, fv3) * dll(b, fv2, fv1, nil) * dll(a, nil, fv0, curr) 
+dynsl.py:334 -  dll(curr, a, fv3, fv2) * dll(b, nil, fv1, nil) * dll(a, nil, fv0, curr) 
+dynsl.py:334 -  dll(curr, a, fv2, fv1) * dll(b, nil, nil, b) * dll(a, nil, fv0, curr) 
+dynsl.py:334 -  dll(curr, fv3, fv2, nil) * dll(b, fv1, fv0, nil) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, fv5, fv4, nil) * dll(b, fv3, fv2, nil) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, fv2, fv1, nil) * dll(b, nil, fv0, nil) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, fv4, fv3, nil) * dll(b, nil, fv2, nil) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, fv1, fv0, nil) * dll(b, nil, nil, b) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, fv3, fv2, nil) * dll(b, nil, nil, b) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, nil, fv3, fv2) * dll(b, fv1, fv0, nil) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, nil, fv5, fv4) * dll(b, fv3, fv2, nil) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, nil, fv2, fv1) * dll(b, nil, fv0, nil) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, nil, fv4, fv3) * dll(b, nil, fv2, nil) * dll(a, fv1, fv0, curr) 
+dynsl.py:334 -  dll(curr, nil, fv1, fv0) * dll(b, nil, nil, b) * dll(a, curr, curr, a) 
+dynsl.py:334 -  dll(curr, nil, fv3, fv2) * dll(b, nil, nil, b) * dll(a, fv1, fv0, curr) 
 dynsl.py:338 - ==============================
 dynsl.py:363 - Number of locations: 4
 dynsl.py:364 - Number of traces: 26
 dynsl.py:365 - Number of pre-defined predicates: 1
-dynsl.py:367 - Number of free variables: 51
+dynsl.py:367 - Number of free variables: 113
 dynsl.py:368 - Number of atomic singleton predicates: 2
-dynsl.py:369 - Number of atomic inductive predicates: 49
+dynsl.py:369 - Number of atomic inductive predicates: 94
 dynsl.py:370 - Number of pure constraints: 10
-dynsl.py:371 - Number of total invs: 22
+dynsl.py:371 - Number of total invs: 37
 dynsl.py:372 - Number of pres:9
 dynsl.py:373 - Number of post:7
-dynsl.py:374 - Number of loop:6
-dynsl.py:375 - Running time (sec): 48.216684103
-../simple_example_update/dll/concat,4,26,51,2,49,10,22,9,7,6,48.2
-../simple_example_update/dll/concat,4,26,2,49,10,22,9,7,6,48.2
+dynsl.py:374 - Number of loop:21
+dynsl.py:375 - Running time (sec): 125.896095037
+../simple_example_update/dll/concat,4,26,113,2,94,10,37,9,7,21,125.
+../simple_example_update/dll/concat,4,26,2,94,10,37,9,7,21,125.
