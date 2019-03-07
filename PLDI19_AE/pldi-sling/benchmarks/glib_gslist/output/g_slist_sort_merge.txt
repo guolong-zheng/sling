@@ -1,0 +1,93 @@
+dynsl.py:144 - Inferring pre-conditions at the location 9 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 18 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 38 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 9:
+dynsl.py:202 - list(l2) * lseg(l1, nil) & True
+dynsl.py:202 - list(l2) * list(l1) & True
+dynsl.py:202 - lseg(l2, nil) * list(l1) & True
+dynsl.py:202 - lseg(l2, nil) * lseg(l1, nil) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 38:
+dynsl.py:213 - (exists fv!18502, fv!19921. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * lseg(l1, list_next) * lseg(y, fv!19921) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17988. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, nil) * lseg(l1, nil) * lseg(y, fv!17988) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17295. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, list_next) * list(l1) * lseg(y, fv!17295) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17094. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, list_next) * lseg(l1, list_next) * lseg(y, fv!17094) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17474. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * lseg(l1, list_next) * lseg(y, fv!17474) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17854. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, nil) * lseg(l1, list_next) * lseg(y, fv!17854) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!20055. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * lseg(l1, nil) * lseg(y, fv!20055) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!18781. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, list_next) * lseg(l1, list_next) * lseg(y, fv!18781) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17228. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, list_next) * lseg(l1, nil) * lseg(y, fv!17228) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!18234. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * lseg(l1, list_next) * lseg(y, fv!18234) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19161. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * lseg(l1, list_next) * lseg(y, fv!19161) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!18848. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, list_next) * list(l1) * lseg(y, fv!18848) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17541. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * list(l1) * lseg(y, fv!17541) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19675. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, nil) * lseg(l1, nil) * lseg(y, fv!19675) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!18368. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * lseg(l1, nil) * lseg(y, fv!18368) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19742. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, nil) * list(l1) * lseg(y, fv!19742) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19541. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, nil) * lseg(l1, list_next) * lseg(y, fv!19541) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19295. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * lseg(l1, nil) * lseg(y, fv!19295) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19988. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * list(l1) * lseg(y, fv!19988) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19362. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * list(l1) * lseg(y, fv!19362) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!18301. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * list(l1) * lseg(y, fv!18301) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!18915. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, list_next) * lseg(l1, nil) * lseg(y, fv!18915) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!20122. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * list(l1) * lseg(y, fv!20122) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!18982. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, list_next) * list(l1) * lseg(y, fv!18982) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19608. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * lseg(l2, nil) * list(l1) * lseg(y, fv!19608) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!18435. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * list(l1) * lseg(y, fv!18435) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17608. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * lseg(l1, nil) * lseg(y, fv!17608) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17675. lseg(list, fv!16792) * lseg(l, fv!16815) * list(l2) * list(l1) * lseg(y, fv!17675) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!18502, fv!19228. list:node->node{fv!16813, fv!16814} * lseg(l, fv!18502) * list(l2) * list(l1) * lseg(y, fv!19228) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17161. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, list_next) * list(l1) * lseg(y, fv!17161) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!17921. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, nil) * list(l1) * lseg(y, fv!17921) & list_next=nil & list_next=res & nil=res)
+dynsl.py:213 - (exists fv!16792, fv!16815, fv!18055. lseg(list, fv!16792) * lseg(l, fv!16815) * lseg(l2, nil) * list(l1) * lseg(y, fv!18055) & list_next=nil & list_next=res & nil=res)
+dynsl.py:220 - Invariants at location 18:
+dynsl.py:227 - (exists fv!366, fv!2227. lseg(list, y) * lseg(l, fv!366) * lseg(l2, list_next) * lseg(l1, list_next) * lseg(y, fv!2227) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!2444. lseg(list, y) * lseg(l, fv!366) * lseg(l2, list_next) * list(l1) * lseg(y, fv!2444) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!2661. lseg(list, y) * lseg(l, fv!366) * lseg(l2, list_next) * lseg(l1, nil) * lseg(y, fv!2661) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!2878. lseg(list, y) * lseg(l, fv!366) * lseg(l2, list_next) * list(l1) * lseg(y, fv!2878) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!4055. lseg(list, y) * lseg(l, fv!366) * list(l2) * lseg(l1, list_next) * lseg(y, fv!4055) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!4272. lseg(list, y) * lseg(l, fv!366) * list(l2) * list(l1) * lseg(y, fv!4272) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!4489. lseg(list, y) * lseg(l, fv!366) * list(l2) * lseg(l1, nil) * lseg(y, fv!4489) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!4706. lseg(list, y) * lseg(l, fv!366) * list(l2) * list(l1) * lseg(y, fv!4706) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!5883. lseg(list, y) * lseg(l, fv!366) * lseg(l2, nil) * lseg(l1, list_next) * lseg(y, fv!5883) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!6100. lseg(list, y) * lseg(l, fv!366) * lseg(l2, nil) * list(l1) * lseg(y, fv!6100) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!6317. lseg(list, y) * lseg(l, fv!366) * lseg(l2, nil) * lseg(l1, nil) * lseg(y, fv!6317) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!6534. lseg(list, y) * lseg(l, fv!366) * lseg(l2, nil) * list(l1) * lseg(y, fv!6534) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!7711. lseg(list, y) * lseg(l, fv!366) * list(l2) * lseg(l1, list_next) * lseg(y, fv!7711) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!7928. lseg(list, y) * lseg(l, fv!366) * list(l2) * list(l1) * lseg(y, fv!7928) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!8145. lseg(list, y) * lseg(l, fv!366) * list(l2) * lseg(l1, nil) * lseg(y, fv!8145) & list_next=nil)
+dynsl.py:227 - (exists fv!366, fv!8362. lseg(list, y) * lseg(l, fv!366) * list(l2) * list(l1) * lseg(y, fv!8362) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!10440. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, list_next) * lseg(l1, list_next) * lseg(y, fv!10440) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!10657. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, list_next) * list(l1) * lseg(y, fv!10657) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!10874. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, list_next) * lseg(l1, nil) * lseg(y, fv!10874) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!11091. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, list_next) * list(l1) * lseg(y, fv!11091) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!12268. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * lseg(l1, list_next) * lseg(y, fv!12268) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!12485. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * list(l1) * lseg(y, fv!12485) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!12702. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * lseg(l1, nil) * lseg(y, fv!12702) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!12919. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * list(l1) * lseg(y, fv!12919) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!14096. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, nil) * lseg(l1, list_next) * lseg(y, fv!14096) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!14313. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, nil) * list(l1) * lseg(y, fv!14313) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!14530. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, nil) * lseg(l1, nil) * lseg(y, fv!14530) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!14747. list:node->node{fv!365, y} * lseg(l, fv!8579) * lseg(l2, nil) * list(l1) * lseg(y, fv!14747) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!15924. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * lseg(l1, list_next) * lseg(y, fv!15924) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!16141. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * list(l1) * lseg(y, fv!16141) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!16358. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * lseg(l1, nil) * lseg(y, fv!16358) & list_next=nil)
+dynsl.py:227 - (exists fv!8579, fv!16575. list:node->node{fv!365, y} * lseg(l, fv!8579) * list(l2) * list(l1) * lseg(y, fv!16575) & list_next=nil)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 23
+dynsl.py:256 - Number of pre-defined predicates: 2
+dynsl.py:258 - Number of free variables: 472
+dynsl.py:259 - Number of atomic singleton predicates: 32
+dynsl.py:260 - Number of atomic inductive predicates: 296
+dynsl.py:261 - Number of pure constraints: 128
+dynsl.py:262 - Number of total invs: 68
+dynsl.py:263 - Number of pres:4
+dynsl.py:264 - Number of post:32
+dynsl.py:265 - Number of loop:32
+dynsl.py:266 - Running time (sec): 261.807183981
+../simple_example_update/glib_gslist//g_slist_sort_merge,3,23,68,472,32,296,128,68,4,32,32,261.

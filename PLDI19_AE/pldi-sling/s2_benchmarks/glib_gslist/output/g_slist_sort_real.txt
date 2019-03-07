@@ -1,0 +1,186 @@
+
+!!!Full processing file "glib_gslist/g_slist_sort_real.dryad.c"
+Parsing file "glib_gslist/g_slist_sort_real.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist/g_slist_sort_real.dryad.c -o glib_gslist/g_slist_sort_real.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_sort_merge: :HP_18
+!!! generate unknown predicate for Post synthesis of g_slist_sort_merge: :GP_19
+!!! generate unknown predicate for Pre synthesis of g_slist_sort_real: :HP_20
+!!! generate unknown predicate for Post synthesis of g_slist_sort_real: :GP_21
+!!! ss:EInfer @shape[HP_20,GP_21] EBase: [][](HRel HP_20(list))*(true)( FLOW __norm) {EAssume: 14,:(HRel GP_21(list,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_60_1$node~node~node: :HP_1410
+!!! generate unknown predicate for Post synthesis of while_60_1$node~node~node: :GP_1414Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_15_1$node~node~node~node... Proving binding in method while_15_1$node~node~node~node for spec  EAssume ref [l_67;y_68;l2;l1]
+   emp&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,0 ); (,1 ); (,0 ); (,1 ); (,1 )]) bind: node  l1'::node<key_17_1367',next_17_1368'>@L cannot be derived from context
+glib_gslist/g_slist_sort_real.dryad.c_17:6_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,0 ); (,1 ); (,0 ); (,1 ); (,1 )]
+ State:
+        fe_kind: MUST
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: do_unmatched_rhs : l1'::node<key_17_1367',next_17_1368'>@L
+                  fc_current_lhs_flow: {FLOW,(6,10)=__Error#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]glib_gslist/g_slist_sort_real.dryad.c_17:6_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "glib_gslist/g_slist_sort_real.dryad.c",Line:17,Col:6
+
+Procedure while_15_1$node~node~node~node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure while_15_1$node~node~node~node
+
+Checking procedure g_slist_sort_merge$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_18,GP_19]requires HP_18(l1,l2)&
+truerequires emp
+ ensures GP_19(l1,l2,res)&true{,(4,5)=__norm#E};
+Proving binding in method g_slist_sort_merge$node~node for spec  EAssume 
+   GP_19(l1,l2,res)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,0 ); (,1 )]) bind: node  l_67'::node<key_33_1390',next_33_1391'> cannot be derived from context
+glib_gslist/g_slist_sort_real.dryad.c_33:2_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,0 ); (,1 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]glib_gslist/g_slist_sort_real.dryad.c_33:2_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "glib_gslist/g_slist_sort_real.dryad.c",Line:33,Col:2
+
+Procedure g_slist_sort_merge$node~node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure g_slist_sort_merge$node~node
+
+Checking procedure while_60_1$node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1410,GP_1414]requires HP_1410(l2_72,l2_73,l1_71)&
+truerequires emp
+ ensures GP_1414(l2_72,l2_72',l2_73,l2_73',l1_71,l1_71')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1410(l2_72,l2_73,l1_71)&
+l2_73!=null --> l2_73::node<key_67_1589,next_67_1590> * 
+HP_1591(next_67_1590,l2_72@NI,l1_71@NI) * HP_1592(l2_72,l1_71,l2_73@NI)&
+true,
+ // BIND
+(2;1;1;0)HP_1592(l2_72,l1_71,l2_73@NI)&
+true --> l1_71::node<key_73_1602,next_73_1603> * 
+HP_1604(next_73_1603,l2_72@NI,l2_73@NI) * HP_1605(l2_72,l1_71@NI,l2_73@NI)&
+true,
+ // BIND
+(2;1;1;0)HP_1591(l2_72',l2_1595@NI,l1_1607@NI)&
+l2_72'!=null --> l2_72'::node<key_75_1610,next_75_1611> * 
+HP_1612(next_75_1611,l2_1595@NI,l1_1607@NI)&
+true,
+ // PRE_REC
+(2;1;1;0)HP_1604(l1_71',l2_1595@NI,l2_73@NI) * 
+HP_1612(l2_73',l2_1595@NI,l1_1607@NI) * l2_72'::node<key_75_1610,l2_73'>&
+true |#| l1_1607::node<key_73_1602,l1_71'>&
+true --> HP_1410(l2_72',l2_73',l1_71')&
+true,
+ // POST
+(1;1;1;0)HP_1591(l2_72',l2_72@NI,l1_71@NI) * HP_1592(l2_72,l1_71,l2_73@NI) * 
+l2_73::node<key_67_1589,l2_72'>&l2_72'=null & l2_73'=null & l1_71'=l1_71 & 
+l2_73'=l2_72' --> GP_1414(l2_72,l2_72',l2_73,l2_73',l1_71,l1_71')&
+true,
+ // POST
+(2;1;1;0)l2_73::node<key_67_1589,next_67_1590> * 
+HP_1605(l2_72,l1_71@NI,l2_73@NI) * l1_71::node<key_73_1602,next_73_1603> * 
+GP_1414(next_67_1590,l2_72',next_75_1611,l2_73',next_73_1603,l1_71')&
+next_67_1590!=null --> GP_1414(l2_72,l2_72',l2_73,l2_73',l1_71,l1_71')&
+true,
+ // POST
+(2;1;0)HP_1410(l2_72,l2_73,l1_71)&l2_73=null & l2_73'=null & l1_71'=l1_71 & 
+l2_72'=l2_72 & 
+l2_73'=l2_73 --> GP_1414(l2_72,l2_72',l2_73,l2_73',l1_71,l1_71')&
+true]
+
+Procedure while_60_1$node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at glib_gslist/g_slist_sort_real.dryad.c_60:1_76:2
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1410,GP_1414]
+   EBase HP_1410(l2_72,l2_73,l1_71)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [l2_72;l2_73;l1_71]
+                     GP_1414(l2_72,l2_72',l2_73,l2_73',l1_71,l1_71')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure g_slist_sort_real$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_20,GP_21]requires HP_20(list)&
+truerequires emp
+ ensures GP_21(list,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure g_slist_sort_real$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure g_slist_sort_real$node
+Stop z3... 179 invocations Stop Omega... 68 invocations 
+1 false contexts at: ( (60,1) )
+
+!!! log(small):(0.160659,645)
+Total verification time: 0.324 second(s)
+	Time spent in main process: 0.212 second(s)
+	Time spent in child processes: 0.112 second(s)
+	Z3 Prover Time: 0. second(s)

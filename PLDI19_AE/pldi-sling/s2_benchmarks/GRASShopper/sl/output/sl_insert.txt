@@ -1,0 +1,114 @@
+
+!!!Full processing file "GRASShopper/sl/sl_insert.dryad.c"
+Parsing file "GRASShopper/sl/sl_insert.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper/sl/sl_insert.dryad.c -o GRASShopper/sl/sl_insert.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sl_insert: :HP_21
+!!! generate unknown predicate for Post synthesis of sl_insert: :GP_22
+!!! ss:EInfer @shape[HP_21,GP_22] EBase: [][](HRel HP_21(lst,elt))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_22(lst,elt,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_17_4$int~node: :HP_1346
+!!! generate unknown predicate for Post synthesis of while_17_4$int~node: :GP_1348Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_17_4$int~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1346,GP_1348]requires HP_1346(curr_63)&
+truerequires emp
+ ensures GP_1348(curr_63,curr_63')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1346(curr_63)&true --> curr_63::node<next_17_1409> * 
+HP_1410(next_17_1409)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1410(curr_63') * (htrue)&curr_63'!=null --> HP_1346(curr_63')&
+true,
+ // POST
+(1;1;1;0)curr_63::node<next_17_1409> * (htrue) * 
+GP_1348(next_17_1409,curr_63')&
+next_17_1409!=null --> GP_1348(curr_63,curr_63')&
+true,
+ // POST
+(2;1;1;0)HP_1410(next_17_1409) * curr_63::node<next_17_1409>&
+next_17_1409=null & curr_63'=curr_63 --> GP_1348(curr_63,curr_63')&
+true,
+ // POST
+(2;1;0)HP_1346(curr_63)&curr_63'=curr_63 --> GP_1348(curr_63,curr_63')&
+true]
+
+Procedure while_17_4$int~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1346(curr_1434) ::= curr_1434::node<next_17_1409>&next_17_1409=null(4,5),
+ GP_1348(curr_1436,curr_1437) ::= 
+ emp&curr_1437=curr_1436 & curr_1436=DP_DP_DP_1428
+ or curr_1436::node<next_17_1409>&curr_1437=curr_1436 & next_17_1409=null
+ or curr_1436::node<next_17_1409> * (htrue) * 
+    GP_1348(next_17_1409,curr_1437)&next_17_1409!=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase curr_63::node<next_17_1409>&next_17_1409=null&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [nondet_62;curr_63]
+                   (exists curr_63': curr_63::GP_1348{}<curr_63'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure sl_insert$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_21,GP_22]requires HP_21(lst,elt)&
+truerequires emp
+ ensures GP_22(lst,elt,res)&true{,(4,5)=__norm#E};
+Proving binding in method sl_insert$node~node for spec  EAssume 
+   GP_22(lst,elt,res)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,1 ); (,2 )]) bind: node  curr_63'::node<next_27_1361'>@L cannot be derived from context
+GRASShopper/sl/sl_insert.dryad.c_27:23_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,1 ); (,2 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]GRASShopper/sl/sl_insert.dryad.c_27:23_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "GRASShopper/sl/sl_insert.dryad.c",Line:27,Col:23
+
+Procedure sl_insert$node~node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure sl_insert$node~node
+Stop z3... 122 invocations Stop Omega... 60 invocations 
+1 false contexts at: ( (17,4) )
+
+!!! log(small):(0.0852,449)
+Total verification time: 0.196 second(s)
+	Time spent in main process: 0.12 second(s)
+	Time spent in child processes: 0.076 second(s)
+	Z3 Prover Time: 0.004 second(s)

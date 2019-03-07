@@ -1,0 +1,36 @@
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 21 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 14 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists fv!9, fv!10. dll(x, fv!9, nil, fv!10) & x=fv!10 & fv!9=nil)
+dynsl.py:202 - (exists fv!8, fv!7. dll(x, nil, fv!7, fv!8) & fv!8=nil)
+dynsl.py:202 - (exists fv!6, fv!5. dll(x, fv!5, fv!6, nil) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 21:
+dynsl.py:213 - (exists fv!86, fv!183. dll(x, head, fv!86, nil) * dll(head, nil, fv!183, x) & head=fv!183 & head=res & fv!183=res)
+dynsl.py:213 - (exists fv!86. dll(x, head, fv!86, nil) * head:node->node{fv!207, x, nil} & head=res)
+dynsl.py:208 - Postconditions at location 14:
+dynsl.py:213 - (exists fv!229, fv!230. dll(head, nil, fv!229, fv!230) & fv!229=head & fv!229=res & x=fv!230 & x=nil & head=res & fv!230=nil)
+dynsl.py:213 - (exists fv!210, fv!211. dll(head, fv!210, fv!211, x) & x=fv!210 & x=nil & head=fv!211 & head=res & fv!210=nil & fv!211=res)
+dynsl.py:213 - (exists fv!228, fv!227. dll(head, fv!227, fv!228, nil) & x=fv!227 & x=nil & head=fv!228 & head=res & fv!227=nil & fv!228=res)
+dynsl.py:213 - head:node->node{fv!226, x, x} & x=nil & head=res
+dynsl.py:213 - (exists fv!208, fv!209. dll(head, x, fv!208, fv!209) & x=fv!209 & x=nil & head=fv!208 & head=res & fv!208=res & fv!209=nil)
+dynsl.py:213 - head:node->node{fv!245, x, x} & x=nil & head=res
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 4
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 30
+dynsl.py:259 - Number of atomic singleton predicates: 3
+dynsl.py:260 - Number of atomic inductive predicates: 10
+dynsl.py:261 - Number of pure constraints: 35
+dynsl.py:262 - Number of total invs: 11
+dynsl.py:263 - Number of pres:3
+dynsl.py:264 - Number of post:8
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 3.41999197006
+../simple_example_update/dll//insert_front,3,4,11,30,3,10,35,11,3,8,0,3.41

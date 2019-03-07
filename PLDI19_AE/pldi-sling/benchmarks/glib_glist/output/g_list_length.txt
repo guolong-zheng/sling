@@ -1,0 +1,31 @@
+dynsl.py:144 - Inferring pre-conditions at the location 9 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 13 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 17 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 9:
+dynsl.py:202 - (exists fv!8, fv!7. dll(list, nil, fv!7, fv!8) & fv!8=nil)
+dynsl.py:202 - (exists fv!9, fv!10. dll(list, fv!9, nil, fv!10) & fv!9=nil & list=fv!10)
+dynsl.py:202 - (exists fv!6, fv!5. dll(list, fv!5, fv!6, nil) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 17:
+dynsl.py:213 - list=nil
+dynsl.py:220 - Invariants at location 13:
+dynsl.py:227 - (exists fv!83, fv!84. dll(list, fv!83, fv!84, nil) & True)
+dynsl.py:227 - (exists fv!85, fv!86. dll(list, nil, fv!85, fv!86) & True)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 14
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 6
+dynsl.py:259 - Number of atomic singleton predicates: 0
+dynsl.py:260 - Number of atomic inductive predicates: 5
+dynsl.py:261 - Number of pure constraints: 4
+dynsl.py:262 - Number of total invs: 6
+dynsl.py:263 - Number of pres:3
+dynsl.py:264 - Number of post:1
+dynsl.py:265 - Number of loop:2
+dynsl.py:266 - Running time (sec): 4.40874409676
+../simple_example_update/glib_glist//g_list_length,3,14,6,6,0,5,4,6,3,1,2,4.40

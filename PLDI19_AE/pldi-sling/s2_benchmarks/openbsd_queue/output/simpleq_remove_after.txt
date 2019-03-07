@@ -1,0 +1,65 @@
+
+!!!Full processing file "openbsd_queue//simpleq_remove_after.dryad.c"
+Parsing file "openbsd_queue//simpleq_remove_after.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E openbsd_queue//simpleq_remove_after.dryad.c -o openbsd_queue//simpleq_remove_after.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of simpleq_remove_after: :HP_22
+!!! generate unknown predicate for Post synthesis of simpleq_remove_after: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(head,elm))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_23(head,elm))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure simpleq_remove_after$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(head,elm)&
+truerequires emp
+ ensures GP_23(head,elm)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_22(head,elm)&true --> elm::node<next_12_1382,last_12_1383> * 
+HP_1384(next_12_1382,head@NI) * HP_1385(last_12_1383,head@NI) * 
+HP_1386(head,elm@NI)&
+true,
+ // BIND
+(0)HP_1384(elmn_63',head@NI)&
+true --> elmn_63'::node<next_13_1391,last_13_1392> * 
+HP_1393(next_13_1391,head@NI) * HP_1394(last_13_1392,head@NI)&
+true,
+ // BIND
+(1;0)HP_1386(head,elm@NI)&true --> head::node<next_16_1406,last_16_1407> * 
+HP_1408(next_16_1406,elm@NI) * HP_1409(last_16_1407,elm@NI)&
+true]
+
+Procedure simpleq_remove_after$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_22(head_1453,elm_1454) ::= next_12_1427::node<DP_DP_HP_1393,DP_DP_HP_1394> * 
+head_1453::node<DP_DP_HP_1408,DP_DP_HP_1409> * 
+elm_1454::node<next_12_1427,DP_DP_HP_1385>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase next_12_1427::node<DP_DP_HP_1393,DP_DP_HP_1394> * 
+       head::node<DP_DP_HP_1408,DP_DP_HP_1409> * 
+       elm::node<next_12_1427,DP_DP_HP_1385>&{FLOW,(1,29)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   GP_23(head,elm)&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 79 invocations Stop Omega... 21 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.047923,416)
+Total verification time: 0.124 second(s)
+	Time spent in main process: 0.08 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0. second(s)

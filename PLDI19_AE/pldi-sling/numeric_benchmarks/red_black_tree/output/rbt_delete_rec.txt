@@ -1,0 +1,111 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring post-conditions at the location 96 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 18 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 82 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 15 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 15:
+dynsl.py:202 - (exists bh!rbt!2964, cl!rbt!2963. rbt(x, cl!rbt!2963:int, bh!rbt!2964:int) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 96:
+dynsl.py:213 - (exists cl!rbt!225, bh!rbt!226, cl!rbt!1545, bh!rbt!1546. rbt(xl, cl!rbt!225:int, bh!rbt!226:int) * rbt(x, cl!rbt!1545:int, bh!rbt!1546:int) & cl!rbt!225=xr & cl!rbt!225=newr & cl!rbt!225=nil & xl=ret & xl=res & cl!rbt!1545=bh!rbt!1546 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists cl!rbt!705, bh!rbt!706. xl:node->node{fv!103, fv!104, newr, newr} * rbt(x, cl!rbt!705:int, bh!rbt!706:int) & xr=fv!104 & xr=newr & xr=nil & fv!104=newr & fv!104=nil & cl!rbt!705=bh!rbt!706 & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists bh!rbt!146, cl!rbt!145, cl!rbt!985, bh!rbt!986. rbt(xl, cl!rbt!145:int, bh!rbt!146:int) * rbt(x, cl!rbt!985:int, bh!rbt!986:int) & cl!rbt!985=bh!rbt!986 & xl=ret & xl=res & ret=res & cl!rbt!145=xr & cl!rbt!145=newr & cl!rbt!145=nil & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists bh!rbt!66, cl!rbt!65. rbt(xl, cl!rbt!65:int, bh!rbt!66:int) * x:node->node{fv!583, fv!584, newr, newr} & xl=ret & xl=res & newr=xr & newr=cl!rbt!65 & newr=nil & xr=cl!rbt!65 & xr=nil & cl!rbt!65=nil & ret=res)
+dynsl.py:213 - (exists bh!rbt!146, cl!rbt!145. rbt(xl, cl!rbt!145:int, bh!rbt!146:int) * x:node->node{fv!1103, fv!1104, newr, newr} & newr=cl!rbt!145 & newr=xr & newr=nil & xl=ret & xl=res & cl!rbt!145=xr & cl!rbt!145=nil & xr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!25, bh!rbt!26, bh!rbt!306, cl!rbt!305. rbt(xl, cl!rbt!25:int, bh!rbt!26:int) * rbt(x, cl!rbt!305:int, bh!rbt!306:int) & xl=ret & xl=res & cl!rbt!25=xr & cl!rbt!25=newr & cl!rbt!25=nil & cl!rbt!305=bh!rbt!306 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists cl!rbt!185, bh!rbt!186. rbt(xl, cl!rbt!185:int, bh!rbt!186:int) * x:node->node{fv!1343, fv!1344, newr, newr} & xl=ret & xl=res & newr=cl!rbt!185 & newr=xr & newr=nil & cl!rbt!185=xr & cl!rbt!185=nil & xr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!185, bh!rbt!186. rbt(xl, cl!rbt!185:int, bh!rbt!186:int) * x:node->node{fv!1303, fv!1304, newr, newr} & xr=newr & xr=cl!rbt!185 & xr=nil & xl=ret & xl=res & newr=cl!rbt!185 & newr=nil & cl!rbt!185=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!105, bh!rbt!106, cl!rbt!825, bh!rbt!826. rbt(xl, cl!rbt!105:int, bh!rbt!106:int) * rbt(x, cl!rbt!825:int, bh!rbt!826:int) & cl!rbt!105=xr & cl!rbt!105=newr & cl!rbt!105=nil & xl=ret & xl=res & cl!rbt!825=bh!rbt!826 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists bh!rbt!66, cl!rbt!65, cl!rbt!545, bh!rbt!546. rbt(xl, cl!rbt!65:int, bh!rbt!66:int) * rbt(x, cl!rbt!545:int, bh!rbt!546:int) & xl=ret & xl=res & bh!rbt!546=cl!rbt!545 & ret=res & xr=newr & xr=cl!rbt!65 & xr=nil & newr=cl!rbt!65 & newr=nil & cl!rbt!65=nil)
+dynsl.py:213 - (exists cl!rbt!1425, bh!rbt!1426. xl:node->node{fv!223, fv!224, newr, newr} * rbt(x, cl!rbt!1425:int, bh!rbt!1426:int) & xr=fv!224 & xr=newr & xr=nil & fv!224=newr & fv!224=nil & xl=ret & xl=res & newr=nil & cl!rbt!1425=bh!rbt!1426 & ret=res)
+dynsl.py:213 - (exists cl!rbt!105, bh!rbt!106. rbt(xl, cl!rbt!105:int, bh!rbt!106:int) * x:node->node{fv!823, fv!824, newr, newr} & xr=cl!rbt!105 & xr=newr & xr=nil & cl!rbt!105=newr & cl!rbt!105=nil & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists bh!rbt!1346, cl!rbt!1345. xl:node->node{fv!223, fv!224, newr, newr} * rbt(x, cl!rbt!1345:int, bh!rbt!1346:int) & xr=fv!224 & xr=newr & xr=nil & fv!224=newr & fv!224=nil & xl=ret & xl=res & newr=nil & bh!rbt!1346=cl!rbt!1345 & ret=res)
+dynsl.py:213 - (exists bh!rbt!66, cl!rbt!65. rbt(xl, cl!rbt!65:int, bh!rbt!66:int) * x:node->node{fv!543, fv!544, newr, newr} & xr=newr & xr=cl!rbt!65 & xr=nil & xl=ret & xl=res & newr=cl!rbt!65 & newr=nil & cl!rbt!65=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!225, bh!rbt!226, cl!rbt!1465, bh!rbt!1466. rbt(xl, cl!rbt!225:int, bh!rbt!226:int) * rbt(x, cl!rbt!1465:int, bh!rbt!1466:int) & cl!rbt!225=xr & cl!rbt!225=newr & cl!rbt!225=nil & xl=ret & xl=res & cl!rbt!1465=bh!rbt!1466 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - xl:node->node{fv!103, fv!104, newr, newr} * x:node->node{fv!703, fv!704, newr, newr} & fv!104=xr & fv!104=newr & fv!104=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - xl:node->node{fv!183, fv!184, newr, newr} * x:node->node{fv!1143, fv!1144, newr, newr} & xl=ret & xl=res & ret=res & xr=newr & xr=fv!184 & xr=nil & newr=fv!184 & newr=nil & fv!184=nil
+dynsl.py:213 - (exists bh!rbt!1626, cl!rbt!1625. xl:node->node{fv!263, fv!264, newr, newr} * rbt(x, cl!rbt!1625:int, bh!rbt!1626:int) & xr=newr & xr=fv!264 & xr=nil & cl!rbt!1625=bh!rbt!1626 & xl=ret & xl=res & newr=fv!264 & newr=nil & fv!264=nil & ret=res)
+dynsl.py:213 - xl:node->node{fv!63, fv!64, newr, newr} * x:node->node{fv!423, fv!424, newr, newr} & fv!64=xr & fv!64=newr & fv!64=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists bh!rbt!146, cl!rbt!145. rbt(xl, cl!rbt!145:int, bh!rbt!146:int) * x:node->node{fv!1023, fv!1024, newr, newr} & newr=cl!rbt!145 & newr=xr & newr=nil & xl=ret & xl=res & cl!rbt!145=xr & cl!rbt!145=nil & xr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!1185, bh!rbt!1186. xl:node->node{fv!183, fv!184, newr, newr} * rbt(x, cl!rbt!1185:int, bh!rbt!1186:int) & xr=newr & xr=fv!184 & xr=nil & cl!rbt!1185=bh!rbt!1186 & xl=ret & xl=res & newr=fv!184 & newr=nil & fv!184=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!1145, bh!rbt!1146. xl:node->node{fv!183, fv!184, newr, newr} * rbt(x, cl!rbt!1145:int, bh!rbt!1146:int) & xr=newr & xr=fv!184 & xr=nil & xl=ret & xl=res & bh!rbt!1146=cl!rbt!1145 & newr=fv!184 & newr=nil & fv!184=nil & ret=res)
+dynsl.py:213 - (exists bh!rbt!66, cl!rbt!65. rbt(xl, cl!rbt!65:int, bh!rbt!66:int) * x:node->node{fv!623, fv!624, newr, newr} & xl=ret & xl=res & newr=xr & newr=cl!rbt!65 & newr=nil & xr=cl!rbt!65 & xr=nil & cl!rbt!65=nil & ret=res)
+dynsl.py:213 - xl:node->node{fv!223, fv!224, newr, newr} * x:node->node{fv!1383, fv!1384, newr, newr} & xl=ret & xl=res & ret=res & xr=fv!224 & xr=newr & xr=nil & fv!224=newr & fv!224=nil & newr=nil
+dynsl.py:213 - xl:node->node{fv!143, fv!144, newr, newr} * x:node->node{fv!983, fv!984, newr, newr} & xl=ret & xl=res & ret=res & fv!144=xr & fv!144=newr & fv!144=nil & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists cl!rbt!105, bh!rbt!106, cl!rbt!785, bh!rbt!786. rbt(xl, cl!rbt!105:int, bh!rbt!106:int) * rbt(x, cl!rbt!785:int, bh!rbt!786:int) & cl!rbt!105=xr & cl!rbt!105=newr & cl!rbt!105=nil & xl=ret & xl=res & bh!rbt!786=cl!rbt!785 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - xl:node->node{fv!183, fv!184, newr, newr} * x:node->node{fv!1183, fv!1184, newr, newr} & xl=ret & xl=res & ret=res & xr=newr & xr=fv!184 & xr=nil & newr=fv!184 & newr=nil & fv!184=nil
+dynsl.py:213 - xl:node->node{fv!103, fv!104, newr, newr} * x:node->node{fv!663, fv!664, newr, newr} & fv!104=xr & fv!104=newr & fv!104=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists bh!rbt!146, cl!rbt!145. rbt(xl, cl!rbt!145:int, bh!rbt!146:int) * x:node->node{fv!1063, fv!1064, newr, newr} & xr=newr & xr=cl!rbt!145 & xr=nil & xl=ret & xl=res & newr=cl!rbt!145 & newr=nil & ret=res & cl!rbt!145=nil)
+dynsl.py:213 - (exists bh!rbt!426, cl!rbt!425. xl:node->node{fv!63, fv!64, newr, newr} * rbt(x, cl!rbt!425:int, bh!rbt!426:int) & xr=fv!64 & xr=newr & xr=nil & fv!64=newr & fv!64=nil & cl!rbt!425=bh!rbt!426 & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!185, bh!rbt!186. rbt(xl, cl!rbt!185:int, bh!rbt!186:int) * x:node->node{fv!1263, fv!1264, newr, newr} & xl=ret & xl=res & newr=cl!rbt!185 & newr=xr & newr=nil & cl!rbt!185=xr & cl!rbt!185=nil & xr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!25, bh!rbt!26. rbt(xl, cl!rbt!25:int, bh!rbt!26:int) * x:node->node{fv!343, fv!344, newr, newr} & xr=cl!rbt!25 & xr=newr & xr=nil & xl=ret & xl=res & cl!rbt!25=newr & cl!rbt!25=nil & newr=nil & ret=res)
+dynsl.py:213 - xl:node->node{fv!223, fv!224, newr, newr} * x:node->node{fv!1463, fv!1464, newr, newr} & xl=ret & xl=res & ret=res & xr=fv!224 & xr=newr & xr=nil & fv!224=newr & fv!224=nil & newr=nil
+dynsl.py:213 - (exists cl!rbt!465, bh!rbt!466. xl:node->node{fv!63, fv!64, newr, newr} * rbt(x, cl!rbt!465:int, bh!rbt!466:int) & xr=fv!64 & xr=newr & xr=nil & fv!64=newr & fv!64=nil & xl=ret & xl=res & newr=nil & cl!rbt!465=bh!rbt!466 & ret=res)
+dynsl.py:213 - xl:node->node{fv!143, fv!144, newr, newr} * x:node->node{fv!943, fv!944, newr, newr} & xl=ret & xl=res & ret=res & fv!144=newr & fv!144=xr & fv!144=nil & newr=xr & newr=nil & xr=nil
+dynsl.py:213 - xl:node->node{fv!143, fv!144, newr, newr} * x:node->node{fv!903, fv!904, newr, newr} & xl=ret & xl=res & ret=res & fv!144=xr & fv!144=newr & fv!144=nil & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists cl!rbt!185, bh!rbt!186, bh!rbt!1266, cl!rbt!1265. rbt(xl, cl!rbt!185:int, bh!rbt!186:int) * rbt(x, cl!rbt!1265:int, bh!rbt!1266:int) & bh!rbt!1266=cl!rbt!1265 & xl=ret & xl=res & cl!rbt!185=xr & cl!rbt!185=newr & cl!rbt!185=nil & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists cl!rbt!225, bh!rbt!226. rbt(xl, cl!rbt!225:int, bh!rbt!226:int) * x:node->node{fv!1543, fv!1544, newr, newr} & xr=cl!rbt!225 & xr=newr & xr=nil & cl!rbt!225=newr & cl!rbt!225=nil & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!105, bh!rbt!106. rbt(xl, cl!rbt!105:int, bh!rbt!106:int) * x:node->node{fv!783, fv!784, newr, newr} & xr=cl!rbt!105 & xr=newr & xr=nil & cl!rbt!105=newr & cl!rbt!105=nil & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!1385, bh!rbt!1386. xl:node->node{fv!223, fv!224, newr, newr} * rbt(x, cl!rbt!1385:int, bh!rbt!1386:int) & xr=fv!224 & xr=newr & xr=nil & fv!224=newr & fv!224=nil & xl=ret & xl=res & cl!rbt!1385=bh!rbt!1386 & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!905, bh!rbt!906. xl:node->node{fv!143, fv!144, newr, newr} * rbt(x, cl!rbt!905:int, bh!rbt!906:int) & fv!144=xr & fv!144=newr & fv!144=nil & xr=newr & xr=nil & xl=ret & xl=res & newr=nil & cl!rbt!905=bh!rbt!906 & ret=res)
+dynsl.py:213 - xl:node->node{fv!183, fv!184, newr, newr} * x:node->node{fv!1223, fv!1224, newr, newr} & xl=ret & xl=res & ret=res & xr=newr & xr=fv!184 & xr=nil & newr=fv!184 & newr=nil & fv!184=nil
+dynsl.py:213 - (exists cl!rbt!625, bh!rbt!626. xl:node->node{fv!103, fv!104, newr, newr} * rbt(x, cl!rbt!625:int, bh!rbt!626:int) & xr=fv!104 & xr=newr & xr=nil & fv!104=newr & fv!104=nil & bh!rbt!626=cl!rbt!625 & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!105, bh!rbt!106. rbt(xl, cl!rbt!105:int, bh!rbt!106:int) * x:node->node{fv!863, fv!864, newr, newr} & xr=newr & xr=cl!rbt!105 & xr=nil & xl=ret & xl=res & newr=cl!rbt!105 & newr=nil & cl!rbt!105=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!105, bh!rbt!106, bh!rbt!746, cl!rbt!745. rbt(xl, cl!rbt!105:int, bh!rbt!106:int) * rbt(x, cl!rbt!745:int, bh!rbt!746:int) & cl!rbt!745=bh!rbt!746 & cl!rbt!105=xr & cl!rbt!105=newr & cl!rbt!105=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - xl:node->node{fv!63, fv!64, newr, newr} * x:node->node{fv!463, fv!464, newr, newr} & fv!64=xr & fv!64=newr & fv!64=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists bh!rbt!146, cl!rbt!145, cl!rbt!1025, bh!rbt!1026. rbt(xl, cl!rbt!145:int, bh!rbt!146:int) * rbt(x, cl!rbt!1025:int, bh!rbt!1026:int) & xl=ret & xl=res & ret=res & cl!rbt!145=xr & cl!rbt!145=newr & cl!rbt!145=nil & xr=newr & xr=nil & cl!rbt!1025=bh!rbt!1026 & newr=nil)
+dynsl.py:213 - xl:node->node{fv!223, fv!224, newr, newr} * x:node->node{fv!1423, fv!1424, newr, newr} & xl=ret & xl=res & ret=res & xr=fv!224 & xr=newr & xr=nil & fv!224=newr & fv!224=nil & newr=nil
+dynsl.py:213 - (exists bh!rbt!866, cl!rbt!865. xl:node->node{fv!143, fv!144, newr, newr} * rbt(x, cl!rbt!865:int, bh!rbt!866:int) & fv!144=xr & fv!144=newr & fv!144=nil & xr=newr & xr=nil & cl!rbt!865=bh!rbt!866 & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!1585, bh!rbt!1586. xl:node->node{fv!263, fv!264, newr, newr} * rbt(x, cl!rbt!1585:int, bh!rbt!1586:int) & xr=newr & xr=fv!264 & xr=nil & bh!rbt!1586=cl!rbt!1585 & xl=ret & xl=res & newr=fv!264 & newr=nil & fv!264=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!665, bh!rbt!666. xl:node->node{fv!103, fv!104, newr, newr} * rbt(x, cl!rbt!665:int, bh!rbt!666:int) & xr=fv!104 & xr=newr & xr=nil & fv!104=newr & fv!104=nil & xl=ret & xl=res & newr=nil & cl!rbt!665=bh!rbt!666 & ret=res)
+dynsl.py:213 - (exists cl!rbt!185, bh!rbt!186, bh!rbt!1226, cl!rbt!1225. rbt(xl, cl!rbt!185:int, bh!rbt!186:int) * rbt(x, cl!rbt!1225:int, bh!rbt!1226:int) & xl=ret & xl=res & cl!rbt!185=xr & cl!rbt!185=newr & cl!rbt!185=nil & bh!rbt!1226=cl!rbt!1225 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists cl!rbt!25, bh!rbt!26, cl!rbt!265, bh!rbt!266. rbt(xl, cl!rbt!25:int, bh!rbt!26:int) * rbt(x, cl!rbt!265:int, bh!rbt!266:int) & bh!rbt!266=cl!rbt!265 & xl=ret & xl=res & cl!rbt!25=xr & cl!rbt!25=newr & cl!rbt!25=nil & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - xl:node->node{fv!263, fv!264, newr, newr} * x:node->node{fv!1703, fv!1704, newr, newr} & xl=ret & xl=res & fv!264=xr & fv!264=newr & fv!264=nil & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists bh!rbt!146, cl!rbt!145, cl!rbt!1065, bh!rbt!1066. rbt(xl, cl!rbt!145:int, bh!rbt!146:int) * rbt(x, cl!rbt!1065:int, bh!rbt!1066:int) & cl!rbt!1065=bh!rbt!1066 & xl=ret & xl=res & ret=res & cl!rbt!145=xr & cl!rbt!145=newr & cl!rbt!145=nil & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists bh!rbt!66, cl!rbt!65, bh!rbt!506, cl!rbt!505. rbt(xl, cl!rbt!65:int, bh!rbt!66:int) * rbt(x, cl!rbt!505:int, bh!rbt!506:int) & xl=ret & xl=res & cl!rbt!505=bh!rbt!506 & ret=res & xr=newr & xr=cl!rbt!65 & xr=nil & newr=cl!rbt!65 & newr=nil & cl!rbt!65=nil)
+dynsl.py:213 - (exists bh!rbt!946, cl!rbt!945. xl:node->node{fv!143, fv!144, newr, newr} * rbt(x, cl!rbt!945:int, bh!rbt!946:int) & fv!144=xr & fv!144=newr & fv!144=nil & xr=newr & xr=nil & cl!rbt!945=bh!rbt!946 & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - xl:node->node{fv!263, fv!264, newr, newr} * x:node->node{fv!1663, fv!1664, newr, newr} & xl=ret & xl=res & fv!264=xr & fv!264=newr & fv!264=nil & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists cl!rbt!225, bh!rbt!226, cl!rbt!1505, bh!rbt!1506. rbt(xl, cl!rbt!225:int, bh!rbt!226:int) * rbt(x, cl!rbt!1505:int, bh!rbt!1506:int) & cl!rbt!225=xr & cl!rbt!225=newr & cl!rbt!225=nil & xl=ret & xl=res & bh!rbt!1506=cl!rbt!1505 & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - xl:node->node{fv!103, fv!104, newr, newr} * x:node->node{fv!743, fv!744, newr, newr} & fv!104=xr & fv!104=newr & fv!104=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists bh!rbt!386, cl!rbt!385. xl:node->node{fv!63, fv!64, newr, newr} * rbt(x, cl!rbt!385:int, bh!rbt!386:int) & xr=fv!64 & xr=newr & xr=nil & fv!64=newr & fv!64=nil & xl=ret & xl=res & cl!rbt!385=bh!rbt!386 & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!25, bh!rbt!26. rbt(xl, cl!rbt!25:int, bh!rbt!26:int) * x:node->node{fv!383, fv!384, newr, newr} & xr=cl!rbt!25 & xr=newr & xr=nil & cl!rbt!25=newr & cl!rbt!25=nil & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!25, bh!rbt!26. rbt(xl, cl!rbt!25:int, bh!rbt!26:int) * x:node->node{fv!303, fv!304, newr, newr} & xl=ret & xl=res & cl!rbt!25=newr & cl!rbt!25=xr & cl!rbt!25=nil & newr=xr & newr=nil & xr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!225, bh!rbt!226. rbt(xl, cl!rbt!225:int, bh!rbt!226:int) * x:node->node{fv!1503, fv!1504, newr, newr} & xr=cl!rbt!225 & xr=newr & xr=nil & cl!rbt!225=newr & cl!rbt!225=nil & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - xl:node->node{fv!263, fv!264, newr, newr} * x:node->node{fv!1623, fv!1624, newr, newr} & xl=ret & xl=res & fv!264=xr & fv!264=newr & fv!264=nil & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists cl!rbt!25, bh!rbt!26, cl!rbt!345, bh!rbt!346. rbt(xl, cl!rbt!25:int, bh!rbt!26:int) * rbt(x, cl!rbt!345:int, bh!rbt!346:int) & bh!rbt!346=cl!rbt!345 & xl=ret & xl=res & cl!rbt!25=xr & cl!rbt!25=newr & cl!rbt!25=nil & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:213 - (exists bh!rbt!66, cl!rbt!65, bh!rbt!586, cl!rbt!585. rbt(xl, cl!rbt!65:int, bh!rbt!66:int) * rbt(x, cl!rbt!585:int, bh!rbt!586:int) & xl=ret & xl=res & ret=res & xr=newr & xr=cl!rbt!65 & xr=nil & bh!rbt!586=cl!rbt!585 & newr=cl!rbt!65 & newr=nil & cl!rbt!65=nil)
+dynsl.py:213 - (exists cl!rbt!225, bh!rbt!226. rbt(xl, cl!rbt!225:int, bh!rbt!226:int) * x:node->node{fv!1583, fv!1584, newr, newr} & xr=cl!rbt!225 & xr=newr & xr=nil & cl!rbt!225=newr & cl!rbt!225=nil & xl=ret & xl=res & newr=nil & ret=res)
+dynsl.py:213 - (exists cl!rbt!1105, bh!rbt!1106. xl:node->node{fv!183, fv!184, newr, newr} * rbt(x, cl!rbt!1105:int, bh!rbt!1106:int) & xr=newr & xr=fv!184 & xr=nil & cl!rbt!1105=bh!rbt!1106 & xl=ret & xl=res & newr=fv!184 & newr=nil & fv!184=nil & ret=res)
+dynsl.py:213 - (exists bh!rbt!1666, cl!rbt!1665. xl:node->node{fv!263, fv!264, newr, newr} * rbt(x, cl!rbt!1665:int, bh!rbt!1666:int) & cl!rbt!1665=bh!rbt!1666 & xr=newr & xr=fv!264 & xr=nil & xl=ret & xl=res & newr=fv!264 & newr=nil & fv!264=nil & ret=res)
+dynsl.py:213 - xl:node->node{fv!63, fv!64, newr, newr} * x:node->node{fv!503, fv!504, newr, newr} & fv!64=xr & fv!64=newr & fv!64=nil & xl=ret & xl=res & ret=res & xr=newr & xr=nil & newr=nil
+dynsl.py:213 - (exists cl!rbt!185, bh!rbt!186, cl!rbt!1305, bh!rbt!1306. rbt(xl, cl!rbt!185:int, bh!rbt!186:int) * rbt(x, cl!rbt!1305:int, bh!rbt!1306:int) & cl!rbt!1305=bh!rbt!1306 & xl=ret & xl=res & cl!rbt!185=xr & cl!rbt!185=newr & cl!rbt!185=nil & ret=res & xr=newr & xr=nil & newr=nil)
+dynsl.py:208 - Postconditions at location 18:
+dynsl.py:213 - x=nil & x=res & nil=res
+dynsl.py:208 - Postconditions at location 82:
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, cl!rbt!1987, bh!rbt!1988. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1901, fv!1902, xl, xr} * rbt(newl, cl!rbt!1987:int, bh!rbt!1988:int) & xl=newl & ret=x & ret=res & cl!rbt!1987=fv!1902 & cl!rbt!1987=nil & fv!1902=nil & x=res)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, cl!rbt!2109, bh!rbt!2110. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1901, fv!1902, xl, xr} * rbt(newl, cl!rbt!2109:int, bh!rbt!2110:int) & xl=newl & ret=x & ret=res & fv!1902=cl!rbt!2109 & fv!1902=nil & x=res & cl!rbt!2109=nil)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, bh!rbt!2720, cl!rbt!2719. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1985, fv!1986, xl, xr} * rbt(newl, cl!rbt!2719:int, bh!rbt!2720:int) & xl=newl & fv!1986=cl!rbt!2719 & fv!1986=nil & ret=x & ret=res & cl!rbt!2719=nil & x=res)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, bh!rbt!2354, cl!rbt!2353. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1929, fv!1930, xl, xr} * rbt(newl, cl!rbt!2353:int, bh!rbt!2354:int) & xl=newl & ret=x & ret=res & fv!1930=cl!rbt!2353 & fv!1930=nil & cl!rbt!2353=nil & x=res)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, cl!rbt!2841, bh!rbt!2842. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1985, fv!1986, xl, xr} * rbt(newl, cl!rbt!2841:int, bh!rbt!2842:int) & xl=newl & fv!1986=cl!rbt!2841 & fv!1986=nil & ret=x & ret=res & x=res & cl!rbt!2841=nil)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, cl!rbt!2231, bh!rbt!2232. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1929, fv!1930, xl, xr} * rbt(newl, cl!rbt!2231:int, bh!rbt!2232:int) & xl=newl & ret=x & ret=res & cl!rbt!2231=fv!1930 & cl!rbt!2231=nil & fv!1930=nil & x=res)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, bh!rbt!2598, cl!rbt!2597. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1957, fv!1958, xl, xr} * rbt(newl, cl!rbt!2597:int, bh!rbt!2598:int) & xl=newl & ret=x & ret=res & cl!rbt!2597=fv!1958 & cl!rbt!2597=nil & fv!1958=nil & x=res)
+dynsl.py:213 - (exists bh!rbt!1706, cl!rbt!1705, cl!rbt!2475, bh!rbt!2476. rbt(xr, cl!rbt!1705:int, bh!rbt!1706:int) * x:node->node{fv!1957, fv!1958, xl, xr} * rbt(newl, cl!rbt!2475:int, bh!rbt!2476:int) & xl=newl & cl!rbt!2475=fv!1958 & cl!rbt!2475=nil & ret=x & ret=res & fv!1958=nil & x=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 8
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 643
+dynsl.py:259 - Number of atomic singleton predicates: 80
+dynsl.py:260 - Number of atomic inductive predicates: 89
+dynsl.py:261 - Number of pure constraints: 743
+dynsl.py:262 - Number of total invs: 82
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:81
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 48.5177400112
+../example_numric/red_black_tree/rbt_delete_rec,4,8,82,643,80,89,743,82,1,81,0,48.5

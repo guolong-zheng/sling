@@ -1,0 +1,184 @@
+
+!!!Full processing file "binomial-heap//binomial-heap-merge-rec.dryad.c"
+Parsing file "binomial-heap//binomial-heap-merge-rec.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E binomial-heap//binomial-heap-merge-rec.dryad.c -o binomial-heap//binomial-heap-merge-rec.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of binomial_heap_merge_rec: :HP_24
+!!! generate unknown predicate for Post synthesis of binomial_heap_merge_rec: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(x,y))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_25(x,y,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure binomial_heap_merge_rec$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1719,HP_1720,GP_25]requires HP_1719(x) * HP_1720(y)&
+truerequires emp
+ ensures GP_25(x,y,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;2;0)HP_24(x,y)&y!=null & 
+x!=null --> x::node<key_19_1731,order_19_1732,children_19_1733,sibling_19_1734> * 
+HP_1735(children_19_1733,y@NI) * HP_1736(sibling_19_1734,y@NI) * 
+HP_1737(y,x@NI)&
+true,
+ // BIND
+(2;2;0)HP_1737(y',x@NI)&
+y'!=null --> y'::node<key_19_1742,order_19_1743,children_19_1744,sibling_19_1745> * 
+HP_1746(children_19_1744,x@NI) * HP_1747(sibling_19_1745,x@NI)&
+true,
+ // PRE_REC
+(1;2;2;0)HP_1736(sibling_19_1734,y'@NI) * HP_1747(sibling_19_1745,x@NI)&
+true --> HP_24(sibling_19_1734,sibling_19_1745)&
+true,
+ // PRE_REC
+(1;2;2;2;0)HP_1736(sibling_19_1734,y'@NI) * HP_1746(children_19_1744,x@NI) * 
+HP_1747(sibling_19_1745,x@NI) * 
+y'::node<key_19_1742,order_19_1743,children_19_1744,sibling_19_1745>&
+true --> HP_24(sibling_19_1734,y')&
+true,
+ // BIND
+(1;2;2;2;0)GP_25(sibling_19_1734,y',tmp___75')&
+y'!=null --> y'::node<key_45_1856,order_45_1857,children_45_1858,sibling_45_1859> * 
+GP_1860(children_45_1858,sibling_19_1734@NI,tmp___75'@NI) * 
+GP_1861(sibling_45_1859,sibling_19_1734@NI,tmp___75'@NI) * 
+GP_1862(sibling_19_1734,tmp___75',y'@NI)&
+true,
+ // BIND
+(1;2;2;2;0)GP_1862(sibling_19_1734,z___74',y'@NI)&
+true --> z___74'::node<key_46_1867,order_46_1868,children_46_1869,sibling_46_1870> * 
+GP_1871(children_46_1869,sibling_19_1734@NI,y'@NI) * 
+GP_1872(sibling_46_1870,sibling_19_1734@NI,y'@NI) * 
+GP_1873(sibling_19_1734,z___74'@NI,y'@NI)&
+true,
+ // PRE_REC
+(2;2;2;2;0)HP_1735(children_19_1733,y'@NI) * 
+HP_1736(sibling_19_1734,y'@NI) * 
+x::node<key_19_1731,order_19_1732,children_19_1733,sibling_19_1734> * 
+HP_1747(sibling_19_1745,x@NI)&true --> HP_24(sibling_19_1745,x)&
+true,
+ // BIND
+(2;2;2;2;0)GP_25(sibling_19_1745,x',tmp___86')&
+x'!=null --> x'::node<key_72_2009,order_72_2010,children_72_2011,sibling_72_2012> * 
+GP_2013(children_72_2011,sibling_19_1745@NI,tmp___86'@NI) * 
+GP_2014(sibling_72_2012,sibling_19_1745@NI,tmp___86'@NI) * 
+GP_2015(sibling_19_1745,tmp___86',x'@NI)&
+true,
+ // BIND
+(2;2;2;2;0)GP_2015(sibling_19_1745,tmp___86',x'@NI)&
+true --> tmp___86'::node<key_74_2024,order_74_2025,children_74_2026,sibling_74_2027> * 
+GP_2028(children_74_2026,sibling_19_1745@NI,x'@NI) * 
+GP_2029(sibling_74_2027,sibling_19_1745@NI,x'@NI) * 
+GP_2030(sibling_19_1745,tmp___86'@NI,x'@NI)&
+true,
+ // POST
+(1;0)HP_24(x,res)&x=null & y=res --> GP_25(x,y,res)&
+true,
+ // POST
+(1;2;0)HP_24(res,y)&y=null & res!=null & x=res --> GP_25(x,y,res)&
+true,
+ // POST
+(1;1;2;2;0)HP_1735(children_19_1733,y@NI) * 
+HP_1746(children_19_1744,res@NI) * 
+GP_25(sibling_29_1795,sibling_19_1745,z_2155) * 
+y::node<key_19_1742,order_30_1804,children_19_1744,children_19_1733> * 
+res::node<key_19_1731,v_int_30_2154,y,z_2155>&x=res --> GP_25(x,y,res)&
+true,
+ // POST
+(1;1;1;2;2;2;0)HP_1735(children_19_1733,y@NI) * 
+GP_1860(children_45_1858,sibling_19_1734@NI,res@NI) * 
+GP_1861(sibling_45_1859,sibling_19_1734@NI,res@NI) * 
+y::node<key_45_1856,order_45_1857,children_45_1858,sibling_45_1859> * 
+GP_1871(children_46_1869,sibling_19_1734@NI,y@NI) * 
+GP_1872(sibling_46_1870,sibling_19_1734@NI,y@NI) * 
+x::node<key_19_1731,order_46_1868,children_19_1733,children_46_1869> * 
+res::node<key_46_1867,v_int_54_2156,x,sibling_46_1870>&
+true --> GP_25(x,y,res)&
+true,
+ // POST
+(1;1;2;1;1;2;2;2;0)HP_1735(children_19_1733,y@NI) * 
+GP_1860(children_45_1858,sibling_19_1734@NI,tmp___2158@NI) * 
+GP_1861(sibling_45_1859,sibling_19_1734@NI,tmp___2158@NI) * 
+y::node<key_45_1856,order_45_1857,children_45_1858,sibling_45_1859> * 
+GP_1871(children_46_1869,sibling_19_1734@NI,y@NI) * 
+GP_1872(sibling_46_1870,sibling_19_1734@NI,y@NI) * 
+tmp___2158::node<key_46_1867,order_46_1868,children_46_1869,children_19_1733> * 
+res::node<key_19_1731,v_int_62_2157,tmp___2158,sibling_46_1870>&
+x=res --> GP_25(x,y,res)&
+true,
+ // POST
+(1;1;2;2;2;2;0)HP_1746(children_19_1744,x@NI) * 
+GP_2013(children_72_2011,sibling_19_1745@NI,res@NI) * 
+GP_2014(sibling_72_2012,sibling_19_1745@NI,res@NI) * 
+x::node<key_72_2009,order_72_2010,children_72_2011,sibling_72_2012> * 
+GP_2028(children_74_2026,sibling_19_1745@NI,x@NI) * 
+GP_2029(sibling_74_2027,sibling_19_1745@NI,x@NI) * 
+y::node<key_19_1742,order_74_2025,children_19_1744,children_74_2026> * 
+res::node<key_74_2024,v_int_82_2160,y,sibling_74_2027>&
+true --> GP_25(x,y,res)&
+true,
+ // POST
+(1;1;2;1;2;2;2;2;0)HP_1746(children_19_1744,res@NI) * 
+GP_2013(children_72_2011,sibling_19_1745@NI,tmp___2162@NI) * 
+GP_2014(sibling_72_2012,sibling_19_1745@NI,tmp___2162@NI) * 
+res::node<key_72_2009,order_72_2010,children_72_2011,sibling_72_2012> * 
+GP_2028(children_74_2026,sibling_19_1745@NI,res@NI) * 
+GP_2029(sibling_74_2027,sibling_19_1745@NI,res@NI) * 
+tmp___2162::node<key_74_2024,order_74_2025,children_74_2026,children_19_1744> * 
+y::node<key_19_1742,v_int_90_2161,tmp___2162,sibling_74_2027>&
+x=res --> GP_25(x,y,res)&
+true,
+ // POST
+(1;1;2;1;2;2;2;2;0)GP_2030(sibling_86_2088,tmp___2162@NI,x'@NI)&
+res=x' --> emp&
+true,
+ // POST
+(2;2;2;2;2;2;0)HP_1746(children_19_1744,x@NI) * 
+GP_2013(children_72_2011,sibling_19_1745@NI,tmp___2163@NI) * 
+GP_2014(sibling_72_2012,sibling_19_1745@NI,tmp___2163@NI) * 
+x::node<key_72_2009,order_72_2010,children_72_2011,sibling_72_2012> * 
+GP_2028(children_74_2026,sibling_19_1745@NI,x@NI) * 
+GP_2029(sibling_74_2027,sibling_19_1745@NI,x@NI) * 
+tmp___2163::node<key_74_2024,order_74_2025,children_74_2026,sibling_74_2027> * 
+res::node<key_19_1742,order_19_1743,children_19_1744,tmp___2163>&
+y=res --> GP_25(x,y,res)&
+true]
+
+Procedure binomial_heap_merge_rec$node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at binomial-heap//binomial-heap-merge-rec.dryad.c_43:21_43:51
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1719,HP_1720,GP_25]
+   EBase HP_1719(x) * HP_1720(y)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume 
+                     GP_25(x,y,res)&{FLOW,(4,5)=__norm#E}[]
+                     Stop z3... 319 invocations Stop Omega... 164 invocations 
+42 false contexts at: ( (91,12)  (90,23)  (90,30)  (90,12)  (89,12)  (88,12)  (87,29)  (87,19)  (86,12)  (85,28)  (85,19)  (84,44)  (84,15)  (94,12)  (93,12)  (92,15)  (63,12)  (62,23)  (62,30)  (62,12)  (61,12)  (60,12)  (59,29)  (59,19)  (58,12)  (57,28)  (57,19)  (56,44)  (56,15)  (66,12)  (65,12)  (64,15)  (38,12)  (37,23)  (37,30)  (37,12)  (36,12)  (35,12)  (34,12)  (33,29)  (33,19)  (32,15) )
+
+!!! log(small):(0.572243,2885)
+Total verification time: 0.752 second(s)
+	Time spent in main process: 0.428 second(s)
+	Time spent in child processes: 0.324 second(s)
+	Z3 Prover Time: 0.032 second(s)

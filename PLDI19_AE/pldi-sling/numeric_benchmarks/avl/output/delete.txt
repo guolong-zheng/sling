@@ -1,0 +1,38 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring post-conditions at the location 57 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 52 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 21 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 21:
+dynsl.py:202 - (exists h!avl!4996. avl(x, h!avl!4996:int) & True)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 57:
+dynsl.py:213 - (exists h!avl!394, h!avl!599. x:a_node->a_node{left, right, fv!146, fv!147} * avl(right, h!avl!394:int) * avl(left, h!avl!599:int) & fv!147=h!avl!394 & right=new_right & x=res)
+dynsl.py:213 - (exists h!avl!852, h!avl!1057. x:a_node->a_node{left, right, fv!269, fv!270} * avl(right, h!avl!852:int) * avl(left, h!avl!1057:int) & h!avl!852=fv!270 & right=new_right & x=res)
+dynsl.py:213 - (exists h!avl!1310, h!avl!1515. x:a_node->a_node{left, right, fv!392, fv!393} * avl(right, h!avl!1310:int) * avl(left, h!avl!1515:int) & right=new_right & x=res & fv!393=h!avl!1310)
+dynsl.py:208 - Postconditions at location 52:
+dynsl.py:213 - (exists h!avl!3421, h!avl!3650. x:a_node->a_node{new_left, right, fv!1844, fv!1845} * avl(right, h!avl!3421:int) * avl(new_left, h!avl!3650:int) & new_left=left & x=res & h!avl!3650=fv!1845)
+dynsl.py:213 - (exists h!avl!1846, h!avl!2748. x:a_node->a_node{new_left, right, fv!1805, fv!1806} * avl(right, h!avl!1846:int) * avl(new_left, h!avl!2748:int) & h!avl!2748=fv!1806 & new_left=left & x=res)
+dynsl.py:213 - (exists h!avl!1846, h!avl!2075. x:a_node->a_node{new_left, right, fv!1805, fv!1806} * avl(right, h!avl!1846:int) * avl(new_left, h!avl!2075:int) & h!avl!2075=fv!1806 & new_left=left & x=res)
+dynsl.py:213 - (exists h!avl!3421, h!avl!4323. x:a_node->a_node{new_left, right, fv!1844, fv!1845} * avl(right, h!avl!3421:int) * avl(new_left, h!avl!4323:int) & new_left=left & h!avl!4323=fv!1845 & x=res)
+dynsl.py:208 - Postconditions at location 23:
+dynsl.py:213 - x=nil & x=res & nil=res
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 10
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 52
+dynsl.py:259 - Number of atomic singleton predicates: 7
+dynsl.py:260 - Number of atomic inductive predicates: 15
+dynsl.py:261 - Number of pure constraints: 24
+dynsl.py:262 - Number of total invs: 9
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:8
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 31.0869059563
+../example_numric/avl/delete,4,10,9,52,7,15,24,9,1,8,0,31.0

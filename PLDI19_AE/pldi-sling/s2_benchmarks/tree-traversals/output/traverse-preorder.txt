@@ -1,0 +1,70 @@
+
+!!!Full processing file "tree-traversals//traverse-preorder.dryad.c"
+Parsing file "tree-traversals//traverse-preorder.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E tree-traversals//traverse-preorder.dryad.c -o tree-traversals//traverse-preorder.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of preorder: :HP_23
+!!! generate unknown predicate for Post synthesis of preorder: :GP_24
+!!! ss:EInfer @shape[HP_23,GP_24] EBase: [][](HRel HP_23(x))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_24(x))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure preorder$t_node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_23,GP_24]requires HP_23(x)&
+truerequires emp
+ ensures GP_24(x)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_23(x)&
+x!=null --> x::t_node<left_15_1392,right_15_1393,key_15_1394> * 
+HP_1395(left_15_1392) * HP_1396(right_15_1393)&
+true,
+ // PRE_REC
+(2;0)HP_1395(left_15_1392)&true --> HP_23(left_15_1392)&
+true,
+ // PRE_REC
+(2;0)HP_1396(right_15_1393)&true --> HP_23(right_15_1393)&
+true,
+ // POST
+(1;0)HP_23(x)&x=null --> GP_24(x)&
+true,
+ // POST
+(2;0)x::t_node<left_15_1392,right_15_1393,n'> * GP_24(left_15_1392) * 
+GP_24(right_15_1393)&true --> GP_24(x)&
+true]
+
+Procedure preorder$t_node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_23(x_1436) ::= 
+ HP_23(left_15_1432) * HP_23(right_15_1430) * 
+ x_1436::t_node<left_15_1432,right_15_1430,key_15_1431>
+ or emp&x_1436=null
+ (4,5),
+ GP_24(x_1437) ::= HP_23(x_1437)(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_23{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::HP_23{}<>&{FLOW,(1,29)=__flow#E}[]
+                   Stop z3... 73 invocations Stop Omega... 25 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.043134,333)
+Total verification time: 0.124 second(s)
+	Time spent in main process: 0.072 second(s)
+	Time spent in child processes: 0.052 second(s)
+	Z3 Prover Time: 0. second(s)

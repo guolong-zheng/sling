@@ -1,0 +1,32 @@
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 16 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists fv!6, fv!5. dll(head, nil, fv!5, fv!6) * elem:list_head->list_head{nil, nil} & fv!6=nil)
+dynsl.py:202 - (exists fv!6, fv!5, fv!55, fv!54. dll(head, nil, fv!5, fv!6) * dll(elem, fv!54, fv!55, nil) & fv!6=fv!54 & fv!6=nil & fv!54=nil & elem=fv!55)
+dynsl.py:202 - (exists fv!6, fv!5, fv!57, fv!56. dll(head, nil, fv!5, fv!6) * dll(elem, nil, fv!56, fv!57) & fv!57=fv!6 & fv!57=nil & fv!6=nil & elem=fv!56)
+dynsl.py:202 - (exists fv!3, fv!4, fv!44, fv!45. dll(head, fv!3, fv!4, nil) * dll(elem, nil, fv!44, fv!45) & fv!3=fv!45 & fv!3=nil & fv!44=elem & fv!45=nil)
+dynsl.py:202 - (exists fv!3, fv!4, fv!42, fv!43. dll(head, fv!3, fv!4, nil) * dll(elem, fv!42, fv!43, nil) & fv!3=fv!42 & fv!3=nil & elem=fv!43 & fv!42=nil)
+dynsl.py:202 - (exists fv!3, fv!4. dll(head, fv!3, fv!4, nil) * elem:list_head->list_head{nil, nil} & fv!3=nil)
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 16:
+dynsl.py:213 - (exists fv!66, fv!149. dll(head, nil, fv!66, elem) * elem:list_head->list_head{next, head} * dll(next, elem, fv!149, nil) & fv!66=head & fv!66=res & head=res)
+dynsl.py:213 - (exists fv!66, fv!84, fv!101. dll(head, nil, fv!66, elem) * dll(elem, head, fv!84, next) * dll(next, elem, fv!101, nil) & fv!66=head & fv!66=res & head=res & fv!84=elem)
+dynsl.py:213 - (exists fv!261. head:list_head->list_head{elem, nil} * elem:list_head->list_head{next, head} * dll(next, elem, fv!261, nil) & head=res)
+dynsl.py:213 - (exists fv!196, fv!213. head:list_head->list_head{elem, nil} * dll(elem, head, fv!196, next) * dll(next, elem, fv!213, nil) & fv!196=elem & head=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 2
+dynsl.py:255 - Number of traces: 2
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 28
+dynsl.py:259 - Number of atomic singleton predicates: 6
+dynsl.py:260 - Number of atomic inductive predicates: 18
+dynsl.py:261 - Number of pure constraints: 28
+dynsl.py:262 - Number of total invs: 10
+dynsl.py:263 - Number of pres:6
+dynsl.py:264 - Number of post:4
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 6.26719689369
+../simple_example_update/sv-comp/rule_60_list//add,2,2,10,28,6,18,28,10,6,4,0,6.26

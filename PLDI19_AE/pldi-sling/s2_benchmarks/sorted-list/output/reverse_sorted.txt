@@ -1,0 +1,94 @@
+
+!!!Full processing file "sorted-list//reverse_sorted.dryad.c"
+Parsing file "sorted-list//reverse_sorted.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sorted-list//reverse_sorted.dryad.c -o sorted-list//reverse_sorted.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of reverse_sorted: :HP_24
+!!! generate unknown predicate for Post synthesis of reverse_sorted: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(l))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(l,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_14_1$node~node~node: :HP_1346
+!!! generate unknown predicate for Post synthesis of while_14_1$node~node~node: :GP_1350Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_14_1$node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1346,GP_1350]requires HP_1346(t_66,r_65,l)&
+truerequires emp
+ ensures GP_1350(t_66,t_66',r_65,r_65',l,l')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1346(t_66,r_65,l)&l!=null --> l::node<key_21_1438,next_21_1439> * 
+HP_1440(next_21_1439,t_66@NI,r_65@NI) * HP_1441(t_66,r_65,l@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1440(l',t_66@NI,r_1447@NI) * HP_1441(t_66,r_1447,l@NI) * 
+l::node<key_21_1438,r_1447>&t_66'=l' --> HP_1346(t_66',l,l')&
+true,
+ // POST
+(1;1;0)GP_1350(next_23_1446,t_66',l,r_65',next_23_1446,l')&
+l!=null --> GP_1350(t_66,t_66',r_65,r_65',l,l')&
+true,
+ // POST
+(2;1;0)HP_1346(t_66,r_65,l)&l=null & l'=null & l'=l & r_65'=r_65 & 
+t_66'=t_66 --> GP_1350(t_66,t_66',r_65,r_65',l,l')&
+true]
+
+Procedure while_14_1$node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at sorted-list//reverse_sorted.dryad.c_14:1_26:2
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1346,GP_1350]
+   EBase HP_1346(t_66,r_65,l)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [t_66;r_65;l]
+                     GP_1350(t_66,t_66',r_65,r_65',l,l')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure reverse_sorted$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(l)&
+truerequires emp
+ ensures GP_25(l,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure reverse_sorted$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure reverse_sorted$node
+Stop z3... 72 invocations Stop Omega... 23 invocations 
+1 false contexts at: ( (14,1) )
+
+!!! log(small):(0.027026,293)
+Total verification time: 0.136 second(s)
+	Time spent in main process: 0.1 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0. second(s)

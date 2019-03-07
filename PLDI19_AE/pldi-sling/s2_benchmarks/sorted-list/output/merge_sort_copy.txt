@@ -1,0 +1,91 @@
+
+!!!Full processing file "sorted-list//merge_sort_copy.dryad.c"
+Parsing file "sorted-list//merge_sort_copy.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sorted-list//merge_sort_copy.dryad.c -o sorted-list//merge_sort_copy.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of merge_sort_copy: :HP_24
+!!! generate unknown predicate for Post synthesis of merge_sort_copy: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(l1,l2))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_25(l1,l2,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure merge_sort_copy$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(l1,l2)&
+truerequires emp
+ ensures GP_25(l1,l2,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;2;0)HP_24(l1,l2)&l2!=null & 
+l1!=null --> l1::node<key_18_1452,next_18_1453> * 
+HP_1454(next_18_1453,l2@NI) * HP_1455(l2,l1@NI)&
+true,
+ // BIND
+(2;2;0)HP_1455(l2',l1@NI)&
+l2'!=null --> l2'::node<key_18_1460,next_18_1461> * 
+HP_1462(next_18_1461,l1@NI)&
+true,
+ // PRE_REC
+(1;2;2;0)HP_1454(next_18_1453,l2'@NI) * HP_1462(next_18_1461,l1@NI) * 
+l2'::node<key_18_1460,next_18_1461>&true --> HP_24(next_18_1453,l2')&
+true,
+ // PRE_REC
+(2;2;2;0)HP_1454(next_18_1453,l2'@NI) * l1::node<key_18_1452,next_18_1453> * 
+HP_1462(next_18_1461,l1@NI)&true --> HP_24(l1,next_18_1461)&
+true,
+ // POST
+(1;0)HP_24(l1,l2)&l1=null & res=l2 --> GP_25(l1,l2,res)&
+true,
+ // POST
+(1;2;0)HP_24(l1,l2)&l2=null & l1!=null & res=l1 --> GP_25(l1,l2,res)&
+true,
+ // POST
+(1;2;2;0)l1::node<key_18_1452,next_18_1453> * 
+GP_25(next_18_1453,l2,tl_1551) * res::node<key_18_1452,tl_1551>&
+l2!=null --> GP_25(l1,l2,res)&
+true,
+ // POST
+(2;2;2;0)l2::node<key_18_1460,next_18_1461> * 
+GP_25(l1,next_18_1461,tmp___1553) * res::node<key_18_1460,tmp___1553>&
+l1!=null --> GP_25(l1,l2,res)&
+true]
+
+Procedure merge_sort_copy$node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at sorted-list//merge_sort_copy.dryad.c_19:17_19:46
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_24,GP_25]
+   EBase HP_24(l1,l2)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume 
+                     GP_25(l1,l2,res)&{FLOW,(4,5)=__norm#E}[]
+                     Stop z3... 152 invocations Stop Omega... 67 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.102531,628)
+Total verification time: 0.208 second(s)
+	Time spent in main process: 0.136 second(s)
+	Time spent in child processes: 0.072 second(s)
+	Z3 Prover Time: 0.004 second(s)

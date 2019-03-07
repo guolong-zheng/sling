@@ -1,0 +1,47 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring pre-conditions at the location 10 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 12 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 30 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 10:
+dynsl.py:202 - emp
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 12:
+dynsl.py:213 - x=nil & x=res & nil=res
+dynsl.py:208 - Postconditions at location 30:
+dynsl.py:213 - (exists p!treep!140, mi!treep!138, mx!treep!139. treep(x, mi!treep!138:int, mx!treep!139:int, p!treep!140:int) & r=xl & r=xr & r=p!treep!140 & r=nil & mx!treep!139=mi!treep!138 & xl=xr & xl=p!treep!140 & xl=nil & xr=p!treep!140 & xr=nil & x=res & p!treep!140=nil)
+dynsl.py:213 - (exists mi!treep!87, mx!treep!88, p!treep!89. treep(x, mi!treep!87:int, mx!treep!88:int, p!treep!89:int) & r=xl & r=p!treep!89 & r=xr & r=nil & mi!treep!87=mx!treep!88 & xl=p!treep!89 & xl=xr & xl=nil & p!treep!89=xr & p!treep!89=nil & xr=nil & x=res)
+dynsl.py:213 - (exists p!treep!106, mi!treep!104, mx!treep!105. treep(x, mi!treep!104:int, mx!treep!105:int, p!treep!106:int) & p!treep!106=r & p!treep!106=xl & p!treep!106=xr & p!treep!106=nil & r=xl & r=xr & r=nil & xl=xr & xl=nil & xr=nil & x=res & mi!treep!104=mx!treep!105)
+dynsl.py:213 - x:b_node->b_node{xr, xr, fv!102, fv!103} & fv!103=xl & fv!103=xr & fv!103=r & fv!103=nil & xl=xr & xl=r & xl=nil & xr=r & xr=nil & x=res & r=nil
+dynsl.py:213 - x:b_node->b_node{xr, xr, fv!119, fv!120} & xl=r & xl=fv!120 & xl=xr & xl=nil & r=fv!120 & r=xr & r=nil & fv!120=xr & fv!120=nil & xr=nil & x=res
+dynsl.py:213 - x:b_node->b_node{xr, xr, fv!153, fv!154} & r=xl & r=fv!154 & r=xr & r=nil & xl=fv!154 & xl=xr & xl=nil & fv!154=xr & fv!154=nil & xr=nil & x=res
+dynsl.py:213 - (exists mi!treep!121, mx!treep!122, p!treep!123. treep(x, mi!treep!121:int, mx!treep!122:int, p!treep!123:int) & mi!treep!121=mx!treep!122 & r=xl & r=xr & r=p!treep!123 & r=nil & xl=xr & xl=p!treep!123 & xl=nil & xr=p!treep!123 & xr=nil & x=res & p!treep!123=nil)
+dynsl.py:213 - x:b_node->b_node{xr, xr, fv!136, fv!137} & fv!137=xl & fv!137=xr & fv!137=r & fv!137=nil & xl=xr & xl=r & xl=nil & xr=r & xr=nil & x=res & r=nil
+dynsl.py:208 - Postconditions at location 23:
+dynsl.py:213 - (exists mi!treep!371, p!treep!373, mx!treep!372. xr:b_node->b_node{nil, nil, fv!182, fv!183} * x:b_node->b_node{l, xr, fv!329, fv!330} * treep(l, mi!treep!371:int, mx!treep!372:int, p!treep!373:int) & xl=l & x=res)
+dynsl.py:213 - (exists mi!treep!155, p!treep!157, mx!treep!156, p!treep!266, mx!treep!265, mi!treep!264. treep(xr, mi!treep!155:int, mx!treep!156:int, p!treep!157:int) * x:b_node->b_node{l, xr, fv!208, fv!209} * treep(l, mi!treep!264:int, mx!treep!265:int, p!treep!266:int) & xl=l & mi!treep!155=mx!treep!156 & x=res)
+dynsl.py:213 - (exists mx!treep!399, p!treep!400, mi!treep!398. xr:b_node->b_node{nil, nil, fv!182, fv!183} * x:b_node->b_node{l, xr, fv!342, fv!343} * treep(l, mi!treep!398:int, mx!treep!399:int, p!treep!400:int) & xl=l & x=res)
+dynsl.py:213 - (exists mi!treep!344, p!treep!346, mx!treep!345. xr:b_node->b_node{nil, nil, fv!182, fv!183} * x:b_node->b_node{l, xr, fv!329, fv!330} * treep(l, mi!treep!344:int, mx!treep!345:int, p!treep!346:int) & xl=l & x=res)
+dynsl.py:213 - (exists mi!treep!155, p!treep!157, mx!treep!156, p!treep!293, mi!treep!291, mx!treep!292. treep(xr, mi!treep!155:int, mx!treep!156:int, p!treep!157:int) * x:b_node->b_node{l, xr, fv!208, fv!209} * treep(l, mi!treep!291:int, mx!treep!292:int, p!treep!293:int) & xl=l & mi!treep!155=mx!treep!156 & x=res)
+dynsl.py:213 - (exists mi!treep!155, p!treep!157, mx!treep!156, p!treep!212, mi!treep!210, mx!treep!211. treep(xr, mi!treep!155:int, mx!treep!156:int, p!treep!157:int) * x:b_node->b_node{l, xr, fv!195, fv!196} * treep(l, mi!treep!210:int, mx!treep!211:int, p!treep!212:int) & xl=l & mi!treep!155=mx!treep!156 & x=res)
+dynsl.py:213 - (exists mi!treep!155, p!treep!157, mx!treep!156, mx!treep!238, p!treep!239, mi!treep!237. treep(xr, mi!treep!155:int, mx!treep!156:int, p!treep!157:int) * x:b_node->b_node{l, xr, fv!195, fv!196} * treep(l, mi!treep!237:int, mx!treep!238:int, p!treep!239:int) & xl=l & mi!treep!155=mx!treep!156 & x=res)
+dynsl.py:213 - (exists p!treep!427, mx!treep!426, mi!treep!425. xr:b_node->b_node{nil, nil, fv!182, fv!183} * x:b_node->b_node{l, xr, fv!342, fv!343} * treep(l, mi!treep!425:int, mx!treep!426:int, p!treep!427:int) & xl=l & x=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 8
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 114
+dynsl.py:259 - Number of atomic singleton predicates: 16
+dynsl.py:260 - Number of atomic inductive predicates: 16
+dynsl.py:261 - Number of pure constraints: 115
+dynsl.py:262 - Number of total invs: 18
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:17
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 9.70971393585
+../example_numric/prio_tree/delete_rec,4,8,18,114,16,16,115,18,1,17,0,9.70

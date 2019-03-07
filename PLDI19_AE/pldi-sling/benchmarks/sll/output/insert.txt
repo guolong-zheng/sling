@@ -1,0 +1,34 @@
+dynsl.py:144 - Inferring post-conditions at the location 17 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 12 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 7 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 7:
+dynsl.py:202 - ll(x) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 17:
+dynsl.py:213 - ll(tmp) * x:node->node{fv!139, tmp} & x=res
+dynsl.py:208 - Postconditions at location 12:
+dynsl.py:213 - leaf:node->node{fv!186, x} & x=nil & leaf=res
+dynsl.py:213 - ll(leaf) & x=nil & leaf=res
+dynsl.py:213 - leaf:node->node{fv!177, x} & x=nil & leaf=res
+dynsl.py:208 - Postconditions at location 23:
+dynsl.py:213 - ll(x) * new_root:node->node{fv!168, x} & new_root=res
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 4
+dynsl.py:255 - Number of traces: 26
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 20
+dynsl.py:259 - Number of atomic singleton predicates: 4
+dynsl.py:260 - Number of atomic inductive predicates: 4
+dynsl.py:261 - Number of pure constraints: 8
+dynsl.py:262 - Number of total invs: 6
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:5
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 3.81885814667
+../simple_example_update/sll//insert,4,26,7,20,4,4,7,6,1,4,0,3.81

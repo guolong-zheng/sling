@@ -1,0 +1,242 @@
+
+!!!Full processing file "sv-comp//dll_of_dll/dll_of_dll.dryad.c"
+Parsing file "sv-comp//dll_of_dll/dll_of_dll.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sv-comp//dll_of_dll/dll_of_dll.dryad.c -o sv-comp//dll_of_dll/dll_of_dll.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dll_insert_slave: :HP_24
+!!! generate unknown predicate for Post synthesis of dll_insert_slave: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(x))*(true)( FLOW __norm) {EAssume: 15,:(HRel GP_25(x,res))*(true)( FLOW __norm)}
+!!! generate unknown predicate for Pre synthesis of dll_destroy_slave: :HP_26
+!!! generate unknown predicate for Post synthesis of dll_destroy_slave: :GP_27
+!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(dll))*(true)( FLOW __norm) {EAssume: 16,:(HRel GP_27(dll))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_51_2$slave_item~int: :HP_1384
+!!! generate unknown predicate for Post synthesis of while_51_2$slave_item~int: :GP_1386
+!!! generate unknown predicate for Pre synthesis of while_72_2$slave_item~slave_item: :HP_1402
+!!! generate unknown predicate for Post synthesis of while_72_2$slave_item~slave_item: :GP_1405Starting Omega.../usr/local/bin/oc
+
+Checking procedure alloc_or_die_slave$... 
+Procedure alloc_or_die_slave$ SUCCESS.
+
+Checking procedure dll_insert_slave$slave_item... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(x)&
+truerequires emp
+ ensures GP_25(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;0)HP_24(next_71')&
+next_71'!=null --> next_71'::slave_item<next_35_1574,prev_35_1575> * 
+HP_1576(next_35_1574) * HP_1577(prev_35_1575)&
+true,
+ // POST
+(1;0)res::slave_item<x,prev_33_1569> * HP_1576(next_35_1574) * 
+x::slave_item<next_35_1574,res>&prev_33_1569=null --> GP_25(x,res)&
+true,
+ // POST
+(2;0)HP_24(next_1581) * res::slave_item<next_1581,prev_33_1568>&
+next_1581=null & prev_33_1568=null & 
+prev_33_1568=next_1581 --> GP_25(next_1581,res)&
+true]
+
+Procedure dll_insert_slave$slave_item SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(next_1582) ::= 
+ next_1582::slave_item<DP_DP_HP_1576,DP_DP_HP_1577>
+ or emp&next_1582=null
+ (4,5),
+ GP_25(x_1583,res_1584) ::= 
+ res_1584::slave_item<x_1583,x_1583>&x_1583=null
+ or res_1584::slave_item<x_1583,prev_33_1569> * 
+    x_1583::slave_item<DP_DP_HP_1576,res_1584>&prev_33_1569=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_25{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure while_51_2$slave_item~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1384,GP_1386]requires HP_1384(dll_72)&
+truerequires emp
+ ensures GP_1386(dll_72,dll_72')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(1;1;0)HP_1384(dll_72)&true --> dll_72::HP_24<>&
+true,
+ // PRE_REC
+(1;1;0)emp&true --> HP_1384(dll_72')&
+true,
+ // POST
+(1;1;0)dll_72::GP_25<dll_1634> * GP_1386(dll_1634,dll_72')&
+true --> GP_1386(dll_72,dll_72')&
+true,
+ // POST
+(2;1;0)HP_1384(dll_72)&dll_72'=dll_72 --> GP_1386(dll_72,dll_72')&
+true]
+
+Procedure while_51_2$slave_item~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1384(dll_1637) ::= dll_1637::HP_24<>&dll_72'=dll_1637(4,5),
+ GP_1386(dll_1638,dll_1639) ::= emp&dll_1639=dll_1638 & dll_1638=DP_DP_DP_1635(4,5),
+ GP_25(x_1583,res_1584) ::= 
+ res_1584::slave_item<x_1583,x_1583>&x_1583=null
+ or res_1584::slave_item<x_1583,prev_33_1569> * 
+    x_1583::slave_item<DP_DP_HP_1576,res_1584>&prev_33_1569=null
+ (4,5),
+ HP_24(next_1582) ::= 
+ next_1582::slave_item<DP_DP_HP_1576,DP_DP_HP_1577>
+ or emp&next_1582=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase dll_72::HP_24{}<>&dll_72'=dll_72&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [dll_72]
+                   emp&dll_72'=dll_72 & dll_72=DP_DP_DP_1635&
+                   {FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure dll_create_slave$int... 
+Procedure dll_create_slave$int SUCCESS.
+
+Checking procedure while_72_2$slave_item~slave_item... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1402,GP_1405]requires HP_1402(next_74,d_73)&
+truerequires emp
+ ensures GP_1405(next_74,next_74',d_73,d_73')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1402(next_74,d_73)&
+d_73!=null --> d_73::slave_item<next_79_1827,prev_79_1828> * 
+HP_1829(next_79_1827,next_74@NI) * HP_1830(prev_79_1828,next_74@NI) * 
+HP_1831(next_74,d_73@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1829(d_73',next_74@NI)&next_74'=d_73' --> HP_1402(next_74',d_73')&
+true,
+ // POST
+(2;1;0)HP_1402(next_74,d_73)&d_73=null & d_73'=null & d_73'=d_73 & 
+next_74'=next_74 --> GP_1405(next_74,next_74',d_73,d_73')&
+true]
+
+Procedure while_72_2$slave_item~slave_item SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ GP_1405(next_1856,next_1857,d_1858,d_1859) ::= emp&d_1859=d_1858 & next_1857=next_1856 & d_1858=null & d_1859=null(4,5),
+ HP_1402(next_1854,d_1855) ::= 
+ d_1855::slave_item<next_79_1827,DP_DP_HP_1830> * 
+ HP_1402(next_79_1827,next_79_1827)&next_1854=DP_DP_HP_1831
+ or emp&d_1855=null
+ (4,5),
+ GP_1386(dll_1638,dll_1639) ::= emp&dll_1639=dll_1638 & dll_1638=DP_DP_DP_1635(4,5),
+ GP_25(x_1583,res_1584) ::= 
+ res_1584::slave_item<x_1583,x_1583>&x_1583=null
+ or res_1584::slave_item<x_1583,prev_33_1569> * 
+    x_1583::slave_item<DP_DP_HP_1576,res_1584>&prev_33_1569=null
+ (4,5),
+ HP_1384(dll_1637) ::= dll_1637::HP_24<>&dll_72'=dll_1637(4,5),
+ HP_24(next_1582) ::= 
+ next_1582::slave_item<DP_DP_HP_1576,DP_DP_HP_1577>
+ or emp&next_1582=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase d_73::HP_1402{}<next_74>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [next_74;d_73]
+                   emp&d_73'=d_73 & next_74'=next_74 & d_73=null & 
+                   d_73'=null&{FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure dll_destroy_slave$slave_item... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_26,GP_27]requires HP_26(dll)&
+truerequires emp
+ ensures GP_27(dll)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_26(d_73')&true --> d_73'::HP_1402<next_2096>&
+true,
+ // POST
+(0)emp&dll=null --> GP_27(dll)&
+true]
+
+Procedure dll_destroy_slave$slave_item SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_26(d_2099) ::= d_2099::HP_1402<next_2096>(4,5),
+ GP_27(dll_2100) ::= emp&dll_2100=null(4,5),
+ GP_1386(dll_1638,dll_1639) ::= emp&dll_1639=dll_1638 & dll_1638=DP_DP_DP_1635(4,5),
+ GP_1405(next_1856,next_1857,d_1858,d_1859) ::= emp&d_1859=d_1858 & next_1857=next_1856 & d_1858=null & d_1859=null(4,5),
+ GP_25(x_1583,res_1584) ::= 
+ res_1584::slave_item<x_1583,x_1583>&x_1583=null
+ or res_1584::slave_item<x_1583,prev_33_1569> * 
+    x_1583::slave_item<DP_DP_HP_1576,res_1584>&prev_33_1569=null
+ (4,5),
+ HP_1384(dll_1637) ::= dll_1637::HP_24<>&dll_72'=dll_1637(4,5),
+ HP_1402(next_1854,d_1855) ::= 
+ d_1855::slave_item<next_79_1827,DP_DP_HP_1830> * 
+ HP_1402(next_79_1827,next_79_1827)&next_1854=DP_DP_HP_1831
+ or emp&d_1855=null
+ (4,5),
+ HP_24(next_1582) ::= 
+ next_1582::slave_item<DP_DP_HP_1576,DP_DP_HP_1577>
+ or emp&next_1582=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase dll::HP_1402{}<next_2096>&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   emp&dll=null&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 202 invocations Stop Omega... 159 invocations 
+2 false contexts at: ( (72,2)  (51,2) )
+
+!!! log(small):(0.143458,1257)
+Total verification time: 0.264 second(s)
+	Time spent in main process: 0.172 second(s)
+	Time spent in child processes: 0.092 second(s)
+	Z3 Prover Time: 0.008 second(s)
