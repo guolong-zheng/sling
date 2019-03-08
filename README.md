@@ -1,5 +1,8 @@
 SLING is a tool for dynamically inferring separation logic sepcifications. The input is traces so SLING can work with different programming languages. We have tested on C, C++, Java and Python. 
 
+#Setup#
+
+
 ```shell
 sudo apt install python-minimal lldb gcc python-pip lldb-3.8-dev 
 
