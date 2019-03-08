@@ -47,7 +47,8 @@ Follow the following steps to setup SLING:
  ```
  
  Run the following command to call SLING to infer its invariants for a size 5 input:
-  ```./run.sh 5 PATH/TO/sling/simple_example/sll/defn.sl PATH/TO/sling/simple_example/sll/append.c```
+ 
+ ```./run.sh 5 PATH/TO/sling/simple_example/sll/defn.sl PATH/TO/sling/simple_example/sll/append.c```
   
  SLING then outputs the inferred precondition and postcondition for `append.c`:
  ```
