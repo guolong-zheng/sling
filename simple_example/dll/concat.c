@@ -8,18 +8,9 @@ DLNode* dll_concat(DLNode* a, DLNode* b)
     //post
     return b;
   } else {
-    DLNode* curr = a;
-    while (curr->next != NULL)
-      //inv
-    {
-      curr = curr->next;
-    }
-
-    curr->next = b;
-    if (b != NULL) {
-      b->prev = curr;
-    }
-
+    DLNode* tmp = dll_concat(a->next, b);
+    a->next = tmp;
+    if (tmp) tmp->prev = a;
     //post
     return a;
   }
