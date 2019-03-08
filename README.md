@@ -11,7 +11,7 @@ The default setting of SLING works with C or C++. It uses LLDB to obtain traces 
 Follow the following steps to setup SLING:
   1. Install Python and LLDB: ```sudo apt install python python-pip lldb lldb-3.8-dev gcc```
   2. Install required Python libs: ```pip install lark-parser z3-solver```
-  3. Link LLDB libs in case of version conflict:
+  3. Link LLDB libs in case of version conflict(when SLING couldn't obtain any traces):
      ```
      cd /usr/lib/llvm-3.8/lib/python2.7/site-packages/lldb/
      sudo ln -sf ../../../liblldb.so.1 _lldb.so
@@ -46,7 +46,7 @@ Follow the following steps to setup SLING:
             \/ (exists v, y. x->node{v, y} * ll(y));
  ```
  
- Run the following command to call SLING to infer its invariants for a size 5 input:
+ Run the following command under `PATH/TO/sling/src` directory to call SLING to infer its invariants for a size 5 input:
  
  ```./run.sh 5 PATH/TO/sling/simple_example/sll/defn.sl PATH/TO/sling/simple_example/sll/append.c```
   
@@ -64,5 +64,17 @@ Follow the following steps to setup SLING:
  ```
  
  # PLDI19 AE
+ The dll concat motivating example in the paper is in the `PAHT/TO/sling/simple_example/dll/concat.c`:
+ ```
+ ```
+ With the following predicate defination `PATH/TO/sling/simple_example/dll/defn.sl`:
+ ```
+ ```
+ Run the following command in `PATH/TO/sling/src` directory:
+ ```./run.sh 5 PATH/TO/sling/simple_example/dll/defn.sl PATH/TO/sling/simple_example/dll/concat.c```
+ 
+ SLING infers the following results:
+ ```
+ ```
  
  For information and experiment about PLDI19 artifect evaluation, please refer to the [PLDI19_AE directory](PLDI19_AE/). 
