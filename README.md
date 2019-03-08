@@ -1,6 +1,6 @@
 SLING is a tool for dynamically inferring separation logic sepcifications. The input is traces so SLING can work with different programming languages. We have tested on C, C++, Java and Python. 
 
-#Setup
+# Setup
 
 The default setting of SLING works with C or C++. It uses LLDB to obtain traces and Python to infer seperation logic invariants based on the traces. SLING has been tested using the following setup:
   
@@ -23,5 +23,5 @@ Follow the following steps to setup SLING:
  
  
  
- #PLDI19 AE
- For information about artifect evaluation, 
+ # PLDI19 AE
+ For information and experiment about PLDI19 artifect evaluation, please refer to the (PLDI19_AE/) directory. 
