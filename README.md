@@ -22,8 +22,39 @@ Follow the following steps to setup SLING:
      
  # Usage
  
- Given a program ```PATH/TO/sling/
- 
+ Given a program ```PATH/TO/sling/simple_example/sll/append.c```:
+ ```
+ SNnode * sll_append(SNnode * x1, SNnode * x2)
+ {
+   //pre
+   if (x1 == NULL) {
+	  //post
+    return x2;
+   } else {
+    SNnode * tmp = sll_append(x1->next, x2);
+    x1->next = tmp;
+    //post
+    return x1;
+   }
+ }
+
+ ```
+
+ and a predicate defination(templates) ```PATH/TO/sling/simple_example/sll/defn.sl```, run the following command to call SLING to infer its invariants for a size 5 input:
+  ```./run.sh 5 PATH/TO/sling/simple_example/sll/defn.sl PATH/TO/sling/simple_example/sll/append.c```
+  
+ SLING then outputs:
+ ```
+ dynsl.py:299 - Precondition at location 8:
+ dynsl.py:307 - ll(x2) * ll(x1) 
+ dynsl.py:309 - ==============================
+ dynsl.py:312 - Postcondition at location 10:
+ dynsl.py:320 - ll(x2)  & x2 = res
+ dynsl.py:322 - ==============================
+ dynsl.py:312 - Postcondition at location 15:
+ dynsl.py:320 - ll(x2) * x1:node->node{fv0, tmp} 
+ dynsl.py:322 - ==============================
+ ```
  
  # PLDI19 AE
  
