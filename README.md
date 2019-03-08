@@ -28,22 +28,28 @@ Follow the following steps to setup SLING:
  {
    //pre
    if (x1 == NULL) {
-	  //post
-    return x2;
+     //post
+     return x2;
    } else {
-    SNnode * tmp = sll_append(x1->next, x2);
-    x1->next = tmp;
-    //post
-    return x1;
+     SNnode * tmp = sll_append(x1->next, x2);
+     x1->next = tmp;
+     //post
+     return x1;
    }
  }
 
  ```
 
- and a predicate defination(templates) ```PATH/TO/sling/simple_example/sll/defn.sl```, run the following command to call SLING to infer its invariants for a size 5 input:
+ The predicate defination(templates) ```PATH/TO/sling/simple_example/sll/defn.sl```:
+ ```
+ pred ll(x) := emp & x=nil
+            \/ (exists v, y. x->node{v, y} * ll(y));
+ ```
+ 
+ Run the following command to call SLING to infer its invariants for a size 5 input:
   ```./run.sh 5 PATH/TO/sling/simple_example/sll/defn.sl PATH/TO/sling/simple_example/sll/append.c```
   
- SLING then outputs:
+ SLING then outputs the inferred precondition and postcondition for `append.c`:
  ```
  dynsl.py:299 - Precondition at location 8:
  dynsl.py:307 - ll(x2) * ll(x1) 
