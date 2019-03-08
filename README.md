@@ -66,15 +66,52 @@ Follow the following steps to setup SLING:
  # PLDI19 AE
  The dll concat motivating example in the paper is in the `PAHT/TO/sling/simple_example/dll/concat.c`:
  ```
+ DLNode* dll_concat(DLNode* a, DLNode* b)
+ {
+   //pre
+   if (a == NULL) {
+     //post
+     return b;
+   } else {
+     DLNode* tmp = dll_concat(a->next, b);
+     a->next = tmp;
+     if (tmp) tmp->prev = a;
+     //post
+     return a;
+   }
+ }
  ```
  With the following predicate defination `PATH/TO/sling/simple_example/dll/defn.sl`:
+ 
  ```
+ pred dll(hd, p, tl, n) := hd=n & tl=p
+                        \/ (exists d, x. hd->node{d, x, p} * dll(x, hd, tl, n));
  ```
  Run the following command in `PATH/TO/sling/src` directory:
+ 
  ```./run.sh 5 PATH/TO/sling/simple_example/dll/defn.sl PATH/TO/sling/simple_example/dll/concat.c```
  
  SLING infers the following results:
  ```
+dynsl.py:299 - Precondition at location 7:
+dynsl.py:307 -  dll(b, nil, fv2, nil) * dll(a, fv1, fv0, nil) 
+dynsl.py:307 -  dll(b, nil, fv2, nil) * dll(a, nil, fv1, fv0) 
+dynsl.py:307 -  dll(b, nil, fv0, nil) * dll(a, nil, nil, a) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 9:
+dynsl.py:320 -  dll(b, nil, fv0, nil)  & a = nil & b = res
+dynsl.py:322 - ==============================
+dynsl.py:312 - Postcondition at location 15:
+dynsl.py:320 -  dll(a, fv2, a, tmp) * dll(b, fv1, tmp, fv0) * dll(tmp, b, b, tmp)  & a = res
+dynsl.py:320 -  dll(a, fv4, a, tmp) * dll(b, fv3, tmp, fv2) * dll(tmp, fv1, fv0, b)  & a = res
+dynsl.py:320 -  dll(a, fv3, a, tmp) * dll(b, tmp, fv2, fv1) * dll(tmp, a, fv0, b)  & a = res
+dynsl.py:320 -  dll(a, fv2, a, tmp) * dll(b, fv1, fv0, nil) * dll(tmp, b, b, tmp)  & a = res
+dynsl.py:320 -  dll(a, fv4, a, tmp) * dll(b, fv3, fv2, nil) * dll(tmp, fv1, fv0, b)  & a = res
+dynsl.py:320 -  dll(a, nil, fv3, fv2) * dll(b, fv1, tmp, fv0) * dll(tmp, b, b, tmp)  & a = res
+dynsl.py:320 -  dll(a, nil, fv5, fv4) * dll(b, fv3, tmp, fv2) * dll(tmp, fv1, fv0, b)  & a = res
+dynsl.py:320 -  dll(a, nil, fv4, fv3) * dll(b, tmp, fv2, fv1) * dll(tmp, a, fv0, b)  & a = res
+dynsl.py:320 -  dll(a, nil, fv3, fv2) * dll(b, fv1, fv0, nil) * dll(tmp, b, b, tmp)  & a = res
+dynsl.py:320 -  dll(a, nil, fv5, fv4) * dll(b, fv3, fv2, nil) * dll(tmp, fv1, fv0, b)  & a = res
  ```
  
  For information and experiment about PLDI19 artifect evaluation, please refer to the [PLDI19_AE directory](PLDI19_AE/). 
