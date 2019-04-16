@@ -1,4 +1,5 @@
-import java.io.IOException;
+package collector;
+
 import java.lang.reflect.Field;
 import java.util.*;
 

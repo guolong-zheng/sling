@@ -1,3 +1,5 @@
+package collector;
+
 import java.util.HashSet;
 import java.util.Set;
 

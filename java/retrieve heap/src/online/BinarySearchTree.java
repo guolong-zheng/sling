@@ -1,3 +1,7 @@
+package online;
+
+
+import collector.HeapCollector;
 
 public class BinarySearchTree<A extends Comparable<A>, B> {
     static class Node<A extends Comparable<A>, B> {
