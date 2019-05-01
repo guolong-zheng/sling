@@ -1,11 +1,11 @@
-/*
+package online;/*
 
  *  Java Program to Implement Doubly Linked List
 
  */
 
 
-import java.util.Scanner;
+import collector.HeapCollector;
 
 /* Class DoublyLinkedList */
 public class DoublyLinkedList

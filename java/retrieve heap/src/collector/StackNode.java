@@ -1,3 +1,5 @@
+package collector;
+
 public class StackNode {
     String name;
     String value;
