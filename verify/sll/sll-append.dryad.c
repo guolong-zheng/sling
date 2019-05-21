@@ -13,7 +13,7 @@ or (exists v, y: self::node<v, y> * y::ll<>);
 struct node * sll_append(struct node * x1, struct node * x2)
 /*@
  requires x1::ll<> * x2::ll<>
- ensures (exists x: x::ll<> & x = res);
+ ensures x1 =null & x2=null & x2 = res or (exists k, tmp: x1::node<k,tmp> * tmp::ll<> & x1 = res);
  */
 {
 	if (x1 == NULL) {
