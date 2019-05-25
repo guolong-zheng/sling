@@ -11,7 +11,7 @@ THIS SOFTWARE IS PROVIDED AS-IS, WITHOUT ANY WARRANTIES.
 IT IS FREE FOR NON-COMMERCIAL USE
 Copyright @ PLS2 @ NUS
 ```
-**TODO**: hash: # ?  
+Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```  
 
 
 # Steps used to get the result:
