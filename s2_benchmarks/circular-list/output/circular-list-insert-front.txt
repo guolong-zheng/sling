@@ -1,0 +1,60 @@
+
+!!!Full processing file "circular-list//circular-list-insert-front.dryad.c"
+Parsing file "circular-list//circular-list-insert-front.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E circular-list//circular-list-insert-front.dryad.c -o circular-list//circular-list-insert-front.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of circular_list_insert_front: :HP_24
+!!! generate unknown predicate for Post synthesis of circular_list_insert_front: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(x))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_25(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure circular_list_insert_front$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(x)&
+truerequires emp
+ ensures GP_25(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_24(x)&true --> x::node<key_12_1412,next_12_1413> * 
+HP_1414(next_12_1413)&
+true,
+ // POST
+(0)HP_1414(next_12_1413) * res::node<Anon_1436,next_12_1413> * 
+x::node<key_12_1412,res>&true --> GP_25(x,res)&
+true]
+
+Procedure circular_list_insert_front$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(x_1444) ::= x_1444::node<key_12_1412,DP_DP_HP_1414>(4,5),
+ GP_25(x_1445,res_1446) ::= res_1446::node<Anon_1436,DP_DP_HP_1414> * x_1445::node<key_12_1412,res_1446>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_12_1412](ex)[]x::node<key_12_1412,DP_DP_HP_1414>&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_12_1412](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists Anon_1436,
+                   DP_DP_HP_1414: res::node<Anon_1436,DP_DP_HP_1414> * 
+                   x::node<key_12_1412,res>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 66 invocations Stop Omega... 22 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.035245,314)
+Total verification time: 0.104 second(s)
+	Time spent in main process: 0.068 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0.004 second(s)

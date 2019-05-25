@@ -1,0 +1,90 @@
+
+!!!Full processing file "GRASShopper//dl/dl_dispose.dryad.c"
+Parsing file "GRASShopper//dl/dl_dispose.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//dl/dl_dispose.dryad.c -o GRASShopper//dl/dl_dispose.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dl_dispose: :HP_24
+!!! generate unknown predicate for Post synthesis of dl_dispose: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(a,b))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(a,b))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_2$node~node: :HP_1347
+!!! generate unknown predicate for Post synthesis of while_13_2$node~node: :GP_1350Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_2$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1347,GP_1350]requires HP_1347(prv_65,a)&
+truerequires emp
+ ensures GP_1350(prv_65,prv_65',a,a')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1347(prv_65,a)&a!=null --> a::node<next_21_1433,prev_21_1434> * 
+HP_1435(next_21_1433,prv_65@NI) * HP_1436(prev_21_1434,prv_65@NI) * 
+HP_1437(prv_65,a@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1435(a',prv_65@NI) * HP_1436(prev_21_1434,prv_65@NI) * 
+a::node<a',prev_21_1434>&a=null --> HP_1347(a,a')&
+true,
+ // POST
+(2;1;0)HP_1347(prv_65,a)&a=null & a'=null & a'=a & 
+prv_65'=prv_65 --> GP_1350(prv_65,prv_65',a,a')&
+true]
+
+Procedure while_13_2$node~node SUCCESS.
+[Warning] False ctx
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at GRASShopper//dl/dl_dispose.dryad.c_13:2_23:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1347,GP_1350]
+   EBase HP_1347(prv_65,a)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [prv_65;a]
+                     GP_1350(prv_65,prv_65',a,a')&{FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure dl_dispose$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(a,b@NI)&
+truerequires emp
+ ensures GP_25(a,b)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure dl_dispose$node~node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure dl_dispose$node~node
+Stop z3... 68 invocations Stop Omega... 20 invocations 
+1 false contexts at: ( (13,2) )
+
+!!! log(small):(0.032781,289)
+Total verification time: 0.116 second(s)
+	Time spent in main process: 0.084 second(s)
+	Time spent in child processes: 0.032 second(s)
+	Z3 Prover Time: 0. second(s)

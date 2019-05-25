@@ -1,0 +1,62 @@
+
+!!!Full processing file "cyclist/iter/iter_next.c"
+Parsing file "cyclist/iter/iter_next.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E cyclist/iter/iter_next.c -o cyclist/iter/iter_next.c.prep
+
+!!! generate unknown predicate for Pre synthesis of iter_next: :HP_24
+!!! generate unknown predicate for Post synthesis of iter_next: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(i))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_25(i))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure iter_next$iter... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(i)&
+truerequires emp
+ ensures GP_25(i)&true{,(4,5)=__norm#E};
+Starting Omega.../usr/local/bin/oc
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_24(i)&true --> i::iter<current_11_1357> * HP_1358(current_11_1357)&
+true,
+ // BIND
+(0)HP_1358(c_49')&true --> c_49'::node<next_12_1363,value_12_1364> * 
+HP_1365(next_12_1363)&
+true,
+ // POST
+(0)HP_1365(next_12_1363) * i::iter<next_12_1363>&true --> GP_25(i)&
+true]
+
+Procedure iter_next$iter SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(i_1378) ::= current_11_1376::node<DP_DP_HP_1365,value_12_1364> * 
+i_1378::iter<current_11_1376>(4,5),
+ GP_25(i_1379) ::= i_1379::iter<DP_DP_HP_1365>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[value_12_1364](ex)[]current_11_1376::node<DP_DP_HP_1365,value_12_1364> * 
+       i::iter<current_11_1376>&{FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[value_12_1364](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists DP_DP_HP_1365: i::iter<DP_DP_HP_1365>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 47 invocations Stop Omega... 6 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.016672,248)
+Total verification time: 0.132 second(s)
+	Time spent in main process: 0.096 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0.004 second(s)

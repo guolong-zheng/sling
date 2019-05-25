@@ -1,0 +1,73 @@
+
+!!!Full processing file "dll/mid_delete_error.c"
+Parsing file "dll/mid_delete_error.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E dll/mid_delete_error.c -o dll/mid_delete_error.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dll_mid_delete: :HP_26
+!!! generate unknown predicate for Post synthesis of dll_mid_delete: :GP_27
+!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(p))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_27(p))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure dll_mid_delete$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_26,GP_27]requires HP_26(p)&
+truerequires emp
+ ensures GP_27(p)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_26(p)&true --> p::node<key_11_1423,next_11_1424,prev_11_1425> * 
+HP_1426(next_11_1424) * HP_1427(prev_11_1425)&
+true,
+ // BIND
+(1;0)HP_1426(next_11_1424)&
+next_11_1424!=null --> next_11_1424::node<key_14_1440,next_14_1441,prev_14_1442> * 
+HP_1443(next_14_1441) * HP_1444(prev_14_1442)&
+true,
+ // BIND
+(1;1;0)HP_1427(prev_11_1425)&
+prev_11_1425!=null --> prev_11_1425::node<key_17_1454,next_17_1455,prev_17_1456> * 
+HP_1457(next_17_1455) * HP_1458(prev_17_1456)&
+true,
+ // BIND
+(1;2;0)HP_1427(prev_11_1425)&
+prev_11_1425!=null --> prev_11_1425::node<key_17_1459,next_17_1460,prev_17_1461> * 
+HP_1462(next_17_1460) * HP_1463(prev_17_1461)&
+true]
+
+Procedure dll_mid_delete$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_26(p_1513) ::= p_1513::node<key_11_1423,next_11_1424,prev_11_1425> * 
+next_11_1424::node<key_14_1440,DP_DP_HP_1443,DP_DP_HP_1444> * 
+prev_11_1425::node<key_17_1459,DP_DP_HP_1462,DP_DP_HP_1463>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_11_1423; key_14_1440; 
+       key_17_1459](ex)[]p::node<key_11_1423,next_11_1424,prev_11_1425> * 
+       next_11_1424::node<key_14_1440,DP_DP_HP_1443,DP_DP_HP_1444> * 
+       prev_11_1425::node<key_17_1459,DP_DP_HP_1462,DP_DP_HP_1463>&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_11_1423; key_14_1440; 
+               key_17_1459](ex)[]emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   GP_27(p)&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 100 invocations Stop Omega... 39 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.074744,648)
+Total verification time: 0.196 second(s)
+	Time spent in main process: 0.132 second(s)
+	Time spent in child processes: 0.064 second(s)
+	Z3 Prover Time: 0.008 second(s)

@@ -1,0 +1,149 @@
+
+!!!Full processing file "GRASShopper/sls/sls_copy.dryad.c"
+Parsing file "GRASShopper/sls/sls_copy.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper/sls/sls_copy.dryad.c -o GRASShopper/sls/sls_copy.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sls_copy: :HP_24
+!!! generate unknown predicate for Post synthesis of sls_copy: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(lst))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(lst,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_24_2$node~int~void_star~node~node: :HP_1364
+!!! generate unknown predicate for Post synthesis of while_24_2$node~int~void_star~node~node: :GP_1369Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_24_2$node~int~void_star~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1364,GP_1369]requires HP_1364(old_70,tmp___71,cp_68,curr_66)&
+truerequires emp
+ ensures GP_1369(old_70,old_70',tmp___71,tmp___71',cp_68,cp_68',curr_66,curr_66')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;0)HP_1364(old_70,tmp___71,cp_68,curr_66)&
+true --> curr_66::node<key_24_1470,next_24_1471> * 
+HP_1472(next_24_1471,old_70@NI,tmp___71@NI,cp_68@NI) * 
+HP_1473(old_70,tmp___71,cp_68,curr_66@NI)&
+true,
+ // BIND
+(1;1;0)HP_1473(old_70,tmp___71,cp_68,curr_66@NI)&
+true --> cp_68::node<key_35_1503,next_35_1504> * 
+HP_1505(next_35_1504,old_70@NI,tmp___71@NI,curr_66@NI) * 
+HP_1506(old_70,tmp___71,cp_68@NI,curr_66@NI)&
+true,
+ // BIND
+(1;1;0)HP_1472(curr_66',old_1480@NI,tmp___1486@NI,cp_68@NI)&
+curr_66'!=null --> curr_66'::node<key_37_1514,next_37_1515> * 
+HP_1516(next_37_1515,old_1480@NI,tmp___1486@NI,cp_68@NI)&
+true,
+ // PRE_REC
+(1;1;0)cp_1494::node<key_35_1503,cp_68'> * 
+HP_1516(next_37_1515,old_1480@NI,tmp___1486@NI,cp_1494@NI) * 
+curr_66'::node<key_37_1514,next_37_1515> * 
+cp_68'::node<key_37_1514,v_node_39_1541>&tmp___71'!=null & 
+v_node_39_1541=null --> HP_1364(cp_1494,tmp___71',cp_68',curr_66')&
+true,
+ // POST
+(1;1;0)curr_66::node<key_24_1470,next_24_1471> * 
+HP_1506(old_70,tmp___71,cp_68@NI,curr_66@NI) * 
+GP_1369(cp_68,old_70',tmp___1547,tmp___71',cp_1548,cp_68',next_24_1471,curr_66')&
+cp_1548!=null & next_24_1471!=null & cp_68!=null & 
+tmp___1547!=null --> GP_1369(old_70,old_70',tmp___71,tmp___71',cp_68,cp_68',curr_66,curr_66')&
+true,
+ // POST
+(2;1;0)HP_1472(next_24_1471,old_70@NI,tmp___71@NI,cp_68@NI) * 
+HP_1473(old_70,tmp___71,cp_68,curr_66@NI) * 
+curr_66::node<key_24_1470,next_24_1471>&next_24_1471=null & cp_68'=cp_68 & 
+curr_66'=curr_66 & old_70'=old_70 & 
+tmp___71'=tmp___71 --> GP_1369(old_70,old_70',tmp___71,tmp___71',cp_68,cp_68',curr_66,curr_66')&
+true]
+
+Procedure while_24_2$node~int~void_star~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at GRASShopper/sls/sls_copy.dryad.c_35:4_-1:-1
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1364,GP_1369]
+   EBase HP_1364(old_70,tmp___71,cp_68,curr_66)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [old_70;curr_72;tmp___71;cp_68;curr_66]
+                     GP_1369(old_70,old_70',tmp___71,tmp___71',cp_68,cp_68',curr_66,curr_66')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure sls_copy$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(lst)&
+truerequires emp
+ ensures GP_25(lst,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_24(lst)&lst!=null --> lst::node<key_20_1828,next_20_1829> * 
+HP_1830(next_20_1829)&
+true,
+ // PRE
+(2;0)HP_1830(next_20_1829) * curr_66'::node<key_20_1828,next_20_1829> * 
+cp_68'::node<key_20_1828,v_node_22_1855>&
+v_node_22_1855=null --> HP_1364(old_70',tmp___71',cp_68',curr_66')&
+true,
+ // POST
+(1;0)HP_24(lst)&lst=null & res=null & res=lst --> GP_25(lst,res)&
+true,
+ // POST
+(2;0)emp&res!=null & lst!=null --> GP_25(lst,res)&
+true]
+
+Procedure sls_copy$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(lst_1868) ::= 
+ lst_1868::node<key_20_1828,DP_DP_HP_1830>
+ or emp&lst_1868=null
+ (4,5),
+ GP_25(lst_1871,res_1872) ::= 
+ emp&res_1872!=null & lst_1871!=null
+ or emp&lst_1871=null & res_1872=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase lst::HP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   lst::GP_25{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 149 invocations Stop Omega... 67 invocations 
+1 false contexts at: ( (24,2) )
+
+!!! log(small):(0.158439,712)
+!!! log(big)(>0.5s)(1):(0.550757,[(imply,0.550757)])
+Total verification time: 0.856 second(s)
+	Time spent in main process: 0.204 second(s)
+	Time spent in child processes: 0.652 second(s)
+	Z3 Prover Time: 0.016 second(s)

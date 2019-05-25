@@ -1,0 +1,109 @@
+
+!!!Full processing file "AFWP/sll/SLL-delete.dryad.c"
+Parsing file "AFWP/sll/SLL-delete.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E AFWP/sll/SLL-delete.dryad.c -o AFWP/sll/SLL-delete.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of delete: :HP_24
+!!! generate unknown predicate for Post synthesis of delete: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(h))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(h,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_20_2$node~node~node~int: :HP_1350
+!!! generate unknown predicate for Post synthesis of while_20_2$node~node~node~int: :GP_1354Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_20_2$node~node~node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1350,GP_1354]requires HP_1350(t_67,j_66,i_65)&
+truerequires emp
+ ensures GP_1354(t_67,t_67',j_66,j_66',i_65,i_65')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;1;0)HP_1350(t_67,j_66,i_65)&t_67=null & 
+i_65!=null --> i_65::node<key_27_1458,next_27_1459> * 
+HP_1460(next_27_1459,j_66@NI) * HP_1461(j_66,i_65@NI)&
+true,
+ // PRE_REC
+(1;1;1;1;0)HP_1460(next_27_1459,j_66@NI) * HP_1461(j_66,i_65'@NI) * 
+i_65'::node<key_27_1458,next_27_1459>&
+t_67'=i_65' --> HP_1350(t_67',j_66,i_65')&
+true,
+ // PRE_REC
+(2;1;1;1;0)HP_1460(i_65',j_66@NI) * i_65::node<key_27_1458,i_65'>&
+t_67'=null --> HP_1350(t_67',i_65,i_65')&
+true,
+ // POST
+(1;1;1;1;0)GP_1354(i_65,t_67',j_66,j_66',i_65,i_65')&i_65!=null & 
+t_67=null --> GP_1354(t_67,t_67',j_66,j_66',i_65,i_65')&
+true,
+ // POST
+(2;1;1;1;0)HP_1461(j_66,i_65@NI) * 
+GP_1354(t_1490,t_67',i_65,j_66',next_27_1459,i_65')&i_65!=null & 
+t_1490=null --> GP_1354(t_1490,t_67',j_66,j_66',i_65,i_65')&
+true,
+ // POST
+(2;1;1;0)HP_1350(t_67,j_66,i_65)&t_67!=null & i_65!=null & i_65'=i_65 & 
+j_66'=j_66 & t_67'=t_67 --> GP_1354(t_67,t_67',j_66,j_66',i_65,i_65')&
+true,
+ // POST
+(2;1;0)HP_1350(t_67,j_66,i_65)&i_65=null & i_65'=null & i_65'=i_65 & 
+j_66'=j_66 & t_67'=t_67 --> GP_1354(t_67,t_67',j_66,j_66',i_65,i_65')&
+true]
+
+Procedure while_20_2$node~node~node~int SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at AFWP/sll/SLL-delete.dryad.c_20:2_33:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1350,GP_1354]
+   EBase HP_1350(t_67,j_66,i_65)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [t_67;j_66;i_65]
+                     GP_1354(t_67,t_67',j_66,j_66',i_65,i_65')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure delete$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(h)&
+truerequires emp
+ ensures GP_25(h,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure delete$node~int FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure delete$node~int
+Stop z3... 146 invocations Stop Omega... 48 invocations 
+1 false contexts at: ( (20,2) )
+
+!!! log(small):(0.084106,410)
+Total verification time: 0.232 second(s)
+	Time spent in main process: 0.144 second(s)
+	Time spent in child processes: 0.088 second(s)
+	Z3 Prover Time: 0.008 second(s)

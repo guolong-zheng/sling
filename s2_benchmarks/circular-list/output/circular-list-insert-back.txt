@@ -1,0 +1,150 @@
+
+!!!Full processing file "circular-list/circular-list-insert-back.dryad.c"
+Parsing file "circular-list/circular-list-insert-back.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E circular-list/circular-list-insert-back.dryad.c -o circular-list/circular-list-insert-back.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of lseg_insert_back: :HP_22
+!!! generate unknown predicate for Post synthesis of lseg_insert_back: :GP_23
+!!! generate unknown predicate for Pre synthesis of circular_list_insert_back: :HP_26
+!!! generate unknown predicate for Post synthesis of circular_list_insert_back: :GP_27
+!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(x))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_27(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure lseg_insert_back$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_22,GP_23]requires HP_22(hd,tl@NI)&
+truerequires emp
+ ensures GP_23(hd,tl,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_22(hd,tl@NI)&true --> hd::node<key_7_1439,next_7_1440> * 
+HP_1441(next_7_1440,tl@NI)&
+true,
+ // PRE_REC
+(2;2;0)HP_1441(next_67',tl@NI)&next_67'!=null & 
+tl!=next_67' --> HP_22(next_67',tl@NI)&
+true,
+ // POST
+(1;0)HP_1441(next_7_1440,tl@NI) * hd::node<key_7_1439,next_7_1440>&
+next_7_1440=null --> GP_23(hd,tl,next_7_1440)&
+true,
+ // POST
+(2;2;0)GP_23(next_15_1467,tl,hd_1468) * hd::node<key_7_1439,hd_1468>&
+tl!=next_15_1467 & next_15_1467!=null & res=hd --> GP_23(hd,tl,res)&
+true]
+
+Procedure lseg_insert_back$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_22(hd_1469,tl_1470) ::= hd_1469::node<key_7_1439,next_7_1440> * HP_1441(next_7_1440,tl_1470)&
+hd_1469!=null & tl_1470!=hd_1469(4,5),
+ GP_23(hd_1475,tl_1476,next_7_1477) ::= 
+ GP_23(next_15_1467,tl_1476,hd_1468) * hd_1475::node<key_7_1439,hd_1468>&
+ tl_1476!=next_15_1467 & next_15_1467!=null & next_7_1477=hd_1475
+ or hd_1475::node<key_7_1439,next_7_1477>&next_7_1477=null
+ (4,5),
+ HP_1441(next_1473,tl_1474) ::= 
+ next_1473::node<key_7_1439,next_7_1440> * HP_1441(next_7_1440,tl_1474)&
+ tl_1474!=next_1473
+ or emp&next_1473=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_7_1439](ex)[]hd::node<key_7_1439,next_7_1440> * 
+       next_7_1440::HP_1441{}<tl>&hd!=null & tl!=hd&{FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_7_1439](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists tl: hd::GP_23{}<tl,res>&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure circular_list_insert_back$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_26,GP_27]requires HP_26(x)&
+truerequires emp
+ ensures GP_27(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_26(x)&true --> x::node<key_27_1546,next_27_1547> * 
+HP_1548(next_27_1547)&
+true,
+ // PRE
+(2;0)HP_1548(next_27_1547)&
+true --> next_27_1547::node<key_7_1588,next_7_1589> * HP_1590(next_7_1589)&
+true,
+ // PRE
+(2;0)x::node<key_27_1546,next_27_1547> * HP_1590(next_7_1583)&
+x!=next_27_1547 --> next_7_1583::HP_1441<x> * HP_1591(x)&
+true,
+ // BIND
+(2;0)HP_1591(x)&true --> x::node<key_37_1599,next_37_1600> * 
+HP_1601(next_37_1600)&
+true,
+ // POST
+(1;0)HP_1548(x) * res::node<Anon_1576,x> * x::node<key_27_1546,res>&
+true --> GP_27(x,res)&
+true,
+ // POST
+(2;0)x::node<key_37_1599,res>&true --> GP_27(x,res)&
+true]
+
+Procedure circular_list_insert_back$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_26(x_1618) ::= x_1618::node<key_27_1546,next_27_1547> * 
+next_27_1547::node<key_7_1588,next_7_1589> * 
+next_7_1589::HP_1441<DP_DP_HP_1638>(4,5),
+ GP_27(x_1640,res_1641) ::= 
+ x_1640::node<key_27_1546,res_1641>
+ or res_1641::node<Anon_1576,x_1640> * x_1640::node<key_27_1546,res_1641>
+ (4,5),
+ GP_23(hd_1475,tl_1476,next_7_1477) ::= 
+ GP_23(next_15_1467,tl_1476,hd_1468) * hd_1475::node<key_7_1439,hd_1468>&
+ tl_1476!=next_15_1467 & next_15_1467!=null & next_7_1477=hd_1475
+ or hd_1475::node<key_7_1439,next_7_1477>&next_7_1477=null
+ (4,5),
+ HP_1441(next_1473,tl_1474) ::= 
+ next_1473::node<key_7_1439,next_7_1440> * HP_1441(next_7_1440,tl_1474)&
+ tl_1474!=next_1473
+ or emp&next_1473=null
+ (4,5),
+ HP_22(hd_1469,tl_1470) ::= hd_1469::node<key_7_1439,next_7_1440> * HP_1441(next_7_1440,tl_1470)&
+hd_1469!=null & tl_1470!=hd_1469(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_27_1546; 
+       key_7_1588](ex)[]x::node<key_27_1546,next_27_1547> * 
+       next_27_1547::node<key_7_1588,next_7_1589> * 
+       next_7_1589::HP_1441{}<DP_DP_HP_1638>&{FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_27_1546; key_7_1588](ex)[]emp&
+               MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_27{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 162 invocations Stop Omega... 92 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.134568,815)
+Total verification time: 0.256 second(s)
+	Time spent in main process: 0.156 second(s)
+	Time spent in child processes: 0.1 second(s)
+	Z3 Prover Time: 0.016 second(s)

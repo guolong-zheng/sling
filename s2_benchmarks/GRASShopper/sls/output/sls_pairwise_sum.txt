@@ -1,0 +1,194 @@
+
+!!!Full processing file "GRASShopper//sls/sls_pairwise_sum.dryad.c"
+Parsing file "GRASShopper//sls/sls_pairwise_sum.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//sls/sls_pairwise_sum.dryad.c -o GRASShopper//sls/sls_pairwise_sum.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sls_pairwise_sum: :HP_24
+!!! generate unknown predicate for Post synthesis of sls_pairwise_sum: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(x,y))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(x,y,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_22_2$node~node~node~int~void_star~node: :HP_1373
+!!! generate unknown predicate for Post synthesis of while_22_2$node~node~node~int~void_star~node: :GP_1379Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_22_2$node~node~node~int~void_star~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1373,GP_1379]requires HP_1373(last_69,curr_65,tmp___71,tmp___72,curr_66)&
+truerequires emp
+ ensures GP_1379(last_69,last_69',curr_65,curr_65',tmp___71,tmp___71',tmp___72,tmp___72',curr_66,curr_66')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;0)HP_1373(last_69,curr_65,tmp___71,tmp___72,curr_66)&
+true --> curr_65::node<key_22_1494,next_22_1495> * 
+HP_1496(next_22_1495,last_69@NI,tmp___71@NI,tmp___72@NI,curr_66@NI) * 
+HP_1497(last_69,tmp___71,tmp___72,curr_66,curr_65@NI)&
+true,
+ // BIND
+(1;1;0)HP_1497(last_69,tmp___71,tmp___72,curr_66,curr_65@NI)&
+true --> curr_66::node<key_22_1506,next_22_1507> * 
+HP_1508(next_22_1507,last_69@NI,tmp___71@NI,tmp___72@NI,curr_65@NI) * 
+HP_1509(last_69,tmp___71,tmp___72,curr_66@NI,curr_65@NI)&
+true,
+ // BIND
+(1;1;1;0)HP_1496(curr_65',last_1538@NI,tmp___1516@NI,tmp___1530@NI,curr_1524@NI)&
+curr_65'!=null --> curr_65'::node<key_35_1555,next_35_1556> * 
+HP_1557(next_35_1556,last_1538@NI,tmp___1516@NI,tmp___1530@NI,curr_1524@NI)&
+true,
+ // BIND
+(1;1;1;0)HP_1508(curr_66',last_1538@NI,tmp___1516@NI,tmp___1530@NI,curr_1520@NI)&
+curr_66'!=null --> curr_66'::node<key_35_1562,next_35_1563> * 
+HP_1564(next_35_1563,last_1538@NI,tmp___1516@NI,tmp___1530@NI,curr_1520@NI)&
+true,
+ // BIND
+(1;1;1;0)HP_1509(last_1538,tmp___1516,tmp___1530,curr_1524@NI,curr_1520@NI)&
+true --> last_1538::node<key_37_1579,next_37_1580> * 
+HP_1581(next_37_1580,tmp___1516@NI,tmp___1530@NI,curr_1524@NI,curr_1520@NI) * 
+HP_1582(tmp___1516,tmp___1530,last_1538@NI,curr_1524@NI,curr_1520@NI)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1557(next_35_1556,last_1538@NI,tmp___1516@NI,tmp___1530@NI,curr_1524@NI) * 
+curr_65'::node<key_35_1555,next_35_1556> * 
+HP_1564(next_35_1563,last_1538@NI,tmp___1516@NI,tmp___1530@NI,curr_1520@NI) * 
+curr_66'::node<key_35_1562,next_35_1563> * 
+last_69'::node<z_70',next_36_1578> * last_1538::node<key_37_1579,last_69'>&
+tmp___72'!=null & 
+next_36_1578=null --> HP_1373(last_69',curr_65',last_1538,tmp___72',curr_66')&
+true,
+ // POST
+(1;1;1;0)curr_65::node<key_22_1494,next_22_1495> * 
+curr_66::node<key_22_1506,next_22_1507> * 
+HP_1582(tmp___71,tmp___72,last_69@NI,curr_66@NI,curr_65@NI) * 
+GP_1379(last_1602,last_69',next_22_1495,curr_65',last_69,tmp___71',tmp___1604,tmp___72',next_22_1507,curr_66')&
+last_69!=null & last_1602!=null & next_22_1507!=null & next_22_1495!=null & 
+tmp___1604!=null --> GP_1379(last_69,last_69',curr_65,curr_65',tmp___71,tmp___71',tmp___72,tmp___72',curr_66,curr_66')&
+true,
+ // POST
+(2;1;1;0)HP_1496(next_22_1495,last_69@NI,tmp___71@NI,tmp___72@NI,curr_66@NI) * 
+curr_65::node<key_22_1494,next_22_1495> * 
+HP_1509(last_69,tmp___71,tmp___72,curr_66@NI,curr_65@NI) * 
+curr_66::node<key_22_1506,next_22_1507>&next_22_1507=null & 
+next_22_1495!=null & curr_65'=curr_65 & curr_66'=curr_66 & 
+last_69'=last_69 & tmp___71'=tmp___71 & 
+tmp___72'=tmp___72 --> GP_1379(last_69,last_69',curr_65,curr_65',tmp___71,tmp___71',tmp___72,tmp___72',curr_66,curr_66')&
+true,
+ // POST
+(2;1;1;0)HP_1508(next_22_1507,last_69'@NI,tmp___71'@NI,tmp___72'@NI,curr_65'@NI)&
+next_22_1507=null --> emp&
+true,
+ // POST
+(2;1;0)HP_1496(next_22_1495,last_69@NI,tmp___71@NI,tmp___72@NI,curr_66@NI) * 
+HP_1497(last_69,tmp___71,tmp___72,curr_66,curr_65@NI) * 
+curr_65::node<key_22_1494,next_22_1495>&next_22_1495=null & 
+curr_65'=curr_65 & curr_66'=curr_66 & last_69'=last_69 & 
+tmp___71'=tmp___71 & 
+tmp___72'=tmp___72 --> GP_1379(last_69,last_69',curr_65,curr_65',tmp___71,tmp___71',tmp___72,tmp___72',curr_66,curr_66')&
+true]
+
+Procedure while_22_2$node~node~node~int~void_star~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at _0:0_0:0
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1373,GP_1379]
+   EBase HP_1373(last_69,curr_65,tmp___71,tmp___72,curr_66)&
+         {FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [last_69;curr_65;tmp___71;z_70;tmp___72;curr_66]
+                     GP_1379(last_69,last_69',curr_65,curr_65',tmp___71,tmp___71',tmp___72,tmp___72',curr_66,curr_66')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure sls_pairwise_sum$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(x,y)&
+truerequires emp
+ ensures GP_25(x,y,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;2;0)HP_24(curr_65',y)&y!=null & 
+curr_65'!=null --> curr_65'::node<key_19_2319,next_19_2320> * 
+HP_2321(next_19_2320,y@NI) * HP_2322(y,curr_65'@NI)&
+true,
+ // BIND
+(2;2;0)HP_2322(curr_66',curr_65'@NI)&
+curr_66'!=null --> curr_66'::node<key_19_2327,next_19_2328> * 
+HP_2329(next_19_2328,curr_65'@NI)&
+true,
+ // PRE
+(2;2;0)HP_2321(next_19_2320,curr_66'@NI) * 
+curr_65'::node<key_19_2319,next_19_2320> * 
+HP_2329(next_19_2328,curr_65'@NI) * 
+curr_66'::node<key_19_2327,next_19_2328> * 
+last_69'::node<z_70',v_node_21_2361>&
+v_node_21_2361=null --> HP_1373(last_69',curr_65',tmp___71',tmp___72',curr_66')&
+true,
+ // POST
+(1;0)HP_24(res,y)&res=null & x=null & x=res --> GP_25(x,y,res)&
+true,
+ // POST
+(1;2;0)HP_24(x,res)&x!=null & res=null & y=null & y=res --> GP_25(x,y,res)&
+true,
+ // POST
+(2;2;0)emp&res!=null & y!=null & x!=null --> GP_25(x,y,res)&
+true]
+
+Procedure sls_pairwise_sum$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(curr_2400,y_2401) ::= 
+ emp&curr_2400=null & y_2401!=null
+ or emp&y_2401=null & curr_2400!=null
+ or y_2401::node<key_19_2327,DP_DP_HP_2329> * 
+    curr_2400::node<key_19_2379,DP_DP_HP_2321>
+ or emp&curr_2400=null
+ (4,5),
+ GP_25(x_2414,y_2415,res_2416) ::= 
+ emp&x_2414!=null & res_2416=null & y_2415=null
+ or emp&res_2416!=null & y_2415!=null & x_2414!=null
+ or emp&res_2416=null & x_2414=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_24{}<y>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists y: x::GP_25{}<y,res>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 227 invocations Stop Omega... 94 invocations 
+1 false contexts at: ( (22,2) )
+
+!!! log(small):(0.695438,1228)
+!!! log(big)(>0.5s)(1):(0.540692,[(imply,0.540692)])
+Total verification time: 1.4 second(s)
+	Time spent in main process: 0.256 second(s)
+	Time spent in child processes: 1.144 second(s)
+	Z3 Prover Time: 0.004 second(s)
