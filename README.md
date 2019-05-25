@@ -1,5 +1,7 @@
 # S2 experiments
 
+All results and run scripts are in the `s2_benchmarks` dir.  
+
 ## Tool 
 The binary s2 version used in evaluation:
 ```
@@ -25,7 +27,7 @@ Copyright @ PLS2 @ NUS
   ```
   **TODO**: give an example here
   
-  (3) The command to run the experiments is `2 *.c` (no specicial flags, just run `s2` as is). The generated results are in `s2_benchmarks/*/output` directory where * is the name of each category.
+  (3) The command to run the experiments is `2 *.c` (no specicial flags, just run `s2` as is). The generated results are in `s2_benchmarks/*/output` directory where `*` is the name of each benchmark category.
   
   ** TODO:  Show the output of S2 on the above example**
 
@@ -34,6 +36,6 @@ Copyright @ PLS2 @ NUS
 **TODO:  Give an example when it works, and it doesn't work.  Just copy and paste the results from the output dir here**
 
 
-## Some examples showing the public online versions of S2 failed to work
+### Some examples showing the public online versions of S2 failed to work
 
 The directory `/web_s2_result/` contains several examples causing problems to the online tools:  http://loris-5.d2.comp.nus.edu.sg/s2/ and http://loris-5.d2.comp.nus.edu.sg/s2/beta/.  
