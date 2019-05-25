@@ -1,11 +1,5 @@
 #include "stdhip.h"
 
-/*pred definition:
-data node {
-     int key;
-     node next; };
-*/
-
 struct node {
   int key;
   struct node * next;
