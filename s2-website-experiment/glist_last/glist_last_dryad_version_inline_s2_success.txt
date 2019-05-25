@@ -1,0 +1,166 @@
+!!!Full processing file "../src/temp/glist-last.41053025.5948291.c" 
+Parsing file "../src/temp/glist-last.41053025.5948291.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/glist-last.41053025.5948291.c -o ../src/temp/glist-last.41053025.5948291.c.prep 
+
+!!! generate unknown predicate for Pre synthesis of g_list_last: :HP_16 
+!!! generate unknown predicate for Post synthesis of g_list_last: :GP_17 
+!!! ss:EInfer @shape[HP_16,GP_17] EBase: [][](HRel HP_16(list))*(true)( FLOW __norm) {EAssume: 7,:(HRel GP_17(list,res))*(true)( FLOW __norm)} 
+!!! processing primitives "["prelude.ss"] 
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_48_4$node: :HP_1225 
+!!! generate unknown predicate for Post synthesis of while_48_4$node: :GP_1227 
+Checking procedure while_48_4$node... 
+
+
+****************************** 
+******* SPECIFICATION1 ******** 
+****************************** 
+infer[@shape HP_1225,GP_1227]requires HP_1225(curr_41)& 
+truerequires emp 
+ensures GP_1227(curr_41,curr_41')&true{,(4,5)=__norm#E}; 
+Starting Omega.../usr/local/bin/oc 
+
+************************************* 
+*******shape relational assumptions ******** 
+************************************* 
+[ // BIND 
+(1;0)HP_1225(curr_41)& 
+true --> curr_41::node<key_48_1269,next_48_1270,prev_48_1271> * 
+HP_1272(next_48_1270) * 
+HP_1273(prev_48_1271)& 
+true, 
+// PRE_REC 
+(1;1;0)HP_1272(curr_41')& 
+curr_41'!=null --> HP_1225(curr_41')& 
+true, 
+// POST 
+(1;1;0)HP_1273(prev_48_1271) * 
+curr_41::node<key_48_1269,next_48_1270,prev_48_1271> * 
+GP_1227(next_48_1270,curr_41')& 
+next_48_1270!=null --> GP_1227(curr_41,curr_41')& 
+true, 
+// POST 
+(2;1;0)HP_1272(next_48_1270) * 
+HP_1273(prev_48_1271) * 
+curr_41::node<key_48_1269,next_48_1270,prev_48_1271>& 
+next_48_1270=null & 
+curr_41'=curr_41 --> GP_1227(curr_41,curr_41')& 
+true] 
+
+Procedure while_48_4$node SUCCESS. 
+
+********************************************************* 
+*******relational definition ******** 
+********************************************************* 
+[ HP_1225(curr_1287) ::= curr_1287::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+HP_1272(next_48_1270)&curr_1287!=null(4,5), 
+GP_1227(curr_1290,curr_1291) ::= curr_1292::node<key_48_1269,next_48_1270,DP_DP_HP_1273> *
+GP_1293(curr_1290,curr_1292)&next_48_1270=null & curr_1291=curr_1292(4,5), 
+GP_1293(curr_1290,curr_1292) ::= 
+curr_1290::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+GP_1293(next_48_1270,curr_1292)&next_48_1270!=null 
+or emp&curr_1290=curr_1292 
+(4,5), 
+HP_1272(curr_1289) ::= 
+curr_1289::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+HP_1272(next_48_1270) 
+or emp&curr_1289=null 
+(4,5)] 
+************************************* 
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_48_1269](ex)[]curr_41::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+next_48_1270::HP_1272{}<>&curr_41!=null&{FLOW,(1,31)=__flow#E}[] 
+EBase exists (Expl)[](Impl)[key_48_1269](ex)[]emp&MayLoop[]& 
+{FLOW,(4,5)=__norm#E}[] 
+EAssume ref [curr_41] 
+(exists next_48_1270,DP_DP_HP_1273, 
+curr_1292: curr_1292::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+curr_41::GP_1293{}<curr_1292>&next_48_1270=null & 
+curr_41'=curr_1292&{FLOW,(4,5)=__norm#E})[] 
+
+Checking procedure g_list_last$node... 
+
+
+****************************** 
+******* SPECIFICATION1 ******** 
+****************************** 
+infer[@shape HP_16,GP_17]requires HP_16(list)& 
+truerequires emp 
+ensures GP_17(list,res)&true{,(4,5)=__norm#E}; 
+
+************************************* 
+*******shape relational assumptions ******** 
+************************************* 
+[ // PRE 
+(1;0)HP_16(curr_41')& 
+curr_41'!=null --> curr_41'::node<key_48_1369,next_48_1370,DP_DP_HP_1371> * 
+HP_1372(next_48_1370) * 
+HP_1373(DP_DP_HP_1371)& 
+true, 
+// PRE 
+(1;0)HP_1372(next_48_1366)& 
+true --> next_48_1366::HP_1272<>& 
+true, 
+// POST 
+(1;0)res::node<key_48_1269,next_48_1378,DP_DP_HP_1379> * 
+list::GP_1293<res>& 
+next_48_1378=null --> GP_17(list,res)& 
+true, 
+// POST 
+(2;0)HP_16(list)&list=null & res=null & 
+res=list --> GP_17(list,res)& 
+true] 
+
+Procedure g_list_last$node SUCCESS. 
+
+(LEMSYN) Proving lemma syn_1559: curr_1556::node<key_48_1553,next_48_1555,DP_DP_HP_1554> *
+self::GP_1293{}<curr_1556>&next_48_1555=null&{FLOW,(1,31)=__flow#E}[] -> self::GP_1293{}<curr_1556>&{FLOW,(1,31)=__flow#E}[] 
+
+Context of Verification Failure: 1 File "",Line:0,Col:0 
+
+Last Proving Location: 1 File "",Line:0,Col:0 
+
+ERROR: at _0:0_0:0 
+Message: unexpected match pattern 
+
+gen lemma: Exception: Failure("unexpected match pattern") 
+
+********************************************************* 
+*******relational definition ******** 
+********************************************************* 
+[ HP_16(curr_1385) ::= curr_1385::HP_1272<>(4,5), 
+GP_17(list_1386,res_1387) ::= 
+res_1387::node<key_48_1269,next_48_1378,DP_DP_HP_1379> * 
+list_1386::GP_1293<res_1387>&next_48_1378=null 
+or emp&list_1386=null & res_1387=null 
+(4,5), 
+GP_1227(curr_1290,curr_1291) ::= curr_1292::node<key_48_1269,next_48_1270,DP_DP_HP_1273> *
+GP_1293(curr_1290,curr_1292)&next_48_1270=null & curr_1291=curr_1292(4,5), 
+GP_1293(curr_1290,curr_1292) ::= 
+curr_1290::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+GP_1293(next_48_1270,curr_1292)&next_48_1270!=null 
+or emp&curr_1290=curr_1292 
+(4,5), 
+HP_1225(curr_1287) ::= curr_1287::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+HP_1272(next_48_1270)&curr_1287!=null(4,5), 
+HP_1272(curr_1289) ::= 
+curr_1289::node<key_48_1269,next_48_1270,DP_DP_HP_1273> * 
+HP_1272(next_48_1270) 
+or emp&curr_1289=null 
+(4,5)] 
+************************************* 
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1272{}<>&{FLOW,(4,5)=__norm#E}[] 
+EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[] 
+EAssume 
+list::GP_17{}<res>&{FLOW,(4,5)=__norm#E}[] 
+Stop z3... 124 invocations Stop Omega... 82 invocations 
+1 false contexts at: ( (48,4) ) 
+
+!!! log(small):(0.121129,671) 
+Total verification time: 0.249689 second(s) 
+Time spent in main process: 0.162246 second(s) 
+Time spent in child processes: 0.087443 second(s) 
+Z3 Prover Time: 0.00252 second(s) 
