@@ -35,9 +35,5 @@ Copyright @ PLS2 @ NUS
 
 
 ## Some examples showing the public online versions of S2 failed to work
-   
-   
-The directory `/web_s2_result/` contains several examples showing the online tools below failed to work
-   http://loris-5.d2.comp.nus.edu.sg/s2/
-   
-   http://loris-5.d2.comp.nus.edu.sg/s2/beta/
+
+The directory `/web_s2_result/` contains several examples causing problems to the online tools:  http://loris-5.d2.comp.nus.edu.sg/s2/ and http://loris-5.d2.comp.nus.edu.sg/s2/beta/.  
