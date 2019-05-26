@@ -1,6 +1,6 @@
 # S2 experiments
 
-All results and run scripts are in the `s2_benchmarks` dir.  The file [run-exp.sh] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/run-exp.sh) lists the run script to produce our results.  It can be invoked as ```./run-exp.sh```.   
+All results and run scripts are in the `s2_benchmarks` dir.  The file [run-exp.sh](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/run-exp.sh) lists the run script to produce our results.  It can be invoked as ```./run-exp.sh```.   
 
 ## Tool 
 The **binary s2** version used in evaluation:
@@ -25,7 +25,7 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
         ensures true;
        */
   ```
-  For example, the [glib_gslist/g_slist_concat.dryad.c] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/g_slist_concat.dryad.c) is annotated as:
+  For example, the [glib_gslist/g_slist_concat.dryad.c](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/g_slist_concat.dryad.c) is annotated as:
   ```
   #include "stdhipmem.h"
   DLNode * g_list_prepend(DLNode * list, int data, DLNode * p) 
@@ -69,13 +69,13 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
  (4,5)
  ```
  
-  The full output is at [g_slist_concat.txt] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt).
+  The full output is at [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt).
 
   (4) To check whether s2 successfully infers the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`. **TODO** Modify this, should be "the same invariants as the ground truth".
 
-*Good results*: [g_slist_concat.txt] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
+*Good results*: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
 
-*Bad results*:  some examples where the S2 fails to give desirable results [g_list_reverse.dryad.c](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_glist/output/g_list_reverse.txt) (output `Exception Not_found Occurred!`"); [g_slist_insert_at_pos.txt] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_insert_at_pos.txt) (output "Exception Failure("bind failure exception") Occurred!").
+*Bad results*:  some examples where the S2 fails to give desirable results [g_list_reverse.dryad.c](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_glist/output/g_list_reverse.txt) (output `Exception Not_found Occurred!`"); [g_slist_insert_at_pos.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_insert_at_pos.txt)(output "Exception Failure("bind failure exception") Occurred!").
 
 ### Online tools 
 
