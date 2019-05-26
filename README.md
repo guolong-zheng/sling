@@ -50,9 +50,9 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
   }
 ```
   
-  (3) The command to run the experiments is `2 *.c` (no specicial flags, just run `s2` as is). The generated results are in `s2_benchmarks/*/output` directory where `*` is the name of each benchmark category.
+  (3) The command to run the experiments is `./s2 *.c` (no specicial flags, just run `s2` as is). The generated results are in `s2_benchmarks/*/output` directory where `*` is the name of each benchmark category.
   
-  s2 successfully infers the specification for the above example and the output is:
+  `s2` successfully infers the specification for the above example and the output is:
 ```
 !!!Full processing file "glib_glist//g_list_prepend.dryad.c"
 Parsing file "glib_glist//g_list_prepend.dryad.c" by cil parser...
@@ -158,9 +158,11 @@ Total verification time: 0.2 second(s)
 	Z3 Prover Time: 0.004 second(s)
 ```  
 
-  (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as SLING does.
+  (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`.
 
-The output of glib_glist/g_list_reverse.dryad.c show that s2 fails to infer the correct invariants:
+**TODO** :  show a simple example where it does give good or better results.  
+
+*Failed to infer*:  The output of `glib_glist/g_list_reverse.dryad.c` show that s2 fails to infer the correct invariants (**TODO**: quick note here on what and why it failed ,  and only need to include the portion showing that below (don't need to include the whole run log)
 ```
 
 !!!Full processing file "glib_glist//g_list_reverse.dryad.c"
