@@ -160,7 +160,6 @@ Total verification time: 0.2 second(s)
 
   (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as SLING does.
 
-**TODO:  Give an example when it works, and it doesn't work.  Just copy and paste the results from the output dir here**
 The output of glib_glist/g_list_reverse.dryad.c show that s2 fails to infer the correct invariants:
 ```
 
@@ -269,14 +268,12 @@ Total verification time: 0.144 second(s)
 
 The directory `/s2_web_result/` contains several examples causing problems to the online tools: http://loris-5.d2.comp.nus.edu.sg/s2/ and http://loris-5.d2.comp.nus.edu.sg/s2/beta/. In summary, both `s2` and `s2/beta` cannot run any examples, including some `gslist` and `glist` examples listing on the `s2` website, such as
 
-`gslist_last`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=gslist-last&type=c&sepa=true
-`gslist_append`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=gslist-append&type=c&sepa=true
-`gslist_concat`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=gslist-concat&type=c&sepa=true
-`glist_last`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-last&type=c&sepa=true
-`glist_append`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-append&type=c&sepa=true
-`glist_concat`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-concat&type=c&sepa=true
-`glist_insert_before`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-insert-before&type=c&sepa=true
+ - `gslist_last`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=gslist-last&type=c&sepa=true
+ - `gslist_append`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=gslist-append&type=c&sepa=true
+ - `gslist_concat`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=gslist-concat&type=c&sepa=true
+ - `glist_last`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-last&type=c&sepa=true
+ - `glist_append`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-append&type=c&sepa=true
+ - `glist_concat`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-concat&type=c&sepa=true
+ - `glist_insert_before`: http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-insert-before&type=c&sepa=true
 
 The online tools `s2` and `s2/beta` also failed to run examples from VCDryad benchmarks. Especially, the tool `s2` can run some examples (e.g. `glist_last`) if we embed the header file into the source C file and the results are consistent which what we get when run the tool offline. `s2/beta` cannot run any examples, even with the embeded header file.
-
-### Some examples showing the public online versions of S2 failed to work
