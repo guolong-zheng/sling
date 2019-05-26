@@ -270,24 +270,179 @@ Total verification time: 0.144 second(s)
 
 ### Online tools 
 
-The directory `/s2_web_result/` contains examples causing problems to the online tools `s2`: http://loris-5.d2.comp.nus.edu.sg/s2/ and `s2/beta` http://loris-5.d2.comp.nus.edu.sg/s2/beta/. For example, when using the program 
+The directory `/s2_web_result/` contains examples causing problems to the online tools `s2`: http://loris-5.d2.comp.nus.edu.sg/s2/ and `s2/beta` http://loris-5.d2.comp.nus.edu.sg/s2/beta/. For example, when using the program `glist_last` on the `s2` website (http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-last&type=c&sepa=true)
 ```
-TODO: list some simple example here
+#include "stdhipmem.h"
+
+/**
+ * GList:
+ * @data: holds the element's data, which can be a pointer to any kind
+ *        of data, or any integer value using the <link
+ *        linkend="glib-Type-Conversion-Macros">Type Conversion
+ *        Macros</link>.
+ * @next: contains the link to the next element in the list.
+ * @prev: contains the link to the previous element in the list.
+ *
+ * The #GList struct is used for each element in a doubly-linked list.
+ **/
+struct GList {
+  int key;
+  struct GList* prev;
+  struct GList* next;
+};
+
+/**
+ * g_list_last:
+ * @list: a #GList
+ *
+ * Gets the last element in a #GList.
+ *
+ * Returns: the last element in the #GList, 
+ *     or %NULL if the #GList has no elements
+ */
+/*@
+HeapPred H_last(GList a).
+HeapPred G_last(GList a, GList b).
+*/
+struct GList*
+g_list_last (struct GList* list)
+{
+  if (list != NULL) {
+    while (list->next != NULL)
+    /*@
+      infer[H_last, G_last]
+      requires H_last(list)
+      ensures G_last(list, list');
+    */
+    {
+      list = list->next;
+    }
+  }
+
+  return list;
+}
 ```
 
 the `s2` tool fails to run
 ```
-TODO: list the output here
+!!!Full processing file "../src/temp/glist-last.41832842.7783312.c" 
+Parsing file "../src/temp/glist-last.41832842.7783312.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/glist-last.41832842.7783312.c -o ../src/temp/glist-last.41832842.7783312.c.prep 
+../src/temp/glist-last.41832842.7783312.c:1:23: fatal error: stdhipmem.h: No such file or directory 
+#include "stdhipmem.h" 
+^ 
+compilation terminated. 
+
+ERROR: at _0:0_0:0 
+Message: GCC Preprocessing failed! 
+caught 
+
+Exception occurred: Failure("GCC Preprocessing failed!") 
+Error3(s) detected at main 
 ```
 
 and the `s2/beta` fails to run 
 ```
-TODO: list the output here
+!!!Full processing file "../src/temp/isllhead.65370008.7991641.c" 
+Parsing file "../src/temp/isllhead.65370008.7991641.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/isllhead.65370008.7991641.c -o ../src/temp/isllhead.65370008.7991641.c.prep 
+../src/temp/isllhead.65370008.7991641.c:1:23: fatal error: stdhipmem.h: No such file or directory 
+#include "stdhipmem.h" 
+^ 
+compilation terminated. 
+
+ERROR: at _0:0_0:0 
+Message: GCC Preprocessing failed! 
+caught 
+
+Exception occurred: Failure("GCC Preprocessing failed!") 
+Error3(s) detected at main 
 ```
 
 However, the binary version was able to run the tool and produce the results
 ```
-TODO: don't need to list everything,  just the important ones,  use ... to indicate emitted lines
+./s2 glist_last.c 
+
+!!!Full processing file "glist_last.c"
+Parsing file "glist_last.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glist_last.c -o glist_last.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_list_last: :HP_16
+!!! generate unknown predicate for Post synthesis of g_list_last: :GP_17
+!!! processing primitives "["prelude.ss"]
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_37_4$GList... 
+...
+Procedure while_37_4$GList SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ H_last(list_1238) ::= list_1238::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+HP_1224(next_37_1222)&list_1238!=null(4,5),
+ G_last(list_1241,list_1242) ::= 
+ list_1241::GList<key_37_1220,DP_DP_HP_1223,next_37_1222>&
+ list_1242=list_1241 & next_37_1222=null
+ or list_1241::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+    G_last(next_37_1222,list_1242)&next_37_1222!=null
+ (4,5),
+ HP_1224(list_1240) ::= 
+ list_1240::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+ HP_1224(next_37_1222)
+ or emp&list_1240=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_37_1220](ex)[]list::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+       next_37_1222::HP_1224{}<>&list!=null&{FLOW,(1,31)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_37_1220](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [list]
+                   (exists list': list::G_last{}<list'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure g_list_last$GList...
+...
+Procedure g_list_last$GList SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_16(list_1315) ::= list_1315::HP_1224<>(4,5),
+ GP_17(list_1316,res_1317) ::= 
+ list_1316::G_last<list_1309>
+ or emp&list_1316=null & res_1317=null
+ (4,5),
+ G_last(list_1241,list_1242) ::= 
+ list_1241::GList<key_37_1220,DP_DP_HP_1223,next_37_1222>&
+ list_1242=list_1241 & next_37_1222=null
+ or list_1241::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+    G_last(next_37_1222,list_1242)&next_37_1222!=null
+ (4,5),
+ HP_1224(list_1240) ::= 
+ list_1240::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+ HP_1224(next_37_1222)
+ or emp&list_1240=null
+ (4,5),
+ H_last(list_1238) ::= list_1238::GList<key_37_1220,DP_DP_HP_1223,next_37_1222> * 
+HP_1224(next_37_1222)&list_1238!=null(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1224{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   list::GP_17{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop Omega... 168 invocations 
+1 false contexts at: ( (37,4) )
+
+!!! log(small):(0.221306,560)
+Total verification time: 0.191552 second(s)
+	Time spent in main process: 0.133293 second(s)
+	Time spent in child processes: 0.058259 second(s)
 ```
 
 
