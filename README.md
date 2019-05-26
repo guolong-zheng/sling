@@ -1,6 +1,8 @@
 # S2 experiments
 
-All results and run scripts are in the `s2_benchmarks` dir.  The file [run-exp.sh](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/run-exp.sh) lists the run script to produce our results.  It can be invoked as ```./run-exp.sh```.   
+**Summary**: All results and run scripts to reproduce the **S2 experiment** are in the `s2_benchmarks` dir.  In particular, we used the [run-exp.sh](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/run-exp.sh) to generate our results.  It can be invoked as ```./run-exp.sh```.   
+
+# Additional Details
 
 ## Tool 
 The **binary s2** version used in evaluation:
@@ -13,6 +15,10 @@ Copyright @ PLS2 @ NUS
 ```
 Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```  
 
+The tool is invoked using these flags:
+- -- tp z3:  uses the Z3 solver
+- --lem-en-syn: enables the lemma synthesis
+- --pred-en-seg: disable segmentation
 
 # Steps used to get the results:
   (1) The benchmarks are taken from VCDryad benchmarks (http://madhu.cs.illinois.edu/vcdryad/examples/)
