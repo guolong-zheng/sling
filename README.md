@@ -50,7 +50,7 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
   }
 ```
   
-  (3) The command to run the experiments is `./run.sh /PATHTO/*.c` (no specicial flags, just run `s2` as is). The generated results are in `s2_benchmarks/*/output` directory where `*` is the name of each benchmark category.
+  (3) The command to run the experiments is `./run.sh /PATHTO/*.c` (no specicial flags, just run `s2` as is) **TODO** Update this,  we do use some flags for this.  give brief description for the flags. The generated results are in `s2_benchmarks/*/output` directory where `*` is the name of each benchmark category.
   
   `s2` successfully infers the following specification for the above example:
  ```
