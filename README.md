@@ -269,11 +269,11 @@ HeapPred G_last(GList a, GList b).
 ```
 by the annotation used in `s2_benchmarks/` 
 ```
-      "/*@
-        infer[@shape]
-        requires true
-        ensures true;
-       */"
+    /*@
+      infer[@shape]
+      requires true
+      ensures true;
+    */
   ```
   the **binary version** still ran successfully and returned the same output
   ```
