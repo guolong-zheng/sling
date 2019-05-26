@@ -79,13 +79,18 @@ The tool is invoked using these flags:
 
   (4) We then analyze the inferred specifications (invariants) from these results. For examples, 
 
-*Good results*: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
+Some examples showing where we get expected specifications: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
 
-*Bad results*:  some examples where the S2 fails to give desirable results [g_list_reverse.dryad.c](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_glist/output/g_list_reverse.txt) (output `Exception Not_found Occurred!`"); [g_slist_insert_at_pos.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_insert_at_pos.txt)(output "Exception Failure("bind failure exception") Occurred!").
+Some examples where the tool fails to run: [g_list_reverse.dryad.c](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_glist/output/g_list_reverse.txt) (output `Exception Not_found Occurred!`"); [g_slist_insert_at_pos.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_insert_at_pos.txt)(output "Exception Failure("bind failure exception")").
 
 ### Online tools 
 
-The directory `s2_web_result/` contains examples causing problems to the online tools `s2`: http://loris-5.d2.comp.nus.edu.sg/s2/ and `s2/beta`: http://loris-5.d2.comp.nus.edu.sg/s2/beta/. For example, when using the program `glist_last` on the `s2` website:
+The directory `s2_web_result/` contains examples showing the online tools do not run properly.  We use the online tools:
+- `s2`: http://loris-5.d2.comp.nus.edu.sg/s2/ and 
+- `s2/beta`: http://loris-5.d2.comp.nus.edu.sg/s2/beta/. 
+
+
+For example, when using the program `glist_last` on the `s2` website:
 ```
 #include "stdhipmem.h"
 
