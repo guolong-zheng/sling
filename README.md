@@ -3,7 +3,7 @@
 All results and run scripts are in the `s2_benchmarks` dir.  The file [run-exp.sh](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/run-exp.sh) lists the run script to produce our results.  It can be invoked as ```./run-exp.sh```.   
 
 ## Tool 
-The binary s2 version used in evaluation:
+The **binary s2** version used in evaluation:
 ```
 HIP: A Verifier for Heap Manipulating Programs
 Version 1.0
@@ -14,7 +14,7 @@ Copyright @ PLS2 @ NUS
 Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```  
 
 
-# Steps used to get the result:
+# Steps used to get the results:
   (1) The benchmarks are taken from VCDryad benchmarks(http://madhu.cs.illinois.edu/vcdryad/examples/)
   
   (2) The benchmarks are in `s2_benchmarks/` and each programs are annotated with
@@ -52,7 +52,9 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
   
   (3) The command to run the experiments is `./s2 *.c` (no specicial flags, just run `s2` as is). The generated results are in `s2_benchmarks/*/output` directory where `*` is the name of each benchmark category.
   
-  `s2` successfully infers the specification for the above example and the output is:
+  `s2` successfully infers the specification for the above example  **todo**:  what are these specs?  
+  
+  The full run output is:
 ```
 !!!Full processing file "glib_glist//g_list_prepend.dryad.c"
 Parsing file "glib_glist//g_list_prepend.dryad.c" by cil parser...
@@ -160,6 +162,8 @@ Total verification time: 0.2 second(s)
 
   (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`. The above example shows an example where s2 infer the correct invariants.
 
+**Todo**:  give an example when it generate good results
+
 *Failed to infer*:  The output of `glib_glist/g_list_reverse.dryad.c` shows that s2 fails to infer the correct invariants, as shown in the following output " Exception Not_found Occurred! ".
 ```
 ...
@@ -262,7 +266,7 @@ Exception occurred: Failure("GCC Preprocessing failed!")
 Error3(s) detected at main 
 ```
 
-and the `s2/beta` fails to run 
+and the `s2/beta` also fails to run 
 ```
 !!!Full processing file "../src/temp/isllhead.65370008.7991641.c" 
 Parsing file "../src/temp/isllhead.65370008.7991641.c" by cil parser... 
@@ -281,7 +285,7 @@ Exception occurred: Failure("GCC Preprocessing failed!")
 Error3(s) detected at main 
 ```
 
-However, the binary version was able to run the tool and produce the results
+However, the binary version ran successfully
 ```
 ./s2 glist_last.c 
 
