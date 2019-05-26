@@ -1,0 +1,9 @@
+!!!Full processing file "../src/temp/isllhead.82228894.2596973.c" 
+Parsing file "../src/temp/isllhead.82228894.2596973.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/isllhead.82228894.2596973.c -o ../src/temp/isllhead.82228894.2596973.c.prep 
+caught 
+
+Exception occurred: Errormsg.Error 
+Error3(s) detected at main 
+40:1-60:2: Error: Error in collectFunction g_list_free: Cabs2cil.HipSpecsError("Function specs error!line 41") 
