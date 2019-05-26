@@ -160,91 +160,12 @@ Total verification time: 0.2 second(s)
 
   (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`.
 
-**TODO** :  show a simple example where it does give good or better results.  
-
-*Failed to infer*:  The output of `glib_glist/g_list_reverse.dryad.c` show that s2 fails to infer the correct invariants (**TODO**: quick note here on what and why it failed ,  and only need to include the portion showing that below (don't need to include the whole run log)
+**TODO** :  The example presented above is an example where s2 infer the correct invariants.
+*Failed to infer*:  The output of `glib_glist/g_list_reverse.dryad.c` shows that s2 fails to infer the correct invariants, as shown in the following output " Exception Not_found Occurred! ".
 ```
-
-!!!Full processing file "glib_glist//g_list_reverse.dryad.c"
-Parsing file "glib_glist//g_list_reverse.dryad.c" by cil parser...
-GCC Preprocessing...
-gcc -C -E glib_glist//g_list_reverse.dryad.c -o glib_glist//g_list_reverse.dryad.c.prep
-
-!!! generate unknown predicate for Pre synthesis of g_list_reverse: :HP_26
-!!! generate unknown predicate for Post synthesis of g_list_reverse: :GP_27
-!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(list))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_27(list,res))*(true)( FLOW __norm)}
-!!! processing primitives "["prelude.ss"]
-Starting z3... 
-
-!!! generate unknown predicate for Pre synthesis of while_14_2$node~node~node: :HP_1349
-!!! generate unknown predicate for Post synthesis of while_14_2$node~node~node: :GP_1353Starting Omega.../usr/local/bin/oc
-
-Checking procedure while_14_2$node~node~node... 
-
-
-******************************
-   ******* SPECIFICATION1 ********
-******************************
- infer[@shape HP_1445,HP_1446,GP_1353]requires HP_1445(last_69,curr_68) * 
-HP_1446(last_67)&
-truerequires emp
- ensures GP_1353(last_69,last_69',last_67,last_67',curr_68,curr_68')&
-true{,(4,5)=__norm#E};
-
-*************************************
-*******shape relational assumptions ********
-*************************************
-[ // BIND
-(1;1;0)HP_1349(last_69,last_67,curr_68)&
-curr_68!=null --> curr_68::node<key_22_1455,next_22_1456,prev_22_1457> * 
-HP_1458(next_22_1456,last_69@NI,last_67@NI) * 
-HP_1459(prev_22_1457,last_69@NI,last_67@NI) * 
-HP_1460(last_69,last_67,curr_68@NI)&
-true,
- // PRE_REC
-(1;1;0)HP_1458(curr_68',last_69@NI,last_67@NI) * 
-HP_1459(last_69',last_69@NI,last_67@NI) * 
-curr_68::node<key_22_1455,last_69',curr_68'>&
-true --> HP_1349(last_69',curr_68,curr_68')&
-true,
- // POST
-(1;1;0)HP_1460(last_69,last_67,curr_68@NI) * 
-GP_1353(prev_22_1457,last_69',curr_68,last_67',next_24_1469,curr_68')&
-curr_68!=null --> GP_1353(last_69,last_69',last_67,last_67',curr_68,curr_68')&
-true,
- // POST
-(2;1;0)HP_1349(last_69,last_67,curr_68)&curr_68=null & curr_68'=null & 
-curr_68'=curr_68 & last_67'=last_67 & 
-last_69'=last_69 --> GP_1353(last_69,last_69',last_67,last_67',curr_68,curr_68')&
-true]
-
-Procedure while_14_2$node~node~node SUCCESS.
-
-Context of Verification Failure: 1 File "",Line:0,Col:0
-
-Last Proving Location: 1 File "",Line:0,Col:0
-
-ERROR: at glib_glist//g_list_reverse.dryad.c_14:2_26:3
-Message: split_components: don't expect OR
-
- --error:  at:
-
-*********************************************************
-*******relational definition ********
-*********************************************************
-[]
-*************************************
-
-!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1445,HP_1446,GP_1353]
-   EBase HP_1445(last_69,curr_68) * HP_1446(last_67)&{FLOW,(4,5)=__norm#E}[]
-           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
-                   EAssume ref [last_69;last_67;curr_68]
-                     GP_1353(last_69,last_69',last_67,last_67',curr_68,curr_68')&
-                     {FLOW,(4,5)=__norm#E}[]
-                     
-Checking procedure g_list_reverse$node... 
-
-
+...
+...
+...
 ******************************
    ******* SPECIFICATION1 ********
 ******************************
