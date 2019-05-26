@@ -75,36 +75,7 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
 
 *Good results*: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
 
-*Bad results*:  some examples where the S2 fail give desirable results `glib_glist/g_list_reverse.dryad.c` **TODO: link to the output file and remove the long output below so that it is consistent with the above** (output `Exception Not_found Occurred!`") 
-
-
-**TODO: REMOVE** The output of  shows that s2 fails to infer the correct invariants, as shown in the following output .
-```
-...
-...
-...
-******************************
-   ******* SPECIFICATION1 ********
-******************************
- infer[@shape HP_26,GP_27]requires HP_26(list)&
-truerequires emp
- ensures GP_27(list,res)&true{,(4,5)=__norm#E};
-
-!!! WARNING logtime exception:0.
-Procedure g_list_reverse$node FAIL.(2)
-
-Exception Not_found Occurred!
-
-Error(s) detected when checking procedure g_list_reverse$node
-Stop z3... 77 invocations Stop Omega... 25 invocations 
-1 false contexts at: ( (14,2) )
-
-!!! log(small):(0.036483,308)
-Total verification time: 0.144 second(s)
-	Time spent in main process: 0.1 second(s)
-	Time spent in child processes: 0.044 second(s)
-	Z3 Prover Time: 0.004 second(s)
-```
+*Bad results*:  some examples where the S2 fail give desirable results [g_list_reverse.dryad.c](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_glist/output/g_list_reverse.txt)(output `Exception Not_found Occurred!`"); [g_slist_insert_at_pos.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_insert_at_pos.txt)(output "Exception Failure("bind failure exception") Occurred!").
 
 ### Online tools 
 
