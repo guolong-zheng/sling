@@ -19,11 +19,11 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
   
   (2) The benchmarks are in `s2_benchmarks/` and each method or loop in a program is annotated with
   ```
-      "/*@
+      /*@
         infer[@shape]
         requires true
         ensures true;
-       */"
+       */
   ```
   For example, the [glib_gslist/g_slist_concat.dryad.c] (https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/g_slist_concat.dryad.c) is annotated as:
   ```
