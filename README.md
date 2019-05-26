@@ -158,9 +158,8 @@ Total verification time: 0.2 second(s)
 	Z3 Prover Time: 0.004 second(s)
 ```  
 
-  (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`.
+  (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`. The above example shows an example where s2 infer the correct invariants.
 
-**TODO** :  The example presented above is an example where s2 infer the correct invariants.
 *Failed to infer*:  The output of `glib_glist/g_list_reverse.dryad.c` shows that s2 fails to infer the correct invariants, as shown in the following output " Exception Not_found Occurred! ".
 ```
 ...
