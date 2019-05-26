@@ -1,6 +1,6 @@
 # S2 experiments
 
-All results and run scripts are in the `s2_benchmarks` dir.  The file **TODO** lists the run script to produce our results.  It can be invoked as ```how to run the script```.   
+All results and run scripts are in the `s2_benchmarks` dir.  The file [run-exp.sh](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/run-exp.sh) lists the run script to produce our results.  It can be invoked as ```./run-exp.sh```.   
 
 ## Tool 
 The binary s2 version used in evaluation:
