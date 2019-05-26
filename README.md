@@ -73,9 +73,12 @@ Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```
 
   (4) To check whether s2 successfully infer the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`.
 
-*Succeed to infer*: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
+*Good results*: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
 
-*Failed to infer*:  The output of `glib_glist/g_list_reverse.dryad.c` shows that s2 fails to infer the correct invariants, as shown in the following output " Exception Not_found Occurred! ".
+*Bad results*:  some examples where the S2 fail give desirable results `glib_glist/g_list_reverse.dryad.c` **TODO: link to the output file and remove the long output below so that it is consistent with the above** (output `Exception Not_found Occurred!`") 
+
+
+**TODO: REMOVE** The output of  shows that s2 fails to infer the correct invariants, as shown in the following output .
 ```
 ...
 ...
@@ -196,7 +199,7 @@ Exception occurred: Failure("GCC Preprocessing failed!")
 Error3(s) detected at main 
 ```
 
-However, the binary version ran successfully
+However, the **binary version** ran successfully
 ```
 ./s2 glist_last.c 
 
