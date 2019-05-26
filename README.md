@@ -1,6 +1,6 @@
 # S2 experiments
 
-All results and run scripts are in the `s2_benchmarks` dir.  
+All results and run scripts are in the `s2_benchmarks` dir.  The file **TODO** lists the run script to produce our results.  It can be invoked as ```how to run the script```.   
 
 ## Tool 
 The binary s2 version used in evaluation:
@@ -272,14 +272,16 @@ The directory `/s2_web_result/` contains examples causing problems to the online
 ```
 TODO: list some simple example here
 ```
-the `s2` tools provides the output 
+
+the `s2` tool fails to run
 ```
 TODO: list the output here
 ```
-and the `s2/beta` provides the output
+
+and the `s2/beta` fails to run 
 ```
 TODO: list the output here
-```.
+```
 
 However, the binary version was able to run the tool and produce the results
 ```
