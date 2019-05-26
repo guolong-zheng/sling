@@ -285,7 +285,7 @@ TODO: list the output here
 
 However, the binary version was able to run the tool and produce the results
 ```
-TODO
+TODO: don't need to list everything,  just the important ones,  use ... to indicate emitted lines
 ```
 
 
