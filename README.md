@@ -270,7 +270,7 @@ Total verification time: 0.144 second(s)
 
 ### Online tools 
 
-The directory `/s2_web_result/` contains examples causing problems to the online tools `s2`: http://loris-5.d2.comp.nus.edu.sg/s2/ and `s2/beta` http://loris-5.d2.comp.nus.edu.sg/s2/beta/. For example, when using the program `glist_last` on the `s2` website (http://loris-5.d2.comp.nus.edu.sg/s2/infer.html?ex=glist-last&type=c&sepa=true)
+The directory `/s2_web_result/` contains examples causing problems to the online tools `s2`: http://loris-5.d2.comp.nus.edu.sg/s2/ and `s2/beta` http://loris-5.d2.comp.nus.edu.sg/s2/beta/. For example, when using the program `glist_last` on the `s2` website:
 ```
 #include "stdhipmem.h"
 
