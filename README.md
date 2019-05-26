@@ -254,4 +254,107 @@ Total verification time: 0.191552 second(s)
 	Time spent in child processes: 0.058259 second(s)
 ```
 
+Furthermore, when replacing the annotation of the while loop in this program
+```
+/*@
+HeapPred H_last(GList a).
+HeapPred G_last(GList a, GList b).
+*/
+...
+    /*@
+      infer[H_last, G_last]
+      requires H_last(list)
+      ensures G_last(list, list');
+    */
+```
+by the annotation used in `s2_benchmarks/` 
+```
+      "/*@
+        infer[@shape]
+        requires true
+        ensures true;
+       */"
+  ```
+  the **binary version** still ran successfully and returned the same output
+  ```
+  !!!Full processing file "glist_last_infer.c"
+Parsing file "glist_last_infer.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glist_last_infer.c -o glist_last_infer.c.prep
 
+!!! generate unknown predicate for Pre synthesis of g_list_last: :HP_16
+!!! generate unknown predicate for Post synthesis of g_list_last: :GP_17
+!!! processing primitives "["prelude.ss"]
+Starting Omega.../usr/local/bin/oc
+
+!!! generate unknown predicate for Pre synthesis of while_34_4$GList: :HP_1183
+!!! generate unknown predicate for Post synthesis of while_34_4$GList: :GP_1185
+Checking procedure while_34_4$GList... 
+...
+Procedure while_34_4$GList SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1183(list_1241) ::= list_1241::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+HP_1227(next_34_1225)&list_1241!=null(4,5),
+ GP_1185(list_1244,list_1245) ::= 
+ list_1244::GList<key_34_1223,DP_DP_HP_1226,next_34_1225>&
+ list_1245=list_1244 & next_34_1225=null
+ or list_1244::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+    GP_1185(next_34_1225,list_1245)&next_34_1225!=null
+ (4,5),
+ HP_1227(list_1243) ::= 
+ list_1243::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+ HP_1227(next_34_1225)
+ or emp&list_1243=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_34_1223](ex)[]list::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+       next_34_1225::HP_1227{}<>&list!=null&{FLOW,(1,31)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_34_1223](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [list]
+                   (exists list': list::GP_1185{}<list'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure g_list_last$GList... 
+...
+Procedure g_list_last$GList SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_16(list_1318) ::= list_1318::HP_1227<>(4,5),
+ GP_17(list_1319,res_1320) ::= 
+ list_1319::GP_1185<list_1312>
+ or emp&list_1319=null & res_1320=null
+ (4,5),
+ GP_1185(list_1244,list_1245) ::= 
+ list_1244::GList<key_34_1223,DP_DP_HP_1226,next_34_1225>&
+ list_1245=list_1244 & next_34_1225=null
+ or list_1244::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+    GP_1185(next_34_1225,list_1245)&next_34_1225!=null
+ (4,5),
+ HP_1183(list_1241) ::= list_1241::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+HP_1227(next_34_1225)&list_1241!=null(4,5),
+ HP_1227(list_1243) ::= 
+ list_1243::GList<key_34_1223,DP_DP_HP_1226,next_34_1225> * 
+ HP_1227(next_34_1225)
+ or emp&list_1243=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1227{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   list::GP_17{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop Omega... 168 invocations 
+1 false contexts at: ( (34,4) )
+
+!!! log(small):(0.221813,560)
+Total verification time: 0.197489 second(s)
+	Time spent in main process: 0.13925 second(s)
+	Time spent in child processes: 0.058239 second(s)
+```
