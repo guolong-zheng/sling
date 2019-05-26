@@ -77,7 +77,7 @@ The tool is invoked using these flags:
  
   The full output is at [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt).
 
-  (4) To check whether s2 successfully infers the correct invariants, we checked the output file of each program and see if it generates the same invariants as `SLING`. **TODO** Modify this, should be "the same invariants as the ground truth".
+  (4) We then analyze the inferred specifications (invariants) from these results. For examples, 
 
 *Good results*: [g_slist_concat.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_concat.txt); [g_slist_prepend.txt](https://github.com/guolong-zheng/s2-eval/blob/master/s2_benchmarks/glib_gslist/output/g_slist_prepend.txt).
 
