@@ -16,7 +16,7 @@ Copyright @ PLS2 @ NUS
 Its hash is: ```0d70a6584a7585ce277b4a76e35a244e590f149c```  
 
 The tool is invoked using these flags:
-- -- tp z3:  uses the Z3 solver
+- --tp z3:  uses the Z3 solver
 - --lem-en-syn: enables the lemma synthesis
 - --pred-en-seg: disable segmentation
 
