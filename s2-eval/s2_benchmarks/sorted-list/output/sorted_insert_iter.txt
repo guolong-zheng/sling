@@ -1,0 +1,103 @@
+
+!!!Full processing file "sorted-list//sorted_insert_iter.dryad.c"
+Parsing file "sorted-list//sorted_insert_iter.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sorted-list//sorted_insert_iter.dryad.c -o sorted-list//sorted_insert_iter.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sorted_insert_iter: :HP_24
+!!! generate unknown predicate for Post synthesis of sorted_insert_iter: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(l))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(l,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_34_3$node~node~int: :HP_1369
+!!! generate unknown predicate for Post synthesis of while_34_3$node~node~int: :GP_1372Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_34_3$node~node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1369,GP_1372]requires HP_1369(prev_69,next_70)&
+truerequires emp
+ ensures GP_1372(prev_69,prev_69',next_70,next_70')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1369(prev_69,next_70)&
+next_70!=null --> next_70::node<key_34_1468,next_34_1469> * 
+HP_1470(next_34_1469,prev_69@NI) * HP_1471(prev_69,next_70@NI)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1470(next_34_1469,prev_69@NI) * 
+next_70::node<key_34_1468,next_34_1469>&
+true --> HP_1369(next_70,next_34_1469)&
+true,
+ // POST
+(1;1;1;0)HP_1471(prev_69,next_70@NI) * 
+GP_1372(next_70,prev_69',next_34_1469,next_70')&
+next_70!=null --> GP_1372(prev_69,prev_69',next_70,next_70')&
+true,
+ // POST
+(2;1;1;0)HP_1470(next_34_1469,prev_69@NI) * HP_1471(prev_69,next_70@NI) * 
+next_70::node<key_34_1468,next_34_1469>&next_70'=next_70 & 
+prev_69'=prev_69 --> GP_1372(prev_69,prev_69',next_70,next_70')&
+true,
+ // POST
+(2;1;0)HP_1369(prev_69,next_70)&next_70=null & next_70'=null & 
+next_70'=next_70 & 
+prev_69'=prev_69 --> GP_1372(prev_69,prev_69',next_70,next_70')&
+true]
+
+Procedure while_34_3$node~node~int SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at sorted-list//sorted_insert_iter.dryad.c_34:3_43:4
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1369,GP_1372]
+   EBase HP_1369(prev_69,next_70)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [prev_69;next_70]
+                     GP_1372(prev_69,prev_69',next_70,next_70')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure sorted_insert_iter$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(l)&
+truerequires emp
+ ensures GP_25(l,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure sorted_insert_iter$node~int FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure sorted_insert_iter$node~int
+Stop z3... 131 invocations Stop Omega... 56 invocations 
+1 false contexts at: ( (34,3) )
+
+!!! log(small):(0.084961,483)
+Total verification time: 0.204 second(s)
+	Time spent in main process: 0.136 second(s)
+	Time spent in child processes: 0.068 second(s)
+	Z3 Prover Time: 0.008 second(s)

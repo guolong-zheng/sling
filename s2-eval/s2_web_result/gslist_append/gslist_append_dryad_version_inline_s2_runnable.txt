@@ -1,0 +1,47 @@
+!!!Full processing file "../src/temp/gslist-append.71588323.0631338.c" 
+Parsing file "../src/temp/gslist-append.71588323.0631338.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/gslist-append.71588323.0631338.c -o ../src/temp/gslist-append.71588323.0631338.c.prep 
+
+!!! generate unknown predicate for Pre synthesis of g_slist_append_t: :HP_18 
+!!! generate unknown predicate for Post synthesis of g_slist_append_t: :GP_19 
+!!! ss:EInfer @shape[HP_18,GP_19] EBase: [][](HRel HP_18(list))*(true)( FLOW __norm) {EAssume: 12,:(HRel GP_19(list,res))*(true)( FLOW __norm)} 
+!!! processing primitives "["prelude.ss"] 
+Starting z3... 
+Starting Omega.../usr/local/bin/oc 
+
+Checking procedure g_slist_append_t$node~int... 
+
+
+****************************** 
+******* SPECIFICATION1 ******** 
+****************************** 
+infer[@shape HP_18,GP_19]requires HP_18(list@NI)& 
+truerequires emp 
+ensures GP_19(list,res)&true{,(4,5)=__norm#E}; 
+
+!!!>>>>>> mismatch ptr list::lseg<l_1454> is not found (or inst) in the lhs <<<<<< 
+!!!>>>>>> mismatch ptr l::node<a_1458,flted_36_1459> is not found (or inst) in the lhs <<<<<< 
+!!!>>>>>> mismatch ptr l::node<a_1460,flted_36_1461> is not found (or inst) in the lhs <<<<<< 
+!!!>>>>>> mismatch ptr list::lseg<l_1462> is not found (or inst) in the lhs <<<<<< 
+Proving precondition in method g_slist_last$node Failed. 
+Empty list_failesc_context 
+
+Context of Verification Failure: 1 File "",Line:0,Col:0 
+
+Last Proving Location: 1 File "../src/temp/gslist-append.71588323.0631338.c",Line:87,Col:18 
+
+Procedure g_slist_append_t$node~int FAIL.(2) 
+
+Exception Failure("Proving precond failed") Occurred! 
+
+Error(s) detected when checking procedure g_slist_append_t$node~int 
+Stop z3... 86 invocations Stop Omega... 22 invocations 
+0 false contexts at: () 
+
+!!! log(small):(0.073967,333) 
+Total verification time: 0.209581 second(s) 
+Time spent in main process: 0.132459 second(s) 
+Time spent in child processes: 0.077122 second(s) 
+Z3 Prover Time: 0.002355 second(s) 
+

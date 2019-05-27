@@ -1,0 +1,109 @@
+
+!!!Full processing file "glib_gslist/g_slist_copy.dryad.c"
+Parsing file "glib_gslist/g_slist_copy.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist/g_slist_copy.dryad.c -o glib_gslist/g_slist_copy.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_copy: :HP_18
+!!! generate unknown predicate for Post synthesis of g_slist_copy: :GP_19
+!!! ss:EInfer @shape[HP_18,GP_19] EBase: [][](HRel HP_18(list))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_19(list,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_27_2$node~int~node~void_star~node: :HP_1359
+!!! generate unknown predicate for Post synthesis of while_27_2$node~int~node~void_star~node: :GP_1364Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_27_2$node~int~node~void_star~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1359,GP_1364]requires HP_1359(last_67,tail_70,tmp___71,list)&
+truerequires emp
+ ensures GP_1364(last_67,last_67',tail_70,tail_70',tmp___71,tmp___71',list,list')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1359(last_67,tail_70,tmp___71,list)&
+list!=null --> list::node<key_38_1491,next_38_1492> * 
+HP_1493(next_38_1492,last_67@NI,tail_70@NI,tmp___71@NI) * 
+HP_1494(last_67,tail_70,tmp___71,list@NI)&
+true,
+ // BIND
+(1;1;0)HP_1494(last_67,tail_70,tmp___71,list@NI)&
+true --> last_67::node<key_42_1513,next_42_1514> * 
+HP_1515(next_42_1514,tail_70@NI,tmp___71@NI,list@NI) * 
+HP_1516(tail_70,tmp___71,last_67@NI,list@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1493(list',last_1521@NI,tail_70@NI,tmp___71@NI) * 
+last_67'::node<key_38_1491,v_node_40_1512>&tmp___71'!=null & 
+v_node_40_1512=null & tail_70'=last_67' |#| list::node<key_38_1491,list'>&
+list!=null --> HP_1359(last_67',tail_70',tmp___71',list')&
+true,
+ // POST
+(1;1;0)list::node<key_38_1491,next_38_1492> * 
+HP_1516(tail_70,tmp___71,last_67@NI,list@NI) * 
+last_67::node<key_42_1513,tail_1541> * 
+GP_1364(tail_1541,last_67',tail_1541,tail_70',tmp___1542,tmp___71',next_38_1492,list')&
+tail_1541!=null & 
+tmp___1542!=null --> GP_1364(last_67,last_67',tail_70,tail_70',tmp___71,tmp___71',list,list')&
+true,
+ // POST
+(2;1;0)HP_1359(last_67,tail_70,tmp___71,list)&list=null & list'=null & 
+last_67'=last_67 & list'=list & tail_70'=tail_70 & 
+tmp___71'=tmp___71 --> GP_1364(last_67,last_67',tail_70,tail_70',tmp___71,tmp___71',list,list')&
+true]
+
+Procedure while_27_2$node~int~node~void_star~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at glib_gslist/g_slist_copy.dryad.c_27:2_46:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1359,GP_1364]
+   EBase HP_1359(last_67,tail_70,tmp___71,list)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [last_67;list_key___72;tail_70;tmp___71;list]
+                     GP_1364(last_67,last_67',tail_70,tail_70',tmp___71,tmp___71',list,list')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure g_slist_copy$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_18,GP_19]requires HP_18(list)&
+truerequires emp
+ ensures GP_19(list,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure g_slist_copy$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure g_slist_copy$node
+Stop z3... 126 invocations Stop Omega... 55 invocations 
+1 false contexts at: ( (27,2) )
+
+!!! log(small):(0.149407,590)
+Total verification time: 0.288 second(s)
+	Time spent in main process: 0.188 second(s)
+	Time spent in child processes: 0.1 second(s)
+	Z3 Prover Time: 0.008 second(s)

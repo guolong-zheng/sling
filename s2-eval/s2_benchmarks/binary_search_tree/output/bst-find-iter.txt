@@ -1,0 +1,20 @@
+
+!!!Full processing file "binary_search_tree//bst-find-iter.dryad.c"
+Parsing file "binary_search_tree//bst-find-iter.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E binary_search_tree//bst-find-iter.dryad.c -o binary_search_tree//bst-find-iter.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of bst_find_iter: :HP_23
+!!! generate unknown predicate for Post synthesis of bst_find_iter: :GP_24
+!!! ss:EInfer @shape[HP_23,GP_24] EBase: [][](HRel HP_23(x))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_24(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Last Proving Location: 1 File "binary_search_tree//bst-find-iter.dryad.c",Line:5,Col:0
+
+ERROR: at _0:0_0:0
+Message: no type declaration named __RET is found
+Stop z3... 29 invocations caught
+
+Exception occurred: Failure("no type declaration named __RET is found")
+Error3(s) detected at main 

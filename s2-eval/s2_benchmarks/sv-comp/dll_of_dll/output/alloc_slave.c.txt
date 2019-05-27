@@ -1,0 +1,20 @@
+
+!!!Full processing file "sv-comp/dll_of_dll/alloc_slave.c"
+Parsing file "sv-comp/dll_of_dll/alloc_slave.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sv-comp/dll_of_dll/alloc_slave.c -o sv-comp/dll_of_dll/alloc_slave.c.prep
+
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure alloc_or_die_slave$... 
+Procedure alloc_or_die_slave$ SUCCESS.
+Stop z3... 51 invocations Stop Omega... 21 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.039519,255)
+Total verification time: 0.148 second(s)
+	Time spent in main process: 0.108 second(s)
+	Time spent in child processes: 0.04 second(s)
+	Z3 Prover Time: 0. second(s)

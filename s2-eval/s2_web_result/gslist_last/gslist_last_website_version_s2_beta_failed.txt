@@ -1,0 +1,15 @@
+!!!Full processing file "../src/temp/isllhead.39893596.1843566.c" 
+Parsing file "../src/temp/isllhead.39893596.1843566.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/isllhead.39893596.1843566.c -o ../src/temp/isllhead.39893596.1843566.c.prep 
+../src/temp/isllhead.39893596.1843566.c:2:23: fatal error: stdhipmem.h: No such file or directory 
+#include "stdhipmem.h" 
+^ 
+compilation terminated. 
+
+ERROR: at _0:0_0:0 
+Message: GCC Preprocessing failed! 
+caught 
+
+Exception occurred: Failure("GCC Preprocessing failed!") 
+Error3(s) detected at main 

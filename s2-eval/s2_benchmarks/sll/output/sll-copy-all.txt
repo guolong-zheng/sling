@@ -1,0 +1,69 @@
+
+!!!Full processing file "sll//sll-copy-all.dryad.c"
+Parsing file "sll//sll-copy-all.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sll//sll-copy-all.dryad.c -o sll//sll-copy-all.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sll_copy: :HP_24
+!!! generate unknown predicate for Post synthesis of sll_copy: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(x))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_25(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure sll_copy$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(x)&
+truerequires emp
+ ensures GP_25(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_24(x)&x!=null --> x::node<key_15_1423,next_15_1424> * 
+HP_1425(next_15_1424)&
+true,
+ // PRE_REC
+(2;0)HP_1425(next_15_1424)&true --> HP_24(next_15_1424)&
+true,
+ // POST
+(1;0)HP_24(res)&res=null & x=null & x=res --> GP_25(x,res)&
+true,
+ // POST
+(2;0)x::node<key_15_1423,next_15_1424> * GP_25(next_15_1424,tmp___1464) * 
+res::node<key_15_1423,tmp___1464>&true --> GP_25(x,res)&
+true]
+
+Procedure sll_copy$node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(x_1470) ::= 
+ HP_24(next_15_1468) * x_1470::node<key_15_1467,next_15_1468>
+ or emp&x_1470=null
+ (4,5),
+ GP_25(x_1471,res_1472) ::= 
+ x_1471::node<key_15_1423,next_15_1424> * GP_25(next_15_1424,tmp___1464) * 
+ res_1472::node<key_15_1423,tmp___1464>
+ or emp&res_1472=null & x_1471=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_25{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 88 invocations Stop Omega... 32 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.063597,368)
+Total verification time: 0.148 second(s)
+	Time spent in main process: 0.096 second(s)
+	Time spent in child processes: 0.052 second(s)
+	Z3 Prover Time: 0.004 second(s)

@@ -1,0 +1,130 @@
+
+!!!Full processing file "AFWP/dll/DLL-fix.dryad.c"
+Parsing file "AFWP/dll/DLL-fix.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E AFWP/dll/DLL-fix.dryad.c -o AFWP/dll/DLL-fix.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of polarize: :HP_24
+!!! generate unknown predicate for Post synthesis of polarize: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(h))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(h,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_2$void_star~node~node~node: :HP_1348
+!!! generate unknown predicate for Post synthesis of while_13_2$void_star~node~node~node: :GP_1353Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_2$void_star~node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1348,GP_1353]requires HP_1348(tmp_68,k_67,j_66,i_65)&
+truerequires emp
+ ensures GP_1353(tmp_68,tmp_68',k_67,k_67',j_66,j_66',i_65,i_65')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1348(tmp_68,k_67,j_66,i_65)&
+i_65!=null --> j_66::node<next_23_1472,prev_23_1473> * 
+HP_1474(next_23_1472,tmp_68@NI,k_67@NI,i_65@NI) * 
+HP_1475(prev_23_1473,tmp_68@NI,k_67@NI,i_65@NI) * 
+HP_1476(tmp_68,k_67,i_65,j_66@NI)&
+true,
+ // BIND
+(1;1;0)HP_1476(tmp_1452,k_1446,i_65',k_67'@NI)&
+i_65'!=null --> i_65'::node<next_24_1480,prev_24_1481> * 
+HP_1482(next_24_1480,tmp_1452@NI,k_1446@NI,k_67'@NI) * 
+HP_1483(prev_24_1481,tmp_1452@NI,k_1446@NI,k_67'@NI) * 
+HP_1484(tmp_1452,k_1446,i_65'@NI,k_67'@NI)&
+true,
+ // PRE_REC
+(1;1;0)j_66'::node<j_1460,Anon_1467> * 
+HP_1474(next_23_1472,tmp_1452@NI,k_1446@NI,i_1486@NI) * 
+j_1460::node<next_23_1472,j_66'> * 
+HP_1482(i_65',tmp_1452@NI,k_1446@NI,j_1460@NI)&
+tmp_68'!=null |#| i_1486::node<i_65',prev_24_1481>&
+true --> HP_1348(tmp_68',j_1460,j_66',i_65')&
+true,
+ // POST
+(1;1;0)HP_1483(prev_24_1481,tmp_68@NI,k_67@NI,j_66@NI) * 
+HP_1484(tmp_68,k_67,i_65@NI,j_66@NI) * 
+i_65::node<next_24_1480,prev_24_1481> * 
+GP_1353(tmp_1499,tmp_68',j_66,k_67',j_1500,j_66',next_24_1480,i_65')&
+j_66!=null & j_1500!=null & 
+tmp_1499!=null --> GP_1353(tmp_68,tmp_68',k_67,k_67',j_66,j_66',i_65,i_65')&
+true,
+ // POST
+(2;1;0)HP_1348(tmp_68,k_67,j_66,i_65)&i_65=null & i_65'=null & i_65'=i_65 & 
+j_66'=j_66 & k_67'=k_67 & 
+tmp_68'=tmp_68 --> GP_1353(tmp_68,tmp_68',k_67,k_67',j_66,j_66',i_65,i_65')&
+true]
+
+Procedure while_13_2$void_star~node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "AFWP/dll/DLL-fix.dryad.c",Line:13,Col:2
+
+ERROR: at _0:0_0:0
+Message: sau.pattern_matching_with_guard 1
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1348,GP_1353]
+   EBase HP_1348(tmp_68,k_67,j_66,i_65)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [tmp_68;k_67;j_66;i_65]
+                     GP_1353(tmp_68,tmp_68',k_67,k_67',j_66,j_66',i_65,i_65')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure polarize$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(h)&
+truerequires emp
+ ensures GP_25(h,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_24(h)&j_66'=null --> HP_1348(tmp_68',k_67',j_66',h)&
+true,
+ // POST
+(0)emp&true --> GP_25(h,res)&
+true]
+
+Procedure polarize$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(h) ::= emp&h=DP_DP_HP_24(4,5),
+ GP_25(h_1544,res_1545) ::= emp(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase emp&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   emp&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 90 invocations Stop Omega... 38 invocations 
+1 false contexts at: ( (13,2) )
+
+!!! log(small):(0.060231,405)
+Total verification time: 0.176 second(s)
+	Time spent in main process: 0.12 second(s)
+	Time spent in child processes: 0.056 second(s)
+	Z3 Prover Time: 0.004 second(s)

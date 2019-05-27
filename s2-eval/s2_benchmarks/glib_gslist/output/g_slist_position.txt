@@ -1,0 +1,20 @@
+
+!!!Full processing file "glib_gslist//g_slist_position.dryad.c"
+Parsing file "glib_gslist//g_slist_position.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist//g_slist_position.dryad.c -o glib_gslist//g_slist_position.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_position: :HP_22
+!!! generate unknown predicate for Post synthesis of g_slist_position: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(list,link))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_23(list,link))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Last Proving Location: 1 File "glib_gslist//g_slist_position.dryad.c",Line:5,Col:0
+
+ERROR: at _0:0_0:0
+Message: no type declaration named __RET is found
+Stop z3... 29 invocations caught
+
+Exception occurred: Failure("no type declaration named __RET is found")
+Error3(s) detected at main 

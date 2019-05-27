@@ -1,0 +1,146 @@
+
+!!!Full processing file "GRASShopper//dl/dl_filter.dryad.c"
+Parsing file "GRASShopper//dl/dl_filter.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//dl/dl_filter.dryad.c -o GRASShopper//dl/dl_filter.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dl_filter: :HP_24
+!!! generate unknown predicate for Post synthesis of dl_filter: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(x))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_25(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_16_2$node~node~node~int~node~node: :HP_1350
+!!! generate unknown predicate for Post synthesis of while_16_2$node~node~node~int~node~node: :GP_1356Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_16_2$node~node~node~int~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1350,GP_1356]requires HP_1350(old_68,old_curr_70,res_67,prv_65,curr_66)&
+truerequires emp
+ ensures GP_1356(old_68,old_68',old_curr_70,old_curr_70',res_67,res_67',prv_65,prv_65',curr_66,curr_66')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1350(old_68,old_curr_70,res_67,prv_65,curr_66)&
+curr_66!=null --> curr_66::node<next_24_1470,prev_24_1471> * 
+HP_1472(next_24_1470,old_68@NI,old_curr_70@NI,res_67@NI,prv_65@NI) * 
+HP_1473(prev_24_1471,old_68@NI,old_curr_70@NI,res_67@NI,prv_65@NI) * 
+HP_1474(old_68,old_curr_70,res_67,prv_65,curr_66@NI)&
+true,
+ // BIND
+(1;1;1;1;0)HP_1474(old_68,old_curr_70,res_67,prv_65,curr_66@NI)&
+prv_65!=null --> prv_65::node<next_29_1491,prev_29_1492> * 
+HP_1493(next_29_1491,old_68@NI,old_curr_70@NI,res_67@NI,curr_66@NI) * 
+HP_1494(prev_29_1492,old_68@NI,old_curr_70@NI,res_67@NI,curr_66@NI) * 
+HP_1495(old_68,old_curr_70,res_67,prv_65@NI,curr_66@NI)&
+true,
+ // BIND
+(1;1;1;1;1;0)HP_1472(next_24_1470,old_1467@NI,old_curr_1488@NI,res_67@NI,prv_65@NI)&
+next_24_1470!=null --> next_24_1470::node<next_31_1503,prev_31_1504> * 
+HP_1505(next_31_1503,old_1467@NI,old_curr_1488@NI,res_67@NI,prv_65@NI) * 
+HP_1506(prev_31_1504,old_1467@NI,old_curr_1488@NI,res_67@NI,prv_65@NI)&
+true,
+ // PRE_REC
+(1;1;1;1;1;0)HP_1473(prev_24_1471,old_1467@NI,old_curr_1488@NI,res_67@NI,prv_65@NI) * 
+curr_66::node<curr_66',prev_24_1471> * 
+HP_1494(prev_29_1492,old_1467@NI,old_curr_1488@NI,res_67@NI,curr_66@NI) * 
+HP_1495(old_1467,old_curr_1488,res_67,prv_65@NI,curr_66@NI) * 
+prv_65::node<curr_66',prev_29_1492> * 
+HP_1505(next_31_1503,old_1467@NI,old_curr_1488@NI,res_67@NI,prv_65@NI) * 
+curr_66'::node<next_31_1503,prv_65>&curr_66=null & 
+old_curr_70'=curr_66' --> HP_1350(curr_66,old_curr_70',res_67,prv_65,curr_66')&
+true,
+ // PRE_REC
+(2;1;1;1;1;0)HP_1473(prev_24_1471,old_1467@NI,old_curr_1488@NI,res_67@NI,prv_65@NI) * 
+curr_66::node<next_24_1470,prev_24_1471> * 
+HP_1494(prev_29_1492,old_1467@NI,old_curr_1488@NI,res_67@NI,curr_66@NI) * 
+HP_1495(old_1467,old_curr_1488,res_67,prv_65@NI,curr_66@NI) * 
+prv_65::node<curr_66,prev_29_1492>&curr_66=null & curr_66'=null & 
+next_24_1470=null & old_68'=null & old_curr_70'=null & old_68'=curr_66' & 
+old_curr_70'=curr_66' & next_24_1470=curr_66 & 
+curr_66'=curr_66 --> HP_1350(old_68',old_curr_70',res_67,prv_65,curr_66')&
+true,
+ // PRE_REC
+(2;1;1;1;0)HP_1472(curr_66',old_68@NI,old_curr_70@NI,res_67@NI,curr_66@NI) * 
+HP_1473(prev_24_1471,old_68@NI,old_curr_70@NI,res_67@NI,curr_66@NI) * 
+HP_1474(old_68,old_curr_70,res_67,prv_65,curr_66@NI) * 
+curr_66::node<curr_66',prev_24_1471>&curr_66=null & old_68'=null & 
+prv_65=null & prv_65'=null & prv_65=curr_66 & prv_65'=old_68' & 
+old_68'=curr_66 & 
+res_67'=curr_66' --> HP_1350(old_68',old_curr_70,res_67',prv_65',curr_66')&
+true,
+ // PRE_REC
+(2;1;1;0)HP_1472(curr_66',old_68@NI,old_curr_70@NI,res_67@NI,prv_65@NI) * 
+HP_1473(prev_24_1471,old_68@NI,old_curr_70@NI,res_67@NI,prv_65@NI) * 
+HP_1474(old_68,old_curr_70,res_67,prv_65,old_68'@NI) * 
+old_68'::node<curr_66',prev_24_1471>&
+prv_65'=old_68' --> HP_1350(old_68',old_curr_70,res_67,prv_65',curr_66')&
+true,
+ // POST
+(2;1;1;0)GP_1356(curr_1476,old_68',old_curr_70,old_curr_70',res_67,res_67',curr_1476,prv_65',next_24_1470,curr_66')&
+curr_1476!=null --> GP_1356(old_68,old_68',old_curr_70,old_curr_70',res_67,res_67',prv_65,prv_65',curr_1476,curr_66')&
+true,
+ // POST
+(2;1;0)HP_1350(old_68,old_curr_70,res_67,prv_65,curr_66)&curr_66=null & 
+curr_66'=null & curr_66'=curr_66 & old_68'=old_68 & 
+old_curr_70'=old_curr_70 & prv_65'=prv_65 & 
+res_67'=res_67 --> GP_1356(old_68,old_68',old_curr_70,old_curr_70',res_67,res_67',prv_65,prv_65',curr_66,curr_66')&
+true]
+
+Procedure while_16_2$node~node~node~int~node~node SUCCESS.
+[Warning] False ctx
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at GRASShopper//dl/dl_filter.dryad.c_16:2_40:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1350,GP_1356]
+   EBase HP_1350(old_68,old_curr_70,res_67,prv_65,curr_66)&
+         {FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [old_68;old_curr_70;res_67;prv_65;curr_66]
+                     GP_1356(old_68,old_68',old_curr_70,old_curr_70',res_67,res_67',prv_65,prv_65',curr_66,curr_66')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure dl_filter$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(x)&
+truerequires emp
+ ensures GP_25(x,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure dl_filter$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure dl_filter$node
+Stop z3... 120 invocations Stop Omega... 47 invocations 
+1 false contexts at: ( (16,2) )
+
+!!! log(small):(0.18222,700)
+Total verification time: 0.292 second(s)
+	Time spent in main process: 0.176 second(s)
+	Time spent in child processes: 0.116 second(s)
+	Z3 Prover Time: 0. second(s)
