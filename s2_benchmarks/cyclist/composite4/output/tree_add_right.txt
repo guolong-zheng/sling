@@ -1,6 +1,0 @@
-
-!!!Full processing file "cyclist/composite4/tree_add_right"
-caught
-
-Exception occurred: Sys_error("cyclist/composite4/tree_add_right: No such file or directory")
-Error3(s) detected at main 
