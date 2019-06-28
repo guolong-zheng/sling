@@ -1,0 +1,74 @@
+
+!!!Full processing file "cyclist/composite4/create_tree.c"
+Parsing file "cyclist/composite4/create_tree.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E cyclist/composite4/create_tree.c -o cyclist/composite4/create_tree.c.prep
+
+!!! generate unknown predicate for Pre synthesis of create_node: :HP_21
+!!! generate unknown predicate for Post synthesis of create_node: :GP_22
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure create_node$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_21,GP_22]requires HP_21(p@NI)&
+truerequires emp
+ ensures GP_22(p,res)&true{,(4,5)=__norm#E};
+Starting Omega.../usr/local/bin/oc
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // POST
+(1;0)HP_21(left_13_1398@NI) * 
+res::node<left_13_1398,right_13_1399,parent_13_1400,v_int_13_1401>&
+left_13_1398=null & parent_13_1400=null & right_13_1399=null & 
+parent_13_1400=left_13_1398 & 
+right_13_1399=left_13_1398 --> GP_22(left_13_1398,res)&
+true,
+ // POST
+(2;0)res::node<left_13_1403,right_13_1404,p,v_int_13_1405>&p!=null & 
+left_13_1403=null & right_13_1404=null & 
+right_13_1404=left_13_1403 --> GP_22(p,res)&
+true]
+
+Procedure create_node$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_21(left_13_1408) |#| res::node<left_13_1398,right_13_1399,parent_13_1400,v_int_13_1401>&
+  right_13_1399=null & parent_13_1400=null & left_13_1398=null & 
+  right_13_1399=left_13_1398 & 
+  parent_13_1400=left_13_1398 ::= DP_1407(left_13_1398)(4,5),
+ GP_22(left_13_1409,res_1410) |#| emp&left_13_1398=null & 
+  right_13_1399=left_13_1398 & 
+  parent_13_1400=left_13_1398 ::= 
+ res_1410::node<left_13_1403,right_13_1399,left_13_1409,v_int_13_1401>&
+ right_13_1399=null & left_13_1403=null & left_13_1409!=null
+ or res_1410::node<left_13_1409,right_13_1399,parent_13_1400,v_int_13_1401> * 
+    DP_1407(left_13_1409)&right_13_1399=null & parent_13_1400=null & 
+    left_13_1409=null
+ (4,5),
+ DP_1407(p) ::= NONE]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase emp&{FLOW,(1,29)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists p: res::GP_22{}<p>&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure create_tree$... 
+Procedure create_tree$ SUCCESS.
+Stop z3... 77 invocations Stop Omega... 34 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.089303,328)
+Total verification time: 0.216 second(s)
+	Time spent in main process: 0.144 second(s)
+	Time spent in child processes: 0.072 second(s)
+	Z3 Prover Time: 0. second(s)

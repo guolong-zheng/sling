@@ -1,7 +1,7 @@
 import csv
 
 with open('result.csv', mode='r') as infile, open('summary.csv', mode='w') as outfile:
-    csv_reader = csv.reader(infile, delimiter=',')
+    csv_reader = csv.DictReader(infile, delimiter=',')
     csv_writer = csv.writer(outfile, delimiter=',')
     total_line = 0
     program = ''
@@ -14,11 +14,12 @@ with open('result.csv', mode='r') as infile, open('summary.csv', mode='w') as ou
     single = 0
     pred = 0
     pure = 0
+    
     csv_writer.writerow(['category','loc','trace','inv','incomplete','time','single','pred','pure'])
     
     for row in csv_reader:
         # loc#, traces#, inv#, time, single, pred, pure
-        if row.strip() == '###':
+        if row['program'].strip() == '###':
             s = program.split('/')
             if len(s) == 4:
                 category = s[2]

@@ -1,0 +1,1892 @@
+
+!!!Full processing file "GRASShopper//sls/sls_concat.dryad.c"
+Parsing file "GRASShopper//sls/sls_concat.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//sls/sls_concat.dryad.c -o GRASShopper//sls/sls_concat.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sls_concat: :HP_22
+!!! generate unknown predicate for Post synthesis of sls_concat: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(a,b))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_23(a,b,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_18_4$node: :HP_1345
+!!! generate unknown predicate for Post synthesis of while_18_4$node: :GP_1347Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_18_4$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1345,GP_1347]requires HP_1345(curr_63)&
+truerequires emp
+ ensures GP_1347(curr_63,curr_63')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;0)HP_1345(curr_63)&true --> curr_63::node<key_18_1396,next_18_1397> * 
+HP_1398(next_18_1397)&
+true,
+ // PRE_REC
+(1;1;0)HP_1398(curr_63')&curr_63'!=null --> HP_1345(curr_63')&
+true,
+ // POST
+(1;1;0)curr_63::node<key_18_1396,next_18_1397> * 
+GP_1347(next_18_1397,curr_63')&
+next_18_1397!=null --> GP_1347(curr_63,curr_63')&
+true,
+ // POST
+(2;1;0)HP_1398(next_18_1397) * curr_63::node<key_18_1396,next_18_1397>&
+next_18_1397=null & curr_63'=curr_63 --> GP_1347(curr_63,curr_63')&
+true]
+
+Procedure while_18_4$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1345(curr_1412) ::= curr_1412::node<key_18_1396,next_18_1397> * HP_1398(next_18_1397)&
+curr_1412!=null(4,5),
+ GP_1347(curr_1415,curr_1416) ::= curr_1417::node<key_18_1396,next_18_1397> * GP_1418(curr_1415,curr_1417)&
+next_18_1397=null & curr_1416=curr_1417(4,5),
+ GP_1418(curr_1415,curr_1417) ::= 
+ curr_1415::node<key_18_1396,next_18_1397> * GP_1418(next_18_1397,curr_1417)&
+ next_18_1397!=null
+ or emp&curr_1415=curr_1417
+ (4,5),
+ HP_1398(curr_1414) ::= 
+ curr_1414::node<key_18_1396,next_18_1397> * HP_1398(next_18_1397)
+ or emp&curr_1414=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_18_1396](ex)[]curr_63::node<key_18_1396,next_18_1397> * 
+       next_18_1397::HP_1398{}<>&curr_63!=null&{FLOW,(1,31)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_18_1396](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [curr_63]
+                   (exists next_18_1397,
+                   curr_1417: curr_1417::node<key_18_1396,next_18_1397> * 
+                   curr_63::GP_1418{}<curr_1417>&next_18_1397=null & 
+                   curr_63'=curr_1417&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure sls_concat$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(a,b@NI)&
+truerequires emp
+ ensures GP_23(a,b,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(2;0)HP_22(a,b@NI)&a!=null --> a::node<key_18_1489,next_18_1490> * 
+HP_1491(next_18_1490,b@NI)&
+true,
+ // PRE
+(2;0)HP_1491(next_18_1486,b@NI)&true --> next_18_1486::HP_1398<>&
+true,
+ // POST
+(1;0)HP_22(a,b@NI)&a=null & res=b --> GP_23(a,b,res)&
+true,
+ // POST
+(2;0)a::GP_1418<curr_1500> * curr_1500::node<key_18_1489,b>&
+res=a --> GP_23(a,b,res)&
+true]
+
+Procedure sls_concat$node~node SUCCESS.
+ 
+ (LEMSYN) Proving lemma syn_1664: next_18_1661::HP_1398{}<> * self::node<key_18_1660,next_18_1661>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1663>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_1687: next_18_1685::node<key_18_1682,next_18_1683> * next_18_1683::HP_1398{}<> * 
+self::node<key_18_1684,next_18_1685>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1686>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_1720: next_18_1718::node<key_18_1715,next_18_1716> * 
+next_18_1716::node<key_18_1713,next_18_1714> * next_18_1714::HP_1398{}<> * 
+self::node<key_18_1717,next_18_1718>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1719>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_1763: next_18_1761::node<key_18_1756,next_18_1757> * 
+next_18_1757::node<key_18_1758,next_18_1759> * 
+next_18_1759::node<key_18_1754,next_18_1755> * next_18_1755::HP_1398{}<> * 
+self::node<key_18_1760,next_18_1761>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1762>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_1816: next_18_1814::node<key_18_1807,next_18_1808> * 
+next_18_1808::node<key_18_1809,next_18_1810> * 
+next_18_1810::node<key_18_1811,next_18_1812> * 
+next_18_1812::node<key_18_1805,next_18_1806> * next_18_1806::HP_1398{}<> * 
+self::node<key_18_1813,next_18_1814>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1815>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_1879: next_18_1877::node<key_18_1868,next_18_1869> * 
+next_18_1869::node<key_18_1870,next_18_1871> * 
+next_18_1871::node<key_18_1872,next_18_1873> * 
+next_18_1873::node<key_18_1874,next_18_1875> * 
+next_18_1875::node<key_18_1866,next_18_1867> * next_18_1867::HP_1398{}<> * 
+self::node<key_18_1876,next_18_1877>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1878>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_1952: next_18_1950::node<key_18_1939,next_18_1940> * 
+next_18_1940::node<key_18_1941,next_18_1942> * 
+next_18_1942::node<key_18_1943,next_18_1944> * 
+next_18_1944::node<key_18_1945,next_18_1946> * 
+next_18_1946::node<key_18_1947,next_18_1948> * 
+next_18_1948::node<key_18_1937,next_18_1938> * next_18_1938::HP_1398{}<> * 
+self::node<key_18_1949,next_18_1950>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_1951>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2035: next_18_2033::node<key_18_2020,next_18_2021> * 
+next_18_2021::node<key_18_2022,next_18_2023> * 
+next_18_2023::node<key_18_2024,next_18_2025> * 
+next_18_2025::node<key_18_2026,next_18_2027> * 
+next_18_2027::node<key_18_2028,next_18_2029> * 
+next_18_2029::node<key_18_2030,next_18_2031> * 
+next_18_2031::node<key_18_2018,next_18_2019> * next_18_2019::HP_1398{}<> * 
+self::node<key_18_2032,next_18_2033>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2034>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2128: next_18_2126::node<key_18_2111,next_18_2112> * 
+next_18_2112::node<key_18_2113,next_18_2114> * 
+next_18_2114::node<key_18_2115,next_18_2116> * 
+next_18_2116::node<key_18_2117,next_18_2118> * 
+next_18_2118::node<key_18_2119,next_18_2120> * 
+next_18_2120::node<key_18_2121,next_18_2122> * 
+next_18_2122::node<key_18_2123,next_18_2124> * 
+next_18_2124::node<key_18_2109,next_18_2110> * next_18_2110::HP_1398{}<> * 
+self::node<key_18_2125,next_18_2126>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2127>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2231: next_18_2229::node<key_18_2212,next_18_2213> * 
+next_18_2213::node<key_18_2214,next_18_2215> * 
+next_18_2215::node<key_18_2216,next_18_2217> * 
+next_18_2217::node<key_18_2218,next_18_2219> * 
+next_18_2219::node<key_18_2220,next_18_2221> * 
+next_18_2221::node<key_18_2222,next_18_2223> * 
+next_18_2223::node<key_18_2224,next_18_2225> * 
+next_18_2225::node<key_18_2226,next_18_2227> * 
+next_18_2227::node<key_18_2210,next_18_2211> * next_18_2211::HP_1398{}<> * 
+self::node<key_18_2228,next_18_2229>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2230>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2344: next_18_2342::node<key_18_2323,next_18_2324> * 
+next_18_2324::node<key_18_2325,next_18_2326> * 
+next_18_2326::node<key_18_2327,next_18_2328> * 
+next_18_2328::node<key_18_2329,next_18_2330> * 
+next_18_2330::node<key_18_2331,next_18_2332> * 
+next_18_2332::node<key_18_2333,next_18_2334> * 
+next_18_2334::node<key_18_2335,next_18_2336> * 
+next_18_2336::node<key_18_2337,next_18_2338> * 
+next_18_2338::node<key_18_2339,next_18_2340> * 
+next_18_2340::node<key_18_2321,next_18_2322> * next_18_2322::HP_1398{}<> * 
+self::node<key_18_2341,next_18_2342>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2343>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2467: next_18_2465::node<key_18_2444,next_18_2445> * 
+next_18_2445::node<key_18_2446,next_18_2447> * 
+next_18_2447::node<key_18_2448,next_18_2449> * 
+next_18_2449::node<key_18_2450,next_18_2451> * 
+next_18_2451::node<key_18_2452,next_18_2453> * 
+next_18_2453::node<key_18_2454,next_18_2455> * 
+next_18_2455::node<key_18_2456,next_18_2457> * 
+next_18_2457::node<key_18_2458,next_18_2459> * 
+next_18_2459::node<key_18_2460,next_18_2461> * 
+next_18_2461::node<key_18_2462,next_18_2463> * 
+next_18_2463::node<key_18_2442,next_18_2443> * next_18_2443::HP_1398{}<> * 
+self::node<key_18_2464,next_18_2465>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2466>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2600: next_18_2598::node<key_18_2575,next_18_2576> * 
+next_18_2576::node<key_18_2577,next_18_2578> * 
+next_18_2578::node<key_18_2579,next_18_2580> * 
+next_18_2580::node<key_18_2581,next_18_2582> * 
+next_18_2582::node<key_18_2583,next_18_2584> * 
+next_18_2584::node<key_18_2585,next_18_2586> * 
+next_18_2586::node<key_18_2587,next_18_2588> * 
+next_18_2588::node<key_18_2589,next_18_2590> * 
+next_18_2590::node<key_18_2591,next_18_2592> * 
+next_18_2592::node<key_18_2593,next_18_2594> * 
+next_18_2594::node<key_18_2595,next_18_2596> * 
+next_18_2596::node<key_18_2573,next_18_2574> * next_18_2574::HP_1398{}<> * 
+self::node<key_18_2597,next_18_2598>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2599>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2743: next_18_2741::node<key_18_2716,next_18_2717> * 
+next_18_2717::node<key_18_2718,next_18_2719> * 
+next_18_2719::node<key_18_2720,next_18_2721> * 
+next_18_2721::node<key_18_2722,next_18_2723> * 
+next_18_2723::node<key_18_2724,next_18_2725> * 
+next_18_2725::node<key_18_2726,next_18_2727> * 
+next_18_2727::node<key_18_2728,next_18_2729> * 
+next_18_2729::node<key_18_2730,next_18_2731> * 
+next_18_2731::node<key_18_2732,next_18_2733> * 
+next_18_2733::node<key_18_2734,next_18_2735> * 
+next_18_2735::node<key_18_2736,next_18_2737> * 
+next_18_2737::node<key_18_2738,next_18_2739> * 
+next_18_2739::node<key_18_2714,next_18_2715> * next_18_2715::HP_1398{}<> * 
+self::node<key_18_2740,next_18_2741>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2742>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_2896: next_18_2894::node<key_18_2867,next_18_2868> * 
+next_18_2868::node<key_18_2869,next_18_2870> * 
+next_18_2870::node<key_18_2871,next_18_2872> * 
+next_18_2872::node<key_18_2873,next_18_2874> * 
+next_18_2874::node<key_18_2875,next_18_2876> * 
+next_18_2876::node<key_18_2877,next_18_2878> * 
+next_18_2878::node<key_18_2879,next_18_2880> * 
+next_18_2880::node<key_18_2881,next_18_2882> * 
+next_18_2882::node<key_18_2883,next_18_2884> * 
+next_18_2884::node<key_18_2885,next_18_2886> * 
+next_18_2886::node<key_18_2887,next_18_2888> * 
+next_18_2888::node<key_18_2889,next_18_2890> * 
+next_18_2890::node<key_18_2891,next_18_2892> * 
+next_18_2892::node<key_18_2865,next_18_2866> * next_18_2866::HP_1398{}<> * 
+self::node<key_18_2893,next_18_2894>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_2895>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_3059: next_18_3057::node<key_18_3028,next_18_3029> * 
+next_18_3029::node<key_18_3030,next_18_3031> * 
+next_18_3031::node<key_18_3032,next_18_3033> * 
+next_18_3033::node<key_18_3034,next_18_3035> * 
+next_18_3035::node<key_18_3036,next_18_3037> * 
+next_18_3037::node<key_18_3038,next_18_3039> * 
+next_18_3039::node<key_18_3040,next_18_3041> * 
+next_18_3041::node<key_18_3042,next_18_3043> * 
+next_18_3043::node<key_18_3044,next_18_3045> * 
+next_18_3045::node<key_18_3046,next_18_3047> * 
+next_18_3047::node<key_18_3048,next_18_3049> * 
+next_18_3049::node<key_18_3050,next_18_3051> * 
+next_18_3051::node<key_18_3052,next_18_3053> * 
+next_18_3053::node<key_18_3054,next_18_3055> * 
+next_18_3055::node<key_18_3026,next_18_3027> * next_18_3027::HP_1398{}<> * 
+self::node<key_18_3056,next_18_3057>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_3058>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_3232: next_18_3230::node<key_18_3199,next_18_3200> * 
+next_18_3200::node<key_18_3201,next_18_3202> * 
+next_18_3202::node<key_18_3203,next_18_3204> * 
+next_18_3204::node<key_18_3205,next_18_3206> * 
+next_18_3206::node<key_18_3207,next_18_3208> * 
+next_18_3208::node<key_18_3209,next_18_3210> * 
+next_18_3210::node<key_18_3211,next_18_3212> * 
+next_18_3212::node<key_18_3213,next_18_3214> * 
+next_18_3214::node<key_18_3215,next_18_3216> * 
+next_18_3216::node<key_18_3217,next_18_3218> * 
+next_18_3218::node<key_18_3219,next_18_3220> * 
+next_18_3220::node<key_18_3221,next_18_3222> * 
+next_18_3222::node<key_18_3223,next_18_3224> * 
+next_18_3224::node<key_18_3225,next_18_3226> * 
+next_18_3226::node<key_18_3227,next_18_3228> * 
+next_18_3228::node<key_18_3197,next_18_3198> * next_18_3198::HP_1398{}<> * 
+self::node<key_18_3229,next_18_3230>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_3231>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_3415: next_18_3413::node<key_18_3380,next_18_3381> * 
+next_18_3381::node<key_18_3382,next_18_3383> * 
+next_18_3383::node<key_18_3384,next_18_3385> * 
+next_18_3385::node<key_18_3386,next_18_3387> * 
+next_18_3387::node<key_18_3388,next_18_3389> * 
+next_18_3389::node<key_18_3390,next_18_3391> * 
+next_18_3391::node<key_18_3392,next_18_3393> * 
+next_18_3393::node<key_18_3394,next_18_3395> * 
+next_18_3395::node<key_18_3396,next_18_3397> * 
+next_18_3397::node<key_18_3398,next_18_3399> * 
+next_18_3399::node<key_18_3400,next_18_3401> * 
+next_18_3401::node<key_18_3402,next_18_3403> * 
+next_18_3403::node<key_18_3404,next_18_3405> * 
+next_18_3405::node<key_18_3406,next_18_3407> * 
+next_18_3407::node<key_18_3408,next_18_3409> * 
+next_18_3409::node<key_18_3410,next_18_3411> * 
+next_18_3411::node<key_18_3378,next_18_3379> * next_18_3379::HP_1398{}<> * 
+self::node<key_18_3412,next_18_3413>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_3414>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_3608: next_18_3606::node<key_18_3571,next_18_3572> * 
+next_18_3572::node<key_18_3573,next_18_3574> * 
+next_18_3574::node<key_18_3575,next_18_3576> * 
+next_18_3576::node<key_18_3577,next_18_3578> * 
+next_18_3578::node<key_18_3579,next_18_3580> * 
+next_18_3580::node<key_18_3581,next_18_3582> * 
+next_18_3582::node<key_18_3583,next_18_3584> * 
+next_18_3584::node<key_18_3585,next_18_3586> * 
+next_18_3586::node<key_18_3587,next_18_3588> * 
+next_18_3588::node<key_18_3589,next_18_3590> * 
+next_18_3590::node<key_18_3591,next_18_3592> * 
+next_18_3592::node<key_18_3593,next_18_3594> * 
+next_18_3594::node<key_18_3595,next_18_3596> * 
+next_18_3596::node<key_18_3597,next_18_3598> * 
+next_18_3598::node<key_18_3599,next_18_3600> * 
+next_18_3600::node<key_18_3601,next_18_3602> * 
+next_18_3602::node<key_18_3603,next_18_3604> * 
+next_18_3604::node<key_18_3569,next_18_3570> * next_18_3570::HP_1398{}<> * 
+self::node<key_18_3605,next_18_3606>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_3607>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_3811: next_18_3809::node<key_18_3772,next_18_3773> * 
+next_18_3773::node<key_18_3774,next_18_3775> * 
+next_18_3775::node<key_18_3776,next_18_3777> * 
+next_18_3777::node<key_18_3778,next_18_3779> * 
+next_18_3779::node<key_18_3780,next_18_3781> * 
+next_18_3781::node<key_18_3782,next_18_3783> * 
+next_18_3783::node<key_18_3784,next_18_3785> * 
+next_18_3785::node<key_18_3786,next_18_3787> * 
+next_18_3787::node<key_18_3788,next_18_3789> * 
+next_18_3789::node<key_18_3790,next_18_3791> * 
+next_18_3791::node<key_18_3792,next_18_3793> * 
+next_18_3793::node<key_18_3794,next_18_3795> * 
+next_18_3795::node<key_18_3796,next_18_3797> * 
+next_18_3797::node<key_18_3798,next_18_3799> * 
+next_18_3799::node<key_18_3800,next_18_3801> * 
+next_18_3801::node<key_18_3802,next_18_3803> * 
+next_18_3803::node<key_18_3804,next_18_3805> * 
+next_18_3805::node<key_18_3806,next_18_3807> * 
+next_18_3807::node<key_18_3770,next_18_3771> * next_18_3771::HP_1398{}<> * 
+self::node<key_18_3808,next_18_3809>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_3810>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_4024: next_18_4022::node<key_18_3983,next_18_3984> * 
+next_18_3984::node<key_18_3985,next_18_3986> * 
+next_18_3986::node<key_18_3987,next_18_3988> * 
+next_18_3988::node<key_18_3989,next_18_3990> * 
+next_18_3990::node<key_18_3991,next_18_3992> * 
+next_18_3992::node<key_18_3993,next_18_3994> * 
+next_18_3994::node<key_18_3995,next_18_3996> * 
+next_18_3996::node<key_18_3997,next_18_3998> * 
+next_18_3998::node<key_18_3999,next_18_4000> * 
+next_18_4000::node<key_18_4001,next_18_4002> * 
+next_18_4002::node<key_18_4003,next_18_4004> * 
+next_18_4004::node<key_18_4005,next_18_4006> * 
+next_18_4006::node<key_18_4007,next_18_4008> * 
+next_18_4008::node<key_18_4009,next_18_4010> * 
+next_18_4010::node<key_18_4011,next_18_4012> * 
+next_18_4012::node<key_18_4013,next_18_4014> * 
+next_18_4014::node<key_18_4015,next_18_4016> * 
+next_18_4016::node<key_18_4017,next_18_4018> * 
+next_18_4018::node<key_18_4019,next_18_4020> * 
+next_18_4020::node<key_18_3981,next_18_3982> * next_18_3982::HP_1398{}<> * 
+self::node<key_18_4021,next_18_4022>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_4023>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_4247: next_18_4245::node<key_18_4204,next_18_4205> * 
+next_18_4205::node<key_18_4206,next_18_4207> * 
+next_18_4207::node<key_18_4208,next_18_4209> * 
+next_18_4209::node<key_18_4210,next_18_4211> * 
+next_18_4211::node<key_18_4212,next_18_4213> * 
+next_18_4213::node<key_18_4214,next_18_4215> * 
+next_18_4215::node<key_18_4216,next_18_4217> * 
+next_18_4217::node<key_18_4218,next_18_4219> * 
+next_18_4219::node<key_18_4220,next_18_4221> * 
+next_18_4221::node<key_18_4222,next_18_4223> * 
+next_18_4223::node<key_18_4224,next_18_4225> * 
+next_18_4225::node<key_18_4226,next_18_4227> * 
+next_18_4227::node<key_18_4228,next_18_4229> * 
+next_18_4229::node<key_18_4230,next_18_4231> * 
+next_18_4231::node<key_18_4232,next_18_4233> * 
+next_18_4233::node<key_18_4234,next_18_4235> * 
+next_18_4235::node<key_18_4236,next_18_4237> * 
+next_18_4237::node<key_18_4238,next_18_4239> * 
+next_18_4239::node<key_18_4240,next_18_4241> * 
+next_18_4241::node<key_18_4242,next_18_4243> * 
+next_18_4243::node<key_18_4202,next_18_4203> * next_18_4203::HP_1398{}<> * 
+self::node<key_18_4244,next_18_4245>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_4246>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_4480: next_18_4478::node<key_18_4435,next_18_4436> * 
+next_18_4436::node<key_18_4437,next_18_4438> * 
+next_18_4438::node<key_18_4439,next_18_4440> * 
+next_18_4440::node<key_18_4441,next_18_4442> * 
+next_18_4442::node<key_18_4443,next_18_4444> * 
+next_18_4444::node<key_18_4445,next_18_4446> * 
+next_18_4446::node<key_18_4447,next_18_4448> * 
+next_18_4448::node<key_18_4449,next_18_4450> * 
+next_18_4450::node<key_18_4451,next_18_4452> * 
+next_18_4452::node<key_18_4453,next_18_4454> * 
+next_18_4454::node<key_18_4455,next_18_4456> * 
+next_18_4456::node<key_18_4457,next_18_4458> * 
+next_18_4458::node<key_18_4459,next_18_4460> * 
+next_18_4460::node<key_18_4461,next_18_4462> * 
+next_18_4462::node<key_18_4463,next_18_4464> * 
+next_18_4464::node<key_18_4465,next_18_4466> * 
+next_18_4466::node<key_18_4467,next_18_4468> * 
+next_18_4468::node<key_18_4469,next_18_4470> * 
+next_18_4470::node<key_18_4471,next_18_4472> * 
+next_18_4472::node<key_18_4473,next_18_4474> * 
+next_18_4474::node<key_18_4475,next_18_4476> * 
+next_18_4476::node<key_18_4433,next_18_4434> * next_18_4434::HP_1398{}<> * 
+self::node<key_18_4477,next_18_4478>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_4479>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_4723: next_18_4721::node<key_18_4676,next_18_4677> * 
+next_18_4677::node<key_18_4678,next_18_4679> * 
+next_18_4679::node<key_18_4680,next_18_4681> * 
+next_18_4681::node<key_18_4682,next_18_4683> * 
+next_18_4683::node<key_18_4684,next_18_4685> * 
+next_18_4685::node<key_18_4686,next_18_4687> * 
+next_18_4687::node<key_18_4688,next_18_4689> * 
+next_18_4689::node<key_18_4690,next_18_4691> * 
+next_18_4691::node<key_18_4692,next_18_4693> * 
+next_18_4693::node<key_18_4694,next_18_4695> * 
+next_18_4695::node<key_18_4696,next_18_4697> * 
+next_18_4697::node<key_18_4698,next_18_4699> * 
+next_18_4699::node<key_18_4700,next_18_4701> * 
+next_18_4701::node<key_18_4702,next_18_4703> * 
+next_18_4703::node<key_18_4704,next_18_4705> * 
+next_18_4705::node<key_18_4706,next_18_4707> * 
+next_18_4707::node<key_18_4708,next_18_4709> * 
+next_18_4709::node<key_18_4710,next_18_4711> * 
+next_18_4711::node<key_18_4712,next_18_4713> * 
+next_18_4713::node<key_18_4714,next_18_4715> * 
+next_18_4715::node<key_18_4716,next_18_4717> * 
+next_18_4717::node<key_18_4718,next_18_4719> * 
+next_18_4719::node<key_18_4674,next_18_4675> * next_18_4675::HP_1398{}<> * 
+self::node<key_18_4720,next_18_4721>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_4722>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_4976: next_18_4974::node<key_18_4927,next_18_4928> * 
+next_18_4928::node<key_18_4929,next_18_4930> * 
+next_18_4930::node<key_18_4931,next_18_4932> * 
+next_18_4932::node<key_18_4933,next_18_4934> * 
+next_18_4934::node<key_18_4935,next_18_4936> * 
+next_18_4936::node<key_18_4937,next_18_4938> * 
+next_18_4938::node<key_18_4939,next_18_4940> * 
+next_18_4940::node<key_18_4941,next_18_4942> * 
+next_18_4942::node<key_18_4943,next_18_4944> * 
+next_18_4944::node<key_18_4945,next_18_4946> * 
+next_18_4946::node<key_18_4947,next_18_4948> * 
+next_18_4948::node<key_18_4949,next_18_4950> * 
+next_18_4950::node<key_18_4951,next_18_4952> * 
+next_18_4952::node<key_18_4953,next_18_4954> * 
+next_18_4954::node<key_18_4955,next_18_4956> * 
+next_18_4956::node<key_18_4957,next_18_4958> * 
+next_18_4958::node<key_18_4959,next_18_4960> * 
+next_18_4960::node<key_18_4961,next_18_4962> * 
+next_18_4962::node<key_18_4963,next_18_4964> * 
+next_18_4964::node<key_18_4965,next_18_4966> * 
+next_18_4966::node<key_18_4967,next_18_4968> * 
+next_18_4968::node<key_18_4969,next_18_4970> * 
+next_18_4970::node<key_18_4971,next_18_4972> * 
+next_18_4972::node<key_18_4925,next_18_4926> * next_18_4926::HP_1398{}<> * 
+self::node<key_18_4973,next_18_4974>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_4975>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_5239: next_18_5237::node<key_18_5188,next_18_5189> * 
+next_18_5189::node<key_18_5190,next_18_5191> * 
+next_18_5191::node<key_18_5192,next_18_5193> * 
+next_18_5193::node<key_18_5194,next_18_5195> * 
+next_18_5195::node<key_18_5196,next_18_5197> * 
+next_18_5197::node<key_18_5198,next_18_5199> * 
+next_18_5199::node<key_18_5200,next_18_5201> * 
+next_18_5201::node<key_18_5202,next_18_5203> * 
+next_18_5203::node<key_18_5204,next_18_5205> * 
+next_18_5205::node<key_18_5206,next_18_5207> * 
+next_18_5207::node<key_18_5208,next_18_5209> * 
+next_18_5209::node<key_18_5210,next_18_5211> * 
+next_18_5211::node<key_18_5212,next_18_5213> * 
+next_18_5213::node<key_18_5214,next_18_5215> * 
+next_18_5215::node<key_18_5216,next_18_5217> * 
+next_18_5217::node<key_18_5218,next_18_5219> * 
+next_18_5219::node<key_18_5220,next_18_5221> * 
+next_18_5221::node<key_18_5222,next_18_5223> * 
+next_18_5223::node<key_18_5224,next_18_5225> * 
+next_18_5225::node<key_18_5226,next_18_5227> * 
+next_18_5227::node<key_18_5228,next_18_5229> * 
+next_18_5229::node<key_18_5230,next_18_5231> * 
+next_18_5231::node<key_18_5232,next_18_5233> * 
+next_18_5233::node<key_18_5234,next_18_5235> * 
+next_18_5235::node<key_18_5186,next_18_5187> * next_18_5187::HP_1398{}<> * 
+self::node<key_18_5236,next_18_5237>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_5238>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_5512: next_18_5510::node<key_18_5459,next_18_5460> * 
+next_18_5460::node<key_18_5461,next_18_5462> * 
+next_18_5462::node<key_18_5463,next_18_5464> * 
+next_18_5464::node<key_18_5465,next_18_5466> * 
+next_18_5466::node<key_18_5467,next_18_5468> * 
+next_18_5468::node<key_18_5469,next_18_5470> * 
+next_18_5470::node<key_18_5471,next_18_5472> * 
+next_18_5472::node<key_18_5473,next_18_5474> * 
+next_18_5474::node<key_18_5475,next_18_5476> * 
+next_18_5476::node<key_18_5477,next_18_5478> * 
+next_18_5478::node<key_18_5479,next_18_5480> * 
+next_18_5480::node<key_18_5481,next_18_5482> * 
+next_18_5482::node<key_18_5483,next_18_5484> * 
+next_18_5484::node<key_18_5485,next_18_5486> * 
+next_18_5486::node<key_18_5487,next_18_5488> * 
+next_18_5488::node<key_18_5489,next_18_5490> * 
+next_18_5490::node<key_18_5491,next_18_5492> * 
+next_18_5492::node<key_18_5493,next_18_5494> * 
+next_18_5494::node<key_18_5495,next_18_5496> * 
+next_18_5496::node<key_18_5497,next_18_5498> * 
+next_18_5498::node<key_18_5499,next_18_5500> * 
+next_18_5500::node<key_18_5501,next_18_5502> * 
+next_18_5502::node<key_18_5503,next_18_5504> * 
+next_18_5504::node<key_18_5505,next_18_5506> * 
+next_18_5506::node<key_18_5507,next_18_5508> * 
+next_18_5508::node<key_18_5457,next_18_5458> * next_18_5458::HP_1398{}<> * 
+self::node<key_18_5509,next_18_5510>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_5511>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_5795: next_18_5793::node<key_18_5740,next_18_5741> * 
+next_18_5741::node<key_18_5742,next_18_5743> * 
+next_18_5743::node<key_18_5744,next_18_5745> * 
+next_18_5745::node<key_18_5746,next_18_5747> * 
+next_18_5747::node<key_18_5748,next_18_5749> * 
+next_18_5749::node<key_18_5750,next_18_5751> * 
+next_18_5751::node<key_18_5752,next_18_5753> * 
+next_18_5753::node<key_18_5754,next_18_5755> * 
+next_18_5755::node<key_18_5756,next_18_5757> * 
+next_18_5757::node<key_18_5758,next_18_5759> * 
+next_18_5759::node<key_18_5760,next_18_5761> * 
+next_18_5761::node<key_18_5762,next_18_5763> * 
+next_18_5763::node<key_18_5764,next_18_5765> * 
+next_18_5765::node<key_18_5766,next_18_5767> * 
+next_18_5767::node<key_18_5768,next_18_5769> * 
+next_18_5769::node<key_18_5770,next_18_5771> * 
+next_18_5771::node<key_18_5772,next_18_5773> * 
+next_18_5773::node<key_18_5774,next_18_5775> * 
+next_18_5775::node<key_18_5776,next_18_5777> * 
+next_18_5777::node<key_18_5778,next_18_5779> * 
+next_18_5779::node<key_18_5780,next_18_5781> * 
+next_18_5781::node<key_18_5782,next_18_5783> * 
+next_18_5783::node<key_18_5784,next_18_5785> * 
+next_18_5785::node<key_18_5786,next_18_5787> * 
+next_18_5787::node<key_18_5788,next_18_5789> * 
+next_18_5789::node<key_18_5790,next_18_5791> * 
+next_18_5791::node<key_18_5738,next_18_5739> * next_18_5739::HP_1398{}<> * 
+self::node<key_18_5792,next_18_5793>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_5794>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_6088: next_18_6086::node<key_18_6031,next_18_6032> * 
+next_18_6032::node<key_18_6033,next_18_6034> * 
+next_18_6034::node<key_18_6035,next_18_6036> * 
+next_18_6036::node<key_18_6037,next_18_6038> * 
+next_18_6038::node<key_18_6039,next_18_6040> * 
+next_18_6040::node<key_18_6041,next_18_6042> * 
+next_18_6042::node<key_18_6043,next_18_6044> * 
+next_18_6044::node<key_18_6045,next_18_6046> * 
+next_18_6046::node<key_18_6047,next_18_6048> * 
+next_18_6048::node<key_18_6049,next_18_6050> * 
+next_18_6050::node<key_18_6051,next_18_6052> * 
+next_18_6052::node<key_18_6053,next_18_6054> * 
+next_18_6054::node<key_18_6055,next_18_6056> * 
+next_18_6056::node<key_18_6057,next_18_6058> * 
+next_18_6058::node<key_18_6059,next_18_6060> * 
+next_18_6060::node<key_18_6061,next_18_6062> * 
+next_18_6062::node<key_18_6063,next_18_6064> * 
+next_18_6064::node<key_18_6065,next_18_6066> * 
+next_18_6066::node<key_18_6067,next_18_6068> * 
+next_18_6068::node<key_18_6069,next_18_6070> * 
+next_18_6070::node<key_18_6071,next_18_6072> * 
+next_18_6072::node<key_18_6073,next_18_6074> * 
+next_18_6074::node<key_18_6075,next_18_6076> * 
+next_18_6076::node<key_18_6077,next_18_6078> * 
+next_18_6078::node<key_18_6079,next_18_6080> * 
+next_18_6080::node<key_18_6081,next_18_6082> * 
+next_18_6082::node<key_18_6083,next_18_6084> * 
+next_18_6084::node<key_18_6029,next_18_6030> * next_18_6030::HP_1398{}<> * 
+self::node<key_18_6085,next_18_6086>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_6087>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_6391: next_18_6389::node<key_18_6332,next_18_6333> * 
+next_18_6333::node<key_18_6334,next_18_6335> * 
+next_18_6335::node<key_18_6336,next_18_6337> * 
+next_18_6337::node<key_18_6338,next_18_6339> * 
+next_18_6339::node<key_18_6340,next_18_6341> * 
+next_18_6341::node<key_18_6342,next_18_6343> * 
+next_18_6343::node<key_18_6344,next_18_6345> * 
+next_18_6345::node<key_18_6346,next_18_6347> * 
+next_18_6347::node<key_18_6348,next_18_6349> * 
+next_18_6349::node<key_18_6350,next_18_6351> * 
+next_18_6351::node<key_18_6352,next_18_6353> * 
+next_18_6353::node<key_18_6354,next_18_6355> * 
+next_18_6355::node<key_18_6356,next_18_6357> * 
+next_18_6357::node<key_18_6358,next_18_6359> * 
+next_18_6359::node<key_18_6360,next_18_6361> * 
+next_18_6361::node<key_18_6362,next_18_6363> * 
+next_18_6363::node<key_18_6364,next_18_6365> * 
+next_18_6365::node<key_18_6366,next_18_6367> * 
+next_18_6367::node<key_18_6368,next_18_6369> * 
+next_18_6369::node<key_18_6370,next_18_6371> * 
+next_18_6371::node<key_18_6372,next_18_6373> * 
+next_18_6373::node<key_18_6374,next_18_6375> * 
+next_18_6375::node<key_18_6376,next_18_6377> * 
+next_18_6377::node<key_18_6378,next_18_6379> * 
+next_18_6379::node<key_18_6380,next_18_6381> * 
+next_18_6381::node<key_18_6382,next_18_6383> * 
+next_18_6383::node<key_18_6384,next_18_6385> * 
+next_18_6385::node<key_18_6386,next_18_6387> * 
+next_18_6387::node<key_18_6330,next_18_6331> * next_18_6331::HP_1398{}<> * 
+self::node<key_18_6388,next_18_6389>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_6390>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_6704: next_18_6702::node<key_18_6643,next_18_6644> * 
+next_18_6644::node<key_18_6645,next_18_6646> * 
+next_18_6646::node<key_18_6647,next_18_6648> * 
+next_18_6648::node<key_18_6649,next_18_6650> * 
+next_18_6650::node<key_18_6651,next_18_6652> * 
+next_18_6652::node<key_18_6653,next_18_6654> * 
+next_18_6654::node<key_18_6655,next_18_6656> * 
+next_18_6656::node<key_18_6657,next_18_6658> * 
+next_18_6658::node<key_18_6659,next_18_6660> * 
+next_18_6660::node<key_18_6661,next_18_6662> * 
+next_18_6662::node<key_18_6663,next_18_6664> * 
+next_18_6664::node<key_18_6665,next_18_6666> * 
+next_18_6666::node<key_18_6667,next_18_6668> * 
+next_18_6668::node<key_18_6669,next_18_6670> * 
+next_18_6670::node<key_18_6671,next_18_6672> * 
+next_18_6672::node<key_18_6673,next_18_6674> * 
+next_18_6674::node<key_18_6675,next_18_6676> * 
+next_18_6676::node<key_18_6677,next_18_6678> * 
+next_18_6678::node<key_18_6679,next_18_6680> * 
+next_18_6680::node<key_18_6681,next_18_6682> * 
+next_18_6682::node<key_18_6683,next_18_6684> * 
+next_18_6684::node<key_18_6685,next_18_6686> * 
+next_18_6686::node<key_18_6687,next_18_6688> * 
+next_18_6688::node<key_18_6689,next_18_6690> * 
+next_18_6690::node<key_18_6691,next_18_6692> * 
+next_18_6692::node<key_18_6693,next_18_6694> * 
+next_18_6694::node<key_18_6695,next_18_6696> * 
+next_18_6696::node<key_18_6697,next_18_6698> * 
+next_18_6698::node<key_18_6699,next_18_6700> * 
+next_18_6700::node<key_18_6641,next_18_6642> * next_18_6642::HP_1398{}<> * 
+self::node<key_18_6701,next_18_6702>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_6703>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_7027: next_18_7025::node<key_18_6964,next_18_6965> * 
+next_18_6965::node<key_18_6966,next_18_6967> * 
+next_18_6967::node<key_18_6968,next_18_6969> * 
+next_18_6969::node<key_18_6970,next_18_6971> * 
+next_18_6971::node<key_18_6972,next_18_6973> * 
+next_18_6973::node<key_18_6974,next_18_6975> * 
+next_18_6975::node<key_18_6976,next_18_6977> * 
+next_18_6977::node<key_18_6978,next_18_6979> * 
+next_18_6979::node<key_18_6980,next_18_6981> * 
+next_18_6981::node<key_18_6982,next_18_6983> * 
+next_18_6983::node<key_18_6984,next_18_6985> * 
+next_18_6985::node<key_18_6986,next_18_6987> * 
+next_18_6987::node<key_18_6988,next_18_6989> * 
+next_18_6989::node<key_18_6990,next_18_6991> * 
+next_18_6991::node<key_18_6992,next_18_6993> * 
+next_18_6993::node<key_18_6994,next_18_6995> * 
+next_18_6995::node<key_18_6996,next_18_6997> * 
+next_18_6997::node<key_18_6998,next_18_6999> * 
+next_18_6999::node<key_18_7000,next_18_7001> * 
+next_18_7001::node<key_18_7002,next_18_7003> * 
+next_18_7003::node<key_18_7004,next_18_7005> * 
+next_18_7005::node<key_18_7006,next_18_7007> * 
+next_18_7007::node<key_18_7008,next_18_7009> * 
+next_18_7009::node<key_18_7010,next_18_7011> * 
+next_18_7011::node<key_18_7012,next_18_7013> * 
+next_18_7013::node<key_18_7014,next_18_7015> * 
+next_18_7015::node<key_18_7016,next_18_7017> * 
+next_18_7017::node<key_18_7018,next_18_7019> * 
+next_18_7019::node<key_18_7020,next_18_7021> * 
+next_18_7021::node<key_18_7022,next_18_7023> * 
+next_18_7023::node<key_18_6962,next_18_6963> * next_18_6963::HP_1398{}<> * 
+self::node<key_18_7024,next_18_7025>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_7026>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_7360: next_18_7358::node<key_18_7295,next_18_7296> * 
+next_18_7296::node<key_18_7297,next_18_7298> * 
+next_18_7298::node<key_18_7299,next_18_7300> * 
+next_18_7300::node<key_18_7301,next_18_7302> * 
+next_18_7302::node<key_18_7303,next_18_7304> * 
+next_18_7304::node<key_18_7305,next_18_7306> * 
+next_18_7306::node<key_18_7307,next_18_7308> * 
+next_18_7308::node<key_18_7309,next_18_7310> * 
+next_18_7310::node<key_18_7311,next_18_7312> * 
+next_18_7312::node<key_18_7313,next_18_7314> * 
+next_18_7314::node<key_18_7315,next_18_7316> * 
+next_18_7316::node<key_18_7317,next_18_7318> * 
+next_18_7318::node<key_18_7319,next_18_7320> * 
+next_18_7320::node<key_18_7321,next_18_7322> * 
+next_18_7322::node<key_18_7323,next_18_7324> * 
+next_18_7324::node<key_18_7325,next_18_7326> * 
+next_18_7326::node<key_18_7327,next_18_7328> * 
+next_18_7328::node<key_18_7329,next_18_7330> * 
+next_18_7330::node<key_18_7331,next_18_7332> * 
+next_18_7332::node<key_18_7333,next_18_7334> * 
+next_18_7334::node<key_18_7335,next_18_7336> * 
+next_18_7336::node<key_18_7337,next_18_7338> * 
+next_18_7338::node<key_18_7339,next_18_7340> * 
+next_18_7340::node<key_18_7341,next_18_7342> * 
+next_18_7342::node<key_18_7343,next_18_7344> * 
+next_18_7344::node<key_18_7345,next_18_7346> * 
+next_18_7346::node<key_18_7347,next_18_7348> * 
+next_18_7348::node<key_18_7349,next_18_7350> * 
+next_18_7350::node<key_18_7351,next_18_7352> * 
+next_18_7352::node<key_18_7353,next_18_7354> * 
+next_18_7354::node<key_18_7355,next_18_7356> * 
+next_18_7356::node<key_18_7293,next_18_7294> * next_18_7294::HP_1398{}<> * 
+self::node<key_18_7357,next_18_7358>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_7359>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_7703: next_18_7701::node<key_18_7636,next_18_7637> * 
+next_18_7637::node<key_18_7638,next_18_7639> * 
+next_18_7639::node<key_18_7640,next_18_7641> * 
+next_18_7641::node<key_18_7642,next_18_7643> * 
+next_18_7643::node<key_18_7644,next_18_7645> * 
+next_18_7645::node<key_18_7646,next_18_7647> * 
+next_18_7647::node<key_18_7648,next_18_7649> * 
+next_18_7649::node<key_18_7650,next_18_7651> * 
+next_18_7651::node<key_18_7652,next_18_7653> * 
+next_18_7653::node<key_18_7654,next_18_7655> * 
+next_18_7655::node<key_18_7656,next_18_7657> * 
+next_18_7657::node<key_18_7658,next_18_7659> * 
+next_18_7659::node<key_18_7660,next_18_7661> * 
+next_18_7661::node<key_18_7662,next_18_7663> * 
+next_18_7663::node<key_18_7664,next_18_7665> * 
+next_18_7665::node<key_18_7666,next_18_7667> * 
+next_18_7667::node<key_18_7668,next_18_7669> * 
+next_18_7669::node<key_18_7670,next_18_7671> * 
+next_18_7671::node<key_18_7672,next_18_7673> * 
+next_18_7673::node<key_18_7674,next_18_7675> * 
+next_18_7675::node<key_18_7676,next_18_7677> * 
+next_18_7677::node<key_18_7678,next_18_7679> * 
+next_18_7679::node<key_18_7680,next_18_7681> * 
+next_18_7681::node<key_18_7682,next_18_7683> * 
+next_18_7683::node<key_18_7684,next_18_7685> * 
+next_18_7685::node<key_18_7686,next_18_7687> * 
+next_18_7687::node<key_18_7688,next_18_7689> * 
+next_18_7689::node<key_18_7690,next_18_7691> * 
+next_18_7691::node<key_18_7692,next_18_7693> * 
+next_18_7693::node<key_18_7694,next_18_7695> * 
+next_18_7695::node<key_18_7696,next_18_7697> * 
+next_18_7697::node<key_18_7698,next_18_7699> * 
+next_18_7699::node<key_18_7634,next_18_7635> * next_18_7635::HP_1398{}<> * 
+self::node<key_18_7700,next_18_7701>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_7702>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_8056: next_18_8054::node<key_18_7987,next_18_7988> * 
+next_18_7988::node<key_18_7989,next_18_7990> * 
+next_18_7990::node<key_18_7991,next_18_7992> * 
+next_18_7992::node<key_18_7993,next_18_7994> * 
+next_18_7994::node<key_18_7995,next_18_7996> * 
+next_18_7996::node<key_18_7997,next_18_7998> * 
+next_18_7998::node<key_18_7999,next_18_8000> * 
+next_18_8000::node<key_18_8001,next_18_8002> * 
+next_18_8002::node<key_18_8003,next_18_8004> * 
+next_18_8004::node<key_18_8005,next_18_8006> * 
+next_18_8006::node<key_18_8007,next_18_8008> * 
+next_18_8008::node<key_18_8009,next_18_8010> * 
+next_18_8010::node<key_18_8011,next_18_8012> * 
+next_18_8012::node<key_18_8013,next_18_8014> * 
+next_18_8014::node<key_18_8015,next_18_8016> * 
+next_18_8016::node<key_18_8017,next_18_8018> * 
+next_18_8018::node<key_18_8019,next_18_8020> * 
+next_18_8020::node<key_18_8021,next_18_8022> * 
+next_18_8022::node<key_18_8023,next_18_8024> * 
+next_18_8024::node<key_18_8025,next_18_8026> * 
+next_18_8026::node<key_18_8027,next_18_8028> * 
+next_18_8028::node<key_18_8029,next_18_8030> * 
+next_18_8030::node<key_18_8031,next_18_8032> * 
+next_18_8032::node<key_18_8033,next_18_8034> * 
+next_18_8034::node<key_18_8035,next_18_8036> * 
+next_18_8036::node<key_18_8037,next_18_8038> * 
+next_18_8038::node<key_18_8039,next_18_8040> * 
+next_18_8040::node<key_18_8041,next_18_8042> * 
+next_18_8042::node<key_18_8043,next_18_8044> * 
+next_18_8044::node<key_18_8045,next_18_8046> * 
+next_18_8046::node<key_18_8047,next_18_8048> * 
+next_18_8048::node<key_18_8049,next_18_8050> * 
+next_18_8050::node<key_18_8051,next_18_8052> * 
+next_18_8052::node<key_18_7985,next_18_7986> * next_18_7986::HP_1398{}<> * 
+self::node<key_18_8053,next_18_8054>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_8055>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_8419: next_18_8417::node<key_18_8348,next_18_8349> * 
+next_18_8349::node<key_18_8350,next_18_8351> * 
+next_18_8351::node<key_18_8352,next_18_8353> * 
+next_18_8353::node<key_18_8354,next_18_8355> * 
+next_18_8355::node<key_18_8356,next_18_8357> * 
+next_18_8357::node<key_18_8358,next_18_8359> * 
+next_18_8359::node<key_18_8360,next_18_8361> * 
+next_18_8361::node<key_18_8362,next_18_8363> * 
+next_18_8363::node<key_18_8364,next_18_8365> * 
+next_18_8365::node<key_18_8366,next_18_8367> * 
+next_18_8367::node<key_18_8368,next_18_8369> * 
+next_18_8369::node<key_18_8370,next_18_8371> * 
+next_18_8371::node<key_18_8372,next_18_8373> * 
+next_18_8373::node<key_18_8374,next_18_8375> * 
+next_18_8375::node<key_18_8376,next_18_8377> * 
+next_18_8377::node<key_18_8378,next_18_8379> * 
+next_18_8379::node<key_18_8380,next_18_8381> * 
+next_18_8381::node<key_18_8382,next_18_8383> * 
+next_18_8383::node<key_18_8384,next_18_8385> * 
+next_18_8385::node<key_18_8386,next_18_8387> * 
+next_18_8387::node<key_18_8388,next_18_8389> * 
+next_18_8389::node<key_18_8390,next_18_8391> * 
+next_18_8391::node<key_18_8392,next_18_8393> * 
+next_18_8393::node<key_18_8394,next_18_8395> * 
+next_18_8395::node<key_18_8396,next_18_8397> * 
+next_18_8397::node<key_18_8398,next_18_8399> * 
+next_18_8399::node<key_18_8400,next_18_8401> * 
+next_18_8401::node<key_18_8402,next_18_8403> * 
+next_18_8403::node<key_18_8404,next_18_8405> * 
+next_18_8405::node<key_18_8406,next_18_8407> * 
+next_18_8407::node<key_18_8408,next_18_8409> * 
+next_18_8409::node<key_18_8410,next_18_8411> * 
+next_18_8411::node<key_18_8412,next_18_8413> * 
+next_18_8413::node<key_18_8414,next_18_8415> * 
+next_18_8415::node<key_18_8346,next_18_8347> * next_18_8347::HP_1398{}<> * 
+self::node<key_18_8416,next_18_8417>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_8418>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_8792: next_18_8790::node<key_18_8719,next_18_8720> * 
+next_18_8720::node<key_18_8721,next_18_8722> * 
+next_18_8722::node<key_18_8723,next_18_8724> * 
+next_18_8724::node<key_18_8725,next_18_8726> * 
+next_18_8726::node<key_18_8727,next_18_8728> * 
+next_18_8728::node<key_18_8729,next_18_8730> * 
+next_18_8730::node<key_18_8731,next_18_8732> * 
+next_18_8732::node<key_18_8733,next_18_8734> * 
+next_18_8734::node<key_18_8735,next_18_8736> * 
+next_18_8736::node<key_18_8737,next_18_8738> * 
+next_18_8738::node<key_18_8739,next_18_8740> * 
+next_18_8740::node<key_18_8741,next_18_8742> * 
+next_18_8742::node<key_18_8743,next_18_8744> * 
+next_18_8744::node<key_18_8745,next_18_8746> * 
+next_18_8746::node<key_18_8747,next_18_8748> * 
+next_18_8748::node<key_18_8749,next_18_8750> * 
+next_18_8750::node<key_18_8751,next_18_8752> * 
+next_18_8752::node<key_18_8753,next_18_8754> * 
+next_18_8754::node<key_18_8755,next_18_8756> * 
+next_18_8756::node<key_18_8757,next_18_8758> * 
+next_18_8758::node<key_18_8759,next_18_8760> * 
+next_18_8760::node<key_18_8761,next_18_8762> * 
+next_18_8762::node<key_18_8763,next_18_8764> * 
+next_18_8764::node<key_18_8765,next_18_8766> * 
+next_18_8766::node<key_18_8767,next_18_8768> * 
+next_18_8768::node<key_18_8769,next_18_8770> * 
+next_18_8770::node<key_18_8771,next_18_8772> * 
+next_18_8772::node<key_18_8773,next_18_8774> * 
+next_18_8774::node<key_18_8775,next_18_8776> * 
+next_18_8776::node<key_18_8777,next_18_8778> * 
+next_18_8778::node<key_18_8779,next_18_8780> * 
+next_18_8780::node<key_18_8781,next_18_8782> * 
+next_18_8782::node<key_18_8783,next_18_8784> * 
+next_18_8784::node<key_18_8785,next_18_8786> * 
+next_18_8786::node<key_18_8787,next_18_8788> * 
+next_18_8788::node<key_18_8717,next_18_8718> * next_18_8718::HP_1398{}<> * 
+self::node<key_18_8789,next_18_8790>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_8791>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_9175: next_18_9173::node<key_18_9100,next_18_9101> * 
+next_18_9101::node<key_18_9102,next_18_9103> * 
+next_18_9103::node<key_18_9104,next_18_9105> * 
+next_18_9105::node<key_18_9106,next_18_9107> * 
+next_18_9107::node<key_18_9108,next_18_9109> * 
+next_18_9109::node<key_18_9110,next_18_9111> * 
+next_18_9111::node<key_18_9112,next_18_9113> * 
+next_18_9113::node<key_18_9114,next_18_9115> * 
+next_18_9115::node<key_18_9116,next_18_9117> * 
+next_18_9117::node<key_18_9118,next_18_9119> * 
+next_18_9119::node<key_18_9120,next_18_9121> * 
+next_18_9121::node<key_18_9122,next_18_9123> * 
+next_18_9123::node<key_18_9124,next_18_9125> * 
+next_18_9125::node<key_18_9126,next_18_9127> * 
+next_18_9127::node<key_18_9128,next_18_9129> * 
+next_18_9129::node<key_18_9130,next_18_9131> * 
+next_18_9131::node<key_18_9132,next_18_9133> * 
+next_18_9133::node<key_18_9134,next_18_9135> * 
+next_18_9135::node<key_18_9136,next_18_9137> * 
+next_18_9137::node<key_18_9138,next_18_9139> * 
+next_18_9139::node<key_18_9140,next_18_9141> * 
+next_18_9141::node<key_18_9142,next_18_9143> * 
+next_18_9143::node<key_18_9144,next_18_9145> * 
+next_18_9145::node<key_18_9146,next_18_9147> * 
+next_18_9147::node<key_18_9148,next_18_9149> * 
+next_18_9149::node<key_18_9150,next_18_9151> * 
+next_18_9151::node<key_18_9152,next_18_9153> * 
+next_18_9153::node<key_18_9154,next_18_9155> * 
+next_18_9155::node<key_18_9156,next_18_9157> * 
+next_18_9157::node<key_18_9158,next_18_9159> * 
+next_18_9159::node<key_18_9160,next_18_9161> * 
+next_18_9161::node<key_18_9162,next_18_9163> * 
+next_18_9163::node<key_18_9164,next_18_9165> * 
+next_18_9165::node<key_18_9166,next_18_9167> * 
+next_18_9167::node<key_18_9168,next_18_9169> * 
+next_18_9169::node<key_18_9170,next_18_9171> * 
+next_18_9171::node<key_18_9098,next_18_9099> * next_18_9099::HP_1398{}<> * 
+self::node<key_18_9172,next_18_9173>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_9174>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_9568: next_18_9566::node<key_18_9491,next_18_9492> * 
+next_18_9492::node<key_18_9493,next_18_9494> * 
+next_18_9494::node<key_18_9495,next_18_9496> * 
+next_18_9496::node<key_18_9497,next_18_9498> * 
+next_18_9498::node<key_18_9499,next_18_9500> * 
+next_18_9500::node<key_18_9501,next_18_9502> * 
+next_18_9502::node<key_18_9503,next_18_9504> * 
+next_18_9504::node<key_18_9505,next_18_9506> * 
+next_18_9506::node<key_18_9507,next_18_9508> * 
+next_18_9508::node<key_18_9509,next_18_9510> * 
+next_18_9510::node<key_18_9511,next_18_9512> * 
+next_18_9512::node<key_18_9513,next_18_9514> * 
+next_18_9514::node<key_18_9515,next_18_9516> * 
+next_18_9516::node<key_18_9517,next_18_9518> * 
+next_18_9518::node<key_18_9519,next_18_9520> * 
+next_18_9520::node<key_18_9521,next_18_9522> * 
+next_18_9522::node<key_18_9523,next_18_9524> * 
+next_18_9524::node<key_18_9525,next_18_9526> * 
+next_18_9526::node<key_18_9527,next_18_9528> * 
+next_18_9528::node<key_18_9529,next_18_9530> * 
+next_18_9530::node<key_18_9531,next_18_9532> * 
+next_18_9532::node<key_18_9533,next_18_9534> * 
+next_18_9534::node<key_18_9535,next_18_9536> * 
+next_18_9536::node<key_18_9537,next_18_9538> * 
+next_18_9538::node<key_18_9539,next_18_9540> * 
+next_18_9540::node<key_18_9541,next_18_9542> * 
+next_18_9542::node<key_18_9543,next_18_9544> * 
+next_18_9544::node<key_18_9545,next_18_9546> * 
+next_18_9546::node<key_18_9547,next_18_9548> * 
+next_18_9548::node<key_18_9549,next_18_9550> * 
+next_18_9550::node<key_18_9551,next_18_9552> * 
+next_18_9552::node<key_18_9553,next_18_9554> * 
+next_18_9554::node<key_18_9555,next_18_9556> * 
+next_18_9556::node<key_18_9557,next_18_9558> * 
+next_18_9558::node<key_18_9559,next_18_9560> * 
+next_18_9560::node<key_18_9561,next_18_9562> * 
+next_18_9562::node<key_18_9563,next_18_9564> * 
+next_18_9564::node<key_18_9489,next_18_9490> * next_18_9490::HP_1398{}<> * 
+self::node<key_18_9565,next_18_9566>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_9567>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_9971: next_18_9969::node<key_18_9892,next_18_9893> * 
+next_18_9893::node<key_18_9894,next_18_9895> * 
+next_18_9895::node<key_18_9896,next_18_9897> * 
+next_18_9897::node<key_18_9898,next_18_9899> * 
+next_18_9899::node<key_18_9900,next_18_9901> * 
+next_18_9901::node<key_18_9902,next_18_9903> * 
+next_18_9903::node<key_18_9904,next_18_9905> * 
+next_18_9905::node<key_18_9906,next_18_9907> * 
+next_18_9907::node<key_18_9908,next_18_9909> * 
+next_18_9909::node<key_18_9910,next_18_9911> * 
+next_18_9911::node<key_18_9912,next_18_9913> * 
+next_18_9913::node<key_18_9914,next_18_9915> * 
+next_18_9915::node<key_18_9916,next_18_9917> * 
+next_18_9917::node<key_18_9918,next_18_9919> * 
+next_18_9919::node<key_18_9920,next_18_9921> * 
+next_18_9921::node<key_18_9922,next_18_9923> * 
+next_18_9923::node<key_18_9924,next_18_9925> * 
+next_18_9925::node<key_18_9926,next_18_9927> * 
+next_18_9927::node<key_18_9928,next_18_9929> * 
+next_18_9929::node<key_18_9930,next_18_9931> * 
+next_18_9931::node<key_18_9932,next_18_9933> * 
+next_18_9933::node<key_18_9934,next_18_9935> * 
+next_18_9935::node<key_18_9936,next_18_9937> * 
+next_18_9937::node<key_18_9938,next_18_9939> * 
+next_18_9939::node<key_18_9940,next_18_9941> * 
+next_18_9941::node<key_18_9942,next_18_9943> * 
+next_18_9943::node<key_18_9944,next_18_9945> * 
+next_18_9945::node<key_18_9946,next_18_9947> * 
+next_18_9947::node<key_18_9948,next_18_9949> * 
+next_18_9949::node<key_18_9950,next_18_9951> * 
+next_18_9951::node<key_18_9952,next_18_9953> * 
+next_18_9953::node<key_18_9954,next_18_9955> * 
+next_18_9955::node<key_18_9956,next_18_9957> * 
+next_18_9957::node<key_18_9958,next_18_9959> * 
+next_18_9959::node<key_18_9960,next_18_9961> * 
+next_18_9961::node<key_18_9962,next_18_9963> * 
+next_18_9963::node<key_18_9964,next_18_9965> * 
+next_18_9965::node<key_18_9966,next_18_9967> * 
+next_18_9967::node<key_18_9890,next_18_9891> * next_18_9891::HP_1398{}<> * 
+self::node<key_18_9968,next_18_9969>&{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_9970>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_10384: next_18_10382::node<key_18_10303,next_18_10304> * 
+next_18_10304::node<key_18_10305,next_18_10306> * 
+next_18_10306::node<key_18_10307,next_18_10308> * 
+next_18_10308::node<key_18_10309,next_18_10310> * 
+next_18_10310::node<key_18_10311,next_18_10312> * 
+next_18_10312::node<key_18_10313,next_18_10314> * 
+next_18_10314::node<key_18_10315,next_18_10316> * 
+next_18_10316::node<key_18_10317,next_18_10318> * 
+next_18_10318::node<key_18_10319,next_18_10320> * 
+next_18_10320::node<key_18_10321,next_18_10322> * 
+next_18_10322::node<key_18_10323,next_18_10324> * 
+next_18_10324::node<key_18_10325,next_18_10326> * 
+next_18_10326::node<key_18_10327,next_18_10328> * 
+next_18_10328::node<key_18_10329,next_18_10330> * 
+next_18_10330::node<key_18_10331,next_18_10332> * 
+next_18_10332::node<key_18_10333,next_18_10334> * 
+next_18_10334::node<key_18_10335,next_18_10336> * 
+next_18_10336::node<key_18_10337,next_18_10338> * 
+next_18_10338::node<key_18_10339,next_18_10340> * 
+next_18_10340::node<key_18_10341,next_18_10342> * 
+next_18_10342::node<key_18_10343,next_18_10344> * 
+next_18_10344::node<key_18_10345,next_18_10346> * 
+next_18_10346::node<key_18_10347,next_18_10348> * 
+next_18_10348::node<key_18_10349,next_18_10350> * 
+next_18_10350::node<key_18_10351,next_18_10352> * 
+next_18_10352::node<key_18_10353,next_18_10354> * 
+next_18_10354::node<key_18_10355,next_18_10356> * 
+next_18_10356::node<key_18_10357,next_18_10358> * 
+next_18_10358::node<key_18_10359,next_18_10360> * 
+next_18_10360::node<key_18_10361,next_18_10362> * 
+next_18_10362::node<key_18_10363,next_18_10364> * 
+next_18_10364::node<key_18_10365,next_18_10366> * 
+next_18_10366::node<key_18_10367,next_18_10368> * 
+next_18_10368::node<key_18_10369,next_18_10370> * 
+next_18_10370::node<key_18_10371,next_18_10372> * 
+next_18_10372::node<key_18_10373,next_18_10374> * 
+next_18_10374::node<key_18_10375,next_18_10376> * 
+next_18_10376::node<key_18_10377,next_18_10378> * 
+next_18_10378::node<key_18_10379,next_18_10380> * 
+next_18_10380::node<key_18_10301,next_18_10302> * 
+next_18_10302::HP_1398{}<> * self::node<key_18_10381,next_18_10382>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_10383>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_10807: next_18_10805::node<key_18_10724,next_18_10725> * 
+next_18_10725::node<key_18_10726,next_18_10727> * 
+next_18_10727::node<key_18_10728,next_18_10729> * 
+next_18_10729::node<key_18_10730,next_18_10731> * 
+next_18_10731::node<key_18_10732,next_18_10733> * 
+next_18_10733::node<key_18_10734,next_18_10735> * 
+next_18_10735::node<key_18_10736,next_18_10737> * 
+next_18_10737::node<key_18_10738,next_18_10739> * 
+next_18_10739::node<key_18_10740,next_18_10741> * 
+next_18_10741::node<key_18_10742,next_18_10743> * 
+next_18_10743::node<key_18_10744,next_18_10745> * 
+next_18_10745::node<key_18_10746,next_18_10747> * 
+next_18_10747::node<key_18_10748,next_18_10749> * 
+next_18_10749::node<key_18_10750,next_18_10751> * 
+next_18_10751::node<key_18_10752,next_18_10753> * 
+next_18_10753::node<key_18_10754,next_18_10755> * 
+next_18_10755::node<key_18_10756,next_18_10757> * 
+next_18_10757::node<key_18_10758,next_18_10759> * 
+next_18_10759::node<key_18_10760,next_18_10761> * 
+next_18_10761::node<key_18_10762,next_18_10763> * 
+next_18_10763::node<key_18_10764,next_18_10765> * 
+next_18_10765::node<key_18_10766,next_18_10767> * 
+next_18_10767::node<key_18_10768,next_18_10769> * 
+next_18_10769::node<key_18_10770,next_18_10771> * 
+next_18_10771::node<key_18_10772,next_18_10773> * 
+next_18_10773::node<key_18_10774,next_18_10775> * 
+next_18_10775::node<key_18_10776,next_18_10777> * 
+next_18_10777::node<key_18_10778,next_18_10779> * 
+next_18_10779::node<key_18_10780,next_18_10781> * 
+next_18_10781::node<key_18_10782,next_18_10783> * 
+next_18_10783::node<key_18_10784,next_18_10785> * 
+next_18_10785::node<key_18_10786,next_18_10787> * 
+next_18_10787::node<key_18_10788,next_18_10789> * 
+next_18_10789::node<key_18_10790,next_18_10791> * 
+next_18_10791::node<key_18_10792,next_18_10793> * 
+next_18_10793::node<key_18_10794,next_18_10795> * 
+next_18_10795::node<key_18_10796,next_18_10797> * 
+next_18_10797::node<key_18_10798,next_18_10799> * 
+next_18_10799::node<key_18_10800,next_18_10801> * 
+next_18_10801::node<key_18_10802,next_18_10803> * 
+next_18_10803::node<key_18_10722,next_18_10723> * 
+next_18_10723::HP_1398{}<> * self::node<key_18_10804,next_18_10805>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_10806>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_11240: next_18_11238::node<key_18_11155,next_18_11156> * 
+next_18_11156::node<key_18_11157,next_18_11158> * 
+next_18_11158::node<key_18_11159,next_18_11160> * 
+next_18_11160::node<key_18_11161,next_18_11162> * 
+next_18_11162::node<key_18_11163,next_18_11164> * 
+next_18_11164::node<key_18_11165,next_18_11166> * 
+next_18_11166::node<key_18_11167,next_18_11168> * 
+next_18_11168::node<key_18_11169,next_18_11170> * 
+next_18_11170::node<key_18_11171,next_18_11172> * 
+next_18_11172::node<key_18_11173,next_18_11174> * 
+next_18_11174::node<key_18_11175,next_18_11176> * 
+next_18_11176::node<key_18_11177,next_18_11178> * 
+next_18_11178::node<key_18_11179,next_18_11180> * 
+next_18_11180::node<key_18_11181,next_18_11182> * 
+next_18_11182::node<key_18_11183,next_18_11184> * 
+next_18_11184::node<key_18_11185,next_18_11186> * 
+next_18_11186::node<key_18_11187,next_18_11188> * 
+next_18_11188::node<key_18_11189,next_18_11190> * 
+next_18_11190::node<key_18_11191,next_18_11192> * 
+next_18_11192::node<key_18_11193,next_18_11194> * 
+next_18_11194::node<key_18_11195,next_18_11196> * 
+next_18_11196::node<key_18_11197,next_18_11198> * 
+next_18_11198::node<key_18_11199,next_18_11200> * 
+next_18_11200::node<key_18_11201,next_18_11202> * 
+next_18_11202::node<key_18_11203,next_18_11204> * 
+next_18_11204::node<key_18_11205,next_18_11206> * 
+next_18_11206::node<key_18_11207,next_18_11208> * 
+next_18_11208::node<key_18_11209,next_18_11210> * 
+next_18_11210::node<key_18_11211,next_18_11212> * 
+next_18_11212::node<key_18_11213,next_18_11214> * 
+next_18_11214::node<key_18_11215,next_18_11216> * 
+next_18_11216::node<key_18_11217,next_18_11218> * 
+next_18_11218::node<key_18_11219,next_18_11220> * 
+next_18_11220::node<key_18_11221,next_18_11222> * 
+next_18_11222::node<key_18_11223,next_18_11224> * 
+next_18_11224::node<key_18_11225,next_18_11226> * 
+next_18_11226::node<key_18_11227,next_18_11228> * 
+next_18_11228::node<key_18_11229,next_18_11230> * 
+next_18_11230::node<key_18_11231,next_18_11232> * 
+next_18_11232::node<key_18_11233,next_18_11234> * 
+next_18_11234::node<key_18_11235,next_18_11236> * 
+next_18_11236::node<key_18_11153,next_18_11154> * 
+next_18_11154::HP_1398{}<> * self::node<key_18_11237,next_18_11238>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_11239>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_11683: next_18_11681::node<key_18_11596,next_18_11597> * 
+next_18_11597::node<key_18_11598,next_18_11599> * 
+next_18_11599::node<key_18_11600,next_18_11601> * 
+next_18_11601::node<key_18_11602,next_18_11603> * 
+next_18_11603::node<key_18_11604,next_18_11605> * 
+next_18_11605::node<key_18_11606,next_18_11607> * 
+next_18_11607::node<key_18_11608,next_18_11609> * 
+next_18_11609::node<key_18_11610,next_18_11611> * 
+next_18_11611::node<key_18_11612,next_18_11613> * 
+next_18_11613::node<key_18_11614,next_18_11615> * 
+next_18_11615::node<key_18_11616,next_18_11617> * 
+next_18_11617::node<key_18_11618,next_18_11619> * 
+next_18_11619::node<key_18_11620,next_18_11621> * 
+next_18_11621::node<key_18_11622,next_18_11623> * 
+next_18_11623::node<key_18_11624,next_18_11625> * 
+next_18_11625::node<key_18_11626,next_18_11627> * 
+next_18_11627::node<key_18_11628,next_18_11629> * 
+next_18_11629::node<key_18_11630,next_18_11631> * 
+next_18_11631::node<key_18_11632,next_18_11633> * 
+next_18_11633::node<key_18_11634,next_18_11635> * 
+next_18_11635::node<key_18_11636,next_18_11637> * 
+next_18_11637::node<key_18_11638,next_18_11639> * 
+next_18_11639::node<key_18_11640,next_18_11641> * 
+next_18_11641::node<key_18_11642,next_18_11643> * 
+next_18_11643::node<key_18_11644,next_18_11645> * 
+next_18_11645::node<key_18_11646,next_18_11647> * 
+next_18_11647::node<key_18_11648,next_18_11649> * 
+next_18_11649::node<key_18_11650,next_18_11651> * 
+next_18_11651::node<key_18_11652,next_18_11653> * 
+next_18_11653::node<key_18_11654,next_18_11655> * 
+next_18_11655::node<key_18_11656,next_18_11657> * 
+next_18_11657::node<key_18_11658,next_18_11659> * 
+next_18_11659::node<key_18_11660,next_18_11661> * 
+next_18_11661::node<key_18_11662,next_18_11663> * 
+next_18_11663::node<key_18_11664,next_18_11665> * 
+next_18_11665::node<key_18_11666,next_18_11667> * 
+next_18_11667::node<key_18_11668,next_18_11669> * 
+next_18_11669::node<key_18_11670,next_18_11671> * 
+next_18_11671::node<key_18_11672,next_18_11673> * 
+next_18_11673::node<key_18_11674,next_18_11675> * 
+next_18_11675::node<key_18_11676,next_18_11677> * 
+next_18_11677::node<key_18_11678,next_18_11679> * 
+next_18_11679::node<key_18_11594,next_18_11595> * 
+next_18_11595::HP_1398{}<> * self::node<key_18_11680,next_18_11681>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_11682>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_12136: next_18_12134::node<key_18_12047,next_18_12048> * 
+next_18_12048::node<key_18_12049,next_18_12050> * 
+next_18_12050::node<key_18_12051,next_18_12052> * 
+next_18_12052::node<key_18_12053,next_18_12054> * 
+next_18_12054::node<key_18_12055,next_18_12056> * 
+next_18_12056::node<key_18_12057,next_18_12058> * 
+next_18_12058::node<key_18_12059,next_18_12060> * 
+next_18_12060::node<key_18_12061,next_18_12062> * 
+next_18_12062::node<key_18_12063,next_18_12064> * 
+next_18_12064::node<key_18_12065,next_18_12066> * 
+next_18_12066::node<key_18_12067,next_18_12068> * 
+next_18_12068::node<key_18_12069,next_18_12070> * 
+next_18_12070::node<key_18_12071,next_18_12072> * 
+next_18_12072::node<key_18_12073,next_18_12074> * 
+next_18_12074::node<key_18_12075,next_18_12076> * 
+next_18_12076::node<key_18_12077,next_18_12078> * 
+next_18_12078::node<key_18_12079,next_18_12080> * 
+next_18_12080::node<key_18_12081,next_18_12082> * 
+next_18_12082::node<key_18_12083,next_18_12084> * 
+next_18_12084::node<key_18_12085,next_18_12086> * 
+next_18_12086::node<key_18_12087,next_18_12088> * 
+next_18_12088::node<key_18_12089,next_18_12090> * 
+next_18_12090::node<key_18_12091,next_18_12092> * 
+next_18_12092::node<key_18_12093,next_18_12094> * 
+next_18_12094::node<key_18_12095,next_18_12096> * 
+next_18_12096::node<key_18_12097,next_18_12098> * 
+next_18_12098::node<key_18_12099,next_18_12100> * 
+next_18_12100::node<key_18_12101,next_18_12102> * 
+next_18_12102::node<key_18_12103,next_18_12104> * 
+next_18_12104::node<key_18_12105,next_18_12106> * 
+next_18_12106::node<key_18_12107,next_18_12108> * 
+next_18_12108::node<key_18_12109,next_18_12110> * 
+next_18_12110::node<key_18_12111,next_18_12112> * 
+next_18_12112::node<key_18_12113,next_18_12114> * 
+next_18_12114::node<key_18_12115,next_18_12116> * 
+next_18_12116::node<key_18_12117,next_18_12118> * 
+next_18_12118::node<key_18_12119,next_18_12120> * 
+next_18_12120::node<key_18_12121,next_18_12122> * 
+next_18_12122::node<key_18_12123,next_18_12124> * 
+next_18_12124::node<key_18_12125,next_18_12126> * 
+next_18_12126::node<key_18_12127,next_18_12128> * 
+next_18_12128::node<key_18_12129,next_18_12130> * 
+next_18_12130::node<key_18_12131,next_18_12132> * 
+next_18_12132::node<key_18_12045,next_18_12046> * 
+next_18_12046::HP_1398{}<> * self::node<key_18_12133,next_18_12134>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_12135>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_12599: next_18_12597::node<key_18_12508,next_18_12509> * 
+next_18_12509::node<key_18_12510,next_18_12511> * 
+next_18_12511::node<key_18_12512,next_18_12513> * 
+next_18_12513::node<key_18_12514,next_18_12515> * 
+next_18_12515::node<key_18_12516,next_18_12517> * 
+next_18_12517::node<key_18_12518,next_18_12519> * 
+next_18_12519::node<key_18_12520,next_18_12521> * 
+next_18_12521::node<key_18_12522,next_18_12523> * 
+next_18_12523::node<key_18_12524,next_18_12525> * 
+next_18_12525::node<key_18_12526,next_18_12527> * 
+next_18_12527::node<key_18_12528,next_18_12529> * 
+next_18_12529::node<key_18_12530,next_18_12531> * 
+next_18_12531::node<key_18_12532,next_18_12533> * 
+next_18_12533::node<key_18_12534,next_18_12535> * 
+next_18_12535::node<key_18_12536,next_18_12537> * 
+next_18_12537::node<key_18_12538,next_18_12539> * 
+next_18_12539::node<key_18_12540,next_18_12541> * 
+next_18_12541::node<key_18_12542,next_18_12543> * 
+next_18_12543::node<key_18_12544,next_18_12545> * 
+next_18_12545::node<key_18_12546,next_18_12547> * 
+next_18_12547::node<key_18_12548,next_18_12549> * 
+next_18_12549::node<key_18_12550,next_18_12551> * 
+next_18_12551::node<key_18_12552,next_18_12553> * 
+next_18_12553::node<key_18_12554,next_18_12555> * 
+next_18_12555::node<key_18_12556,next_18_12557> * 
+next_18_12557::node<key_18_12558,next_18_12559> * 
+next_18_12559::node<key_18_12560,next_18_12561> * 
+next_18_12561::node<key_18_12562,next_18_12563> * 
+next_18_12563::node<key_18_12564,next_18_12565> * 
+next_18_12565::node<key_18_12566,next_18_12567> * 
+next_18_12567::node<key_18_12568,next_18_12569> * 
+next_18_12569::node<key_18_12570,next_18_12571> * 
+next_18_12571::node<key_18_12572,next_18_12573> * 
+next_18_12573::node<key_18_12574,next_18_12575> * 
+next_18_12575::node<key_18_12576,next_18_12577> * 
+next_18_12577::node<key_18_12578,next_18_12579> * 
+next_18_12579::node<key_18_12580,next_18_12581> * 
+next_18_12581::node<key_18_12582,next_18_12583> * 
+next_18_12583::node<key_18_12584,next_18_12585> * 
+next_18_12585::node<key_18_12586,next_18_12587> * 
+next_18_12587::node<key_18_12588,next_18_12589> * 
+next_18_12589::node<key_18_12590,next_18_12591> * 
+next_18_12591::node<key_18_12592,next_18_12593> * 
+next_18_12593::node<key_18_12594,next_18_12595> * 
+next_18_12595::node<key_18_12506,next_18_12507> * 
+next_18_12507::HP_1398{}<> * self::node<key_18_12596,next_18_12597>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_12598>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_13072: next_18_13070::node<key_18_12979,next_18_12980> * 
+next_18_12980::node<key_18_12981,next_18_12982> * 
+next_18_12982::node<key_18_12983,next_18_12984> * 
+next_18_12984::node<key_18_12985,next_18_12986> * 
+next_18_12986::node<key_18_12987,next_18_12988> * 
+next_18_12988::node<key_18_12989,next_18_12990> * 
+next_18_12990::node<key_18_12991,next_18_12992> * 
+next_18_12992::node<key_18_12993,next_18_12994> * 
+next_18_12994::node<key_18_12995,next_18_12996> * 
+next_18_12996::node<key_18_12997,next_18_12998> * 
+next_18_12998::node<key_18_12999,next_18_13000> * 
+next_18_13000::node<key_18_13001,next_18_13002> * 
+next_18_13002::node<key_18_13003,next_18_13004> * 
+next_18_13004::node<key_18_13005,next_18_13006> * 
+next_18_13006::node<key_18_13007,next_18_13008> * 
+next_18_13008::node<key_18_13009,next_18_13010> * 
+next_18_13010::node<key_18_13011,next_18_13012> * 
+next_18_13012::node<key_18_13013,next_18_13014> * 
+next_18_13014::node<key_18_13015,next_18_13016> * 
+next_18_13016::node<key_18_13017,next_18_13018> * 
+next_18_13018::node<key_18_13019,next_18_13020> * 
+next_18_13020::node<key_18_13021,next_18_13022> * 
+next_18_13022::node<key_18_13023,next_18_13024> * 
+next_18_13024::node<key_18_13025,next_18_13026> * 
+next_18_13026::node<key_18_13027,next_18_13028> * 
+next_18_13028::node<key_18_13029,next_18_13030> * 
+next_18_13030::node<key_18_13031,next_18_13032> * 
+next_18_13032::node<key_18_13033,next_18_13034> * 
+next_18_13034::node<key_18_13035,next_18_13036> * 
+next_18_13036::node<key_18_13037,next_18_13038> * 
+next_18_13038::node<key_18_13039,next_18_13040> * 
+next_18_13040::node<key_18_13041,next_18_13042> * 
+next_18_13042::node<key_18_13043,next_18_13044> * 
+next_18_13044::node<key_18_13045,next_18_13046> * 
+next_18_13046::node<key_18_13047,next_18_13048> * 
+next_18_13048::node<key_18_13049,next_18_13050> * 
+next_18_13050::node<key_18_13051,next_18_13052> * 
+next_18_13052::node<key_18_13053,next_18_13054> * 
+next_18_13054::node<key_18_13055,next_18_13056> * 
+next_18_13056::node<key_18_13057,next_18_13058> * 
+next_18_13058::node<key_18_13059,next_18_13060> * 
+next_18_13060::node<key_18_13061,next_18_13062> * 
+next_18_13062::node<key_18_13063,next_18_13064> * 
+next_18_13064::node<key_18_13065,next_18_13066> * 
+next_18_13066::node<key_18_13067,next_18_13068> * 
+next_18_13068::node<key_18_12977,next_18_12978> * 
+next_18_12978::HP_1398{}<> * self::node<key_18_13069,next_18_13070>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_13071>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_13555: next_18_13553::node<key_18_13460,next_18_13461> * 
+next_18_13461::node<key_18_13462,next_18_13463> * 
+next_18_13463::node<key_18_13464,next_18_13465> * 
+next_18_13465::node<key_18_13466,next_18_13467> * 
+next_18_13467::node<key_18_13468,next_18_13469> * 
+next_18_13469::node<key_18_13470,next_18_13471> * 
+next_18_13471::node<key_18_13472,next_18_13473> * 
+next_18_13473::node<key_18_13474,next_18_13475> * 
+next_18_13475::node<key_18_13476,next_18_13477> * 
+next_18_13477::node<key_18_13478,next_18_13479> * 
+next_18_13479::node<key_18_13480,next_18_13481> * 
+next_18_13481::node<key_18_13482,next_18_13483> * 
+next_18_13483::node<key_18_13484,next_18_13485> * 
+next_18_13485::node<key_18_13486,next_18_13487> * 
+next_18_13487::node<key_18_13488,next_18_13489> * 
+next_18_13489::node<key_18_13490,next_18_13491> * 
+next_18_13491::node<key_18_13492,next_18_13493> * 
+next_18_13493::node<key_18_13494,next_18_13495> * 
+next_18_13495::node<key_18_13496,next_18_13497> * 
+next_18_13497::node<key_18_13498,next_18_13499> * 
+next_18_13499::node<key_18_13500,next_18_13501> * 
+next_18_13501::node<key_18_13502,next_18_13503> * 
+next_18_13503::node<key_18_13504,next_18_13505> * 
+next_18_13505::node<key_18_13506,next_18_13507> * 
+next_18_13507::node<key_18_13508,next_18_13509> * 
+next_18_13509::node<key_18_13510,next_18_13511> * 
+next_18_13511::node<key_18_13512,next_18_13513> * 
+next_18_13513::node<key_18_13514,next_18_13515> * 
+next_18_13515::node<key_18_13516,next_18_13517> * 
+next_18_13517::node<key_18_13518,next_18_13519> * 
+next_18_13519::node<key_18_13520,next_18_13521> * 
+next_18_13521::node<key_18_13522,next_18_13523> * 
+next_18_13523::node<key_18_13524,next_18_13525> * 
+next_18_13525::node<key_18_13526,next_18_13527> * 
+next_18_13527::node<key_18_13528,next_18_13529> * 
+next_18_13529::node<key_18_13530,next_18_13531> * 
+next_18_13531::node<key_18_13532,next_18_13533> * 
+next_18_13533::node<key_18_13534,next_18_13535> * 
+next_18_13535::node<key_18_13536,next_18_13537> * 
+next_18_13537::node<key_18_13538,next_18_13539> * 
+next_18_13539::node<key_18_13540,next_18_13541> * 
+next_18_13541::node<key_18_13542,next_18_13543> * 
+next_18_13543::node<key_18_13544,next_18_13545> * 
+next_18_13545::node<key_18_13546,next_18_13547> * 
+next_18_13547::node<key_18_13548,next_18_13549> * 
+next_18_13549::node<key_18_13550,next_18_13551> * 
+next_18_13551::node<key_18_13458,next_18_13459> * 
+next_18_13459::HP_1398{}<> * self::node<key_18_13552,next_18_13553>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_13554>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_14048: next_18_14046::node<key_18_13951,next_18_13952> * 
+next_18_13952::node<key_18_13953,next_18_13954> * 
+next_18_13954::node<key_18_13955,next_18_13956> * 
+next_18_13956::node<key_18_13957,next_18_13958> * 
+next_18_13958::node<key_18_13959,next_18_13960> * 
+next_18_13960::node<key_18_13961,next_18_13962> * 
+next_18_13962::node<key_18_13963,next_18_13964> * 
+next_18_13964::node<key_18_13965,next_18_13966> * 
+next_18_13966::node<key_18_13967,next_18_13968> * 
+next_18_13968::node<key_18_13969,next_18_13970> * 
+next_18_13970::node<key_18_13971,next_18_13972> * 
+next_18_13972::node<key_18_13973,next_18_13974> * 
+next_18_13974::node<key_18_13975,next_18_13976> * 
+next_18_13976::node<key_18_13977,next_18_13978> * 
+next_18_13978::node<key_18_13979,next_18_13980> * 
+next_18_13980::node<key_18_13981,next_18_13982> * 
+next_18_13982::node<key_18_13983,next_18_13984> * 
+next_18_13984::node<key_18_13985,next_18_13986> * 
+next_18_13986::node<key_18_13987,next_18_13988> * 
+next_18_13988::node<key_18_13989,next_18_13990> * 
+next_18_13990::node<key_18_13991,next_18_13992> * 
+next_18_13992::node<key_18_13993,next_18_13994> * 
+next_18_13994::node<key_18_13995,next_18_13996> * 
+next_18_13996::node<key_18_13997,next_18_13998> * 
+next_18_13998::node<key_18_13999,next_18_14000> * 
+next_18_14000::node<key_18_14001,next_18_14002> * 
+next_18_14002::node<key_18_14003,next_18_14004> * 
+next_18_14004::node<key_18_14005,next_18_14006> * 
+next_18_14006::node<key_18_14007,next_18_14008> * 
+next_18_14008::node<key_18_14009,next_18_14010> * 
+next_18_14010::node<key_18_14011,next_18_14012> * 
+next_18_14012::node<key_18_14013,next_18_14014> * 
+next_18_14014::node<key_18_14015,next_18_14016> * 
+next_18_14016::node<key_18_14017,next_18_14018> * 
+next_18_14018::node<key_18_14019,next_18_14020> * 
+next_18_14020::node<key_18_14021,next_18_14022> * 
+next_18_14022::node<key_18_14023,next_18_14024> * 
+next_18_14024::node<key_18_14025,next_18_14026> * 
+next_18_14026::node<key_18_14027,next_18_14028> * 
+next_18_14028::node<key_18_14029,next_18_14030> * 
+next_18_14030::node<key_18_14031,next_18_14032> * 
+next_18_14032::node<key_18_14033,next_18_14034> * 
+next_18_14034::node<key_18_14035,next_18_14036> * 
+next_18_14036::node<key_18_14037,next_18_14038> * 
+next_18_14038::node<key_18_14039,next_18_14040> * 
+next_18_14040::node<key_18_14041,next_18_14042> * 
+next_18_14042::node<key_18_14043,next_18_14044> * 
+next_18_14044::node<key_18_13949,next_18_13950> * 
+next_18_13950::HP_1398{}<> * self::node<key_18_14045,next_18_14046>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_14047>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_14551: next_18_14549::node<key_18_14452,next_18_14453> * 
+next_18_14453::node<key_18_14454,next_18_14455> * 
+next_18_14455::node<key_18_14456,next_18_14457> * 
+next_18_14457::node<key_18_14458,next_18_14459> * 
+next_18_14459::node<key_18_14460,next_18_14461> * 
+next_18_14461::node<key_18_14462,next_18_14463> * 
+next_18_14463::node<key_18_14464,next_18_14465> * 
+next_18_14465::node<key_18_14466,next_18_14467> * 
+next_18_14467::node<key_18_14468,next_18_14469> * 
+next_18_14469::node<key_18_14470,next_18_14471> * 
+next_18_14471::node<key_18_14472,next_18_14473> * 
+next_18_14473::node<key_18_14474,next_18_14475> * 
+next_18_14475::node<key_18_14476,next_18_14477> * 
+next_18_14477::node<key_18_14478,next_18_14479> * 
+next_18_14479::node<key_18_14480,next_18_14481> * 
+next_18_14481::node<key_18_14482,next_18_14483> * 
+next_18_14483::node<key_18_14484,next_18_14485> * 
+next_18_14485::node<key_18_14486,next_18_14487> * 
+next_18_14487::node<key_18_14488,next_18_14489> * 
+next_18_14489::node<key_18_14490,next_18_14491> * 
+next_18_14491::node<key_18_14492,next_18_14493> * 
+next_18_14493::node<key_18_14494,next_18_14495> * 
+next_18_14495::node<key_18_14496,next_18_14497> * 
+next_18_14497::node<key_18_14498,next_18_14499> * 
+next_18_14499::node<key_18_14500,next_18_14501> * 
+next_18_14501::node<key_18_14502,next_18_14503> * 
+next_18_14503::node<key_18_14504,next_18_14505> * 
+next_18_14505::node<key_18_14506,next_18_14507> * 
+next_18_14507::node<key_18_14508,next_18_14509> * 
+next_18_14509::node<key_18_14510,next_18_14511> * 
+next_18_14511::node<key_18_14512,next_18_14513> * 
+next_18_14513::node<key_18_14514,next_18_14515> * 
+next_18_14515::node<key_18_14516,next_18_14517> * 
+next_18_14517::node<key_18_14518,next_18_14519> * 
+next_18_14519::node<key_18_14520,next_18_14521> * 
+next_18_14521::node<key_18_14522,next_18_14523> * 
+next_18_14523::node<key_18_14524,next_18_14525> * 
+next_18_14525::node<key_18_14526,next_18_14527> * 
+next_18_14527::node<key_18_14528,next_18_14529> * 
+next_18_14529::node<key_18_14530,next_18_14531> * 
+next_18_14531::node<key_18_14532,next_18_14533> * 
+next_18_14533::node<key_18_14534,next_18_14535> * 
+next_18_14535::node<key_18_14536,next_18_14537> * 
+next_18_14537::node<key_18_14538,next_18_14539> * 
+next_18_14539::node<key_18_14540,next_18_14541> * 
+next_18_14541::node<key_18_14542,next_18_14543> * 
+next_18_14543::node<key_18_14544,next_18_14545> * 
+next_18_14545::node<key_18_14546,next_18_14547> * 
+next_18_14547::node<key_18_14450,next_18_14451> * 
+next_18_14451::HP_1398{}<> * self::node<key_18_14548,next_18_14549>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_14550>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_15064: next_18_15062::node<key_18_14963,next_18_14964> * 
+next_18_14964::node<key_18_14965,next_18_14966> * 
+next_18_14966::node<key_18_14967,next_18_14968> * 
+next_18_14968::node<key_18_14969,next_18_14970> * 
+next_18_14970::node<key_18_14971,next_18_14972> * 
+next_18_14972::node<key_18_14973,next_18_14974> * 
+next_18_14974::node<key_18_14975,next_18_14976> * 
+next_18_14976::node<key_18_14977,next_18_14978> * 
+next_18_14978::node<key_18_14979,next_18_14980> * 
+next_18_14980::node<key_18_14981,next_18_14982> * 
+next_18_14982::node<key_18_14983,next_18_14984> * 
+next_18_14984::node<key_18_14985,next_18_14986> * 
+next_18_14986::node<key_18_14987,next_18_14988> * 
+next_18_14988::node<key_18_14989,next_18_14990> * 
+next_18_14990::node<key_18_14991,next_18_14992> * 
+next_18_14992::node<key_18_14993,next_18_14994> * 
+next_18_14994::node<key_18_14995,next_18_14996> * 
+next_18_14996::node<key_18_14997,next_18_14998> * 
+next_18_14998::node<key_18_14999,next_18_15000> * 
+next_18_15000::node<key_18_15001,next_18_15002> * 
+next_18_15002::node<key_18_15003,next_18_15004> * 
+next_18_15004::node<key_18_15005,next_18_15006> * 
+next_18_15006::node<key_18_15007,next_18_15008> * 
+next_18_15008::node<key_18_15009,next_18_15010> * 
+next_18_15010::node<key_18_15011,next_18_15012> * 
+next_18_15012::node<key_18_15013,next_18_15014> * 
+next_18_15014::node<key_18_15015,next_18_15016> * 
+next_18_15016::node<key_18_15017,next_18_15018> * 
+next_18_15018::node<key_18_15019,next_18_15020> * 
+next_18_15020::node<key_18_15021,next_18_15022> * 
+next_18_15022::node<key_18_15023,next_18_15024> * 
+next_18_15024::node<key_18_15025,next_18_15026> * 
+next_18_15026::node<key_18_15027,next_18_15028> * 
+next_18_15028::node<key_18_15029,next_18_15030> * 
+next_18_15030::node<key_18_15031,next_18_15032> * 
+next_18_15032::node<key_18_15033,next_18_15034> * 
+next_18_15034::node<key_18_15035,next_18_15036> * 
+next_18_15036::node<key_18_15037,next_18_15038> * 
+next_18_15038::node<key_18_15039,next_18_15040> * 
+next_18_15040::node<key_18_15041,next_18_15042> * 
+next_18_15042::node<key_18_15043,next_18_15044> * 
+next_18_15044::node<key_18_15045,next_18_15046> * 
+next_18_15046::node<key_18_15047,next_18_15048> * 
+next_18_15048::node<key_18_15049,next_18_15050> * 
+next_18_15050::node<key_18_15051,next_18_15052> * 
+next_18_15052::node<key_18_15053,next_18_15054> * 
+next_18_15054::node<key_18_15055,next_18_15056> * 
+next_18_15056::node<key_18_15057,next_18_15058> * 
+next_18_15058::node<key_18_15059,next_18_15060> * 
+next_18_15060::node<key_18_14961,next_18_14962> * 
+next_18_14962::HP_1398{}<> * self::node<key_18_15061,next_18_15062>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_15063>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_15587: next_18_15585::node<key_18_15484,next_18_15485> * 
+next_18_15485::node<key_18_15486,next_18_15487> * 
+next_18_15487::node<key_18_15488,next_18_15489> * 
+next_18_15489::node<key_18_15490,next_18_15491> * 
+next_18_15491::node<key_18_15492,next_18_15493> * 
+next_18_15493::node<key_18_15494,next_18_15495> * 
+next_18_15495::node<key_18_15496,next_18_15497> * 
+next_18_15497::node<key_18_15498,next_18_15499> * 
+next_18_15499::node<key_18_15500,next_18_15501> * 
+next_18_15501::node<key_18_15502,next_18_15503> * 
+next_18_15503::node<key_18_15504,next_18_15505> * 
+next_18_15505::node<key_18_15506,next_18_15507> * 
+next_18_15507::node<key_18_15508,next_18_15509> * 
+next_18_15509::node<key_18_15510,next_18_15511> * 
+next_18_15511::node<key_18_15512,next_18_15513> * 
+next_18_15513::node<key_18_15514,next_18_15515> * 
+next_18_15515::node<key_18_15516,next_18_15517> * 
+next_18_15517::node<key_18_15518,next_18_15519> * 
+next_18_15519::node<key_18_15520,next_18_15521> * 
+next_18_15521::node<key_18_15522,next_18_15523> * 
+next_18_15523::node<key_18_15524,next_18_15525> * 
+next_18_15525::node<key_18_15526,next_18_15527> * 
+next_18_15527::node<key_18_15528,next_18_15529> * 
+next_18_15529::node<key_18_15530,next_18_15531> * 
+next_18_15531::node<key_18_15532,next_18_15533> * 
+next_18_15533::node<key_18_15534,next_18_15535> * 
+next_18_15535::node<key_18_15536,next_18_15537> * 
+next_18_15537::node<key_18_15538,next_18_15539> * 
+next_18_15539::node<key_18_15540,next_18_15541> * 
+next_18_15541::node<key_18_15542,next_18_15543> * 
+next_18_15543::node<key_18_15544,next_18_15545> * 
+next_18_15545::node<key_18_15546,next_18_15547> * 
+next_18_15547::node<key_18_15548,next_18_15549> * 
+next_18_15549::node<key_18_15550,next_18_15551> * 
+next_18_15551::node<key_18_15552,next_18_15553> * 
+next_18_15553::node<key_18_15554,next_18_15555> * 
+next_18_15555::node<key_18_15556,next_18_15557> * 
+next_18_15557::node<key_18_15558,next_18_15559> * 
+next_18_15559::node<key_18_15560,next_18_15561> * 
+next_18_15561::node<key_18_15562,next_18_15563> * 
+next_18_15563::node<key_18_15564,next_18_15565> * 
+next_18_15565::node<key_18_15566,next_18_15567> * 
+next_18_15567::node<key_18_15568,next_18_15569> * 
+next_18_15569::node<key_18_15570,next_18_15571> * 
+next_18_15571::node<key_18_15572,next_18_15573> * 
+next_18_15573::node<key_18_15574,next_18_15575> * 
+next_18_15575::node<key_18_15576,next_18_15577> * 
+next_18_15577::node<key_18_15578,next_18_15579> * 
+next_18_15579::node<key_18_15580,next_18_15581> * 
+next_18_15581::node<key_18_15582,next_18_15583> * 
+next_18_15583::node<key_18_15482,next_18_15483> * 
+next_18_15483::HP_1398{}<> * self::node<key_18_15584,next_18_15585>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_15586>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_16120: next_18_16118::node<key_18_16015,next_18_16016> * 
+next_18_16016::node<key_18_16017,next_18_16018> * 
+next_18_16018::node<key_18_16019,next_18_16020> * 
+next_18_16020::node<key_18_16021,next_18_16022> * 
+next_18_16022::node<key_18_16023,next_18_16024> * 
+next_18_16024::node<key_18_16025,next_18_16026> * 
+next_18_16026::node<key_18_16027,next_18_16028> * 
+next_18_16028::node<key_18_16029,next_18_16030> * 
+next_18_16030::node<key_18_16031,next_18_16032> * 
+next_18_16032::node<key_18_16033,next_18_16034> * 
+next_18_16034::node<key_18_16035,next_18_16036> * 
+next_18_16036::node<key_18_16037,next_18_16038> * 
+next_18_16038::node<key_18_16039,next_18_16040> * 
+next_18_16040::node<key_18_16041,next_18_16042> * 
+next_18_16042::node<key_18_16043,next_18_16044> * 
+next_18_16044::node<key_18_16045,next_18_16046> * 
+next_18_16046::node<key_18_16047,next_18_16048> * 
+next_18_16048::node<key_18_16049,next_18_16050> * 
+next_18_16050::node<key_18_16051,next_18_16052> * 
+next_18_16052::node<key_18_16053,next_18_16054> * 
+next_18_16054::node<key_18_16055,next_18_16056> * 
+next_18_16056::node<key_18_16057,next_18_16058> * 
+next_18_16058::node<key_18_16059,next_18_16060> * 
+next_18_16060::node<key_18_16061,next_18_16062> * 
+next_18_16062::node<key_18_16063,next_18_16064> * 
+next_18_16064::node<key_18_16065,next_18_16066> * 
+next_18_16066::node<key_18_16067,next_18_16068> * 
+next_18_16068::node<key_18_16069,next_18_16070> * 
+next_18_16070::node<key_18_16071,next_18_16072> * 
+next_18_16072::node<key_18_16073,next_18_16074> * 
+next_18_16074::node<key_18_16075,next_18_16076> * 
+next_18_16076::node<key_18_16077,next_18_16078> * 
+next_18_16078::node<key_18_16079,next_18_16080> * 
+next_18_16080::node<key_18_16081,next_18_16082> * 
+next_18_16082::node<key_18_16083,next_18_16084> * 
+next_18_16084::node<key_18_16085,next_18_16086> * 
+next_18_16086::node<key_18_16087,next_18_16088> * 
+next_18_16088::node<key_18_16089,next_18_16090> * 
+next_18_16090::node<key_18_16091,next_18_16092> * 
+next_18_16092::node<key_18_16093,next_18_16094> * 
+next_18_16094::node<key_18_16095,next_18_16096> * 
+next_18_16096::node<key_18_16097,next_18_16098> * 
+next_18_16098::node<key_18_16099,next_18_16100> * 
+next_18_16100::node<key_18_16101,next_18_16102> * 
+next_18_16102::node<key_18_16103,next_18_16104> * 
+next_18_16104::node<key_18_16105,next_18_16106> * 
+next_18_16106::node<key_18_16107,next_18_16108> * 
+next_18_16108::node<key_18_16109,next_18_16110> * 
+next_18_16110::node<key_18_16111,next_18_16112> * 
+next_18_16112::node<key_18_16113,next_18_16114> * 
+next_18_16114::node<key_18_16115,next_18_16116> * 
+next_18_16116::node<key_18_16013,next_18_16014> * 
+next_18_16014::HP_1398{}<> * self::node<key_18_16117,next_18_16118>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_16119>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_16663: next_18_16661::node<key_18_16556,next_18_16557> * 
+next_18_16557::node<key_18_16558,next_18_16559> * 
+next_18_16559::node<key_18_16560,next_18_16561> * 
+next_18_16561::node<key_18_16562,next_18_16563> * 
+next_18_16563::node<key_18_16564,next_18_16565> * 
+next_18_16565::node<key_18_16566,next_18_16567> * 
+next_18_16567::node<key_18_16568,next_18_16569> * 
+next_18_16569::node<key_18_16570,next_18_16571> * 
+next_18_16571::node<key_18_16572,next_18_16573> * 
+next_18_16573::node<key_18_16574,next_18_16575> * 
+next_18_16575::node<key_18_16576,next_18_16577> * 
+next_18_16577::node<key_18_16578,next_18_16579> * 
+next_18_16579::node<key_18_16580,next_18_16581> * 
+next_18_16581::node<key_18_16582,next_18_16583> * 
+next_18_16583::node<key_18_16584,next_18_16585> * 
+next_18_16585::node<key_18_16586,next_18_16587> * 
+next_18_16587::node<key_18_16588,next_18_16589> * 
+next_18_16589::node<key_18_16590,next_18_16591> * 
+next_18_16591::node<key_18_16592,next_18_16593> * 
+next_18_16593::node<key_18_16594,next_18_16595> * 
+next_18_16595::node<key_18_16596,next_18_16597> * 
+next_18_16597::node<key_18_16598,next_18_16599> * 
+next_18_16599::node<key_18_16600,next_18_16601> * 
+next_18_16601::node<key_18_16602,next_18_16603> * 
+next_18_16603::node<key_18_16604,next_18_16605> * 
+next_18_16605::node<key_18_16606,next_18_16607> * 
+next_18_16607::node<key_18_16608,next_18_16609> * 
+next_18_16609::node<key_18_16610,next_18_16611> * 
+next_18_16611::node<key_18_16612,next_18_16613> * 
+next_18_16613::node<key_18_16614,next_18_16615> * 
+next_18_16615::node<key_18_16616,next_18_16617> * 
+next_18_16617::node<key_18_16618,next_18_16619> * 
+next_18_16619::node<key_18_16620,next_18_16621> * 
+next_18_16621::node<key_18_16622,next_18_16623> * 
+next_18_16623::node<key_18_16624,next_18_16625> * 
+next_18_16625::node<key_18_16626,next_18_16627> * 
+next_18_16627::node<key_18_16628,next_18_16629> * 
+next_18_16629::node<key_18_16630,next_18_16631> * 
+next_18_16631::node<key_18_16632,next_18_16633> * 
+next_18_16633::node<key_18_16634,next_18_16635> * 
+next_18_16635::node<key_18_16636,next_18_16637> * 
+next_18_16637::node<key_18_16638,next_18_16639> * 
+next_18_16639::node<key_18_16640,next_18_16641> * 
+next_18_16641::node<key_18_16642,next_18_16643> * 
+next_18_16643::node<key_18_16644,next_18_16645> * 
+next_18_16645::node<key_18_16646,next_18_16647> * 
+next_18_16647::node<key_18_16648,next_18_16649> * 
+next_18_16649::node<key_18_16650,next_18_16651> * 
+next_18_16651::node<key_18_16652,next_18_16653> * 
+next_18_16653::node<key_18_16654,next_18_16655> * 
+next_18_16655::node<key_18_16656,next_18_16657> * 
+next_18_16657::node<key_18_16658,next_18_16659> * 
+next_18_16659::node<key_18_16554,next_18_16555> * 
+next_18_16555::HP_1398{}<> * self::node<key_18_16660,next_18_16661>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_16662>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_17216: next_18_17214::node<key_18_17107,next_18_17108> * 
+next_18_17108::node<key_18_17109,next_18_17110> * 
+next_18_17110::node<key_18_17111,next_18_17112> * 
+next_18_17112::node<key_18_17113,next_18_17114> * 
+next_18_17114::node<key_18_17115,next_18_17116> * 
+next_18_17116::node<key_18_17117,next_18_17118> * 
+next_18_17118::node<key_18_17119,next_18_17120> * 
+next_18_17120::node<key_18_17121,next_18_17122> * 
+next_18_17122::node<key_18_17123,next_18_17124> * 
+next_18_17124::node<key_18_17125,next_18_17126> * 
+next_18_17126::node<key_18_17127,next_18_17128> * 
+next_18_17128::node<key_18_17129,next_18_17130> * 
+next_18_17130::node<key_18_17131,next_18_17132> * 
+next_18_17132::node<key_18_17133,next_18_17134> * 
+next_18_17134::node<key_18_17135,next_18_17136> * 
+next_18_17136::node<key_18_17137,next_18_17138> * 
+next_18_17138::node<key_18_17139,next_18_17140> * 
+next_18_17140::node<key_18_17141,next_18_17142> * 
+next_18_17142::node<key_18_17143,next_18_17144> * 
+next_18_17144::node<key_18_17145,next_18_17146> * 
+next_18_17146::node<key_18_17147,next_18_17148> * 
+next_18_17148::node<key_18_17149,next_18_17150> * 
+next_18_17150::node<key_18_17151,next_18_17152> * 
+next_18_17152::node<key_18_17153,next_18_17154> * 
+next_18_17154::node<key_18_17155,next_18_17156> * 
+next_18_17156::node<key_18_17157,next_18_17158> * 
+next_18_17158::node<key_18_17159,next_18_17160> * 
+next_18_17160::node<key_18_17161,next_18_17162> * 
+next_18_17162::node<key_18_17163,next_18_17164> * 
+next_18_17164::node<key_18_17165,next_18_17166> * 
+next_18_17166::node<key_18_17167,next_18_17168> * 
+next_18_17168::node<key_18_17169,next_18_17170> * 
+next_18_17170::node<key_18_17171,next_18_17172> * 
+next_18_17172::node<key_18_17173,next_18_17174> * 
+next_18_17174::node<key_18_17175,next_18_17176> * 
+next_18_17176::node<key_18_17177,next_18_17178> * 
+next_18_17178::node<key_18_17179,next_18_17180> * 
+next_18_17180::node<key_18_17181,next_18_17182> * 
+next_18_17182::node<key_18_17183,next_18_17184> * 
+next_18_17184::node<key_18_17185,next_18_17186> * 
+next_18_17186::node<key_18_17187,next_18_17188> * 
+next_18_17188::node<key_18_17189,next_18_17190> * 
+next_18_17190::node<key_18_17191,next_18_17192> * 
+next_18_17192::node<key_18_17193,next_18_17194> * 
+next_18_17194::node<key_18_17195,next_18_17196> * 
+next_18_17196::node<key_18_17197,next_18_17198> * 
+next_18_17198::node<key_18_17199,next_18_17200> * 
+next_18_17200::node<key_18_17201,next_18_17202> * 
+next_18_17202::node<key_18_17203,next_18_17204> * 
+next_18_17204::node<key_18_17205,next_18_17206> * 
+next_18_17206::node<key_18_17207,next_18_17208> * 
+next_18_17208::node<key_18_17209,next_18_17210> * 
+next_18_17210::node<key_18_17211,next_18_17212> * 
+next_18_17212::node<key_18_17105,next_18_17106> * 
+next_18_17106::HP_1398{}<> * self::node<key_18_17213,next_18_17214>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_17215>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_17779: next_18_17777::node<key_18_17668,next_18_17669> * 
+next_18_17669::node<key_18_17670,next_18_17671> * 
+next_18_17671::node<key_18_17672,next_18_17673> * 
+next_18_17673::node<key_18_17674,next_18_17675> * 
+next_18_17675::node<key_18_17676,next_18_17677> * 
+next_18_17677::node<key_18_17678,next_18_17679> * 
+next_18_17679::node<key_18_17680,next_18_17681> * 
+next_18_17681::node<key_18_17682,next_18_17683> * 
+next_18_17683::node<key_18_17684,next_18_17685> * 
+next_18_17685::node<key_18_17686,next_18_17687> * 
+next_18_17687::node<key_18_17688,next_18_17689> * 
+next_18_17689::node<key_18_17690,next_18_17691> * 
+next_18_17691::node<key_18_17692,next_18_17693> * 
+next_18_17693::node<key_18_17694,next_18_17695> * 
+next_18_17695::node<key_18_17696,next_18_17697> * 
+next_18_17697::node<key_18_17698,next_18_17699> * 
+next_18_17699::node<key_18_17700,next_18_17701> * 
+next_18_17701::node<key_18_17702,next_18_17703> * 
+next_18_17703::node<key_18_17704,next_18_17705> * 
+next_18_17705::node<key_18_17706,next_18_17707> * 
+next_18_17707::node<key_18_17708,next_18_17709> * 
+next_18_17709::node<key_18_17710,next_18_17711> * 
+next_18_17711::node<key_18_17712,next_18_17713> * 
+next_18_17713::node<key_18_17714,next_18_17715> * 
+next_18_17715::node<key_18_17716,next_18_17717> * 
+next_18_17717::node<key_18_17718,next_18_17719> * 
+next_18_17719::node<key_18_17720,next_18_17721> * 
+next_18_17721::node<key_18_17722,next_18_17723> * 
+next_18_17723::node<key_18_17724,next_18_17725> * 
+next_18_17725::node<key_18_17726,next_18_17727> * 
+next_18_17727::node<key_18_17728,next_18_17729> * 
+next_18_17729::node<key_18_17730,next_18_17731> * 
+next_18_17731::node<key_18_17732,next_18_17733> * 
+next_18_17733::node<key_18_17734,next_18_17735> * 
+next_18_17735::node<key_18_17736,next_18_17737> * 
+next_18_17737::node<key_18_17738,next_18_17739> * 
+next_18_17739::node<key_18_17740,next_18_17741> * 
+next_18_17741::node<key_18_17742,next_18_17743> * 
+next_18_17743::node<key_18_17744,next_18_17745> * 
+next_18_17745::node<key_18_17746,next_18_17747> * 
+next_18_17747::node<key_18_17748,next_18_17749> * 
+next_18_17749::node<key_18_17750,next_18_17751> * 
+next_18_17751::node<key_18_17752,next_18_17753> * 
+next_18_17753::node<key_18_17754,next_18_17755> * 
+next_18_17755::node<key_18_17756,next_18_17757> * 
+next_18_17757::node<key_18_17758,next_18_17759> * 
+next_18_17759::node<key_18_17760,next_18_17761> * 
+next_18_17761::node<key_18_17762,next_18_17763> * 
+next_18_17763::node<key_18_17764,next_18_17765> * 
+next_18_17765::node<key_18_17766,next_18_17767> * 
+next_18_17767::node<key_18_17768,next_18_17769> * 
+next_18_17769::node<key_18_17770,next_18_17771> * 
+next_18_17771::node<key_18_17772,next_18_17773> * 
+next_18_17773::node<key_18_17774,next_18_17775> * 
+next_18_17775::node<key_18_17666,next_18_17667> * 
+next_18_17667::HP_1398{}<> * self::node<key_18_17776,next_18_17777>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_17778>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_18352: next_18_18350::node<key_18_18239,next_18_18240> * 
+next_18_18240::node<key_18_18241,next_18_18242> * 
+next_18_18242::node<key_18_18243,next_18_18244> * 
+next_18_18244::node<key_18_18245,next_18_18246> * 
+next_18_18246::node<key_18_18247,next_18_18248> * 
+next_18_18248::node<key_18_18249,next_18_18250> * 
+next_18_18250::node<key_18_18251,next_18_18252> * 
+next_18_18252::node<key_18_18253,next_18_18254> * 
+next_18_18254::node<key_18_18255,next_18_18256> * 
+next_18_18256::node<key_18_18257,next_18_18258> * 
+next_18_18258::node<key_18_18259,next_18_18260> * 
+next_18_18260::node<key_18_18261,next_18_18262> * 
+next_18_18262::node<key_18_18263,next_18_18264> * 
+next_18_18264::node<key_18_18265,next_18_18266> * 
+next_18_18266::node<key_18_18267,next_18_18268> * 
+next_18_18268::node<key_18_18269,next_18_18270> * 
+next_18_18270::node<key_18_18271,next_18_18272> * 
+next_18_18272::node<key_18_18273,next_18_18274> * 
+next_18_18274::node<key_18_18275,next_18_18276> * 
+next_18_18276::node<key_18_18277,next_18_18278> * 
+next_18_18278::node<key_18_18279,next_18_18280> * 
+next_18_18280::node<key_18_18281,next_18_18282> * 
+next_18_18282::node<key_18_18283,next_18_18284> * 
+next_18_18284::node<key_18_18285,next_18_18286> * 
+next_18_18286::node<key_18_18287,next_18_18288> * 
+next_18_18288::node<key_18_18289,next_18_18290> * 
+next_18_18290::node<key_18_18291,next_18_18292> * 
+next_18_18292::node<key_18_18293,next_18_18294> * 
+next_18_18294::node<key_18_18295,next_18_18296> * 
+next_18_18296::node<key_18_18297,next_18_18298> * 
+next_18_18298::node<key_18_18299,next_18_18300> * 
+next_18_18300::node<key_18_18301,next_18_18302> * 
+next_18_18302::node<key_18_18303,next_18_18304> * 
+next_18_18304::node<key_18_18305,next_18_18306> * 
+next_18_18306::node<key_18_18307,next_18_18308> * 
+next_18_18308::node<key_18_18309,next_18_18310> * 
+next_18_18310::node<key_18_18311,next_18_18312> * 
+next_18_18312::node<key_18_18313,next_18_18314> * 
+next_18_18314::node<key_18_18315,next_18_18316> * 
+next_18_18316::node<key_18_18317,next_18_18318> * 
+next_18_18318::node<key_18_18319,next_18_18320> * 
+next_18_18320::node<key_18_18321,next_18_18322> * 
+next_18_18322::node<key_18_18323,next_18_18324> * 
+next_18_18324::node<key_18_18325,next_18_18326> * 
+next_18_18326::node<key_18_18327,next_18_18328> * 
+next_18_18328::node<key_18_18329,next_18_18330> * 
+next_18_18330::node<key_18_18331,next_18_18332> * 
+next_18_18332::node<key_18_18333,next_18_18334> * 
+next_18_18334::node<key_18_18335,next_18_18336> * 
+next_18_18336::node<key_18_18337,next_18_18338> * 
+next_18_18338::node<key_18_18339,next_18_18340> * 
+next_18_18340::node<key_18_18341,next_18_18342> * 
+next_18_18342::node<key_18_18343,next_18_18344> * 
+next_18_18344::node<key_18_18345,next_18_18346> * 
+next_18_18346::node<key_18_18347,next_18_18348> * 
+next_18_18348::node<key_18_18237,next_18_18238> * 
+next_18_18238::HP_1398{}<> * self::node<key_18_18349,next_18_18350>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_18351>&{FLOW,(1,31)=__flow#E}[]
+ 
+ (LEMSYN) Proving lemma syn_18935: next_18_18933::node<key_18_18820,next_18_18821> * 
+next_18_18821::node<key_18_18822,next_18_18823> * 
+next_18_18823::node<key_18_18824,next_18_18825> * 
+next_18_18825::node<key_18_18826,next_18_18827> * 
+next_18_18827::node<key_18_18828,next_18_18829> * 
+next_18_18829::node<key_18_18830,next_18_18831> * 
+next_18_18831::node<key_18_18832,next_18_18833> * 
+next_18_18833::node<key_18_18834,next_18_18835> * 
+next_18_18835::node<key_18_18836,next_18_18837> * 
+next_18_18837::node<key_18_18838,next_18_18839> * 
+next_18_18839::node<key_18_18840,next_18_18841> * 
+next_18_18841::node<key_18_18842,next_18_18843> * 
+next_18_18843::node<key_18_18844,next_18_18845> * 
+next_18_18845::node<key_18_18846,next_18_18847> * 
+next_18_18847::node<key_18_18848,next_18_18849> * 
+next_18_18849::node<key_18_18850,next_18_18851> * 
+next_18_18851::node<key_18_18852,next_18_18853> * 
+next_18_18853::node<key_18_18854,next_18_18855> * 
+next_18_18855::node<key_18_18856,next_18_18857> * 
+next_18_18857::node<key_18_18858,next_18_18859> * 
+next_18_18859::node<key_18_18860,next_18_18861> * 
+next_18_18861::node<key_18_18862,next_18_18863> * 
+next_18_18863::node<key_18_18864,next_18_18865> * 
+next_18_18865::node<key_18_18866,next_18_18867> * 
+next_18_18867::node<key_18_18868,next_18_18869> * 
+next_18_18869::node<key_18_18870,next_18_18871> * 
+next_18_18871::node<key_18_18872,next_18_18873> * 
+next_18_18873::node<key_18_18874,next_18_18875> * 
+next_18_18875::node<key_18_18876,next_18_18877> * 
+next_18_18877::node<key_18_18878,next_18_18879> * 
+next_18_18879::node<key_18_18880,next_18_18881> * 
+next_18_18881::node<key_18_18882,next_18_18883> * 
+next_18_18883::node<key_18_18884,next_18_18885> * 
+next_18_18885::node<key_18_18886,next_18_18887> * 
+next_18_18887::node<key_18_18888,next_18_18889> * 
+next_18_18889::node<key_18_18890,next_18_18891> * 
+next_18_18891::node<key_18_18892,next_18_18893> * 
+next_18_18893::node<key_18_18894,next_18_18895> * 
+next_18_18895::node<key_18_18896,next_18_18897> * 
+next_18_18897::node<key_18_18898,next_18_18899> * 
+next_18_18899::node<key_18_18900,next_18_18901> * 
+next_18_18901::node<key_18_18902,next_18_18903> * 
+next_18_18903::node<key_18_18904,next_18_18905> * 
+next_18_18905::node<key_18_18906,next_18_18907> * 
+next_18_18907::node<key_18_18908,next_18_18909> * 
+next_18_18909::node<key_18_18910,next_18_18911> * 
+next_18_18911::node<key_18_18912,next_18_18913> * 
+next_18_18913::node<key_18_18914,next_18_18915> * 
+next_18_18915::node<key_18_18916,next_18_18917> * 
+next_18_18917::node<key_18_18918,next_18_18919> * 
+next_18_18919::node<key_18_18920,next_18_18921> * 
+next_18_18921::node<key_18_18922,next_18_18923> * 
+next_18_18923::node<key_18_18924,next_18_18925> * 
+next_18_18925::node<key_18_18926,next_18_18927> * 
+next_18_18927::node<key_18_18928,next_18_18929> * 
+next_18_18929::node<key_18_18930,next_18_18931> * 
+next_18_18931::node<key_18_18818,next_18_18819> * 
+next_18_18819::HP_1398{}<> * self::node<key_18_18932,next_18_18933>&
+{FLOW,(1,31)=__flow#E}[] <-  self::GP_1347{}<curr_18934>&{FLOW,(1,31)=__flow#E}[]

@@ -1,0 +1,234 @@
+
+!!!Full processing file "GRASShopper/sl/sl_traverse.dryad.c"
+Parsing file "GRASShopper/sl/sl_traverse.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper/sl/sl_traverse.dryad.c -o GRASShopper/sl/sl_traverse.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sl_traverse1: :HP_21
+!!! generate unknown predicate for Post synthesis of sl_traverse1: :GP_22
+!!! ss:EInfer @shape[HP_21,GP_22] EBase: [][](HRel HP_21(lst))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_22(lst))*(true)( FLOW __norm)}
+!!! generate unknown predicate for Pre synthesis of sl_traverse2: :HP_23
+!!! generate unknown predicate for Post synthesis of sl_traverse2: :GP_24
+!!! ss:EInfer @shape[HP_23,GP_24] EBase: [][](HRel HP_23(lst))*(true)( FLOW __norm) {EAssume: 12,:(HRel GP_24(lst))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_2$node: :HP_1345
+!!! generate unknown predicate for Post synthesis of while_13_2$node: :GP_1347
+!!! generate unknown predicate for Pre synthesis of while_34_4$node: :HP_1362
+!!! generate unknown predicate for Post synthesis of while_34_4$node: :GP_1364Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_2$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1345,GP_1347]requires HP_1345(curr_64)&
+truerequires emp
+ ensures GP_1347(curr_64,curr_64')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1345(curr_64)&curr_64!=null --> curr_64::node<next_20_1414> * 
+HP_1415(next_20_1414)&
+true,
+ // PRE_REC
+(1;1;0)HP_1415(curr_64')&true --> HP_1345(curr_64')&
+true,
+ // POST
+(1;1;0)curr_64::node<next_20_1414> * GP_1347(next_20_1414,curr_64')&
+true --> GP_1347(curr_64,curr_64')&
+true,
+ // POST
+(2;1;0)HP_1345(curr_64)&curr_64=null & curr_64'=null & 
+curr_64'=curr_64 --> GP_1347(curr_64,curr_64')&
+true]
+
+Procedure while_13_2$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1345(curr_1424) ::= 
+ HP_1345(next_20_1422) * curr_1424::node<next_20_1422>
+ or emp&curr_1424=null
+ (4,5),
+ GP_1347(curr_1425,curr_1426) ::= GP_1428(curr_1425,curr_1427)&curr_1426=null & curr_1427=null(4,5),
+ GP_1428(curr_1425,curr_1427) ::= 
+ curr_1425::node<next_20_1414> * GP_1428(next_20_1414,curr_1427)
+ or emp&curr_1425=curr_1427
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase curr_64::HP_1345{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [curr_64]
+                   (exists curr_1427: curr_64::GP_1428{}<curr_1427>&
+                   curr_64'=null & curr_1427=null&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure sl_traverse1$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_21,GP_22]requires HP_21(lst)&
+truerequires emp
+ ensures GP_22(lst)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_21(curr_64')&true --> curr_64'::HP_1345<>&
+true,
+ // POST
+(0)lst::GP_1428<curr_1473>&curr_1473=null --> GP_22(lst)&
+true]
+
+Procedure sl_traverse1$node SUCCESS.
+ 
+ (LEMSYN) Proving lemma syn_1540: self::GP_1428{}<curr_1539>&curr_1539=null&{FLOW,(1,31)=__flow#E}[] ->  self::HP_1345{}<>&{FLOW,(1,31)=__flow#E}[]
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_21(curr_1474) ::= curr_1474::HP_1345<>(4,5),
+ GP_22(lst_1475) ::= lst_1475::GP_1428<curr_1473>&curr_1473=null(4,5),
+ GP_1347(curr_1425,curr_1426) ::= GP_1428(curr_1425,curr_1427)&curr_1426=null & curr_1427=null(4,5),
+ GP_1428(curr_1425,curr_1427) ::= 
+ curr_1425::node<next_20_1414> * GP_1428(next_20_1414,curr_1427)
+ or emp&curr_1425=curr_1427
+ (4,5),
+ HP_1345(curr_1424) ::= 
+ HP_1345(next_20_1422) * curr_1424::node<next_20_1422>
+ or emp&curr_1424=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase lst::HP_1345{}<>&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists curr_1473: lst::GP_1428{}<curr_1473>&
+                   curr_1473=null&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure while_34_4$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1362,GP_1364]requires HP_1362(curr_65)&
+truerequires emp
+ ensures GP_1364(curr_65,curr_65')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1362(curr_65)&curr_65!=null --> curr_65::node<next_41_1648> * 
+HP_1649(next_41_1648)&
+true,
+ // PRE_REC
+(1;1;0)HP_1649(curr_65')&true --> HP_1362(curr_65')&
+true,
+ // POST
+(1;1;0)curr_65::node<next_41_1648> * GP_1364(next_41_1648,curr_65')&
+true --> GP_1364(curr_65,curr_65')&
+true,
+ // POST
+(2;1;0)HP_1362(curr_65)&curr_65=null & curr_65'=null & 
+curr_65'=curr_65 --> GP_1364(curr_65,curr_65')&
+true]
+
+Procedure while_34_4$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1362(curr_1658) ::= curr_1658::HP_1345<>(4,5),
+ GP_1364(curr_1659,curr_1660) ::= curr_1659::GP_1428<curr_1661>&curr_1660=null & curr_1661=null(4,5),
+ GP_1347(curr_1425,curr_1426) ::= GP_1428(curr_1425,curr_1427)&curr_1426=null & curr_1427=null(4,5),
+ GP_1428(curr_1425,curr_1427) ::= 
+ curr_1425::node<next_20_1414> * GP_1428(next_20_1414,curr_1427)
+ or emp&curr_1425=curr_1427
+ (4,5),
+ GP_22(lst_1475) ::= lst_1475::GP_1428<curr_1473>&curr_1473=null(4,5),
+ HP_1345(curr_1424) ::= 
+ HP_1345(next_20_1422) * curr_1424::node<next_20_1422>
+ or emp&curr_1424=null
+ (4,5),
+ HP_21(curr_1474) ::= curr_1474::HP_1345<>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase curr_65::HP_1345{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [curr_65]
+                   (exists curr_1661: curr_65::GP_1428{}<curr_1661>&
+                   curr_65'=null & curr_1661=null&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure sl_traverse2$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_23,GP_24]requires HP_23(lst)&
+truerequires emp
+ ensures GP_24(lst)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(1;0)HP_23(curr_65')&curr_65'!=null --> curr_65'::HP_1345<>&
+true,
+ // POST
+(1;0)lst::GP_1428<curr_1935>&curr_1935=null --> GP_24(lst)&
+true,
+ // POST
+(2;0)HP_23(lst)&lst=null --> GP_24(lst)&
+true]
+
+Procedure sl_traverse2$node SUCCESS.
+ 
+ (LEMSYN) Proving lemma syn_2153: self::GP_1428{}<curr_2152>&curr_2152=null&{FLOW,(1,31)=__flow#E}[] ->  self::HP_1362{}<>&{FLOW,(1,31)=__flow#E}[]
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_23(curr_1936) ::= curr_1936::HP_1345<>(4,5),
+ GP_24(lst_1937) ::= 
+ lst_1937::GP_1428<curr_1935>&curr_1935=null
+ or emp&lst_1937=null
+ (4,5),
+ GP_1347(curr_1425,curr_1426) ::= GP_1428(curr_1425,curr_1427)&curr_1426=null & curr_1427=null(4,5),
+ GP_1364(curr_1659,curr_1660) ::= curr_1659::GP_1428<curr_1661>&curr_1660=null & curr_1661=null(4,5),
+ GP_1428(curr_1425,curr_1427) ::= 
+ curr_1425::node<next_20_1414> * GP_1428(next_20_1414,curr_1427)
+ or emp&curr_1425=curr_1427
+ (4,5),
+ GP_22(lst_1475) ::= lst_1475::GP_1428<curr_1473>&curr_1473=null(4,5),
+ HP_1345(curr_1424) ::= 
+ HP_1345(next_20_1422) * curr_1424::node<next_20_1422>
+ or emp&curr_1424=null
+ (4,5),
+ HP_1362(curr_1658) ::= curr_1658::HP_1345<>(4,5),
+ HP_21(curr_1474) ::= curr_1474::HP_1345<>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase lst::HP_1345{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   lst::GP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 112 invocations Stop Omega... 178 invocations 
+2 false contexts at: ( (34,4)  (13,2) )
+
+!!! log(small):(0.146332,1345)
+Total verification time: 0.232 second(s)
+	Time spent in main process: 0.152 second(s)
+	Time spent in child processes: 0.08 second(s)
+	Z3 Prover Time: 0.004 second(s)

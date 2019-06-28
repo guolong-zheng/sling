@@ -1,0 +1,19 @@
+!!!Full processing file "../src/temp/gslist-last.30358460.3433595.c" 
+Parsing file "../src/temp/gslist-last.30358460.3433595.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/gslist-last.30358460.3433595.c -o ../src/temp/gslist-last.30358460.3433595.c.prep 
+
+!!! generate unknown predicate for Pre synthesis of g_list_index: :HP_16 
+!!! generate unknown predicate for Post synthesis of g_list_index: :GP_17 
+!!! ss:EInfer @shape[HP_16,GP_17] EBase: [][](HRel HP_16(list))*(true)( FLOW __norm) {EAssume: 7,:(HRel GP_17(list))*(true)( FLOW __norm)} 
+!!! processing primitives "["prelude.ss"] 
+Starting z3... 
+
+Last Proving Location: 1 File "../src/temp/gslist-last.30358460.3433595.c",Line:38,Col:0 
+
+ERROR: at _0:0_0:0 
+Message: no type declaration named __RET is found 
+Stop z3... 29 invocations caught 
+
+Exception occurred: Failure("no type declaration named __RET is found") 
+Error3(s) detected at main 

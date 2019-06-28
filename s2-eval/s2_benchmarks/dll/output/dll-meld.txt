@@ -1,0 +1,98 @@
+
+!!!Full processing file "dll//dll-meld.dryad.c"
+Parsing file "dll//dll-meld.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E dll//dll-meld.dryad.c -o dll//dll-meld.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dll_meld: :HP_23
+!!! generate unknown predicate for Post synthesis of dll_meld: :GP_24
+!!! ss:EInfer @shape[HP_23,GP_24] EBase: [][](HRel HP_23(u,v))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_24(u,v))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure dll_meld$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_23,GP_24]requires HP_23(u,v)&
+truerequires emp
+ ensures GP_24(u,v)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;0)HP_23(u,v)&v!=null --> v::node<key_14_1384,next_14_1385,prev_14_1386> * 
+HP_1387(next_14_1385,u@NI) * HP_1388(prev_14_1386,u@NI) * HP_1389(u,v@NI)&
+true,
+ // BIND
+(1;1;0)HP_1389(u,v@NI)&
+u!=null --> u::node<key_18_1399,next_18_1400,prev_18_1401> * 
+HP_1402(next_18_1400,v@NI) * HP_1403(prev_18_1401,v@NI)&
+true,
+ // BIND
+(1;2;0)HP_23(u,v)&u!=null & 
+v=null --> u::node<key_18_1404,next_18_1405,prev_18_1406> * 
+HP_1407(next_18_1405) * HP_1408(prev_18_1406)&
+true,
+ // POST
+(1;1;0)HP_1387(next_14_1385,u@NI) * v::node<key_14_1384,next_14_1385,u> * 
+HP_1403(prev_18_1401,v@NI) * u::node<key_18_1399,v,prev_18_1401>&
+true --> GP_24(u,v)&
+true,
+ // POST
+(2;1;0)HP_1387(next_14_1385,u@NI) * v::node<key_14_1384,next_14_1385,u>&
+u=null --> GP_24(u,v)&
+true,
+ // POST
+(2;1;0)HP_1389(u,v@NI)&u=null --> emp&
+true,
+ // POST
+(2;1;0)HP_1388(prev_14_1386,u@NI)&u=null --> emp&
+true,
+ // POST
+(1;2;0)HP_1408(prev_18_1406) * u::node<key_18_1404,v,prev_18_1406>&
+v=null --> GP_24(u,v)&
+true,
+ // POST
+(2;2;0)HP_23(u,v)&u=null & v=null & v=u --> GP_24(u,v)&
+true]
+
+Procedure dll_meld$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_23(u_1473,v_1474) ::= 
+ v_1474::node<key_14_1384,DP_DP_HP_1387,prev_14_1386>&u_1473=null
+ or v_1474::node<key_14_1384,DP_DP_HP_1387,prev_14_1386>&u_1473=null & 
+    ((v_1474!=u_1473 | u_1473!=null))
+ or u_1473::node<key_18_1404,DP_DP_HP_1407,DP_DP_HP_1408>&v_1474=null
+ or u_1473::node<key_18_1404,DP_DP_HP_1407,DP_DP_HP_1408>&v_1474=null & 
+    v_1474!=u_1473
+ or emp&v_1474=null & u_1473=null
+ (4,5),
+ GP_24(u_1477,v_1478) ::= 
+ v_1478::node<key_14_1384,DP_DP_HP_1387,u_1477> * 
+ u_1477::node<key_18_1399,v_1478,DP_DP_HP_1403>
+ or v_1478::node<key_14_1384,DP_DP_HP_1387,u_1477>&u_1477=null
+ or u_1477::node<key_18_1399,v_1478,DP_DP_HP_1408>&v_1478=null
+ or emp&u_1477=null & v_1478=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase u::HP_23{}<v>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists v: u::GP_24{}<v>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 138 invocations Stop Omega... 35 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.053615,432)
+Total verification time: 0.152 second(s)
+	Time spent in main process: 0.108 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0.008 second(s)

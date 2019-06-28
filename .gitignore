@@ -6,5 +6,7 @@
 .DS_Store
 *.dSYM
 .vscode
+**/logs
 **/*.o
+**/*.out
 **/infer-out

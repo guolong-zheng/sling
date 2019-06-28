@@ -1,0 +1,131 @@
+
+!!!Full processing file "tree-traversals/tree2list-iter.dryad.c"
+Parsing file "tree-traversals/tree2list-iter.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E tree-traversals/tree2list-iter.dryad.c -o tree-traversals/tree2list-iter.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of tree2list_iter: :HP_36
+!!! generate unknown predicate for Post synthesis of tree2list_iter: :GP_37
+!!! ss:EInfer @shape[HP_36,GP_37] EBase: [][](HRel HP_36(t))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_37(t,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_28_2$void_star~node~node~void_star~node~node~node~void_star~node~node~void_star~node: :HP_1494
+!!! generate unknown predicate for Post synthesis of while_28_2$void_star~node~node~void_star~node~node~node~void_star~node~node~void_star~node: :GP_1507Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_28_2$void_star~node~node~void_star~node~node~node~void_star~node~node~void_star~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1494,GP_1507]requires HP_1494(tmp___88,l_77,s1_81,tmp___83,s_78,tn_86,ln_84,tmp___89,sn___87,tn_80,tmp___85,sn_82)&
+truerequires emp
+ ensures GP_1507(tmp___88,tmp___88',l_77,l_77',s1_81,s1_81',tmp___83,tmp___83',s_78,s_78',tn_86,tn_86',ln_84,ln_84',tmp___89,tmp___89',sn___87,sn___87',tn_80,tn_80',tmp___85,tmp___85',sn_82,sn_82')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1494(tmp___88,l_77,s1_81,tmp___83,s_78,tn_86,ln_84,tmp___89,sn___87,tn_80,tmp___85,sn_82)&
+s_78!=null --> s_78::node<next_35_1788,left_35_1789,right_35_1790,tree_35_1791,key_35_1792> * 
+HP_1793(next_35_1788,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1794(left_35_1789,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1795(right_35_1790,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1796(tree_35_1791,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1797(tmp___88,l_77,s1_81,tmp___83,tn_86,ln_84,tmp___89,sn___87,tn_80,tmp___85,sn_82,s_78@NI)&
+true,
+ // BIND
+(1;1;0)HP_1796(tn_80',tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI)&
+true --> tn_80'::node<next_42_1812,left_42_1813,right_42_1814,tree_42_1815,key_42_1816> * 
+HP_1817(next_42_1812,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1818(left_42_1813,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1819(right_42_1814,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI) * 
+HP_1820(tree_42_1815,tmp___88@NI,l_77@NI,s1_81@NI,tmp___83@NI,tn_86@NI,ln_84@NI,tmp___89@NI,sn___87@NI,tn_80@NI,tmp___85@NI,sn_82@NI)&
+true,
+ // POST
+(2;1;0)HP_1494(tmp___88,l_77,s1_81,tmp___83,s_78,tn_86,ln_84,tmp___89,sn___87,tn_80,tmp___85,sn_82)&
+s_78=null & s_78'=null & l_77'=l_77 & ln_84'=ln_84 & s1_81'=s1_81 & 
+s_78'=s_78 & sn_82'=sn_82 & sn___87'=sn___87 & tmp___83'=tmp___83 & 
+tmp___85'=tmp___85 & tmp___88'=tmp___88 & tmp___89'=tmp___89 & 
+tn_80'=tn_80 & 
+tn_86'=tn_86 --> GP_1507(tmp___88,tmp___88',l_77,l_77',s1_81,s1_81',tmp___83,tmp___83',s_78,s_78',tn_86,tn_86',ln_84,ln_84',tmp___89,tmp___89',sn___87,sn___87',tn_80,tn_80',tmp___85,tmp___85',sn_82,sn_82')&
+true]
+
+Procedure while_28_2$void_star~node~node~void_star~node~node~node~void_star~node~node~void_star~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ GP_1507(tmp___2058,tmp___2059,l_2060,l_2061,s1_2062,s1_2063,tmp___2064,tmp___2065,s_2066,s_2067,tn_2068,tn_2069,ln_2070,ln_2071,tmp___2072,tmp___2073,sn___2074,sn___2075,tn_2076,tn_2077,tmp___2078,tmp___2079,sn_2080,sn_2081) ::= emp&l_2061=l_2060 & ln_2071=ln_2070 & s1_2063=s1_2062 & s_2067=s_2066 & 
+sn_2081=sn_2080 & sn___2075=sn___2074 & tmp___2065=tmp___2064 & 
+tmp___2079=tmp___2078 & tmp___2059=tmp___2058 & tmp___2073=tmp___2072 & 
+tn_2077=tn_2076 & tn_2069=tn_2068 & s_2066=null & s_2067=null(4,5),
+ HP_1494(tmp___2046,l_2047,s1_2048,tmp___2049,s_2050,tn_2051,ln_2052,tmp___2053,sn___2054,tn_2055,tmp___2056,sn_2057) ::= 
+ tree_35_2008::node<DP_DP_HP_1817,DP_DP_HP_1818,DP_DP_HP_1819,DP_DP_HP_1820,key_42_1816> * 
+ s_2050::node<DP_DP_HP_1793,DP_DP_HP_1794,DP_DP_HP_1795,tree_35_2008,key_35_2007>
+ or emp&s_2050=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase s_78::HP_1494{}<tmp___88,l_77,s1_81,tmp___83,tn_86,ln_84,tmp___89,sn___87,tn_80,tmp___85,sn_82>&
+       {FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [tmp___88;l_77;s1_81;tmp___83;s_78;tn_86;ln_84;tmp___89;sn___87;tn_80;tmp___85;sn_82]
+                   emp&l_77'=l_77 & ln_84'=ln_84 & s1_81'=s1_81 & 
+                   s_78'=s_78 & sn_82'=sn_82 & sn___87'=sn___87 & 
+                   tmp___83'=tmp___83 & tmp___85'=tmp___85 & 
+                   tmp___88'=tmp___88 & tmp___89'=tmp___89 & tn_80'=tn_80 & 
+                   tn_86'=tn_86 & s_78=null & s_78'=null&
+                   {FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure tree2list_iter$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_36,GP_37]requires HP_36(t@NI)&
+truerequires emp
+ ensures GP_37(t,res)&true{,(4,5)=__norm#E};
+
+!!!>>>>>> mismatch ptr t::node<DP_DP_HP_2402,DP_DP_HP_2403,DP_DP_HP_2404,DP_DP_HP_2405,key_42_2406> is not found (or inst) in the lhs <<<<<<
+!!!>>>>>> mismatch ptr t::node<DP_DP_HP_2423,DP_DP_HP_2424,DP_DP_HP_2425,DP_DP_HP_2426,key_42_2427> is not found (or inst) in the lhs <<<<<<
+!!! WARNING : Inferred pure not added: t=null
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // POST
+(1;0)HP_36(res@NI)&res=null & t=null & t=res --> GP_37(t,res)&
+true]
+
+Procedure tree2list_iter$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ GP_37(t_2444,res_2445) ::= HP_36(t_2444)&t_2444=res_2445 & res_2445=null & t_2444=null(4,5),
+ GP_1507(tmp___2058,tmp___2059,l_2060,l_2061,s1_2062,s1_2063,tmp___2064,tmp___2065,s_2066,s_2067,tn_2068,tn_2069,ln_2070,ln_2071,tmp___2072,tmp___2073,sn___2074,sn___2075,tn_2076,tn_2077,tmp___2078,tmp___2079,sn_2080,sn_2081) ::= emp&l_2061=l_2060 & ln_2071=ln_2070 & s1_2063=s1_2062 & s_2067=s_2066 & 
+sn_2081=sn_2080 & sn___2075=sn___2074 & tmp___2065=tmp___2064 & 
+tmp___2079=tmp___2078 & tmp___2059=tmp___2058 & tmp___2073=tmp___2072 & 
+tn_2077=tn_2076 & tn_2069=tn_2068 & s_2066=null & s_2067=null(4,5),
+ HP_1494(tmp___2046,l_2047,s1_2048,tmp___2049,s_2050,tn_2051,ln_2052,tmp___2053,sn___2054,tn_2055,tmp___2056,sn_2057) ::= 
+ tree_35_2008::node<DP_DP_HP_1817,DP_DP_HP_1818,DP_DP_HP_1819,DP_DP_HP_1820,key_42_1816> * 
+ s_2050::node<DP_DP_HP_1793,DP_DP_HP_1794,DP_DP_HP_1795,tree_35_2008,key_35_2007>
+ or emp&s_2050=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase HP_36(t)&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   HP_36(t)&t=res & res=null & t=null&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 117 invocations Stop Omega... 59 invocations 
+65 false contexts at: ( (90,2)  (28,2)  (86,8)  (86,4)  (84,19)  (84,7)  (83,18)  (83,7)  (82,7)  (81,7)  (80,4)  (80,18)  (80,25)  (78,8)  (78,4)  (76,19)  (76,7)  (75,18)  (75,7)  (74,7)  (73,7)  (72,9)  (72,25)  (72,32)  (70,16)  (70,4)  (68,15)  (68,4)  (67,22)  (67,9)  (67,4)  (63,4)  (61,8)  (61,4)  (59,18)  (59,7)  (58,19)  (58,7)  (57,18)  (57,7)  (56,7)  (55,17)  (55,7)  (54,9)  (54,25)  (54,32)  (54,25)  (52,7)  (52,3)  (0,0)  (49,8)  (49,4)  (48,19)  (48,7)  (47,18)  (47,7)  (46,7)  (45,7)  (44,9)  (44,25)  (44,32)  (-1,-1)  (44,25)  (42,3)  (42,7) )
+
+!!! log(small):(0.114266,509)
+Total verification time: 0.284 second(s)
+	Time spent in main process: 0.192 second(s)
+	Time spent in child processes: 0.092 second(s)
+	Z3 Prover Time: 0.004 second(s)

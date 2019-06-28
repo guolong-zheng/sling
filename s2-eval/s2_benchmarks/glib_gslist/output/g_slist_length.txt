@@ -1,0 +1,119 @@
+
+!!!Full processing file "glib_gslist//g_slist_length.dryad.c"
+Parsing file "glib_gslist//g_slist_length.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist//g_slist_length.dryad.c -o glib_gslist//g_slist_length.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_length: :HP_22
+!!! generate unknown predicate for Post synthesis of g_slist_length: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(list))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_23(list))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_14_1$int~node: :HP_1341
+!!! generate unknown predicate for Post synthesis of while_14_1$int~node: :GP_1343Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_14_1$int~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1341,GP_1343]requires HP_1341(list)&
+truerequires emp
+ ensures GP_1343(list,list')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1341(list)&list!=null --> list::node<key_22_1398,next_22_1399> * 
+HP_1400(next_22_1399)&
+true,
+ // PRE_REC
+(1;1;0)HP_1400(list')&true --> HP_1341(list')&
+true,
+ // POST
+(1;1;0)list::node<key_22_1398,next_22_1399> * GP_1343(next_22_1399,list')&
+true --> GP_1343(list,list')&
+true,
+ // POST
+(2;1;0)HP_1341(list)&list=null & list'=null & 
+list'=list --> GP_1343(list,list')&
+true]
+
+Procedure while_14_1$int~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1341(list_1413) ::= 
+ HP_1341(next_22_1411) * list_1413::node<key_22_1410,next_22_1411>
+ or emp&list_1413=null
+ (4,5),
+ GP_1343(list_1414,list_1415) ::= GP_1417(list_1414,list_1416)&list_1415=null & list_1416=null(4,5),
+ GP_1417(list_1414,list_1416) ::= 
+ list_1414::node<key_22_1398,next_22_1399> * GP_1417(next_22_1399,list_1416)
+ or emp&list_1414=list_1416
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1341{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [length_63;list]
+                   (exists list_1416: list::GP_1417{}<list_1416>&
+                   list'=null & list_1416=null&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure g_slist_length$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(list)&
+truerequires emp
+ ensures GP_23(list)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_22(list)&true --> list::HP_1341<>&
+true,
+ // POST
+(0)list::GP_1417<list_1469>&list_1469=null --> GP_23(list)&
+true]
+
+Procedure g_slist_length$node SUCCESS.
+ 
+ (LEMSYN) Proving lemma syn_1549: self::GP_1417{}<list_1548>&list_1548=null&{FLOW,(1,31)=__flow#E}[] ->  self::HP_1341{}<>&{FLOW,(1,31)=__flow#E}[]
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_22(list_1470) ::= list_1470::HP_1341<>(4,5),
+ GP_23(list_1471) ::= list_1471::GP_1417<list_1469>&list_1469=null(4,5),
+ GP_1343(list_1414,list_1415) ::= GP_1417(list_1414,list_1416)&list_1415=null & list_1416=null(4,5),
+ GP_1417(list_1414,list_1416) ::= 
+ list_1414::node<key_22_1398,next_22_1399> * GP_1417(next_22_1399,list_1416)
+ or emp&list_1414=list_1416
+ (4,5),
+ HP_1341(list_1413) ::= 
+ HP_1341(next_22_1411) * list_1413::node<key_22_1410,next_22_1411>
+ or emp&list_1413=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1341{}<>&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists list_1469: list::GP_1417{}<list_1469>&
+                   list_1469=null&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 91 invocations Stop Omega... 53 invocations 
+1 false contexts at: ( (14,1) )
+
+!!! log(small):(0.033252,507)
+Total verification time: 0.116 second(s)
+	Time spent in main process: 0.08 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0.004 second(s)
