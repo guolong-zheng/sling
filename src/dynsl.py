@@ -89,10 +89,10 @@ def remove_redundent(inv_set):
 def main():
     aparser = argparse.ArgumentParser(description='SLING')
     ag = aparser.add_argument
-    
+
     ag('--java', '-java',
        action="store_true")
-       
+
     ag('--input', '-input',
        dest='infile')
 
@@ -116,6 +116,9 @@ def main():
 
     ag('--def', '-def',
        dest='pred', type=open)
+
+    ag('--opt-pred-args', '-opt-pred-args',
+       action="store_true")
 
     ag('--mp', '-mp',
        action="store_true")
@@ -242,7 +245,7 @@ def main():
 #        for pr_loc in pre_locs:
 #            pr_po_pairs = pre_post_dict[pr_loc]
 #            pr_residue_lst = rdict[pr_loc]
-#            
+#
 #            pr_f_posts = {}
 #            pre_invs = {}
 #            for (pr_f, pr_residue) in pr_residue_lst:
@@ -358,7 +361,6 @@ def main():
                     stat_atom_pred += inv_atom_pred
                     stat_pure_constrs += pures
                     stat_free_vars += fvnum
-                
 
         debug('Number of locations: ' + str(stat_locs))
         debug('Number of traces: ' + str(stat_traces))
@@ -375,14 +377,14 @@ def main():
         debug('Running time (sec): ' + str(stat_time))
 
 	print(infile+","+str(stat_locs)+","+str(stat_traces) +
-            #"," + str(stat_specs) + 
+            #"," + str(stat_specs) +
             "," + str(stat_free_vars) + "," + str(stat_atom_data) + "," +
             str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
             str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","
             + str(loop_num) + ","+ str(stat_time)[:4])
-        
+
         print(infile+","+str(stat_locs)+","+str(stat_traces) +
-#           "," + str(stat_free_vars) + 
+#           "," + str(stat_free_vars) +
             "," + str(stat_atom_data) + "," +
             str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
             str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","

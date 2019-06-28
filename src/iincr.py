@@ -372,14 +372,14 @@ class IIncr(object):
                             return data_typ_lst[0]
             except:
                 pass
-            
+
         assert len(ptr_params) > 0
         root_param = ptr_params[0]
 
         root_typ = get_type(root)
         if (not root_typ) or (not root_typ.is_sub_type(root_param.typ)):
             return []
-        
+
         root_arg = Var(root)
         root_sst = (root_param, root_arg)
 
