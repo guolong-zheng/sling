@@ -1,0 +1,43 @@
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:221 - Inferring inv-conditions at the location 17 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 11 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 - ls(lst, nil) * ls(elt, nil) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 11:
+dynsl.py:320 - ls(lst, nil) * ls(elt, lst) 
+dynsl.py:320 - ls(lst, nil) * elt:node->node{fv0, lst} 
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 - ls(lst, curr) * ls(curr, elt) * ls(elt, nil)  & curr_next = nil
+dynsl.py:320 - ls(lst, curr) * ls(curr, elt) * elt:node->node{fv0, curr_next}  & lst = res
+dynsl.py:320 - ls(lst, curr) * curr:node->node{fv0, elt} * ls(elt, curr_next)  & lst = res
+dynsl.py:320 - ls(lst, curr) * curr:node->node{fv1, elt} * elt:node->node{fv0, curr_next}  & lst = res
+dynsl.py:320 - ls(lst, curr) * curr:node->node{fv0, elt} * ls(elt, nil)  & lst = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 17:
+dynsl.py:334 - ls(lst, curr) * ls(curr, curr_next) * ls(elt, curr_next) 
+dynsl.py:334 - ls(lst, curr) * ls(curr, curr_next) * elt:node->node{fv0, curr_next} 
+dynsl.py:334 - ls(lst, curr) * ls(curr, curr_next) * ls(elt, nil) 
+dynsl.py:334 - ls(lst, curr) * ls(curr, nil) * ls(elt, curr_next) 
+dynsl.py:334 - ls(lst, curr) * ls(curr, nil) * elt:node->node{fv0, curr_next} 
+dynsl.py:334 - ls(lst, curr) * ls(curr, nil) * ls(elt, nil) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 4
+dynsl.py:364 - Number of traces: 15
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 8
+dynsl.py:368 - Number of atomic singleton predicates: 8
+dynsl.py:369 - Number of atomic inductive predicates: 31
+dynsl.py:370 - Number of pure constraints: 5
+dynsl.py:371 - Number of total invs: 14
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:7
+dynsl.py:374 - Number of loop:6
+dynsl.py:375 - Running time (sec): 9.86896800995
+../simple_example_update/GRASShopper/sls/sls_insert,4,15,8,8,31,5,14,1,7,6,9.86
+../simple_example_update/GRASShopper/sls/sls_insert,4,15,8,31,5,14,1,7,6,9.86

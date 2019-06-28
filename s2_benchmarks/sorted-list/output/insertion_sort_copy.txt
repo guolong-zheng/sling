@@ -1,0 +1,146 @@
+
+!!!Full processing file "sorted-list/insertion_sort_copy.dryad.c"
+Parsing file "sorted-list/insertion_sort_copy.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sorted-list/insertion_sort_copy.dryad.c -o sorted-list/insertion_sort_copy.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sorted_insert: :HP_24
+!!! generate unknown predicate for Post synthesis of sorted_insert: :GP_25
+!!! generate unknown predicate for Pre synthesis of insertion_sort_copy: :HP_26
+!!! generate unknown predicate for Post synthesis of insertion_sort_copy: :GP_27
+!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(l))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_27(l,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure sorted_insert$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_24,GP_25]requires HP_24(x)&truerequires emp
+ ensures GP_25(x,res)&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_24(x)&x!=null --> x::node<key_16_1488,next_16_1489> * 
+HP_1490(next_16_1489)&
+true,
+ // PRE_REC
+(1;2;0)HP_1490(next_16_1489)&true --> HP_24(next_16_1489)&
+true,
+ // POST
+(1;0)HP_24(v_node_12_1538) * res::node<k,v_node_12_1538>&
+v_node_12_1538=null --> GP_25(v_node_12_1538,res)&
+true,
+ // POST
+(1;2;0)GP_25(next_16_1489,tmp___1540) * res::node<key_16_1488,tmp___1540>&
+x=res --> GP_25(x,res)&
+true,
+ // POST
+(2;2;0)HP_1490(next_16_1489) * x::node<key_16_1488,next_16_1489> * 
+res::node<k',x>&true --> GP_25(x,res)&
+true]
+
+Procedure sorted_insert$node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(x_1546) ::= 
+ HP_24(next_16_1544) * x_1546::node<key_16_1543,next_16_1544>
+ or emp&x_1546=null
+ (4,5),
+ GP_25(v_node_12_1547,res_1548) ::= 
+ GP_25(next_16_1489,tmp___1540) * res_1548::node<k,tmp___1540>&
+ v_node_12_1547=res_1548
+ or v_node_12_1547::node<key_16_1488,next_16_1489> * 
+    res_1548::node<k,v_node_12_1547> * HP_24(next_16_1489)
+ or res_1548::node<k,v_node_12_1547>&v_node_12_1547=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists x: res::GP_25{}<x>&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure insertion_sort_copy$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_26,GP_27]requires HP_26(l)&
+truerequires emp
+ ensures GP_27(l,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_26(l)&l!=null --> l::node<key_42_1597,next_42_1598> * 
+HP_1599(next_42_1598)&
+true,
+ // PRE_REC
+(2;0)HP_1599(next_42_1598)&true --> HP_26(next_42_1598)&
+true,
+ // PRE
+(2;0)GP_27(next_42_1598,tl_73')&true --> tl_73'::HP_24<> * 
+GP_1614(next_42_1598,tl_73'@NI)&
+true,
+ // POST
+(1;0)HP_26(l)&l=null & res=null & res=l --> GP_27(l,res)&
+true,
+ // POST
+(2;0)l::node<key_42_1597,next_42_1598> * GP_1614(next_42_1598,tl_1619@NI) * 
+res::GP_25<x_1618>&true --> GP_27(l,res)&
+true]
+
+Procedure insertion_sort_copy$node SUCCESS.
+ 
+ (LEMSYN) Proving lemma syn_1677: self::GP_25{}<x_1675>&{FLOW,(4,5)=__norm#E}[] ->  self::HP_24{}<>&{FLOW,(1,29)=__flow#E}[]
+
+!!!>>>>>> mismatch ptr x_1675::HP_24<> is not found (or inst) in the lhs <<<<<<
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_26(l_1624) ::= l_1624::HP_24<>(4,5),
+ GP_27(l_1625,res_1626) ::= 
+ l_1625::node<key_42_1597,next_42_1598> * GP_1614(next_42_1598,tl_1619) * 
+ res_1626::GP_25<x_1618>
+ or emp&l_1625=null & res_1626=null
+ (4,5),
+ GP_1614(next_42_1849,tl_1850) ::= 
+ next_42_1849::node<key_42_1672,next_42_1673> * GP_1614(next_42_1673,tl_1674)
+ or emp&next_42_1849=null & tl_1850=null
+ (4,5),
+ GP_25(v_node_12_1547,res_1548) ::= 
+ GP_25(next_16_1489,tmp___1540) * res_1548::node<k,tmp___1540>&
+ v_node_12_1547=res_1548
+ or v_node_12_1547::node<key_16_1488,next_16_1489> * 
+    res_1548::node<k,v_node_12_1547> * HP_24(next_16_1489)
+ or res_1548::node<k,v_node_12_1547>&v_node_12_1547=null
+ (4,5),
+ HP_24(x_1546) ::= 
+ HP_24(next_16_1544) * x_1546::node<key_16_1543,next_16_1544>
+ or emp&x_1546=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase l::HP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   l::GP_27{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 194 invocations Stop Omega... 152 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.25511,1312)
+Total verification time: 0.296 second(s)
+	Time spent in main process: 0.172 second(s)
+	Time spent in child processes: 0.124 second(s)
+	Z3 Prover Time: 0.004 second(s)

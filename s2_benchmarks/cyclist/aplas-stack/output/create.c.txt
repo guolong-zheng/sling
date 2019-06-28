@@ -1,0 +1,20 @@
+
+!!!Full processing file "cyclist/aplas-stack/create.c"
+Parsing file "cyclist/aplas-stack/create.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E cyclist/aplas-stack/create.c -o cyclist/aplas-stack/create.c.prep
+
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure create_stack$... Starting Omega.../usr/local/bin/oc
+
+Procedure create_stack$ SUCCESS.
+Stop z3... 39 invocations Stop Omega... 13 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.017718,218)
+Total verification time: 0.128 second(s)
+	Time spent in main process: 0.092 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0.004 second(s)

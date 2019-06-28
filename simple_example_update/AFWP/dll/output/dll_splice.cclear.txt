@@ -1,0 +1,16 @@
+Can't create debugger instance
+dynsl.py:280 - ==============================
+dynsl.py:303 - Number of locations: 0
+dynsl.py:304 - Number of traces: 0
+dynsl.py:305 - Number of pre-defined predicates: 2
+dynsl.py:306 - Number of inferred assertions: 0
+dynsl.py:307 - Number of free variables: 0
+dynsl.py:308 - Number of atomic singleton predicates: 0
+dynsl.py:309 - Number of atomic inductive predicates: 0
+dynsl.py:310 - Number of pure constraints: 0
+dynsl.py:311 - Number of total invs: 0
+dynsl.py:312 - Number of pres:0
+dynsl.py:313 - Number of post:0
+dynsl.py:314 - Number of loop:0
+dynsl.py:315 - Running time (sec): 0.0654079914093
+../simple_example_update/AFWP/dll/dll_splice.cclear,0,0,0,0,0,0,0,0,0,0,0,0.06

@@ -16,16 +16,47 @@ SNnode * sll_append(SNnode * x1, SNnode * x2)
   }
 }
 
+void test1(int size);
+void test2(int size);
+void test3(int size);
+void test4(int size);
+
 int main( int argc, char * argv[]){
     int size = 0;
     sscanf(argv[1], "%d", &size);
 
+/*
     int i = 0;
     SNnode * root = NULL;
     for(i = 0; i < size; i++){
         SNnode * newnode = create_node();
         root = sll_append(root, newnode);
     }
+*/
+    test1(size);
+    test2(size);
+    test3(size);
+    test4(size);
 
     return 0;
+}
+
+void test1(int szie){
+    sll_append(NULL,NULL);
+}
+
+void test2(int size){
+    SNnode * l1 = create_sll(size);
+    sll_append(NULL, l1);
+}
+
+void test3(int size){
+    SNnode * l1 = create_sll(size);
+    sll_append(l1, NULL);
+}
+
+void test4(int size){
+    SNnode * l1 = create_sll(size);
+    SNnode * l2 = create_sll(size);
+    sll_append(l1, l2);
 }

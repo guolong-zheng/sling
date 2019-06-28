@@ -26,6 +26,7 @@ int main(int argc, char * argv[]) {
 
     DLNode * node = create_dll(size);
     DLNode * res = NULL;
+    dll_append(root, NULL);
     res = dll_append(root, node);
     return 0;
 }

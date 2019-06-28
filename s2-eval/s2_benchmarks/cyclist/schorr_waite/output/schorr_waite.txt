@@ -1,0 +1,43 @@
+get_trace.py:65 - 30
+dynsl.py:144 - Inferring post-conditions at the location 42 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 19 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 53 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 14 ...
+
+dynsl.py:144 - Inferring pre-conditions at the location 47 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 14:
+dynsl.py:202 - tree(root) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 53:
+dynsl.py:213 - tree(n) & n=res
+dynsl.py:213 - n:node->node{fv!1933, fv!1934, nil, nil} & fv!1933=fv!1934 & fv!1933=nil & fv!1934=nil & n=res
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 47:
+dynsl.py:202 - emp
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 42:
+dynsl.py:213 - tree(root) & p=nil & root=t
+dynsl.py:208 - Postconditions at location 53:
+dynsl.py:213 - tree(n) & n=res
+dynsl.py:213 - n:node->node{fv!1933, fv!1934, nil, nil} & fv!1933=fv!1934 & fv!1933=nil & fv!1934=nil & n=res
+dynsl.py:220 - Invariants at location 19:
+dynsl.py:227 - tree(root) & True
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 5
+dynsl.py:255 - Number of traces: 52
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 10
+dynsl.py:259 - Number of atomic singleton predicates: 1
+dynsl.py:260 - Number of atomic inductive predicates: 3
+dynsl.py:261 - Number of pure constraints: 7
+dynsl.py:262 - Number of total invs: 11
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:5
+dynsl.py:265 - Number of loop:1
+dynsl.py:266 - Running time (sec): 22.4228401184
+../simple_example_update/cyclist/schorr_waite/schorr_waite,5,52,1,10,1,3,7,11,2,5,1,22.4

@@ -6,6 +6,7 @@ from collections import defaultdict
 from trace import *
 from debug import *
 from model import *
+from parser import *
 
 def create_target(exe, bps):
     exe = os.path.join(os.getcwd(), exe)
@@ -19,6 +20,7 @@ def create_target(exe, bps):
             bp_loc = bp.GetLocationAtIndex(0)
             bp_line = bp_loc.GetAddress().GetLineEntry().GetLine()
             ldict[loc] = bp_line
+            print "create break point at : " + str(bp_line)
     else:
         print "Can't create debugger instance"
 
@@ -35,6 +37,7 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
     while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
         frame = thread.GetFrameAtIndex(0)
         location = frame.GetLineEntry().GetLine()
+        print "stop at : " + str(location)
         if frame:
             if location in pre_locs:
                 # Do not get local variables in the precondition inference
@@ -60,9 +63,9 @@ def get_model(target, pre_locs, post_locs, inv_locs, size):
                 inv_traces.append(trace)
         process.Continue()
     # print "No breakpoint set up!"
-    # debug(pre_traces)
-    # debug(post_traces)
-    # debug(inv_traces)
+    #debug(pre_traces)
+    #debug(post_traces)
+    debug(len(inv_traces))
     return (pre_traces, post_traces, inv_traces)
 
 def traverse_heap(vars):
@@ -75,8 +78,10 @@ def traverse_heap(vars):
             if var.TypeIsPointerType():
                 stack.add(var.GetName(), Addr(var.GetValue()))
                 to_visit.append(var)
-            else:
-                stack.add(var.GetName(), Int(var.GetValue()))
+            #else:
+                #debug(var.GetName())
+                #debug(var.GetValue())
+                #stack.add(var.GetName(), Int(var.GetValue()))
 
     heap = expand_cell(heap, to_visit)
 
@@ -88,16 +93,17 @@ def expand_cell(heap, to_visit):
         var = to_visit.pop(0)
         if var.TypeIsPointerType() and var.GetValueAsUnsigned() == 0:
             continue
-        typ = str_type(var.GetType().GetCanonicalType())
+        typ = str_type(var.GetType().GetCanonicalType()).split()[-1]
         var = var.Dereference()
+        #debug(var.GetAddress())
         heap_addr = int(var.GetAddress())
 
         if heap_addr not in heap:
             fields = []
             for i in range(0, var.GetNumChildren()):
                 child = var.GetChildAtIndex(i)
-                child_typ = str_type(child.GetType().GetCanonicalType())
-                child_name = child.GetName()
+                child_typ = str_type(child.GetType().GetCanonicalType()).split()[-1]
+                child_name = child.GetName().split()[-1]
                 if child.TypeIsPointerType():
                     if child.GetValueAsUnsigned() == 0:
                         field = PtrField(child_name, Addr(Const.nil_addr))
@@ -125,10 +131,26 @@ def get_traces(input, pre_bps, post_bps, inv_bps, size):
         trace_pairs.extend(zip(pre_traces[::-1], post_traces))
     return trace_pairs, inv_traces
 
+def get_traces_from_file(filename, pre_bps, post_bps, inv_bps):
+    trace_pairs = []
+    pre_traces = []
+    post_traces = []
+    inv_traces = []
+    traces = read_file(filename)
+    for trace in traces:
+        if trace.loc in pre_bps:
+            pre_traces.append(trace)
+        elif trace.loc in post_bps:
+            post_traces.append(trace)
+        else:
+            inv_traces.append(trace)
+    trace_pairs.extend(zip(pre_traces[::-1], post_traces))
+
+    return trace_pairs, inv_traces
+
 def str_type(typ):
     typ_str = str(typ).replace("struct",'')
     typ_str = typ_str.translate(None, '*').strip()
-
     return typ_str
 
 def write_file(exe, traces):
@@ -162,6 +184,22 @@ def traces_str(traces):
             print "heap is:"
             for h in hp:
                 print hp[h]
+
+def read_file(filename):
+    with open(filename, 'r') as myfile:
+        data = myfile.read()
+
+    fileparser = FileParser()
+    trace_ast = fileparser.file_parser.parse(data)
+    return fileparser.transform(trace_ast)
+    #debug(trace)
+
+
+def main():
+    read_file("k.txt")
+
+if __name__ == "__main__":
+    main()
 
 # def main():
 #     exe = "simple_example/GRASShopper/dl_concat"

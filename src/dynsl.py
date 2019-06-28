@@ -8,11 +8,91 @@ from get_trace import *
 from test import *
 import argparse
 import timeit
+import re
+
+def normalize(inv):
+    #debug(inv)
+    nilvars = set()
+    resvar = None
+    if "=" in inv:
+        inv = inv[:-1]
+	subs = inv.split('&')
+        for sub in subs:
+	    if "=" in sub:
+                left = sub.split('=')[0].strip()
+                right = sub.split('=')[1].strip()
+                if left == right:
+                   continue;
+                else:
+                   if 'fv' in left and 'fv' in right:
+			inv = inv.replace(right+',', left+',')
+			inv = inv.replace(right+')', left+')')
+                   elif 'fv' in left:
+                        inv = inv.replace(left+',', right+',')
+                        inv = inv.replace(left+')', right+')')
+                   elif 'fv' in right:
+                        inv = inv.replace(right+',', left+',')
+                        inv = inv.replace(right+')', left+')')
+                   elif 'nil' in left:
+                        inv = inv.replace(right+',', 'nil'+',')
+                        inv = inv.replace(right+')', 'nil'+')')
+                        nilvars.add(right)
+                   elif 'nil' in right:
+                        inv = inv.replace(left+',', 'nil'+',')
+                        inv = inv.replace(left+')', 'nil'+')')
+                        nilvars.add(left)
+                   elif 'res' in left:
+                        resvar = right
+                   elif 'res' in right:
+                        resvar = left
+    inv = inv[inv.find('.')+1:inv.find('&')]
+    #debug(inv)
+    regex = re.compile('fv![0-9]+')
+    match = regex.findall(inv)
+    fvs = set(map(str,match))
+    i = 0
+    if match:
+        match.sort(key=len)
+        match.reverse()
+
+    pures = 0
+    for x in match:
+        inv = inv.replace(x, "fv"+str(i))
+        i = i + 1
+    for nils in nilvars:
+        inv = inv + ' & ' + nils + ' = nil'
+    if resvar:
+        pures = pures + 1
+        inv = inv + ' & ' + resvar + ' = res'
+    pures = pures + len(nilvars)
+    fvnum = len(fvs)
+    #debug(pures)
+    #debug(fvnum)
+    #debug(inv)
+    #print "\n"
+    return (inv, pures, fvnum)
+
+def remove_redundent(inv_set):
+    new_set = set()
+    #regex = re.compile('fv![0-9]+')
+    for inv in inv_set:
+        #match = regex.findall(inv)
+        #i = 0
+        #for x in match:
+        #    inv = inv.replace(x, "fv"+str(i))
+        #    i = i + 1
+        (newinv, _, _) = normalize(inv)
+        new_set.add(newinv)
+    return new_set
+
 
 def main():
     aparser = argparse.ArgumentParser(description='SLING')
     ag = aparser.add_argument
-
+    
+    ag('--java', '-java',
+       action="store_true")
+       
     ag('--input', '-input',
        dest='infile')
 
@@ -79,8 +159,10 @@ def main():
 
         start_time = timeit.default_timer()
 
-        trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
-        # debug(trace_pairs)
+        if args.java:
+            trace_pairs, inv_traces = get_traces_from_file(infile, pre_bps, post_bps, inv_bps)
+        else:
+            trace_pairs, inv_traces = get_traces(infile, pre_bps, post_bps, inv_bps, size)
 
         if trace_pairs:
             pre_traces, post_traces = zip(*trace_pairs)
@@ -122,7 +204,7 @@ def main():
 
         type_infer = TInfer()
         tprog = type_infer.infer(prog)
-        debug(tprog)
+        # debug(tprog)
 
         stat_preds = len(tprog.pred_defn_lst)
 
@@ -151,88 +233,160 @@ def main():
             f_residue_dict = map(lambda (f, residue_model):
                                  (f, mk_mdict(residue_model)),
                                  f_residue_lst)
-            # debug(map(lambda (f, _): f, f_residue_lst))
+            #debug(map(lambda (f, _): f, f_residue_lst))
             rdict[loc] = f_residue_dict
 
-        # debug(rdict)
+        pre_num = 0
+        post_num = 0
+        loop_num = 0
+#        for pr_loc in pre_locs:
+#            pr_po_pairs = pre_post_dict[pr_loc]
+#            pr_residue_lst = rdict[pr_loc]
+#            
+#            pr_f_posts = {}
+#            pre_invs = {}
+#            for (pr_f, pr_residue) in pr_residue_lst:
+#                # debug(pr_f)
+#                pre_invs.setdefault(pr_loc,[]).append(pr_f)
+#                for po_loc in pr_po_pairs:
+#                    pairs = pr_po_pairs[po_loc]
+#                    # debug(pairs)
+#                    po_residue_lst = rdict[po_loc]
+#                    for (po_f, po_residue) in po_residue_lst:
+#                        # debug(po_f)
+#                        #if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
+#                        #       for (pr_id, po_id) in pairs):
+#                            pr_f_posts.setdefault(po_loc, []).append(po_f)
+#                        #else:
+#                            # for (pr_id, po_id) in pairs:
+#                            #     prr = pr_residue[pr_id]
+#                            #     por = po_residue[po_id]
+#                            #     if not prr.is_same_heap_dom(por):
+#                            #         debug(pr_f)
+#                            #         debug(prr)
+#                            #         debug(po_f)
+#                            #         debug(por)
+#                            pass
+#                                #if len(pr_f_posts) == len(pr_po_pairs):
+#            debug('==============================')
+#            debug('Precondition at location ' + str(pr_loc) + ':')
+#            #debug(pr_f)
+#            for pre_loc in pre_invs:
+#                pre_f_lst = pre_invs[pre_loc]
+#                pre_f_lst = remove_redundent(set(map(str,pre_f_lst)))
+#                #debug('Precondition at location ' + str(pr_loc) + ':')
+#
+#                for pre_f in pre_f_lst:
+#                    pre_num = pre_num + 1
+#                    debug(pre_f)
+#            # stat_specs = stat_specs + 1
+#            # debug('Corresponding postconditions:')
+#            #specs_num = 1
+#            for po_loc in pr_f_posts:
+#                po_f_lst = pr_f_posts[po_loc]
+#		po_f_lst = remove_redundent(set(map(str,po_f_lst)))
+#                debug('Postconditions at location ' + str(po_loc) + ':')
+#                #debug(specs_num)
+#                for po_f in po_f_lst:
+#                    #specs_num = specs_num + 1
+#                    post_num = post_num + 1
+#                    debug(po_f)
+#            stat_specs += (post_num + pre_num)
+#                #debug('==============================')
 
-        for pr_loc in pre_locs:
-            pr_po_pairs = pre_post_dict[pr_loc]
-            pr_residue_lst = rdict[pr_loc]
-            for (pr_f, pr_residue) in pr_residue_lst:
-                # debug(pr_f)
-                pr_f_posts = {}
-                for po_loc in pr_po_pairs:
-                    pairs = pr_po_pairs[po_loc]
-                    # debug(pairs)
-                    po_residue_lst = rdict[po_loc]
-                    for (po_f, po_residue) in po_residue_lst:
-                        # debug(po_f)
-                        if all(pr_residue[pr_id].is_same_heap_dom(po_residue[po_id])
-                               for (pr_id, po_id) in pairs):
-                            pr_f_posts.setdefault(po_loc, []).append(po_f)
-                        else:
-                            # for (pr_id, po_id) in pairs:
-                            #     prr = pr_residue[pr_id]
-                            #     por = po_residue[po_id]
-                            #     if not prr.is_same_heap_dom(por):
-                            #         debug(pr_f)
-                            #         debug(prr)
-                            #         debug(po_f)
-                            #         debug(por)
-                            pass
-                if len(pr_f_posts) == len(pr_po_pairs):
-                    debug('==============================')
-                    debug('Precondition at location ' + str(pr_loc) + ':')
-                    debug(pr_f)
-                    debug('Corresponding postconditions:')
-                    specs_num = 1
-                    for po_loc in pr_f_posts:
-                        po_f_lst = pr_f_posts[po_loc]
-                        debug('Postconditions at location ' + str(po_loc) + ':')
-                        specs_num = specs_num * len(po_f_lst)
-                        for po_f in po_f_lst:
-                            debug(po_f)
-                    stat_specs += specs_num
-
+	for pre_loc in pre_locs:
+            pre_residue_lst = rdict[pre_loc]
+            debug('Precondition at location ' + str(pre_loc) + ':')
+            pre_set = []
+            for (pre, pre_residue) in pre_residue_lst:
+                (pre, _, _) = normalize(str(pre))
+                if pre in pre_set:
+                    pass
+                else:
+                    pre_set.append(pre)
+                    debug(pre)
+                    pre_num = pre_num + 1
+            debug('==============================')
+	for post_loc in post_locs:
+            post_residue_lst = rdict[post_loc]
+            debug('Postcondition at location ' + str(post_loc) + ':')
+            post_set = []
+            for (post, post_residue) in post_residue_lst:
+                (post, _, _) = normalize(str(post))
+                if post in post_set:
+                    pass
+                else:
+                    post_set.append(post)
+                    debug(post)
+                    post_num = post_num + 1
+	    debug('==============================')
         # debug(inv_models)
         for inv_loc in inv_locs:
             inv_residue_lst = rdict[inv_loc]
             debug('Invariants at location ' + str(inv_loc) + ':')
+            loop_inv_set = []
             for (inv, inv_residue) in inv_residue_lst:
-                debug(inv)
+                (inv, _, _) = normalize(str(inv))
+                if inv in loop_inv_set:
+                    pass
+                else:
+                    loop_inv_set.append(inv)
+                    debug(inv)
+                    loop_num = loop_num + 1
+        stat_specs += loop_num + pre_num + post_num
                 # debug(inv_residue)
+        debug('==============================')
 
         stat_time = timeit.default_timer() - start_time
         stat_locs = len(pre_locs) + len(post_locs) + len(inv_locs)
         stat_traces = len(pre_models) + len(post_models) + len(inv_models)
 
+        inv_set = []
         for loc in rdict:
             res_lst = rdict[loc]
-            stat_invs += len(res_lst)
+            #debug(res_lst)
+            #stat_invs += len(res_lst)
             for (inv, _) in res_lst:
-                inv_atom_data, inv_atom_pred = inv.stat_atomic_preds()
-                stat_atom_data += inv_atom_data
-                stat_atom_pred += inv_atom_pred
-                stat_pure_constrs += inv.stat_pure_constrs()
-                stat_free_vars += len(inv.fv())
+                (ninv, pures, fvnum) = normalize(str(inv))
+                if ninv in inv_set:
+                    pass
+                else:
+                    #debug(inv)
+                    inv_set.append(ninv)
+                    inv_atom_data, inv_atom_pred = inv.stat_atomic_preds()
+                    stat_atom_data += inv_atom_data
+                    stat_atom_pred += inv_atom_pred
+                    stat_pure_constrs += pures
+                    stat_free_vars += fvnum
+                
 
         debug('Number of locations: ' + str(stat_locs))
         debug('Number of traces: ' + str(stat_traces))
         debug('Number of pre-defined predicates: ' + str(stat_preds))
-        debug('Number of inferred assertions: ' + str(stat_invs))
+        #debug('Number of inferred assertions: ' + str(stat_invs))
         debug('Number of free variables: ' + str(stat_free_vars))
         debug('Number of atomic singleton predicates: ' + str(stat_atom_data))
         debug('Number of atomic inductive predicates: ' + str(stat_atom_pred))
         debug('Number of pure constraints: ' + str(stat_pure_constrs))
-        debug('Number of specifications: ' + str(stat_specs))
+        debug('Number of total invs: ' + str(stat_specs))
+        debug('Number of pres:' + str(pre_num))
+        debug('Number of post:' + str(post_num))
+        debug('Number of loop:' + str(loop_num))
         debug('Running time (sec): ' + str(stat_time))
 
-	print(infile+","+str(stat_locs)+","+str(stat_traces)+","+
-            str(stat_preds) + "," + str(stat_invs) + "," +
-            str(stat_free_vars) + "," + str(stat_atom_data) + "," +
+	print(infile+","+str(stat_locs)+","+str(stat_traces) +
+            #"," + str(stat_specs) + 
+            "," + str(stat_free_vars) + "," + str(stat_atom_data) + "," +
             str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
-            str(stat_specs) + "," + str(stat_time)[:4])
+            str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","
+            + str(loop_num) + ","+ str(stat_time)[:4])
+        
+        print(infile+","+str(stat_locs)+","+str(stat_traces) +
+#           "," + str(stat_free_vars) + 
+            "," + str(stat_atom_data) + "," +
+            str(stat_atom_pred) + "," + str(stat_pure_constrs) + "," +
+            str(stat_specs) + "," + str(pre_num) + "," + str(post_num) + ","
+            + str(loop_num) + ","+ str(stat_time)[:4])
     else:
         debug('Inside test mode')
         test()

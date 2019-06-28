@@ -1,0 +1,147 @@
+
+!!!Full processing file "avl/avl-insert-rec.dryad.c"
+Parsing file "avl/avl-insert-rec.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E avl/avl-insert-rec.dryad.c -o avl/avl-insert-rec.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of avl_insert: :HP_21
+!!! generate unknown predicate for Post synthesis of avl_insert: :GP_22
+!!! ss:EInfer @shape[HP_21,GP_22] EBase: [][](HRel HP_21(x))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_22(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure get_height$a_node... Starting Omega.../usr/local/bin/oc
+Proving binding in method get_height$a_node for spec  EAssume 
+   htrue&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,1 ); (,2 )]) bind: node  x'::a_node<left_39_1269',right_39_1270',key_39_1271',height_39_1272'>@L cannot be derived from context
+avl/stdhipmem.h_39:15_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,1 ); (,2 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: 
+                   do_unmatched_rhs : x'::a_node<left_39_1269',right_39_1270',key_39_1271',height_39_1272'>@L
+                  fc_current_lhs_flow: {FLOW,(4,11)=__MayError#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]avl/stdhipmem.h_39:15_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "avl/stdhipmem.h",Line:39,Col:15
+
+Procedure get_height$a_node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure get_height$a_node
+
+Checking procedure avl_balance$a_node... Proving binding in method avl_balance$a_node for spec  EAssume 
+   htrue&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( []) bind: node  x'::a_node<left_49_1278',right_49_1279',key_49_1280',height_49_1281'>@L cannot be derived from context
+avl/stdhipmem.h_49:22_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: []
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: 
+                   do_unmatched_rhs : x'::a_node<left_49_1278',right_49_1279',key_49_1280',height_49_1281'>@L
+                  fc_current_lhs_flow: {FLOW,(4,11)=__MayError#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]avl/stdhipmem.h_49:22_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "avl/stdhipmem.h",Line:49,Col:22
+
+Procedure avl_balance$a_node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure avl_balance$a_node
+
+Checking procedure avl_insert$a_node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_21,GP_22]requires HP_21(x)&
+truerequires emp
+ ensures GP_22(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_21(x)&
+x!=null --> x::a_node<left_31_1646,right_31_1647,key_31_1648,height_31_1649> * 
+HP_1650(left_31_1646) * HP_1651(right_31_1647)&
+true,
+ // PRE_REC
+(1;2;0)HP_1650(left_31_1646)&true --> HP_21(left_31_1646)&
+true,
+ // PRE_REC
+(2;2;0)HP_1651(right_31_1647)&true --> HP_21(right_31_1647)&
+true,
+ // POST
+(1;0)HP_21(left_27_1692) * 
+res::a_node<left_27_1692,v_a_node_27_1694,k',height_27_1693>&
+left_27_1692=null & v_a_node_27_1694=null & 
+v_a_node_27_1694=left_27_1692 --> GP_22(left_27_1692,res)&
+true,
+ // POST
+(1;2;0)HP_1651(right_31_1647) * GP_22(left_31_1646,tmp___1696) * 
+x::a_node<tmp___1696,right_31_1647,key_31_1648,height_31_1649> * (htrue)&
+true --> GP_22(x,res)&
+true,
+ // POST
+(2;2;0)HP_1650(left_31_1646) * GP_22(right_31_1647,new_1697) * 
+x::a_node<left_31_1646,new_1697,key_31_1648,height_31_1649> * (htrue)&
+true --> GP_22(x,res)&
+true]
+
+Procedure avl_insert$a_node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_21(x_1709) ::= 
+ x_1709::a_node<left_31_1646,right_31_1647,key_31_1648,height_31_1649> * 
+ HP_21(left_31_1646) * HP_21(right_31_1647)
+ or emp&x_1709=null
+ (4,5),
+ GP_22(left_27_1712,res_1713) ::= 
+ GP_22(right_31_1647,new_1697) * 
+ left_27_1712::a_node<left_31_1646,new_1697,key_31_1648,height_31_1649> * 
+ (htrue)
+ or res_1713::a_node<left_27_1712,v_a_node_27_1694,k',height_27_1693>&
+    left_27_1712=null & v_a_node_27_1694=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_21{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists x: res::GP_22{}<x>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 112 invocations Stop Omega... 49 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.067689,455)
+Total verification time: 0.228 second(s)
+	Time spent in main process: 0.156 second(s)
+	Time spent in child processes: 0.072 second(s)
+	Z3 Prover Time: 0.004 second(s)

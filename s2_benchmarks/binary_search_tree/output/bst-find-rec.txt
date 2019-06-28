@@ -1,0 +1,86 @@
+
+!!!Full processing file "binary_search_tree//bst-find-rec.dryad.c"
+Parsing file "binary_search_tree//bst-find-rec.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E binary_search_tree//bst-find-rec.dryad.c -o binary_search_tree//bst-find-rec.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of bst_find_rec: :HP_23
+!!! generate unknown predicate for Post synthesis of bst_find_rec: :GP_24
+!!! ss:EInfer @shape[HP_23,GP_24] EBase: [][](HRel HP_23(x))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_24(x))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure bst_find_rec$b_node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_23,GP_24]requires HP_23(x)&
+truerequires emp
+ ensures GP_24(x)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(2;0)HP_23(x)&
+x!=null --> x::b_node<left_15_1400,right_15_1401,key_15_1402> * 
+HP_1403(left_15_1400) * HP_1404(right_15_1401)&
+true,
+ // PRE_REC
+(1;2;2;0)HP_1403(left_15_1400)&true --> HP_23(left_15_1400)&
+true,
+ // PRE_REC
+(2;2;2;0)HP_1404(right_15_1401)&true --> HP_23(right_15_1401)&
+true,
+ // POST
+(1;0)HP_23(x)&x=null --> GP_24(x)&
+true,
+ // POST
+(1;2;0)HP_1403(left_15_1400) * HP_1404(right_15_1401) * 
+x::b_node<left_15_1400,right_15_1401,key_15_1402>&true --> GP_24(x)&
+true,
+ // POST
+(1;2;2;0)HP_1404(right_15_1401) * 
+x::b_node<left_15_1400,right_15_1401,key_15_1402> * GP_24(left_15_1400)&
+true --> GP_24(x)&
+true,
+ // POST
+(2;2;2;0)HP_1403(left_15_1400) * 
+x::b_node<left_15_1400,right_15_1401,key_15_1402> * GP_24(right_15_1401)&
+true --> GP_24(x)&
+true]
+
+Procedure bst_find_rec$b_node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_23(x_1455) ::= 
+ HP_23(left_15_1451) * HP_23(right_15_1449) * 
+ x_1455::b_node<left_15_1451,right_15_1449,key_15_1450>
+ or emp&x_1455=null
+ (4,5),
+ GP_24(x_1456) ::= 
+ x_1456::b_node<left_15_1400,right_15_1401,key_15_1402> * 
+ HP_23(left_15_1400) * HP_23(right_15_1401)
+ or x_1456::b_node<left_15_1400,right_15_1401,key_15_1402> * 
+    GP_24(right_15_1401) * HP_23(left_15_1400)
+ or emp&x_1456=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase x::HP_23{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_24{}<>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 93 invocations Stop Omega... 39 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.06279,414)
+Total verification time: 0.184 second(s)
+	Time spent in main process: 0.124 second(s)
+	Time spent in child processes: 0.06 second(s)
+	Z3 Prover Time: 0.012 second(s)

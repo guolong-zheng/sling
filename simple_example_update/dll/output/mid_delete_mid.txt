@@ -1,0 +1,36 @@
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 25 ...
+
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 -  dll(p, hd, fv0, nil) * dll(hd, nil, hd, p) 
+dynsl.py:307 -  dll(p, hd, fv1, nil) * hd:node->node{fv0, p, nil} 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 25:
+dynsl.py:320 -  dll(u, nil, hd, v) * dll(v, u, v, nil)  & p = nil & hd = res
+dynsl.py:320 - dll(u, nil, hd, v) * v:node->node{nil, nil, u}  & p = nil & u = res
+dynsl.py:320 -  dll(u, nil, hd, v) * dll(v, hd, v, nil)  & p = nil & hd = res
+dynsl.py:320 - dll(u, nil, hd, v) * v:node->node{nil, nil, u}  & p = nil & hd = res
+dynsl.py:320 -  u:node->node{fv0, v, p} * dll(v, u, v, nil)  & p = nil & hd = res
+dynsl.py:320 - u:node->node{fv0, v, p} * v:node->node{nil, nil, u}  & p = nil & u = res
+dynsl.py:320 -  u:node->node{fv0, v, p} * dll(v, hd, v, nil)  & p = nil & hd = res
+dynsl.py:320 -  dll(u, nil, u, v) * dll(v, u, v, nil)  & p = nil & hd = res
+dynsl.py:320 -  dll(u, nil, u, v) * v:node->node{nil, nil, u}  & p = nil & hd = res
+dynsl.py:320 -  dll(u, nil, u, v) * dll(v, hd, v, nil)  & p = nil & hd = res
+dynsl.py:320 - u:node->node{fv0, v, p} * v:node->node{nil, nil, u}  & p = nil & hd = res
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 2
+dynsl.py:364 - Number of traces: 2
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 7
+dynsl.py:368 - Number of atomic singleton predicates: 10
+dynsl.py:369 - Number of atomic inductive predicates: 16
+dynsl.py:370 - Number of pure constraints: 22
+dynsl.py:371 - Number of total invs: 13
+dynsl.py:372 - Number of pres:2
+dynsl.py:373 - Number of post:11
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 16.8098130226
+../simple_example_update/dll/mid_delete_mid,2,2,7,10,16,22,13,2,11,0,16.8
+../simple_example_update/dll/mid_delete_mid,2,2,10,16,22,13,2,11,0,16.8

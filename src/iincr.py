@@ -4,6 +4,7 @@ from trace import *
 from utils import *
 from debug import *
 from printer import *
+from random import shuffle
 import itertools
 
 class SingletonModel(object):
@@ -148,7 +149,9 @@ class IIncr(object):
         local_ptr_vars = list(set.intersection(*(map(lambda vs:
                                                      set(vs),
                                                      local_ptr_vars_lst))))
-        # debug(local_ptr_vars)
+        debug(local_ptr_vars)
+        shuffle(local_ptr_vars)
+        debug(local_ptr_vars) 
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
         if not f_residue_lst:

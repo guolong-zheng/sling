@@ -1,0 +1,136 @@
+
+!!!Full processing file "GRASShopper//sls/sls_insert.dryad.c"
+Parsing file "GRASShopper//sls/sls_insert.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//sls/sls_insert.dryad.c -o GRASShopper//sls/sls_insert.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sls_insert: :HP_22
+!!! generate unknown predicate for Post synthesis of sls_insert: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(lst,elt))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_23(lst,elt,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_17_4$node~node: :HP_1356
+!!! generate unknown predicate for Post synthesis of while_17_4$node~node: :GP_1358Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_17_4$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1356,GP_1358]requires HP_1356(curr_63,elt)&
+truerequires emp
+ ensures GP_1358(curr_63,curr_63',elt)&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;0)HP_1356(curr_63,elt)&true --> curr_63::node<key_17_1427,next_17_1428> * 
+HP_1429(next_17_1428,elt@NI) * HP_1430(elt,curr_63@NI)&
+true,
+ // BIND
+(1;1;0)HP_1429(next_17_1428,elt@NI)&
+next_17_1428!=null --> next_17_1428::node<key_17_1443,next_17_1444> * 
+HP_1445(next_17_1444,elt@NI)&
+true,
+ // BIND
+(1;1;0)HP_1430(elt,curr_63@NI)&
+true --> elt::node<key_17_1450,next_17_1451> * 
+HP_1452(next_17_1451,curr_63@NI)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1445(next_17_1444,elt@NI) * 
+curr_63'::node<key_17_1443,next_17_1444> * 
+HP_1452(next_17_1451,curr_1464@NI) * elt::node<key_17_1450,next_17_1451>&
+true --> HP_1356(curr_63',elt)&
+true,
+ // POST
+(1;1;1;0)curr_63::node<key_17_1427,next_17_1428> * 
+GP_1358(next_17_1428,curr_63',elt)&elt!=null & 
+next_17_1428!=null --> GP_1358(curr_63,curr_63',elt)&
+true,
+ // POST
+(2;1;1;0)curr_63::node<key_17_1427,next_17_1428> * 
+HP_1445(next_17_1444,elt@NI) * 
+next_17_1428::node<key_17_1443,next_17_1444> * 
+HP_1452(next_17_1451,curr_63@NI) * elt::node<key_17_1450,next_17_1451>&
+curr_63'=curr_63 --> GP_1358(curr_63,curr_63',elt)&
+true,
+ // POST
+(2;1;0)HP_1429(next_17_1428,elt@NI) * HP_1430(elt,curr_63@NI) * 
+curr_63::node<key_17_1427,next_17_1428>&next_17_1428=null & 
+curr_63'=curr_63 --> GP_1358(curr_63,curr_63',elt)&
+true]
+
+Procedure while_17_4$node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at GRASShopper//sls/sls_insert.dryad.c_17:51_-1:-1
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1356,GP_1358]
+   EBase HP_1356(curr_63,elt)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [curr_63]
+                     GP_1358(curr_63,curr_63',elt)&{FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure sls_insert$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(lst,elt)&
+truerequires emp
+ ensures GP_23(lst,elt,res)&true{,(4,5)=__norm#E};
+Proving binding in method sls_insert$node~node for spec  EAssume 
+   GP_23(lst,elt,res)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,1 ); (,2 ); (,1 ); (,2 )]) bind: node  curr_63'::node<key_26_1384',next_26_1385'>@L cannot be derived from context
+GRASShopper//sls/sls_insert.dryad.c_26:23_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,1 ); (,2 ); (,1 ); (,2 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]GRASShopper//sls/sls_insert.dryad.c_26:23_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "GRASShopper//sls/sls_insert.dryad.c",Line:26,Col:23
+
+Procedure sls_insert$node~node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure sls_insert$node~node
+Stop z3... 121 invocations Stop Omega... 48 invocations 
+1 false contexts at: ( (17,4) )
+
+!!! log(small):(0.04886,612)
+Total verification time: 0.148 second(s)
+	Time spent in main process: 0.1 second(s)
+	Time spent in child processes: 0.048 second(s)
+	Z3 Prover Time: 0. second(s)

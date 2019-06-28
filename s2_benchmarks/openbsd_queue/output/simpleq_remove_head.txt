@@ -1,0 +1,57 @@
+
+!!!Full processing file "openbsd_queue//simpleq_remove_head.dryad.c"
+Parsing file "openbsd_queue//simpleq_remove_head.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E openbsd_queue//simpleq_remove_head.dryad.c -o openbsd_queue//simpleq_remove_head.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of simpleq_remove_head: :HP_22
+!!! generate unknown predicate for Post synthesis of simpleq_remove_head: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(head))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_23(head))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure simpleq_remove_head$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(head)&
+truerequires emp
+ ensures GP_23(head)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_22(head)&true --> head::node<next_12_1379,last_12_1380> * 
+HP_1381(next_12_1379) * HP_1382(last_12_1380)&
+true,
+ // BIND
+(0)HP_1381(fst_63')&true --> fst_63'::node<next_13_1387,last_13_1388> * 
+HP_1389(next_13_1387) * HP_1390(last_13_1388)&
+true]
+
+Procedure simpleq_remove_head$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_22(head_1416) ::= next_12_1413::node<DP_DP_HP_1389,DP_DP_HP_1390> * 
+head_1416::node<next_12_1413,DP_DP_HP_1382>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase next_12_1413::node<DP_DP_HP_1389,DP_DP_HP_1390> * 
+       head::node<next_12_1413,DP_DP_HP_1382>&{FLOW,(1,29)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   GP_23(head)&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 74 invocations Stop Omega... 21 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.040458,375)
+Total verification time: 0.124 second(s)
+	Time spent in main process: 0.088 second(s)
+	Time spent in child processes: 0.036 second(s)
+	Z3 Prover Time: 0.004 second(s)

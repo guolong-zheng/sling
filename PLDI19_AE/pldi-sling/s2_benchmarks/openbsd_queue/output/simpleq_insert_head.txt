@@ -1,0 +1,67 @@
+
+!!!Full processing file "openbsd_queue//simpleq_insert_head.dryad.c"
+Parsing file "openbsd_queue//simpleq_insert_head.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E openbsd_queue//simpleq_insert_head.dryad.c -o openbsd_queue//simpleq_insert_head.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of simpleq_insert_head: :HP_24
+!!! generate unknown predicate for Post synthesis of simpleq_insert_head: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(head,listelm))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_25(head,listelm))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure simpleq_insert_head$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(head,listelm@NI)&
+truerequires emp
+ ensures GP_25(head,listelm)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_24(head,listelm@NI)&true --> head::node<next_14_1447,last_14_1448> * 
+HP_1449(next_14_1447,listelm@NI) * HP_1450(last_14_1448,listelm@NI)&
+true,
+ // POST
+(1;0)elm_1467::node<next_14_1447,Anon_1437> * 
+HP_1449(next_14_1447,listelm@NI) * head::node<elm_1467,elm_1467>&
+next_14_1447=null --> GP_25(head,listelm)&
+true,
+ // POST
+(2;0)elm_1469::node<v_node_13_1446,Anon_1437> * 
+HP_1450(last_14_1448,listelm@NI) * head::node<elm_1469,last_14_1448>&
+v_node_13_1446=null --> GP_25(head,listelm)&
+true]
+
+Procedure simpleq_insert_head$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(head_1476,listelm_1477) ::= head_1476::node<next_14_1447,DP_DP_HP_1450>&next_14_1447=null(4,5),
+ GP_25(head_1478,listelm_1479) ::= DP_DP_HP_1450::node<next_14_1447,Anon_1437> * 
+head_1478::node<DP_DP_HP_1450,DP_DP_HP_1450>&next_14_1447=null(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase head::node<next_14_1447,DP_DP_HP_1450>&next_14_1447=null&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists next_14_1447,Anon_1437,
+                   DP_DP_HP_1450: DP_DP_HP_1450::node<next_14_1447,Anon_1437> * 
+                   head::node<DP_DP_HP_1450,DP_DP_HP_1450>&next_14_1447=null&
+                   {FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 85 invocations Stop Omega... 37 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.07024,442)
+Total verification time: 0.168 second(s)
+	Time spent in main process: 0.112 second(s)
+	Time spent in child processes: 0.056 second(s)
+	Z3 Prover Time: 0.004 second(s)

@@ -1,0 +1,109 @@
+
+!!!Full processing file "sv-comp/dll_of_dll/destroy_slave.c"
+Parsing file "sv-comp/dll_of_dll/destroy_slave.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sv-comp/dll_of_dll/destroy_slave.c -o sv-comp/dll_of_dll/destroy_slave.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dll_destroy_slave: :HP_24
+!!! generate unknown predicate for Post synthesis of dll_destroy_slave: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(dll))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_25(dll,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_2$slave_item~slave_item: :HP_1346
+!!! generate unknown predicate for Post synthesis of while_13_2$slave_item~slave_item: :GP_1349Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_2$slave_item~slave_item... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1346,GP_1349]requires HP_1346(d_65,next_66)&
+truerequires emp
+ ensures GP_1349(d_65,d_65',next_66,next_66')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1346(d_65,next_66)&
+d_65!=null --> d_65::slave_item<next_21_1431,prev_21_1432> * 
+HP_1433(next_21_1431,next_66@NI) * HP_1434(prev_21_1432,next_66@NI) * 
+HP_1435(next_66,d_65@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1433(d_65',next_66@NI)&next_66'=d_65' --> HP_1346(d_65',next_66')&
+true,
+ // POST
+(2;1;0)HP_1346(d_65,next_66)&d_65=null & d_65'=null & d_65'=d_65 & 
+next_66'=next_66 --> GP_1349(d_65,d_65',next_66,next_66')&
+true]
+
+Procedure while_13_2$slave_item~slave_item SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ GP_1349(d_1460,d_1461,next_1462,next_1463) ::= emp&d_1461=d_1460 & next_1463=next_1462 & d_1460=null & d_1461=null(4,5),
+ HP_1346(d_1458,next_1459) ::= 
+ d_1458::slave_item<next_21_1431,DP_DP_HP_1434> * 
+ HP_1346(next_21_1431,next_21_1431)&next_1459=DP_DP_HP_1435
+ or emp&d_1458=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase d_65::HP_1346{}<next_66>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [d_65;next_66]
+                   emp&d_65'=d_65 & next_66'=next_66 & d_65=null & 
+                   d_65'=null&{FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure dll_destroy_slave$slave_item... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(dll)&
+truerequires emp
+ ensures GP_25(dll,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_24(d_65')&next_66'=null --> d_65'::HP_1346<next_66'>&
+true,
+ // POST
+(0)emp&dll=null & res=null & res=dll --> GP_25(dll,res)&
+true]
+
+Procedure dll_destroy_slave$slave_item SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(d_1525) ::= d_1525::HP_1346<next_66'>(4,5),
+ GP_25(dll_1526,res_1527) ::= emp&res_1527=dll_1526 & dll_1526=null & res_1527=null(4,5),
+ GP_1349(d_1460,d_1461,next_1462,next_1463) ::= emp&d_1461=d_1460 & next_1463=next_1462 & d_1460=null & d_1461=null(4,5),
+ HP_1346(d_1458,next_1459) ::= 
+ d_1458::slave_item<next_21_1431,DP_DP_HP_1434> * 
+ HP_1346(next_21_1431,next_21_1431)&next_1459=DP_DP_HP_1435
+ or emp&d_1458=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase dll::HP_1346{}<next_66'>&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   emp&res=dll & dll=null & res=null&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 100 invocations Stop Omega... 42 invocations 
+1 false contexts at: ( (13,2) )
+
+!!! log(small):(0.050022,418)
+Total verification time: 0.172 second(s)
+	Time spent in main process: 0.12 second(s)
+	Time spent in child processes: 0.052 second(s)
+	Z3 Prover Time: 0.004 second(s)

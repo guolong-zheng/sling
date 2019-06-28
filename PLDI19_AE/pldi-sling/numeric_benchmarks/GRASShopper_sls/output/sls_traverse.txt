@@ -1,0 +1,34 @@
+get_trace.py:65 - 5
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring inv-conditions at the location 12 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 15 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - (exists min!slist!13. slist(lst, min!slist!13:int) & True)
+dynsl.py:202 - ls(lst, nil) & True
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 15:
+dynsl.py:213 - ls(lst, curr) & curr=nil
+dynsl.py:213 - ls(lst, nil) & curr=nil
+dynsl.py:213 - (exists min!slist!244. slist(lst, min!slist!244:int) & curr=nil)
+dynsl.py:213 - (exists min!slist!281. slist(lst, min!slist!281:int) & curr=nil)
+dynsl.py:220 - Invariants at location 12:
+dynsl.py:227 - (exists min!slist!123. ls(lst, curr) * slist(curr, min!slist!123:int) & True)
+dynsl.py:227 - ls(lst, curr) * ls(curr, nil) & True
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 7
+dynsl.py:256 - Number of pre-defined predicates: 2
+dynsl.py:258 - Number of free variables: 14
+dynsl.py:259 - Number of atomic singleton predicates: 0
+dynsl.py:260 - Number of atomic inductive predicates: 10
+dynsl.py:261 - Number of pure constraints: 4
+dynsl.py:262 - Number of total invs: 8
+dynsl.py:263 - Number of pres:2
+dynsl.py:264 - Number of post:4
+dynsl.py:265 - Number of loop:2
+dynsl.py:266 - Running time (sec): 3.12761902809
+../example_numric/GRASShopper_sls/sls_traverse,3,7,8,14,0,10,4,8,2,4,2,3.12

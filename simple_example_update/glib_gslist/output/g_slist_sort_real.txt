@@ -1,0 +1,49 @@
+dynsl.py:221 - Inferring inv-conditions at the location 28 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 18 ...
+
+dynsl.py:221 - Inferring pre-conditions at the location 12 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 14 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 46 ...
+
+dynsl.py:299 - Precondition at location 12:
+dynsl.py:307 - lseg(list, nil) 
+dynsl.py:307 - list(list) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 18:
+dynsl.py:320 -  lseg(l2, fv0) * lseg(list, nil) * lseg(l2_next, fv1) * lseg(l1, fv0)  & list = res
+dynsl.py:320 -  lseg(l2, fv0) * list(list) * lseg(l2_next, fv1) * lseg(l1, fv0)  & list = res
+dynsl.py:320 -  lseg(l2, fv1) * list:node->node{fv3, fv2} * lseg(l2_next, fv0) * lseg(l1, fv1)  & list = res
+dynsl.py:312 - Postcondition at location 14:
+dynsl.py:320 - lseg(l2, nil) * lseg(l1, nil)  & re = nil & list = nil & l2_next = nil & l2_next = res
+dynsl.py:320 - lseg(l2, nil) * list(l1)  & re = nil & list = nil & l2_next = nil & l2_next = res
+dynsl.py:320 - lseg(l2, nil) * l1:node->node{fv0, list}  & re = nil & list = nil & l2_next = nil & l2_next = res
+dynsl.py:320 - list(l2) * lseg(l1, nil)  & re = nil & list = nil & l2_next = nil & l2_next = res
+dynsl.py:320 - list(l2) * list(l1)  & re = nil & list = nil & l2_next = nil & l2_next = res
+dynsl.py:320 - list(l2) * l1:node->node{fv0, list}  & re = nil & list = nil & l2_next = nil & l2_next = res
+dynsl.py:312 - Postcondition at location 46:
+dynsl.py:320 -  lseg(list, fv0) * lseg(t2, nil) * lseg(l2, t2) * lseg(l1, t1)  & res = nil & l2_next = nil & ret = nil & ret = res
+dynsl.py:320 -  lseg(list, fv0) * list(t2) * lseg(l2, t2) * lseg(l1, t1)  & res = nil & l2_next = nil & ret = nil & ret = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 28:
+dynsl.py:334 - lseg(l2, l2_next) * lseg(list, l1) * lseg(l2_next, nil) * lseg(l1, l2) 
+dynsl.py:334 - lseg(l2, l2_next) * lseg(list, l1) * list(l2_next) * lseg(l1, l2) 
+dynsl.py:334 - l2:node->node{fv0, l2_next} * lseg(list, l1) * lseg(l2_next, nil) * lseg(l1, l2) 
+dynsl.py:334 - l2:node->node{fv0, l2_next} * lseg(list, l1) * list(l2_next) * lseg(l1, l2) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 5
+dynsl.py:364 - Number of traces: 52
+dynsl.py:365 - Number of pre-defined predicates: 2
+dynsl.py:367 - Number of free variables: 14
+dynsl.py:368 - Number of atomic singleton predicates: 5
+dynsl.py:369 - Number of atomic inductive predicates: 45
+dynsl.py:370 - Number of pure constraints: 35
+dynsl.py:371 - Number of total invs: 17
+dynsl.py:372 - Number of pres:2
+dynsl.py:373 - Number of post:11
+dynsl.py:374 - Number of loop:4
+dynsl.py:375 - Running time (sec): 116.022132874
+../simple_example_update/glib_gslist/g_slist_sort_real,5,52,14,5,45,35,17,2,11,4,116.
+../simple_example_update/glib_gslist/g_slist_sort_real,5,52,5,45,35,17,2,11,4,116.

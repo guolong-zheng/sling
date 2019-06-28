@@ -1,0 +1,117 @@
+
+!!!Full processing file "GRASShopper//dl/dl_insert.dryad.c"
+Parsing file "GRASShopper//dl/dl_insert.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper//dl/dl_insert.dryad.c -o GRASShopper//dl/dl_insert.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of dl_insert: :HP_24
+!!! generate unknown predicate for Post synthesis of dl_insert: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(lst,elt))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_25(lst,elt,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_17_4$int~node: :HP_1349
+!!! generate unknown predicate for Post synthesis of while_17_4$int~node: :GP_1351Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_17_4$int~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1349,GP_1351]requires HP_1349(curr_66)&
+truerequires emp
+ ensures GP_1351(curr_66,curr_66')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1349(curr_66)&true --> curr_66::node<next_17_1455,prev_17_1456> * 
+HP_1457(next_17_1455) * HP_1458(prev_17_1456)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1457(curr_66') * (htrue)&curr_66'!=null --> HP_1349(curr_66')&
+true,
+ // POST
+(1;1;1;0)HP_1458(prev_17_1456) * curr_66::node<next_17_1455,prev_17_1456> * 
+(htrue) * GP_1351(next_17_1455,curr_66')&
+next_17_1455!=null --> GP_1351(curr_66,curr_66')&
+true,
+ // POST
+(2;1;1;0)HP_1457(next_17_1455) * HP_1458(prev_17_1456) * 
+curr_66::node<next_17_1455,prev_17_1456>&next_17_1455=null & 
+curr_66'=curr_66 --> GP_1351(curr_66,curr_66')&
+true,
+ // POST
+(2;1;0)HP_1349(curr_66)&curr_66'=curr_66 --> GP_1351(curr_66,curr_66')&
+true]
+
+Procedure while_17_4$int~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1349(curr_1484) ::= curr_1484::node<next_17_1455,DP_DP_HP_1458>&next_17_1455=null(4,5),
+ GP_1351(curr_1486,curr_1487) ::= 
+ emp&curr_1487=curr_1486 & curr_1486=DP_DP_DP_1476
+ or curr_1486::node<next_17_1455,DP_DP_HP_1458>&curr_1487=curr_1486 & 
+    next_17_1455=null
+ or curr_1486::node<next_17_1455,DP_DP_HP_1458> * (htrue) * 
+    GP_1351(next_17_1455,curr_1487)&next_17_1455!=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase curr_66::node<next_17_1455,DP_DP_HP_1458>&next_17_1455=null&
+       {FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [nondet_65;curr_66]
+                   (exists curr_66': curr_66::GP_1351{}<curr_66'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure dl_insert$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(lst,elt)&
+truerequires emp
+ ensures GP_25(lst,elt,res)&true{,(4,5)=__norm#E};
+Proving binding in method dl_insert$node~node for spec  EAssume 
+   GP_25(lst,elt,res)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,1 ); (,2 )]) bind: node  curr_66'::node<next_27_1366',prev_27_1367'>@L cannot be derived from context
+GRASShopper//dl/dl_insert.dryad.c_27:25_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,1 ); (,2 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]GRASShopper//dl/dl_insert.dryad.c_27:25_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "GRASShopper//dl/dl_insert.dryad.c",Line:27,Col:25
+
+Procedure dl_insert$node~node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure dl_insert$node~node
+Stop z3... 122 invocations Stop Omega... 60 invocations 
+1 false contexts at: ( (17,4) )
+
+!!! log(small):(0.075627,462)
+Total verification time: 0.176 second(s)
+	Time spent in main process: 0.096 second(s)
+	Time spent in child processes: 0.08 second(s)
+	Z3 Prover Time: 0.004 second(s)

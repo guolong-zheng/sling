@@ -19,5 +19,7 @@ int main(int argc, char * argv[]){
     sscanf(argv[1],"%d",&size);
     Node * hd = create_queue_buggy(size);
     simpleq_insert_head(hd);
+    simpleq_insert_head(NULL);
+    simpleq_insert_head(hd);
     return 0;
 }

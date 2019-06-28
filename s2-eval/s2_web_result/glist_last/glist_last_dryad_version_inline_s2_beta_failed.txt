@@ -1,0 +1,9 @@
+!!!Full processing file "../src/temp/isllhead.12512955.6822689.c" 
+Parsing file "../src/temp/isllhead.12512955.6822689.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/isllhead.12512955.6822689.c -o ../src/temp/isllhead.12512955.6822689.c.prep 
+caught 
+
+Exception occurred: Errormsg.Error 
+Error3(s) detected at main 
+39:1-59:2: Error: Error in collectFunction g_list_last: Cabs2cil.HipSpecsError("Function specs error!line 40") 

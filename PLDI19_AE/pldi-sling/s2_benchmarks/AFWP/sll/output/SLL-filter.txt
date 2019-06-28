@@ -1,0 +1,173 @@
+
+!!!Full processing file "AFWP//sll/SLL-filter.dryad.c"
+Parsing file "AFWP//sll/SLL-filter.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E AFWP//sll/SLL-filter.dryad.c -o AFWP//sll/SLL-filter.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of to_remove: :HP_21
+!!! generate unknown predicate for Post synthesis of to_remove: :GP_22
+!!! generate unknown predicate for Pre synthesis of filter: :HP_24
+!!! generate unknown predicate for Post synthesis of filter: :GP_25
+!!! ss:EInfer @shape[HP_24,GP_25] EBase: [][](HRel HP_24(h))*(true)( FLOW __norm) {EAssume: 14,:(HRel GP_25(h,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_20_2$int~node~node~node: :HP_1356
+!!! generate unknown predicate for Post synthesis of while_20_2$int~node~node~node: :GP_1360Starting Omega.../usr/local/bin/oc
+
+Checking procedure to_remove$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_21,GP_22]requires HP_21(z@NI)&truerequires emp
+ ensures GP_22(z)&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // POST
+(0)HP_21(z@NI) * (htrue)&true --> GP_22(z)&
+true]
+
+Procedure to_remove$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_21(z) ::= NONE,
+ GP_22(z_1447) ::= HP_21(z_1447) * (htrue)(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase emp&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   htrue&{FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure while_20_2$int~node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1356,GP_1360]requires HP_1356(inxt_68,i_66,j_67)&
+truerequires emp
+ ensures GP_1360(inxt_68,inxt_68',i_66,i_66',j_67,j_67')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;1;0)HP_1356(inxt_68,i_66,j_67) * (htrue)&
+i_66!=null --> i_66::node<next_28_1472> * 
+HP_1473(next_28_1472,inxt_68@NI,j_67@NI) * HP_1474(inxt_68,j_67,i_66@NI)&
+true,
+ // BIND
+(1;1;1;0)(htrue) * HP_1474(inxt_1476,j_67',i_66@NI)&
+true --> j_67'::node<next_29_1479> * 
+HP_1480(next_29_1479,inxt_1476@NI,i_66@NI) * 
+HP_1481(inxt_1476,j_67'@NI,i_66@NI)&
+true,
+ // BIND
+(2;1;1;0)HP_1356(inxt_68,i_66,j_67) * (htrue)&
+i_66!=null --> i_66::node<next_33_1487> * 
+HP_1488(next_33_1487,inxt_68@NI,j_67@NI) * HP_1489(inxt_68,j_67,i_66@NI)&
+true,
+ // PRE_REC
+(1;1;1;0)(htrue) * HP_1473(i_66',inxt_1476@NI,j_67@NI) * j_67::node<i_66'>&
+inxt_68'=i_66' --> HP_1356(inxt_68',i_66',j_67)&
+true,
+ // PRE_REC
+(2;1;1;0)(htrue) * HP_1488(i_66',inxt_68'@NI,j_1483@NI) * 
+HP_1489(inxt_68',j_1483,i_66@NI) * i_66::node<i_66'>&
+true --> HP_1356(inxt_68',i_66',i_66)&
+true,
+ // POST
+(1;1;1;0)(htrue) * i_66::node<next_28_1472> * 
+HP_1481(inxt_68,j_67@NI,i_66@NI) * 
+GP_1360(next_28_1472,inxt_68',next_28_1472,i_66',j_67,j_67')&
+j_67!=null --> GP_1360(inxt_68,inxt_68',i_66,i_66',j_67,j_67')&
+true,
+ // POST
+(1;1;1;0)(htrue) * HP_1480(next_29_1479,inxt_68@NI,i_1491@NI)&true --> emp&
+true,
+ // POST
+(2;1;1;0)(htrue) * GP_1360(inxt_68,inxt_68',next_33_1487,i_66',i_66,j_67')&
+i_66!=null --> GP_1360(inxt_68,inxt_68',i_66,i_66',j_67,j_67')&
+true,
+ // POST
+(2;1;0)HP_1356(inxt_68,i_66,j_67)&i_66=null & i_66'=null & i_66'=i_66 & 
+inxt_68'=inxt_68 & 
+j_67'=j_67 --> GP_1360(inxt_68,inxt_68',i_66,i_66',j_67,j_67')&
+true]
+
+Procedure while_20_2$int~node~node~node SUCCESS.
+
+!!!>>>>>> mismatch ptr i_66'::HP_1356<inxt_68',i_66> is not found (or inst) in the lhs <<<<<<
+!!!>>>>>> mismatch ptr i_66'::HP_1356<inxt_68',i_66> is not found (or inst) in the lhs <<<<<<
+WARNING: _0:0_0:0:FAIL: Can not prove:
+ (2;1;1;0)(htrue) * HP_1489(inxt_68',j_1483,i_66) * 
+  i_66::node<i_66'> --> i_66'::HP_1356<inxt_68',i_66>
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1356(inxt_1762,i_1763,j_1764) ::= emp&i_1763=null(4,5),
+ GP_22(z_1447) ::= HP_21(z_1447) * (htrue)(4,5),
+ HP_21(z) ::= NONE]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase emp&i_66=null&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [tmp_69;inxt_68;i_66;j_67]
+                   GP_1360(inxt_68,inxt_68',i_66,i_66',j_67,j_67')&
+                   {FLOW,(4,5)=__norm#E}[]
+                   
+Checking procedure filter$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_24,GP_25]requires HP_24(h)&
+truerequires emp
+ ensures GP_25(h,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(0)HP_24(h)&true --> emp&
+h=null,
+ // POST
+(0)HP_24(i_1844)&h=null & h=i_1844 & i_1844=null & j_1845=null & 
+j_1845=i_1844 --> GP_25(i_1844,res)&
+true]
+
+Procedure filter$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_24(h_1848) ::= emp&h_1848=null(4,5),
+ GP_25(i_1849,res_1850) ::= emp&i_1849=null(4,5),
+ GP_22(z_1447) ::= HP_21(z_1447) * (htrue)(4,5),
+ HP_1356(inxt_1762,i_1763,j_1764) ::= emp&i_1763=null(4,5),
+ HP_21(z) ::= NONE]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase emp&h=null&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   emp&h=null&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 142 invocations Stop Omega... 104 invocations 
+1 false contexts at: ( (20,2) )
+
+!!! log(small):(0.089845,658)
+Total verification time: 0.184 second(s)
+	Time spent in main process: 0.112 second(s)
+	Time spent in child processes: 0.072 second(s)
+	Z3 Prover Time: 0. second(s)

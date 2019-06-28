@@ -1,0 +1,29 @@
+create break point at : 15
+create break point at : 24
+stop at : 15
+stop at : 24
+get_trace.py:66 - [
+1 - 15:
+{
+}
+
+{
+}
+
+]
+get_trace.py:67 - []
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 0
+dynsl.py:364 - Number of traces: 0
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 0
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 0
+dynsl.py:370 - Number of pure constraints: 0
+dynsl.py:371 - Number of total invs: 0
+dynsl.py:372 - Number of pres:0
+dynsl.py:373 - Number of post:0
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 0.340251922607
+../c++/listtest/test,0,0,0,0,0,0,0,0,0,0,0.34
+../c++/listtest/test,0,0,0,0,0,0,0,0,0,0.34

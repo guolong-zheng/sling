@@ -1,0 +1,40 @@
+dynsl.py:221 - Inferring inv-conditions at the location 16 ...
+
+dynsl.py:221 - Inferring pre-conditions at the location 10 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 21 ...
+
+dynsl.py:299 - Precondition at location 10:
+dynsl.py:307 -  dll(dll, nil, fv0, nil) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 21:
+dynsl.py:320 -  dll(dll, nil, dll, nil)  & d = nil & next = nil & dll = res
+dynsl.py:320 - dll:slave_item->slave_item{nil, d}  & d = nil & dll = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 16:
+dynsl.py:334 -  dll(next, fv2, fv1, nil) * dll(d, next, next, d) * dll(dll, nil, fv0, nil) 
+dynsl.py:334 -  dll(next, fv6, fv5, nil) * dll(d, fv4, fv3, next) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, fv5, fv4, nil) * dll(d, next, fv3, next) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, fv4, dll, fv3) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, dll, fv2, fv1) * dll(dll, nil, fv0, nil) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, fv2, next, fv1) * dll(dll, nil, fv0, nil) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, fv4, fv3, next) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, next, fv3, next) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, fv4, fv3, nil) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, nil, nil, next) * dll(d, nil, fv3, next) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:334 -  dll(next, nil, nil, fv4) * dll(d, next, fv3, next) * dll(dll, fv2, fv1, fv0) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 12
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 51
+dynsl.py:368 - Number of atomic singleton predicates: 1
+dynsl.py:369 - Number of atomic inductive predicates: 35
+dynsl.py:370 - Number of pure constraints: 5
+dynsl.py:371 - Number of total invs: 14
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:2
+dynsl.py:374 - Number of loop:11
+dynsl.py:375 - Running time (sec): 51.9384319782
+../simple_example_update/sv-comp/dll_of_dll/destroy_slave,3,12,51,1,35,5,14,1,2,11,51.9
+../simple_example_update/sv-comp/dll_of_dll/destroy_slave,3,12,1,35,5,14,1,2,11,51.9

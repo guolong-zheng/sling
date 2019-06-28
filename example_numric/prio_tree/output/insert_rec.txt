@@ -1,0 +1,33 @@
+get_trace.py:65 - 0
+dynsl.py:144 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 39 ...
+
+dynsl.py:144 - Inferring post-conditions at the location 15 ...
+
+dynsl.py:194 - ==============================
+dynsl.py:195 - Precondition at location 8:
+dynsl.py:202 - emp
+dynsl.py:204 - Corresponding postconditions:
+dynsl.py:208 - Postconditions at location 15:
+dynsl.py:213 - leaf:b_node->b_node{x, x, fv!204, fv!205} & x=nil & leaf=res
+dynsl.py:213 - (exists p!treep!191, mi!treep!189, mx!treep!190. treep(leaf, mi!treep!189:int, mx!treep!190:int, p!treep!191:int) & x=nil & mi!treep!189=mx!treep!190 & leaf=res)
+dynsl.py:213 - (exists mi!treep!206, mx!treep!207, p!treep!208. treep(leaf, mi!treep!206:int, mx!treep!207:int, p!treep!208:int) & x=nil & leaf=res & mi!treep!206=mx!treep!207)
+dynsl.py:213 - leaf:b_node->b_node{x, x, fv!221, fv!222} & x=nil & leaf=res
+dynsl.py:208 - Postconditions at location 39:
+dynsl.py:213 - (exists mx!treep!91, mi!treep!90, p!treep!92, p!treep!155, mx!treep!154, mi!treep!153. treep(tmp, mi!treep!90:int, mx!treep!91:int, p!treep!92:int) * treep(xl, mi!treep!153:int, mx!treep!154:int, p!treep!155:int) * x:b_node->b_node{xl, tmp, fv!187, fv!188} & mx!treep!91=mi!treep!90 & xl=xr & xl=nil & xr=nil & x=res)
+dynsl.py:213 - (exists mi!treep!63, mx!treep!64, p!treep!65, p!treep!119, mx!treep!118, mi!treep!117. treep(tmp, mi!treep!63:int, mx!treep!64:int, p!treep!65:int) * treep(xl, mi!treep!117:int, mx!treep!118:int, p!treep!119:int) * x:b_node->b_node{xl, tmp, fv!151, fv!152} & mi!treep!63=mx!treep!64 & xl=xr & xl=nil & xr=nil & x=res)
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 3
+dynsl.py:255 - Number of traces: 6
+dynsl.py:256 - Number of pre-defined predicates: 1
+dynsl.py:258 - Number of free variables: 30
+dynsl.py:259 - Number of atomic singleton predicates: 4
+dynsl.py:260 - Number of atomic inductive predicates: 6
+dynsl.py:261 - Number of pure constraints: 20
+dynsl.py:262 - Number of total invs: 7
+dynsl.py:263 - Number of pres:1
+dynsl.py:264 - Number of post:6
+dynsl.py:265 - Number of loop:0
+dynsl.py:266 - Running time (sec): 3.55600309372
+../example_numric/prio_tree/insert_rec,3,6,7,30,4,6,20,7,1,6,0,3.55

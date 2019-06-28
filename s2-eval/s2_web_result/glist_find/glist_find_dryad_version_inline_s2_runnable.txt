@@ -1,0 +1,141 @@
+!!!Full processing file "../src/temp/gslist-last.83889523.0627717.c" 
+Parsing file "../src/temp/gslist-last.83889523.0627717.c" by cil parser... 
+GCC Preprocessing... 
+gcc -C -E ../src/temp/gslist-last.83889523.0627717.c -o ../src/temp/gslist-last.83889523.0627717.c.prep 
+
+!!! generate unknown predicate for Pre synthesis of g_list_find: :HP_16 
+!!! generate unknown predicate for Post synthesis of g_list_find: :GP_17 
+!!! ss:EInfer @shape[HP_16,GP_17] EBase: [][](HRel HP_16(list))*(true)( FLOW __norm) {EAssume: 7,:(HRel GP_17(list,res))*(true)( FLOW __norm)} 
+!!! processing primitives "["prelude.ss"] 
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_47_2$node~int: :HP_1226 
+!!! generate unknown predicate for Post synthesis of while_47_2$node~int: :GP_1228 
+Checking procedure while_47_2$node~int... 
+
+
+****************************** 
+******* SPECIFICATION1 ******** 
+****************************** 
+infer[@shape HP_1226,GP_1228]requires HP_1226(curr_41)& 
+truerequires emp 
+ensures GP_1228(curr_41,curr_41')&true{,(4,5)=__norm#E}; 
+Starting Omega.../usr/local/bin/oc 
+
+************************************* 
+*******shape relational assumptions ******** 
+************************************* 
+[ // BIND 
+(1;1;0)HP_1226(curr_41)& 
+curr_41!=null --> curr_41::node<key_54_1275,next_54_1276,prev_54_1277> * 
+HP_1278(next_54_1276) * 
+HP_1279(prev_54_1277)& 
+true, 
+// PRE_REC 
+(2;1;1;0)HP_1278(curr_41')& 
+true --> HP_1226(curr_41')& 
+true, 
+// POST 
+(1;1;1;0)HP_1278(next_54_1276) * 
+HP_1279(prev_54_1277) * 
+curr_41::node<key_54_1275,next_54_1276,prev_54_1277>& 
+curr_41'=curr_41 --> GP_1228(curr_41,curr_41')& 
+true, 
+// POST 
+(2;1;1;0)HP_1279(prev_54_1277) * 
+curr_41::node<key_54_1275,next_54_1276,prev_54_1277> * 
+GP_1228(next_54_1276,curr_41')& 
+true --> GP_1228(curr_41,curr_41')& 
+true, 
+// POST 
+(2;1;0)HP_1226(curr_41)&curr_41=null & 
+curr_41'=null & 
+curr_41'=curr_41 --> GP_1228(curr_41,curr_41')& 
+true] 
+
+Procedure while_47_2$node~int SUCCESS. 
+
+********************************************************* 
+*******relational definition ******** 
+********************************************************* 
+[ HP_1226(curr_1315) ::= 
+curr_1315::node<key_54_1303,next_54_1304,prev_54_1305> * 
+HP_1226(next_54_1304) 
+or emp&curr_1315=null 
+(4,5), 
+GP_1228(curr_1317,curr_1318) ::= 
+curr_1318::node<key_54_1275,next_54_1276,DP_DP_HP_1279> * 
+HP_1226(next_54_1276)&curr_1318=curr_1317 
+or curr_1318::node<key_54_1275,next_54_1276,DP_DP_HP_1279> * 
+DP_1297(next_54_1316)&curr_1318=curr_1317 
+or curr_1317::node<key_54_1275,next_54_1276,DP_DP_HP_1279> * 
+GP_1228(next_54_1276,curr_1318) 
+or emp&curr_1317=null & curr_1318=null 
+(4,5)] 
+************************************* 
+
+!!! INFERRED SHAPE SPEC: EBase curr_41::HP_1226{}<>&{FLOW,(4,5)=__norm#E}[] 
+EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[] 
+EAssume ref [curr_41] 
+(exists curr_41: curr_41'::GP_1228{}<curr_41>& 
+{FLOW,(4,5)=__norm#E})[] 
+
+Checking procedure g_list_find$node~int... 
+
+
+****************************** 
+******* SPECIFICATION1 ******** 
+****************************** 
+infer[@shape HP_16,GP_17]requires HP_16(list)& 
+truerequires emp 
+ensures GP_17(list,res)&true{,(4,5)=__norm#E}; 
+
+************************************* 
+*******shape relational assumptions ******** 
+************************************* 
+[ // PRE 
+(0)HP_16(curr_41')& 
+true --> curr_41'::HP_1226<>& 
+true, 
+// POST 
+(0)res::GP_1228<curr_1374>& 
+true --> GP_17(list,res)& 
+true] 
+
+Procedure g_list_find$node~int SUCCESS. 
+
+********************************************************* 
+*******relational definition ******** 
+********************************************************* 
+[ HP_16(curr_1375) ::= curr_1375::HP_1226<>(4,5), 
+GP_17(list_1376,res_1377) ::= res_1377::GP_1228<curr_1374>(4,5), 
+GP_1228(curr_1317,curr_1318) ::= 
+curr_1318::node<key_54_1275,next_54_1276,DP_DP_HP_1279> * 
+HP_1226(next_54_1276)&curr_1318=curr_1317 
+or curr_1318::node<key_54_1275,next_54_1276,DP_DP_HP_1279> * 
+DP_1297(next_54_1316)&curr_1318=curr_1317 
+or curr_1317::node<key_54_1275,next_54_1276,DP_DP_HP_1279> * 
+GP_1228(next_54_1276,curr_1318) 
+or emp&curr_1317=null & curr_1318=null 
+(4,5), 
+HP_1226(curr_1315) ::= 
+curr_1315::node<key_54_1303,next_54_1304,prev_54_1305> * 
+HP_1226(next_54_1304) 
+or emp&curr_1315=null 
+(4,5)] 
+************************************* 
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1226{}<>&{FLOW,(1,31)=__flow#E}[] 
+EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[] 
+EAssume 
+(exists curr_1374: res::GP_1228{}<curr_1374>& 
+{FLOW,(4,5)=__norm#E})[] 
+Stop z3... 93 invocations Stop Omega... 37 invocations 
+1 false contexts at: ( (47,2) ) 
+
+!!! log(small):(0.067479,448) 
+Total verification time: 0.202517 second(s) 
+Time spent in main process: 0.130441 second(s) 
+Time spent in child processes: 0.072076 second(s) 
+Z3 Prover Time: 0.003158 second(s) 
+

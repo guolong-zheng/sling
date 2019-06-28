@@ -1,0 +1,114 @@
+
+!!!Full processing file "GRASShopper/sl/sl_remove.dryad.c"
+Parsing file "GRASShopper/sl/sl_remove.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper/sl/sl_remove.dryad.c -o GRASShopper/sl/sl_remove.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sl_remove: :HP_22
+!!! generate unknown predicate for Post synthesis of sl_remove: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(lst))*(true)( FLOW __norm) {EAssume: 13,:(HRel GP_23(lst,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_17_4$int~node: :HP_1347
+!!! generate unknown predicate for Post synthesis of while_17_4$int~node: :GP_1349Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_17_4$int~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1347,GP_1349]requires HP_1347(curr_64)&
+truerequires emp
+ ensures GP_1349(curr_64,curr_64')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1347(curr_64)&true --> curr_64::node<next_17_1439> * 
+HP_1440(next_17_1439)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1440(curr_64') * (htrue)&curr_64'!=null --> HP_1347(curr_64')&
+true,
+ // POST
+(1;1;1;0)curr_64::node<next_17_1439> * (htrue) * 
+GP_1349(next_17_1439,curr_64')&
+next_17_1439!=null --> GP_1349(curr_64,curr_64')&
+true,
+ // POST
+(2;1;1;0)HP_1440(next_17_1439) * curr_64::node<next_17_1439>&
+next_17_1439=null & curr_64'=curr_64 --> GP_1349(curr_64,curr_64')&
+true,
+ // POST
+(2;1;0)HP_1347(curr_64)&curr_64'=curr_64 --> GP_1349(curr_64,curr_64')&
+true]
+
+Procedure while_17_4$int~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1347(curr_1464) ::= curr_1464::node<next_17_1439>&next_17_1439=null(4,5),
+ GP_1349(curr_1466,curr_1467) ::= 
+ emp&curr_1467=curr_1466 & curr_1466=DP_DP_DP_1458
+ or curr_1466::node<next_17_1439>&curr_1467=curr_1466 & next_17_1439=null
+ or curr_1466::node<next_17_1439> * (htrue) * 
+    GP_1349(next_17_1439,curr_1467)&next_17_1439!=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase curr_64::node<next_17_1439>&next_17_1439=null&{FLOW,(1,31)=__flow#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [nondet_63;curr_64]
+                   (exists curr_64': curr_64::GP_1349{}<curr_64'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure sl_remove$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(lst)&
+truerequires emp
+ ensures GP_23(lst,res)&true{,(4,5)=__norm#E};
+Proving binding in method sl_remove$node for spec  EAssume 
+   GP_23(lst,res)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,1 ); (,2 )]) bind: node  curr_64'::node<next_27_1362'>@L cannot be derived from context
+GRASShopper/sl/sl_remove.dryad.c_27:17_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,1 ); (,2 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]GRASShopper/sl/sl_remove.dryad.c_27:17_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "GRASShopper/sl/sl_remove.dryad.c",Line:27,Col:17
+
+Procedure sl_remove$node FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure sl_remove$node
+Stop z3... 113 invocations Stop Omega... 57 invocations 
+1 false contexts at: ( (17,4) )
+
+!!! log(small):(0.083071,448)
+Total verification time: 0.208 second(s)
+	Time spent in main process: 0.124 second(s)
+	Time spent in child processes: 0.084 second(s)
+	Z3 Prover Time: 0.008 second(s)

@@ -1,0 +1,74 @@
+
+!!!Full processing file "sv-comp/rule_60_list/rule_60_list_del.dryad.c"
+Parsing file "sv-comp/rule_60_list/rule_60_list_del.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sv-comp/rule_60_list/rule_60_list_del.dryad.c -o sv-comp/rule_60_list/rule_60_list_del.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of list_del: :HP_26
+!!! generate unknown predicate for Post synthesis of list_del: :GP_27
+!!! ss:EInfer @shape[HP_26,GP_27] EBase: [][](HRel HP_26(entry))*(true)( FLOW __norm) {EAssume: 10,:(HRel GP_27(entry))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure list_del$list_head... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_26,GP_27]requires HP_26(entry)&
+truerequires emp
+ ensures GP_27(entry)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_26(entry)&
+true --> entry::list_head<inserted_12_1436,next_12_1437,prev_12_1438> * 
+HP_1439(next_12_1437) * HP_1440(prev_12_1438)&
+true,
+ // BIND
+(1;0)HP_1440(prev_12_1438)&
+prev_12_1438!=null --> prev_12_1438::list_head<inserted_16_1459,next_16_1460,prev_16_1461> * 
+HP_1462(next_16_1460) * HP_1463(prev_16_1461)&
+true,
+ // BIND
+(1;1;0)HP_1439(next_12_1437)&
+next_12_1437!=null --> next_12_1437::list_head<inserted_19_1473,next_19_1474,prev_19_1475> * 
+HP_1476(next_19_1474) * HP_1477(prev_19_1475)&
+true,
+ // BIND
+(1;2;0)HP_1439(next_12_1437)&
+next_12_1437!=null --> next_12_1437::list_head<inserted_19_1478,next_19_1479,prev_19_1480> * 
+HP_1481(next_19_1479) * HP_1482(prev_19_1480)&
+true]
+
+Procedure list_del$list_head SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_26(entry_1578) ::= entry_1578::list_head<inserted_12_1436,next_12_1437,prev_12_1438> * 
+next_12_1437::list_head<inserted_19_1478,DP_DP_HP_1481,DP_DP_HP_1482> * 
+prev_12_1438::list_head<inserted_16_1459,DP_DP_HP_1462,DP_DP_HP_1463>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[inserted_12_1436; inserted_19_1478; 
+       inserted_16_1459](ex)[]entry::list_head<inserted_12_1436,next_12_1437,prev_12_1438> * 
+       next_12_1437::list_head<inserted_19_1478,DP_DP_HP_1481,DP_DP_HP_1482> * 
+       prev_12_1438::list_head<inserted_16_1459,DP_DP_HP_1462,DP_DP_HP_1463>&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[inserted_12_1436; inserted_19_1478; 
+               inserted_16_1459](ex)[]emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   GP_27(entry)&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 125 invocations Stop Omega... 52 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.111254,781)
+Total verification time: 0.268 second(s)
+	Time spent in main process: 0.172 second(s)
+	Time spent in child processes: 0.096 second(s)
+	Z3 Prover Time: 0. second(s)

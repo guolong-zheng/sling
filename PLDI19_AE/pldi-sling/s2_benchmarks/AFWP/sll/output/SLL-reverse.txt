@@ -1,0 +1,94 @@
+
+!!!Full processing file "AFWP//sll/SLL-reverse.dryad.c"
+Parsing file "AFWP//sll/SLL-reverse.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E AFWP//sll/SLL-reverse.dryad.c -o AFWP//sll/SLL-reverse.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of SLL_reverse: :HP_22
+!!! generate unknown predicate for Post synthesis of SLL_reverse: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(h))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_23(h,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_14_2$node~node~node: :HP_1345
+!!! generate unknown predicate for Post synthesis of while_14_2$node~node~node: :GP_1349Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_14_2$node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1345,GP_1349]requires HP_1345(j_64,k_65,i_63)&
+truerequires emp
+ ensures GP_1349(j_64,j_64',k_65,k_65',i_63,i_63')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1345(j_64,k_65,i_63)&i_63!=null --> i_63::node<next_21_1432> * 
+HP_1433(next_21_1432,j_64@NI,k_65@NI) * HP_1434(j_64,k_65,i_63@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1433(i_63',j_1440@NI,k_65@NI) * HP_1434(j_1440,k_65,i_1441@NI) * 
+i_1441::node<j_1440>&k_65'=i_63' --> HP_1345(i_1441,k_65',i_63')&
+true,
+ // POST
+(1;1;0)GP_1349(i_63,j_64',next_22_1439,k_65',next_22_1439,i_63')&
+i_63!=null --> GP_1349(j_64,j_64',k_65,k_65',i_63,i_63')&
+true,
+ // POST
+(2;1;0)HP_1345(j_64,k_65,i_63)&i_63=null & i_63'=null & i_63'=i_63 & 
+j_64'=j_64 & k_65'=k_65 --> GP_1349(j_64,j_64',k_65,k_65',i_63,i_63')&
+true]
+
+Procedure while_14_2$node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at AFWP//sll/SLL-reverse.dryad.c_14:2_25:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1345,GP_1349]
+   EBase HP_1345(j_64,k_65,i_63)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [j_64;k_65;i_63]
+                     GP_1349(j_64,j_64',k_65,k_65',i_63,i_63')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure SLL_reverse$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(h)&
+truerequires emp
+ ensures GP_23(h,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure SLL_reverse$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure SLL_reverse$node
+Stop z3... 72 invocations Stop Omega... 23 invocations 
+1 false contexts at: ( (14,2) )
+
+!!! log(small):(0.032054,293)
+Total verification time: 0.092 second(s)
+	Time spent in main process: 0.064 second(s)
+	Time spent in child processes: 0.028 second(s)
+	Z3 Prover Time: 0.012 second(s)

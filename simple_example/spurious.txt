@@ -1,0 +1,58 @@
+(1)glib_gslist/g_slist_find.c:
+   line 8: list = nil
+   expected: list(list)
+
+(2)glib_gslist/g_slist_nth_data.c:
+   line 9: list:node->node{fv!17, nil}
+   expected: list(list)
+
+(3)glib_gslist/g_slist_remove_link.c:
+   line 11: list(link) * list:node->node{fv!452, link}
+   expected: lseg(list, link)*list(link)
+
+(4)AFWP/sll_delete_all.c
+   line 13: (exists fv!110, fv!125. sll(i) * lseg(h, fv!110) * lseg(j, fv!125))
+   expected: sll(i) * j=nil
+
+(5)AFWP/sll_last.c
+   line 16: (exists fv!54, fv!69. sll(i) * lseg(h, fv!54) * lseg(j, fv!69))
+   expected: lseg(h, j)* (j=nil \/ (j->node{i} * sll(i)) )
+
+(6)AFWP/sll_merge.c
+   line 17: (exists fv!95, fv!124. klist(i) * klseg(h, fv!95) * klseg(k, fv!124) * klist(j))
+   expected: klist(i) * klist(j) * lseg(h, k) * ((k=nil & h=i) \/ (k->node{fv!1,i} * klist(i)))
+
+(7)AFWP/sll_revers.c
+   line 17: (exists fv!119, fv!161. lseg(i, k) * lseg(h, fv!119) * sll(k) * lseg(j, fv!161))
+   expected: sll(i) * sll(j)
+
+(8)GRASShopper/dl/dl_copy.c
+   line 24: no postcondition inferred
+   expected: dll(cp)
+
+(9)GRASShopper/dl/dl_dispose.c
+   line 8: no precondition inferred
+   expected: dll(a)
+
+(10)GRASShopper/dl/dl_filter.c
+   line 8: no precondition inferred
+   expected: dll(x)
+   line 35: no postcondition inferred
+   expected: dll(res)
+
+(11)GRASShopper/rec/rec_dispose.c
+   line 14: ls(lst, nil)
+   expected: emp
+
+(12)GRASShoper/sl/sl_dispose.c
+   line 8: lst=nil
+   expected: ll(lst)
+
+(13)sv-comp/dll_of_dll/destroy_slave.c
+   line 10: no precondition inferred 
+   expected: dll(dll)
+
+(14)sortlist/find_last_sorted.c
+   line 16: curr:node->node{fv!17, nil} * ls(l, curr)
+   expected: ls(l, curr)*ll(curr)
+

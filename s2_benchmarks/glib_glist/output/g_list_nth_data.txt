@@ -1,0 +1,123 @@
+
+!!!Full processing file "glib_glist//g_list_nth_data.dryad.c"
+Parsing file "glib_glist//g_list_nth_data.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_glist//g_list_nth_data.dryad.c -o glib_glist//g_list_nth_data.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_list_nth_data: :HP_23
+!!! generate unknown predicate for Post synthesis of g_list_nth_data: :GP_24
+!!! ss:EInfer @shape[HP_23,GP_24] EBase: [][](HRel HP_23(list))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_24(list))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_2$node~int: :HP_1343
+!!! generate unknown predicate for Post synthesis of while_13_2$node~int: :GP_1345Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_2$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1343,GP_1345]requires HP_1343(list)&
+truerequires emp
+ ensures GP_1345(list,list')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;1;0)HP_1343(list)&
+list!=null --> list::node<key_21_1414,next_21_1415,prev_21_1416> * 
+HP_1417(next_21_1415) * HP_1418(prev_21_1416)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1417(list')&true --> HP_1343(list')&
+true,
+ // POST
+(1;1;1;0)HP_1418(prev_21_1416) * 
+list::node<key_21_1414,next_21_1415,prev_21_1416> * 
+GP_1345(next_21_1415,list')&true --> GP_1345(list,list')&
+true,
+ // POST
+(2;1;1;0)HP_1343(list)&list=null & list'=null & 
+list'=list --> GP_1345(list,list')&
+true,
+ // POST
+(2;1;0)HP_1343(list)&list'=list --> GP_1345(list,list')&
+true]
+
+Procedure while_13_2$node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1343(list_1441) ::= 
+ HP_1343(next_21_1434) * 
+ list_1441::node<key_21_1433,next_21_1434,DP_DP_HP_1418>
+ or emp&list_1441=DP_DP_DP_1427
+ or emp&list_1441=DP_DP_DP_1427 & list_1441!=null
+ or emp&list_1441=DP_DP_DP_1427 & list_1441=null
+ or HP_1343(next_21_1434) * 
+    list_1441::node<key_21_1433,next_21_1434,DP_DP_HP_1418>
+ (4,5),
+ GP_1345(list_1442,list_1443) ::= 
+ list_1442::node<key_21_1414,next_21_1415,DP_DP_HP_1418> * 
+ GP_1345(next_21_1415,list_1443)
+ or emp&list_1443=list_1442 & list_1442=DP_DP_DP_1427
+ or emp&list_1442=null & list_1443=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1343{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [list;n]
+                   (exists list': list::GP_1345{}<list'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure g_list_nth_data$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_23,GP_24]requires HP_23(list)&
+truerequires emp
+ ensures GP_24(list)&true{,(4,5)=__norm#E};
+Proving binding in method g_list_nth_data$node~int for spec  EAssume 
+   GP_24(list)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,0 ); (,1 )]) bind: node  list'::node<key_24_1360',next_24_1361',prev_24_1362'>@L cannot be derived from context
+glib_glist//g_list_nth_data.dryad.c_24:10_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,0 ); (,1 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]glib_glist//g_list_nth_data.dryad.c_24:10_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "glib_glist//g_list_nth_data.dryad.c",Line:24,Col:10
+
+Procedure g_list_nth_data$node~int FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure g_list_nth_data$node~int
+Stop z3... 128 invocations Stop Omega... 36 invocations 
+1 false contexts at: ( (13,2) )
+
+!!! log(small):(0.048028,398)
+Total verification time: 0.12 second(s)
+	Time spent in main process: 0.08 second(s)
+	Time spent in child processes: 0.04 second(s)
+	Z3 Prover Time: 0.004 second(s)

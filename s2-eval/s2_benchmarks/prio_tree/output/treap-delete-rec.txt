@@ -1,0 +1,193 @@
+
+!!!Full processing file "prio_tree/treap-delete-rec.dryad.c"
+Parsing file "prio_tree/treap-delete-rec.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E prio_tree/treap-delete-rec.dryad.c -o prio_tree/treap-delete-rec.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of treap_remove_root_rec: :HP_28
+!!! generate unknown predicate for Post synthesis of treap_remove_root_rec: :GP_29
+!!! generate unknown predicate for Pre synthesis of treap_delete_rec: :HP_30
+!!! generate unknown predicate for Post synthesis of treap_delete_rec: :GP_31
+!!! ss:EInfer @shape[HP_30,GP_31] EBase: [][](HRel HP_30(x))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_31(x,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure treap_remove_root_rec$b_node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_28,GP_29]requires HP_28(x)&truerequires emp
+ ensures GP_29(x,res)&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_28(x)&
+true --> x::b_node<left_6_1673,right_6_1674,key_6_1675,prio_6_1676> * 
+HP_1677(left_6_1673) * HP_1678(right_6_1674)&
+true,
+ // BIND
+(2;2;2;0)HP_1677(left_6_1673)&
+left_6_1673!=null --> left_6_1673::b_node<left_21_1830,right_21_1831,key_21_1832,prio_21_1833> * 
+HP_1834(left_21_1830) * HP_1835(right_21_1831)&
+true,
+ // BIND
+(2;2;2;0)HP_1678(right_6_1674)&
+right_6_1674!=null --> right_6_1674::b_node<left_21_1840,right_21_1841,key_21_1842,prio_21_1843> * 
+HP_1844(left_21_1840) * HP_1845(right_21_1841)&
+true,
+ // PRE_REC
+(1;2;2;2;0)HP_1834(left_21_1830) * HP_1835(right_21_1831) * 
+left_6_1673::b_node<left_21_1830,right_21_1831,key_21_1832,prio_21_1833> * 
+HP_1844(left_21_1840) * 
+x'::b_node<left_6_1673,left_21_1840,key_6_1675,prio_6_1676>&
+true |#| right_6_1674::b_node<left_21_1840,right_21_1841,key_21_1842,prio_21_1843>&
+prio_21_1833<=prio_21_1843 --> HP_28(x')&
+true,
+ // PRE_REC
+(2;2;2;2;0)HP_1835(left_right___84') * HP_1844(left_21_1840) * 
+HP_1845(right_21_1841) * 
+right_6_1674::b_node<left_21_1840,right_21_1841,key_21_1842,prio_21_1843> * 
+x'::b_node<left_right___84',right_6_1674,key_6_1675,prio_6_1676>&
+true |#| left_6_1673::b_node<left_21_1830,left_right___84',key_21_1832,prio_21_1833>&
+prio_21_1843<prio_21_1833 --> HP_28(x')&
+true,
+ // POST
+(1;2;2;2;0)HP_1845(right_21_1841) * GP_29(x,tmp_1906) * 
+res::b_node<tmp_1906,right_21_1841,key_21_1842,prio_21_1843>&
+x!=null --> GP_29(x,res)&
+true,
+ // POST
+(2;2;2;2;0)HP_1834(left_21_1830) * GP_29(x,tmp___1907) * 
+res::b_node<left_21_1830,tmp___1907,key_21_1832,prio_21_1833>&
+x!=null --> GP_29(x,res)&
+true]
+
+Procedure treap_remove_root_rec$b_node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ GP_29(x_1966,res_1967) ::= GP_29(x_1966,tmp___1907) * 
+res_1967::b_node<DP_DP_HP_1834,tmp___1907,key_21_1832,prio_21_1833>&
+x_1966!=null(4,5),
+ HP_28(x_1965) ::= x_1965::b_node<left_6_1673,right_6_1674,key_6_1675,prio_6_1676> * 
+left_6_1673::b_node<DP_DP_HP_1834,DP_DP_HP_1835,key_21_1832,prio_21_1833> * 
+right_6_1674::b_node<DP_DP_HP_1844,DP_DP_HP_1845,key_21_1842,prio_21_1843>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_6_1675; prio_6_1676; key_21_1832; 
+       prio_21_1833; key_21_1842; 
+       prio_21_1843](ex)[]x::b_node<left_6_1673,right_6_1674,key_6_1675,prio_6_1676> * 
+       left_6_1673::b_node<DP_DP_HP_1834,DP_DP_HP_1835,key_21_1832,prio_21_1833> * 
+       right_6_1674::b_node<DP_DP_HP_1844,DP_DP_HP_1845,key_21_1842,prio_21_1843>&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_6_1675; prio_6_1676; key_21_1832; 
+               prio_21_1833; key_21_1842; prio_21_1843](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists DP_DP_HP_1834,
+                   tmp___1907: x::GP_29{}<tmp___1907> * 
+                   res::b_node<DP_DP_HP_1834,tmp___1907,key_21_1832,prio_21_1833>&
+                   x!=null&{FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure treap_delete_rec$b_node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_30,GP_31]requires HP_30(x)&
+truerequires emp
+ ensures GP_31(x,res)&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_30(x)&
+true --> x::b_node<left_54_2024,right_54_2025,key_54_2026,prio_54_2027> * 
+HP_2028(left_54_2024) * HP_2029(right_54_2025)&
+true,
+ // PRE
+(1;0)HP_2028(left_54_2024)&
+true --> left_54_2024::b_node<DP_DP_HP_2046,DP_DP_HP_2047,key_21_2048,prio_21_2049> * 
+HP_2050(DP_DP_HP_2046) * HP_2051(DP_DP_HP_2047)&
+true,
+ // PRE
+(1;0)HP_2029(right_54_2025)&
+true --> right_54_2025::b_node<DP_DP_HP_2052,DP_DP_HP_2053,key_21_2054,prio_21_2055> * 
+HP_2056(DP_DP_HP_2052) * HP_2057(DP_DP_HP_2053)&
+true,
+ // PRE_REC
+(1;2;0)HP_2028(left_54_2024)&true --> HP_30(left_54_2024)&
+true,
+ // PRE_REC
+(2;2;0)HP_2029(right_54_2025)&true --> HP_30(right_54_2025)&
+true,
+ // POST
+(1;0)x::GP_29<tmp___2107> * 
+res::b_node<DP_DP_HP_2106,tmp___2107,key_21_1832,prio_21_1833>&
+true --> GP_31(x,res)&
+true,
+ // POST
+(1;2;0)HP_2029(right_54_2025) * GP_31(left_63_2088,l_2108) * 
+res::b_node<l_2108,right_54_2025,key_54_2026,prio_54_2027>&
+x=res --> GP_31(x,res)&
+true,
+ // POST
+(2;2;0)HP_2028(left_54_2024) * GP_31(right_72_2105,r___2109) * 
+res::b_node<left_54_2024,r___2109,key_54_2026,prio_54_2027>&
+x=res --> GP_31(x,res)&
+true]
+
+Procedure treap_delete_rec$b_node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_30(x_2110) ::= x_2110::b_node<left_54_2024,right_54_2025,key_54_2026,prio_54_2027> * 
+HP_2028(left_54_2024) * HP_2029(right_54_2025)(4,5),
+ GP_31(x_2166,res_2167) ::= 
+ HP_2029(right_54_2025) * GP_31(left_63_2088,l_2108) * 
+ x_2166::b_node<l_2108,right_54_2025,key_54_2026,prio_54_2027>&
+ x_2166=res_2167
+ or HP_2028(left_54_2024) * GP_31(right_72_2105,r___2109) * 
+    x_2166::b_node<left_54_2024,r___2109,key_54_2026,prio_54_2027>&
+    x_2166=res_2167
+ or x_2166::GP_29<tmp___2107> * 
+    res_2167::b_node<DP_DP_HP_2106,tmp___2107,key_21_1832,prio_21_1833>
+ (4,5),
+ GP_29(x_1966,res_1967) ::= GP_29(x_1966,tmp___1907) * 
+res_1967::b_node<DP_DP_HP_1834,tmp___1907,key_21_1832,prio_21_1833>&
+x_1966!=null(4,5),
+ HP_2028(left_54_2164) ::= left_54_2164::b_node<DP_DP_HP_2050,DP_DP_HP_2051,key_21_2048,prio_21_2049> * 
+HP_2028(DP_DP_HP_2050) * HP_2029(DP_DP_HP_2051)(4,5),
+ HP_2029(right_54_2165) ::= right_54_2165::b_node<DP_DP_HP_2056,DP_DP_HP_2057,key_21_2054,prio_21_2055> * 
+HP_2028(DP_DP_HP_2056) * HP_2029(DP_DP_HP_2057)(4,5),
+ HP_28(x_1965) ::= x_1965::b_node<left_6_1673,right_6_1674,key_6_1675,prio_6_1676> * 
+left_6_1673::b_node<DP_DP_HP_1834,DP_DP_HP_1835,key_21_1832,prio_21_1833> * 
+right_6_1674::b_node<DP_DP_HP_1844,DP_DP_HP_1845,key_21_1842,prio_21_1843>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[key_54_2026; 
+       prio_54_2027](ex)[]x::b_node<left_54_2024,right_54_2025,key_54_2026,prio_54_2027> * 
+       left_54_2024::HP_2028{}<> * right_54_2025::HP_2029{}<>&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[key_54_2026; prio_54_2027](ex)[]emp&
+               MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   x::GP_31{}<res>&{FLOW,(4,5)=__norm#E}[]
+                   Stop z3... 197 invocations Stop Omega... 102 invocations 
+50 false contexts at: ( (12,4)  (11,4)  (10,20)  (10,10)  (9,30)  (41,6)  (40,6)  (38,12)  (38,20)  (36,6)  (34,27)  (34,12)  (33,26)  (33,12)  (32,28)  (32,12)  (31,27)  (31,12)  (30,11)  (29,6)  (28,6)  (27,12)  (27,20)  (-1,-1)  (26,6)  (25,27)  (25,12)  (24,26)  (24,12)  (23,28)  (23,12)  (22,27)  (22,12)  (21,34)  (21,21)  (21,7)  (21,4)  (19,19)  (19,10)  (18,20)  (18,10)  (17,9)  (16,4)  (15,4)  (14,19)  (14,10)  (13,31)  (13,13)  (13,9)  (8,4) )
+
+!!! log(small):(0.265394,1249)
+Total verification time: 0.428 second(s)
+	Time spent in main process: 0.264 second(s)
+	Time spent in child processes: 0.164 second(s)
+	Z3 Prover Time: 0.004 second(s)

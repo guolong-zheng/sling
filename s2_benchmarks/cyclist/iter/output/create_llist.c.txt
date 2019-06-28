@@ -1,0 +1,20 @@
+
+!!!Full processing file "cyclist/iter/create_llist.c"
+Parsing file "cyclist/iter/create_llist.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E cyclist/iter/create_llist.c -o cyclist/iter/create_llist.c.prep
+
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure create_llist$... Starting Omega.../usr/local/bin/oc
+
+Procedure create_llist$ SUCCESS.
+Stop z3... 50 invocations Stop Omega... 26 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.041064,297)
+Total verification time: 0.144 second(s)
+	Time spent in main process: 0.1 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0. second(s)

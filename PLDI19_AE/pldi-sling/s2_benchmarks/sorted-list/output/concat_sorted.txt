@@ -1,0 +1,74 @@
+
+!!!Full processing file "sorted-list/concat_sorted.dryad.c"
+Parsing file "sorted-list/concat_sorted.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E sorted-list/concat_sorted.dryad.c -o sorted-list/concat_sorted.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of concat_sorted: :HP_16
+!!! generate unknown predicate for Post synthesis of concat_sorted: :GP_17
+!!! ss:EInfer @shape[HP_16,GP_17] EBase: [][](HRel HP_16(l1,l2))*(true)( FLOW __norm) {EAssume: 7,:(HRel GP_17(l1,l2,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure concat_sorted$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_16,GP_17]requires HP_16(l1,l2)&
+truerequires emp
+ ensures GP_17(l1,l2,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING : Inferred pure not added: true
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE
+(1;1;0)HP_16(l1,l2)&l1!=null & l2!=null --> l1::lseg<flted_33_1307> * 
+HP_1308(flted_33_1307,l2@NI) * HP_1309(l2,l1@NI)&
+true,
+ // POST
+(1;1;0)HP_1308(flted_33_1307,l2@NI) * HP_1309(l2,l1@NI)&l2!=null & 
+l1!=null & flted_33_1307=null & res=l1 --> GP_17(l1,l2,res)&
+true,
+ // POST
+(2;1;0)HP_16(l1,l2)&l1=null & l2!=null & res=l2 --> GP_17(l1,l2,res)&
+true,
+ // POST
+(2;0)HP_16(l1,l2)&l2=null & res=l1 --> GP_17(l1,l2,res)&
+true]
+
+Procedure concat_sorted$node~node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_16(l1_1349,l2_1350) ::= 
+ emp&l2_1350!=null & l1_1349=null
+ or emp&l2_1350=null
+ or l1_1349::lseg<flted_33_1307>&l2_1350!=null & l1_1349!=null & 
+    flted_33_1307=null & l2_1350=DP_DP_DP_1335
+ or emp&l1_1349!=null & l2_1350=null
+ (4,5),
+ GP_17(l1_1352,l2_1353,res_1354) ::= 
+ emp&res_1354=l1_1352 & l2_1353=null
+ or emp&l2_1353!=null & l1_1352!=null & res_1354=l1_1352 & 
+    l2_1353=DP_DP_DP_1335
+ or emp&l2_1353!=null & res_1354=l2_1353 & l1_1352=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase l1::HP_16{}<l2>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists l2: l1::GP_17{}<l2,res>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 188 invocations Stop Omega... 84 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.628145,650)
+Total verification time: 0.724 second(s)
+	Time spent in main process: 0.144 second(s)
+	Time spent in child processes: 0.58 second(s)
+	Z3 Prover Time: 0.016 second(s)

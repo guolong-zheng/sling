@@ -1,0 +1,117 @@
+
+!!!Full processing file "glib_gslist//g_slist_nth_data.dryad.c"
+Parsing file "glib_gslist//g_slist_nth_data.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E glib_gslist//g_slist_nth_data.dryad.c -o glib_gslist//g_slist_nth_data.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of g_slist_nth_data: :HP_22
+!!! generate unknown predicate for Post synthesis of g_slist_nth_data: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(list))*(true)( FLOW __norm) {EAssume: 9,:(HRel GP_23(list))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_1$node~int: :HP_1342
+!!! generate unknown predicate for Post synthesis of while_13_1$node~int: :GP_1344Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_1$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1342,GP_1344]requires HP_1342(list)&
+truerequires emp
+ ensures GP_1344(list,list')&true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;1;0)HP_1342(list)&list!=null --> list::node<key_21_1411,next_21_1412> * 
+HP_1413(next_21_1412)&
+true,
+ // PRE_REC
+(1;1;1;0)HP_1413(list')&true --> HP_1342(list')&
+true,
+ // POST
+(1;1;1;0)list::node<key_21_1411,next_21_1412> * GP_1344(next_21_1412,list')&
+true --> GP_1344(list,list')&
+true,
+ // POST
+(2;1;1;0)HP_1342(list)&list=null & list'=null & 
+list'=list --> GP_1344(list,list')&
+true,
+ // POST
+(2;1;0)HP_1342(list)&list'=list --> GP_1344(list,list')&
+true]
+
+Procedure while_13_1$node~int SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_1342(list_1434) ::= 
+ emp&list_1434=DP_DP_DP_1422
+ or emp&list_1434=DP_DP_DP_1422 & list_1434!=null
+ or emp&list_1434=DP_DP_DP_1422 & list_1434=null
+ or HP_1342(next_21_1428) * list_1434::node<key_21_1427,next_21_1428>
+ (4,5),
+ GP_1344(list_1435,list_1436) ::= 
+ list_1435::node<key_21_1411,next_21_1412> * GP_1344(next_21_1412,list_1436)
+ or emp&list_1436=list_1435 & list_1435=DP_DP_DP_1422
+ or emp&list_1435=null & list_1436=null
+ (4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase list::HP_1342{}<>&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume ref [list;n]
+                   (exists list': list::GP_1344{}<list'>&
+                   {FLOW,(4,5)=__norm#E})[]
+                   
+Checking procedure g_slist_nth_data$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(list)&
+truerequires emp
+ ensures GP_23(list)&true{,(4,5)=__norm#E};
+Proving binding in method g_slist_nth_data$node~int for spec  EAssume 
+   GP_23(list)&{FLOW,(4,5)=__norm#E}[]
+   , Line 0
+
+( [(,0 ); (,1 )]) bind: node  list'::node<key_24_1358',next_24_1359'>@L cannot be derived from context
+glib_gslist//g_slist_nth_data.dryad.c_24:8_-1:-1
+
+(Cause of Bind Failure) List of Failesc Context: [FEC(1, 0, 0 )]
+Failed States:
+[
+ Label: [(,0 ); (,1 )]
+ State:
+        fe_kind: MAY
+        fe_name: separation entailment
+        fe_locs: {
+                  fc_message: infer_heap_node
+                  fc_current_lhs_flow: {FLOW,(4,5)=__norm#E}}
+[[ COND ==>  UnmatchedRHSData ==> ]]
+ ]glib_gslist//g_slist_nth_data.dryad.c_24:8_-1:-1
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "glib_gslist//g_slist_nth_data.dryad.c",Line:24,Col:8
+
+Procedure g_slist_nth_data$node~int FAIL.(2)
+
+Exception Failure("bind failure exception") Occurred!
+
+Error(s) detected when checking procedure g_slist_nth_data$node~int
+Stop z3... 126 invocations Stop Omega... 36 invocations 
+1 false contexts at: ( (13,1) )
+
+!!! log(small):(0.03615,383)
+Total verification time: 0.12 second(s)
+	Time spent in main process: 0.076 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0.004 second(s)

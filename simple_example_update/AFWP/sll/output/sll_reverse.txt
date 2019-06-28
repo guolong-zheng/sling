@@ -1,0 +1,34 @@
+dynsl.py:221 - Inferring inv-conditions at the location 17 ...
+
+dynsl.py:221 - Inferring pre-conditions at the location 10 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:299 - Precondition at location 10:
+dynsl.py:307 - sll(h) 
+dynsl.py:307 - lseg(h, nil) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 - sll(h) * lseg(j, h)  & i = nil & k = nil
+dynsl.py:320 - lseg(h, nil) * lseg(j, h)  & i = nil & k = nil
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 17:
+dynsl.py:334 -  sll(i) * lseg(h, fv1) * lseg(j, fv0) 
+dynsl.py:334 -  lseg(i, k) * lseg(h, fv1) * sll(k) * lseg(j, fv0) 
+dynsl.py:334 -  lseg(i, k) * lseg(h, fv1) * lseg(k, nil) * lseg(j, fv0) 
+dynsl.py:334 -  lseg(i, nil) * lseg(h, fv1) * lseg(j, fv0) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 14
+dynsl.py:365 - Number of pre-defined predicates: 4
+dynsl.py:367 - Number of free variables: 8
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 20
+dynsl.py:370 - Number of pure constraints: 4
+dynsl.py:371 - Number of total invs: 8
+dynsl.py:372 - Number of pres:2
+dynsl.py:373 - Number of post:2
+dynsl.py:374 - Number of loop:4
+dynsl.py:375 - Running time (sec): 16.6674699783
+../simple_example_update/AFWP/sll/sll_reverse,3,14,8,0,20,4,8,2,2,4,16.6
+../simple_example_update/AFWP/sll/sll_reverse,3,14,0,20,4,8,2,2,4,16.6

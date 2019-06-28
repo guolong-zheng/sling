@@ -1,0 +1,57 @@
+create break point at : 10
+create break point at : 15
+create break point at : 39
+create break point at : 20
+stop at : 10
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 39
+stop at : 10
+stop at : 15
+stop at : 10
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 39
+stop at : 10
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 39
+stop at : 10
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 20
+stop at : 39
+get_trace.py:68 - 30
+dynsl.py:221 - Inferring pre-conditions at the location 10 ...
+
+iincr.py:152 - [h]
+iincr.py:154 - [h]
+dynsl.py:221 - Inferring post-conditions at the location 15 ...
+
+iincr.py:152 - [i, h, j, t]
+iincr.py:154 - [i, h, j, t]
+dynsl.py:221 - Inferring inv-conditions at the location 20 ...
+
+iincr.py:152 - [i, h, j, t]
+iincr.py:154 - [i, h, j, t]

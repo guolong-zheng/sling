@@ -4,11 +4,11 @@
 
 DLNode * dl_copy(DLNode * lst)
 {
-
+  //pre
   DLNode * curr = lst;
   DLNode * cp = NULL;
   DLNode * old_cp = NULL;
-  //pre
+
   while(curr != NULL)
   {
     //loop

@@ -1,0 +1,91 @@
+
+!!!Full processing file "AFWP//sll/SLL-delete-all.dryad.c"
+Parsing file "AFWP//sll/SLL-delete-all.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E AFWP//sll/SLL-delete-all.dryad.c -o AFWP//sll/SLL-delete-all.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of delete_all: :HP_22
+!!! generate unknown predicate for Post synthesis of delete_all: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(h))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_23(h))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_13_2$node~node: :HP_1343
+!!! generate unknown predicate for Post synthesis of while_13_2$node~node: :GP_1346Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_13_2$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1343,GP_1346]requires HP_1343(j_64,i_63)&
+truerequires emp
+ ensures GP_1346(j_64,j_64',i_63,i_63')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1343(j_64,i_63)&i_63!=null --> i_63::node<next_21_1428> * 
+HP_1429(next_21_1428,j_64@NI) * HP_1430(j_64,i_63@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1429(i_63',j_64@NI) * j_64'::node<v_node_22_1442>&i_63=j_64' & 
+i_63=null & j_64'=null & v_node_22_1442=null & 
+v_node_22_1442=j_64' --> HP_1343(i_63,i_63')&
+true,
+ // POST
+(2;1;0)HP_1343(j_64,i_63)&i_63=null & i_63'=null & i_63'=i_63 & 
+j_64'=j_64 --> GP_1346(j_64,j_64',i_63,i_63')&
+true]
+
+Procedure while_13_2$node~node SUCCESS.
+[Warning] False ctx
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at AFWP//sll/SLL-delete-all.dryad.c_13:2_24:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1343,GP_1346]
+   EBase HP_1343(j_64,i_63)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [j_64;i_63]
+                     GP_1346(j_64,j_64',i_63,i_63')&{FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure delete_all$node~int... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(h)&
+truerequires emp
+ ensures GP_23(h)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.
+Procedure delete_all$node~int FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure delete_all$node~int
+Stop z3... 71 invocations Stop Omega... 21 invocations 
+1 false contexts at: ( (13,2) )
+
+!!! log(small):(0.03765,297)
+Total verification time: 0.144 second(s)
+	Time spent in main process: 0.1 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0. second(s)

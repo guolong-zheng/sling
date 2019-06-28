@@ -1,0 +1,3473 @@
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+g_list_find.c
+g_list_free.c
+g_list_index.c
+g_list_last.c
+g_list_length.c
+g_list_nth.c
+g_list_nth_data.c
+g_list_position.c
+g_list_prepend.c
+g_list_reverse.c
+header.c
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+g_list_find.c
+g_list_free.c
+g_list_index.c
+g_list_last.c
+g_list_length.c
+g_list_nth.c
+g_list_nth_data.c
+g_list_position.c
+g_list_prepend.c
+g_list_reverse.c
+header.c
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+a.txt
+g_list_find.c
+g_list_free.c
+g_list_index.c
+g_list_last.c
+g_list_length.c
+g_list_nth.c
+g_list_nth_data.c
+g_list_position.c
+g_list_prepend.c
+g_list_reverse.c
+header.c
+header.h
+name.csv
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+a.txt
+g_list_find.c
+g_list_free.c
+g_list_index.c
+g_list_last.c
+g_list_length.c
+g_list_nth.c
+g_list_nth_data.c
+g_list_position.c
+g_list_prepend.c
+g_list_reverse.c
+header.c
+header.h
+name.csv
+#include "header.h"
+#include <stdlib.h>
+
+DLNode * g_list_find(DLNode * list, int data)
+{
+  //pre
+  Node * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    if (curr->key == data) {
+      break;
+    }
+    curr = curr->next;
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_find(hd, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+void g_list_free(DLNode * list)
+{
+  //pre
+  DLNode * x = list;
+  while(x != NULL)
+  {
+    //loop
+    DLNode * next = x->next;
+    free(x);
+    x = next;
+  }
+  //post
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    g_list_free(hd);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_index(DLNode * list, int data)
+{
+  //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+   {
+    //loop
+    if (list->key == data) {
+      //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+   }
+   //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_index(root, rand_num());
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_last(DLNode * list)
+{
+  //pre
+  DLNode * curr = list;
+  if (curr != NULL) {
+    while(curr->next != NULL)
+    {
+      //loop
+      curr = curr->next;
+    }
+  }
+  //post
+  return curr;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_last(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+typedef unsigned uint;
+
+unsi g_list_length(DLNode * list, int data)
+{
+  //pre
+  uint length;
+  length = 0;
+  while(list != NULL)
+  {
+    //loop
+    length ++;
+    list = list->next;
+  }
+  //post
+  return length;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    uint res = g_list_length(root);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_nth(DLNode * list, int n)
+ {
+     //pre
+  while(n > 0 && list != NULL)
+  {
+      //loop
+    n --;
+    list = list->next;
+  }
+  //post
+  return list;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_nth(root, rand()%size);
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_nth_data(DLNode * list, int n)
+{
+  //pre
+  int res;
+  while(n > 0 && list != NULL)
+  {
+    //loop
+    n --;
+    list = list->next;
+  }
+  if (list != NULL) {
+    res = list->key;
+  } else {
+    res = 0;
+  }
+  //post
+  return res;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    int res = g_list_nth_data(root, rand()%size);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+int g_list_position(DLNode * list, DLNode * link)
+{
+    //pre
+  int i;
+  i = 0;
+  while(list != NULL)
+  {
+      //loop
+    if (list == link) {
+        //post
+      return i;
+    }
+    i ++;
+    list = list->next;
+  }
+  //post
+  return -1;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * list_node = root->next;
+    int res = g_list_position(root, list_node);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_prepend(DLNode * list, int data, DLNode * p)
+{
+  //pre
+  DLNode * ret = (DLNode *) malloc(sizeof(DLNode));
+  ret->key = data;
+  ret->next = list;
+  ret->prev = p;
+  if (list != NULL) {
+    list->prev = ret;
+  }
+  if (p != NULL) {
+     p->next = ret;
+  }
+  //post
+  return ret;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * p = root->pre;
+
+    DLNode * res = g_list_prepend(root, rand_num(), p);
+
+    return 0;
+}
+#include "g_list.h"
+#include <stdlib.h>
+
+DLNode * g_list_reverse(DLNode * list)
+{
+  //pre
+  DLNode * last = NULL;
+  DLNode * curr = list;
+  while(curr != NULL)
+  {
+    //loop
+    last = curr;
+    curr = curr->next;
+    DLNode * last_prev = last->prev;
+    last->next = last_prev;
+    last->prev = curr;
+  }
+  //post
+  return last;
+}
+
+int main(int argc, char * argv[]){
+    int size = 0;
+    sscanf(argv[1],"%d", &size);
+    DLNode * hd = create_list(size);
+    DLNode * res = g_list_reverse(root);
+
+    return 0;
+}
+#include "header.h"
+#include <stdlib.h>
+
+int rand_num(){
+    return rand()%(2*MAX_RAND + 1) - MAX_RAND;
+}
+
+DLNode * create_list(int size){
+    DLNode * hd = NULL;
+    DLNode * tl = hd;
+    for(int i = 0; i < size; i++){
+        DLNode * new_node = (DLNode *)malloc(sizeof(DLNode));
+        new_node->key = rand_num();
+        new_node->next = NULL;
+        new_node->pre = NULL;
+        if(hd == NULL){
+            hd = new_node;
+            hd->next = hd;
+            hd->pre = hd;
+            tl = hd;
+        }else{
+            new_node->pre = tl;
+            new_node->next = hd;
+            hd->pre = new_node;
+            tl->next = new_node;
+            tl = new_node;
+        }
+    }
+
+    return hd;
+}
+g_list_find.c g_list_free.c g_list_index.c g_list_last.c g_list_length.c g_list_nth.c g_list_nth_data.c g_list_position.c g_list_prepend.c g_list_reverse.c header.c
+g_list_find.c g_list_free.c g_list_index.c g_list_last.c g_list_length.c g_list_nth.c g_list_nth_data.c g_list_position.c g_list_prepend.c g_list_reverse.c header.c
+./g_list_nth.c
+./g_list_length.c
+./g_list_nth_data.c
+./g_list_reverse.c
+./g_list_free.c
+./g_list_prepend.c
+./g_list_index.c
+./g_list_position.c
+./header.c
+./g_list_find.c
+./g_list_last.c
+./g_list_nth.c
+./g_list_length.c
+./g_list_nth_data.c
+./g_list_reverse.c
+./g_list_free.c
+./g_list_prepend.c
+./g_list_index.c
+./g_list_position.c
+./header.c
+./g_list_find.c
+./g_list_last.c

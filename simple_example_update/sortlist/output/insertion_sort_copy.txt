@@ -1,0 +1,33 @@
+dynsl.py:221 - Inferring post-conditions at the location 28 ...
+
+dynsl.py:221 - Inferring pre-conditions at the location 21 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:299 - Precondition at location 21:
+dynsl.py:307 - ls(l, nil) 
+dynsl.py:307 - ll(l) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 28:
+dynsl.py:320 - ls(tl, nil) * ls(nl, tl) * ls(l, nil) 
+dynsl.py:320 - ls(tl, nil) * ls(nl, tl) * ll(l) 
+dynsl.py:320 - ll(tl) * ls(nl, tl) * ls(l, nil) 
+dynsl.py:320 - ll(tl) * ls(nl, tl) * ll(l) 
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 - l=nil  & re = nil & l = nil & l = res
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 24
+dynsl.py:365 - Number of pre-defined predicates: 2
+dynsl.py:367 - Number of free variables: 0
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 14
+dynsl.py:370 - Number of pure constraints: 3
+dynsl.py:371 - Number of total invs: 7
+dynsl.py:372 - Number of pres:2
+dynsl.py:373 - Number of post:5
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 10.7784030437
+../simple_example_update/sortlist/insertion_sort_copy,3,24,0,0,14,3,7,2,5,0,10.7
+../simple_example_update/sortlist/insertion_sort_copy,3,24,0,14,3,7,2,5,0,10.7

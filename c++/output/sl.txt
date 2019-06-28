@@ -1,0 +1,446 @@
+create break point at : 16
+create break point at : 18
+create break point at : 23
+stop at : 16
+stop at : 18
+stop at : 16
+stop at : 16
+stop at : 18
+stop at : 23
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 18
+stop at : 23
+stop at : 23
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 18
+stop at : 23
+stop at : 23
+stop at : 23
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 18
+stop at : 23
+stop at : 23
+stop at : 23
+stop at : 23
+get_trace.py:66 - [
+1 - 16:
+{
+n1: 0
+n2: 10501152}
+
+{
+10501152: (node, [data:0, next:0])}
+
+,
+
+
+3 - 16:
+{
+n1: 10501152
+n2: 10501184}
+
+{
+10501152: (node, [data:0, next:0])
+10501184: (node, [data:1, next:0])}
+
+,
+
+
+4 - 16:
+{
+n1: 0
+n2: 10501184}
+
+{
+10501184: (node, [data:1, next:0])}
+
+,
+
+
+7 - 16:
+{
+n1: 10501152
+n2: 10501216}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501216: (node, [data:2, next:0])
+10501184: (node, [data:1, next:0])}
+
+,
+
+
+8 - 16:
+{
+n1: 10501184
+n2: 10501216}
+
+{
+10501184: (node, [data:1, next:0])
+10501216: (node, [data:2, next:0])}
+
+,
+
+
+9 - 16:
+{
+n1: 0
+n2: 10501216}
+
+{
+10501216: (node, [data:2, next:0])}
+
+,
+
+
+13 - 16:
+{
+n1: 10501152
+n2: 10501248}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501248: (node, [data:3, next:0])
+10501216: (node, [data:2, next:0])
+10501184: (node, [data:1, next:10501216])}
+
+,
+
+
+14 - 16:
+{
+n1: 10501184
+n2: 10501248}
+
+{
+10501184: (node, [data:1, next:10501216])
+10501248: (node, [data:3, next:0])
+10501216: (node, [data:2, next:0])}
+
+,
+
+
+15 - 16:
+{
+n1: 10501216
+n2: 10501248}
+
+{
+10501216: (node, [data:2, next:0])
+10501248: (node, [data:3, next:0])}
+
+,
+
+
+16 - 16:
+{
+n1: 0
+n2: 10501248}
+
+{
+10501248: (node, [data:3, next:0])}
+
+,
+
+
+21 - 16:
+{
+n1: 10501152
+n2: 10501280}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501280: (node, [data:4, next:0])
+10501248: (node, [data:3, next:0])
+10501216: (node, [data:2, next:10501248])
+10501184: (node, [data:1, next:10501216])}
+
+,
+
+
+22 - 16:
+{
+n1: 10501184
+n2: 10501280}
+
+{
+10501184: (node, [data:1, next:10501216])
+10501280: (node, [data:4, next:0])
+10501248: (node, [data:3, next:0])
+10501216: (node, [data:2, next:10501248])}
+
+,
+
+
+23 - 16:
+{
+n1: 10501216
+n2: 10501280}
+
+{
+10501216: (node, [data:2, next:10501248])
+10501280: (node, [data:4, next:0])
+10501248: (node, [data:3, next:0])}
+
+,
+
+
+24 - 16:
+{
+n1: 10501248
+n2: 10501280}
+
+{
+10501248: (node, [data:3, next:0])
+10501280: (node, [data:4, next:0])}
+
+,
+
+
+25 - 16:
+{
+n1: 0
+n2: 10501280}
+
+{
+10501280: (node, [data:4, next:0])}
+
+]
+get_trace.py:67 - [
+2 - 18:
+{
+n1: 0
+n2: 10501152}
+
+{
+10501152: (node, [data:0, next:0])}
+
+return: 10501152,
+
+
+5 - 18:
+{
+n1: 0
+n2: 10501184}
+
+{
+10501184: (node, [data:1, next:0])}
+
+return: 10501184,
+
+
+6 - 23:
+{
+tmp: 10501184
+n1: 10501152
+n2: 10501184}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501184: (node, [data:1, next:0])}
+
+return: 10501152,
+
+
+10 - 18:
+{
+n1: 0
+n2: 10501216}
+
+{
+10501216: (node, [data:2, next:0])}
+
+return: 10501216,
+
+
+11 - 23:
+{
+tmp: 10501216
+n1: 10501184
+n2: 10501216}
+
+{
+10501184: (node, [data:1, next:10501216])
+10501216: (node, [data:2, next:0])}
+
+return: 10501184,
+
+
+12 - 23:
+{
+tmp: 10501184
+n1: 10501152
+n2: 10501216}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501216: (node, [data:2, next:0])
+10501184: (node, [data:1, next:10501216])}
+
+return: 10501152,
+
+
+17 - 18:
+{
+n1: 0
+n2: 10501248}
+
+{
+10501248: (node, [data:3, next:0])}
+
+return: 10501248,
+
+
+18 - 23:
+{
+tmp: 10501248
+n1: 10501216
+n2: 10501248}
+
+{
+10501216: (node, [data:2, next:10501248])
+10501248: (node, [data:3, next:0])}
+
+return: 10501216,
+
+
+19 - 23:
+{
+tmp: 10501216
+n1: 10501184
+n2: 10501248}
+
+{
+10501184: (node, [data:1, next:10501216])
+10501248: (node, [data:3, next:0])
+10501216: (node, [data:2, next:10501248])}
+
+return: 10501184,
+
+
+20 - 23:
+{
+tmp: 10501184
+n1: 10501152
+n2: 10501248}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501248: (node, [data:3, next:0])
+10501216: (node, [data:2, next:10501248])
+10501184: (node, [data:1, next:10501216])}
+
+return: 10501152,
+
+
+26 - 18:
+{
+n1: 0
+n2: 10501280}
+
+{
+10501280: (node, [data:4, next:0])}
+
+return: 10501280,
+
+
+27 - 23:
+{
+tmp: 10501280
+n1: 10501248
+n2: 10501280}
+
+{
+10501248: (node, [data:3, next:10501280])
+10501280: (node, [data:4, next:0])}
+
+return: 10501248,
+
+
+28 - 23:
+{
+tmp: 10501248
+n1: 10501216
+n2: 10501280}
+
+{
+10501216: (node, [data:2, next:10501248])
+10501280: (node, [data:4, next:0])
+10501248: (node, [data:3, next:10501280])}
+
+return: 10501216,
+
+
+29 - 23:
+{
+tmp: 10501216
+n1: 10501184
+n2: 10501280}
+
+{
+10501184: (node, [data:1, next:10501216])
+10501280: (node, [data:4, next:0])
+10501248: (node, [data:3, next:10501280])
+10501216: (node, [data:2, next:10501248])}
+
+return: 10501184,
+
+
+30 - 23:
+{
+tmp: 10501184
+n1: 10501152
+n2: 10501280}
+
+{
+10501152: (node, [data:0, next:10501184])
+10501280: (node, [data:4, next:0])
+10501248: (node, [data:3, next:10501280])
+10501216: (node, [data:2, next:10501248])
+10501184: (node, [data:1, next:10501216])}
+
+return: 10501152]
+dynsl.py:221 - Inferring pre-conditions at the location 16 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 18 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 23 ...
+
+dynsl.py:299 - Precondition at location 16:
+dynsl.py:307 - lseg(n1, nil) * lseg(n2, nil) 
+dynsl.py:307 - lseg(n1, nil) * n2:node->node{fv1, fv0} 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 18:
+dynsl.py:320 - lseg(n2, nil)  & n1 = nil
+dynsl.py:320 - n2:node->node{fv0, n1}  & n1 = nil
+dynsl.py:322 - ==============================
+dynsl.py:312 - Postcondition at location 23:
+dynsl.py:320 - lseg(tmp, n2) * lseg(n1, tmp) * lseg(n2, nil) 
+dynsl.py:320 - lseg(tmp, n2) * lseg(n1, tmp) * n2:node->node{fv0, nil} 
+dynsl.py:320 - lseg(tmp, n2) * n1:node->node{fv0, tmp} * lseg(n2, nil) 
+dynsl.py:320 - lseg(tmp, n2) * n1:node->node{fv1, tmp} * n2:node->node{fv0, nil} 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 3
+dynsl.py:364 - Number of traces: 30
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 7
+dynsl.py:368 - Number of atomic singleton predicates: 6
+dynsl.py:369 - Number of atomic inductive predicates: 12
+dynsl.py:370 - Number of pure constraints: 2
+dynsl.py:371 - Number of total invs: 8
+dynsl.py:372 - Number of pres:2
+dynsl.py:373 - Number of post:6
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 4.60022091866
+../c++/sl,3,30,7,6,12,2,8,2,6,0,4.60
+../c++/sl,3,30,6,12,2,8,2,6,0,4.60

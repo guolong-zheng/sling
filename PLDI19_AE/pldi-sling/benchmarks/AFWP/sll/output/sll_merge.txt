@@ -1,0 +1,27 @@
+get_trace.py:65 - 1
+dynsl.py:144 - Inferring inv-conditions at the location 17 ...
+
+dynsl.py:220 - Invariants at location 17:
+dynsl.py:227 - klist(i) * klist(j) & i=h & k=nil
+dynsl.py:227 - klist(i) * klseg(j, k) & i=h & k=nil
+dynsl.py:227 - klist(i) * klseg(j, nil) & i=h & k=nil
+dynsl.py:227 - klseg(i, k) * klist(j) & i=h & k=nil
+dynsl.py:227 - klseg(i, k) * klseg(j, k) & i=h & k=nil
+dynsl.py:227 - klseg(i, k) * klseg(j, nil) & i=h & k=nil
+dynsl.py:227 - klseg(i, nil) * klist(j) & i=h & k=nil
+dynsl.py:227 - klseg(i, nil) * klseg(j, k) & i=h & k=nil
+dynsl.py:227 - klseg(i, nil) * klseg(j, nil) & i=h & k=nil
+dynsl.py:231 - ==============================
+dynsl.py:254 - Number of locations: 1
+dynsl.py:255 - Number of traces: 1
+dynsl.py:256 - Number of pre-defined predicates: 4
+dynsl.py:258 - Number of free variables: 36
+dynsl.py:259 - Number of atomic singleton predicates: 0
+dynsl.py:260 - Number of atomic inductive predicates: 18
+dynsl.py:261 - Number of pure constraints: 18
+dynsl.py:262 - Number of total invs: 9
+dynsl.py:263 - Number of pres:0
+dynsl.py:264 - Number of post:0
+dynsl.py:265 - Number of loop:9
+dynsl.py:266 - Running time (sec): 12.5497410297
+../simple_example_update/AFWP/sll//sll_merge,1,1,4,36,0,18,18,9,0,0,9,12.5

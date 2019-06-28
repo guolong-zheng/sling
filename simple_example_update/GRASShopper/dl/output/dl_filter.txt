@@ -1,0 +1,26 @@
+create break point at : 8
+create break point at : 35
+create break point at : 16
+stop at : 8
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 16
+stop at : 35
+stop at : 8
+stop at : 35
+get_trace.py:68 - 10
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
+
+iincr.py:152 - [x]
+iincr.py:154 - [x]
+dynsl.py:221 - Inferring inv-conditions at the location 16 ...
+
+iincr.py:152 - [curr, old_curr, res, prv, old_curr_next, x]
+iincr.py:154 - [curr, old_curr, res, prv, old_curr_next, x]

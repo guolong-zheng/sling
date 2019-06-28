@@ -1,0 +1,37 @@
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 28 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 21 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 14 ...
+
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 -  bst(x, mi!bst!9:int, mx!bst!10:int) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 28:
+dynsl.py:320 -  bst(tmp, mi!bst!315:int, mx!bst!316:int) * x:b_node->b_node{l, tmp, fv0} * bst(l, mi!bst!486:int, mx!bst!487:int)  & x = res
+dynsl.py:320 -  bst(tmp, mi!bst!393:int, mx!bst!394:int) * x:b_node->b_node{l, tmp, fv0} * bst(l, mi!bst!587:int, mx!bst!588:int)  & x = res
+dynsl.py:312 - Postcondition at location 21:
+dynsl.py:320 -  bst(tmp, mi!bst!673:int, mx!bst!674:int) * x:b_node->b_node{tmp, r, fv0} * bst(r, mi!bst!880:int, mx!bst!881:int)  & x = res
+dynsl.py:320 -  bst(tmp, mi!bst!771:int, mx!bst!772:int) * x:b_node->b_node{tmp, r, fv0} * bst(r, mi!bst!965:int, mx!bst!966:int)  & x = res
+dynsl.py:312 - Postcondition at location 14:
+dynsl.py:320 -  bst(leaf, mi!bst!1039:int, mx!bst!1040:int)  & x = nil & leaf = res
+dynsl.py:320 - leaf:b_node->b_node{nil, nil, fv0}  & x = nil
+dynsl.py:320 -  bst(leaf, mi!bst!1066:int, mx!bst!1067:int)  & x = nil & leaf = res
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 4
+dynsl.py:364 - Number of traces: 16
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 5
+dynsl.py:368 - Number of atomic singleton predicates: 5
+dynsl.py:369 - Number of atomic inductive predicates: 11
+dynsl.py:370 - Number of pure constraints: 9
+dynsl.py:371 - Number of total invs: 8
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:7
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 11.3292360306
+../example_numric/binary_search_tree/insert_rec,4,16,5,5,11,9,8,1,7,0,11.3
+../example_numric/binary_search_tree/insert_rec,4,16,5,11,9,8,1,7,0,11.3

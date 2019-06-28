@@ -1,0 +1,98 @@
+
+!!!Full processing file "GRASShopper/sl/sl_reverse.dryad.c"
+Parsing file "GRASShopper/sl/sl_reverse.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper/sl/sl_reverse.dryad.c -o GRASShopper/sl/sl_reverse.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of sl_reverse: :HP_22
+!!! generate unknown predicate for Post synthesis of sl_reverse: :GP_23
+!!! ss:EInfer @shape[HP_22,GP_23] EBase: [][](HRel HP_22(lst))*(true)( FLOW __norm) {EAssume: 11,:(HRel GP_23(lst,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_14_2$node~node~node: :HP_1345
+!!! generate unknown predicate for Post synthesis of while_14_2$node~node~node: :GP_1349Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_14_2$node~node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1345,GP_1349]requires HP_1345(tmp_65,curr_63,rev_64)&
+truerequires emp
+ ensures GP_1349(tmp_65,tmp_65',curr_63,curr_63',rev_64,rev_64')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1345(tmp_65,curr_63,rev_64)&
+curr_63!=null --> curr_63::node<next_23_1433> * 
+HP_1434(next_23_1433,tmp_65@NI,rev_64@NI) * 
+HP_1435(tmp_65,rev_64,curr_63@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1434(curr_63',tmp_65@NI,rev_1441@NI) * 
+HP_1435(tmp_65,rev_1441,rev_64'@NI) * rev_64'::node<rev_1441>&
+tmp_65'=rev_64' --> HP_1345(tmp_65',curr_63',rev_64')&
+true,
+ // POST
+(1;1;0)GP_1349(curr_1437,tmp_65',next_23_1433,curr_63',curr_1437,rev_64')&
+curr_1437!=null --> GP_1349(tmp_65,tmp_65',curr_1437,curr_63',rev_64,rev_64')&
+true,
+ // POST
+(2;1;0)HP_1345(tmp_65,curr_63,rev_64)&curr_63=null & curr_63'=null & 
+curr_63'=curr_63 & rev_64'=rev_64 & 
+tmp_65'=tmp_65 --> GP_1349(tmp_65,tmp_65',curr_63,curr_63',rev_64,rev_64')&
+true]
+
+Procedure while_14_2$node~node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at GRASShopper/sl/sl_reverse.dryad.c_14:2_26:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1345,GP_1349]
+   EBase HP_1345(tmp_65,curr_63,rev_64)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [tmp_65;curr_63;rev_64]
+                     GP_1349(tmp_65,tmp_65',curr_63,curr_63',rev_64,rev_64')&
+                     {FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure sl_reverse$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_22,GP_23]requires HP_22(lst)&
+truerequires emp
+ ensures GP_23(lst,res)&true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.004
+Procedure sl_reverse$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure sl_reverse$node
+Stop z3... 73 invocations Stop Omega... 23 invocations 
+1 false contexts at: ( (14,2) )
+
+!!! log(small):(0.031548,293)
+Total verification time: 0.148 second(s)
+	Time spent in main process: 0.104 second(s)
+	Time spent in child processes: 0.044 second(s)
+	Z3 Prover Time: 0. second(s)

@@ -1,0 +1,37 @@
+dynsl.py:221 - Inferring post-conditions at the location 17 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 9 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 21 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 13 ...
+
+dynsl.py:221 - Inferring pre-conditions at the location 7 ...
+
+dynsl.py:299 - Precondition at location 7:
+dynsl.py:307 - tree(x) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 17:
+dynsl.py:320 - tree(x) 
+dynsl.py:312 - Postcondition at location 9:
+dynsl.py:320 - x=nil  & x = nil & re = nil & x = res
+dynsl.py:312 - Postcondition at location 13:
+dynsl.py:320 - tree(x) 
+dynsl.py:312 - Postcondition at location 21:
+dynsl.py:320 - tree(x) 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 5
+dynsl.py:364 - Number of traces: 26
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 0
+dynsl.py:368 - Number of atomic singleton predicates: 0
+dynsl.py:369 - Number of atomic inductive predicates: 1
+dynsl.py:370 - Number of pure constraints: 3
+dynsl.py:371 - Number of total invs: 5
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:4
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 6.03103089333
+../simple_example_update/prio_tree/find_rec,5,26,0,0,1,3,5,1,4,0,6.03
+../simple_example_update/prio_tree/find_rec,5,26,0,1,3,5,1,4,0,6.03

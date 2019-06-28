@@ -1,0 +1,48 @@
+dynsl.py:221 - Inferring pre-conditions at the location 8 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 33 ...
+
+dynsl.py:221 - Inferring post-conditions at the location 11 ...
+
+dynsl.py:221 - Inferring inv-conditions at the location 24 ...
+
+dynsl.py:299 - Precondition at location 8:
+dynsl.py:307 - ls(lst, nil) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 33:
+dynsl.py:320 - ls(old_cp, cp) * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(head, old_cp) 
+dynsl.py:320 - ls(old_cp, cp) * ls(lst, curr) * ls(cp, nil) * curr:node->node{fv0, nil} * ls(head, old_cp) 
+dynsl.py:320 - ls(old_cp, cp) * ls(lst, curr) * cp:node->node{fv0, nil} * ls(curr, nil) * ls(head, old_cp) 
+dynsl.py:320 - ls(old_cp, cp) * ls(lst, curr) * cp:node->node{fv1, nil} * curr:node->node{fv0, nil} * ls(head, old_cp)  & head = res
+dynsl.py:320 - old_cp:node->node{fv0, cp} * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(head, old_cp) 
+dynsl.py:320 - old_cp:node->node{fv1, cp} * ls(lst, curr) * ls(cp, nil) * curr:node->node{fv0, nil} * ls(head, old_cp) 
+dynsl.py:320 - old_cp:node->node{fv1, cp} * ls(lst, curr) * cp:node->node{fv0, nil} * ls(curr, nil) * ls(head, old_cp) 
+dynsl.py:320 - old_cp:node->node{fv2, cp} * ls(lst, curr) * cp:node->node{fv1, nil} * curr:node->node{fv0, nil} * ls(head, old_cp)  & head = res
+dynsl.py:312 - Postcondition at location 11:
+dynsl.py:320 - ls(old_cp, cp) * ls(cp, nil) * ls(curr, nil)  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - ls(old_cp, cp) * ls(cp, nil) * curr:node->node{fv0, lst}  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - ls(old_cp, cp) * cp:node->node{fv0, lst} * ls(curr, nil)  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - ls(old_cp, cp) * cp:node->node{fv0, lst} * curr:node->node{fv0, lst}  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - old_cp:node->node{fv0, cp} * ls(cp, nil) * ls(curr, nil)  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - old_cp:node->node{fv1, cp} * ls(cp, nil) * curr:node->node{fv0, lst}  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - old_cp:node->node{fv1, cp} * cp:node->node{fv0, lst} * ls(curr, nil)  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:320 - old_cp:node->node{fv2, cp} * cp:node->node{fv0, lst} * curr:node->node{fv0, lst}  & re = nil & head = nil & lst = nil & lst = res
+dynsl.py:322 - ==============================
+dynsl.py:326 - Invariants at location 24:
+dynsl.py:334 -  ls(old_cp, fv1) * ls(lst, curr) * ls(cp, nil) * ls(curr, nil) * ls(head, fv0) 
+dynsl.py:334 -  ls(old_cp, fv3) * ls(lst, curr) * cp:node->node{fv2, fv1} * ls(curr, nil) * ls(head, fv0) 
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 4
+dynsl.py:364 - Number of traces: 13
+dynsl.py:365 - Number of pre-defined predicates: 1
+dynsl.py:367 - Number of free variables: 28
+dynsl.py:368 - Number of atomic singleton predicates: 25
+dynsl.py:369 - Number of atomic inductive predicates: 50
+dynsl.py:370 - Number of pure constraints: 34
+dynsl.py:371 - Number of total invs: 19
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:16
+dynsl.py:374 - Number of loop:2
+dynsl.py:375 - Running time (sec): 27.6701319218
+../simple_example_update/GRASShopper/sls/sls_copy,4,13,28,25,50,34,19,1,16,2,27.6
+../simple_example_update/GRASShopper/sls/sls_copy,4,13,25,50,34,19,1,16,2,27.6

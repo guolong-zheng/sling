@@ -28,7 +28,7 @@ int main( int argc, char * argv[]){
 
     DLNode * root = NULL;
     root = create_dll(size);
-
+    //dll_delete(NULL, (int)rand());
     root = dll_delete(root, (int)rand());
     return 0;
 }

@@ -7,8 +7,9 @@ Node * rec_filter(Node * x)
   //pre
   Node * n1;
   Node * n2;
-  int nondet;
+  int nondet = (rand()%20) - 10;
   if (x == NULL) {
+    //post
     return x;
   } else if (nondet) {
     n1 = x->next;

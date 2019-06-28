@@ -300,3 +300,91 @@ class TraceParser(Parser, Transformer):
 
     sh_parser = Lark(trace_grammar, start='traces',lexer='standard')
 
+
+class FileParser(Parser, Transformer):
+    trace_grammar = r"""
+        ?traces: (trace)+ -> mk_traces
+        ?trace: num SEMICOLON (heap_trace | stk_trace)+ -> mk_stack_heap
+
+        ?stk_trace: id EQ (addr | num) SEMICOLON -> mk_stk_trace
+
+        ?heap_trace: addr PTO id OBRACE fields CBRACE SEMICOLON -> mk_heap_trace
+
+        ?fields: field (SEMICOLON field)* -> mk_fields
+
+        ?field: (ptr_field | data_field)
+
+        ?ptr_field: id COLON addr -> mk_ptr_field
+
+        ?data_field: id COLON num -> mk_data_field
+
+        ?id: ID -> mk_id
+
+        ?num: NUM -> mk_num
+
+        ?addr: ADDR -> mk_addr
+            | NULL -> mk_nil
+            | NIL -> mk_nil
+
+        ADDR: "0x" HEXDIGIT+
+        NIL: "nil"
+        NULL: "null"
+        PTO: "->"
+        OBRACE: "{"
+        CBRACE : "}"
+        SEMICOLON: ";"
+        COLON: ":"
+        EQ: "="
+
+        COMMENT: /#[^\n]*/
+
+        %import common.CNAME -> ID
+        %import common.INT -> NUM
+        %import common.HEXDIGIT
+        %import common.WS
+        %ignore WS
+        %ignore COMMENT
+        """
+
+    def mk_id(self, (id,)):
+        return str(id)
+
+    mk_nil = lambda self, _: Addr(Const.nil_addr)
+
+    def mk_num(self, (s,)):
+        return Int(s)
+
+    def mk_addr(self, (s,)):
+        return Addr(s)
+
+    def mk_data_field(self, (name, colon, data)):
+        return DataField(name, data)
+
+    def mk_ptr_field(self, (name, colon, addr)):
+        return PtrField(name, addr)
+
+    def mk_fields(self, lst):
+        return lst[0::2]
+
+    def mk_heap_trace(self, (addr, pto, name, obrace, fields, cbrace, semicolon)):
+        return HeapTrace(addr, name, fields)
+
+    def mk_stk_trace(self, (name, eq, val, semicolon)):
+        return StackTrace(name, val)
+
+    def mk_stack_heap(self, lst):
+        stack = Stack()
+        heap = Heap()
+        for trace in lst[2::]:
+            if isinstance(trace, HeapTrace):
+                heap.add(trace.addr.val, (trace.typ, trace.fields))
+            else:
+                stack.add(trace.name, trace.val)
+        return Traces(lst[0],stack, heap)
+
+    def mk_traces(self, lst):
+        debug(lst[0])
+        return lst
+
+    file_parser = Lark(trace_grammar, start='traces',lexer='standard')
+

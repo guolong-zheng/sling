@@ -1,0 +1,93 @@
+
+!!!Full processing file "AFWP/sll/SLL-last.dryad.c"
+Parsing file "AFWP/sll/SLL-last.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E AFWP/sll/SLL-last.dryad.c -o AFWP/sll/SLL-last.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of SLL_last: :HP_24
+!!! generate unknown predicate for Post synthesis of SLL_last: :GP_25
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+!!! generate unknown predicate for Pre synthesis of while_14_2$node~node: :HP_1346
+!!! generate unknown predicate for Post synthesis of while_14_2$node~node: :GP_1349Starting Omega.../usr/local/bin/oc
+
+Checking procedure while_14_2$node~node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_1346,GP_1349]requires HP_1346(j_66,i_65)&
+truerequires emp
+ ensures GP_1349(j_66,j_66',i_65,i_65')&
+true{,(4,5)=__norm#E};
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(1;1;0)HP_1346(j_66,i_65)&
+i_65!=null --> i_65::node<key_22_1432,next_22_1433> * 
+HP_1434(next_22_1433,j_66@NI) * HP_1435(j_66,i_65@NI)&
+true,
+ // PRE_REC
+(1;1;0)HP_1434(i_65',j_66@NI) * i_65::node<key_22_1432,i_65'>&
+true --> HP_1346(i_65,i_65')&
+true,
+ // POST
+(1;1;0)HP_1435(j_66,i_65@NI) * GP_1349(i_65,j_66',next_22_1433,i_65')&
+i_65!=null --> GP_1349(j_66,j_66',i_65,i_65')&
+true,
+ // POST
+(2;1;0)HP_1346(j_66,i_65)&i_65=null & i_65'=null & i_65'=i_65 & 
+j_66'=j_66 --> GP_1349(j_66,j_66',i_65,i_65')&
+true]
+
+Procedure while_14_2$node~node SUCCESS.
+
+Context of Verification Failure: 1 File "",Line:0,Col:0
+
+Last Proving Location: 1 File "",Line:0,Col:0
+
+ERROR: at AFWP/sll/SLL-last.dryad.c_14:2_23:3
+Message: split_components: don't expect OR
+
+ --error:  at:
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EInfer @shape[HP_1346,GP_1349]
+   EBase HP_1346(j_66,i_65)&{FLOW,(4,5)=__norm#E}[]
+           EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                   EAssume ref [j_66;i_65]
+                     GP_1349(j_66,j_66',i_65,i_65')&{FLOW,(4,5)=__norm#E}[]
+                     
+Checking procedure SLL_last$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[ HP_24,GP_25]requires HP_24(h)&truerequires emp
+ ensures GP_25(h,res)&
+true{,(4,5)=__norm#E};
+
+!!! WARNING logtime exception:0.004
+Procedure SLL_last$node FAIL.(2)
+
+Exception Not_found Occurred!
+
+Error(s) detected when checking procedure SLL_last$node
+Stop z3... 70 invocations Stop Omega... 22 invocations 
+1 false contexts at: ( (14,2) )
+
+!!! log(small):(0.045764,287)
+Total verification time: 0.164 second(s)
+	Time spent in main process: 0.112 second(s)
+	Time spent in child processes: 0.052 second(s)
+	Z3 Prover Time: 0.008 second(s)

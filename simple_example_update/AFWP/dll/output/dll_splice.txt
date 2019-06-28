@@ -1,0 +1,26 @@
+dynsl.py:221 - Inferring post-conditions at the location 18 ...
+
+dynsl.py:221 - Inferring pre-conditions at the location 11 ...
+
+dynsl.py:299 - Precondition at location 11:
+dynsl.py:307 -  dll(i, fv0, fv1, nil) * dll(h, nil, fv0, i) 
+dynsl.py:309 - ==============================
+dynsl.py:312 - Postcondition at location 18:
+dynsl.py:320 -  dll(i, nil, fv2, nil) * dll(h, nil, fv0, j) * dll(j, fv0, j, nil) 
+dynsl.py:320 -  dll(i, nil, fv2, nil) * dll(h, nil, fv0, j) * j:node->node{nil, fv0} 
+dynsl.py:322 - ==============================
+dynsl.py:338 - ==============================
+dynsl.py:363 - Number of locations: 2
+dynsl.py:364 - Number of traces: 2
+dynsl.py:365 - Number of pre-defined predicates: 2
+dynsl.py:367 - Number of free variables: 6
+dynsl.py:368 - Number of atomic singleton predicates: 1
+dynsl.py:369 - Number of atomic inductive predicates: 7
+dynsl.py:370 - Number of pure constraints: 0
+dynsl.py:371 - Number of total invs: 3
+dynsl.py:372 - Number of pres:1
+dynsl.py:373 - Number of post:2
+dynsl.py:374 - Number of loop:0
+dynsl.py:375 - Running time (sec): 4.06926512718
+../simple_example_update/AFWP/dll/dll_splice,2,2,6,1,7,0,3,1,2,0,4.06
+../simple_example_update/AFWP/dll/dll_splice,2,2,1,7,0,3,1,2,0,4.06

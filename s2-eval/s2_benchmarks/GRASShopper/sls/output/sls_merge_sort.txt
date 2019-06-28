@@ -1,0 +1,71 @@
+
+!!!Full processing file "GRASShopper/sls/sls_merge_sort.dryad.c"
+Parsing file "GRASShopper/sls/sls_merge_sort.dryad.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E GRASShopper/sls/sls_merge_sort.dryad.c -o GRASShopper/sls/sls_merge_sort.dryad.c.prep
+
+!!! generate unknown predicate for Pre synthesis of merge_sort: :HP_16
+!!! generate unknown predicate for Post synthesis of merge_sort: :GP_17
+!!! ss:EInfer @shape[HP_16,GP_17] EBase: [][](HRel HP_16(lst))*(true)( FLOW __norm) {EAssume: 8,:(HRel GP_17(lst,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+Starting Omega.../usr/local/bin/oc
+
+Checking procedure merge_sort$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_16,GP_17]requires HP_16(lst@NI)&
+truerequires emp
+ ensures GP_17(lst,res)&true{,(4,5)=__norm#E};
+
+!!!>>>>>> mismatch ptr lst::lseg<lst> is not found (or inst) in the lhs <<<<<<
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // PRE_REC
+(0)emp&true --> HP_16(lst1_52'@NI)&
+true,
+ // PRE_REC
+(0)HP_16(lst@NI)&true --> HP_16(lst@NI)&
+true,
+ // PRE
+(0)lst1_52'::lseg<lst'> * GP_17(lst1_52',a_54')&
+true --> a_54'::lseg<x_1325> * GP_1326(x_1325,lst1_52'@NI) * 
+GP_1327(lst1_52',a_54'@NI)&
+true,
+ // PRE
+(0)GP_17(lst',b_56')&true --> b_56'::lseg<y_1328> * 
+GP_1329(y_1328,lst'@NI) * GP_1330(lst',b_56'@NI)&
+true,
+ // POST
+(0)GP_1330(lst,tmp___1333@NI) * res::lseg<tmp___1335>&
+true --> GP_17(lst,res)&
+true]
+
+Procedure merge_sort$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_16(lst) ::= NONE,
+ GP_1330(lst',b_56') ::= GP_1330(lst',tmp___1389)(4,5),
+ GP_17(lst_1337,res_1338) ::= GP_1330(lst_1337,tmp___1333) * res_1338::lseg<tmp___1335>(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase emp&{FLOW,(4,5)=__norm#E}[]
+         EBase emp&MayLoop[]&{FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists tmp___1335,
+                   tmp___1333: lst::GP_1330{}<tmp___1333> * 
+                   res::lseg{}<tmp___1335>&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 91 invocations Stop Omega... 27 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.053268,564)
+Total verification time: 0.176 second(s)
+	Time spent in main process: 0.124 second(s)
+	Time spent in child processes: 0.052 second(s)
+	Z3 Prover Time: 0. second(s)

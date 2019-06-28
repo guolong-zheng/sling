@@ -1,0 +1,63 @@
+
+!!!Full processing file "cyclist/composite4/tree_get_parent.c"
+Parsing file "cyclist/composite4/tree_get_parent.c" by cil parser...
+GCC Preprocessing...
+gcc -C -E cyclist/composite4/tree_get_parent.c -o cyclist/composite4/tree_get_parent.c.prep
+
+!!! generate unknown predicate for Pre synthesis of tree_get_parent: :HP_17
+!!! generate unknown predicate for Post synthesis of tree_get_parent: :GP_18
+!!! ss:EInfer @shape[HP_17,GP_18] EBase: [][](HRel HP_17(node))*(true)( FLOW __norm) {EAssume: 6,:(HRel GP_18(node,res))*(true)( FLOW __norm)}
+!!! processing primitives "["prelude.ss"]
+Starting z3... 
+
+Checking procedure tree_get_parent$node... 
+
+
+******************************
+   ******* SPECIFICATION1 ********
+******************************
+ infer[@shape HP_17,GP_18]requires HP_17(node)&
+truerequires emp
+ ensures GP_18(node,res)&true{,(4,5)=__norm#E};
+Starting Omega.../usr/local/bin/oc
+
+*************************************
+*******shape relational assumptions ********
+*************************************
+[ // BIND
+(0)HP_17(node)&
+true --> node::node<left_11_1251,right_11_1252,parent_11_1253,count_11_1254> * 
+HP_1255(left_11_1251) * HP_1256(right_11_1252) * HP_1257(parent_11_1253)&
+true,
+ // POST
+(0)HP_1255(left_11_1251) * HP_1256(right_11_1252) * HP_1257(res) * 
+node::node<left_11_1251,right_11_1252,res,count_11_1254>&
+true --> GP_18(node,res)&
+true]
+
+Procedure tree_get_parent$node SUCCESS.
+
+*********************************************************
+*******relational definition ********
+*********************************************************
+[ HP_17(node_1260) ::= node_1260::node<DP_DP_HP_1255,DP_DP_HP_1256,DP_DP_HP_1257,count_11_1254>(4,5),
+ GP_18(node_1261,res_1262) ::= node_1261::node<DP_DP_HP_1255,DP_DP_HP_1256,res_1262,count_11_1254>&
+res_1262=DP_DP_HP_1257(4,5)]
+*************************************
+
+!!! INFERRED SHAPE SPEC: EBase exists (Expl)[](Impl)[count_11_1254](ex)[]node::node<DP_DP_HP_1255,DP_DP_HP_1256,DP_DP_HP_1257,count_11_1254>&
+       {FLOW,(1,29)=__flow#E}[]
+         EBase exists (Expl)[](Impl)[count_11_1254](ex)[]emp&MayLoop[]&
+               {FLOW,(4,5)=__norm#E}[]
+                 EAssume 
+                   (exists DP_DP_HP_1255,
+                   DP_DP_HP_1256: node::node<DP_DP_HP_1255,DP_DP_HP_1256,res,count_11_1254>&
+                   res=DP_DP_HP_1257&{FLOW,(4,5)=__norm#E})[]
+                   Stop z3... 35 invocations Stop Omega... 2 invocations 
+0 false contexts at: ()
+
+!!! log(small):(0.009296,187)
+Total verification time: 0.128 second(s)
+	Time spent in main process: 0.096 second(s)
+	Time spent in child processes: 0.032 second(s)
+	Z3 Prover Time: 0. second(s)
