@@ -386,16 +386,22 @@ class IIncr(object):
         # debug(root)
         # debug(children)
 
-        if len(children) < len(ptr_params) - 1:
-            num_fresh_vars = len(ptr_params) - 1 - len(children)
-            children.extend([Const.fresh_vars_dummy_addr] * num_fresh_vars)
-
         ptr_args_lst = []
-        children_permutations = set(
-            itertools.permutations(children, len(ptr_params) - 1))
-        for perm in list(children_permutations):
-            perm = map(lambda arg: VarUtil.mk_fresh()
-                       if arg == Const.fresh_vars_dummy_addr else arg, perm)
+        if settings.opt_pred_args:
+            if len(children) < len(ptr_params) - 1:
+                num_fresh_vars = len(ptr_params) - 1 - len(children)
+                children.extend([Const.fresh_vars_dummy_addr] * num_fresh_vars)
+
+                children_permutations = set(
+                    itertools.permutations(children, len(ptr_params) - 1))
+                for perm in list(children_permutations):
+                    perm = map(lambda arg:
+                               VarUtil.mk_fresh() if arg == Const.fresh_vars_dummy_addr
+                               else arg, perm)
+                    ptr_args_lst.append(perm)
+        else:
+            perm = map(lambda arg: VarUtil.mk_fresh(),
+                       [Const.fresh_vars_dummy_addr] * (len(ptr_params) - 1))
             ptr_args_lst.append(perm)
 
         ptr_sst_lst = map(lambda ptr_args: zip(ptr_params[1:], ptr_args),

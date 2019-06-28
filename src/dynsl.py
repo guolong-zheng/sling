@@ -117,7 +117,7 @@ def main():
     ag('--def', '-def',
        dest='pred', type=open)
 
-    ag('--opt-pred-args', '-opt-pred-args',
+    ag('--opt_pred_args', '-opt_pred_args',
        action="store_true")
 
     ag('--mp', '-mp',
@@ -135,6 +135,7 @@ def main():
     args = aparser.parse_args()
 
     import settings
+    settings.opt_pred_args = args.opt_pred_args
     settings.doMP = args.mp
     settings.print_type = not args.notype
     settings.test_mode = args.test

@@ -8,7 +8,7 @@ mkdir -p output
 fname=${FILE%.c}
 if [ ! -f $fname ]; then
     gcc $(basename $FILE) header.c -g -o $(basename $fname)
-#     g++ $(basename $FILE) -g -o $(basename $fname)
+    # g++ $(basename $FILE) -g -o $(basename $fname)
 fi
 popd
 
@@ -17,4 +17,4 @@ post=$(grep -n -E  "//post" $FILE | cut -d: -f1)
 inv=$(grep -n -E  "//loop" $FILE | cut -d: -f1)
 
 
-python dynsl.py -input $fname -pre $pre -post $post -inv $inv -size $SIZE -def $DEFN | tee $(dirname $FILE)/output/$(basename $fname).txt
+/usr/bin/python2.7 dynsl.py -input $fname -pre $pre -post $post -inv $inv -size $SIZE -def $DEFN | tee $(dirname $FILE)/output/$(basename $fname).txt
