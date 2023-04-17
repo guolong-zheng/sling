@@ -1,3 +1,18 @@
+# Copyright (C) 2018-2023 Ton Chanh Le
+
+# SLING is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+
+# SLING is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with SLING. If not, see <https://www.gnu.org/licenses/>.
+
 from seplogic import *
 from trace import *
 from parser import *
@@ -12,10 +27,10 @@ import timeit
 def main():
     aparser = argparse.ArgumentParser(description='SLING')
     ag = aparser.add_argument
-    
+
     ag('--java', '-java',
        action="store_true")
-       
+
     ag('--input', '-input',
        dest='infile')
 
@@ -96,7 +111,7 @@ def main():
         # debug(post_traces)
         # debug(inv_traces)
         total_loc = len(pre_bps) + len(post_bps) + len(inv_bps)
-        
+
         pre_locs = List.remove_dups(map(lambda pr: pr.loc, pre_traces))
         post_locs = List.remove_dups(map(lambda po: po.loc, post_traces))
         inv_locs = List.remove_dups(map(lambda inv: inv.loc, inv_traces))
@@ -166,7 +181,7 @@ def main():
         for pr_loc in pre_locs:
             pr_po_pairs = pre_post_dict[pr_loc]
             pr_residue_lst = rdict[pr_loc]
-            
+
             pr_f_posts = {}
             pre_invs = {}
             for (pr_f, pr_residue) in pr_residue_lst:

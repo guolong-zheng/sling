@@ -1,3 +1,18 @@
+# Copyright (C) 2018-2023 Ton Chanh Le
+
+# SLING is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+
+# SLING is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with SLING. If not, see <https://www.gnu.org/licenses/>.
+
 from seplogic import *
 from model import *
 from trace import *
@@ -151,7 +166,7 @@ class IIncr(object):
                                                      local_ptr_vars_lst))))
         debug(local_ptr_vars)
         shuffle(local_ptr_vars)
-        debug(local_ptr_vars) 
+        debug(local_ptr_vars)
         meta_models = map(lambda model: MetaModel.make(local_ptr_vars, model), models)
         f_residue_lst = self._infer_root_lst(prog, local_ptr_vars, meta_models)
         if not f_residue_lst:
@@ -362,7 +377,7 @@ class IIncr(object):
                         var_typ_lst.append(var_typ)
 
                 if var_typ_lst:
-                    nil_typ_lst, data_typ_lst = List.partition(lambda t: 
+                    nil_typ_lst, data_typ_lst = List.partition(lambda t:
                                                                isinstance(t, TNull),
                                                                var_typ_lst)
                     if not data_typ_lst:
@@ -454,7 +469,7 @@ class IIncr(object):
                 args_lst.append(set(args))
             data_node_lst.append((data_typ, args_lst))
 
-        if (bool(data_node_lst) and 
+        if (bool(data_node_lst) and
             List.all_is_identical(map(lambda (typ, _): typ, data_node_lst))):
             data_typ, _ = data_node_lst[0]
             arg_grp_tuples = zip(*(map(lambda (_, args): args, data_node_lst)))
